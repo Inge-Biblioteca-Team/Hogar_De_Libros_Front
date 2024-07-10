@@ -4,8 +4,8 @@ interface CardProps extends ISala {}
 
 function Card({ Imagen, Nombre, Area, Aforo, Ubicacion }: CardProps) {
   return (
-    <div className="bg-slate-600 ">
-      <img className="w-64 h-32 mb-8" src={Imagen} alt={Nombre} />
+    <div className="bg-slate-600 border border-transparent rounded-md">
+     <img className="w-64 h-32 mb-8 border-t border-transparent rounded-t-md" src={Imagen} alt={Nombre} />
       <div className="flex flex-col items-center justify-center">
         <h3>{Nombre}</h3>
         <p>Área: {Area} m²</p>

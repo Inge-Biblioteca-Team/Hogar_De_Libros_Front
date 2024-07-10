@@ -1,6 +1,7 @@
 import { UseGetProgramasActividades } from "../Hooks/UseGetProgramasActividades";
 import { IProgramaActivida } from "../Interfaces/Programas_Actividades.interface";
 import Card_Programas_Actividades from "./Card_Programas_Actividades";
+import Info_Programas_Actividades from "./Info_Programas_Actividades";
 
 function Card_Container_Programas_Actividades() {
   const {programas, loading, error} =UseGetProgramasActividades();
@@ -10,7 +11,8 @@ function Card_Container_Programas_Actividades() {
   return (
     <>
       <section className="mt-6 flex flex-col items-center">
-        <h2 className="text-2xl mb-20">Programas y Actividades</h2>
+        <h2 className="text-2xl mb-8">Programas y Actividades</h2>
+        <Info_Programas_Actividades/>
         <div className="flex  justify-evenly">
         {programas.map((sala: IProgramaActivida)=>(
           <Card_Programas_Actividades
