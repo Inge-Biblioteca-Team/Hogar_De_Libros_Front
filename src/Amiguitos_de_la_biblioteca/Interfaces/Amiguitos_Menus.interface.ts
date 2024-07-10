@@ -1,4 +1,4 @@
-export interface AmiguitosMenus {
+export interface IAmiguitosMenu {
     Id: number
     Imagen : string
     Titulo : string

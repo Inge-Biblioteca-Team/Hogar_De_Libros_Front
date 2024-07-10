@@ -22,6 +22,6 @@ export const UseGetAmiguitosMenu = () => {
               }
             };
         fetchMenu();
-    }, []); // Dependencia vacía para que se ejecute solo una vez
-
-}
+    }, []); 
+    return { menu, loading, error };
+};
