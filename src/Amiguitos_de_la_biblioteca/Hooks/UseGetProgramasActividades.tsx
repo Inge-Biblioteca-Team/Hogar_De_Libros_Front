@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetProgramasActividades } from "../Services/ApiServices";
+import { GetProgramasActividades } from "../Services/ApiServicesProgramas";
 
 export const UseGetProgramasActividades = () => {
   const [programas, setProgramas] = useState<any[]>([]);
@@ -19,7 +19,7 @@ export const UseGetProgramasActividades = () => {
     };
 
     fetchProgramas();
-  }, []); // Dependencia vacía para que se ejecute solo una vez
+  }, []);
 
   return { programas, loading, error };
 };

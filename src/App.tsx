@@ -1,11 +1,12 @@
-import Programas_Actividades from "./Amiguitos_de_la_biblioteca/Pages/Programas_Actividades"
+import AmiguitosMain from "./Amiguitos_de_la_biblioteca/Pages/AmiguitosMain"
 import Salas from "./Salas/Pages/Salas"
 
 function App() {
 
   return (
     <>
-    <Programas_Actividades />
+    <Salas />
+   <AmiguitosMain />
     </>
   )
 }
