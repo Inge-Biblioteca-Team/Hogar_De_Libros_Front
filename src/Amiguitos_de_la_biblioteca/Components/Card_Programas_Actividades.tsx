@@ -8,10 +8,10 @@ function Card_Programas_Actividades({
 }: CardProps) {
   return (
     <>
-    <div className="flex flex-col w-1/5 bg-slate-500">
+    <div className="flex flex-col w-2/12 bg-slate-500 min-h-96 ">
       <img className="w-full h-32 mb-8" src={Imagen} />
       <h2 className="text-lg">{Categoria}</h2>
-      <p className="flex-grow">
+      <p className="flex-grow ">
         <span >{Descripcion}</span>
       </p>
       <div className="flex justify-center mt-auto">
