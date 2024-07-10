@@ -1,12 +1,14 @@
-import LibrosMasPrestados from "../features/Libros/screens/LibrosMasPrestados"
-import LibrosRegalo from "../features/Libros/screens/LibrosRegalo"
+import MostPopularBooks from "../features/Books/screens/MostPopularBooks"
+import FreeBooksList from "../features/Books/screens/FreeBooksList"
+import ComputerInfo from "../features/Computers/screens/ComputerInfo"
 
 const Landing = () => {
   return (
-    <div className="">
-      <LibrosMasPrestados/>
-      <LibrosRegalo/>
-    </div>
+    <main>
+      <MostPopularBooks/>
+      <FreeBooksList/>
+      <ComputerInfo/>
+    </main>
   )
 }
 

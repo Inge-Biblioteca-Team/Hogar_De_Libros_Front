@@ -1,20 +1,20 @@
-import BotonVerMas from "../../../components/BotonVerMas";
-import { useLibrosRegalo } from "../hooks/useLibrosRegalo";
+import BtnShowMore from "../components/BtnShowMore";
+import { useFreeBooks } from "../hooks/useFreeBooks";
 
-const LibrosRegalo = () => {
-  const { LibrosXRegalo } = useLibrosRegalo();
+const FreeBooksList = () => {
+  const { FreeBooks } = useFreeBooks();
 
   return (
     <>
       <section className=" w-full flex flex-col items-center justify-center pt-9">
         <h2 className=" text-3xl">Libros De Regalo</h2>
         <div className="flex w-full gap-5 items-center justify-center">
-          {LibrosXRegalo()}
+          {FreeBooks()}
         </div>
-        <BotonVerMas/>
+        <BtnShowMore/>
       </section>
     </>
   );
 };
 
-export default LibrosRegalo;
+export default FreeBooksList;
