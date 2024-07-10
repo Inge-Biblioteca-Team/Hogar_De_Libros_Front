@@ -1,5 +1,5 @@
 export interface IAmiguitosMenu {
-    Id: number
+    Id: string
     Imagen : string
     Titulo : string
     Descripcion : string

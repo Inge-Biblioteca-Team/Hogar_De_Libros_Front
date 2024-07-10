@@ -1,26 +1,38 @@
+import { useNavigate } from "react-router-dom";
 import { IAmiguitosMenu } from "../Interfaces/Amiguitos_Menus.interface";
 
+
 interface CardProps extends IAmiguitosMenu {}
-function Card_Programas_Actividades({
+function Card_Amiguitos_Menu({
+  Id,
   Imagen,
   Titulo,
   Descripcion,
 }: CardProps) {
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    switch (Id){
+      case "2":
+        navigate('/Programas&Actividades');
+        break;
+    }
+  }
+
   return (
-    <>
-    <div className="flex flex-col w-2/12 bg-slate-500 min-h-96 ">
-      <img className="w-full h-32 mb-8" src={Imagen} />
-      <h2 className="text-lg">{Titulo}</h2>
-      <p className="flex-grow ">
-        <span >{Descripcion}</span>
-      </p>
-      <div className="flex justify-center mt-auto">
-      <button className="bg-red-400 border border-red-400 rounded-lg mb-4">Mas informacion</button>
+    <div className="bg-slate-600 w-64 flex flex-col">
+      <img className="w-64 h-32 mb-8" src={Imagen} />
+      <div className="flex flex-col items-center justify-center flex-grow">
+        <h3>{Titulo}</h3>
+        <p><span>{Descripcion}</span></p>
       </div>
-      </div>
-      
-    </>
+      <button
+        className="bg-orange-600 border border-orange-600 rounded-md text-white p-1"
+        type="button" onClick={handleButtonClick}
+      >
+        Ver más información
+      </button>
+    </div>
   );
 }
 
-export default Card_Programas_Actividades;
+export default Card_Amiguitos_Menu;

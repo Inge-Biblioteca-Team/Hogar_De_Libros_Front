@@ -1,12 +1,11 @@
-import AmiguitosMain from "./Amiguitos_de_la_biblioteca/Pages/AmiguitosMain"
-import Salas from "./Salas/Pages/Salas"
+import AppRoutes from "./Routes/AppRoutes"
+
 
 function App() {
 
   return (
     <>
-    <Salas />
-   <AmiguitosMain />
+    <AppRoutes />
     </>
   )
 }

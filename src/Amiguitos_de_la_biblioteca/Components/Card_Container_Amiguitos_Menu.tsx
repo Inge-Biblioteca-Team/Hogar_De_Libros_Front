@@ -1,29 +1,30 @@
 import { UseGetAmiguitosMenu } from "../Hooks/UseGetAmiguitosMenu";
 import { IAmiguitosMenu } from "../Interfaces/Amiguitos_Menus.interface";
+import Card_Amiguitos_Menu from "./Card_Amiguitos_Menu";
 
 
-function Card_Container_Programas_Actividades() {
+function Card_Container_Amiguitos_Menu() {
   const {menu, loading, error} =UseGetAmiguitosMenu();
 
   if(loading) return <p>Cargando.....</p>
   if(error) return <p>Error al cargar programas y actividades</p>
   return (
     <>
-      <section className="mt-6 flex flex-col items-center">
-        <h2 className="text-2xl mb-20">Programas y Actividades</h2>
-        <div className="flex  justify-evenly">
-        {menu.map((menu: IAmiguitosMenu)=>(
-          <Card_Programas_Actividades
-            key={menu.Id.toString()}
-            Imagen={menu.Imagen}
-            Titulo={menu.Titulo}
-            Descripcion={menu.Descripcion}        
-          />
-        ))}
-        </div>
-      </section>
+    
+    <div className="flex flex-row flex-wrap gap-x-4 mt-20 justify-evenly">
+      {menu.map((menu: IAmiguitosMenu) => (
+        <Card_Amiguitos_Menu
+          key={menu.Id.toString()}
+          Imagen={menu.Imagen}
+          Titulo={menu.Titulo}
+          Descripcion={menu.Descripcion}
+          Id={menu.Id}
+        />
+      ))}
+      </div>
+      
     </>
   );
 }
 
-export default Card_Container_Programas_Actividades;
+export default Card_Container_Amiguitos_Menu;

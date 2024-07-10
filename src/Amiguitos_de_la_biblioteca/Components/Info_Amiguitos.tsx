@@ -3,7 +3,7 @@ import icono from "../assets/AL_Volutariado_LOGO_Positivo.png";
 function Info_Programas() {
   return (
     <>
-      <section className="flex flex-col items-center">
+      <section className=" mt-20 flex flex-col items-center">
         <h2 className="text-2xl mb-8">Amiguitos de la biblioteca</h2>
         
       <div className="flex items-center mr-32">

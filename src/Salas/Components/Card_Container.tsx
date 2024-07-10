@@ -9,7 +9,7 @@ function Card_Container() {
   if (error) return <p>Error al cargar las salas</p>;
   return (
     <>
-    <div className="flex justify-center mb-10">
+    <div className="flex justify-center  mb-10">
       <h1 className="text-2xl">Nuestras salas</h1>
     </div>
     <div className="flex flex-row flex-wrap gap-x-4 justify-evenly">
