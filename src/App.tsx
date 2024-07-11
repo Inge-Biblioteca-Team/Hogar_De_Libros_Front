@@ -1,12 +1,19 @@
 import { Route,Routes } from 'react-router-dom';
-import Navbar from './componets/home/Navbar';
+import Navbar from './componets/Navbar';
+import Login from './componets/Login';
+import Books from './componets/Books';
+import Rooms from './componets/Rooms';
+import Technoteams from './componets/Technoteams';
+import Courses from './componets/Courses';
+import Events from './componets/Events';
+import Libraryfriends from './componets/Libraryfriends';
+import Footer from './componets/Footer';
 
 function App() {
 
   return (
     <>
     <Navbar/>
-      <div>
     <Routes>        
       <Route path="/login"  element={<Login />} />
       <Route path="/books"  element={<Books />}/>
@@ -15,9 +22,8 @@ function App() {
       <Route path="/courses"  element={<Courses/>}/>
       <Route path="/events"  element={<Events/>}/>
       <Route path="/libraryfriends"  element={<Libraryfriends/>}/>
-
     </Routes>
-    </div>
+    <Footer/>
     </>
   )
 }
