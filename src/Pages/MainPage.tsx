@@ -1,11 +1,10 @@
 import AmiguitosMain from "../Amiguitos_de_la_biblioteca/Pages/AmiguitosMain"
-import Salas from "../Salas/Pages/Salas"
-
+import RoomsInfo from "../Salas/Pages/RoomsInfo"
 
 function MainPage() {
   return (
     <>
-      <Salas />
+      <RoomsInfo/>
       <AmiguitosMain />
     </>
   )
