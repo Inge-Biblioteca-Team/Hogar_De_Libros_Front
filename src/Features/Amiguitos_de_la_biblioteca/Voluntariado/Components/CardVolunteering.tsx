@@ -15,8 +15,8 @@ function CardVolunteering({
           src={Imagen}
         />
         <h2 className="text-lg">{Categoria}</h2>
-        <p className="flex-grow ">
-          <span>{Descripcion}</span>
+        <p className="flex-grow  ">
+          <span >{Descripcion}</span>
         </p>
         <div className="flex justify-center mt-auto">
           <button className="bg-red-400 border border-red-400 rounded-lg mb-4">
