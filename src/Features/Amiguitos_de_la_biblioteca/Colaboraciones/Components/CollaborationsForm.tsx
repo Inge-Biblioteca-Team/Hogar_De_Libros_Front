@@ -1,5 +1,7 @@
 
 function CollaborationsForm() {
+
+  //Este es el formulario para que las instituciones puedan colaborar con la biblioteca
   return (
     <form className="max-w-md mx-auto p-6 bg-gray-600 rounded-md shadow-md">
       

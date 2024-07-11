@@ -1,5 +1,5 @@
 
-function DonationsForm() {
+function DonationsForm() { // Formulario de donaciones
   return (
     <form className="max-w-md mx-auto  p-6 bg-gray-600 rounded-md shadow-md">
       <div className="mb-4 flex flex-col items-center">

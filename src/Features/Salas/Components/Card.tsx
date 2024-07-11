@@ -1,9 +1,10 @@
 import { IRoom } from "../interfaces/Room_Interface";
 
 interface CardProps extends IRoom {}
-
+// Trae los props de la interfaz IRoom dados en el archivo Room_Interface.ts
 function Card({ Imagen, Nombre, Area, Aforo, Ubicacion }: CardProps) {
   return (
+    //Crea la tarjeta con la informacion de la sala dada por los props
     <div className="bg-slate-600 border border-transparent rounded-md">
       <img
         className="w-64 h-32 mb-8 border-t border-transparent rounded-t-md"

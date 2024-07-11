@@ -2,7 +2,8 @@ import DonationsForm from "../Components/Formulario";
 import Requeriments from "../Components/Requisitos";
 
 
-function Donations() {
+function Donations() { /* Pantalla de donaciones de libros mostrando los requisitos
+   y el formulario*/
   return (
     <>
       <div className="flex flex-col items-center">

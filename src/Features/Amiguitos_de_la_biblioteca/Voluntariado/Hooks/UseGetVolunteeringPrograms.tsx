@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GetVolunteeringPrograms } from "../Services/ApiServicesVolunteering";
 
-
+// Hook para obtener los programas de voluntariado
 export const UseGetVolunteeringPrograms = () => {
   const [programas, setProgramas] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);

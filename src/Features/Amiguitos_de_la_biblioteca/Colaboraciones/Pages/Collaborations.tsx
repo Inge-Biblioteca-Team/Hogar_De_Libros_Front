@@ -1,6 +1,7 @@
 import  CollaborationsForm from "../Components/CollaborationsForm";
 
 function Collaborations() {
+  // Pagina de Colaboraciones donde se explica que son y se muestra el formulario
   return (
     <>
       <div className="flex flex-col items-center">

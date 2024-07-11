@@ -6,6 +6,7 @@ function CardVolunteering({
   Categoria,
   Descripcion,
 }: CardProps) {
+  // Tarjeta de programas y actividades
   return (
     <>
       <div className="flex flex-col w-2/12 bg-slate-500 min-h-96 border border-transparent rounded-md ">

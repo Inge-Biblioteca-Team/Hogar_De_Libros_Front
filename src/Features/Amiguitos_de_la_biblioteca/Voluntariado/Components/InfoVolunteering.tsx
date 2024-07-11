@@ -1,5 +1,6 @@
 
 function InfoVolunteering() {
+  // Informacion sobre los programas y actividades de voluntariado
   return (
     <>
 

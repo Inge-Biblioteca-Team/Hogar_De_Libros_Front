@@ -4,8 +4,9 @@ import { IFriendsMenu } from "../Interfaces/Friends-Menu.interface";
 
 interface CardProps extends IFriendsMenu {}
 function CardFriendsMenu({ Id, Imagen, Titulo, Descripcion }: CardProps) {
-  const navigate = useNavigate();
-  const handleButtonClick = () => {
+  const navigate = useNavigate(); // hook de react-router-dom que permite la navegacion entre paginas
+  const handleButtonClick = () => { 
+    // funcion que redirige a la pagina de donaciones, voluntariado o colaboraciones
     switch (Id) {
       case "1":
         navigate("/Donations");
@@ -18,7 +19,7 @@ function CardFriendsMenu({ Id, Imagen, Titulo, Descripcion }: CardProps) {
         break;
     }
   };
-
+ // muestra las tarjetas de los amiguitos de la biblioteca
   return (
     <div className="bg-slate-600 w-64 flex flex-col border border-transparent rounded-md">
       <img
