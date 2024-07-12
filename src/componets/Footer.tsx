@@ -8,19 +8,60 @@ const Footer = () => {
                         <a href="https://flowbite.com/" className="flex items-center">
                             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Biblioteca Publica Municipal de Nicoya </span>
                         </a>
+                        {/*Ubicación de la empresa */}
+                        <div className="mt-4">
+                            <h2 className="text-sm font-semibold text-gray-900 uppercase dark:text-white">Ubicación</h2>
+                            <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                                <li className="mb-4">
+                                    <span>50 Norte del Liceo de Nicoya, frente a piscinas ANDE</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    {/*Contactos de la empresa */}
+
+
+
+
+
+                    {/* Contactos de la empresa */}
+
                     <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                         <div>
                             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Contactos</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
-                                    <a href="" className="hover:underline"> correo@gmail.com </a>
+                                    <a href="" className="hover:underline"> bpnicoya@sinabi.go.cr</a>
                                 </li>
                                 <li className="mb-4">
                                     <a href="" className="hover:underline"> (506) 2685-4213</a>
                                 </li>
 
+                            </ul>
+                        </div>
+
+
+                        <div>
+                            {/*Servicios de la empresa */}
+                            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Servicios</h2>
+                            <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                                <li className="mb-4">
+                                    <a href="#" className="hover:underline">Prestamos</a>
+                                </li>
+                                <li>
+                                    <a href="#" className="hover:underline">Libros</a>
+                                </li>
+                                <li>
+                                    <a href="#" className="hover:underline">Salas</a>
+                                </li>
+                                <li>
+                                    <a href="#" className="hover:underline">Equipo tecnológico</a>
+                                </li>
+                                <li>
+                                    <a href="#" className="hover:underline">Cursos</a>
+                                </li>
+                                <li>
+                                    <a href="#" className="hover:underline">Eventos</a>
+                                </li>
                             </ul>
                         </div>
                         <div>
@@ -35,7 +76,9 @@ const Footer = () => {
                                 </li>
                             </ul>
                         </div>
+
                     </div>
+
                 </div>
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                 <div className="flex flex-col items-center sm:flex-row sm:justify-between">
