@@ -8,12 +8,15 @@ import Courses from './componets/Courses';
 import Events from './componets/Events';
 import Libraryfriends from './componets/Libraryfriends';
 import Footer from './componets/Footer';
+import Info from './componets/Info';
 
 function App() {
 
   return (
     <>
+    <div className="min-h-screen flex flex-col">
     <Navbar/>
+    <main className="flex-grow">
     <Routes>        
       <Route path="/login"  element={<Login />} />
       <Route path="/books"  element={<Books />}/>
@@ -22,8 +25,11 @@ function App() {
       <Route path="/courses"  element={<Courses/>}/>
       <Route path="/events"  element={<Events/>}/>
       <Route path="/libraryfriends"  element={<Libraryfriends/>}/>
+      <Route path="/info"  element={<Info/>}/>
     </Routes>
+    </main>
     <Footer/>
+    </div>
     </>
   )
 }
