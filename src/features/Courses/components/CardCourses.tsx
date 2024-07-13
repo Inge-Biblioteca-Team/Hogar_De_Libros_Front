@@ -25,7 +25,6 @@ const CardCourses = ({ Courses }: { Courses: Course2 }) => {
           type="button"
         >
           Matricular -&gt;{" "}
-       
         </button>
       </figcaption>
     </figure>
