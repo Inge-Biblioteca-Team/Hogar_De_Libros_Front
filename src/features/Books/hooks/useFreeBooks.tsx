@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { GetFreeBooks } from "../services/SvBooks";
 import { useCallback } from "react";
 import { Book } from "../type/Book";
-import BookCard from "../components/BoockCard";
+import BookCard from "../components/BookCard";
 
 const useFreeBooks = () => {
   const { data: Books, error, isLoading } = useQuery(['FreeBooks'], GetFreeBooks);//['freeBooks'], () => GetBooks("free") el final seria este con el uso del api

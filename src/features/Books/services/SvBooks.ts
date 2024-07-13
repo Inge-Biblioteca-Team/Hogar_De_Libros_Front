@@ -8,7 +8,7 @@ const GetPopularBooks = async () => {
 };
 const GetFreeBooks = async () => {
   const response = await axios.get(
-    "https://66456d5ab8925626f891d5c2.mockapi.io/Pacientes/test/Libros"
+    "https://66456d5ab8925626f891d5c2.mockapi.io/Pacientes/test/LibrosFree"
   );
   return response.data;
 };

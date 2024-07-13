@@ -5,3 +5,16 @@
 :root {
 background-color: #dfe2e6;
 }
+
+@keyframes scroll{
+    0%{
+        transform: translatex(0);
+    }
+    100%{
+        transform: translateX(calc(-120px*5 - 0.5rem * 10));
+    }
+}
+
+.animate-scroll{
+    animation: scroll 20s linear infinite;
+}

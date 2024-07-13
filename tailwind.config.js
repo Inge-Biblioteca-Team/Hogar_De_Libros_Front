@@ -1,8 +1,11 @@
+const flowbite = require("flowbite-react/tailwind");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    flowbite.content(),
   ],
   theme: {
     extend: {
@@ -20,6 +23,11 @@ module.exports = {
         }
       }
     },
+    container:{
+      center:true
+    }
   },
-  plugins: [],
+  plugins: [
+    flowbite.plugin(),
+  ],
 };

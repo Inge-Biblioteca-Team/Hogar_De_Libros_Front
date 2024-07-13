@@ -1,19 +1,28 @@
-import BtnShowMore from "../components/BtnShowMore";
-import { useFreeBooks } from "../hooks/useFreeBooks";
+import { useQuery } from 'react-query';
+import BookCard from '../components/BookCard';
+import BtnShowMore from '../components/BtnShowMore';
+import { GetFreeBooks } from '../services/SvBooks';
+import { Book } from '../type/Book';
 
 const FreeBooksList = () => {
-  const { FreeBooks } = useFreeBooks();
+  const { data: books, error, isLoading } = useQuery<Book[], Error>(['FreeBooks'], GetFreeBooks);
+
+  if (isLoading) return <span>Loading...</span>;
+  if (error) return <span>Error: {error.message}</span>;
 
   return (
-    <>
-      <section className=" w-full flex flex-col items-center justify-center pt-9">
-        <h2 className=" text-3xl">Libros De Regalo</h2>
-        <div className="flex w-full gap-5 items-center justify-center">
-          {FreeBooks()}
-        </div>
-        <BtnShowMore/>
-      </section>
-    </>
+    
+    <section className="w-4/5 flex flex-col items-center justify-center">
+      <h2 className="text-3xl pb-8">Libros De Regalo</h2>
+      <div className="flex w-full gap-5 items-center justify-center">
+        {books?.map((book) => (
+          <figure key={book.id} className="rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3">
+            <BookCard Book={book} />
+          </figure>
+        ))}
+      </div>
+      <BtnShowMore />
+    </section>
   );
 };
 
