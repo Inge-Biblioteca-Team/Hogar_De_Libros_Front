@@ -7,7 +7,7 @@ const ListTypeAmiguitos = () => {
   const {
     data: AmiguitosInf,
     isLoading,
-    error,
+    error
   } = useQuery<IVolunteeringPrograms[], Error>(["Amigi"], GetTypesAmiguitos);
 
   if (isLoading) return <span>Loading...</span>;

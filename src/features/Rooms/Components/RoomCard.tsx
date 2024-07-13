@@ -22,7 +22,7 @@ const RoomCard = ({ Rooms }: { Rooms: IRoom }) => {
         hover:bg-Bottoms-dark hover:scale-105"
           type="button"
         >
-          Ver Disponibilidad +{" "}
+          Ver Disponibilidad -&gt;{" "}
         </button>
       </figcaption>
     </figure>

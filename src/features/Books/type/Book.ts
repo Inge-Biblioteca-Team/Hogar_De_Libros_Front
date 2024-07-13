@@ -4,4 +4,6 @@ export type Book = {
   author: string;
   cover: string;
   description: string;
+  status: boolean;
+  observaciones:string;
 };
