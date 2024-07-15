@@ -24,3 +24,5 @@ export const UseGetFriendsMenu = () => {
     }, []); 
     return { menu, loading, error };
 };
+
+//!"React Query"

@@ -1,0 +1,14 @@
+Diseño acorde a lo preestablecido.(En caso de cambios lo vemos en la reunion, hay algunas cosas que no tenían díseño en ese caso no se sigue este)
+utilización adecuada de las diferentes etiquetas html
+utilización del orden de carpetas acordado en la reunion
+Presentación de código limpio y ordenado
+utilización de Axios y Reac query(En caso de que el apartado lo requiera)
+Tipado de los diferentes elementos que pueden convertirse en una tabla de la bd
+
+cumple con Punto 6 las interfaces brindan la informacion nesearia para converla en una table de la bd
+3 Las carpetas se dividen por modulos, sin embargo en amiguitos hay carpetas de mas
+NO cumple Puntos
+1 El diseño no se apega al esperado segun el diseño del Figma
+2 No se utitlizan etiquetas como Figure, figcaption, algunas estan mal utilizadas, en Form, no usa Legend ni fieldset
+4 existe demaciado codigo extra que no era necesario
+5 No utiliza Axios ni React query como indican los criteriso de aceptacion

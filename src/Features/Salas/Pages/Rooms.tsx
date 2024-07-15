@@ -10,3 +10,6 @@ function Rooms() {
 }
 
 export default Rooms
+
+//!Estas son secctions, son secciones de la pagina, no es correcto tampoco un componente solo para pasarlo a otro
+//!Mas Grande, Se puede incluir directo en el componente objetivo de este mismo
