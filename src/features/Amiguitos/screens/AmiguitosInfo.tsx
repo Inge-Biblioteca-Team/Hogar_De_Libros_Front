@@ -2,7 +2,7 @@ import ListTypeAmiguitos from "../components/ListTypeAmiguitos"
 import icono from "../assets/AL_Volutariado_LOGO_Positivo.png";
 const AmiguitosInfo = () => {
   return (
-    <section className="w-4/5 flex flex-col items-center justify-center">
+    <section className="w-4/5 flex flex-col items-center justify-center" id="Friends">
       <h2 className="text-2xl">Amiguitos de la biblioteca</h2>
         <div className="flex items-center mr-32">
           <img className="w-40 h-40 " src={icono} alt="Amiguitos De La Biblioteca" />

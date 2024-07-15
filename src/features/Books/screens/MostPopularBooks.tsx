@@ -16,7 +16,7 @@ const MostPopularBooks = () => {
   if (error) return <span>Error: {error.message}</span>;
 
   return (
-    <section className="w-4/5 flex flex-col items-center justify-center">
+    <section className="w-4/5 flex flex-col items-center justify-center" id="MostPopularBooks">
       <h2 className="text-3xl pb-8">Libros más solicitados</h2>
       <div className="flex w-full gap-5 items-center justify-center">
         {books?.map((book) => (

@@ -22,7 +22,7 @@ const UpcomingCourses = () => {
   const displayedCourses = showAll ? UpCourses : UpCourses?.slice(0, 3);
 
   return (
-    <section className="m-5 flex items-center flex-col">
+    <section className="m-5 flex items-center flex-col" id="Courses">
       <h2 className="font-bold text-2xl mb-5">Cursos disponibles</h2>
       <div className="grid grid-cols-3 gap-4">
         {displayedCourses?.map((Courses: Course2, index: number) => (

@@ -11,17 +11,17 @@ import Feedback from "../features/Contact/screens/Feedback"
 
 const Landing = () => {
   return (
-    <main className="flex items-center justify-center flex-col">
-      <DirectContac/>
-      <Feedback/>
-      <LocalArtistList/>
+    <main className="flex items-center gap-20 justify-center flex-col mt-5 mb-10">
       <MostPopularBooks/>
       <FreeBooksList/>
       <RoomList/>
       <ComputerInfo/>
-      <AmiguitosInfo/>
       <UpcomingCourses/>
       <UpcomingEvents/>
+      <AmiguitosInfo/>
+      <LocalArtistList/>
+      <DirectContac/>
+      <Feedback/>
     </main>
   )
 }

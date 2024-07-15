@@ -46,7 +46,7 @@ const UpcomingEvents = () => {
     );
   };
   return (
-    <section className="relative w-full max-w-4xl mx-auto">
+    <section className="relative w-full max-w-4xl mx-auto" id="Events">
       <h2 className="text-center font-bold text-2xl  mb-6">Próximos Eventos</h2>
       <div className="flex items-center justify-between">
         <button

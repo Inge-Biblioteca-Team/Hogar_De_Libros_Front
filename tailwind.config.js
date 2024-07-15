@@ -20,6 +20,11 @@ module.exports = {
           light: '#',
           DEFAULT: '#FFFFFF', //Blanco
           dark: '#', 
+        },
+        Body:{
+          light:'',
+          DEFAULT: '#557EE9',
+          dark: '#111827', 
         }
       }
     },

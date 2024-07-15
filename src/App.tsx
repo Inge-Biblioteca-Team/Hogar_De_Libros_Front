@@ -1,10 +1,11 @@
-import Landing from "./screens/Landing"
+import { RouterProvider } from "react-router-dom"
+import Routes from "./navigators/Routes"
 
 function App() {
 
   return (
     <>
-    <Landing/>
+    <RouterProvider router={Routes}/>
     </>
   )
 }
