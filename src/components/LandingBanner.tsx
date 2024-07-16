@@ -1,9 +1,9 @@
-import image from "../assets/image.png";
+import banner from "../Assets/image.png";
 const LandingBanner = () => {
   return (
     <div
       className="w-full flex flex-col justify-center items-center bg-cover bg-center gap-6 h-72 text-slate-50"
-      style={{ backgroundImage: `url(${image})` }}
+      style={{ backgroundImage: `url(${banner})` }}
     >
       <h1 className="text-3xl">
         Bienvenidos A La Biblioteca Publica Municipal De Nicoya
