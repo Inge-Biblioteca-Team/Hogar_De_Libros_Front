@@ -1,4 +1,4 @@
-import image from "../Assets/image.png";
+import image from "../assets/image.png";
 const LandingBanner = () => {
   return (
     <div
