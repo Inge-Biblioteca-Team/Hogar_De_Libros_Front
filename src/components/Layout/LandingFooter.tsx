@@ -28,11 +28,11 @@ const LandingFooter = () => {
           <div>
             <Footer.Title title="Servicios" className="text-lg text-white" />
             <Footer.LinkGroup col>
-              <Footer.Link href="">Libros</Footer.Link>
-              <Footer.Link href="">Salas</Footer.Link>
-              <Footer.Link href="">Equipo de Computo</Footer.Link>
-              <Footer.Link href="">Cursos</Footer.Link>
-              <Footer.Link href="">Eventos</Footer.Link>
+              <Footer.Link href="#MostPopularBooks">Libros</Footer.Link>
+              <Footer.Link href="#Rooms">Salas</Footer.Link>
+              <Footer.Link href="#Computers">Equipo de Computo</Footer.Link>
+              <Footer.Link href="#Courses">Cursos</Footer.Link>
+              <Footer.Link href="#Events">Eventos</Footer.Link>
             </Footer.LinkGroup>
           </div>
           <div>

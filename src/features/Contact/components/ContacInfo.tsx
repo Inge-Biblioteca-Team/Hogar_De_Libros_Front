@@ -10,10 +10,11 @@ const ContacInfo = () => {
           nosotros.
         </span>{" "}
         <br />
-        <span>Tambien puedes encontrarnos via</span>
+        <span>Tambien puedes contactanos via</span>
         <br />
         <strong>Telefono: </strong>
-        <span>+506 2685-4213</span>
+        <span>+506 2685-4213</span> <br />
+        <strong>Correo: </strong><a>bpnicoya@sinabi.go.cr</a>
         <br />
         <strong>Facebook: </strong>{" "}
         <a
