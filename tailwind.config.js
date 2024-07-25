@@ -12,19 +12,19 @@ module.exports = {
 
       colors: {
         Bottoms: {
-          light: '#', //Hover del boton
-          DEFAULT: '#557EE9', //Cuerpo del boton
-          dark: '#3457B1', 
+          light: '#', 
+          DEFAULT: '#1a53d9', //Cuerpo del boton
+          dark: '#142c6c', //Hover del boton
         },
         Text: {
           light: '#',
           DEFAULT: '#FFFFFF', //Blanco
-          dark: '#', 
+          dark: '#00000', //Negro
         },
         Body:{
-          light:'',
-          DEFAULT: '#557EE9',
-          dark: '#111827', 
+          light:'#557EE9', //Color viejo
+          DEFAULT: '#1a53d9', //Color Nuevo
+          dark: '#111827',  //Color del footer el mas obscuro
         }
       }
     },

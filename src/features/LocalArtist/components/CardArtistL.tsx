@@ -3,11 +3,12 @@ const CardArtistL = ({artist}:{artist:any}) => {
   return (
     <figure className="rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3">
       <img
-        className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover"
+        className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover
+                  max-sm:h-48 max-sm:rounded-md max-sm:mb-0"
         src={artist.image}
         alt={artist.name}
       />
-      <figcaption className=" text-lg break-words max-w-80 px-4">
+      <figcaption className=" text-lg break-words max-w-80 px-4 max-sm:text-sm">
         <h3>{artist.Name}</h3>
         <p>
           <span>{artist.Tipo}</span>

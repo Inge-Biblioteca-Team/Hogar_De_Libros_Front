@@ -10,10 +10,11 @@ const LandingHome = () => {
   return (
     <section
       id="Home"
-      className="flex w-full items-center justify-center flex-col gap-5"
+      className="flex w-full items-center justify-center flex-col gap-5
+      "
     >
         <LandingBanner/>
-      <div className=" flex gap-5 h-52 w-4/5">
+      <div className=" flex gap-5 h-52 w-4/5 max-sm:w-full max-sm:h-auto ">
         <LandingHomeCards
           Icon={faBookOpen}
           Title="Prestamos"

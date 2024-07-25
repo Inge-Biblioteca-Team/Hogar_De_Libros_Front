@@ -46,17 +46,17 @@ const UpcomingEvents = () => {
     );
   };
   return (
-    <section className="relative w-full max-w-4xl mx-auto" id="Events">
+    <section className="relative w-full max-w-4xl mx-auto  max-sm:w-4/5" id="Events">
       <h2 className="text-center font-bold text-2xl  mb-6">Próximos Eventos</h2>
       <div className="flex items-center justify-between">
         <button
           type="button"
           onClick={prevSlide}
-          className="bg-gray-300 rounded-full p-2"
+          className="bg-gray-300 rounded-full p-2 max-sm:hidden"
         >
           &lt;
         </button>
-        <div className="w-full overflow-hidden">
+        <div className="w-full overflow-hidden max-sm:overflow-x-scroll">
           <article
             className="flex transition-transform duration-300"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -69,7 +69,7 @@ const UpcomingEvents = () => {
         <button
           type="button"
           onClick={nextSlide}
-          className="bg-gray-300 rounded-full p-2"
+          className="bg-gray-300 rounded-full p-2  max-sm:hidden"
         >
           &gt;
         </button>

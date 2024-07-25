@@ -11,7 +11,7 @@ import Feedback from "../features/Contact/screens/Feedback"
 
 const Landing = () => {
   return (
-    <main className="flex items-center gap-20 justify-center flex-col mt-5 mb-10">
+    <main className="flex items-center gap-20 justify-center flex-col mt-5 mb-10 max-sm:gap-10">
       <MostPopularBooks/>
       <FreeBooksList/>
       <RoomList/>

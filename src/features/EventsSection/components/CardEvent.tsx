@@ -1,6 +1,6 @@
 const CardEvent = ({event}:{event:any}) => {
   return (
-    <figure className="flex-none w-full p-4">
+    <figure className="flex-none w-full p-4 max-sm:p-0">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
         <img
           src={event.imgSrc}
@@ -8,9 +8,9 @@ const CardEvent = ({event}:{event:any}) => {
           className="w-full h-48 object-cover"
         />
         <figcaption className="p-4">
-          <h3 className="text-lg font-bold mb-2">{event.title}</h3>
-          <p className="text-sm text-gray-600">
-            <strong>Fecha:</strong> {event.date}
+          <h3 className="text-lg font-bold mb-2 ">{event.title}</h3>
+          <p className="text-sm text-gray-600 ">
+            <strong className="">Fecha:</strong> {event.date}
             <br />
             <strong>Hora:</strong> {event.time}
             <br />

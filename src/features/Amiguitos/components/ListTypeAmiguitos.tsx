@@ -15,7 +15,7 @@ const ListTypeAmiguitos = () => {
 
   return (
     <article>
-      <div className="flex w-full gap-5 items-center justify-center">
+      <div className="flex w-full gap-5 items-center justify-center max-sm:gap-2">
         {AmiguitosInf?.map(( amigi: IVolunteeringPrograms, index: number) => (
           <CardTypeAmiguito Amiguito={amigi} key={index} />
         ))}

@@ -1,4 +1,6 @@
-import { Navbar } from "flowbite-react";
+import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Navbar, NavbarCollapse } from "flowbite-react";
 import { useEffect } from "react";
 
 const LandingNavbar = () => {
@@ -34,15 +36,67 @@ const LandingNavbar = () => {
   }, []);
 
   return (
-    <Navbar className="bg-transparent text-white">
-      <Navbar.Brand href="#Home">Sobre Nosotros</Navbar.Brand>
-      <Navbar.Brand href="#MostPopularBooks">Libros</Navbar.Brand>
-      <Navbar.Brand href="#Rooms">Salas</Navbar.Brand>
-      <Navbar.Brand href="#Computers">Equipo de Computo</Navbar.Brand>
-      <Navbar.Brand href="#Courses">Cursos</Navbar.Brand>
-      <Navbar.Brand href="#Events">Eventos</Navbar.Brand>
-      <Navbar.Brand href="#Friends">Amiguitos de La biblioteca</Navbar.Brand>
-      <Navbar.Brand href="#ContacUs">Contactanos</Navbar.Brand>
+    <Navbar className="sticky top-0 z-50 text-white w-full bg-Body py-4">
+      <Navbar.Brand
+        className="w-full flex flex-col p-4 max-sm:w-4/5
+      max-sm:p-0"
+      >
+        <span
+          className=" text-white text-3xl font-semibold break-words
+      max-sm:text-xl"
+        >
+          <FontAwesomeIcon
+            href="#Home"
+            icon={faBookOpen}
+            className="text-white h-6 w-6 cursor-pointer"
+          />{" "}
+          Biblioteca Pública Municipal de Nicoya
+        </span>
+      </Navbar.Brand>
+      <Navbar.Toggle className=" bg-white" />
+      <div className=" w-full flex justify-center items-center max-sm:">
+        <NavbarCollapse>
+          <Navbar.Link className="text-white hover:!text-black " href="#Home">
+            Sobre Nosotros
+          </Navbar.Link>
+          <Navbar.Link
+            className="text-white hover:!text-black "
+            href="#MostPopularBooks"
+          >
+            Libros
+          </Navbar.Link>
+          <Navbar.Link className="text-white hover:!text-black " href="#Rooms">
+            Salas
+          </Navbar.Link>
+          <Navbar.Link
+            className="text-white hover:!text-black "
+            href="#Computers"
+          >
+            Equipo de Computo
+          </Navbar.Link>
+          <Navbar.Link
+            className="text-white hover:!text-black "
+            href="#Courses"
+          >
+            Cursos
+          </Navbar.Link>
+          <Navbar.Link className="text-white hover:!text-black " href="#Events">
+            Eventos
+          </Navbar.Link>
+          <Navbar.Link
+            className="text-white hover:!text-black "
+            href="#Friends"
+          >
+            Amiguitos de La biblioteca
+          </Navbar.Link>
+          <Navbar.Link
+            className="text-white hover:!text-black "
+            href="#ContacUs"
+          >
+            Contactanos
+          </Navbar.Link>
+        </NavbarCollapse>
+      </div>
     </Navbar>
   );
 };

@@ -6,13 +6,16 @@ const BookCard = ({Book}: {Book:Book}) => {
         <img
           src={Book.cover}
           alt="Portada del libro"
-          className=" h-96 w-80 object-fill hover:shadow-md hover:drop-shadow-lg hover:shadow-blue-950 rounded-t-md"
-        />
+          className=" h-96 w-80 object-fill hover:shadow-md hover:drop-shadow-lg hover:shadow-blue-950 rounded-t-md
+          max-sm:h-48 max-sm:rounded-md"
+          />
         <figcaption className="p-2 text-center max-w-80">
-          <span className=" text-lg break-words">{Book.title}</span>
+          <span className="text-lg break-words max-w-80 max-sm:text-lg">{Book.title}</span>
         </figcaption>
     </>
   );
 };
 
 export default BookCard;
+
+//! Cuando tenga las pantallas de libros independientes meter el img en un <s>

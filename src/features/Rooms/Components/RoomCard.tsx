@@ -2,14 +2,15 @@ import { IRoom } from "../Types/Room_Interface";
 
 const RoomCard = ({ Rooms }: { Rooms: IRoom }) => {
   return (
-    <figure className="rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3">
+    <figure className="rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3 max-sm:p-0">
       <img
-        className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover"
+        className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover
+        max-sm:h-32"
         src={Rooms.Imagen}
         alt={Rooms.Nombre}
       />
-      <figcaption className=" text-lg max-w-80 break-words">
-        <h3>{Rooms.Nombre}</h3>
+      <figcaption className=" text-lg max-w-80 break-words max-sm:text-sm">
+        <strong>{Rooms.Nombre}</strong>
         <p>
           <span>Área: {Rooms.Area}m²</span>
           <br />
@@ -19,7 +20,8 @@ const RoomCard = ({ Rooms }: { Rooms: IRoom }) => {
         </p>
         <button
           className="bg-Bottoms text-Text text-lg rounded-lg p-1.5 mt-5 mb-5
-        hover:bg-Bottoms-dark hover:scale-105"
+        hover:bg-Bottoms-dark hover:scale-105
+        max-sm:text-sm"
           type="button"
         >
           Ver Disponibilidad -&gt;{" "}
