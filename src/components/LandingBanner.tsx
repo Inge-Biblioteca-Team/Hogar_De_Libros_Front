@@ -6,7 +6,7 @@ const LandingBanner = () => {
       style={{ backgroundImage: `url(${banner})` }}
     >
       <h1 className="text-3xl max-sm:text-2xl max-sm:text-center">
-        Bienvenidos A La Biblioteca Publica Municipal De Nicoya
+        Bienvenidos a la Biblioteca Publica Municipal de Nicoya
       </h1>
       <p className="text-xl max-sm:text-lg max-sm:text-center">Descubra un mundo de conocimiento y explore</p>
       <button
