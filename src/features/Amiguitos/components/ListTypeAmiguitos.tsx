@@ -1,14 +1,14 @@
 import { useQuery } from "react-query";
 import CardTypeAmiguito from "./CardTypeAmiguito";
 import { GetTypesAmiguitos } from "../services/SvAmiguitos";
-import { IVolunteeringPrograms } from "../types/InfoAmiguitos";
+import { Amigos } from "../types/InfoAmiguitos";
 
 const ListTypeAmiguitos = () => {
   const {
     data: AmiguitosInf,
     isLoading,
     error
-  } = useQuery<IVolunteeringPrograms[], Error>(["Amigi"], GetTypesAmiguitos);
+  } = useQuery<Amigos[], Error>(["Amigi"], GetTypesAmiguitos);
 
   if (isLoading) return <span>Loading...</span>;
   if (error) return <span>Error: {error.message}</span>;
@@ -16,7 +16,7 @@ const ListTypeAmiguitos = () => {
   return (
     <article>
       <div className="flex w-full gap-5 items-center justify-center max-sm:gap-2">
-        {AmiguitosInf?.map(( amigi: IVolunteeringPrograms, index: number) => (
+        {AmiguitosInf?.map(( amigi: Amigos, index: number) => (
           <CardTypeAmiguito Amiguito={amigi} key={index} />
         ))}
       </div>

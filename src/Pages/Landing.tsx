@@ -8,16 +8,17 @@ import UpcomingEvents from "../features/EventsSection/screens/UpcomingEvents"
 import LocalArtistList from "../features/LocalArtist/screens/LocalArtistList"
 import DirectContac from "../features/Contact/screens/DirectContac"
 import Feedback from "../features/Contact/screens/Feedback"
+import CurrentPrograms from "../features/Programs/screens/CurrentsProgramns"
 
 const Landing = () => {
   return (
     <main className="flex items-center gap-20 justify-center flex-col mt-5 mb-10 max-sm:gap-10">
       <MostPopularBooks/>
-    
       <RoomList/>
       <ComputerInfo/>
       <UpcomingCourses/>
       <UpcomingEvents/>
+      <CurrentPrograms/>
       <AmiguitosInfo/>
       <LocalArtistList/>
       <DirectContac/>

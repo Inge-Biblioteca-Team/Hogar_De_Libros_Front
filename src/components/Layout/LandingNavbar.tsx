@@ -83,6 +83,9 @@ const LandingNavbar = () => {
           <Navbar.Link className="text-white hover:!text-black " href="#Events">
             Eventos
           </Navbar.Link>
+          <Navbar.Link className="text-white hover:!text-black " href="#Programs">
+            Programas
+          </Navbar.Link>
           <Navbar.Link
             className="text-white hover:!text-black "
             href="#Friends"

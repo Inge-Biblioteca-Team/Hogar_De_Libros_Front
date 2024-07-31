@@ -2,25 +2,27 @@ import { useState } from "react";
 
 import { useQuery } from "react-query";
 import CardProgram from "../components/CardProgram";
+import { GetPrograms } from "../services/SvPrograms";
+import { Programs } from "../types/Programs";
 
-const UpcomingEvents = () => {
+const CurrentPrograms = () => {
   const {
-    data: events = [],
+    data: programs = [],
     isLoading,
     error,
-  } = useQuery<Events[], Error>("Events", getEvents);
+  } = useQuery<Programs[], Error>("Programs", GetPrograms);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? events.length - 1 : prevIndex - 1
+      prevIndex === 0 ? programs.length - 4 : prevIndex - 1
     );
   };
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === events.length - 1 ? 0 : prevIndex + 1
+      prevIndex === programs.length - 4 ? 0 : prevIndex + 1
     );
   };
 
@@ -30,9 +32,9 @@ const UpcomingEvents = () => {
   return (
     <section
       className="relative w-full max-w-4xl mx-auto max-sm:w-4/5"
-      id="Events"
+      id="Programs"
     >
-      <h2 className="text-center font-bold text-2xl mb-6">Próximos Eventos</h2>
+      <h2 className="text-center font-bold text-2xl mb-6">Programas</h2>
       <div className="flex items-center justify-between">
         <button
           type="button"
@@ -46,8 +48,8 @@ const UpcomingEvents = () => {
             className="flex transition-transform duration-300"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {events.map((event, index) => (
-              <CardProgram key={index} event={event} />
+            {programs.map((program, index) => (
+              <CardProgram key={index} program={program} />
             ))}
           </article>
         </div>
@@ -63,4 +65,4 @@ const UpcomingEvents = () => {
   );
 };
 
-export default UpcomingEvents;
+export default CurrentPrograms;

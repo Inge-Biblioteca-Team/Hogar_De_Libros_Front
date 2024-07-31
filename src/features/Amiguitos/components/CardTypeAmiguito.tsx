@@ -13,7 +13,8 @@ const CardTypeAmiguito = ({
         src={Amiguito.Image}
         alt={Amiguito.NameType}
       />
-      <figcaption className=" text-lg break-words max-w-80 px-4 h-72 max-sm:h-32 max-sm:flex max-sm:flex-col max-sm:justify-end">
+      <figcaption className=" text-lg break-words max-w-80 px-4 h-72 
+      max-sm:h-32 max-sm:justify-end flex flex-col items-baseline justify-between">
         <strong className="max-sm:text-sm max-sm:min-w-20">{Amiguito.NameType}</strong>
         <p className=" max-sm:hidden">
           <span>
