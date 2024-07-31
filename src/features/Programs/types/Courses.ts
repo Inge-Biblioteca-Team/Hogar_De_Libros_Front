@@ -3,7 +3,11 @@ export type Course = {
   Quota: string;
   Image: string;
   Name: string;
-  Id: number;
+  date: string;
+  Location: string;
+  OjetiveAge: string;
+  MaxQuota: string,
+  id: number;
 };
 
 export type Course2 = {
@@ -15,10 +19,3 @@ export type Course2 = {
 };
 
 //cambiar a course cuando este el api
-
-export type Event = {
-  Fecha: string;
-  titulo: string;
-  Lugar: string;
-  Descripcion: string;
-};

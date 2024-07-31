@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { getCourses } from "../services/SvCourses";
-import { Course2 } from "../types/Courses";
+import { Course } from "../types/Courses";
 import CardCourses from "../components/CardCourses";
 
 const UpcomingCourses = () => {
@@ -9,7 +9,7 @@ const UpcomingCourses = () => {
     data: UpCourses,
     isLoading,
     error,
-  } = useQuery<Course2[], Error>("courses", getCourses);
+  } = useQuery<Course[], Error>("courses", getCourses);
   const [showAll, setShowAll] = useState(false);
 
   if (isLoading) return <span>Loading...</span>;
@@ -17,15 +17,15 @@ const UpcomingCourses = () => {
 
   const handleShowMore = () => {
     setShowAll(true);
-  };
+  }; //! Redirigir a mas cursos
 
-  const displayedCourses = showAll ? UpCourses : UpCourses?.slice(0, 4);
+  const displayedCourses = showAll ? UpCourses : UpCourses?.slice(0, 3);
 
   return (
     <section className="m-5 flex items-center w-4/5 flex-col max-sm:m-0" id="Courses">
       <h2 className="font-bold text-2xl mb-5">Cursos disponibles</h2>
-      <div className="grid grid-cols-4 gap-4 max-sm:grid-cols-2">
-        {displayedCourses?.map((Courses: Course2, index: number) => (
+      <div className="grid grid-cols-3 gap-4 max-sm:grid-cols-2">
+        {displayedCourses?.map((Courses: Course, index: number) => (
           <CardCourses key={index} Courses={Courses} />
         ))}
       </div>
@@ -39,7 +39,7 @@ const UpcomingCourses = () => {
             dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
             max-sm:hidden"
         >
-          Ver más
+          Ver más Cursos
         </button>
       )}
     </section>

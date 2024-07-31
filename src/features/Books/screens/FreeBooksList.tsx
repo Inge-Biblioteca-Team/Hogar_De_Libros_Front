@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import BookCard from "../components/BookCard";
 import BtnShowMore from "../components/BtnShowMore";
-import { GetFreeBooks } from "../services/SvBooks";
+import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
 
 const FreeBooksList = () => {
@@ -9,7 +9,7 @@ const FreeBooksList = () => {
     data: books,
     error,
     isLoading,
-  } = useQuery<Book[], Error>(["FreeBooks"], GetFreeBooks);
+  } = useQuery<Book[], Error>(["FreeBooks"], GetBooks);
 
   if (isLoading) return <span>Loading...</span>;
   if (error) return <span>Error: {error.message}</span>;
@@ -21,7 +21,7 @@ const FreeBooksList = () => {
         className="flex w-full gap-5 items-center justify-center 
       max-sm:grid max-sm:grid-cols-2"
       >
-        {books?.map((book) => (
+        {books?.slice(5,9).map((book) => (
           <figure
             key={book.id}
             className="rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3 max-sm:pb-0"

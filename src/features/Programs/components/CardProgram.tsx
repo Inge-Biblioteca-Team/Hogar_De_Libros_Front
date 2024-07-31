@@ -1,6 +1,6 @@
 import { Course } from "../types/Courses";
 
-const CardCourses = ({ Courses }: { Courses: Course }) => {
+const CardProgram = ({ Courses }: { Courses: Course }) => {
   return (
     <figure
       className=" rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3
@@ -39,4 +39,4 @@ const CardCourses = ({ Courses }: { Courses: Course }) => {
     </figure>
   );
 };
-export default CardCourses;
+export default CardProgram;

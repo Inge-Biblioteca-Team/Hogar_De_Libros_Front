@@ -1,8 +1,6 @@
 
-const btnReserve = ({id}:{id:number}) => {
-    const idLibro = id
-    console.log(idLibro)
-    
+const btnReserve = (/*{id}:{id:string}*/) => {
+   // const idLibro = id
     return (
       <div className="w-full flex items-center justify-center pt-4 max-sm:hidden
      ">

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getLocalArtist = async () => {
   const response = await axios.get(
-    "https://66901c04c0a7969efd9b065f.mockapi.io/artista/Artista"
+    "https://668c2a850b61b8d23b0ca034.mockapi.io/LocalArtist"
   );
   return response.data;
 };

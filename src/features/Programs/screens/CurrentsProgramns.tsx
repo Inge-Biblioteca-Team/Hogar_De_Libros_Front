@@ -1,8 +1,7 @@
 import { useState } from "react";
-import CardEvent from "../components/CardEvent";
+
 import { useQuery } from "react-query";
-import { Events } from "../types/Events";
-import { getEvents } from "../services/SvEvents";
+import CardProgram from "../components/CardProgram";
 
 const UpcomingEvents = () => {
   const {
@@ -48,7 +47,7 @@ const UpcomingEvents = () => {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {events.map((event, index) => (
-              <CardEvent key={index} event={event} />
+              <CardProgram key={index} event={event} />
             ))}
           </article>
         </div>

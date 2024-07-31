@@ -1,5 +1,5 @@
 import MostPopularBooks from "../features/Books/screens/MostPopularBooks"
-import FreeBooksList from "../features/Books/screens/FreeBooksList"
+//import FreeBooksList from "../features/Books/screens/FreeBooksList"
 import ComputerInfo from "../features/Computers/screens/ComputerInfo"
 import RoomList from "../features/Rooms/Screens/RoomList"
 import AmiguitosInfo from "../features/Amiguitos/screens/AmiguitosInfo"
@@ -13,7 +13,7 @@ const Landing = () => {
   return (
     <main className="flex items-center gap-20 justify-center flex-col mt-5 mb-10 max-sm:gap-10">
       <MostPopularBooks/>
-      <FreeBooksList/>
+    
       <RoomList/>
       <ComputerInfo/>
       <UpcomingCourses/>
@@ -27,3 +27,4 @@ const Landing = () => {
 }
 
 export default Landing
+//  <FreeBooksList/>

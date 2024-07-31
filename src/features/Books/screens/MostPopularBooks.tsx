@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import BtnReserve from "../components/BtnReserve";
 import BtnShowMore from "../components/BtnShowMore";
-import { GetPopularBooks } from "../services/SvBooks";
+import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
 import BookCard from "../components/BookCard";
 
@@ -10,7 +10,7 @@ const MostPopularBooks = () => {
     data: books,
     error,
     isLoading,
-  } = useQuery<Book[], Error>(["PopBooks"], GetPopularBooks);
+  } = useQuery<Book[], Error>(["PopBooks"], GetBooks);
 
   if (isLoading) return <span>Loading...</span>;
   if (error) return <span>Error: {error.message}</span>;
@@ -25,7 +25,7 @@ const MostPopularBooks = () => {
         className="flex w-full gap-5 items-center justify-center 
       max-sm:grid max-sm:grid-cols-2"
       >
-        {books?.map((book) => (
+        {books?.slice(0,4).map((book) => (
           <figure
             key={book.id}
             className="rounded-md w-full shadow-lg flex 
@@ -33,7 +33,7 @@ const MostPopularBooks = () => {
              "
           >
             <BookCard Book={book} />
-            <BtnReserve id={book.id} />
+            <BtnReserve /*id={book.id} *//>
           </figure>
         ))}
       </div>
