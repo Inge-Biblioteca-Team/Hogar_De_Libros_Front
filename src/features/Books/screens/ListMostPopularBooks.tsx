@@ -3,7 +3,6 @@ import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
 import BookCard from "../components/BookCard";
 import BtnReserve from "../components/BtnReserve";
-import BtnShowMore from "../components/BtnShowMore";
 
 const ListMostPopularBooks = () => {
   const {
