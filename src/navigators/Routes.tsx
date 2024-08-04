@@ -1,7 +1,7 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import Landing from "../screens/Landing";
 import Layout from "../Pages/Layout";
-import BookCatalog from "../features/Books/Pages/BookCatalog";
+import BooksHomePage from "../features/Books/Pages/BooksHomePage";
 const Routes = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +27,7 @@ const Routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <BookCatalog />,
+        element: <BooksHomePage />,
       },
     ],
   },
