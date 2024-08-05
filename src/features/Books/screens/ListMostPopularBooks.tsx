@@ -1,36 +1,64 @@
 import { useQuery } from "react-query";
 import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
+import { useState } from "react";
 import BookCard from "../components/BookCard";
-import BtnReserve from "../components/BtnReserve";
 
 const ListMostPopularBooks = () => {
   const {
-    data: books,
+    data: books = [],
     error,
     isLoading,
   } = useQuery<Book[], Error>(["PopBooks"], GetBooks);
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? books.length - 15 : prevIndex - 1
+    );
+  };
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === books.length - 15 ? 0 : prevIndex + 1
+    );
+  };
+
   if (isLoading) return <span>Loading...</span>;
   if (error) return <span>Error: {error.message}</span>;
-
   return (
-    <div
-      className="flex w-full gap-5 items-center justify-center 
-    max-sm:grid max-sm:grid-cols-2"
-    >
-      {books?.slice(0,4).map((book) => (
-        <figure
-          key={book.id}
-          className="rounded-md w-full shadow-lg flex 
-          flex-col justify-center items-center pb-3 max-sm:p-0
-           "
+    <section
+    className="relative px-4 w-full max-sm:w-4/5"
+    id="Programs"
+  >
+    <div className="flex items-center gap-1 justify-between">
+      <button
+        type="button"
+        onClick={prevSlide}
+        className="bg-gray-300 rounded-full p-2 max-sm:hidden"
+      >
+        &lt;
+      </button>
+      <div className="w-full overflow-hidden max-sm:overflow-x-scroll">
+        <article
+          className="flex transition-transform duration-300 gap-2 h-96 w-52 "
+          style={{ transform: `translateX(-${currentIndex * 200}%)` }}
         >
-          <BookCard Book={book} />
-          <BtnReserve /*id={book.id} *//>
-        </figure>
-      ))}
+          {books.map((books, index) => (
+            <BookCard key={index} Book={books} />
+          ))}
+        </article>
+      </div>
+      <button
+        type="button"
+        onClick={nextSlide}
+        className="bg-gray-300 rounded-full p-2 max-sm:hidden"
+      >
+        &gt;
+      </button>
     </div>
+  </section>
   )
 }
 

@@ -1,12 +1,13 @@
 import ListFreeBoosks from "../screens/ListFreeBoosks";
 import ListMostPopularBooks from "../screens/ListMostPopularBooks";
 import ListNewRevenue from "../screens/ListNewRevenue";
+import ListReserveBooks from "../screens/ListReserveBooks";
 
 const BooksHomePage = () => {
   return (
-    <main className="w-full">
+    <main className="w-full text-center text-2xl font-bold flex flex-col gap-5">
       <section>
-        <h2>Libros mas populares</h2>
+        <h2 >Libros mas populares</h2>
         <ListMostPopularBooks />
       </section>
       <section>
@@ -15,11 +16,11 @@ const BooksHomePage = () => {
       </section>
       <section>
         <h2>Libros de reserva</h2>
-        <ListNewRevenue />
+        <ListReserveBooks/>
       </section>
       <section>
         <h2>Nuevos Ingresos</h2>
-        <ListNewRevenue />
+        <ListNewRevenue/>
       </section>
     </main>
   );

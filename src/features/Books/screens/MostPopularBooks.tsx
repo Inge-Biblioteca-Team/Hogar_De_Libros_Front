@@ -25,15 +25,15 @@ const MostPopularBooks = () => {
         className="flex w-full gap-5 items-center justify-center 
       max-sm:grid max-sm:grid-cols-2"
       >
-        {books?.slice(0,4).map((book) => (
+        {books?.slice(0, 4).map((book) => (
           <figure
             key={book.id}
-            className="rounded-md w-full shadow-lg flex 
+            className="rounded-md shadow-lg flex 
             flex-col justify-center items-center pb-3 max-sm:p-0
              "
           >
             <BookCard Book={book} />
-            <BtnReserve /*id={book.id} *//>
+            <BtnReserve /*id={book.id} */ />
           </figure>
         ))}
       </div>
