@@ -1,4 +1,4 @@
-import { Navbar } from "flowbite-react";
+import { Navbar, NavbarCollapse } from "flowbite-react";
 import { useEffect } from "react";
 
 const LandingNavbar = () => {
@@ -34,16 +34,55 @@ const LandingNavbar = () => {
   }, []);
 
   return (
-    <Navbar className="bg-transparent text-white">
-      <Navbar.Brand href="#Home">Sobre Nosotros</Navbar.Brand>
-      <Navbar.Brand href="#MostPopularBooks">Libros</Navbar.Brand>
-      <Navbar.Brand href="#Rooms">Salas</Navbar.Brand>
-      <Navbar.Brand href="#Computers">Equipo de Computo</Navbar.Brand>
-      <Navbar.Brand href="#Courses">Cursos</Navbar.Brand>
-      <Navbar.Brand href="#Events">Eventos</Navbar.Brand>
-      <Navbar.Brand href="#Friends">Amiguitos de La biblioteca</Navbar.Brand>
-      <Navbar.Brand href="#ContacUs">Contactanos</Navbar.Brand>
-    </Navbar>
+      <div className=" w-full flex justify-center items-center max-sm:">
+        <NavbarCollapse>
+          <Navbar.Link className="text-white hover:!text-black " href="#Home">
+            Sobre Nosotros
+          </Navbar.Link>
+          <Navbar.Link
+            className="text-white hover:!text-black "
+            href="#MostPopularBooks"
+          >
+            Libros
+          </Navbar.Link>
+          <Navbar.Link className="text-white hover:!text-black " href="#Rooms">
+            Salas
+          </Navbar.Link>
+          <Navbar.Link
+            className="text-white hover:!text-black "
+            href="#Computers"
+          >
+            Equipo de Computo
+          </Navbar.Link>
+          <Navbar.Link
+            className="text-white hover:!text-black "
+            href="#Courses"
+          >
+            Cursos
+          </Navbar.Link>
+          <Navbar.Link className="text-white hover:!text-black " href="#Events">
+            Eventos
+          </Navbar.Link>
+          <Navbar.Link
+            className="text-white hover:!text-black "
+            href="#Programs"
+          >
+            Programas
+          </Navbar.Link>
+          <Navbar.Link
+            className="text-white hover:!text-black "
+            href="#Friends"
+          >
+            Amiguitos de La biblioteca
+          </Navbar.Link>
+          <Navbar.Link
+            className="text-white hover:!text-black "
+            href="#ContacUs"
+          >
+            Contactanos
+          </Navbar.Link>
+        </NavbarCollapse>
+      </div>
   );
 };
 

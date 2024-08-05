@@ -9,7 +9,7 @@ const FeedbackRating = () => {
   };
 
   return (
-    <form  className=" shadow-md rounded-md p-3 flex flex-col gap-3 w-1/3">
+    <form  className=" shadow-md rounded-md p-3 flex flex-col gap-3 w-1/3 max-sm:w-full max-sm:text-md">
       <fieldset>
         <legend>Tu opinion</legend>
         <Textarea required />
@@ -29,7 +29,8 @@ const FeedbackRating = () => {
       <button
         type="submit"
         className="bg-Bottoms text-Text text-lg rounded-lg p-1 
-        hover:bg-Bottoms-dark hover:scale-105"
+        hover:bg-Bottoms-dark hover:scale-105
+         max-sm:text-sm"
       >
         Enviar
       </button>

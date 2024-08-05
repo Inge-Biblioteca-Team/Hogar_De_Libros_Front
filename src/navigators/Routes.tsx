@@ -1,16 +1,34 @@
-import { createBrowserRouter } from "react-router-dom";
-import Landing from "../Pages/Landing";
-import LandingHeader from "../components/Layout/LandingHeader";
-import LandingFooter from "../components/Layout/LandingFooter";
-import LandingHome from "../screens/LandingHome";
+import { createBrowserRouter, Outlet } from "react-router-dom";
+import Landing from "../screens/Landing";
+import Layout from "../Pages/Layout";
+import BooksHomePage from "../features/Books/Pages/BooksHomePage";
 const Routes = createBrowserRouter([
   {
     path: "/",
-    element: [<LandingHeader />,<LandingHome/>,<Landing />,<LandingFooter/>],
+    element: (
+      <Layout NavbarType="Landing">
+        <Outlet />
+      </Layout>
+    ),
     children: [
-    
-       //Aqui van todos los segmentos adminitrativos
-
+      {
+        index: true,
+        element: <Landing />,
+      },
+    ],
+  },
+  {
+    path: "Sistema",
+    element: (
+      <Layout NavbarType="sistema">
+        <Outlet />
+      </Layout>
+    ),
+    children: [
+      {
+        index: true,
+        element: <BooksHomePage />,
+      },
     ],
   },
 ]);

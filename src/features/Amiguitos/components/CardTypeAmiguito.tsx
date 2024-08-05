@@ -1,34 +1,37 @@
-import { IVolunteeringPrograms } from "../types/InfoAmiguitos"
+import { Amigos } from "../types/InfoAmiguitos";
 
-const CardTypeAmiguito = ({Amiguito}:{Amiguito:IVolunteeringPrograms}) => {
+const CardTypeAmiguito = ({
+  Amiguito,
+}: {
+  Amiguito: Amigos ;
+}) => {
   return (
-     <figure className="rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3">
+    <figure className="rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3 max-sm:p-0">
       <img
-        className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover"
-        src={Amiguito.Imagen}
-        alt={Amiguito.Categoria}
+        className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover
+                  max-sm:h-48 max-sm:rounded-md"
+        src={Amiguito.Image}
+        alt={Amiguito.NameType}
       />
-      <figcaption className=" text-lg break-words max-w-80 px-4">
-        <h3>Donaciones</h3>
-        <p>
-          <span>Tienes libros que ya no utlizas? Donalos a la biblioteca 
-            para que muchas personas puedan disfrutar de estos</span>
+      <figcaption className=" text-lg break-words max-w-80 px-4 h-72 
+      max-sm:h-32 max-sm:justify-end flex flex-col items-baseline justify-between">
+        <strong className="max-sm:text-sm max-sm:min-w-20">{Amiguito.NameType}</strong>
+        <p className=" max-sm:hidden">
+          <span>
+            {Amiguito.Description}
+          </span>
           <br />
-          <span>Se aceptan libros en buen estado, 
-            en caso de ser educativos no mayor a 5 años de antiguedad.</span>
-          <br />
-          <span>Limpieza, Atencion al publico y demas.</span>
         </p>
         <button
           className="bg-Bottoms text-Text text-lg rounded-lg p-1.5 mt-5 mb-5
-        hover:bg-Bottoms-dark hover:scale-105"
+        hover:bg-Bottoms-dark hover:scale-105 max-sm:text-xs"
           type="button"
         >
           Participar +{" "}
         </button>
       </figcaption>
     </figure>
-  )
-}
+  );
+};
 
-export default CardTypeAmiguito
+export default CardTypeAmiguito;

@@ -13,10 +13,10 @@ const GetFreeBooks = async () => {
   return response.data;
 };
 
-const GetBooks = async (type:string) => {
+const GetBooks = async () => {
   try {
     const response = await axios.get(
-      `https://66456d5ab8925626f891d5c2.mockapi.io/Pacientes/test/Libros?type=${type}`
+      `https://668c2a850b61b8d23b0ca034.mockapi.io/Books`
     );
     return response.data;
   } catch (error) {

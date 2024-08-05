@@ -1,18 +1,18 @@
-import image from "../assets/image.png";
+import banner from "../Assets/image.png";
 const LandingBanner = () => {
   return (
     <div
       className="w-full flex flex-col justify-center items-center bg-cover bg-center gap-6 h-72 text-slate-50"
-      style={{ backgroundImage: `url(${image})` }}
+      style={{ backgroundImage: `url(${banner})` }}
     >
-      <h1 className="text-3xl">
-        Bienvenidos A La Biblioteca Publica Municipal De Nicoya
+      <h1 className="text-3xl max-sm:text-2xl max-sm:text-center">
+        Bienvenidos a la Biblioteca Publica Municipal de Nicoya
       </h1>
-      <p className="text-xl">Descubra un mundo de conocimiento y explore</p>
+      <p className="text-xl max-sm:text-lg max-sm:text-center">Descubra un mundo de conocimiento y explore</p>
       <button
         type="button"
         className="bg-Bottoms text-Text text-lg rounded-lg p-1 
-        hover:bg-Bottoms-dark hover:scale-105"
+        hover:bg-Bottoms-dark hover:scale-105 max-sm:text-sm"
       >
         Quienes Somos
       </button>
