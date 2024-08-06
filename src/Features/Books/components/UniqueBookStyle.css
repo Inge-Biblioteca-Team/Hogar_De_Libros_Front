@@ -1,0 +1,5 @@
+.book-cover {
+    width: 256px;  
+    height: 435px; 
+    object-fit: cover;
+  }
