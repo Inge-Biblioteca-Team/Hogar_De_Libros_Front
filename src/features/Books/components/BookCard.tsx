@@ -1,9 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { Book } from "../type/Book";
 
 const BookCard = ({Book}: {Book:Book}) => {
+  const navigate = useNavigate();
+  const handleBookClick = () => {
+    navigate(`/book/${Book.id}`, { state: { Book } });
+  }
   return (
     <>
-        <img
+        <img 
+          onClick={handleBookClick}
           src={Book.Cover}
           alt="Portada del libro"
           className=" object-fill hover:shadow-md hover:drop-shadow-lg hover:shadow-blue-950 rounded-t-md h-96 w-80 
