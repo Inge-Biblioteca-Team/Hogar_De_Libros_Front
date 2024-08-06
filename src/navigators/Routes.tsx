@@ -34,7 +34,17 @@ const Routes = createBrowserRouter([
   },
   {
     path: "/book/:id",
-    element: <UniqueBook/>
+    element: (
+      <Layout NavbarType="sistema">
+        <Outlet />
+      </Layout>
+    ),
+    children: [
+      {
+        index: true,
+        element: <UniqueBook/>,
+      },
+    ],
   }
 ]);
 
