@@ -1,17 +1,17 @@
-
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BtnReserve from "../components/BtnReserve";
-import '../components/UniqueBookStyle.css';
+import "../components/UniqueBookStyle.css";
 
 function UniqueBook() {
   const location = useLocation();
   const { Book } = location.state;
-  
+ const navigate = useNavigate();
   return (
     <>
-      <span className="ml-20 text-sm">
-        Inicio &gt; Libros &gt; {Book.Category} &gt; {Book.Title}{" "}
-      </span>
+      <button onClick={()=>navigate("/")} className="ml-20 text-sm hover:text-blue-900">Inicio</button>  &gt;
+      <button onClick={()=>navigate("/Sistema")} className="text-sm hover:text-blue-900">Libros</button>  &gt; 
+      <button onClick={()=>navigate("/")}  className="text-sm hover:text-blue-900">{Book.Category}</button>  &gt;
+      <span className="text-sm text-Body ">{Book.Title} </span>
       <div className="flex gap-6 mt-4">
         <section className="flex-grow ml-20">
           <img
@@ -28,7 +28,9 @@ function UniqueBook() {
           <span className="max-w-md text-lg">{Book.Editorial}</span>
           <span className="max-w-md text-Body text-lg">Categoria:</span>
           <span className="max-w-md text-lg">{Book.Category}</span>
-          <span className="max-w-md text-Body text-lg">Año de publicacion:</span>
+          <span className="max-w-md text-Body text-lg">
+            Año de publicacion:
+          </span>
           <span className="max-w-md text-lg">{Book.PublicationYear}</span>
           <span className="max-w-md text-Body text-lg">Codigo ISBN:</span>
           <span className="max-w-md text-lg">{Book.ISBN}</span>
@@ -39,7 +41,8 @@ function UniqueBook() {
         <section className="flex flex-col flex-grow space-y-1">
           <h1 className="max-w-md text-xl">Recomendaciones </h1>
           <p className="max-w-md text-lg ">
-            Según tu búsqueda, pensamos que podrían interesarte los siguientes libros:
+            Según tu búsqueda, pensamos que podrían interesarte los siguientes
+            libros:
           </p>
         </section>
       </div>
