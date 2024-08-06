@@ -29,3 +29,5 @@ export const UseGetSalas = () => {
 
   return { rooms, loading, error };
 };
+
+//! Se puede eliminar usando react query

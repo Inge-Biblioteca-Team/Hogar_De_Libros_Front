@@ -8,3 +8,5 @@ export const GetFriendsMenu = async () =>{
     }
     return response.json();
 }
+
+//!Fecth sin axios

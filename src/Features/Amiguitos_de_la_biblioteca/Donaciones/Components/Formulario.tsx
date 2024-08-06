@@ -22,3 +22,5 @@ function DonationsForm() { // Formulario de donaciones
 }
 
 export default DonationsForm
+
+//* Puede ser utilizado en un futuro

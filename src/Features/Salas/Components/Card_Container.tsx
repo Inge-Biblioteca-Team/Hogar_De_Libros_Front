@@ -33,3 +33,5 @@ function Card_Container() {
 }
 
 export default Card_Container;
+
+//*Es mejor pasar el elemento room como prop y no todas sus propiedes

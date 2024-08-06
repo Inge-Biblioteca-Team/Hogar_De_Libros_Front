@@ -14,3 +14,5 @@ function FriendsMenu() {
 }
 
 export default FriendsMenu;
+
+//*Manera correcta de armar una pagina

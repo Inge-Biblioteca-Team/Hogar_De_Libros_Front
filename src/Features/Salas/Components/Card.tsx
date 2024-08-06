@@ -31,3 +31,7 @@ function Card({ Imagen, Nombre, Area, Aforo, Ubicacion }: CardProps) {
 }
 
 export default Card;
+
+//*Un solo p dividido por span, strong, y br es lo correcto, P es para texto grandes o largos
+//! cuando se hace una card con imagen esta es una figure con figcaption se agrega todo lo relacionado a esta
+//!Incluyendo botones o mas informacion
