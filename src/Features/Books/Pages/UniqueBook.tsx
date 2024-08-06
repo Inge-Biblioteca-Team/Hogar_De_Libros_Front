@@ -1,40 +1,47 @@
+
 import { useLocation } from "react-router-dom";
 import BtnReserve from "../components/BtnReserve";
+import '../components/UniqueBookStyle.css';
 
 function UniqueBook() {
   const location = useLocation();
   const { Book } = location.state;
+  
   return (
     <>
-      <div
-        className="flex justify-center mr-40 ml-40 p-10 bg-gray-200
-      border border-transparent rounded-xl shadow-xl gap-x-14 mt-10"
-      >
-        <div className="w-4/12">
+      <span className="ml-20 text-sm">
+        Inicio &gt; Libros &gt; {Book.Category} &gt; {Book.Title}{" "}
+      </span>
+      <div className="flex gap-6 mt-4">
+        <section className="flex-grow ml-20">
           <img
-            className="border border-gray-300 rounded-md 
-          w-full"
+            className="book-cover"
             src={Book.Cover}
+            alt={`Portada del libro ${Book.Title}`}
           />
-        </div>
-        <div className="flex flex-col  space-y-2">
-          <cite className="font-bold mb-6 text-center max-w-2xl text-3xl">{Book.Title}</cite>
-          <span className="font-bold text-xl ">Autor:</span>
-          <span>{Book.Author}</span>
-          <span className="font-bold text-xl">Editorial:</span>
-          <span>{Book.Editorial}</span>
-          <span className="font-bold text-xl">Categoria:</span>
-          <span>{Book.Category}</span>
-          <span className="font-bold text-xl">Año de publicacion:</span>
-          <span>{Book.PublicationYear}</span>
-          <span className="font-bold text-xl">Codigo ISBN:</span>
-          <span>{Book.ISBN}</span>
-          <span className="font-bold text-xl">Codigo Estado:</span>
-          <span>Disponible</span>
-          <div className="flex">
+        </section>
+        <section className="flex flex-col space-y-1 flex-grow">
+          <cite className="mb-1 max-w-md text-xl">{Book.Title}</cite>
+          <span className="max-w-md text-Body text-lg">Autor:</span>
+          <span className="max-w-md text-lg">{Book.Author}</span>
+          <span className="max-w-md text-Body text-lg">Editorial:</span>
+          <span className="max-w-md text-lg">{Book.Editorial}</span>
+          <span className="max-w-md text-Body text-lg">Categoria:</span>
+          <span className="max-w-md text-lg">{Book.Category}</span>
+          <span className="max-w-md text-Body text-lg">Año de publicacion:</span>
+          <span className="max-w-md text-lg">{Book.PublicationYear}</span>
+          <span className="max-w-md text-Body text-lg">Codigo ISBN:</span>
+          <span className="max-w-md text-lg">{Book.ISBN}</span>
+          <div className="flex justify-start">
             <BtnReserve />
           </div>
-        </div>
+        </section>
+        <section className="flex flex-col flex-grow space-y-1">
+          <h1 className="max-w-md text-xl">Recomendaciones </h1>
+          <p className="max-w-md text-lg ">
+            Según tu búsqueda, pensamos que podrían interesarte los siguientes libros:
+          </p>
+        </section>
       </div>
     </>
   );
