@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Route,Routes } from 'react-router-dom';
 import Navbar from './componets/Navbar';
 import Login from './componets/Login';
@@ -9,11 +10,16 @@ import Events from './componets/Events';
 import Libraryfriends from './componets/Libraryfriends';
 import Footer from './componets/Footer';
 import Info from './componets/Info';
+=======
+import { RouterProvider } from "react-router-dom"
+import Routes from "./navigators/Routes"
+>>>>>>> upstream/main
 
 function App() {
 
   return (
     <>
+<<<<<<< HEAD
     <div className="min-h-screen flex flex-col">
     <Navbar/>
     <main className="flex-grow">
@@ -30,6 +36,9 @@ function App() {
     </main>
     <Footer/>
     </div>
+=======
+    <RouterProvider router={Routes}/>
+>>>>>>> upstream/main
     </>
   )
 }
