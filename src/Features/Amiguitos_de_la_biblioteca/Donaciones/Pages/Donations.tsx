@@ -6,7 +6,7 @@ function Donations() { /* Pantalla de donaciones de libros mostrando los requisi
    y el formulario*/
   return (
     <>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col  items-center">
         <h1 className="text-2xl">Donaciones</h1>
         <h2 className="text-lg mt-5">¿Qué son las donaciones?</h2>
         <div className=" mt-5 max-w-md mx-auto">
@@ -17,14 +17,16 @@ function Donations() { /* Pantalla de donaciones de libros mostrando los requisi
             donados tendrán que cumplir con ciertos requisitos para poder ser
             aceptados.
           </p>
-        </div>
-        <div className="flex justify-between w-full max-w-4xl mt-6  items-start">
-          <div className="w-1/2  pr-4">
+        </div >
+        <div className="bg-bluePrincipal border border-transparent rounded-md mt-10">
+        <div className="flex justify-between  w-full max-w-4xl mt-6  items-start">
+          <div className="w-1/2 ml-2   pr-4">
             <Requeriments />
           </div>
-          <div className="w-1/2 pl-4">
+          <div className="w-1/2 mr-2 mb-2 pl-4">
             <DonationsForm />
           </div>
+        </div>
         </div>
       </div>
     </>

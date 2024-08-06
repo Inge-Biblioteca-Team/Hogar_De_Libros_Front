@@ -24,7 +24,7 @@ function Card_Container_Volunteering() {
       setCurrentIndex(currentIndex - 1);
     }
   };
-
+  
   if (loading) return <p>Cargando.....</p>; // mensaje de carga
   if (error) return <p>Error al cargar programas y actividades</p>; // mensaje de error
   // muestra las tarjetas de programas y actividades

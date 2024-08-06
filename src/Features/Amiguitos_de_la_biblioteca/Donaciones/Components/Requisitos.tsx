@@ -1,6 +1,6 @@
 function Requeriments() { // Requerimientos para donar libros
   return (
-    <section className=" bg-red-600 flex flex-col items-center">
+    <section className=" bg-blueIn flex flex-col items-center">
       <h2 className="text-lg">Requisitos</h2>
       <div className="max-w-md mx-auto">
         <ul className="list-disc list-inside text-left">

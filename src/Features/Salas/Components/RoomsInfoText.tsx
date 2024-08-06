@@ -4,7 +4,8 @@ function RoomsInfoText() {
   const navigate = useNavigate(); // Hook de react-router-dom para navegar entre rutas
   return (
     <>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col bg-bluePrincipal p-2
+      border-transparent border- rounded-md items-center">
         <h2 className="text-2xl mb-5"> 
           Bienvenido a las salas de la Biblioteca
         </h2>  
@@ -16,7 +17,7 @@ function RoomsInfoText() {
         </p>
         <button
           onClick={() => navigate("/rooms")} // Navega a la ruta /rooms
-          className="bg-slate-600 border mt-5 border-transparent rounded-md"
+          className="bg-blueButton border mt-5 border-transparent rounded-md"
           type="button"
         >
           Ver Salas

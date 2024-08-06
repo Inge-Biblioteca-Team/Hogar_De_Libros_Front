@@ -3,7 +3,7 @@ function CollaborationsForm() {
 
   //Este es el formulario para que las instituciones puedan colaborar con la biblioteca
   return (
-    <form className="max-w-md mx-auto p-6 bg-gray-600 rounded-md shadow-md">
+    <form className="max-w-md mx-auto p-6 bg-bluePrincipal rounded-md shadow-md">
       
       <div className="mb-4 flex flex-col items-center">
         <label htmlFor="Institucion" className="block text-white mb-2">Nombre de institucion</label>
@@ -22,7 +22,7 @@ function CollaborationsForm() {
         <textarea id="Comentario" className="w-full p-2 border rounded-md"></textarea>
       </div>
       <div className="flex justify-center">
-        <button className="bg-gray-700 border border-transparent rounded-md p-1 text-white" type="submit">Enviar</button>
+        <button className="bg-blueButton border border-transparent rounded-md p-1 text-white" type="submit">Enviar</button>
       </div>
       
     </form>

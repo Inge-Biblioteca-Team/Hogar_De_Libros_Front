@@ -21,7 +21,7 @@ function CardFriendsMenu({ Id, Imagen, Titulo, Descripcion }: CardProps) {
   };
  // muestra las tarjetas de los amiguitos de la biblioteca
   return (
-    <div className="bg-slate-600 w-64 flex flex-col border border-transparent rounded-md">
+    <div className="bg-bluePrincipal w-64 flex flex-col border border-transparent rounded-md">
       <img
         className="w-64 h-32 mb-8 border-t border-transparent rounded-t-md "
         src={Imagen}
@@ -34,7 +34,7 @@ function CardFriendsMenu({ Id, Imagen, Titulo, Descripcion }: CardProps) {
       </div>
       <div className="flex justify-center mt-auto">
         <button
-          className="bg-orange-600 border border-orange-600 rounded-md text-white p-1"
+          className="bg-blueButton border border-blueButton rounded-md text-white p-1"
           type="button"
           onClick={handleButtonClick}
         >

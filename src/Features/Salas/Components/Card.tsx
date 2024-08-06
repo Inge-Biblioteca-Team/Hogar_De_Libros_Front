@@ -5,7 +5,7 @@ interface CardProps extends IRoom {}
 function Card({ Imagen, Nombre, Area, Aforo, Ubicacion }: CardProps) {
   return (
     //Crea la tarjeta con la informacion de la sala dada por los props
-    <div className="bg-slate-600 border border-transparent rounded-md">
+    <div className="bg-bluePrincipal border border-transparent rounded-md">
       <img
         className="w-64 h-32 mb-8 border-t border-transparent rounded-t-md"
         src={Imagen}
@@ -20,7 +20,7 @@ function Card({ Imagen, Nombre, Area, Aforo, Ubicacion }: CardProps) {
           Mas informacion
         </button>
         <button
-          className="bg-orange-600 border border-orange-600 rounded-md text-white p-1 mt-5 mb-5"
+          className="bg-blueButton border border-blueButton rounded-md text-white p-1 mt-5 mb-5"
           type="button"
         >
           Solicitar +{" "}
