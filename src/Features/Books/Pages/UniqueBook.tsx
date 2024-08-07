@@ -1,11 +1,20 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import BtnReserve from "../components/BtnReserve";
+import { useQuery } from "react-query"
+import { GetBooks } from "../services/SvBooks";
 import "../components/UniqueBookStyle.css";
+import { Book } from "../type/Book";
 
 function UniqueBook() {
   const location = useLocation();
   const { Book } = location.state;
  const navigate = useNavigate();
+ 
+ const { data: books = [], error, isLoading } = useQuery("books", GetBooks);
+
+ if (isLoading) return <span>Loading...</span>;
+ if (error) return <span>Error: "error"</span>;
+ 
   return (
     <>
       <button onClick={()=>navigate("/")} className="ml-20 text-sm hover:text-blue-900">Inicio</button>  &gt;
@@ -43,6 +52,13 @@ function UniqueBook() {
           <p className="max-w-md text-lg ">
             Según tu búsqueda, pensamos que podrían interesarte los siguientes
             libros:
+          </p>
+          <p>
+          {books.map((recommendedBook : Book) => (
+            <div key={recommendedBook.id}>
+              <span>{recommendedBook.Title}</span>
+            </div>
+          ))}
           </p>
         </section>
       </div>
