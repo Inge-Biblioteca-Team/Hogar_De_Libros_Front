@@ -1,18 +1,24 @@
-// src/components/BookList.tsx
 import React from 'react';
 import { Book } from '../type/Book';
-import BookCard from './BookCard';
-import BtnReserve from './BtnReserve';
+import BookCard from '../components/BookCard';
+import BtnReserve from '../components/BtnReserve';
 
 const BookList: React.FC<{ books: Book[] }> = ({ books }) => (
-  <ul className="list-disc pl-5">
+    <div className="list-disc pl-5 space-y-8">
     {books.map((book) => (
-      <li key={book.id}>
+      <figure 
+      key={book.id}
+      className="rounded-md shadow-lg flex 
+            flex-col justify-center items-center pb-3 max-sm:p-0
+             "
+          >
         <BookCard Book={book} />
         <BtnReserve />
-      </li>
+        </figure>
     ))}
-  </ul>
+  </div>
+    
 );
 
 export default BookList;
+
