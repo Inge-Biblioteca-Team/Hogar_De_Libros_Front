@@ -7,14 +7,33 @@ import { Book } from "../type/Book";
 
 function UniqueBook() {
   const location = useLocation();
-  const { Book } = location.state;
+  const { Book } = location.state || {};
+
  const navigate = useNavigate();
  
  const { data: books = [], error, isLoading } = useQuery("books", GetBooks);
-
+ if (!location.state || !location.state.Book) {
+    return <span>Error: No se encontró el libro.</span>;
+  }
  if (isLoading) return <span>Loading...</span>;
  if (error) return <span>Error: "error"</span>;
  
+   const filterBooks = books.filter(
+    (b : Book) => (b.Category === Book.Category || b.Author === Book.Author) && b.id !== Book.id
+  );
+
+  // Seleccionar dos libros aleatoriamente
+  const getRandomBooks = (books: Book[]  , num: number) => {
+    const shuffled = books.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, num);
+  };
+
+  const randomBooks = getRandomBooks(filterBooks, 2);
+
+  const handleRecommendedBookClick = (relatedBook: Book) => {
+    navigate(`/book/${relatedBook.id}`, { state: { Book: relatedBook } });
+  };
+
   return (
     <>
       <button onClick={()=>navigate("/")} className="ml-20 text-sm hover:text-blue-900">Inicio</button>  &gt;
@@ -54,11 +73,13 @@ function UniqueBook() {
             libros:
           </p>
           <p>
-          {books.map((recommendedBook : Book) => (
-            <div key={recommendedBook.id}>
-              <span>{recommendedBook.Title}</span>
-            </div>
-          ))}
+         {randomBooks.map((relatedBook) => (
+          <div onClick={() => handleRecommendedBookClick(relatedBook)} key={relatedBook.id} className=" flex gap-4 mt-4 ">
+            <img className="related-book" src={relatedBook.Cover} alt={`Portada del libro ${relatedBook.Title}`} />
+            <span className="max-w-sm ">{relatedBook.Title}</span>
+            
+          </div>
+        ))}
           </p>
         </section>
       </div>

@@ -3,3 +3,9 @@
     height: 435px; 
     object-fit: cover;
   }
+
+  .related-book{
+    width: 100px;  
+    height: 140px; 
+    object-fit: cover;
+  }
