@@ -1,6 +1,6 @@
 
-import FriendsMenu from "../Features/Amiguitos_de_la_biblioteca/Pages/FriendsMain"
-import RoomsInfo from "../Features/Salas/Pages/RoomsInfo"
+import FriendsMenu from "../features/Amiguitos_de_la_biblioteca/Pages/FriendsMain"
+import RoomsInfo from "../features/Salas/Pages/RoomsInfo"
 
 
 function MainPage() {
