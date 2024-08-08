@@ -13,10 +13,11 @@ const GetFreeBooks = async () => {
   return response.data;
 };
 
-const GetBooks = async () => {
+const GetBooks = async (page: number, limit: number) => {
+  const BASE_URL = 'https://668c2a850b61b8d23b0ca034.mockapi.io/Books';
   try {
     const response = await axios.get(
-      `https://668c2a850b61b8d23b0ca034.mockapi.io/Books`
+      `${BASE_URL}?page=${page}&limit=${limit}`
     );
     return response.data;
   } catch (error) {
@@ -24,4 +25,6 @@ const GetBooks = async () => {
     throw error;
   }
 };
+
+
 export { GetPopularBooks, GetFreeBooks, GetBooks };
