@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import BtnReserve from "../components/BtnReserve";
 import { useQuery } from "react-query"
 import { GetBooks } from "../services/SvBooks";
-import "../components/UniqueBookStyle.css";
+import "../styles/BookStyles.css";
 import { Book } from "../type/Book";
 
 function UniqueBook() {
