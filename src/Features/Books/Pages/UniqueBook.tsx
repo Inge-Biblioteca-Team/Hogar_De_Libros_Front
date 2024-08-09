@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import BtnReserve from "../components/BtnReserve";
 import { useQuery } from "react-query"
 import { GetBooks } from "../services/SvBooks";
-import "../styles/BookStyles.css";
+
 import { Book } from "../type/Book";
 
 function UniqueBook() {
@@ -42,12 +42,12 @@ function UniqueBook() {
       <main className="flex gap-6 mt-4">
         <section className="flex-grow ml-20">
           <img
-            className="book-cover"
+            className="w-80 min-h-full"
             src={Book.Cover}
             alt={`Portada del libro ${Book.Title}`}
           />
         </section>
-        <section className="flex flex-col space-y-1 flex-grow">
+        <section className="flex flex-col space-y-4 flex-grow">
           <cite className="mb-1 max-w-md text-xl">{Book.Title}</cite>
           <span className="max-w-md text-Body text-lg">Autor:</span>
           <span className="max-w-md text-lg">{Book.Author}</span>
@@ -71,7 +71,7 @@ function UniqueBook() {
           </span>
          {randomBooks.map((relatedBook) => (
           <article onClick={() => handleRecommendedBookClick(relatedBook)} key={relatedBook.id} className=" flex mb-4 gap-4 ">
-            <img className="related-book" src={relatedBook.Cover} alt={`Portada del libro ${relatedBook.Title}`} />
+            <img className="w-40 mb-2" src={relatedBook.Cover} alt={`Portada del libro ${relatedBook.Title}`} />
             <span className="max-w-sm ">{relatedBook.Title}</span>
             
           </article>
