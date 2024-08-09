@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Book } from "../type/Book";
+import BookCard from "./BookCard";
 
 function CarrouselOfImages({ ListBooks }: { ListBooks: Book[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -36,10 +37,7 @@ function CarrouselOfImages({ ListBooks }: { ListBooks: Book[] }) {
                   className="flex flex-col items-center w-56 h-96 box-border"
                   key={listBook.id}
                 >
-                  <img
-                    className="w-full h-80 object-cover"
-                    src={listBook.Cover}
-                  />
+                  <BookCard Book={listBook} />
                   <cite className=" mt-1 text-xs text-center">
                     {listBook.Title}
                   </cite>
