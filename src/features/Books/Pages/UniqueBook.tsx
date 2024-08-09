@@ -40,14 +40,14 @@ function UniqueBook() {
       <button onClick={()=>navigate("/")}  className="text-sm hover:text-blue-900">{Book.Category}</button>  &gt;
       <span className="text-sm text-Body ">{Book.Title} </span>
       <main className="flex gap-6 mt-4">
-        <section className="flex-grow ml-20">
+        <div className="flex-grow ml-20">
           <img
             className="w-80 min-h-full"
             src={Book.Cover}
             alt={`Portada del libro ${Book.Title}`}
           />
-        </section>
-        <section className="flex flex-col space-y-4 flex-grow">
+        </div>
+        <div className="flex flex-col space-y-4 flex-grow">
           <cite className="mb-1 max-w-md text-xl">{Book.Title}</cite>
           <span className="max-w-md text-Body text-lg">Autor:</span>
           <span className="max-w-md text-lg">{Book.Author}</span>
@@ -62,21 +62,21 @@ function UniqueBook() {
           <span className="max-w-md text-Body text-lg">Codigo ISBN:</span>
           <span className="max-w-md text-lg">{Book.ISBN}</span>
             <BtnReserve />
-        </section>
-        <section className="flex flex-col flex-grow space-y-1">
+        </div>
+        <div className="flex flex-col flex-grow space-y-1">
           <h2 className="max-w-md text-xl">Recomendaciones </h2>
           <span className="max-w-md text-lg ">
             Según tu búsqueda, pensamos que podrían interesarte los siguientes
             libros:
           </span>
          {randomBooks.map((relatedBook) => (
-          <article onClick={() => handleRecommendedBookClick(relatedBook)} key={relatedBook.id} className=" flex mb-4 gap-4 ">
+          <figure onClick={() => handleRecommendedBookClick(relatedBook)} key={relatedBook.id} className=" flex mb-4 gap-4 ">
             <img className="w-40 mb-2" src={relatedBook.Cover} alt={`Portada del libro ${relatedBook.Title}`} />
-            <span className="max-w-sm ">{relatedBook.Title}</span>
+            <figcaption className="max-w-sm ">{relatedBook.Title}</figcaption>
             
-          </article>
+          </figure>
         ))}
-        </section>
+        </div>
       </main>
     </>
   );
