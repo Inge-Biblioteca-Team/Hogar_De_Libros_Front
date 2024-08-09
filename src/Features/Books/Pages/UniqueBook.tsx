@@ -22,7 +22,6 @@ function UniqueBook() {
     (b : Book) => (b.Category === Book.Category || b.Author === Book.Author) && b.id !== Book.id
   );
 
-  // Seleccionar dos libros aleatoriamente
   const getRandomBooks = (books: Book[]  , num: number) => {
     const shuffled = books.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, num);
@@ -40,7 +39,7 @@ function UniqueBook() {
       <button onClick={()=>navigate("/Sistema")} className="text-sm hover:text-blue-900">Libros</button>  &gt; 
       <button onClick={()=>navigate("/")}  className="text-sm hover:text-blue-900">{Book.Category}</button>  &gt;
       <span className="text-sm text-Body ">{Book.Title} </span>
-      <div className="flex gap-6 mt-4">
+      <main className="flex gap-6 mt-4">
         <section className="flex-grow ml-20">
           <img
             className="book-cover"
@@ -62,27 +61,23 @@ function UniqueBook() {
           <span className="max-w-md text-lg">{Book.PublicationYear}</span>
           <span className="max-w-md text-Body text-lg">Codigo ISBN:</span>
           <span className="max-w-md text-lg">{Book.ISBN}</span>
-          <div className="flex justify-start">
             <BtnReserve />
-          </div>
         </section>
         <section className="flex flex-col flex-grow space-y-1">
-          <h1 className="max-w-md text-xl">Recomendaciones </h1>
-          <p className="max-w-md text-lg ">
+          <h2 className="max-w-md text-xl">Recomendaciones </h2>
+          <span className="max-w-md text-lg ">
             Según tu búsqueda, pensamos que podrían interesarte los siguientes
             libros:
-          </p>
-          <p>
+          </span>
          {randomBooks.map((relatedBook) => (
-          <div onClick={() => handleRecommendedBookClick(relatedBook)} key={relatedBook.id} className=" flex gap-4 mt-4 ">
+          <article onClick={() => handleRecommendedBookClick(relatedBook)} key={relatedBook.id} className=" flex mb-4 gap-4 ">
             <img className="related-book" src={relatedBook.Cover} alt={`Portada del libro ${relatedBook.Title}`} />
             <span className="max-w-sm ">{relatedBook.Title}</span>
             
-          </div>
+          </article>
         ))}
-          </p>
         </section>
-      </div>
+      </main>
     </>
   );
 }
