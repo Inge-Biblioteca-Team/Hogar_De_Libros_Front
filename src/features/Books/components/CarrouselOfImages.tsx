@@ -50,12 +50,7 @@ function CarrouselOfImages({ ListBooks }: { ListBooks: Book[] }) {
               ))}
             </article>
           </div>
-          <button
-            onClick={handleNext}
-            disabled={currentIndex >= ListBooks.length - itemsPerPage}
-          >
-            &gt;
-          </button>
+          <button onClick={handleNext}>&gt;</button>
         </div>
       </section>
     </>
