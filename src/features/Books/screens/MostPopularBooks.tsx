@@ -9,6 +9,9 @@ import BookPagination from "../Pages/BookPagination";
 import BtnShowMore from "../components/BtnShowMore";
 import BookLimitSelector from "../Pages/BookLimitSelector";
 import BookFiltersAuthor from "../Pages/BookFiltersAuthor";
+import BookCategoryFilter from "./BookCategoryFilter";
+import { Alert } from 'flowbite-react';
+
 
 const MostPopularBooks = () => {
   const savedLimit = localStorage.getItem('bookLimit');
@@ -17,14 +20,18 @@ const MostPopularBooks = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(initialLimit); 
   const [view, setView] = useState<'list' | 'grid'>('grid');
-  const [, setSortOrder] = useState<'author' | 'title'>('author');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [category, setCategory] = useState<string>('');
+
 
 
   const {
     data: books,
     error,
     isLoading,
-  } = useQuery<Book[], Error>(["PopBooks", page], () => GetBooks(page, limit));
+  } = useQuery<Book[], Error>(["PopBooks", page, limit], () => GetBooks(page, limit), {
+    keepPreviousData: true,
+  });
 
   const handleLimitChange = (newLimit: number) => {
     setLimit(newLimit);
@@ -36,10 +43,19 @@ const MostPopularBooks = () => {
     setView(newView);
   };
 
-  const handleSortChange = (order: 'author' | 'title') => {
-    setSortOrder(order);
-    window.location.reload();
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
   };
+
+  const handleCategoryChange = (selectedCategory: string) => {
+    setCategory(selectedCategory);
+  };
+
+  const filteredBooks = books?.filter(book =>
+    (!category || book.Category === category) && 
+    (book.Author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    book.Title.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
 
 
   if (isLoading) return <span>Loading...</span>;
@@ -51,21 +67,26 @@ const MostPopularBooks = () => {
       id="MostPopularBooks"
     >
       <h2 className="text-3xl pb-8">Libros más solicitados</h2>
-      <div className="flex justify-between items-center w-full mb-4">
-        <div className="flex items-center space-x-4">
-          <BookFiltersAuthor handleSortChange={handleSortChange} />
+      <div className="flex justify-center w-full mb-4">
+        <div className="flex items-center space-x-1 pr-40">
+        <BookCategoryFilter handleCategoryChange={handleCategoryChange} />
+          <BookFiltersAuthor handleSearch={handleSearch} />
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 pl-40">
           <BookLimitSelector limit={limit} setLimit={handleLimitChange} />
           <BookFilters setView={handleViewChange} currentView={view} />
         </div>
       </div>
-      {
-      view === 'grid' ? 
-      <BookGrid books={books!} />
-      : 
-      <BookList books={books!} /> 
-      }
+      {filteredBooks && filteredBooks.length > 0 ? (
+        view === 'grid' ? 
+        <BookGrid books={filteredBooks!} />
+        : 
+        <BookList books={filteredBooks!} />
+      ) : (
+        <Alert color="warning" rounded>
+          La categoría seleccionada no existe.
+        </Alert>
+      )}
       <BtnShowMore />
       <BookPagination page={page} setPage={setPage} />
     </section>
