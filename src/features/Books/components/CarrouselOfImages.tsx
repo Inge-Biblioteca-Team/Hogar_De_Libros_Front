@@ -34,7 +34,7 @@ function CarrouselOfImages({ ListBooks }: { ListBooks: Book[] }) {
             <article className="flex flex-grow w-full  gap-10">
               {visibleBooks.map((listBook) => (
                 <div
-                  className="flex flex-col items-center w-56 h-96 box-border"
+                  className="flex space-y-2 flex-col items-center w-56 h-96 box-border"
                   key={listBook.id}
                 >
                   <BookCard Book={listBook} />
