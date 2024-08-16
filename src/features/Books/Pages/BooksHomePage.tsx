@@ -7,7 +7,7 @@ const BooksHomePage = () => {
   return (
     <main className="w-full text-center text-2xl font-bold flex flex-col gap-5">
       <section>
-        <h2 >Libros mas populares</h2>
+        <h2 >Libros más populares</h2>
         <ListMostPopularBooks />
       </section>
       <section>

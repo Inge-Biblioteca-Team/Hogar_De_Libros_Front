@@ -34,12 +34,12 @@ const HomeNavbar = () => {
           <Sidebar.ItemGroup>
             <Sidebar.Item
               className="text-xl hover:text-blue-500" href="/">Libros</Sidebar.Item>
-            <Sidebar.Collapse label="Categorias">
+            <Sidebar.Collapse label="Categorías">
               <Sidebar.Item href="#">Obras Generales</Sidebar.Item>
             </Sidebar.Collapse>
             <Sidebar.Item
               className="text-xl hover:text-blue-500" href="/">
-              Catalogo Completo
+              Catálogo Completo
             </Sidebar.Item>
           </Sidebar.ItemGroup>
         </Sidebar.Items>

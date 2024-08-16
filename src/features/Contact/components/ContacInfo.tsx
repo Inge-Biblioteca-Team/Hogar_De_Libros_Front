@@ -12,7 +12,7 @@ const ContacInfo = () => {
         <br />
         <span  className=" max-sm:hidden">Tambien puedes contactanos via</span>
         <br />
-        <strong>Telefono: </strong>
+        <strong>Teléfono: </strong>
         <span>+506 2685-4213</span> <br />
         <strong>Correo: </strong><a>bpnicoya@sinabi.go.cr</a>
         <br />

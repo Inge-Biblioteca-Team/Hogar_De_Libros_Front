@@ -52,7 +52,7 @@ const LandingNavbar = () => {
             className="text-white hover:!text-black "
             href="#Computers"
           >
-            Equipo de Computo
+            Equipo de Cómputo
           </Navbar.Link>
           <Navbar.Link
             className="text-white hover:!text-black "
@@ -79,7 +79,7 @@ const LandingNavbar = () => {
             className="text-white hover:!text-black "
             href="#ContacUs"
           >
-            Contactanos
+            Contáctanos
           </Navbar.Link>
         </NavbarCollapse>
       </div>
