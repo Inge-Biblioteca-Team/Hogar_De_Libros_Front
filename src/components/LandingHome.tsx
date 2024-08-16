@@ -17,8 +17,8 @@ const LandingHome = () => {
       <div className=" flex gap-5 h-52 w-4/5 max-sm:w-full max-sm:h-auto ">
         <LandingHomeCards
           Icon={faBookOpen}
-          Title="Prestamos"
-          Message="Explora la amplia cantidad de diversos libros, solicita una sala para tus activadesde e incluso equipo tecnologico"
+          Title="Préstamos"
+          Message="Explora la ámplia cantidad de diversos libros, solicita una sala para tus activadesde e incluso equipo tecnológico"
           Path="/Sistema"
         />
         <LandingHomeCards

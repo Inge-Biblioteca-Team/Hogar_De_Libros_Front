@@ -25,7 +25,7 @@ const LandingHomeCards = ({
            <span>{Message}</span>
         </p>
         <a href={Path} className=" underline">
-          Mas Informacion
+          Más Información
         </a>
       </figcaption>
     </figure>

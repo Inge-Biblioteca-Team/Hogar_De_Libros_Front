@@ -7,9 +7,9 @@ const LandingFooter = () => {
         <div className=" flex flex-col">
           <Footer.Title
             className="text-lg text-white max-sm:text-xs"
-            title="Biblioteca Publica Municipal De Nicoya"
+            title="Biblioteca Pública Municipal De Nicoya"
           />
-          <Footer.Title className="text-lg text-white max-sm:text-sm" title="Direccion" />
+          <Footer.Title className="text-lg text-white max-sm:text-sm" title="Dirección" />
           <Footer.LinkGroup>
             <Footer.Link href="" className=" max-sm:text-xs">
               50 Norte del Liceo de Nicoya, frente a piscinas ANDE
@@ -30,7 +30,7 @@ const LandingFooter = () => {
             <Footer.LinkGroup col className=" max-sm:text-xs">
               <Footer.Link href="#MostPopularBooks">Libros</Footer.Link>
               <Footer.Link href="#Rooms">Salas</Footer.Link>
-              <Footer.Link href="#Computers">Equipo de Computo</Footer.Link>
+              <Footer.Link href="#Computers">Equipo de Cómputo</Footer.Link>
               <Footer.Link href="#Courses">Cursos</Footer.Link>
               <Footer.Link href="#Events">Eventos</Footer.Link>
             </Footer.LinkGroup>

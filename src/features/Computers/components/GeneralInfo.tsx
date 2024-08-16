@@ -12,7 +12,7 @@ const GeneralInfo = () => {
         <p>
           La biblioteca cuenta con <strong>{computerCount}</strong> computadoras las cuales están
           a disposición de los usuarios de la biblioteca.
-          <span className=" hidden max-sm:block">Los equipos cuentan con: <strong>Firma Digital,Acceso Gratiuto a Internet, Puertos USB y paquete Microsoft completo</strong> </span>
+          <span className=" hidden max-sm:block">Los equipos cuentan con: <strong>Firma Digital,Acceso Gratuito a Internet, Puertos USB y paquete Microsoft completo</strong> </span>
           <br />
           Si necesitas hacer uso de estas, puedes acercarte a la biblioteca y
           preguntar sobre disponibilidad y requerimientos, o puedes acceder en

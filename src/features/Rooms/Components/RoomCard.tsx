@@ -16,7 +16,7 @@ const RoomCard = ({ Rooms }: { Rooms: Room }) => {
           <br />
           <span>Aforo: {Rooms.capacity} Personas</span>
           <br />
-          <span>Ubicacion: {Rooms.location}</span>
+          <span>Ubicación: {Rooms.location}</span>
         </p>
         <button
           className="bg-Bottoms text-Text text-lg rounded-lg p-1.5 mt-5 mb-5
