@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
-import BookCard from "../components/BookCard";
 import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
+import BookCardLanding from "../components/BookCardLanding";
 
 const ListFreeBoosks = () => {
   const {
@@ -46,7 +46,7 @@ const ListFreeBoosks = () => {
           style={{ transform: `translateX(-${currentIndex * 50}%)` }}
         >
           {books.map((books, index) => (
-            <BookCard key={index} Book={books} />
+            <BookCardLanding key={index} Book={books} />
           ))}
         </article>
       </div>

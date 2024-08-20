@@ -1,13 +1,22 @@
+import { useNavigate } from "react-router-dom";
 
-const btnReserve = (/*{id}:{id:string}*/) => {
-   // const idLibro = id
-    return (
-      <div className="w-full flex items-center justify-center pt-4 max-sm:hidden
-     ">
-        <button type="button" className="bg-Bottoms text-Text text-lg rounded-lg p-1 
-        hover:bg-Bottoms-dark hover:scale-105">Reservar Ahora</button>
-      </div>
-    )
-}
+const BtnReserve = ({ id }: { id: string }) => {
+  const navi = useNavigate();
+  const Goto = () => {
+    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/${id}`);
+  };
 
-export default btnReserve
+  return (
+    <button
+      type="button"
+      className="bg-Bottoms text-Text text-lg rounded-lg p-1 
+        hover:bg-Bottoms-dark hover:scale-105
+         mt-4 max-sm:hidden"
+      onClick={Goto}
+    >
+      Reservar Ahora
+    </button>
+  );
+};
+
+export default BtnReserve;

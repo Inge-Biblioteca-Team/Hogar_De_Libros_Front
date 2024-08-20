@@ -9,7 +9,7 @@ const HomeNavbar = () => {
   };
   return (
     <>
-      <button type="button" className=" absolute" onClick={showSidebar}>
+      <button type="button" className=" absolute left-4" onClick={showSidebar}>
         {" "}
         <img
           className="invert dark:invert-0
@@ -33,10 +33,14 @@ const HomeNavbar = () => {
           </Sidebar.ItemGroup>
           <Sidebar.ItemGroup>
             <Sidebar.Item
-              className="text-xl hover:text-blue-500" href="/">Libros</Sidebar.Item>
+              className="text-xl hover:text-blue-500" href="/HogarDeLibros">Libros</Sidebar.Item>
+              <Sidebar.Collapse label="Busquedas">
+              <Sidebar.Item href="/HogarDeLibros/Busqueda/Titulo">Por Titulo</Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Busqueda/Avanzada">Busqueda Avanzada</Sidebar.Item>
             <Sidebar.Collapse label="Categorías">
               <Sidebar.Item href="#">Obras Generales</Sidebar.Item>
             </Sidebar.Collapse>
+              </Sidebar.Collapse>
             <Sidebar.Item
               className="text-xl hover:text-blue-500" href="/">
               Catálogo Completo

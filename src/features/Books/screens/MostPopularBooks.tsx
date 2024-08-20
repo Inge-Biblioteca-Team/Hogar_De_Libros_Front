@@ -3,7 +3,7 @@ import BtnReserve from "../components/BtnReserve";
 import BtnShowMore from "../components/BtnShowMore";
 import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
-import BookCard from "../components/BookCard";
+import BookCardLanding from "../components/BookCardLanding";
 
 const MostPopularBooks = () => {
   const {
@@ -32,8 +32,8 @@ const MostPopularBooks = () => {
             flex-col justify-center items-center pb-3 max-sm:p-0
              "
           >
-            <BookCard Book={book} />
-            <BtnReserve /*id={book.id} */ />
+            <BookCardLanding Book={book} />
+            <BtnReserve id={book.id}/>
           </figure>
         ))}
       </div>
