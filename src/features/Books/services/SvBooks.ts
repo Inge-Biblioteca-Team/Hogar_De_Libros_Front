@@ -24,4 +24,29 @@ const GetBooks = async () => {
     throw error;
   }
 };
-export { GetPopularBooks, GetFreeBooks, GetBooks };
+const GetBookById = async (id:string) => {
+  try {
+    const response = await axios.get(
+      `https://668c2a850b61b8d23b0ca034.mockapi.io/Books/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    throw error;
+  }
+};
+const GetAllBooks = async (page: number, limit: number) => {
+  const BASE_URL = 'https://668c2a850b61b8d23b0ca034.mockapi.io/Books';
+  try {
+    const response = await axios.get(
+      `${BASE_URL}?page=${page}&limit=${limit}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    throw error;
+  }
+};
+
+export { GetPopularBooks, GetFreeBooks, GetBooks, GetAllBooks, GetBookById};
+0
