@@ -1,9 +1,16 @@
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { GetBookById, GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
 import BookCard from "../components/BookCard";
 import BtnReserve from "../components/BtnReserve";
+import {
+  BooksRoute,
+  CurrentRoute,
+  HomeRoute,
+  SpecialRoute,
+} from "../components/Redirections";
+import { Breadcrumb } from "flowbite-react";
 
 const BookInformation = () => {
   const { id } = useParams<{ id?: string }>();
@@ -22,6 +29,10 @@ const BookInformation = () => {
     },
     { enabled: !!id }
   );
+  const navi = useNavigate();
+  const Goto = () => {
+    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/Solicitud/${id}`);
+  };
 
   const { data: books } = useQuery<Book[], Error>(["FreeBooks"], GetBooks);
 
@@ -30,12 +41,12 @@ const BookInformation = () => {
 
   return (
     <>
-      <span className=" w-full pl-3 text-2xl">
-        <a href="/HogarDeLibros">Incio</a>&gt;&gt;
-        <a href="/HogarDeLibros">Libros</a>&gt;&gt;
-        <a href="/HogarDeLibros">{book?.Category}</a>
-        &gt;&gt;<span>{book?.Title}</span>
-      </span>
+      <Breadcrumb aria-label="Default breadcrumb example">
+        <HomeRoute />
+        <BooksRoute />
+        {book?.ShelfCategory && <SpecialRoute FinalPath={book.ShelfCategory} />}
+        {book?.Title && <CurrentRoute CurrentPage={book.Title} />}
+      </Breadcrumb>
       <div
         className="w-full grid pt-2"
         style={{ gridTemplateColumns: "25% 42% 33%" }}
@@ -56,15 +67,14 @@ const BookInformation = () => {
           <strong>Editorial</strong>
           <span>{book?.Editorial}</span>
           <strong>Categoria</strong>
-          <span>{book?.Category}</span>
+          <span>{book?.ShelfCategory}</span>
           <strong>Año de publicación</strong>
           <span>{book?.PublicationYear}</span>
           <strong>Codigo ISBN</strong>
           <span>{book?.ISBN}</span>
           <strong>Codigo de Signatura</strong>
-          <span>{book?.BookCode}</span>
-          <div className="">{book?.id && <BtnReserve id={book.id} />}</div>
-          
+          <span>{book?.SignatureCode}</span>
+          <div className="">{book?.id && <BtnReserve Goto={Goto} id={book.id} text="Solicitar Prestamo"/>}</div>
         </span>
 
         <div className="flex justify-center flex-col pl-2">

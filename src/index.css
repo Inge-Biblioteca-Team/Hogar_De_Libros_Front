@@ -18,3 +18,15 @@ background-color: #dfe2e6;
 .animate-scroll{
     animation: scroll 20s linear infinite;
 }
+.custom-breadcrumb a{
+    font-size: 1.3rem !important;
+  }
+  .custom-breadcrumb span{
+    font-size: 1.3rem !important;
+  }
+  .custom-breadcrumb svg{
+    scale: 1.4 !important;
+  }
+  .custom-breadcrumb{
+    margin: 4px;
+  }

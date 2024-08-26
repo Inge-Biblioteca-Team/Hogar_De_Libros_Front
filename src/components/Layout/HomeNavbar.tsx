@@ -46,6 +46,10 @@ const HomeNavbar = () => {
               Catálogo Completo
             </Sidebar.Item>
           </Sidebar.ItemGroup>
+          <Sidebar.ItemGroup>
+            <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">Gestion de Libros</Sidebar.Item>
+
+          </Sidebar.ItemGroup>
         </Sidebar.Items>
       </Sidebar>
     </>
