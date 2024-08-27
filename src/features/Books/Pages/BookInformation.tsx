@@ -69,12 +69,12 @@ const BookInformation = () => {
           <strong>Categoria</strong>
           <span>{book?.ShelfCategory}</span>
           <strong>Año de publicación</strong>
-          <span>{book?.PublicationYear}</span>
+          <span>{book?.PublishedYear}</span>
           <strong>Codigo ISBN</strong>
           <span>{book?.ISBN}</span>
           <strong>Codigo de Signatura</strong>
           <span>{book?.SignatureCode}</span>
-          <div className="">{book?.id && <BtnReserve Goto={Goto} id={book.id} text="Solicitar Prestamo"/>}</div>
+          <div className="">{book?.BookCode && <BtnReserve Goto={Goto} id={book.BookCode} text="Solicitar Prestamo"/>}</div>
         </span>
 
         <div className="flex justify-center flex-col pl-2">
@@ -83,7 +83,7 @@ const BookInformation = () => {
           </strong>
           <div className=" grid grid-rows-2 grid-cols-2 gap-2 m-4">
             {books?.slice(8, 12).map((book) => (
-              <BookCard key={book.id} Book={book} />
+              <BookCard key={book.BookCode} Book={book} />
             ))}
           </div>
         </div>

@@ -1,10 +1,16 @@
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { GetBookByID } from "../services/SvBooks";
+import { GetByBookCode } from "../services/SvBooks";
 import { Book } from "../type/Book";
 import { Breadcrumb } from "flowbite-react";
-import { HomeRoute, BooksRoute, CurrentRoute, ManageRoute } from "../components/Redirections";
+import {
+  HomeRoute,
+  BooksRoute,
+  CurrentRoute,
+  ManageRoute,
+} from "../components/Redirections";
 import BtnReserve from "../components/BtnReserve";
+import ConditionStatus from "../../../components/ConditionStatus";
 
 const AdminBooksInformation = () => {
   const { id } = useParams<{ id?: string }>();
@@ -15,23 +21,21 @@ const AdminBooksInformation = () => {
       if (!id) {
         throw new Error("Error No existe ID de libro para buscar");
       }
-      return GetBookByID(id);
+      return GetByBookCode(id);
     },
-    { enabled: !!id,
-      staleTime: 60000 }
+    { enabled: !!id, staleTime: 60000 }
   );
   const navi = useNavigate();
   const Goto = () => {
     navi(`/HogarDeLibros/CatalogoDeLibros/Libro/Prestamo/${id}`);
   };
 
-
   //Añadir is loading con skeleton loaders
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">
-        <HomeRoute/>
-        <ManageRoute/>
+        <HomeRoute />
+        <ManageRoute />
         <BooksRoute />
         {book?.Title && <CurrentRoute CurrentPage={book?.Title} />}
       </Breadcrumb>
@@ -61,18 +65,27 @@ const AdminBooksInformation = () => {
         </span>
         <span className="inline-grid ">
           <strong>Codigo de inscripción</strong>
-          {book?.InscriptionCode == "N/A"? <span>Pendiente</span> : <span>{book?.InscriptionCode}</span> }
+          {book?.InscriptionCode == 0 ? (
+            <span>Pendiente</span>
+          ) : (
+            <span>{book?.InscriptionCode}</span>
+          )}
           <strong>Año de publicación</strong>
-          <span>{book?.PublicationYear}</span>
+          <span>{book?.PublishedYear}</span>
           <strong>Editorial</strong>
           <span>{book?.Editorial}</span>
-          <strong>Estado</strong>
-          <span>{book?.Condition}</span>
+          {book?.BookConditionRating ? <ConditionStatus condition={book.BookConditionRating}/> : null}
           <strong>Observaciones</strong>
           <span>{book?.Observations}</span>
-          <strong>Libro de Reserva</strong>
+          {book?.ReserveBook ? <strong>Libro de Reserva</strong> : null}
           <span>
-          {book?.id && <BtnReserve Goto={Goto} id={book?.id} text="Generar Prestamo"/>}
+            {book?.BookCode && (
+              <BtnReserve
+                Goto={Goto}
+                id={book?.BookCode}
+                text="Generar Prestamo"
+              />
+            )}
           </span>
         </span>
       </div>

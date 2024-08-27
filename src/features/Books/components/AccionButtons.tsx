@@ -2,7 +2,13 @@ import { faEye, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 
-const AccionButtons = ({id}:{id:string}) => {
+import { useState } from "react";
+import ModalDownActive from "./ModalDownActive";
+
+const AccionButtons = ({id, BookTitle}:{id:string, BookTitle:string}) => {
+
+  const [openModal, setOpenModal] = useState(false);
+  
   return (
     <div className=" flex gap-7 justify-center">
     <Link title="Ver Informacion Completa" to={`/HogarDeLibros/Gestion/Libros/${id}`}>
@@ -12,8 +18,12 @@ const AccionButtons = ({id}:{id:string}) => {
       <FontAwesomeIcon size="2x" icon={faPenToSquare}/>
     </Link>
     <button title="Deshabilitar Activo" type="button">
-      <FontAwesomeIcon size="2x" icon={faTrash} href="/HogarDeLibros/Gestion/Libros/" />
+      <FontAwesomeIcon size="2x" icon={faTrash} onClick={() => setOpenModal(true)}/>
     </button>
+
+    <>
+      <ModalDownActive open={openModal} setOpen={setOpenModal} id={id} BookTitle={BookTitle} />
+    </>
     </div>
   )
 }

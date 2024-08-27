@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Book } from "../type/Book";
+import { Book, EditBook } from "../type/Book";
 
 const GetPopularBooks = async () => {
   const response = await axios.get(
@@ -62,49 +62,85 @@ const GetAllBooks = async (page: number, limit: number) => {
 // Fetch Finales
 // Api cuando esten los usuarios se le suman los headers y se cambia el url base
 const api = axios.create({
-  baseURL: "https://662bb9d2de35f91de1594809.mockapi.io/api/test/Test",
+  baseURL: "http://localhost:3000",
+  // baseURL: "https://662bb9d2de35f91de1594809.mockapi.io/api/test/Test",
   timeout: 1000,
 });
 
-//Get por paginacion
-const GetBookPaginated = async (page: number, limit: number) => {
+//Get por paginacion con parametros opcionales
+const GetBookPaginated = async (
+  page: number,
+  limit: number,
+  Title?: string,
+  Author?: string,
+  ISBN?: string,
+  SignatureCode?: string,
+  Status?: string
+) => {
   try {
-    const response = await api.get("", {
-      params: {
-        page: page,
-        limit: limit,
-      },
-    });
+    const params: { [key: string]: string | number | undefined } = {
+      page,
+      limit,
+    };
+
+    if (Title) params.Title = Title;
+    if (Author) params.Author = Author;
+    if (ISBN) params.ISBN = ISBN;
+    if (SignatureCode) params.SignatureCode = SignatureCode;
+    if (Status) params.Status = Status;
+
+    const response = await api.get("/books", { params });
     return response.data;
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
-// Get por id (Para Editar y ver un solo registro)
-const GetBookByID = async (id: string) => {
+
+
+//Añadir nuevo libro(Post)
+const PostNewBook = async (book: Book) => {
   try {
-    const response = await api.get(`/${id}`);
+    const response = await api.post("/books", book);
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("Error to post book:", error);
     throw error;
   }
 };
- //Añadir nuevo libro(Post)
- const PostNewBook = async (book:Book)=>{
+const PatchEditBook = async (book: EditBook, BookCode:string) => {
   try {
-    const response = await api.post('', book);
+    const response = await api.patch(`books/${BookCode}`, book);
     return response.data;
   } catch (error) {
-    console.error('Error to post book:', error);
+    console.error("Error to post book:", error);
     throw error;
   }
+};
+
+// dar de baja al libro
+const PatchStatus = async (BookCode:string) =>{
+ try {
+    const response = await api.patch( `books/${BookCode}/disable`);
+    return response.data;
+  } catch (error) {
+    console.error("Error to post book:", error);
+    throw error;
+  }
+}
+
+const GetByBookCode = async (BookCode:string) =>{
+  try {
+     const response = await api.get( `books/${BookCode}`);
+     return response.data;
+   } catch (error) {
+     console.error("Error to post book:", error);
+     throw error;
+   }
  }
 
- // Patch(Edicion de infomracion del libro)
+// Patch(Edicion de infomracion del libro)
 
-    
 export {
   GetPopularBooks,
   GetFreeBooks,
@@ -113,6 +149,8 @@ export {
   GetBookById,
   GetNier,
   GetBookPaginated,
-  GetBookByID,
-  PostNewBook
+  PostNewBook,
+  PatchStatus,
+  GetByBookCode,
+  PatchEditBook
 };

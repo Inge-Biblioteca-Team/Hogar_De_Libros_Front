@@ -1,4 +1,4 @@
-import { Breadcrumb, Checkbox, Label, TextInput } from "flowbite-react";
+import { Breadcrumb, Checkbox, Label, Select, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { Book } from "../type/Book";
 import { useEffect } from "react";
@@ -14,10 +14,13 @@ const NewBook = () => {
   } = UseCreateNewBook();
 
   const onSubmit = (NewBookData: Book) => {
+    setValue("Status", true)
+    console.table(NewBookData)
     createBook(NewBookData);
     reset();
+    setValue('Cover',"https://linamed.com/wp-content/themes/dfd-native/assets/images/no_image_resized_675-450.jpg")
   };
-
+  
   useEffect(()=>{
     setValue('Cover',"https://linamed.com/wp-content/themes/dfd-native/assets/images/no_image_resized_675-450.jpg")
   },[setValue])
@@ -35,12 +38,12 @@ const NewBook = () => {
           className="grid gap-14 w-4/5 text-2xl grid-cols-3 "
           style={{ gridTemplateColumns: "" }}
         >
-          <fieldset className="flex-none">
+          <fieldset className="flex-none w-full">
             <legend className=" pb-3 font-bold ">Caratula del libro</legend>
             <figure className="relative ">
               <img
                 className="rounded-xl shadow-xl"
-                style={{ height: "22.8em", width: "17.5em", maxHeight:"22.8em" , maxWidth:"17.5em" }}
+                style={{ height: "22.8em",maxHeight:"22.8em", zIndex:"88888" }}
                 src={watch("Cover")}
                 alt="Seleccionar una imagen"
               />
@@ -48,7 +51,7 @@ const NewBook = () => {
                 className="absolute w-4/5"
                 style={{ top: "60%", left: "11%" }}
               >
-                <TextInput type="text" placeholder="Introduce la URL de la imagen"
+                <TextInput type="text" placeholder="Introduce la URL de la imagen" className="-z-40"
                   {...register("Cover")}
                 />
               </figcaption>
@@ -112,8 +115,8 @@ const NewBook = () => {
             <span>
               <Label htmlFor="PublicationYear" value="Año de Publicación" className="text-xl"
               />
-              <TextInput id="PublicationYear" type="text" 
-                {...register("PublicationYear")}
+              <TextInput id="PublicationYear" type="text"
+                {...register("PublishedYear")}
               />
             </span>
             <span>
@@ -124,17 +127,20 @@ const NewBook = () => {
               />
             </span>
             <span>
-              <Label className="text-xl" htmlFor="ConditionRating" value="Condición del libro (1-10)"
+              <Label className="text-xl" htmlFor="ConditionRating" value="Condición del libro"
               />
-              <TextInput id="ConditionRating" type="text" 
-                {...register("Condition")}
-              />
+               <Select id="BookCOndition" {...register("BookConditionRating")}>
+                  <option value={1}>Pendiente de evaluación</option>
+                  <option value={2}>Bueno</option>
+                  <option value={3}>Medio</option>
+                  <option value={4}>Malo</option>
+                </Select>
             </span>
             <span>
               <Label htmlFor="Observation" value="Observaciones" className="text-xl"
               />
               <TextInput id="Observation" type="text" 
-                {...register("Condition")}
+                {...register("Observations")}
               />
             </span>
             <div className=" flex flex-col">

@@ -2,15 +2,16 @@ import { Breadcrumb, Table } from "flowbite-react";
 import AccionButtons from "../components/AccionButtons";
 import { useQuery } from "react-query";
 import { GetBookPaginated } from "../services/SvBooks";
-import { Book } from "../type/Book";
+import { Book, BookApiResponse } from "../type/Book";
 import InpSearchTitle from "../../../components/InpSearchTitle";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import BtnAdvanceSearch from "../components/BtnAdvanceSearch";
 import SltCurrentLimit from "../../../components/SltCurrentLimit";
 import CreateNewActive from "../../../components/CreateNewActive";
 import PaginatationSelector from "../../../components/PaginatationSelector";
 import { BooksRoute, HomeRoute, ManageRoute } from "../components/Redirections";
 import AdminAdvaceSearch from "../components/AdminAdvaceSearch";
+import UseDebounce from "../../../hooks/UseDebounce";
 
 const ManageBooks = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
@@ -20,20 +21,36 @@ const ManageBooks = () => {
 
   const [currentLimit, setCurrentLimit] = useState<number>(5);
   const [advance, setAdvance] = useState<boolean>(false);
-
+  const [searchTitle, setSearchTitle] = useState<string>("");
+  const [searchISBN, setSearchISBN] = useState<string>("");
+  const [searchAuthor, setSearchAuthor] = useState<string>("");
+  const [searchSignaCode, setSearchSignaCode] = useState<string>("");
+  const [searchStatus, setSearchStatus] = useState<string>("");
   const onPageChange = (page: number) => {
     setCurrentPage(page);
     sessionStorage.setItem("currentPage", page.toString());
   };
 
-  const viewAdvanceSerch = () => setAdvance(!advance);
+  const viewAdvanceSerch = useCallback(() => setAdvance((prev) => !prev), []);
+  const searchTitleDelay = UseDebounce(searchTitle, 1000);
+  const seachISBNDelay = UseDebounce(searchISBN, 1000);
+  const seachAuthorDelay = UseDebounce(searchAuthor, 1000);
+  const seachSignaCodeDelay = UseDebounce(searchSignaCode, 1000);
 
-  const { data: books } = useQuery<Book[], Error>(
-    ["BookCatalog", currentPage, currentLimit],
-    () => GetBookPaginated(currentPage, currentLimit),
+  const { data: books } = useQuery<BookApiResponse, Error>(
+    ["BookCatalog", currentPage, currentLimit, searchTitleDelay, seachAuthorDelay, seachISBNDelay, seachSignaCodeDelay,
+       searchStatus,],() => GetBookPaginated(
+        currentPage,
+        currentLimit,
+        searchTitleDelay,
+        seachAuthorDelay,
+        seachISBNDelay,
+        seachSignaCodeDelay,
+        searchStatus
+      ),
     {
       keepPreviousData: true,
-      staleTime: 60000,
+      staleTime: 600,
     }
   );
 
@@ -52,8 +69,14 @@ const ManageBooks = () => {
         <div className=" w-5/6 flex flex-col gap-4">
           <div className=" flex justify-between">
             <div className="flex gap-2">
-              <InpSearchTitle />
-              <AdminAdvaceSearch see={advance} />
+              <InpSearchTitle onSearch={setSearchTitle} />
+              <AdminAdvaceSearch
+                see={advance}
+                Author={setSearchAuthor}
+                ISBN={setSearchISBN}
+                SigCode={setSearchSignaCode}
+                Status={setSearchStatus}
+              />
               <BtnAdvanceSearch click={viewAdvanceSerch} icon={advance} />
             </div>
             <CreateNewActive objetive="Libro" />
@@ -70,15 +93,19 @@ const ManageBooks = () => {
               </Table.HeadCell>
             </Table.Head>
             <Table.Body>
-              {books?.map((Books) => (
-                <Table.Row key={Books.id} className=" h-24">
+              {books?.data.map((Books: Book) => (
+                <Table.Row key={Books.BookCode} className=" h-24">
                   <Table.Cell className="w-96">{Books.Title}</Table.Cell>
                   <Table.Cell className="w-64">{Books.Author}</Table.Cell>
-                  <Table.Cell className="w-44">{Books.ISBN}</Table.Cell>
-                  <Table.Cell className="w-44">{Books.SignatureCode}</Table.Cell>
-                  <Table.Cell className="w-12">Activo</Table.Cell>
+                  <Table.Cell className="w-44">
+                    {Books.ISBN ? Books.ISBN : "No Posee"}
+                  </Table.Cell>
+                  <Table.Cell className="w-44">
+                    {Books.SignatureCode ? Books.SignatureCode : "Pendiente"}
+                  </Table.Cell>
+                  <Table.Cell className="w-12">{Books.Status? "Activo":"Inactivo"}</Table.Cell>
                   <Table.Cell>
-                    <AccionButtons id={Books.id} />
+                    <AccionButtons id={Books.BookCode} BookTitle={Books.Title} />
                   </Table.Cell>
                 </Table.Row>
               ))}

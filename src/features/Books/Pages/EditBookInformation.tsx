@@ -1,12 +1,13 @@
-import { Breadcrumb, TextInput, Label, Checkbox } from "flowbite-react";
+import { Breadcrumb, TextInput, Label, Checkbox, Select } from "flowbite-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { HomeRoute, ManageRoute, BooksRoute, CurrentRoute } from "../components/Redirections";
-import { Book } from "../type/Book";
+import { Book, EditBook } from "../type/Book";
 import { GetNier } from "../services/SvBooks";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import ConfirmButton from "../../../components/ConfirmButton";
+import UseEditBook from "../Hooks/UseEditBook";
 const EditBookInformation = () => {
 
     const { id } = useParams<{ id?: string }>();
@@ -24,23 +25,33 @@ const EditBookInformation = () => {
       }
     );
 
-    const { register, setValue, watch } = useForm<Book>();
+    const { register, setValue, watch, handleSubmit } = useForm<EditBook>();
     useEffect(() => {
       if (book) {
         setValue("Title", book.Title);
         setValue("Author", book.Author);
-        setValue("Condition", book.Condition);
+        setValue("BookConditionRating", book.BookConditionRating);
         setValue("Cover", book.Cover);
         setValue("Editorial", book.Editorial);
         setValue("ISBN", book.ISBN);
         setValue("InscriptionCode", book.InscriptionCode);
         setValue("Observations", book.Observations);
-        setValue("PublicationYear", book.PublicationYear);
+        setValue("PublishedYear" , book.PublishedYear);
         setValue("ReserveBook", book.ReserveBook);
         setValue("ShelfCategory", book.ShelfCategory);
         setValue("SignatureCode", book.SignatureCode);
       }
     }, [book, setValue]);
+
+    const { mutate: editBook } = UseEditBook();
+
+    const onSubmit = (formData: EditBook) => {
+      if (book?.BookCode) {
+        editBook({ book: formData, BookCode: book.BookCode });
+      } else {
+        console.error('No BookCode found for this book');
+      }
+    };
 
     return (
       <>
@@ -49,10 +60,11 @@ const EditBookInformation = () => {
         <ManageRoute/>
         <BooksRoute />
         <CurrentRoute CurrentPage={"Editar"} />
-        <CurrentRoute CurrentPage={"Nombre del libro"} />
+        {book?.Title? <CurrentRoute CurrentPage={book?.Title} /> : null}
+        
         </Breadcrumb>
         <div className="w-full flex place-content-center pt-10">
-          <form
+          <form onSubmit={handleSubmit(onSubmit)}
             className="grid gap-14 w-4/5 text-2xl grid-cols-3 "
             style={{ gridTemplateColumns: "" }}
           >
@@ -61,7 +73,7 @@ const EditBookInformation = () => {
               <figure className="relative ">
                 <img
                   className="rounded-xl shadow-xl"
-                  style={{ height: "22.8em", width: "17.5em", maxHeight:"22.8em" , maxWidth:"17.5em" }}
+                  style={{ height: "22.8em",maxHeight:"22.8em", zIndex:"88888" }}
                   src={watch('Cover')}
                   alt="Seleccionar una imagen"
                 />
@@ -136,7 +148,7 @@ const EditBookInformation = () => {
                 <Label htmlFor="PublicationYear" value="Año de Publicación" className="text-xl"
                 />
                 <TextInput id="PublicationYear" type="text" disabled
-                  {...register("PublicationYear")}
+                  {...register("PublishedYear")}
                 />
               </span>
               <span>
@@ -146,11 +158,14 @@ const EditBookInformation = () => {
                 />
               </span>
               <span>
-                <Label className="text-xl" htmlFor="ConditionRating" value="Condición del libro (1-10)"
+                <Label className="text-xl" htmlFor="ConditionRating" value="Condición del libro"
                 />
-                <TextInput id="ConditionRating" type="text" 
-                  {...register("Condition")}
-                />
+                <Select id="BookCondition" {...register("BookConditionRating")}>
+                  <option value="1">Pendiente de evaluación</option>
+                  <option value="2">Bueno</option>
+                  <option value="3">Medio</option>
+                  <option value="4">Malo</option>
+                </Select>
               </span>
               <span>
                 <Label htmlFor="Observation" value="Observaciones" className="text-xl"

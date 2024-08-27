@@ -1,31 +1,37 @@
 export type Book = {
-  Title:string,
-  Author: string,
-  Editorial:  string,
-  PublishedYear: string,
-  ISBN: string,
-  Cover:string,
-  BookConditionRating: number,
-  ShelfCategory:string,
-  SignatureCode: string,
-  InscriptionCode: number,
-  Observations: string,
-  ReserveBook: boolean,
-  BoookCode: number;
-}
+  Title: string;
+  Author: string;
+  Editorial: string;
+  PublishedYear: number;
+  ISBN: string;
+  ShelfCategory: string;
+  Cover: string;
+  BookConditionRating: number;
+  SignatureCode: string;
+  InscriptionCode: number;
+  Observations: string;
+  ReserveBook: boolean;
+  BookCode: string;
+  Status: boolean;
+};
 
-export type BookTest = {
-  Title:string,
-  Author: string,
-  Editorial:  string,
-  PublicationYear: string, // renombrar
-  ISBN: string,
-  Cover:string,
-  Condition: number, //Renombrar Front
-  ShelfCategory:string, // Cambiar Back ShalfCategory Remplaza a book category
-  SignatureCode: string,
-  InscriptionCode: string,
-  Observations: string, // Añadir back
-  ReserveBook: boolean, //Renombrar Bacb
-  id: string //Renombrar Front
-}
+export type BookApiResponse = {
+  data: Book[];
+  count: number;
+};
+
+export type EditBook = {
+  Title: string;
+  Author: string;
+  Editorial: string;
+  PublishedYear: number;
+  ISBN: string;
+  ShelfCategory: string;
+  Cover: string;
+  BookConditionRating: number;
+  SignatureCode: string;
+  InscriptionCode: number;
+  Observations: string;
+  ReserveBook: boolean;
+  Status: boolean;
+};
