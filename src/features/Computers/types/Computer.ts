@@ -1,5 +1,11 @@
 export type Computer = {
     Id:number;
-    Status:boolean;
-    observaciones:string
+    Status:number;
+    Observation:string;
+    EquipamentUniqueCode:string;
+    EquipamentBrand:string;
+    EquipamentCategory:string[];
+    EquipamentSerial:string;
+    ConditionRating: string[];
+    MachineNumber: number
 }

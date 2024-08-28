@@ -45,6 +45,10 @@ const HomeNavbar = () => {
               className="text-xl hover:text-blue-500" href="/">
               Catálogo Completo
             </Sidebar.Item>
+            <Sidebar.ItemGroup>
+            <Sidebar.Item href="/HogarDeLibros/Gestion/EquipodeComputo">Gestion de 
+            Equipos de Cómputo</Sidebar.Item>
+          </Sidebar.ItemGroup>
           </Sidebar.ItemGroup>
         </Sidebar.Items>
       </Sidebar>
