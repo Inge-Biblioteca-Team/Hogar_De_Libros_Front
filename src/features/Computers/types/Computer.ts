@@ -11,28 +11,28 @@ export type Computer = {
 }
 
 
-export type apiResponseCE ={
-    data:Computer[],
-    count:number
-}
 export type ComputerTest = {
-    EquipamentUniqueCode:number;
+    EquipmentUniqueCode:string;
     MachineNumber: number;
-    EquipamentSerial:string;
-    EquipamentBrand:string;
+    EquipmentSerial:string;
+    EquipmentBrand:string;
     Observation:string;
     ConditionRating: number;
-    EquipamentCategory:string;
+    EquipmentCategory:string;
     Status:boolean;
 }
 
+export type apiResponseCE ={
+    data:ComputerTest[],
+    count:number
+}
 export type EquipmentEdit = {
-    MachineNumber: number;
-    EquipamentSerial:string;
-    EquipamentBrand:string;
+    MachineNumber: string;
+    EquipmentSerial:string;
+    EquipmentBrand:string;
     ConditionRating: number;
     Observation:string;
-    EquipamentCategory:string;
+    EquipmentCategory:string;
     Status:boolean;
     LoanStatus:true;
 }

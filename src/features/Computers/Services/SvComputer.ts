@@ -28,12 +28,12 @@ const PostNewComputer = async (computer:ComputerTest)=>{
  }
  
  //paginacion
- const GetComputerPaginated =  async( page:number, limint:number)=>{
+ const GetComputerPaginated =  async( page:number, limit:number)=>{
   try{
     const response = await api.get(`/computers`,{
       params:{
-        page:page,
-        limint:limint,
+        Page:page,
+        Limit:limit,
       },
     });
     return response.data;
