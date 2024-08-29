@@ -1,16 +1,25 @@
-import { faMagnifyingGlass, faPlusCircle } from "@fortawesome/free-solid-svg-icons"
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const InpSerchComp = ()=>{
+const InpSearchTitle = ({onSearch}:{onSearch:(searchTitle:string) => void}) => {
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      onSearch(event.target.value);
+    };
     return (
-        <div className="relative">
-            <input
-            type="text" placeholder="Busqueda"
-            className="pl-8 pr-4 py-2 border reounded-lg"/>
-            <span className="absolute left-2 top-2">
-                <FontAwesomeIcon icon={faMagnifyingGlass}/>
-            </span>
-        </div>
-    )
-}
-export default InpSerchComp
+      <div className="relative">
+        <input
+          type="text"
+          placeholder="Busqueda Por Titulo"
+          onChange={handleChange}
+          className="pl-8 pr-4 py-2 border rounded-lg"
+        />
+        <span className="absolute left-2 top-2">
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </span>
+      </div>
+    );
+  };
+  
+  export default InpSearchTitle
+  

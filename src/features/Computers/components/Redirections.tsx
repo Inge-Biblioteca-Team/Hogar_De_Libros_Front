@@ -25,6 +25,13 @@ const NwComputerRouter= ()=>{
         </>
     )
 }
+const CurrentRoute = ({ CurrentPage }: { CurrentPage: string }) => {
+    return (
+      <>
+        <Breadcrumb.Item>{CurrentPage}</Breadcrumb.Item>
+      </>
+    );
+  };
 
 
- export{ManagerRouter,HomeComputerRouter,NwComputerRouter}
+ export{ManagerRouter,HomeComputerRouter,NwComputerRouter, CurrentRoute}
