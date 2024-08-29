@@ -4,6 +4,7 @@ import Layout from "../Pages/Layout";
 import BooksHomePage from "../features/Books/Pages/BooksHomePage";
 import SearchBookByName from "../features/Books/Pages/SearchBookByName";
 import BookInformation from "../features/Books/Pages/BookInformation";
+import AdvancedSearch from "../features/Books/components/AdvancedSearch";
 const Routes = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +35,10 @@ const Routes = createBrowserRouter([
       {
         path:"Busqueda/Titulo",
         element:<SearchBookByName/>
+      },
+      {
+        path: "Busqueda/Avanzada",
+        element:<AdvancedSearch/>
       },
       {
         path:"CatalogoDeLibros/Libro/:id",

@@ -49,4 +49,3 @@ const GetAllBooks = async (page: number, limit: number) => {
 };
 
 export { GetPopularBooks, GetFreeBooks, GetBooks, GetAllBooks, GetBookById};
-0
