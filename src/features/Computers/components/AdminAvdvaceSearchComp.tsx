@@ -1,4 +1,4 @@
-import { faLaptop, faCode, faHashtag, faRegistered } from "@fortawesome/free-solid-svg-icons";
+import { faCode, faHashtag, faRegistered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface AdminAdvancedSearchProps {

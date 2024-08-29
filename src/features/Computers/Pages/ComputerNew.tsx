@@ -11,8 +11,8 @@ const ComputerNew =() =>{
       <ManagerRouter/>
       <NwComputerRouter/>
       </Breadcrumb>
-    <div className="p-20 ">
-      <Card className="max-w-fit mx-auto bg-gray-100 p-4">
+    <div className="pt-20">
+      <Card className="max-w-fit mx-auto bg-gray-100 p-5">
       <FormAddComputer/>
       </Card>
     </div>

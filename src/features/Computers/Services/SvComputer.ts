@@ -19,7 +19,8 @@ const api = axios.create({
 //Agregar computadora
 const PostNewComputer = async (computer:ComputerTest)=>{
   try {
-    const response = await api.post(``, computer);
+    console.table(computer)
+    const response = await api.post(`/computers`, computer);
     return response.data;
   } catch (error) {
     console.error('Error to post book:', error);

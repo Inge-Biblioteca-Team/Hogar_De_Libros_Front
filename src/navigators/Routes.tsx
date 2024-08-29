@@ -4,7 +4,6 @@ import Layout from "../Pages/Layout";
 import BooksHomePage from "../features/Books/Pages/BooksHomePage";
 import SearchBookByName from "../features/Books/Pages/SearchBookByName";
 import BookInformation from "../features/Books/Pages/BookInformation";
-import { HomeComputerRouter } from "../features/Computers/components/Redirections";
 import ManagerComputer from "../features/Computers/Pages/ManagerComputer";
 import ComputerNew from "../features/Computers/Pages/ComputerNew";
 const Routes = createBrowserRouter([
