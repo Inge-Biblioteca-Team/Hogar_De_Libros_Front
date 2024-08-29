@@ -10,7 +10,7 @@ const InpSearchTitle = ({onSearch}:{onSearch:(searchTitle:string) => void}) => {
       <div className="relative">
         <input
           type="text"
-          placeholder="Busqueda Por Titulo"
+          placeholder="Busqueda Por Numero de Maquina"
           onChange={handleChange}
           className="pl-8 pr-4 py-2 border rounded-lg"
         />

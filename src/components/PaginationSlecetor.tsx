@@ -1,12 +1,12 @@
 import { Pagination } from "flowbite-react"
 
-const PaginatationSelector = ({currentPage,onPageChange}:{currentPage:number, onPageChange:(page:number)=>void}) => {
+const PaginatationSelector = ({currentPage,onPageChange, totalPages}:{currentPage:number, onPageChange:(page:number)=>void;totalPages:number}) => {
   return (
     <Pagination
             className=" text-lg"
             layout="navigation"
             currentPage={currentPage}
-            totalPages={100}
+            totalPages={totalPages}
             onPageChange={onPageChange}
             showIcons
             previousLabel="Anterior"

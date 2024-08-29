@@ -1,37 +1,22 @@
-import { Breadcrumb } from "flowbite-react"
+import { Breadcrumb } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 
-const HomeComputerRouter= ()=>{
-    return(
-        <>
-        <Breadcrumb.Item href="/HogarDeLibros/Computo" icon={HiHome}>
-        Inicio
-        </Breadcrumb.Item>
-        </>
-    )
+const EquipmentCrumb = () => {
+  return (
+    <>
+      <Breadcrumb.Item href="/HogarDeLibros/Gestion/EquipodeComputo" icon={HiHome}>
+        Equipo de Computo
+      </Breadcrumb.Item>
+    </>
+  );
+};
 
-}
-const ManagerRouter= ()=>{
-    return(
-        <>
-        <Breadcrumb.Item href="/HogarDeLibros/Gestion">Gestión</Breadcrumb.Item>
-        </>
-    )
-}
-const NwComputerRouter= ()=>{
-    return(
-        <>
-        <Breadcrumb.Item href="/HogarDeLibros/Gestion/AñadirEquipo">Añadir Equipo</Breadcrumb.Item>
-        </>
-    )
-}
-const CurrentRoute = ({ CurrentPage }: { CurrentPage: string }) => {
-    return (
-      <>
-        <Breadcrumb.Item>{CurrentPage}</Breadcrumb.Item>
-      </>
-    );
-  };
+const ActionCrumb = ({Acction}:{Acction:string}) => {
+  return (
+    <>
+      <Breadcrumb.Item>{Acction}</Breadcrumb.Item>
+    </>
+  );
+};
 
-
- export{ManagerRouter,HomeComputerRouter,NwComputerRouter, CurrentRoute}
+export { EquipmentCrumb, ActionCrumb };
