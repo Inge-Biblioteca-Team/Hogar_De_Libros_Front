@@ -26,22 +26,27 @@ const PostNewComputer = async (computer:ComputerTest)=>{
     throw error;
   }
  }
+
  
  //paginacion
- const GetComputerPaginated =  async( page:number, limit:number)=>{
+ const GetComputerPaginated =  async( page?:number, limit?:number, MNumber?: string)=>{
   try{
-    const response = await api.get(`/computers`,{
-      params:{
-        Page:page,
-        Limit:limit,
-      },
-    });
+
+    const params: { [key: string]: string | number | undefined } = {
+    
+    };
+
+    if (page) params.Page = page;
+    if (limit) params.Limit = limit;
+    if (MNumber) params. MachineNumber = MNumber;
+   
+    const response = await api.get("/computers", { params });
     return response.data;
   } catch (error) {
-    console.error('Error to post book:', error);
+    console.error(error);
     throw error;
   }
- }
+};
 
  //Put Edit info
 
@@ -69,4 +74,4 @@ const PostNewComputer = async (computer:ComputerTest)=>{
  }
  
   
-  export {GetComputers, PostNewComputer, GetComputerPaginated, PutEditEquipment, DownEquipment}
+  export {GetComputers, PostNewComputer, GetComputerPaginated, PutEditEquipment, DownEquipment, api}
