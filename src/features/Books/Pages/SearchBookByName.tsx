@@ -91,7 +91,7 @@ const SearchBookByName = () => {
               La categoría seleccionada no existe.
             </Alert>
           )}
-          <BookPagination page={page} setPage={setPage} />
+          <BookPagination page={page} setPage={setPage} limit={limit} />
         </div>
       </div>
     </section>

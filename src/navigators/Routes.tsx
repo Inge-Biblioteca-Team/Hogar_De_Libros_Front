@@ -8,6 +8,7 @@ import ManageBooks from "../features/Books/Pages/ManageBooks";
 import NewBook from "../features/Books/Pages/NewBook";
 import AdminBooksInformation from "../features/Books/Pages/AdminBooksInformation";
 import EditBookInformation from "../features/Books/Pages/EditBookInformation";
+import AdvancedSearch from "../features/Books/components/AdvancedSearch";
 const Routes = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +41,10 @@ const Routes = createBrowserRouter([
         element: <SearchBookByName />,
       },
       {
+        path: "Busqueda/Avanzada",
+        element:<AdvancedSearch/>
+      },
+      {
         path: "CatalogoDeLibros/Libro/:id",
         element: <BookInformation />,
       },
@@ -58,7 +63,11 @@ const Routes = createBrowserRouter([
       {
         path:"Gestion/Libros/Editar/:id",
         element:<EditBookInformation/>
-      }
+      },
+      {
+        path: "Busqueda/Avanzada",
+        element:<AdvancedSearch/>
+      },
       
 
     ],

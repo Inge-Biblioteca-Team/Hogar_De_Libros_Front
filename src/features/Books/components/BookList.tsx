@@ -1,23 +1,14 @@
 import React from 'react';
 import { Book } from '../type/Book';
-import BookCard from './BookCardLanding';
-import BtnReserve from './BtnReserve';
+import BookCardList from './BookCardList';
+
 
 const BookList: React.FC<{ books: Book[] }> = ({ books }) => (
-    <div className="list-disc pl-5 space-y-8">
+  <div className="grid grid-cols-1 gap-5">
     {books.map((book) => (
-      <figure 
-      key={book.id}
-      className="rounded-md shadow-lg flex 
-            flex-col justify-center items-center pb-3 max-sm:p-0
-             "
-          >
-        <BookCard Book={book} />
-        <BtnReserve id={book.id}/>
-        </figure>
+      <BookCardList key={book.id} Book={book} />
     ))}
   </div>
-    
 );
 
 export default BookList;
