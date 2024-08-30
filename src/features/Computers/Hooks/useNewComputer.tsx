@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-query"
+import { useMutation } from "react-query"
 import { PostNewComputer } from "../Services/SvComputer"
 
 const useNewComputer =() =>{

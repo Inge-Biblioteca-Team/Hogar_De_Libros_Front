@@ -27,7 +27,7 @@ export type apiResponseCE ={
     count:number
 }
 export type EquipmentEdit = {
-    MachineNumber: string;
+    MachineNumber: number;
     EquipmentSerial:string;
     EquipmentBrand:string;
     ConditionRating: number;
