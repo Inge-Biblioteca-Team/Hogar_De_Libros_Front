@@ -25,6 +25,13 @@ const NwComputerRouter= ()=>{
         </>
     )
 }
+const EditComputerRouter= ()=>{
+    return(
+        <>
+        <Breadcrumb.Item href="/HogarDeLibros/Gestion/EditarComputadora">Editar</Breadcrumb.Item>
+        </>
+    )
+}
 
 
  export{ManagerRouter,HomeComputerRouter,NwComputerRouter}

@@ -7,6 +7,7 @@ import BookInformation from "../features/Books/Pages/BookInformation";
 import { HomeComputerRouter } from "../features/Computers/components/Redirections";
 import ManagerComputer from "../features/Computers/Pages/ManagerComputer";
 import ComputerNew from "../features/Computers/Pages/ComputerNew";
+import EditComputer from "../features/Computers/Pages/EditComputer";
 const Routes = createBrowserRouter([
   {
     path: "/",
@@ -49,6 +50,10 @@ const Routes = createBrowserRouter([
       {
         path: "Gestion/EquipodeComputo/AñadirEquipo",
         element:<ComputerNew/>
+      },
+      {
+        path: "Gestion/EquipodeComputo/EditarComputadora",
+        element:<EditComputer/>
       }
     ],
   },
