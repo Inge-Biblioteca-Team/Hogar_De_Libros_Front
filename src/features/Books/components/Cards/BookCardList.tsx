@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom"
-import { Book } from "../type/Book"
 import { List, ListItem } from "flowbite-react";
-import BtnReserve from "./BtnReserve";
+import { Book } from "../../type/Book";
+import BtnReserve from "../BTN/BtnReserve";
 
 
 const BookCardList = ({Book}: {Book:Book}) => {
 
   const navi = useNavigate()
   const Goto=()=>{
-    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/${Book.id}`)
+    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/${Book.BookCode}`)
   }
 
   return (
@@ -30,7 +30,7 @@ const BookCardList = ({Book}: {Book:Book}) => {
           <strong>Autor:</strong> {Book.Author}
         </ListItem>
         <ListItem>
-          <strong>Año de Publicación:</strong> {Book.PublicationYear}
+          <strong>Año de Publicación:</strong> {Book.PublishedYear}
         </ListItem>
         <ListItem>
           <strong>Editorial:</strong> {Book.Editorial}
@@ -40,7 +40,7 @@ const BookCardList = ({Book}: {Book:Book}) => {
         </ListItem>
       </List>
       <div className="mt-4">
-        <BtnReserve id={Book.id} />
+        <BtnReserve Goto={Book.BookCode} Objetive="Solicitar" id={Book.BookCode} text="Solicitar Prestamo" />
       </div>
     </div>
   </div>

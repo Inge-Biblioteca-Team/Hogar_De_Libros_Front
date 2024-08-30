@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
 import { useState } from "react";
-import BookCard from "../components/BookCardLanding";
+import BookCard from "../components/Cards/BookCardLanding";
 
 const ListMostPopularBooks = () => {
   const {

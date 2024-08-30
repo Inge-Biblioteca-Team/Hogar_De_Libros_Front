@@ -10,15 +10,15 @@ import ConfirmButton from "../../../components/ConfirmButton";
 import UseEditBook from "../Hooks/UseEditBook";
 const EditBookInformation = () => {
 
-    const { id } = useParams<{ id?: string }>();
+    const { BookCode } = useParams<{ BookCode?: string }>();
 
     const { data: book } = useQuery<Book, Error>(
-      ["bookObjetive", id],
+      ["bookObjetive", BookCode],
       () => {
-        if (!id) {
+        if (!BookCode) {
           throw new Error("Error No existe ID de libro para buscar");
         }
-        return GetNier(id);
+        return GetNier(BookCode);
       },
       {
         staleTime: 60000,

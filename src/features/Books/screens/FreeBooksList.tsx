@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
-import BtnShowMore from "../components/BtnShowMore";
+import BtnShowMore from "../components/BTN/BtnShowMore";
 import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
-import BookCardLanding from "../components/BookCardLanding";
+import BookCardLanding from "../components/Cards/BookCardLanding";
 
 const FreeBooksList = () => {
   const {
@@ -23,7 +23,7 @@ const FreeBooksList = () => {
       >
         {books?.slice(5,9).map((book) => (
           <figure
-            key={book.id}
+            key={book.BookCode}
             className="rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3 max-sm:pb-0"
           >
             <BookCardLanding Book={book} />

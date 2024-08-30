@@ -11,7 +11,8 @@ import EditBookInformation from "../features/Books/Pages/EditBookInformation";
 import ManagerComputer from "../features/Computers/Pages/ManagerComputer";
 import ComputerNew from "../features/Computers/Pages/ComputerNew";
 import EditComputer from "../features/Computers/Pages/EditComputer";
-import AdvancedSearch from "../features/Books/components/AdvancedSearch";
+import AdvancedSearch from "../features/Books/components/SearchINP/AdvancedSearch";
+import AdminComputerInformation from "../features/Computers/Pages/AdminComputer";
 
 const Routes = createBrowserRouter([
   {
@@ -41,48 +42,72 @@ const Routes = createBrowserRouter([
         element: <BooksHomePage />,
       },
       {
-        path: "Busqueda/Titulo",
-        element: <SearchBookByName />,
-      },
-      {
-        path: "Busqueda/Avanzada",
-        element:<AdvancedSearch/>
+        path: "Busqueda",
+        children: [
+          {
+            path: "Titulo",
+            element: <SearchBookByName />,
+          },
+          {
+            path: "Avanzada",
+            element: <AdvancedSearch />,
+          },
+        ],
       },
       {
         path: "CatalogoDeLibros/Libro/:id",
         element: <BookInformation />,
       },
       {
-        path: "Gestion/Libros",
-        element: <ManageBooks />,
+        path: "Gestion",
+        children: [
+          {
+            path: "Libros",
+            children: [
+              {
+                index: true,
+                element: <ManageBooks />,
+              },
+              {
+                path: "NuevoLibro",
+                element: <NewBook />,
+              },
+              {
+                path: "Ver/:BookCode",
+                element: <AdminBooksInformation />,
+              },
+              {
+                path: "Editar/:BookCode",
+                element: <EditBookInformation />,
+              },
+            ],
+          },
+
+          {
+            path: "Equipos",
+            children: [
+              {
+                index: true,
+                element: <ManagerComputer />,
+              },
+              {
+                path: "NuevoEquipo",
+                element: <ComputerNew />,
+              },
+              {
+                path: "Editar/:Code",
+                element: <EditComputer />,
+              },
+              {
+                path: "Ver/:Code",
+                element: <AdminComputerInformation />,
+              },
+            ],
+          },
+        ],
       },
-      {
-        path: "Gestion/Libros/CrearLibro",
-        element:<NewBook/>
-      },
-      {
-        path:"Gestion/Libros/:id",
-        element:<AdminBooksInformation/>
-      },
-      {
-        path:"Gestion/Libros/Editar/:id",
-        element:<EditBookInformation/>
-      },    
-      {
-        path: "Gestion/EquipodeComputo",
-        element:<ManagerComputer/>
-      },
-      {
-        path: "Gestion/EquipodeComputo/AñadirEquipo",
-        element:<ComputerNew/>
-      },
-      {
-        path: "Gestion/EquipodeComputo/EditarComputadora",
-        element:<EditComputer/>
-      }
     ],
   },
-
 ]);
 
 export default Routes;

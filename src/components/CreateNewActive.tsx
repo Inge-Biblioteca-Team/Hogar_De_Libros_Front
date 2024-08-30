@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const CreateNewActive = ({objetive}:{objetive:string}) => {
   const navi = useNavigate()
   const Goto=()=>{
-    navi(`/HogarDeLibros/Gestion/${objetive}s/Crear${objetive}`)
+    navi(`/HogarDeLibros/Gestion/${objetive}s/Nuevo${objetive}`)
   }
   return (
     <button

@@ -1,7 +1,7 @@
 import { Modal, TextInput, Button } from "flowbite-react";
 import { useState } from "react";
-import searchImages from "../services/SvSearchIMG";
-import { IMGsearh } from "../type/SearchIMG";
+import searchImages from "../../services/SvSearchIMG";
+import { IMGsearh } from "../../type/SearchIMG";
 
 const ModalAddImage = ({
   showModal,

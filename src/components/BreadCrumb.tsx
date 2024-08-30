@@ -4,7 +4,7 @@ import { HiHome } from "react-icons/hi";
 const HomeCrumb= ()=>{
     return(
         <>
-        <Breadcrumb.Item href="/HogarDeLibros/Computo" icon={HiHome}>
+        <Breadcrumb.Item href="/HogarDeLibros" icon={HiHome}>
         Inicio
         </Breadcrumb.Item>
         </>
@@ -19,6 +19,14 @@ const ManageCrumb= ()=>{
     )
 }
 
+const ManageCrumbObj= ({Objetive, LK}:{Objetive:string, LK:string})=>{
+  return(
+      <>
+      <Breadcrumb.Item href={`/HogarDeLibros/Gestion/${LK}`}>{Objetive}</Breadcrumb.Item>
+      </>
+  )
+}
+
 const LastCrumb =({ CurrentPage }: { CurrentPage: string }) => {
     return (
       <>
@@ -26,4 +34,4 @@ const LastCrumb =({ CurrentPage }: { CurrentPage: string }) => {
       </>
     );
   };
-export {ManageCrumb, HomeCrumb, LastCrumb}
+export {ManageCrumb, HomeCrumb, LastCrumb, ManageCrumbObj}

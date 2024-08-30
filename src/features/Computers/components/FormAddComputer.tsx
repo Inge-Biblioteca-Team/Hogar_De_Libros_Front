@@ -1,14 +1,14 @@
 import { Label, Select, TextInput } from "flowbite-react";
-import { ComputerTest } from "../types/Computer";
 import useNewComputer from "../Hooks/useNewComputer";
 import { useForm } from "react-hook-form";
+import { Equipment } from "../types/Computer";
 
 const FormAddComputer = () => {
-  const { register, reset, handleSubmit, setValue } = useForm<ComputerTest>();
+  const { register, reset, handleSubmit, setValue } = useForm<Equipment>();
 
   setValue("MachineNumber", 0)
   const { mutate: CreateEquipment } = useNewComputer();
-  const onSubmit = (NewEquipment: ComputerTest) => {
+  const onSubmit = (NewEquipment: Equipment) => {
     CreateEquipment(NewEquipment);
     reset();
   };

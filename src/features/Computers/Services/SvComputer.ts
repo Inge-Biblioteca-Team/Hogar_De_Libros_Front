@@ -1,16 +1,5 @@
 import axios from "axios";
-import { ComputerTest, EquipmentEdit } from "../types/Computer";
-
-const GetComputers = async (page: number, limit: number) => {
-  const BASE_URL = `https://66c8eadc8a477f50dc2f948a.mockapi.io/ComputerEqupament`;
-  try {
-    const response = await axios.get(`${BASE_URL}?page=${page}&limit=${limit}`);
-    return response.data;
-  } catch (error) {
-    console.error("Fail to fetch computer equipament:", error);
-    throw error;
-  }
-};
+import { EquipmentEdit } from "../types/Computer";
 
 const api = axios.create({
   baseURL: `http://localhost:3000`,
@@ -18,7 +7,7 @@ const api = axios.create({
 });
 
 //Agregar computadora
-const PostNewComputer = async (computer: ComputerTest) => {
+const PostNewComputer = async (computer:EquipmentEdit) => {
   try {
     console.table(computer);
     const response = await api.post(`/computers`, computer);
@@ -55,6 +44,17 @@ const GetComputerPaginated = async (
     throw error;
   }
 };
+//Get One
+
+const GetByUniqueCode = async (UniqueCode:string) =>{
+  try {
+     const response = await api.get( `computers/${UniqueCode}`);
+     return response.data;
+   } catch (error) {
+     console.error("Error to post book:", error);
+     throw error;
+   }
+ }
 
 //Put Edit info
 const PutEditEquipment = async (
@@ -62,14 +62,13 @@ const PutEditEquipment = async (
   ObjetiveID: string
 ) => {
   try {
-    const response = await api.patch(`computers/${ObjetiveID}`, Equipment);
+    const response = await api.put(`computers/${ObjetiveID}`, Equipment);
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error editing equipment:", error);
     throw error;
   }
-};
-
+}
 //Patch disable computer
 
 const DownEquipment = async (Code: string) => {
@@ -83,9 +82,9 @@ const DownEquipment = async (Code: string) => {
 };
 
 export {
-  GetComputers,
   PostNewComputer,
   GetComputerPaginated,
   PutEditEquipment,
   DownEquipment,
+  GetByUniqueCode
 };

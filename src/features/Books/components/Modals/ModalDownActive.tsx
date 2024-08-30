@@ -1,6 +1,6 @@
 import { Button, Modal } from "flowbite-react";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
-import UseDownActive from "../Hooks/UseDownActive";
+import { HiOutlineExclamationCircle } from "react-icons/hi"
+import UseDownActive from "../../Hooks/UseDownActive";
 const ModalDownActive = ({
   open,
   setOpen,

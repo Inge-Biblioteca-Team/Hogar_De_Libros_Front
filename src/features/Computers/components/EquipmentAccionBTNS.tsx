@@ -12,16 +12,16 @@ const EquipmentAccionBTNS = ({
 }) => {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <div className=" flex gap-7 justify-center mt-8">
+    <div className=" flex gap-7 ">
       <Link
         title="Ver Informacion Completa"
-        to={`/HogarDeLibros/Gestion/EquipodeComputo/Ver/${Code}`}
+        to={`/HogarDeLibros/Gestion/Equipos/Ver/${Code}`}
       >
         <PiEyeLight size={24} />
       </Link>
       <Link
         title="Editar Activo"
-        to={`/HogarDeLibros/Gestion/EquipodeComputo/Editar/${Code}`}
+        to={`/HogarDeLibros/Gestion/Equipos/Editar/${Code}`}
       >
         <PiPencilDuotone size={24} />
       </Link>

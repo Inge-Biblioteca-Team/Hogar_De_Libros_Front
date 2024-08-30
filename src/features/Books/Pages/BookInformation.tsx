@@ -1,9 +1,8 @@
 import { useQuery } from "react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { GetBookById, GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
-import BookCard from "../components/BookCard";
-import BtnReserve from "../components/BtnReserve";
+import BtnReserve from "../components/BTN/BtnReserve";
 import {
   BooksRoute,
   CurrentRoute,
@@ -11,28 +10,25 @@ import {
   SpecialRoute,
 } from "../components/Redirections";
 import { Breadcrumb } from "flowbite-react";
+import BookCard from "../components/Cards/BookCard";
 
 const BookInformation = () => {
-  const { id } = useParams<{ id?: string }>();
+  const { BookCode } = useParams<{ BookCode?: string }>();
 
   const {
     data: book,
     error,
     isLoading,
   } = useQuery<Book, Error>(
-    ["book", id],
+    ["book", BookCode],
     () => {
-      if (!id) {
+      if (!BookCode) {
         throw new Error("Error No existe ID de libro para buscar");
       }
-      return GetBookById(id);
+      return GetBookById(BookCode);
     },
-    { enabled: !!id }
+    { enabled: !!BookCode }
   );
-  const navi = useNavigate();
-  const Goto = () => {
-    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/Solicitud/${id}`);
-  };
 
   const { data: books } = useQuery<Book[], Error>(["FreeBooks"], GetBooks);
 
@@ -74,7 +70,7 @@ const BookInformation = () => {
           <span>{book?.ISBN}</span>
           <strong>Codigo de Signatura</strong>
           <span>{book?.SignatureCode}</span>
-          <div className="">{book?.BookCode && <BtnReserve Goto={Goto} id={book.BookCode} text="Solicitar Prestamo"/>}</div>
+          <div className="">{book?.BookCode && <BtnReserve Goto={book.BookCode} Objetive="Solicitar" id={book.BookCode} text="Solicitar Prestamo"/>}</div>
         </span>
 
         <div className="flex justify-center flex-col pl-2">

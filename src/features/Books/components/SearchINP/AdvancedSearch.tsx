@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import BookList from "../components/BookList";
+import BookList from "../BookList";
 import { useQuery } from "react-query";
-import { GetAllBooks } from "../services/SvBooks";
-import { Book } from "../type/Book";
+import { GetAllBooks } from "../../services/SvBooks";
+import { Book } from "../../type/Book";
 import { Alert, Button, TextInput, Label } from "flowbite-react";
-import BookPagination from "../components/BookPagination";
+import BookPagination from "../BookPagination";
 
 const AdvancedSearch = () => {
   const [page, setPage] = useState(1);
@@ -53,7 +53,7 @@ const AdvancedSearch = () => {
         (!searchFilters.Author ||
           book.Author) &&
         (!searchFilters.PublicationYear ||
-          book.PublicationYear.toString() === searchFilters.PublicationYear) &&
+          book.PublishedYear.toString() === searchFilters.PublicationYear) &&
         (!searchFilters.Editorial ||
           book.Editorial) &&
         (!searchFilters.ISBN || book.ISBN.includes(searchFilters.ISBN))

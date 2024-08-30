@@ -29,30 +29,57 @@ const HomeNavbar = () => {
       >
         <Sidebar.Items>
           <Sidebar.ItemGroup>
-            <Sidebar.Item href="/" className="text-xl hover:text-blue-500">Inicio</Sidebar.Item>
-          </Sidebar.ItemGroup>
-          <Sidebar.ItemGroup>
-            <Sidebar.Item
-              className="text-xl hover:text-blue-500" href="/HogarDeLibros">Libros</Sidebar.Item>
-              <Sidebar.Collapse label="Busquedas">
-              <Sidebar.Item href="/HogarDeLibros/Busqueda/Titulo">Por Titulo</Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Busqueda/Avanzada">Busqueda Avanzada</Sidebar.Item>
-            <Sidebar.Collapse label="Categorías">
-              <Sidebar.Item href="#">Obras Generales</Sidebar.Item>
-            </Sidebar.Collapse>
-              </Sidebar.Collapse>
-            <Sidebar.Item
-              className="text-xl hover:text-blue-500" href="/">
-              Catálogo Completo
+            <Sidebar.Item href="/" className="text-xl hover:text-blue-500">
+              Inicio
             </Sidebar.Item>
-            <Sidebar.ItemGroup>
-            <Sidebar.Item href="/HogarDeLibros/Gestion/EquipodeComputo">Gestion de 
-            Equipos de Cómputo</Sidebar.Item>
-          </Sidebar.ItemGroup>
           </Sidebar.ItemGroup>
           <Sidebar.ItemGroup>
-            <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">Gestion de Libros</Sidebar.Item>
+            <Sidebar.Item className="" href="/HogarDeLibros">
+              Catálogo Completo de libros
+            </Sidebar.Item>
 
+            <Sidebar.Collapse label="Busquedas de libros">
+              <Sidebar.Item href="/HogarDeLibros/Busqueda/Titulo">
+                Por Titulo
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Busqueda/Avanzada">
+                Busqueda Avanzada
+              </Sidebar.Item>
+              <Sidebar.Collapse label="Categorias">
+                <Sidebar.Item href="#">Obras Generales</Sidebar.Item>
+              </Sidebar.Collapse>
+            </Sidebar.Collapse>
+
+            <Sidebar.Collapse label="Gestión">
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Equipos">
+                Gestion de Equipo <br /> de Cómputo
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
+                Gestion de Artistas <br />Locales
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
+                Gestion de Salas
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
+                Gestion de Mobiliario
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
+                Gestion de Programas
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
+                Gestion de Eventos
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
+                Gestion de Cursos
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
+                Gestion de Usuarios
+              </Sidebar.Item>
+            </Sidebar.Collapse>
+
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
+                Solicitudes Pendientes
+              </Sidebar.Item>
           </Sidebar.ItemGroup>
         </Sidebar.Items>
       </Sidebar>

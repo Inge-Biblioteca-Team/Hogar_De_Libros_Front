@@ -17,7 +17,7 @@ const ModalDownEquip = ({
   const handleConfirm = () => {
       PatchStatus(Code, {
         onSuccess: () => {
-          setOpen(false); // Cierra el modal si la mutación es exitosa
+          setOpen(false); 
         },
       });
     };

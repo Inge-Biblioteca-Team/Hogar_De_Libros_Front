@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
-import BookCardLanding from "../components/BookCardLanding";
+import BookCardLanding from "../components/Cards/BookCardLanding";
 
 const ListFreeBoosks = () => {
   const {

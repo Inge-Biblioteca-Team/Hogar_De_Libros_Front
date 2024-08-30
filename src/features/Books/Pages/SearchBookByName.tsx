@@ -1,7 +1,7 @@
 import { Alert } from "flowbite-react";
-import BookCategoryFilter from "../components/BookCategoryFilter";
+import BookCategoryFilter from "../components/SearchINP/BookCategoryFilter";
 import BookFilters from "../components/BookFilters";
-import BookFiltersAuthor from "../components/BookFiltersAuthor";
+import BookFiltersAuthor from "../components/SearchINP/BookFiltersAuthor";
 import BookGrid from "../components/BookGrid";
 import BookLimitSelector from "../components/BookLimitSelector";
 import BookPagination from "../components/BookPagination";

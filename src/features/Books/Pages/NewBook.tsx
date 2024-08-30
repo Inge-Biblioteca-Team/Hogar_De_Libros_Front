@@ -17,7 +17,7 @@ import {
 } from "../components/Redirections";
 import UseCreateNewBook from "../Hooks/UseCreateNewBook";
 import ConfirmButton from "../../../components/ConfirmButton";
-import ModalAddImage from "../components/ModalAddImage";
+import ModalAddImage from "../components/Modals/ModalAddImage";
 
 const NewBook = () => {
   const { register, setValue, watch, handleSubmit, reset } = useForm<Book>();

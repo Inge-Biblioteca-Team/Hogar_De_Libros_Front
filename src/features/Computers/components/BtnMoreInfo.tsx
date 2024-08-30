@@ -4,7 +4,7 @@ const BtnMoreInfo = () => {
   
   const navigate = useNavigate()
     const goto = () =>{
-      navigate("/HogarDeLibros/Gestion/EquipodeComputo")
+      navigate("/HogarDeLibros/Gestion/Equipos")
     }
   
   return (

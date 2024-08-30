@@ -1,7 +1,6 @@
 import { Breadcrumb, Table } from "flowbite-react";
 import { useState } from "react";
 import { apiResponseCE } from "../types/Computer";
-import BtnNewComputer from "../components/BtnNewComputer";
 import PaginatationSelector from "../../../components/PaginationSlecetor";
 import SltCurrentLimit from "../../../components/SltCurrentLimit";
 import { GetComputerPaginated } from "../Services/SvComputer";
@@ -16,6 +15,7 @@ import {
   LastCrumb,
   ManageCrumb,
 } from "../../../components/BreadCrumb";
+import CreateNewActive from "../../../components/CreateNewActive";
 
 const ManagerComputer = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
@@ -86,7 +86,7 @@ const ManagerComputer = () => {
               />
               <BtnAdminAdSearchCm click={viewAdvanceSerchComp} icon={advance} />
             </div>
-            <BtnNewComputer />
+            <CreateNewActive objetive="Equipo" />
           </div>
           <Table
             hoverable
@@ -121,10 +121,12 @@ const ManagerComputer = () => {
                   <Table.Cell className="w-64">
                     {computers.Status ? "Activo" : "Inactivo"}
                   </Table.Cell>
+                  <Table.Cell>
                   <EquipmentAccionBTNS
                     Code={computers.EquipmentUniqueCode}
                     Serial={computers.EquipmentSerial}
-                  />
+                    />
+                    </Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>

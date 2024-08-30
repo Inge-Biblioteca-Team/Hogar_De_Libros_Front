@@ -1,43 +1,35 @@
 import { useQuery } from "react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { GetByBookCode } from "../services/SvBooks";
 import { Book } from "../type/Book";
 import { Breadcrumb } from "flowbite-react";
-import {
-  HomeRoute,
-  BooksRoute,
-  CurrentRoute,
-  ManageRoute,
-} from "../components/Redirections";
-import BtnReserve from "../components/BtnReserve";
+import BtnReserve from "../components/BTN/BtnReserve";
 import ConditionStatus from "../../../components/ConditionStatus";
+import { HomeCrumb, LastCrumb, ManageCrumb, ManageCrumbObj } from "../../../components/BreadCrumb";
 
 const AdminBooksInformation = () => {
-  const { id } = useParams<{ id?: string }>();
+  const { BookCode } = useParams<{ BookCode?: string }>();
 
   const { data: book } = useQuery<Book, Error>(
-    ["book", id],
+    ["book", BookCode],
     () => {
-      if (!id) {
+      if (!BookCode) {
         throw new Error("Error No existe ID de libro para buscar");
       }
-      return GetByBookCode(id);
+      return GetByBookCode(BookCode);
     },
-    { enabled: !!id, staleTime: 60000 }
+    { enabled: !!BookCode, staleTime: 60000 }
   );
-  const navi = useNavigate();
-  const Goto = () => {
-    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/Prestamo/${id}`);
-  };
+
 
   //Añadir is loading con skeleton loaders
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">
-        <HomeRoute />
-        <ManageRoute />
-        <BooksRoute />
-        {book?.Title && <CurrentRoute CurrentPage={book?.Title} />}
+        <HomeCrumb/>
+        <ManageCrumb/>
+        <ManageCrumbObj Objetive="Libros" LK="Libros"/>
+        {book?.Title && <LastCrumb CurrentPage={book?.Title} />}
       </Breadcrumb>
       <div
         className="w-full grid text-xl gap-14 place-content-center mt-10"
@@ -81,7 +73,8 @@ const AdminBooksInformation = () => {
           <span>
             {book?.BookCode && (
               <BtnReserve
-                Goto={Goto}
+              Objetive="Prestamo"
+                Goto={book.BookCode}
                 id={book?.BookCode}
                 text="Generar Prestamo"
               />

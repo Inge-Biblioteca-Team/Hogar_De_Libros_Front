@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { Book } from "../type/Book"
-
+import { Book } from "../../type/Book"
 const BookCard = ({Book}: {Book:Book}) => {
 
   const navi = useNavigate()

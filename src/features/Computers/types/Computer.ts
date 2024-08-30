@@ -11,7 +11,7 @@ export type Computer = {
 }
 
 
-export type ComputerTest = {
+export type Equipment = {
     EquipmentUniqueCode:string;
     MachineNumber: number;
     EquipmentSerial:string;
@@ -23,7 +23,7 @@ export type ComputerTest = {
 }
 
 export type apiResponseCE ={
-    data:ComputerTest[],
+    data:Equipment[],
     count:number
 }
 export type EquipmentEdit = {
@@ -33,6 +33,4 @@ export type EquipmentEdit = {
     ConditionRating: number;
     Observation:string;
     EquipmentCategory:string;
-    Status:boolean;
-    LoanStatus:true;
 }

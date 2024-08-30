@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
-import BookCard from "../components/BookCardLanding";
+import BookCard from "../components/Cards/BookCardLanding";
 import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
 

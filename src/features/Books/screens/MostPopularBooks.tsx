@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
-import BtnReserve from "../components/BtnReserve";
-import BtnShowMore from "../components/BtnShowMore";
+import BtnReserve from "../components/BTN/BtnReserve";
+import BtnShowMore from "../components/BTN/BtnShowMore";
 import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
-import BookCardLanding from "../components/BookCardLanding";
+import BookCardLanding from "../components/Cards/BookCardLanding";
 
 const MostPopularBooks = () => {
   const {
@@ -11,7 +11,6 @@ const MostPopularBooks = () => {
     error,
     isLoading,
   } = useQuery<Book[], Error>(["PopBooks"], GetBooks);
-
   if (isLoading) return <span>Loading...</span>;
   if (error) return <span>Error: {error.message}</span>;
 
@@ -27,13 +26,13 @@ const MostPopularBooks = () => {
       >
         {books?.slice(0, 4).map((book) => (
           <figure
-            key={book.id}
+            key={book.BookCode}
             className="rounded-md shadow-lg flex 
             flex-col justify-center items-center pb-3 max-sm:p-0
              "
           >
             <BookCardLanding Book={book} />
-            <BtnReserve id={book.id}/>
+            <BtnReserve id={book.BookCode} Goto={book.BookCode} Objetive="Solicitud" text="Solicitar Prestamo"/>
           </figure>
         ))}
       </div>

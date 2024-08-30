@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 
 import { useState } from "react";
-import ModalDownActive from "./ModalDownActive";
+import ModalDownActive from "../Modals/ModalDownActive";
 
 const AccionButtons = ({id, BookTitle}:{id:string, BookTitle:string}) => {
 
@@ -11,7 +11,7 @@ const AccionButtons = ({id, BookTitle}:{id:string, BookTitle:string}) => {
   
   return (
     <div className=" flex gap-7 justify-center">
-    <Link title="Ver Informacion Completa" to={`/HogarDeLibros/Gestion/Libros/${id}`}>
+    <Link title="Ver Informacion Completa" to={`/HogarDeLibros/Gestion/Libros/Ver/${id}`}>
       <FontAwesomeIcon size="2x" icon={faEye}/>
     </Link>
     <Link title="Editar Activo" to={`/HogarDeLibros/Gestion/Libros/Editar/${id}`}>

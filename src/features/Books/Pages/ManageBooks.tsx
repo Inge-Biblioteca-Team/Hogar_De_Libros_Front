@@ -1,17 +1,17 @@
 import { Breadcrumb, Table } from "flowbite-react";
-import AccionButtons from "../components/AccionButtons";
 import { useQuery } from "react-query";
 import { GetBookPaginated } from "../services/SvBooks";
 import { Book, BookApiResponse } from "../type/Book";
 import InpSearchTitle from "../../../components/InpSearchTitle";
 import { useCallback, useEffect, useState } from "react";
-import BtnAdvanceSearch from "../components/BtnAdvanceSearch";
+import BtnAdvanceSearch from "../components/BTN/BtnAdvanceSearch";
 import SltCurrentLimit from "../../../components/SltCurrentLimit";
 import CreateNewActive from "../../../components/CreateNewActive";
 import PaginatationSelector from "../../../components/PaginatationSelector";
 import { BooksRoute, HomeRoute, ManageRoute } from "../components/Redirections";
-import AdminAdvaceSearch from "../components/AdminAdvaceSearch";
+import AdminAdvaceSearch from "../components/SearchINP/AdminAdvaceSearch";
 import UseDebounce from "../../../hooks/UseDebounce";
+import AccionButtons from "../components/BTN/AccionButtons";
 
 const ManageBooks = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
