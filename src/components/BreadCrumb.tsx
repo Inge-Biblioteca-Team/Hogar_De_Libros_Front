@@ -11,6 +11,13 @@ const HomeCrumb= ()=>{
     )
 
 }
+const BooksCrumb= ()=>{
+    return(
+        <>
+        <Breadcrumb.Item href="/HogarDeLibros/CatalogoDeLibros">Libros</Breadcrumb.Item>
+        </>
+    )
+}
 const ManageCrumb= ()=>{
     return(
         <>
@@ -34,4 +41,4 @@ const LastCrumb =({ CurrentPage }: { CurrentPage: string }) => {
       </>
     );
   };
-export {ManageCrumb, HomeCrumb, LastCrumb, ManageCrumbObj}
+export {ManageCrumb, HomeCrumb, LastCrumb, ManageCrumbObj, BooksCrumb}

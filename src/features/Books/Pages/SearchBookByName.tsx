@@ -1,4 +1,4 @@
-import { Alert } from "flowbite-react";
+import { Alert, Breadcrumb } from "flowbite-react";
 import BookCategoryFilter from "../components/SearchINP/BookCategoryFilter";
 import BookFilters from "../components/BookFilters";
 import BookLimitSelector from "../components/BookLimitSelector";
@@ -11,6 +11,8 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import BookCard from "../components/Cards/BookCard";
 import BookCardList from "../components/Cards/BookCardList";
 import InpSearchTitle from "../../../components/InpSearchTitle";
+import { CurrentRoute, HomeRoute } from "../components/Redirections";
+import { BooksCrumb } from "../../../components/BreadCrumb";
 
 const SearchBookByName = () => {
   const [page, setCurrentPage] = useState<number>(() => {
@@ -54,49 +56,51 @@ const SearchBookByName = () => {
   if (error) return <span>Error: {error.message}</span>;
 
   return (
-    <section className="flex flex-col justify-center items-center">
-      <span className=" w-full pl-3 text-2xl">
-        <a href="/HogarDeLibros">Incio</a>&gt;&gt;
-        <a href="/HogarDeLibros">Libros</a>
-        &gt;&gt;<span>Busqueda Por Titulo</span>
-      </span>
-      <div className="w-4/5 flex flex-col items-center justify-center pt-1">
-        <div className=" w-full flex justify-between">
-          <div className=" flex justify-center items-center gap-7">
-            <BookCategoryFilter handleCategoryChange={setSearchCategory} />
-            <InpSearchTitle onSearch={setSearchTitle} Criterio="Titulo" />
+    <>
+      <Breadcrumb className="custom-breadcrumb">
+        <HomeRoute />
+        <BooksCrumb/>
+        <CurrentRoute CurrentPage={"Busqueda Por Titulo y Categoria"} />
+      </Breadcrumb>
+      <section className="flex flex-col justify-center items-center">
+        <div className="w-4/5 flex flex-col items-center justify-center pt-1">
+          <div className=" w-full flex justify-between">
+            <div className=" flex justify-center items-center gap-7">
+              <BookCategoryFilter handleCategoryChange={setSearchCategory} />
+              <InpSearchTitle onSearch={setSearchTitle} Criterio="Titulo" />
+            </div>
+            <div className="flex gap-4">
+              <BookLimitSelector limit={limit} setLimit={setCurrentLimit} />
+              <BookFilters setView={handleViewChange} currentView={view} />
+            </div>
           </div>
-          <div className="flex gap-4">
-            <BookLimitSelector limit={limit} setLimit={setCurrentLimit} />
-            <BookFilters setView={handleViewChange} currentView={view} />
+          <div className="w-full">
+            {books?.count == 0 ? (
+              <Alert color="warning" rounded>
+                No existen Libros disponibles que considan con su busqueda
+              </Alert>
+            ) : view === "grid" ? (
+              <div className="grid grid-cols-5 gap-5">
+                {books?.data.map((book) => (
+                  <BookCard Book={book} key={book.BookCode} />
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-5">
+                {books?.data.map((book) => (
+                  <BookCardList key={book.BookCode} Book={book} />
+                ))}
+              </div>
+            )}
+            <BookPagination
+              onPageChange={onPageChange}
+              currentPage={page}
+              totalPages={MaxPage}
+            />
           </div>
         </div>
-        <div className="w-full">
-          {books?.count == 0 ? (
-            <Alert color="warning" rounded>
-              No existen Libros disponibles que considan con su busqueda
-            </Alert>
-          ) : view === "grid" ? (
-            <div className="grid grid-cols-5 gap-5">
-              {books?.data.map((book) => (
-                <BookCard Book={book} key={book.BookCode} />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-5">
-              {books?.data.map((book) => (
-                <BookCardList key={book.BookCode} Book={book} />
-              ))}
-            </div>
-          )}
-          <BookPagination
-            onPageChange={onPageChange}
-            currentPage={page}
-            totalPages={MaxPage}
-          />
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

@@ -37,8 +37,7 @@ const HomeNavbar = () => {
             <Sidebar.Item className="" href="/HogarDeLibros">
               Catálogo Completo de libros
             </Sidebar.Item>
-
-            <Sidebar.Collapse label="Busquedas de libros">
+            <Sidebar.Collapse label="Busqueda de libros">
               <Sidebar.Item href="/HogarDeLibros/Busqueda/Titulo">
                 Por Titulo
               </Sidebar.Item>
@@ -49,37 +48,70 @@ const HomeNavbar = () => {
                 <Sidebar.Item href="#">Obras Generales</Sidebar.Item>
               </Sidebar.Collapse>
             </Sidebar.Collapse>
-
+            <Sidebar.Item className="" href="/HogarDeLibros">
+              Cronograma de eventos
+            </Sidebar.Item>
+            <Sidebar.Item className="" href="/HogarDeLibros">
+              Cronograma de cursos
+            </Sidebar.Item>
+            <Sidebar.Item className="" href="/HogarDeLibros">
+              Se un amigo Mas
+            </Sidebar.Item>
+            <Sidebar.Item className="" href="/HogarDeLibros">
+              Programas
+            </Sidebar.Item>
+            <Sidebar.Item className="" href="/HogarDeLibros">
+              Disponibilidad <br />
+              de Equipo de computo
+            </Sidebar.Item>
+            <Sidebar.Item className="" href="/HogarDeLibros">
+              Disponibilidad <br />
+              de Equipo de salas
+            </Sidebar.Item>
+          </Sidebar.ItemGroup>
+          <Sidebar.ItemGroup>
             <Sidebar.Collapse label="Gestión">
               <Sidebar.Item href="/HogarDeLibros/Gestion/Equipos">
-                Gestion de Equipo <br /> de Cómputo
+                Equipo de Cómputo
               </Sidebar.Item>
               <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
-                Gestion de Artistas <br />Locales
+                Libros
               </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
-                Gestion de Salas
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Artistas">
+                Artistas Locales
               </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
-                Gestion de Mobiliario
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Salas">
+                Salas
               </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
-                Gestion de Programas
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Mobiliario">
+                Mobiliario
               </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
-                Gestion de Eventos
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Programas">
+                Programas
               </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
-                Gestion de Cursos
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Eventos">
+                Eventos
               </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
-                Gestion de Usuarios
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Cursos">
+                Cursos
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Usuarios">
+                Usuarios
               </Sidebar.Item>
             </Sidebar.Collapse>
-
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
+          </Sidebar.ItemGroup>
+          <Sidebar.ItemGroup>
+            <Sidebar.Collapse label="Prestamos">
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Prestamos/Pendientes">
                 Solicitudes Pendientes
               </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Prestamos/EnProceso">
+                Prestamos Activos
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Prestamos/Finalizados">
+                Prestamos Finalizados
+              </Sidebar.Item>
+            </Sidebar.Collapse>
           </Sidebar.ItemGroup>
         </Sidebar.Items>
       </Sidebar>

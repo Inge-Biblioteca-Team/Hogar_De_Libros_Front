@@ -104,6 +104,195 @@ const Routes = createBrowserRouter([
               },
             ],
           },
+          {
+            path: "Usuarios",
+            children: [
+              {
+                index: true,
+               
+              },
+              {
+                path: "Nuevo",
+          
+              },
+              {
+                path: "Editar/:Code",
+             
+              },
+              {
+                path: "Ver/:Code",
+
+              },
+            ],
+          },
+          {
+            path: "Salas",
+            children: [
+              {
+                index: true,
+               
+              },
+              {
+                path: "Nueva",
+               
+              },
+              {
+                path: "Editar/:Code",
+                
+              },
+              {
+                path: "Ver/:Code",
+             
+              },
+            ],
+          },
+          {
+            path: "Artistas",
+            children: [
+              {
+                index: true,
+               
+              },
+              {
+                path: "Nuevo",
+               
+              },
+              {
+                path: "Editar/:Code",
+                
+              },
+              {
+                path: "Ver/:Code",
+             
+              },
+            ],
+          },
+          {
+            path: "Mobiliario",
+            children: [
+              {
+                index: true,
+               
+              },
+              {
+                path: "Nuevo",
+               
+              },
+              {
+                path: "Editar/:Code",
+                
+              },
+              {
+                path: "Ver/:Code",
+             
+              },
+            ],
+          },
+          {
+            path: "Programas",
+            children: [
+              {
+                index: true,
+               
+              },
+              {
+                path: "Nuevo",
+               
+              },
+              {
+                path: "Editar/:Code",
+                
+              },
+              {
+                path: "Ver/:Code",
+             
+              },
+            ],
+          },
+          {
+            path: "Eventos",
+            children: [
+              {
+                index: true,
+               
+              },
+              {
+                path: "Nuevo",
+               
+              },
+              {
+                path: "Editar/:Code",
+                
+              },
+              {
+                path: "Ver/:Code",
+             
+              },
+            ],
+          },
+          {
+            path: "Cursos",
+            children: [
+              {
+                index: true,
+               
+              },
+              {
+                path: "Nuevo",
+               
+              },
+              {
+                path: "Editar/:Code",
+                
+              },
+              {
+                path: "Ver/:Code",
+             
+              },
+            ],
+          },
+          {
+            path: "Amigos",
+            children: [
+              {
+                index: true,
+               
+              },
+              {
+                path: "Nuevo",
+               
+              },
+              {
+                path: "Editar/:Code",
+                
+              },
+              {
+                path: "Ver/:Code",
+             
+              },
+            ],
+          },
+          {
+            path: "Prestamos",
+            children: [
+              {
+                index: true,
+               
+              },
+              {
+                path: "Pendientes",
+               
+              },
+              {
+                path: "Finalizados",
+                
+              },
+              {
+                path: "EnProceso",
+             
+              },
+            ],
+          },
         ],
       },
     ],
