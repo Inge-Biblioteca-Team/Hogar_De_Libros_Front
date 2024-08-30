@@ -8,7 +8,11 @@ import ManageBooks from "../features/Books/Pages/ManageBooks";
 import NewBook from "../features/Books/Pages/NewBook";
 import AdminBooksInformation from "../features/Books/Pages/AdminBooksInformation";
 import EditBookInformation from "../features/Books/Pages/EditBookInformation";
+import ManagerComputer from "../features/Computers/Pages/ManagerComputer";
+import ComputerNew from "../features/Computers/Pages/ComputerNew";
+import EditComputer from "../features/Computers/Pages/EditComputer";
 import AdvancedSearch from "../features/Books/components/AdvancedSearch";
+
 const Routes = createBrowserRouter([
   {
     path: "/",
@@ -63,15 +67,22 @@ const Routes = createBrowserRouter([
       {
         path:"Gestion/Libros/Editar/:id",
         element:<EditBookInformation/>
+      },    
+      {
+        path: "Gestion/EquipodeComputo",
+        element:<ManagerComputer/>
       },
       {
-        path: "Busqueda/Avanzada",
-        element:<AdvancedSearch/>
+        path: "Gestion/EquipodeComputo/AñadirEquipo",
+        element:<ComputerNew/>
       },
-      
-
+      {
+        path: "Gestion/EquipodeComputo/EditarComputadora",
+        element:<EditComputer/>
+      }
     ],
   },
+
 ]);
 
 export default Routes;
