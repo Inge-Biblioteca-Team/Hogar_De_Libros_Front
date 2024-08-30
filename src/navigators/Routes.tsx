@@ -4,6 +4,9 @@ import Layout from "../Pages/Layout";
 import BooksHomePage from "../features/Books/Pages/BooksHomePage";
 import SearchBookByName from "../features/Books/Pages/SearchBookByName";
 import BookInformation from "../features/Books/Pages/BookInformation";
+import ManagerComputer from "../features/Computers/Pages/ManagerComputer";
+import ComputerNew from "../features/Computers/Pages/ComputerNew";
+import EditComputer from "../features/Computers/Pages/EditComputer";
 import AdvancedSearch from "../features/Books/components/AdvancedSearch";
 const Routes = createBrowserRouter([
   {
@@ -43,9 +46,22 @@ const Routes = createBrowserRouter([
       {
         path:"CatalogoDeLibros/Libro/:id",
         element:<BookInformation />
+      },
+      {
+        path: "Gestion/EquipodeComputo",
+        element:<ManagerComputer/>
+      },
+      {
+        path: "Gestion/EquipodeComputo/AñadirEquipo",
+        element:<ComputerNew/>
+      },
+      {
+        path: "Gestion/EquipodeComputo/EditarComputadora",
+        element:<EditComputer/>
       }
     ],
   },
+
 ]);
 
 export default Routes;
