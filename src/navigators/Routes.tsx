@@ -7,6 +7,7 @@ import BookInformation from "../features/Books/Pages/BookInformation";
 import ManagerComputer from "../features/Computers/Pages/ManagerComputer";
 import ComputerNew from "../features/Computers/Pages/ComputerNew";
 import EditComputer from "../features/Computers/Pages/EditComputer";
+import AdvancedSearch from "../features/Books/components/AdvancedSearch";
 const Routes = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +38,10 @@ const Routes = createBrowserRouter([
       {
         path:"Busqueda/Titulo",
         element:<SearchBookByName/>
+      },
+      {
+        path: "Busqueda/Avanzada",
+        element:<AdvancedSearch/>
       },
       {
         path:"CatalogoDeLibros/Libro/:id",
