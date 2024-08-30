@@ -96,6 +96,29 @@ const GetBookPaginated = async (
     throw error;
   }
 };
+//Get por paginacion con parametros opcionales
+const GetBookByTtit_Category = async (
+  page: number,
+  limit: number,
+  Title?: string,
+  Category?: string,
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {
+      page,
+      limit
+    };
+
+    if (Title) params.Title = Title;
+    if(Category) params.ShelfCategory = Category
+    params.Status = 1
+    const response = await api.get("/books", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
 
 //Añadir nuevo libro(Post)
@@ -152,5 +175,6 @@ export {
   PostNewBook,
   PatchStatus,
   GetByBookCode,
-  PatchEditBook
+  PatchEditBook,
+  GetBookByTtit_Category
 };

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import BookList from "../BookList";
 import { useQuery } from "react-query";
 import { GetAllBooks } from "../../services/SvBooks";
 import { Book } from "../../type/Book";
 import { Alert, Button, TextInput, Label } from "flowbite-react";
-import BookPagination from "../BookPagination";
+import BookCardList from "../Cards/BookCardList";
 
 const AdvancedSearch = () => {
   const [page, setPage] = useState(1);
@@ -135,8 +134,11 @@ const AdvancedSearch = () => {
         <div className="w-3/4 p-4">
           {filteredBooks && filteredBooks.length > 0 ? (
             <>
-              <BookList books={filteredBooks} />
-              <BookPagination page={page} setPage={setPage} limit={limit} />
+             <div className="grid grid-cols-1 gap-5">
+              {books?.data.map((book) => (
+                <BookCardList key={book.BookCode} Book={book} />
+              ))}
+            </div>
             </>
           ) : (
             <Alert color="warning" rounded>

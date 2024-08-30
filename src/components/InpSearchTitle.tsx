@@ -1,8 +1,13 @@
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const InpSearchTitle = ({onSearch}:{onSearch:(searchTitle:string) => void}) => {
-
+const InpSearchTitle = ({
+  onSearch,
+  Criterio,
+}: {
+  onSearch: (searchTitle: string) => void;
+  Criterio: string;
+}) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onSearch(event.target.value);
   };
@@ -10,7 +15,7 @@ const InpSearchTitle = ({onSearch}:{onSearch:(searchTitle:string) => void}) => {
     <div className="relative">
       <input
         type="text"
-        placeholder="Busqueda Por Titulo"
+        placeholder={`Busqueda Por ${Criterio}`}
         onChange={handleChange}
         className="pl-8 pr-4 py-2 border rounded-lg"
       />
@@ -21,4 +26,4 @@ const InpSearchTitle = ({onSearch}:{onSearch:(searchTitle:string) => void}) => {
   );
 };
 
-export default InpSearchTitle
+export default InpSearchTitle;

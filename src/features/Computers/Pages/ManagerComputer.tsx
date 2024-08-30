@@ -1,14 +1,12 @@
 import { Breadcrumb, Table } from "flowbite-react";
 import { useState } from "react";
 import { apiResponseCE } from "../types/Computer";
-import PaginatationSelector from "../../../components/PaginationSlecetor";
 import SltCurrentLimit from "../../../components/SltCurrentLimit";
 import { GetComputerPaginated } from "../Services/SvComputer";
 import { useQuery } from "react-query";
 import AdminAdvancedSearchComp from "../components/AdminAvdvaceSearchComp";
 import BtnAdminAdSearchCm from "../components/BtnAdSerchCm";
 import EquipmentAccionBTNS from "../components/EquipmentAccionBTNS";
-import InpSearchTitle from "../components/InpSerchComp";
 import UseDebounce from "../../../hooks/UseDebounce";
 import {
   HomeCrumb,
@@ -16,6 +14,8 @@ import {
   ManageCrumb,
 } from "../../../components/BreadCrumb";
 import CreateNewActive from "../../../components/CreateNewActive";
+import PaginatationSelector from "../../../components/PaginatationSelector";
+import InpSearchTitle from "../../../components/InpSearchTitle";
 
 const ManagerComputer = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
@@ -77,7 +77,7 @@ const ManagerComputer = () => {
         <div className=" w-5/6 flex flex-col gap-4">
           <div className=" flex justify-between">
             <div className="flex gap-2">
-              <InpSearchTitle onSearch={setSearMNum} />
+              <InpSearchTitle Criterio="# Maquina" onSearch={setSearMNum} />
               <AdminAdvancedSearchComp
                 see={advance}
                 EBrand={setSearEBrand}

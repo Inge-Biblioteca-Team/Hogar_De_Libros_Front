@@ -53,6 +53,7 @@ const ManageBooks = () => {
       staleTime: 600,
     }
   );
+  const MaxPage = (books?.count ?? 0) / currentLimit;
 
   useEffect(() => {
     sessionStorage.setItem("currentPage", currentPage.toString());
@@ -69,7 +70,7 @@ const ManageBooks = () => {
         <div className=" w-5/6 flex flex-col gap-4">
           <div className=" flex justify-between">
             <div className="flex gap-2">
-              <InpSearchTitle onSearch={setSearchTitle} />
+              <InpSearchTitle onSearch={setSearchTitle} Criterio="Titulo" />
               <AdminAdvaceSearch
                 see={advance}
                 Author={setSearchAuthor}
@@ -122,6 +123,7 @@ const ManageBooks = () => {
               </span>
             </div>
             <PaginatationSelector
+            totalPages={MaxPage}
               currentPage={currentPage}
               onPageChange={onPageChange}
             />
