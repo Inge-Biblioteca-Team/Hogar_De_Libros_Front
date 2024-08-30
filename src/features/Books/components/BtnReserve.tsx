@@ -1,10 +1,5 @@
-import { useNavigate } from "react-router-dom";
 
-const BtnReserve = ({ id }: { id: string }) => {
-  const navi = useNavigate();
-  const Goto = () => {
-    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/${id}`);
-  };
+const BtnReserve = ({ text, Goto }: { id: string, text:string, Goto:()=> void }) => {
 
   return (
     <button
@@ -14,7 +9,7 @@ const BtnReserve = ({ id }: { id: string }) => {
          mt-4 max-sm:hidden"
       onClick={Goto}
     >
-      Reservar Ahora
+      {text}
     </button>
   );
 };

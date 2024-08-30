@@ -54,7 +54,7 @@ const SearchBookByName = () => {
   //El filtrado hay que cambiarlo para que realice fetch y establesca los resultados en base a eso
   const filteredBooks = books?.filter(
     (book) =>
-      (!category || book.Category === category) &&
+      (!category || book.ShelfCategory === category) &&
       (book.Author.toLowerCase().includes(searchQuery.toLowerCase()) ||
         book.Title.toLowerCase().includes(searchQuery.toLowerCase()))
   );

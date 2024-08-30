@@ -1,4 +1,3 @@
-
 const ConfirmButton = ({ text }: { text: string }) => {
   return (
     <button

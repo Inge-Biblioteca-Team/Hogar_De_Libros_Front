@@ -4,7 +4,7 @@ import { Book } from "../type/Book";
 const BookCardLanding = ({Book}: {Book:Book}) => {
   const navi = useNavigate()
   const Goto=()=>{
-    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/${Book.id}`)
+    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/${Book.BookCode}`)
   }
 
   return (

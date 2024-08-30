@@ -5,7 +5,7 @@ const BookCard = ({Book}: {Book:Book}) => {
 
   const navi = useNavigate()
   const Goto=()=>{
-    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/${Book.id}`)
+    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/${Book.BookCode}`)
   }
 
   return (
