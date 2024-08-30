@@ -16,7 +16,7 @@ const {mutate: PatchStatus} = UseDownActive();
 const handleConfirm = () => {
     PatchStatus(id, {
       onSuccess: () => {
-        setOpen(false); // Cierra el modal si la mutación es exitosa
+        setOpen(false); 
       },
     });
   };
