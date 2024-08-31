@@ -9,7 +9,7 @@ const BookLimitSelector: React.FC<{ limit: number, setLimit: (limit: number) => 
       id="limit"
       value={limit}
       onChange={(e) => setLimit(Number(e.target.value))}
-      className="border rounded p-2 font-bold"
+      className="border-none rounded p-2 font-bold bg-transparent"
     >
       {limits.map((limitOption) => (
         <option key={limitOption} value={limitOption}>{limitOption}</option>

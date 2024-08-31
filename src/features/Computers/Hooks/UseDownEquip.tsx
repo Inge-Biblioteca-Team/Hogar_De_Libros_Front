@@ -1,7 +1,8 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { DownEquipment } from "../Services/SvComputer";
 
 const UseDownEquip = () => {
+  const queryClient = useQueryClient();
   return useMutation(
     async (Code: string) => {
       const data = await DownEquipment(Code);
@@ -9,6 +10,7 @@ const UseDownEquip = () => {
     },
     {
       onSuccess: (data) => {
+        queryClient.invalidateQueries("EquipCatalog");
         console.log("Estado actualizado correctamente:", data);
       },
       onError: (error) => {
@@ -19,4 +21,3 @@ const UseDownEquip = () => {
 };
 
 export default UseDownEquip;
-

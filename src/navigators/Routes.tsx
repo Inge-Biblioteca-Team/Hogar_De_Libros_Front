@@ -1,7 +1,7 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import Landing from "../screens/Landing";
 import Layout from "../Pages/Layout";
-import BooksHomePage from "../features/Books/Pages/BooksHomePage";
+import HomePage from "../Pages/HomePage";
 import SearchBookByName from "../features/Books/Pages/SearchBookByName";
 import BookInformation from "../features/Books/Pages/BookInformation";
 import ManageBooks from "../features/Books/Pages/ManageBooks";
@@ -9,10 +9,10 @@ import NewBook from "../features/Books/Pages/NewBook";
 import AdminBooksInformation from "../features/Books/Pages/AdminBooksInformation";
 import EditBookInformation from "../features/Books/Pages/EditBookInformation";
 import ManagerComputer from "../features/Computers/Pages/ManagerComputer";
-import ComputerNew from "../features/Computers/Pages/ComputerNew";
 import EditComputer from "../features/Computers/Pages/EditComputer";
-import AdvancedSearch from "../features/Books/components/SearchINP/AdvancedSearch";
+import AdvancedSearch from "../features/Books/Pages/AdvancedSearch";
 import AdminComputerInformation from "../features/Computers/Pages/AdminComputer";
+import ComputerNew from "../features/Computers/Pages/ComputerNew";
 
 const Routes = createBrowserRouter([
   {
@@ -39,7 +39,7 @@ const Routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <BooksHomePage />,
+        element: <HomePage />,
       },
       {
         path: "Busqueda",
@@ -55,7 +55,7 @@ const Routes = createBrowserRouter([
         ],
       },
       {
-        path: "CatalogoDeLibros/Libro/:id",
+        path: "CatalogoDeLibros/Libro/:BookCode",
         element: <BookInformation />,
       },
       {

@@ -11,7 +11,7 @@ const AdminBooksInformation = () => {
   const { BookCode } = useParams<{ BookCode?: string }>();
 
   const { data: book } = useQuery<Book, Error>(
-    ["book", BookCode],
+    ["OneBook", BookCode],
     () => {
       if (!BookCode) {
         throw new Error("Error No existe ID de libro para buscar");
@@ -21,8 +21,6 @@ const AdminBooksInformation = () => {
     { enabled: !!BookCode, staleTime: 60000 }
   );
 
-
-  //Añadir is loading con skeleton loaders
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">

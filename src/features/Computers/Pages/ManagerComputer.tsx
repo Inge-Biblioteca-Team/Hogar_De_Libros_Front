@@ -41,7 +41,7 @@ const ManagerComputer = () => {
 
   const { data: computers } = useQuery<apiResponseCE, Error>(
     [
-      "Computer",
+      "EquipCatalog",
       currentPage,
       currentLimit,
       searchMNumDealy,
@@ -59,12 +59,11 @@ const ManagerComputer = () => {
         searchEStatusDelay
       ),
     {
-      keepPreviousData: true,
       staleTime: 600,
     }
   );
 
-  const MaxPage = (computers?.count ?? 0) / currentLimit;
+  const MaxPage = Math.ceil((computers?.count ?? 0) / currentLimit);
 
   return (
     <>

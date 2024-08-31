@@ -28,7 +28,7 @@ const FormAddComputer = () => {
             required
           >
             <option value={""}>Selecciones la categoría</option>
-            <option value={"CPU"}>Monitor</option>
+            <option value={"CPU"}>CPU</option>
             <option value={"Teclado"}>Teclado</option>
             <option value={"Monitor"}>Monitor</option>
             <option value={"Mouse"}>Mouse</option>

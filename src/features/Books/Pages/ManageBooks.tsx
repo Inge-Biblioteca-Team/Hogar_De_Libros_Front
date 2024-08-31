@@ -49,11 +49,10 @@ const ManageBooks = () => {
         searchStatus
       ),
     {
-      keepPreviousData: true,
       staleTime: 600,
     }
   );
-  const MaxPage = (books?.count ?? 0) / currentLimit;
+  const MaxPage = Math.ceil((books?.count ?? 0) / currentLimit);
 
   useEffect(() => {
     sessionStorage.setItem("currentPage", currentPage.toString());

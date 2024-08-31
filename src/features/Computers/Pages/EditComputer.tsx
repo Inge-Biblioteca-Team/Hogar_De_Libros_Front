@@ -5,7 +5,7 @@ import { Equipment, EquipmentEdit } from "../types/Computer";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import useEditComputer from "../Hooks/useEditComputer";
-import { Breadcrumb } from "flowbite-react";
+import { Breadcrumb, Label, Select, TextInput } from "flowbite-react";
 import {
   HomeCrumb,
   ManageCrumb,
@@ -48,67 +48,109 @@ const EditComputer = () => {
     }
   };
 
-  //La categoria es por select
-  //El id no se cambia ni los estados eso es en otros lados
-
   return (
-    <div>
+    <>
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
         <ManageCrumb />
         <ManageCrumbObj Objetive="Equipo De Computo" LK="Equipos" />
         <LastCrumb CurrentPage="Editar Equipo" />
-        {EquipmentI?.EquipmentSerial && <LastCrumb CurrentPage={EquipmentI?.EquipmentSerial} /> }
+        {EquipmentI?.EquipmentSerial && (
+          <LastCrumb CurrentPage={EquipmentI?.EquipmentSerial} />
+        )}
       </Breadcrumb>
-      <h1>Editar Equipo</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="EquipamentCategory">Categoría</label>
-          <input
-            id="EquipamentCategory"
-            type="text"
-            {...register("EquipmentCategory")}
-          />
+      <form
+        className="flex flex-col gap-7 items-center mt-20"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className=" shadow-lg p-6 rounded-lg bg-gray-100">
+          <fieldset className=" grid grid-cols-2 gap-7 text-center">
+            <legend className=" pb-3">Informacion del equipo</legend>
+            <span>
+              <Label htmlFor="EquipamentCategory" value="Categoría" />
+              <Select
+                id="EquipamentCategory"
+                {...register("EquipmentCategory")}
+                required
+              >
+                <option value={""}>Selecciones la categoría</option>
+                <option value={"CPU"}>CPU</option>
+                <option value={"Teclado"}>Teclado</option>
+                <option value={"Monitor"}>Monitor</option>
+                <option value={"Mouse"}>Mouse</option>
+              </Select>
+            </span>
+            <span>
+              <Label htmlFor="EquipamentSerial" value="Serial del equipo" />
+              <TextInput
+                id="EquipamentSerial"
+                type="text"
+                sizing="md"
+                {...register("EquipmentSerial")}
+                required
+              />
+            </span>
+            <span>
+              <Label htmlFor="EquipamentBrand" value="Marca" />
+              <TextInput
+                id="EquipamentBrand"
+                type="text"
+                {...register("EquipmentBrand")}
+                sizing="md"
+                required
+              />
+            </span>
+            <span>
+              <Label
+                htmlFor="EquipamentMachineNumber"
+                value="Numero de Maquina"
+              />
+              <TextInput
+                id="MachineNumber"
+                type="number"
+                sizing="md"
+                {...register("MachineNumber")}
+              />
+            </span>
+          </fieldset>
+          <fieldset className="grid grid-cols-2 gap-7 text-center">
+            <legend>Informacion Adicional</legend>
+            <span>
+              <Label htmlFor="ConditionRating" value="Condición" />
+              <Select
+                id="ConditionRating"
+                {...register("ConditionRating")}
+                required
+              >
+                <option value={""}>Seleccione la condición</option>
+                <option value={1}>Buena</option>
+                <option value={2}>Media</option>
+                <option value={2}>Mala</option>
+              </Select>
+            </span>
+            <span>
+              <Label htmlFor="Observation" value="Observaciones" />
+              <TextInput
+                id="Observation"
+                type="text"
+                sizing="md"
+                {...register("Observation")}
+              />
+            </span>
+          </fieldset>
+          <div>
+            <button
+              type="submit"
+              className="bg-Bottoms w-full text-Text text-lg rounded-lg 
+            p-2 hover:bg-Bottoms-dark hover:scale-105 
+            mt-6"
+            >
+              Confirmar
+            </button>
+          </div>
         </div>
-        <div>
-          <label htmlFor="EquipamentSerial">Serial del equipo</label>
-          <input
-            id="EquipamentSerial"
-            type="text"
-            {...register("EquipmentSerial")}
-          />
-        </div>
-        <div>
-          <label htmlFor="EquipamentBrand">Marca</label>
-          <input
-            id="EquipamentBrand"
-            type="text"
-            {...register("EquipmentBrand")}
-          />
-        </div>
-        <div>
-          <label htmlFor="Observation">Observaciones</label>
-          <input id="Observation" type="text" {...register("Observation")} />
-        </div>
-        <div>
-          <label htmlFor="ConditionRating">Condición</label>
-          <input
-            id="ConditionRating"
-            type="number"
-            {...register("ConditionRating")}
-          />
-        </div>
-        <div>
-          <label htmlFor="Machine Number">Numero de Maquina</label>
-          <input
-            id="ConditionRating"
-            type="number"
-            {...register("MachineNumber")}
-          />
-        </div>
-        <button type="submit">Guardar</button>
       </form>
-    </div>
+    </>
   );
 };
 

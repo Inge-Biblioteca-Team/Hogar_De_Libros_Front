@@ -97,6 +97,36 @@ const GetBookPaginated = async (
   }
 };
 //Get por paginacion con parametros opcionales
+const GetAdvanceSearch= async (
+  page: number,
+  limit: number,
+  Title?: string,
+  Author?: string,
+  ISBN?: string,
+  PublishedYear?:string,
+  Editorial?: string
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {
+      page,
+      limit,
+    };
+
+    if (Title) params.Title = Title;
+    if (Author) params.Author = Author;
+    if (ISBN) params.ISBN = ISBN;
+    if (PublishedYear) params.PublishedYear= PublishedYear;
+    if (Editorial) params.Editorial = Editorial;
+    params.Status = 1
+
+    const response = await api.get("/books", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+//Get por paginacion con parametros opcionales
 const GetBookByTtit_Category = async (
   page: number,
   limit: number,
@@ -176,5 +206,6 @@ export {
   PatchStatus,
   GetByBookCode,
   PatchEditBook,
-  GetBookByTtit_Category
+  GetBookByTtit_Category,
+  GetAdvanceSearch
 };

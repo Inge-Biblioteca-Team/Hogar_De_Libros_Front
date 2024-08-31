@@ -6,6 +6,7 @@ const useNewComputer =() =>{
      mutationFn: PostNewComputer,
      onSuccess: ()=>{
          console.log(`Computer aaded :)!`)
+  
      }
     })
      

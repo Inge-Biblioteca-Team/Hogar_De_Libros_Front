@@ -39,7 +39,7 @@ const SearchBookByName = () => {
     error,
     isLoading,
   } = useQuery<BookApiResponse, Error>(
-    ["BookSearch", page, limit, Title, Category],
+    ["BookPerTitle", page, limit, Title, Category],
     () => GetBookByTtit_Category(page, limit, Title, Category),
     {
       keepPreviousData: true,
