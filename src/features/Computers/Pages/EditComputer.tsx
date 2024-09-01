@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { GetByUniqueCode } from "../Services/SvComputer";
 import { Equipment, EquipmentEdit } from "../types/Computer";
 import { useForm } from "react-hook-form";
@@ -15,6 +15,7 @@ import {
 
 const EditComputer = () => {
   const { Code } = useParams<{ Code?: string }>();
+  const navigate = useNavigate();
 
   const { data: EquipmentI } = useQuery<Equipment, Error>(
     ["EquipEdit", Code],
@@ -42,7 +43,11 @@ const EditComputer = () => {
 
   const onSubmit = (formData: EquipmentEdit) => {
     if (EquipmentI?.EquipmentUniqueCode) {
-      editEquip({ equipment: formData, Code: EquipmentI.EquipmentUniqueCode });
+      editEquip({ equipment: formData, Code: EquipmentI.EquipmentUniqueCode },
+        {
+          onSuccess: () => {
+            navigate(-1); // Vuelve a la página anterior
+          }});
     } else {
       console.error("No Code found for this");
     }
@@ -125,7 +130,8 @@ const EditComputer = () => {
                 <option value={""}>Seleccione la condición</option>
                 <option value={1}>Buena</option>
                 <option value={2}>Media</option>
-                <option value={2}>Mala</option>
+                <option value={3}>Aceptable</option>
+                <option value={4}>Mala</option>
               </Select>
             </span>
             <span>
