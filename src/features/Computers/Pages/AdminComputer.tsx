@@ -9,8 +9,8 @@ import {
   ManageCrumbObj,
   LastCrumb,
 } from "../../../components/BreadCrumb";
-import ConditionStatus from "../../../components/ConditionStatus";
 import BTNGoBack from "../../../components/BTNGoBack";
+import ConditionStatusComputer from "../components/ConditionStatusComputer";
 
 const AdminComputerInformation = () => {
   const { Code } = useParams<{ Code?: string }>();
@@ -74,7 +74,7 @@ const AdminComputerInformation = () => {
           </span>
           <span className=" flex flex-col text-center mt-11">
             {EquipmentI?.ConditionRating && (
-              <ConditionStatus condition={EquipmentI?.ConditionRating} />
+              <ConditionStatusComputer condition={EquipmentI?.ConditionRating} />
             )}
           </span>
           <BTNGoBack />

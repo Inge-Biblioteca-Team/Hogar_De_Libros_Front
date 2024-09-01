@@ -75,7 +75,7 @@ const FormAddComputer = () => {
           >
             <option value={""}>Seleccione la condición</option>
             <option value={1}>Nueva</option>
-            <option value={2}>Buenas</option>
+            <option value={2}>Buena</option>
             <option value={3}>Aceptable</option>
             <option value={4}>Mala</option>
           </Select>
