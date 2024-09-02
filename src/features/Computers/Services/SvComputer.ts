@@ -6,6 +6,21 @@ const api = axios.create({
   timeout: 1000,
 });
 
+//Testing 
+const GetComputersByCondition = async () => {
+  try {
+    const response = await api.get("/computers?ConditionRating");
+    console.log("Response data:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching computers:", error);
+    throw error;
+  }
+};
+
+
+
+
 //Agregar computadora
 const PostNewComputer = async (computer:EquipmentEdit) => {
   try {
@@ -86,5 +101,6 @@ export {
   GetComputerPaginated,
   PutEditEquipment,
   DownEquipment,
-  GetByUniqueCode
+  GetByUniqueCode,
+  GetComputersByCondition
 };

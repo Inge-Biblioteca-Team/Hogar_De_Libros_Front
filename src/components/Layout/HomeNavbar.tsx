@@ -60,7 +60,7 @@ const HomeNavbar = () => {
             <Sidebar.Item className="" href="/HogarDeLibros">
               Programas
             </Sidebar.Item>
-            <Sidebar.Item className="" href="/HogarDeLibros">
+            <Sidebar.Item className="" href="/HogarDeLibros/Gestion/Equipos/disponible">
               Disponibilidad <br />
               de Equipo de computo
             </Sidebar.Item>
