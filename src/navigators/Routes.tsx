@@ -13,6 +13,7 @@ import EditComputer from "../features/Computers/Pages/EditComputer";
 import AdvancedSearch from "../features/Books/Pages/AdvancedSearch";
 import AdminComputerInformation from "../features/Computers/Pages/AdminComputer";
 import ComputerNew from "../features/Computers/Pages/ComputerNew";
+import AvailableComputers from "../features/Computers/components/AvailableComputers";
 
 const Routes = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const Routes = createBrowserRouter([
               {
                 index: true,
                 element: <ManagerComputer />,
+              },
+              {
+                path: "disponible",
+                element: <AvailableComputers />,
               },
               {
                 path: "NuevoEquipo",
