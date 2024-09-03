@@ -83,6 +83,8 @@ const EditComputer = () => {
                 <option value={"Teclado"}>Teclado</option>
                 <option value={"Monitor"}>Monitor</option>
                 <option value={"Mouse"}>Mouse</option>
+                <option value={"UPS"}>UPS</option>
+                <option value={"Otros"}>Otros</option>
               </Select>
             </span>
             <span>
@@ -128,10 +130,11 @@ const EditComputer = () => {
                 required
               >
                 <option value={""}>Seleccione la condición</option>
-                <option value={1}>Buena</option>
-                <option value={2}>Media</option>
-                <option value={3}>Aceptable</option>
-                <option value={4}>Mala</option>
+                <option value={1}>Óptimo</option>
+                <option value={2}>Bueno</option>
+                <option value={3}>Regular</option>
+                <option value={4}>Deficiente</option>
+                <option value={4}>Deplorable</option>
               </Select>
             </span>
             <span>

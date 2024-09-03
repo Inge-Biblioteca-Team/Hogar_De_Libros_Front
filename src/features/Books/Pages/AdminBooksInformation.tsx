@@ -71,9 +71,7 @@ const AdminBooksInformation = () => {
           <span>
             {book?.BookCode && (
               <BtnReserve
-              Objetive="Prestamo"
-                Goto={book.BookCode}
-                id={book?.BookCode}
+              Objetive={book?.BookCode}
                 text="Generar Prestamo"
               />
             )}

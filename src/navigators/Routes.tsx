@@ -14,6 +14,7 @@ import AdvancedSearch from "../features/Books/Pages/AdvancedSearch";
 import AdminComputerInformation from "../features/Computers/Pages/AdminComputer";
 import ComputerNew from "../features/Computers/Pages/ComputerNew";
 import AvailableComputers from "../features/Computers/components/AvailableComputers";
+import BookLoan from "../features/Books/Pages/BookLoand";
 
 const Routes = createBrowserRouter([
   {
@@ -295,6 +296,10 @@ const Routes = createBrowserRouter([
               {
                 path: "EnProceso",
              
+              },
+              {
+                path: "SolicitarLibro/:Objetive",
+                element: <BookLoan/>
               },
             ],
           },

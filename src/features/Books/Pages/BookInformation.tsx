@@ -83,9 +83,7 @@ const BookInformation = () => {
           <div className="">
             {book?.BookCode && (
               <BtnReserve
-                Goto={book.BookCode}
-                Objetive="Solicitar"
-                id={book.BookCode}
+                Objetive={book.BookCode}
                 text="Solicitar Prestamo"
               />
             )}
