@@ -41,4 +41,12 @@ const LastCrumb =({ CurrentPage }: { CurrentPage: string }) => {
       </>
     );
   };
-export {ManageCrumb, HomeCrumb, LastCrumb, ManageCrumbObj, BooksCrumb}
+
+  const LoanCrumb = () =>{
+    return(
+      <>
+    <Breadcrumb.Item href="/HogarDeLibros/Gestion/Prestamos">Prestamos</Breadcrumb.Item>
+    </>
+    )
+  }
+export {ManageCrumb, HomeCrumb, LastCrumb, ManageCrumbObj, BooksCrumb, LoanCrumb}

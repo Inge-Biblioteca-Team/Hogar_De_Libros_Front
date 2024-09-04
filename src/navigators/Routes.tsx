@@ -18,6 +18,9 @@ import ManageChildrenBooks from "../features/Books/Pages/ChildrenBooks/ManageChi
 import NewCBook from "../features/Books/Pages/ChildrenBooks/NewCBook";
 import AdminCBooksInformation from "../features/Books/Pages/ChildrenBooks/AdminCBooksInformation";
 import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBookInformation";
+import PendingRequest from "../features/Loan/Pages/PendingRequest";
+import FinishedLoans from "../features/Loan/Pages/FinishedLoans";
+import InProgressLoans from "../features/Loan/Pages/InProgressLoans";
 
 const Routes = createBrowserRouter([
   {
@@ -278,12 +281,18 @@ const Routes = createBrowserRouter([
               },
               {
                 path: "Pendientes",
+                element:<PendingRequest/>
               },
               {
                 path: "Finalizados",
+                element: <FinishedLoans/>
               },
               {
                 path: "EnProceso",
+                element:<InProgressLoans/>
+              },
+              {
+                path: "Pendientes/Ver/:Code",
               },
             ],
           },
