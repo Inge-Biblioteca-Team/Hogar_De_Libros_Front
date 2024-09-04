@@ -15,7 +15,7 @@ const InpSearchTitle = ({
     <div className="relative">
       <input
         type="text"
-        placeholder={`Busqueda Por ${Criterio}`}
+        placeholder={`Búsqueda Por ${Criterio}`}
         onChange={handleChange}
         className="pl-8 pr-4 py-2 border rounded-lg"
       />

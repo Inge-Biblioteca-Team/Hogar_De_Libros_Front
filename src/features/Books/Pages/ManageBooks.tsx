@@ -83,7 +83,7 @@ const ManageBooks = () => {
             </div>
             <CreateNewActive objetive="Libro" />
           </div>
-         {books && <BookTBL books={books}/>}
+         {books && <BookTBL accion1={true} books={books}/>}
           <div className=" w-full flex justify-between">
             <div>
               <span className=" pl-5">

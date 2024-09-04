@@ -1,14 +1,25 @@
 import { useMutation } from "react-query";
 import { PostNewBook } from "../services/SvBooks";
 import toast from "react-hot-toast";
+import { Book } from "../type/Book";
 
-const UseCreateNewBook = () => {
+const UseCreateNewBook = ({
+  Open,
+  Reset,
+  category
+}: {
+  Open: React.Dispatch<React.SetStateAction<boolean>>;
+  Reset: () => void;
+  category:string
+}) => {
   const mutation = useMutation({
-    mutationFn: PostNewBook,
+    mutationFn: (book: Book) => PostNewBook(book, category),
     onSuccess: () => {
-      toast.success('Libro añadido con exito!');
+      toast.success("Libro añadido con exito!");
+      Open(true);
+      Reset();
     },
-    onError: (error:Error) => {
+    onError: (error: Error) => {
       toast.error(`Error al añadir libro: ${error.message}`);
     },
   });
@@ -17,7 +28,6 @@ const UseCreateNewBook = () => {
     ...mutation,
     isLoading: mutation.isLoading,
   };
-}
+};
 
-export default UseCreateNewBook
-
+export default UseCreateNewBook;

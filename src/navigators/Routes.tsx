@@ -18,6 +18,8 @@ import ManageChildrenBooks from "../features/Books/Pages/ChildrenBooks/ManageChi
 import NewCBook from "../features/Books/Pages/ChildrenBooks/NewCBook";
 import AdminCBooksInformation from "../features/Books/Pages/ChildrenBooks/AdminCBooksInformation";
 import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBookInformation";
+import SearchChildrenCatalog from "../features/Books/Pages/ChildrenBooks/SearchChlindrenBook";
+import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInformationChild";
 
 const Routes = createBrowserRouter([
   {
@@ -57,11 +59,20 @@ const Routes = createBrowserRouter([
             path: "Avanzada",
             element: <AdvancedSearch />,
           },
+          {
+            path: "Infantiles",
+            element: <SearchChildrenCatalog />,
+          },
+
         ],
       },
       {
         path: "CatalogoDeLibros/Libro/:BookCode",
         element: <BookInformation />,
+      },
+      {
+        path: "CatalogoDeLibros/LibroI/:BookCode",
+        element: <BookInformationChild/>,
       },
       {
         path: "Gestion",

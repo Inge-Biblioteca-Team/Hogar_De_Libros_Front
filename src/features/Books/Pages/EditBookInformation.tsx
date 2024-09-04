@@ -37,7 +37,7 @@ const EditBookInformation = () => {
         <CurrentRoute CurrentPage={"Editar"} />
         {book?.Title ? <CurrentRoute CurrentPage={book?.Title} /> : null}
       </Breadcrumb>
-      {book && <FormEditBook book={book} />}
+      {book && <FormEditBook book={book} category="books" />}
     </>
   );
 };

@@ -1,6 +1,5 @@
 import { Breadcrumb } from "flowbite-react";
 import { useQuery } from "react-query";
-import { GetBookPaginated } from "../../services/SvBooks";
 import { BookApiResponse } from "../../type/Book";
 import InpSearchTitle from "../../../../components/InpSearchTitle";
 import { useCallback, useEffect, useState } from "react";
@@ -13,10 +12,11 @@ import UseDebounce from "../../../../hooks/UseDebounce";
 import { LastCrumb } from "../../../../components/BreadCrumb";
 import { useNavigate } from "react-router-dom";
 import BookTBL from "../../components/BookTBL";
+import { GetChildrenBPaginated } from "../../services/SvChildBooks";
 
 const ManageChildrenBooks = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("currentPage");
+    const savedPage = sessionStorage.getItem("currentChild");
     return savedPage ? Number(savedPage) : 1;
   });
 
@@ -29,7 +29,7 @@ const ManageChildrenBooks = () => {
   const [searchStatus, setSearchStatus] = useState<string>("");
   const onPageChange = (page: number) => {
     setCurrentPage(page);
-    sessionStorage.setItem("currentPage", page.toString());
+    sessionStorage.setItem("currentChild", page.toString());
   };
 
   const viewAdvanceSerch = useCallback(() => setAdvance((prev) => !prev), []);
@@ -39,8 +39,8 @@ const ManageChildrenBooks = () => {
   const seachSignaCodeDelay = UseDebounce(searchSignaCode, 1000);
 
   const { data: books } = useQuery<BookApiResponse, Error>(
-    ["BookCatalog", currentPage, currentLimit, searchTitleDelay, seachAuthorDelay, seachISBNDelay, seachSignaCodeDelay,
-       searchStatus,],() => GetBookPaginated(
+    ["ChildrenCatalog", currentPage, currentLimit, searchTitleDelay, seachAuthorDelay, seachISBNDelay, seachSignaCodeDelay,
+       searchStatus,],() => GetChildrenBPaginated(
         currentPage,
         currentLimit,
         searchTitleDelay,
@@ -93,7 +93,7 @@ const ManageChildrenBooks = () => {
       Añadir Libro
     </button>
           </div>
-         {books && <BookTBL books={books}/>}
+         {books && <BookTBL accion1={false} books={books}/>}
           <div className=" w-full flex justify-between">
             <div>
               <span className=" pl-5">

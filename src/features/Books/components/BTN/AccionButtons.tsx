@@ -37,6 +37,7 @@ const AccionButtons = ({
           setOpen={setOpenModal}
           id={id}
           BookTitle={BookTitle}
+          category="books"
         />
       </>
     </div>

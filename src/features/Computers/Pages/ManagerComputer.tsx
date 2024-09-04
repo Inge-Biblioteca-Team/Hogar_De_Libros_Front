@@ -70,7 +70,7 @@ const ManagerComputer = () => {
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
         <ManageCrumb />
-        <LastCrumb CurrentPage="Equipo De Computo" />
+        <LastCrumb CurrentPage="Equipo De Cómputo" />
       </Breadcrumb>
       <div className=" flex w-full place-content-center mt-5">
         <div className=" w-5/6 flex flex-col gap-4">
