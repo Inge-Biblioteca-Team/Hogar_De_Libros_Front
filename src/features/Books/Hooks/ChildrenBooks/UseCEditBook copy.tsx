@@ -1,10 +1,10 @@
 import { useMutation } from "react-query";
-import { PatchEditBook } from "../services/SvBooks";
-import {EditBook } from "../type/Book";
+import { PatchEditBook } from "../../services/SvBooks";
+import {EditBook } from "../../type/Book";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const UseEditBook = () => {
+const UseCEditBook = () => {
   const Navi = useNavigate()
     return useMutation(
         ({ book, BookCode }: { book: EditBook; BookCode: string }) => PatchEditBook(book, BookCode),
@@ -20,4 +20,4 @@ const UseEditBook = () => {
         }
       );
     };
-  export default UseEditBook;
+  export default UseCEditBook;

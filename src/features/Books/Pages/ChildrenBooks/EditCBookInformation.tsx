@@ -1,18 +1,16 @@
 import { Breadcrumb } from "flowbite-react";
-
 import {
   HomeRoute,
   ManageRoute,
-  BooksRoute,
   CurrentRoute,
-} from "../components/Redirections";
-import { Book } from "../type/Book";
-import { GetByBookCode } from "../services/SvBooks";
+} from "../../components/Redirections";
+import { Book } from "../../type/Book";
+import { GetByBookCode } from "../../services/SvBooks";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
-
-import FormEditBook from "../components/Forms/FomEditBook";
-const EditBookInformation = () => {
+import { ManageCrumbObj } from "../../../../components/BreadCrumb";
+import FormEditBook from "../../components/Forms/FomEditBook";
+const EditCBookInformation = () => {
   const { BookCode } = useParams<{ BookCode?: string }>();
 
   const { data: book } = useQuery<Book, Error>(
@@ -33,7 +31,7 @@ const EditBookInformation = () => {
       <Breadcrumb className="custom-breadcrumb">
         <HomeRoute />
         <ManageRoute />
-        <BooksRoute />
+        <ManageCrumbObj Objetive="Libros Infantiles" LK="LibrosI" />
         <CurrentRoute CurrentPage={"Editar"} />
         {book?.Title ? <CurrentRoute CurrentPage={book?.Title} /> : null}
       </Breadcrumb>
@@ -42,4 +40,4 @@ const EditBookInformation = () => {
   );
 };
 
-export default EditBookInformation;
+export default EditCBookInformation;

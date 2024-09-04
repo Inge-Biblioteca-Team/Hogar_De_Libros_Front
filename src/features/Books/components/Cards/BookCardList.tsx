@@ -12,7 +12,7 @@ const BookCardList = ({Book}: {Book:Book}) => {
   }
 
   return (
-    <div className="flex items-start p-4 gap-5 shadow-lg">
+    <div className="flex items-center p-4 gap-5 shadow-lg rounded-md">
     <figure className="cursor-pointer" onClick={Goto}>
       <img
         src={Book.Cover}

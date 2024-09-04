@@ -1,8 +1,8 @@
 import { useMutation } from "react-query";
-import { PostNewBook } from "../services/SvBooks";
+import { PostNewBook } from "../../services/SvBooks";
 import toast from "react-hot-toast";
 
-const UseCreateNewBook = () => {
+const UseCCreateNewBook = () => {
   const mutation = useMutation({
     mutationFn: PostNewBook,
     onSuccess: () => {
@@ -19,5 +19,5 @@ const UseCreateNewBook = () => {
   };
 }
 
-export default UseCreateNewBook
+export default UseCCreateNewBook
 

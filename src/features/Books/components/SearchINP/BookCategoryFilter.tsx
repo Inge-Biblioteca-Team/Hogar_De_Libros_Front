@@ -14,10 +14,11 @@ const BookCategoryFilter: React.FC<BookCategoryFilterProps> = ({ handleCategoryC
   };
 
   return (
-    <Dropdown label={selectedCategory || "Categoría"} className="mr-4">
+    <Dropdown color="blue" label={selectedCategory || "Categoría"} className="mr-4">
       <Dropdown.Item onClick={() => handleCategorySelect('')}>Todas</Dropdown.Item>
       <Dropdown.Item onClick={() => handleCategorySelect('Obras generales')}>Obras generales</Dropdown.Item>
-      <Dropdown.Item onClick={() => handleCategorySelect('Ciencia ficción')}>Ciencia ficción</Dropdown.Item>
+      <Dropdown.Item onClick={() => handleCategorySelect('Literura')}>Literatura</Dropdown.Item>
+      <Dropdown.Item onClick={() => handleCategorySelect('Manga')}>Manga</Dropdown.Item>
     </Dropdown>
   );
 };

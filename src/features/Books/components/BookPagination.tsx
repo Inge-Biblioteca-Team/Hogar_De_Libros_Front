@@ -11,7 +11,7 @@ const BookPagination = ({
 }) => {
   return (
     <div
-      className={`flex overflow-x-auto sm:justify-center ${
+      className={`flex overflow-x-auto sm:justify-center pb-4 ${
         totalPages == 0 || totalPages === 1 ? `hidden` : ``
       }`}
     >

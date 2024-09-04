@@ -64,8 +64,8 @@ const AdvancedSearch = () => {
       </Breadcrumb>
       <section className="flex flex-col w-full py-6 ">
         <div className="flex justify-center">
-          <div className="flex flex-col w-1/4 p-4 space-y-4 fixed left-0 top-52">
-            <strong className=" text-xl">Criterios De Busqueda</strong>
+          <div className="flex flex-col w-1/4 p-4 space-y-4 fixed left-0 top-52 ">
+            <strong className=" text-xl text-center">Criterios De Busqueda</strong>
             <div>
               <Label htmlFor="Title">Título</Label>
               <TextInput

@@ -57,7 +57,7 @@ const SearchBookByName = () => {
 
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
+      <Breadcrumb className="custom-breadcrumb pb-4">
         <HomeRoute />
         <BooksCrumb/>
         <CurrentRoute CurrentPage={"Busqueda Por Titulo y Categoria"} />
@@ -74,7 +74,7 @@ const SearchBookByName = () => {
               <BookFilters setView={handleViewChange} currentView={view} />
             </div>
           </div>
-          <div className="w-full">
+          <div className="w-full pt-2">
             {books?.count == 0 ? (
               <Alert color="warning" rounded>
                 No existen Libros disponibles que considan con su busqueda

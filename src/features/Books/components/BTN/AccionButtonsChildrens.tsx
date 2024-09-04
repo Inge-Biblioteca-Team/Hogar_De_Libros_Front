@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import ModalDownActive from "../Modals/ModalDownActive";
 
-const AccionButtons = ({
+const AccionButtonsChildrens = ({
   id,
   BookTitle,
 }: {
@@ -17,13 +17,13 @@ const AccionButtons = ({
     <div className=" flex gap-7 justify-center">
       <Link
         title="Ver Informacion Completa"
-        to={`/HogarDeLibros/Gestion/Libros/Ver/${id}`}
+        to={`/HogarDeLibros/Gestion/LibrosI/Ver/${id}`}
       >
         <PiEyeLight size={24} />
       </Link>
       <Link
         title="Editar Activo"
-        to={`/HogarDeLibros/Gestion/Libros/Editar/${id}`}
+        to={`/HogarDeLibros/Gestion/LibrosI/Editar/${id}`}
       >
         <PiPencilDuotone size={24} />
       </Link>
@@ -43,4 +43,4 @@ const AccionButtons = ({
   );
 };
 
-export default AccionButtons;
+export default AccionButtonsChildrens;

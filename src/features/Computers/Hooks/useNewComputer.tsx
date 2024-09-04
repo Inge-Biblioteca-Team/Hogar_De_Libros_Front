@@ -1,14 +1,13 @@
-import { useMutation } from "react-query"
-import { PostNewComputer } from "../Services/SvComputer"
+import { useMutation } from "react-query";
+import { PostNewComputer } from "../Services/SvComputer";
+import toast from "react-hot-toast";
 
-const useNewComputer =() =>{
-    return useMutation({
-     mutationFn: PostNewComputer,
-     onSuccess: ()=>{
-         console.log(`Computer aaded :)!`)
-  
-     }
-    })
-     
- }
- export default useNewComputer
+const useNewComputer = () => {
+  return useMutation({
+    mutationFn: PostNewComputer,
+    onSuccess: () => {
+      toast.success("Equipo añadido con exito!");
+    },
+  });
+};
+export default useNewComputer;

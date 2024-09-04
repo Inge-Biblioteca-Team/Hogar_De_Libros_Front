@@ -1,5 +1,6 @@
-import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlassPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const BtnAdminAdSearchCm = ({
   click,
@@ -18,9 +19,9 @@ const BtnAdminAdSearchCm = ({
       onClick={click}
     >
       {icon ? (
-        <FontAwesomeIcon icon={faMinusCircle} />
+        <FontAwesomeIcon icon={faMinus} />
       ) : (
-        <FontAwesomeIcon icon={faPlusCircle} />
+        <FontAwesomeIcon icon={faMagnifyingGlassPlus} />
       )}
     </button>
   );

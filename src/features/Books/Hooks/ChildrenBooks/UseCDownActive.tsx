@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "react-query";
-import { PatchStatus } from "../services/SvBooks";
+import { PatchStatus } from "../../services/SvBooks";
 import toast from "react-hot-toast";
 
-const UseDownActive = () => {
+const UseCDownActive = () => {
   const queryClient = useQueryClient();
   return useMutation(
     async (BookCode: string) => {
@@ -21,4 +21,4 @@ const UseDownActive = () => {
   );
 };
 
-export default UseDownActive;
+export default UseCDownActive;
