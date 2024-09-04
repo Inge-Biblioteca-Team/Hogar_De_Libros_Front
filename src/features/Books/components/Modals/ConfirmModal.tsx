@@ -16,7 +16,7 @@ const ConfirmModal = ({
 }) => {
   return (
     <Modal show={isOpen} onClose={onCancel}>
-      <Modal.Header>Confirmar {Accion} Equipo </Modal.Header>
+      <Modal.Header>{Accion} Libro </Modal.Header>
       <Modal.Body>
         <p>
           ¿Está seguro de que desea {Accion} este Libro?
@@ -24,15 +24,30 @@ const ConfirmModal = ({
           <strong>Titulo:</strong>
           <span> {Book.Title}</span>
           <br />
-          <strong>ISBN:</strong>
-          <span> {Book.ISBN}</span>
+          <strong>Editorial:</strong>
+          <span> {Book.Editorial}</span>
           <br />
-          <strong>Codigo de Signatura:</strong>
-          <span> {Book.SignatureCode}</span>
+          <strong>ISBN:</strong>
+          <span> {Book.ISBN == "" ? "No Presenta" : Book.ISBN}</span>
+          <br />
+          <strong>Código de Signatura:</strong>
+          <span>
+            {" "}
+            {Book.SignatureCode == "" ? "Desconocido" : Book.SignatureCode}
+          </span>
+          <br />
+          <strong>Código de Inscripción:</strong>
+          <span>
+            {" "}
+            {Book.InscriptionCode == "" ? "No Posee" : Book.InscriptionCode}
+          </span>
           <br />
         </p>
       </Modal.Body>
       <Modal.Footer>
+        <Button color="red" onClick={onCancel}>
+          Cancelar
+        </Button>
         <Button
           className="bg-Bottoms text-white text-2xl rounded-lg px-2
     hover:bg-Bottoms-dark hover:scale-105
@@ -40,9 +55,6 @@ const ConfirmModal = ({
           onClick={() => onConfirm(Book)}
         >
           Sí, estoy seguro
-        </Button>
-        <Button color="red" onClick={onCancel}>
-          Cancelar
         </Button>
       </Modal.Footer>
     </Modal>

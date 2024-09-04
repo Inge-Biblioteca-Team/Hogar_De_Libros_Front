@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
 import UseCreateNewBook from "../../Hooks/UseCreateNewBook";
 import { Book } from "../../type/Book";
@@ -6,12 +6,17 @@ import { Button, TextInput, Label, Checkbox, Select } from "flowbite-react";
 import ConfirmButton from "../../../../components/ConfirmButton";
 import ConfirmModal from "../Modals/ConfirmModal";
 import ModalAddImage from "../Modals/ModalAddImage";
+import ModalAddMoreActive from "../../../../components/ModalAddMoreActive";
 
-const FromNewBook = () => {
+const FromNewBook = ({category}:{category:string}) => {
   const { register, setValue, watch, handleSubmit, reset } = useForm<Book>();
-  setValue("PublishedYear", 0);
-
-  const { mutate: createBook } = UseCreateNewBook();
+  setValue("PublishedYear", 0)
+  const handleReset = () => {
+    reset(); 
+    setValue("Cover", "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?w=360"); 
+  };
+  const [NeedMore, setNeedMore] = useState(false);
+  const { mutate: createBook} = UseCreateNewBook({ Open: setNeedMore, Reset:handleReset, category:category});
 
   const [showModal, setShowModal] = useState(false);
 
@@ -26,11 +31,6 @@ const FromNewBook = () => {
 
   const handleConfirm = (newBookData: Book) => {
     createBook(newBookData);
-    reset();
-    setValue(
-      "Cover",
-      "https://linamed.com/wp-content/themes/dfd-native/assets/images/no_image_resized_675-450.jpg"
-    );
     setModalOpen(false);
   };
 
@@ -43,13 +43,10 @@ const FromNewBook = () => {
     setNewBookData(NewBookData);
     setModalOpen(true);
   };
-
   useEffect(() => {
-    setValue(
-      "Cover",
-      "https://linamed.com/wp-content/themes/dfd-native/assets/images/no_image_resized_675-450.jpg"
-    );
+    setValue("Cover", "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?w=360");
   }, [setValue]);
+
   return (
     <>
       <div className="w-full flex place-content-center pt-10">
@@ -97,9 +94,7 @@ const FromNewBook = () => {
           </fieldset>
 
           <fieldset className=" flex flex-col gap-7">
-            <legend className=" pb-3 font-bold">
-              Información básica del libro
-            </legend>
+            <legend className=" pb-3 font-bold">Información básica</legend>
             <span>
               <Label
                 htmlFor="title"
@@ -128,26 +123,26 @@ const FromNewBook = () => {
             </span>
             <span>
               <Label
-                htmlFor="InscriptionCode"
-                value="Código de Inscripción"
+                htmlFor="PublicationYear"
+                value="Año de Publicación"
                 className="text-xl"
               />
               <TextInput
-                id="InscriptionCode"
-                type="text"
-                {...register("InscriptionCode")}
+                id="PublicationYear"
+                type="number"
+                {...register("PublishedYear")}
               />
             </span>
             <span>
               <Label
-                htmlFor="SignatureCode"
-                value="Código de Signatura"
+                htmlFor="Editorial"
+                value="Editorial"
                 className="text-xl"
               />
               <TextInput
-                id="SignatureCode"
+                id="Editorial"
                 type="text"
-                {...register("SignatureCode")}
+                {...register("Editorial")}
               />
             </span>
             <span>
@@ -176,26 +171,26 @@ const FromNewBook = () => {
             </span>
             <span>
               <Label
-                htmlFor="PublicationYear"
-                value="Año de Publicación"
+                htmlFor="InscriptionCode"
+                value="Código de Inscripción"
                 className="text-xl"
               />
               <TextInput
-                id="PublicationYear"
-                type="number"
-                {...register("PublishedYear")}
+                id="InscriptionCode"
+                type="text"
+                {...register("InscriptionCode")}
               />
             </span>
             <span>
               <Label
-                htmlFor="Editorial"
-                value="Editorial"
+                htmlFor="SignatureCode"
+                value="Código de Signatura"
                 className="text-xl"
               />
               <TextInput
-                id="Editorial"
+                id="SignatureCode"
                 type="text"
-                {...register("Editorial")}
+                {...register("SignatureCode")}
               />
             </span>
             <span>
@@ -205,7 +200,7 @@ const FromNewBook = () => {
                 value="Condición del libro"
               />
               <Select id="BookCondition" {...register("BookConditionRating")}>
-                <option value={""}>Pendiente de evaluación</option>
+                <option value={0}>Pendiente de evaluación</option>
                 <option value={5}>Óptimo</option>
                 <option value={4}>Bueno</option>
                 <option value={3}>Regular</option>
@@ -237,9 +232,10 @@ const FromNewBook = () => {
           onConfirm={handleConfirm}
           onCancel={handleCancel}
           Book={newBookData}
-          Accion="Crear"
+          Accion="Añadir"
         />
       )}
+      <ModalAddMoreActive open={NeedMore} Close={setNeedMore}/>
     </>
   );
 };

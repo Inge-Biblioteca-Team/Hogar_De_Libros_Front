@@ -33,6 +33,7 @@ const AccionButtonsChildrens = ({
 
       <>
         <ModalDownActive
+        category="book-children"
           open={openModal}
           setOpen={setOpenModal}
           id={id}

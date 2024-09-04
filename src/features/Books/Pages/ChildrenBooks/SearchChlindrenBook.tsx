@@ -1,22 +1,22 @@
 import { Alert, Breadcrumb } from "flowbite-react";
-import BookCategoryFilter from "../components/SearchINP/BookCategoryFilter";
-import BookFilters from "../components/BookFilters";
-import BookLimitSelector from "../components/BookLimitSelector";
-import BookPagination from "../components/BookPagination";
+import BookCategoryFilter from "../../components/SearchINP/BookCategoryFilter";
+import BookFilters from "../../components/BookFilters";
+import BookLimitSelector from "../../components/BookLimitSelector";
+import BookPagination from "../../components/BookPagination";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { GetBookByTtit_Category } from "../services/SvBooks";
-import { BookApiResponse } from "../type/Book";
-import UseDebounce from "../../../hooks/UseDebounce";
-import BookCard from "../components/Cards/BookCard";
-import BookCardList from "../components/Cards/BookCardList";
-import InpSearchTitle from "../../../components/InpSearchTitle";
-import { CurrentRoute, HomeRoute } from "../components/Redirections";
-import { BooksCrumb } from "../../../components/BreadCrumb";
+import { BookApiResponse } from "../../type/Book";
+import UseDebounce from "../../../../hooks/UseDebounce";
+import InpSearchTitle from "../../../../components/InpSearchTitle";
+import { CurrentRoute, HomeRoute } from "../../components/Redirections";
+import { BooksCrumb } from "../../../../components/BreadCrumb";
+import { GetChildrenBCategory } from "../../services/SvChildBooks";
+import BookChildCard from "../../components/Cards/BookChildCard";
+import BookChildCardList from "../../components/Cards/BookChildCardList";
 
-const SearchBookByName = () => {
+const SearchChildrenCatalog = () => {
   const [page, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("currentBookPage");
+    const savedPage = sessionStorage.getItem("currentBookChilPage");
     return savedPage ? Number(savedPage) : 1;
   });
   const onPageChange = (page: number) => {
@@ -24,7 +24,7 @@ const SearchBookByName = () => {
     sessionStorage.setItem("currentBookPage", page.toString());
   };
   useEffect(() => {
-    sessionStorage.setItem("currentBookPage", page.toString());
+    sessionStorage.setItem("currentBookChilPage", page.toString());
   }, [page]);
 
   const [limit, setCurrentLimit] = useState<number>(10);
@@ -39,8 +39,8 @@ const SearchBookByName = () => {
     error,
     isLoading,
   } = useQuery<BookApiResponse, Error>(
-    ["BookPerTitle", page, limit, Title, Category],
-    () => GetBookByTtit_Category(page, limit, Title, Category),
+    ["BooksChildrenPerTitle", page, limit, Title, Category],
+    () => GetChildrenBCategory(page, limit, Title, Category),
     {
       keepPreviousData: true,
       staleTime: 600,
@@ -59,7 +59,7 @@ const SearchBookByName = () => {
     <>
       <Breadcrumb className="custom-breadcrumb pb-4">
         <HomeRoute />
-        <BooksCrumb/>
+        <BooksCrumb />
         <CurrentRoute CurrentPage={"Busqueda Por Título y Categoría"} />
       </Breadcrumb>
       <section className="flex flex-col justify-center items-center">
@@ -82,13 +82,13 @@ const SearchBookByName = () => {
             ) : view === "grid" ? (
               <div className="grid grid-cols-5 gap-5">
                 {books?.data.map((book) => (
-                  <BookCard Book={book} key={book.BookCode} />
+                  <BookChildCard Book={book} key={book.BookCode} />
                 ))}
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-5">
                 {books?.data.map((book) => (
-                  <BookCardList key={book.BookCode} Book={book} />
+                  <BookChildCardList key={book.BookCode} Book={book} />
                 ))}
               </div>
             )}
@@ -104,4 +104,4 @@ const SearchBookByName = () => {
   );
 };
 
-export default SearchBookByName;
+export default SearchChildrenCatalog;

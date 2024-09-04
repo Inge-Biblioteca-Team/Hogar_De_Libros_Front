@@ -21,6 +21,8 @@ import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBoo
 import PendingRequest from "../features/Loan/Pages/PendingRequest";
 import FinishedLoans from "../features/Loan/Pages/FinishedLoans";
 import InProgressLoans from "../features/Loan/Pages/InProgressLoans";
+import SearchChildrenCatalog from "../features/Books/Pages/ChildrenBooks/SearchChlindrenBook";
+import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInformationChild";
 
 const Routes = createBrowserRouter([
   {
@@ -60,11 +62,20 @@ const Routes = createBrowserRouter([
             path: "Avanzada",
             element: <AdvancedSearch />,
           },
+          {
+            path: "Infantiles",
+            element: <SearchChildrenCatalog />,
+          },
+
         ],
       },
       {
         path: "CatalogoDeLibros/Libro/:BookCode",
         element: <BookInformation />,
+      },
+      {
+        path: "CatalogoDeLibros/LibroI/:BookCode",
+        element: <BookInformationChild/>,
       },
       {
         path: "Gestion",

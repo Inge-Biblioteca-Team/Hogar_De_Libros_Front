@@ -30,7 +30,7 @@ const BooksBodyInfo = ({ book }: { book: Book }) => {
       </span>
       <span className="inline-grid ">
         <strong>Codigo de inscripción</strong>
-        {book?.InscriptionCode == 0 ? (
+        {book?.InscriptionCode == "" ? (
           <span>Pendiente</span>
         ) : (
           <span>{book?.InscriptionCode}</span>

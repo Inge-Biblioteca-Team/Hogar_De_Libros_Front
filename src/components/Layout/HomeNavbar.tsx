@@ -39,14 +39,14 @@ const HomeNavbar = () => {
             </Sidebar.Item>
             <Sidebar.Collapse label="Busqueda de libros">
               <Sidebar.Item href="/HogarDeLibros/Busqueda/Titulo">
-                Por Titulo
+                Por Título
               </Sidebar.Item>
               <Sidebar.Item href="/HogarDeLibros/Busqueda/Avanzada">
                 Busqueda Avanzada
               </Sidebar.Item>
-              <Sidebar.Collapse label="Categorias">
-                <Sidebar.Item href="#">Obras Generales</Sidebar.Item>
-              </Sidebar.Collapse>
+              <Sidebar.Item href="/HogarDeLibros/Busqueda/Infantiles">
+                Catalogo Infantil
+              </Sidebar.Item>
             </Sidebar.Collapse>
             <Sidebar.Item className="" href="/HogarDeLibros">
               Cronograma de eventos
@@ -55,7 +55,7 @@ const HomeNavbar = () => {
               Cronograma de cursos
             </Sidebar.Item>
             <Sidebar.Item className="" href="/HogarDeLibros">
-              Se un amigo Mas
+              Se un amigo Más
             </Sidebar.Item>
             <Sidebar.Item className="" href="/HogarDeLibros">
               Programas

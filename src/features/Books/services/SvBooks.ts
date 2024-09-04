@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Book, EditBook } from "../type/Book";
+import { Book } from "../type/Book";
 
 const GetPopularBooks = async () => {
   const response = await axios.get(
@@ -152,18 +152,18 @@ const GetBookByTtit_Category = async (
 
 
 //Añadir nuevo libro(Post)
-const PostNewBook = async (book: Book) => {
+const PostNewBook = async (book: Book, cateogy:string) => {
   try {
-    const response = await api.post("/books", book);
+    const response = await api.post(`/${cateogy}`, book);
     return response.data;
   } catch (error) {
     console.error("Error to post book:", error);
     throw error;
   }
 };
-const PatchEditBook = async (book: EditBook, BookCode:string) => {
+const PatchEditBook = async (book:Book, BookCode:string, Category:string) => {
   try {
-    const response = await api.patch(`books/${BookCode}`, book);
+    const response = await api.patch(`${Category}/${BookCode}`, book);
     return response.data;
   } catch (error) {
     console.error("Error to post book:", error);
@@ -172,9 +172,9 @@ const PatchEditBook = async (book: EditBook, BookCode:string) => {
 };
 
 // dar de baja al libro
-const PatchStatus = async (BookCode:string) =>{
+const PatchStatus = async (BookCode:string,Category:string) =>{
  try {
-    const response = await api.patch( `books/${BookCode}/disable`);
+    const response = await api.patch( `${Category}/${BookCode}/disable`);
     return response.data;
   } catch (error) {
     console.error("Error to post book:", error);

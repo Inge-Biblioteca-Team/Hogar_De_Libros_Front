@@ -16,7 +16,7 @@ const NewBook = () => {
         <BooksRoute />
         <CurrentRoute CurrentPage={"Añadir Libro"} />
       </Breadcrumb>
-      <FromNewBook />
+      <FromNewBook category="books" />
     </>
   );
 };

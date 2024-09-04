@@ -16,7 +16,7 @@ const NewCBook = () => {
         <ManageCrumbObj Objetive="Libros Infantiles" LK="LibrosI"/>
         <CurrentRoute CurrentPage={"Añadir Libro"} />
       </Breadcrumb>
-      <FromNewBook/>
+      <FromNewBook category="book-children"/>
     </>
   );
 };
