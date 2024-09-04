@@ -134,7 +134,7 @@ const EditComputer = () => {
                 <option value={2}>Bueno</option>
                 <option value={3}>Regular</option>
                 <option value={4}>Deficiente</option>
-                <option value={4}>Deplorable</option>
+                <option value={5}>Deplorable</option>
               </Select>
             </span>
             <span>

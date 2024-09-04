@@ -1,9 +1,11 @@
 const ConditionStatus = ({ condition }: { condition: number }) => {
   const conditionMap = {
-    1: "Pendiente de evaluación",
+    "": "Pendiente de evaluación",
+    1: "Óptimo",
     2: "Bueno",
-    3: "Medio",
-    4: "Malo",
+    3: "Regular",
+    4: "Deficiente",
+    5: "Deplorable"
   };
   const conditionText = conditionMap[condition as keyof typeof conditionMap] ?? "Desconocido";
 
