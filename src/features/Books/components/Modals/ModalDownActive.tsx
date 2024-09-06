@@ -1,6 +1,7 @@
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, TextInput } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi"
 import UseDownActive from "../../Hooks/UseDownActive";
+import { useState } from "react";
 const ModalDownActive = ({
   open,
   setOpen,
@@ -11,6 +12,7 @@ const ModalDownActive = ({
   setOpen: (open: boolean) => void; BookTitle:string; id:string
 }) => {
 const {mutate: PatchStatus} = UseDownActive();
+const [reason, setReason] = useState("");
 
 
 const handleConfirm = () => {
@@ -30,6 +32,14 @@ const handleConfirm = () => {
           <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
             Esta seguro de dar de baja al libro {BookTitle}
           </h3>
+          <TextInput
+            id="reason"
+            type="text"
+            placeholder="Escriba la razón de la baja"
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+            className="mb-4"
+          />
           <div className="flex justify-center gap-4">
             <Button color="failure" onClick={()=>handleConfirm()}>
               {"Confimar"}
