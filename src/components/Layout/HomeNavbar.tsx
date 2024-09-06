@@ -69,7 +69,7 @@ const HomeNavbar = () => {
             </Sidebar.Item>
             <Sidebar.Item className="" href="/HogarDeLibros">
               Disponibilidad <br />
-              de Equipo de salas
+              de salas
             </Sidebar.Item>
           </Sidebar.ItemGroup>
           <Sidebar.ItemGroup>
