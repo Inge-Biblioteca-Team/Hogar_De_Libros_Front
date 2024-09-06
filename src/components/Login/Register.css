@@ -1,0 +1,65 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    background-color: #111827; 
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .register-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .register-form {
+    padding: 20px;
+  }
+
+  .register-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  button {
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+  
+  button:hover {
+    transform: scale(1.05); 
+  }
+
+  .register-image img:hover {
+    transform: scale(1.05); 
+  }
+
+  .register-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+  }
+  
+  /* .book-icon {
+    width: 40px;
+    height: 40px;
+    color: #1d4ed8;
+    margin-right: 10px;
+  } */
+  
+  .register-title {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #1d4ed8;
+  }
