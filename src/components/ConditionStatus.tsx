@@ -1,6 +1,6 @@
 const ConditionStatus = ({ condition }: { condition: number }) => {
   const conditionMap = {
-    "": "Pendiente de evaluación",
+    0: "Pendiente de evaluación",
     1: "Deplorable",
     2: "Deficiente",
     3: "Regular",
