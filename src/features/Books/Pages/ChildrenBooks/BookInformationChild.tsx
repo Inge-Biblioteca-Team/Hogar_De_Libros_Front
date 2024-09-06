@@ -8,6 +8,7 @@ import {
   BooksCrumb,
   HomeCrumb,
   LastCrumb,
+  SearchCrumb,
 } from "../../../../components/BreadCrumb";
 import { GetChildrenBByBookCode, GetChildrenBCategory } from "../../services/SvChildBooks";
 
@@ -50,7 +51,7 @@ const BookInformationChild = () => {
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
         <BooksCrumb />
-        {book?.ShelfCategory && <LastCrumb CurrentPage={book.ShelfCategory} />}
+        <SearchCrumb/>
         {book?.Title && <LastCrumb CurrentPage={book.Title} />}
       </Breadcrumb>
       <div

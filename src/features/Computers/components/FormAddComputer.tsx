@@ -4,11 +4,16 @@ import { Equipment } from "../types/Computer";
 import ConfirmModal from "./ConfirmModal";
 import { useState } from "react";
 import useNewComputer from "../Hooks/useNewComputer";
+import ModalAddMoreActive from "../../../components/ModalAddMoreActive";
 
 const FormAddComputer = () => {
   const { register, reset, handleSubmit, setValue } = useForm<Equipment>();
 
-  const { mutate: CreateEquipment } = useNewComputer();
+  const [NeedMore, setNeedMore] = useState(false);
+  const { mutate: CreateEquipment } = useNewComputer({
+    Open: setNeedMore,
+    Reset: reset,
+  });
 
   const [newEquipmentData, setNewEquipmentData] = useState<Equipment | null>(
     null
@@ -83,6 +88,7 @@ const FormAddComputer = () => {
             id="MachineNumber"
             type="number"
             sizing="md"
+            min={0}
             {...register("MachineNumber")}
           />
         </span>
@@ -134,6 +140,7 @@ const FormAddComputer = () => {
           Accion="Crear"
         />
       )}
+      <ModalAddMoreActive open={NeedMore} Close={setNeedMore} />
     </>
   );
 };

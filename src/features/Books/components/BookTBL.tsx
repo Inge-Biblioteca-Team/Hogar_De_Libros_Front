@@ -38,7 +38,7 @@ const BookTBL = ({ books, accion1 }: { books: BookApiResponse, accion1:boolean }
                 {Books.Status ? "Activo" : "Inactivo"}
               </Table.Cell>
               <Table.Cell>
-                {accion1? <AccionButtons id={Books.BookCode} BookTitle={Books.Title} />: <AccionButtonsChildrens id={Books.BookCode} BookTitle={Books.Title}/>}
+                {accion1? <AccionButtons id={Books.BookCode} BookTitle={Books.Title} Status={Books.Status} />: <AccionButtonsChildrens id={Books.BookCode} BookTitle={Books.Title} Status={Books.Status} />}
               </Table.Cell>
             </Table.Row>
           ))}

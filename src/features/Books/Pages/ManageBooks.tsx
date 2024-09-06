@@ -58,6 +58,11 @@ const ManageBooks = () => {
   useEffect(() => {
     sessionStorage.setItem("currentPage", currentPage.toString());
   }, [currentPage]);
+  
+  useEffect(() => {
+    setCurrentPage(1); 
+  }, [searchTitleDelay, seachISBNDelay, seachAuthorDelay, seachSignaCodeDelay, searchStatus]);
+
 
   return (
     <>
@@ -67,7 +72,7 @@ const ManageBooks = () => {
         <BooksCrumb/>
         <LastCrumb CurrentPage="Catalogo Libros Generales"/>
       </Breadcrumb>
-      <div className=" flex w-full place-content-center mt-5">
+      <div className=" flex w-full place-content-center mt-5 pb-6">
         <div className=" w-5/6 flex flex-col gap-4">
           <div className=" flex justify-between">
             <div className="flex gap-2">
