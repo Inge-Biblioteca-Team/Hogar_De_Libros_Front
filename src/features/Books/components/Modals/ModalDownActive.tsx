@@ -12,7 +12,7 @@ const ModalDownActive = ({
   open: boolean;
   setOpen: (open: boolean) => void; BookTitle:string; id:string, category:string
 }) => {
-const {mutate: PatchStatus} = UseDownActive();
+const {mutate: PatchStatus} = UseDownActive(category);
 const [reason, setReason] = useState("");
 const handleConfirm = () => {
     PatchStatus(id, {
