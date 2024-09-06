@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
-const BtnReserve = ({ text, Goto, Objetive }: { id: string, text:string, Goto:string, Objetive:string }) => {
+const BtnReserve = ({ text, Objetive }: { text:string, Objetive:string }) => {
 
 const Navigate = useNavigate()
 
 const Navi = () =>{
-  Navigate(`/HogarDeLibros/CatalogoDeLibros/Libro/${Objetive}/${Goto}`)
+  Navigate(`/HogarDeLibros/Gestion/Prestamos/SolicitarLibro/${Objetive}`)
 }
 
   return (

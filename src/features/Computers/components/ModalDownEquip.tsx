@@ -1,7 +1,8 @@
-import { Modal, Button } from "flowbite-react";
+import { Modal, Button, TextInput } from "flowbite-react";
 
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import UseDownEquip from "../Hooks/UseDownEquip";
+import { useState } from "react";
 
 const ModalDownEquip = ({
     open,
@@ -13,6 +14,7 @@ const ModalDownEquip = ({
     setOpen: (open: boolean) => void; Serial:string; Code:string
   }) => {
   const {mutate: PatchStatus} = UseDownEquip();
+  const [reason, setReason] = useState("");
   
   const handleConfirm = () => {
       PatchStatus(Code, {
@@ -31,6 +33,14 @@ const ModalDownEquip = ({
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
               Esta seguro de dar de baja al equipo {Serial}
             </h3>
+            <TextInput
+            id="reason"
+            type="text"
+            placeholder="Escriba la razón de la baja"
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+            className="mb-4"
+          />
             <div className="flex justify-center gap-4">
               <Button color="failure" onClick={()=>handleConfirm()}>
                 {"Confimar"}
