@@ -6,15 +6,14 @@ const ModalDownActive = ({
   open,
   setOpen,
   BookTitle,
-  id
+  id,
+  category
 }: {
   open: boolean;
-  setOpen: (open: boolean) => void; BookTitle:string; id:string
+  setOpen: (open: boolean) => void; BookTitle:string; id:string, category:string
 }) => {
 const {mutate: PatchStatus} = UseDownActive();
 const [reason, setReason] = useState("");
-
-
 const handleConfirm = () => {
     PatchStatus(id, {
       onSuccess: () => {

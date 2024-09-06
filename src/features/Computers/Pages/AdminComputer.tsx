@@ -37,7 +37,7 @@ const AdminComputerInformation = () => {
         )}
       </Breadcrumb>
       <div className=" flex text-2xl text-center place-content-center mt-32">
-        <div className=" shadow-lg p-6 rounded-2xl shadow-indigo-300">
+        <div className=" shadow-lg p-6 rounded-2xl bg-white">
           <span className=" grid grid-cols-2 place-content-center gap-x-20 gap-y-11 ">
             <span>
               {" "}
@@ -60,11 +60,11 @@ const AdminComputerInformation = () => {
               <br />
               {EquipmentI?.EquipmentCategory}
             </span>
-            <span>
-              <strong>Estado</strong>
-              <br />
-              {EquipmentI?.Status ? "Activo" : "Inactivo"}
-            </span>
+            <span className=" flex flex-col text-center">
+            {EquipmentI?.ConditionRating && (
+              <ConditionStatusComputer condition={EquipmentI?.ConditionRating} />
+            )}
+          </span>
             <span>
               {" "}
               <strong>Observaciones</strong>
@@ -72,11 +72,7 @@ const AdminComputerInformation = () => {
               {EquipmentI?.Observation}
             </span>
           </span>
-          <span className=" flex flex-col text-center mt-11">
-            {EquipmentI?.ConditionRating && (
-              <ConditionStatusComputer condition={EquipmentI?.ConditionRating} />
-            )}
-          </span>
+     
           <BTNGoBack />
         </div>
       </div>

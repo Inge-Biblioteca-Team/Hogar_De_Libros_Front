@@ -10,7 +10,7 @@ const BTNGoBack = () => {
     <button
       type="button"
       onClick={handleGoBack}
-      className="bg-Bottoms text-white text-2xl rounded-lg p-2 mt-4
+      className="bg-Bottoms text-white text-2xl rounded-lg p-2 mt-9
 hover:bg-Bottoms-dark hover:scale-105
 max-sm:hidden"
     >

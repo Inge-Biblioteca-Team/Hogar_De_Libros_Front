@@ -1,4 +1,4 @@
-import { Modal, TextInput, Button } from "flowbite-react";
+import { Modal, TextInput, Button, Spinner } from "flowbite-react";
 import { useState } from "react";
 import searchImages from "../../services/SvSearchIMG";
 import { IMGsearh } from "../../type/SearchIMG";
@@ -15,9 +15,15 @@ const ModalAddImage = ({
   const [searchIMG, setSearchIMG] = useState<string>("");
   const [images, setImages] = useState<IMGsearh[]>([]);
 
+  const [Loading, setLoading] = useState(false);
+  const [NoResult, setNoResult] = useState(false);
+
   const handleSearch = async () => {
+    setLoading(true);
+    setNoResult(false);
     const results = await searchImages(searchIMG);
-    setImages(results);
+    results.length == 0 ? setNoResult(true) : setImages(results);
+    setLoading(false);
   };
 
   return (
@@ -30,20 +36,31 @@ const ModalAddImage = ({
           value={searchIMG}
           onChange={(e) => setSearchIMG(e.target.value)}
         />
-        <Button className="mt-3" onClick={handleSearch}>
-          Buscar
+        <Button className="mt-3" color={"blue"} onClick={handleSearch}>
+          {Loading ? (
+            <span>
+              <Spinner aria-label="Spinner button example" size="sm" color={"purple"} />
+              <span className="pl-3">Cargando</span>
+            </span>
+          ) : (
+            "Buscar"
+          )}
         </Button>
-        <div className="grid grid-cols-3 gap-4 mt-4">
-          {images.map((image) => (
-            <img
-              key={image.id}
-              src={image.src.large}
-              alt={image.alt}
-              className="cursor-pointer rounded h-full w-full"
-              onClick={() => onImageSelect(image.src.large)}
-            />
-          ))}
-        </div>
+        {NoResult ? (
+          "No hay resultados para el titulo buscado"
+        ) : (
+          <div className="grid grid-cols-3 gap-4 mt-4">
+            {images.map((image) => (
+              <img
+                key={image.id}
+                src={image.src.large}
+                alt={image.alt}
+                className="cursor-pointer rounded h-full w-full"
+                onClick={() => onImageSelect(image.src.large)}
+              />
+            ))}
+          </div>
+        )}
       </Modal.Body>
     </Modal>
   );

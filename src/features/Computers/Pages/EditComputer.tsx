@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import { GetByUniqueCode } from "../Services/SvComputer";
-import { Equipment, EquipmentEdit } from "../types/Computer";
+import { Equipment} from "../types/Computer";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useEditComputer from "../Hooks/useEditComputer";
 import { Breadcrumb, Label, Select, TextInput } from "flowbite-react";
 import {
@@ -12,10 +12,10 @@ import {
   ManageCrumbObj,
   LastCrumb,
 } from "../../../components/BreadCrumb";
+import ConfirmModal from "../components/ConfirmModal";
 
 const EditComputer = () => {
   const { Code } = useParams<{ Code?: string }>();
-  const navigate = useNavigate();
 
   const { data: EquipmentI } = useQuery<Equipment, Error>(
     ["EquipEdit", Code],
@@ -27,7 +27,12 @@ const EditComputer = () => {
     },
     { enabled: !!Code, staleTime: 60000 }
   );
-  const { register, handleSubmit, setValue } = useForm<EquipmentEdit>();
+  const { register, handleSubmit, setValue } = useForm<Equipment>();
+  const { mutate: editEquip } = useEditComputer();
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [NewData, setNewData] = useState<Equipment | null>(null);
+
   useEffect(() => {
     if (EquipmentI) {
       setValue("EquipmentCategory", EquipmentI.EquipmentCategory);
@@ -39,18 +44,19 @@ const EditComputer = () => {
     }
   }, [EquipmentI, setValue]);
 
-  const { mutate: editEquip } = useEditComputer();
+  const handleConfirm = () => {
+    if (EquipmentI?.EquipmentUniqueCode && NewData) {
+      editEquip({ equipment: NewData, Code: EquipmentI.EquipmentUniqueCode })}
+    setModalOpen(false);
+  };
 
-  const onSubmit = (formData: EquipmentEdit) => {
-    if (EquipmentI?.EquipmentUniqueCode) {
-      editEquip({ equipment: formData, Code: EquipmentI.EquipmentUniqueCode },
-        {
-          onSuccess: () => {
-            navigate(-1); // Vuelve a la página anterior
-          }});
-    } else {
-      console.error("No Code found for this");
-    }
+  const handleCancel = () => {
+    setModalOpen(false); 
+  };
+
+  const onSubmit = (formData: Equipment) => {
+    setNewData(formData)
+    setModalOpen(true); 
   };
 
   return (
@@ -129,12 +135,12 @@ const EditComputer = () => {
                 {...register("ConditionRating")}
                 required
               >
-                <option value={""}>Seleccione la condición</option>
-                <option value={1}>Óptimo</option>
-                <option value={2}>Bueno</option>
-                <option value={3}>Regular</option>
-                <option value={4}>Deficiente</option>
-                <option value={5}>Deplorable</option>
+                <option value={0}>Seleccione la condición</option>
+                <option value={5}>Optimo</option>
+                <option value={4}>Regular</option>
+                <option value={3}>Deficiente</option>
+                <option value={2}>Deplorable</option>
+                <option value={1}>Deplorable</option>
               </Select>
             </span>
             <span>
@@ -159,6 +165,16 @@ const EditComputer = () => {
           </div>
         </div>
       </form>
+      {NewData && (
+        <ConfirmModal
+         Accion="Editar"
+          isOpen={isModalOpen}
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+          Equip={NewData}
+        />
+      )}
+
     </>
   );
 };

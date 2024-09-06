@@ -4,11 +4,11 @@ import { Book } from "../../type/Book";
 import BtnReserve from "../BTN/BtnReserve";
 
 
-const BookCardList = ({Book}: {Book:Book}) => {
+const BookChildCardList = ({Book}: {Book:Book}) => {
 
   const navi = useNavigate()
   const Goto=()=>{
-    navi(`/HogarDeLibros/CatalogoDeLibros/Libro/${Book.BookCode}`)
+    navi(`/HogarDeLibros/CatalogoDeLibros/LibroI/${Book.BookCode}`)
   }
 
   return (
@@ -47,4 +47,4 @@ const BookCardList = ({Book}: {Book:Book}) => {
   )
 }
 
-export default BookCardList
+export default BookChildCardList

@@ -1,17 +1,17 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { GetBookByTtit_Category, GetByBookCode } from "../services/SvBooks";
-import { Book, BookApiResponse } from "../type/Book";
-import BtnReserve from "../components/BTN/BtnReserve";
+import { Book, BookApiResponse } from "../../type/Book";
+import BtnReserve from "../../components/BTN/BtnReserve";
 import { Breadcrumb } from "flowbite-react";
-import BookCard from "../components/Cards/BookCard";
+import BookCard from "../../components/Cards/BookCard";
 import {
   BooksCrumb,
   HomeCrumb,
   LastCrumb,
-} from "../../../components/BreadCrumb";
+} from "../../../../components/BreadCrumb";
+import { GetChildrenBByBookCode, GetChildrenBCategory } from "../../services/SvChildBooks";
 
-const BookInformation = () => {
+const BookInformationChild = () => {
   const { BookCode } = useParams<{ BookCode?: string }>();
 
   const {
@@ -24,14 +24,14 @@ const BookInformation = () => {
       if (!BookCode) {
         throw new Error("Error No existe ID de libro para buscar");
       }
-      return GetByBookCode(BookCode);
+      return GetChildrenBByBookCode(BookCode);
     },
     { enabled: !!BookCode }
   );
 
   const { data: Recomdations } = useQuery<BookApiResponse, Error>(
     ["Recomdations", book?.ShelfCategory],
-    () => GetBookByTtit_Category(1, 100, "", book?.ShelfCategory),
+    () => GetChildrenBCategory(1, 100, "", book?.ShelfCategory),
     {
       keepPreviousData: true,
     }
@@ -88,7 +88,9 @@ const BookInformation = () => {
           <div className="">
             {book?.BookCode && (
               <BtnReserve
-                Objetive={book.BookCode}
+                Goto={book.BookCode}
+                Objetive="Solicitar"
+                id={book.BookCode}
                 text="Solicitar Prestamo"
               />
             )}
@@ -110,4 +112,4 @@ const BookInformation = () => {
   );
 };
 
-export default BookInformation;
+export default BookInformationChild;

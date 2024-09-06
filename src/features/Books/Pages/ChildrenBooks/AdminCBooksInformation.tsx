@@ -1,17 +1,12 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { GetByBookCode } from "../services/SvBooks";
-import { Book } from "../type/Book";
+import { Book } from "../../type/Book";
 import { Breadcrumb } from "flowbite-react";
-import {
-  HomeCrumb,
-  LastCrumb,
-  ManageCrumb,
-  ManageCrumbObj,
-} from "../../../components/BreadCrumb";
-import BooksBodyInfo from "../components/Forms/BooksBodyInfo";
+import { HomeCrumb, LastCrumb, ManageCrumb, ManageCrumbObj } from "../../../../components/BreadCrumb";
+import BooksBodyInfo from "../../components/Forms/BooksBodyInfo";
+import { GetChildrenBByBookCode } from "../../services/SvChildBooks";
 
-const AdminBooksInformation = () => {
+const AdminCBooksInformation = () => {
   const { BookCode } = useParams<{ BookCode?: string }>();
 
   const { data: book } = useQuery<Book, Error>(
@@ -20,7 +15,7 @@ const AdminBooksInformation = () => {
       if (!BookCode) {
         throw new Error("Error No existe ID de libro para buscar");
       }
-      return GetByBookCode(BookCode);
+      return GetChildrenBByBookCode(BookCode);
     },
     { enabled: !!BookCode, staleTime: 60000 }
   );
@@ -28,14 +23,14 @@ const AdminBooksInformation = () => {
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <ManageCrumb />
-        <ManageCrumbObj Objetive="Libros" LK="Libros" />
+        <HomeCrumb/>
+        <ManageCrumb/>
+        <ManageCrumbObj Objetive="Libros Infantiles" LK="LibrosI"/>
         {book?.Title && <LastCrumb CurrentPage={book?.Title} />}
       </Breadcrumb>
-         {book &&<BooksBodyInfo book={book} />}
+        {book &&<BooksBodyInfo book={book} />}
     </>
   );
 };
 
-export default AdminBooksInformation;
+export default AdminCBooksInformation;

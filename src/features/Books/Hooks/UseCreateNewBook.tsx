@@ -1,15 +1,26 @@
 import { useMutation } from "react-query";
 import { PostNewBook } from "../services/SvBooks";
 import toast from "react-hot-toast";
+import { Book } from "../type/Book";
 
-const UseCreateNewBook = () => {
+const UseCreateNewBook = ({
+  Open,
+  Reset,
+  category
+}: {
+  Open: React.Dispatch<React.SetStateAction<boolean>>;
+  Reset: () => void;
+  category:string
+}) => {
   const mutation = useMutation({
-    mutationFn: PostNewBook,
+    mutationFn: (book: Book) => PostNewBook(book, category),
     onSuccess: () => {
-      toast.success('Book created successfully!');
+      toast.success("Libro añadido con exito!");
+      Open(true);
+      Reset();
     },
-    onError: (error:Error) => {
-      toast.error(`Error creating book: ${error.message}`);
+    onError: (error: Error) => {
+      toast.error(`Error al añadir libro: ${error.message}`);
     },
   });
 
@@ -17,9 +28,6 @@ const UseCreateNewBook = () => {
     ...mutation,
     isLoading: mutation.isLoading,
   };
-}
+};
 
-export default UseCreateNewBook
-
-//Revisar ese loading que es muy rapido
-// los estados bien
+export default UseCreateNewBook;

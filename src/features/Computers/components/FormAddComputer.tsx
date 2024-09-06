@@ -1,16 +1,36 @@
 import { Label, Select, TextInput } from "flowbite-react";
-import useNewComputer from "../Hooks/useNewComputer";
 import { useForm } from "react-hook-form";
 import { Equipment } from "../types/Computer";
+import ConfirmModal from "./ConfirmModal";
+import { useState } from "react";
+import useNewComputer from "../Hooks/useNewComputer";
 
 const FormAddComputer = () => {
   const { register, reset, handleSubmit, setValue } = useForm<Equipment>();
 
-  setValue("MachineNumber", 0)
   const { mutate: CreateEquipment } = useNewComputer();
+
+  const [newEquipmentData, setNewEquipmentData] = useState<Equipment | null>(
+    null
+  );
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  setValue("MachineNumber", 0);
+
   const onSubmit = (NewEquipment: Equipment) => {
-    CreateEquipment(NewEquipment);
+    setNewEquipmentData(NewEquipment);
+    setModalOpen(true);
+  };
+
+  const handleConfirm = (Equipment: Equipment) => {
+    CreateEquipment(Equipment);
     reset();
+    setModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -75,12 +95,12 @@ const FormAddComputer = () => {
             {...register("ConditionRating")}
             required
           >
-            <option value={""}>Seleccione la condición</option>
-            <option value={1}>Óptimo</option>
-            <option value={2}>Bueno</option>
+            <option value={0}>Seleccione la condición</option>
+            <option value={5}>Óptimo</option>
+            <option value={4}>Bueno</option>
             <option value={3}>Regular</option>
-            <option value={4}>Deficiente</option>
-            <option value={5}>Deplorable</option>
+            <option value={2}>Deficiente</option>
+            <option value={1}>Deplorable</option>
           </Select>
         </span>
         <span>
@@ -97,13 +117,23 @@ const FormAddComputer = () => {
           <button
             type="submit"
             className="bg-Bottoms w-full text-Text text-lg rounded-lg 
-        p-2 hover:bg-Bottoms-dark hover:scale-105 
-        mt-6"
+            p-2 hover:bg-Bottoms-dark hover:scale-105 
+            mt-6"
           >
             Confirmar
           </button>
         </div>
-    </form>
+      </form>
+      {newEquipmentData && (
+        <ConfirmModal
+          isOpen={isModalOpen}
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+          Equip={newEquipmentData}
+          Accion="Crear"
+        />
+      )}
+    </>
   );
 };
 export default FormAddComputer;

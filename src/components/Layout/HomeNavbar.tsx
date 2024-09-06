@@ -22,7 +22,7 @@ const HomeNavbar = () => {
         />
       </button>
       <Sidebar
-        className={` bottom-0 left-0 top-20 mt-5 opacity-95 ${
+        className={` bottom-0 left-0 top-20 mt-5 pb-24 opacity-95 ${
           visible ? ` fixed` : `hidden`
         }`}
         id="sideBar"
@@ -39,14 +39,14 @@ const HomeNavbar = () => {
             </Sidebar.Item>
             <Sidebar.Collapse label="Busqueda de libros">
               <Sidebar.Item href="/HogarDeLibros/Busqueda/Titulo">
-                Por Titulo
+                Por Título
               </Sidebar.Item>
               <Sidebar.Item href="/HogarDeLibros/Busqueda/Avanzada">
                 Busqueda Avanzada
               </Sidebar.Item>
-              <Sidebar.Collapse label="Categorias">
-                <Sidebar.Item href="#">Obras Generales</Sidebar.Item>
-              </Sidebar.Collapse>
+              <Sidebar.Item href="/HogarDeLibros/Busqueda/Infantiles">
+                Catalogo Infantil
+              </Sidebar.Item>
             </Sidebar.Collapse>
             <Sidebar.Item className="" href="/HogarDeLibros">
               Cronograma de eventos
@@ -55,12 +55,15 @@ const HomeNavbar = () => {
               Cronograma de cursos
             </Sidebar.Item>
             <Sidebar.Item className="" href="/HogarDeLibros">
-              Se un amigo Mas
+              Se un amigo Más
             </Sidebar.Item>
             <Sidebar.Item className="" href="/HogarDeLibros">
               Programas
             </Sidebar.Item>
-            <Sidebar.Item className="" href="/HogarDeLibros/Gestion/Equipos/disponible">
+            <Sidebar.Item
+              className=""
+              href="/HogarDeLibros/Gestion/Equipos/disponible"
+            >
               Disponibilidad <br />
               de Equipo de computo
             </Sidebar.Item>
@@ -74,9 +77,14 @@ const HomeNavbar = () => {
               <Sidebar.Item href="/HogarDeLibros/Gestion/Equipos">
                 Equipo de Cómputo
               </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
-                Libros
-              </Sidebar.Item>
+              <Sidebar.Collapse className=" font-bold" label="Libros">
+                <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
+                  Catalogo General
+                </Sidebar.Item>
+                <Sidebar.Item href="/HogarDeLibros/Gestion/LibrosI">
+                  Catalogo Infantil
+                </Sidebar.Item>
+              </Sidebar.Collapse>
               <Sidebar.Item href="/HogarDeLibros/Gestion/Artistas">
                 Artistas Locales
               </Sidebar.Item>

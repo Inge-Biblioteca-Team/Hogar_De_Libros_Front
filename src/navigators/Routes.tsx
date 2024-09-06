@@ -15,6 +15,12 @@ import AdminComputerInformation from "../features/Computers/Pages/AdminComputer"
 import ComputerNew from "../features/Computers/Pages/ComputerNew";
 import AvailableComputers from "../features/Computers/components/AvailableComputers";
 import BookLoan from "../features/Books/Pages/BookLoand";
+import ManageChildrenBooks from "../features/Books/Pages/ChildrenBooks/ManageChildrenBooks";
+import NewCBook from "../features/Books/Pages/ChildrenBooks/NewCBook";
+import AdminCBooksInformation from "../features/Books/Pages/ChildrenBooks/AdminCBooksInformation";
+import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBookInformation";
+import SearchChildrenCatalog from "../features/Books/Pages/ChildrenBooks/SearchChlindrenBook";
+import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInformationChild";
 
 const Routes = createBrowserRouter([
   {
@@ -54,11 +60,20 @@ const Routes = createBrowserRouter([
             path: "Avanzada",
             element: <AdvancedSearch />,
           },
+          {
+            path: "Infantiles",
+            element: <SearchChildrenCatalog />,
+          },
+
         ],
       },
       {
         path: "CatalogoDeLibros/Libro/:BookCode",
         element: <BookInformation />,
+      },
+      {
+        path: "CatalogoDeLibros/LibroI/:BookCode",
+        element: <BookInformationChild/>,
       },
       {
         path: "Gestion",
@@ -81,6 +96,27 @@ const Routes = createBrowserRouter([
               {
                 path: "Editar/:BookCode",
                 element: <EditBookInformation />,
+              },
+            ],
+          },
+          {
+            path: "LibrosI",
+            children: [
+              {
+                index: true,
+                element: <ManageChildrenBooks />,
+              },
+              {
+                path: "NuevoLibro",
+                element: <NewCBook />,
+              },
+              {
+                path: "Ver/:BookCode",
+                element: <AdminCBooksInformation />,
+              },
+              {
+                path: "Editar/:BookCode",
+                element: <EditCBookInformation />,
               },
             ],
           },
@@ -115,19 +151,15 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
-               
               },
               {
                 path: "Nuevo",
-          
               },
               {
                 path: "Editar/:Code",
-             
               },
               {
                 path: "Ver/:Code",
-
               },
             ],
           },
@@ -136,19 +168,15 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
-               
               },
               {
                 path: "Nueva",
-               
               },
               {
                 path: "Editar/:Code",
-                
               },
               {
                 path: "Ver/:Code",
-             
               },
             ],
           },
@@ -157,19 +185,15 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
-               
               },
               {
                 path: "Nuevo",
-               
               },
               {
                 path: "Editar/:Code",
-                
               },
               {
                 path: "Ver/:Code",
-             
               },
             ],
           },
@@ -178,19 +202,15 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
-               
               },
               {
                 path: "Nuevo",
-               
               },
               {
                 path: "Editar/:Code",
-                
               },
               {
                 path: "Ver/:Code",
-             
               },
             ],
           },
@@ -199,19 +219,15 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
-               
               },
               {
                 path: "Nuevo",
-               
               },
               {
                 path: "Editar/:Code",
-                
               },
               {
                 path: "Ver/:Code",
-             
               },
             ],
           },
@@ -220,19 +236,15 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
-               
               },
               {
                 path: "Nuevo",
-               
               },
               {
                 path: "Editar/:Code",
-                
               },
               {
                 path: "Ver/:Code",
-             
               },
             ],
           },
@@ -241,19 +253,15 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
-               
               },
               {
                 path: "Nuevo",
-               
               },
               {
                 path: "Editar/:Code",
-                
               },
               {
                 path: "Ver/:Code",
-             
               },
             ],
           },
@@ -262,19 +270,15 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
-               
               },
               {
                 path: "Nuevo",
-               
               },
               {
                 path: "Editar/:Code",
-                
               },
               {
                 path: "Ver/:Code",
-             
               },
             ],
           },
@@ -283,19 +287,15 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
-               
               },
               {
                 path: "Pendientes",
-               
               },
               {
                 path: "Finalizados",
-                
               },
               {
                 path: "EnProceso",
-             
               },
               {
                 path: "SolicitarLibro/:Objetive",

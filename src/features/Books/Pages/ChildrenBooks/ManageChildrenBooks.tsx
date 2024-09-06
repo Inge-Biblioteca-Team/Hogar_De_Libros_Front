@@ -1,22 +1,22 @@
 import { Breadcrumb } from "flowbite-react";
 import { useQuery } from "react-query";
-import { GetBookPaginated } from "../services/SvBooks";
-import { BookApiResponse } from "../type/Book";
-import InpSearchTitle from "../../../components/InpSearchTitle";
+import { BookApiResponse } from "../../type/Book";
+import InpSearchTitle from "../../../../components/InpSearchTitle";
 import { useCallback, useEffect, useState } from "react";
-import BtnAdvanceSearch from "../components/BTN/BtnAdvanceSearch";
-import SltCurrentLimit from "../../../components/SltCurrentLimit";
-import CreateNewActive from "../../../components/CreateNewActive";
-import PaginatationSelector from "../../../components/PaginatationSelector";
-import { HomeRoute, ManageRoute } from "../components/Redirections";
-import AdminAdvaceSearch from "../components/SearchINP/AdminAdvaceSearch";
-import UseDebounce from "../../../hooks/UseDebounce";
-import { BooksCrumb, LastCrumb } from "../../../components/BreadCrumb";
-import BookTBL from "../components/BookTBL";
+import BtnAdvanceSearch from "../../components/BTN/BtnAdvanceSearch";
+import SltCurrentLimit from "../../../../components/SltCurrentLimit";
+import PaginatationSelector from "../../../../components/PaginatationSelector";
+import { HomeRoute, ManageRoute } from "../../components/Redirections";
+import AdminAdvaceSearch from "../../components/SearchINP/AdminAdvaceSearch";
+import UseDebounce from "../../../../hooks/UseDebounce";
+import { LastCrumb } from "../../../../components/BreadCrumb";
+import { useNavigate } from "react-router-dom";
+import BookTBL from "../../components/BookTBL";
+import { GetChildrenBPaginated } from "../../services/SvChildBooks";
 
-const ManageBooks = () => {
+const ManageChildrenBooks = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("currentPage");
+    const savedPage = sessionStorage.getItem("currentChild");
     return savedPage ? Number(savedPage) : 1;
   });
 
@@ -29,7 +29,7 @@ const ManageBooks = () => {
   const [searchStatus, setSearchStatus] = useState<string>("");
   const onPageChange = (page: number) => {
     setCurrentPage(page);
-    sessionStorage.setItem("currentPage", page.toString());
+    sessionStorage.setItem("currentChild", page.toString());
   };
 
   const viewAdvanceSerch = useCallback(() => setAdvance((prev) => !prev), []);
@@ -39,8 +39,8 @@ const ManageBooks = () => {
   const seachSignaCodeDelay = UseDebounce(searchSignaCode, 1000);
 
   const { data: books } = useQuery<BookApiResponse, Error>(
-    ["BookCatalog", currentPage, currentLimit, searchTitleDelay, seachAuthorDelay, seachISBNDelay, seachSignaCodeDelay,
-       searchStatus,],() => GetBookPaginated(
+    ["ChildrenCatalog", currentPage, currentLimit, searchTitleDelay, seachAuthorDelay, seachISBNDelay, seachSignaCodeDelay,
+       searchStatus,],() => GetChildrenBPaginated(
         currentPage,
         currentLimit,
         searchTitleDelay,
@@ -54,7 +54,10 @@ const ManageBooks = () => {
     }
   );
   const MaxPage = Math.ceil((books?.count ?? 0) / currentLimit);
-
+  const navi = useNavigate()
+  const Goto=()=>{
+    navi(`/HogarDeLibros/Gestion/LibrosI/NuevoLibro`)
+  }
   useEffect(() => {
     sessionStorage.setItem("currentPage", currentPage.toString());
   }, [currentPage]);
@@ -64,8 +67,7 @@ const ManageBooks = () => {
       <Breadcrumb className="custom-breadcrumb">
         <HomeRoute />
         <ManageRoute />
-        <BooksCrumb/>
-        <LastCrumb CurrentPage="Catalogo Libros Generales"/>
+        <LastCrumb CurrentPage="Libros Infantiles"/>
       </Breadcrumb>
       <div className=" flex w-full place-content-center mt-5">
         <div className=" w-5/6 flex flex-col gap-4">
@@ -81,9 +83,17 @@ const ManageBooks = () => {
               />
               <BtnAdvanceSearch click={viewAdvanceSerch} icon={advance} />
             </div>
-            <CreateNewActive objetive="Libro" />
+            <button
+      type="button"
+      className="bg-Bottoms text-Text text-lg rounded-lg py-1 px-2
+      hover:bg-Bottoms-dark hover:scale-105
+       max-sm:hidden"
+       onClick={Goto}
+      >
+      Añadir Libro
+    </button>
           </div>
-         {books && <BookTBL accion1={true} books={books}/>}
+         {books && <BookTBL accion1={false} books={books}/>}
           <div className=" w-full flex justify-between">
             <div>
               <span className=" pl-5">
@@ -106,4 +116,4 @@ const ManageBooks = () => {
   );
 };
 
-export default ManageBooks;
+export default ManageChildrenBooks;
