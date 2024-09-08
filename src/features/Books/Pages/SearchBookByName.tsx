@@ -66,7 +66,7 @@ const SearchBookByName = () => {
         <div className="w-4/5 flex flex-col items-center justify-center pt-1">
           <div className=" w-full flex justify-between">
             <div className=" flex justify-center items-center gap-7">
-              <BookCategoryFilter handleCategoryChange={setSearchCategory} />
+              <BookCategoryFilter handleCategoryChange={setSearchCategory} children={false} />
               <InpSearchTitle onSearch={setSearchTitle} Criterio="Título" />
             </div>
             <div className="flex gap-4">

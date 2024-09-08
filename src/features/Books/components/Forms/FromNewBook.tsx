@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import UseCreateNewBook from "../../Hooks/UseCreateNewBook";
 import { Book } from "../../type/Book";
@@ -8,15 +8,22 @@ import ConfirmModal from "../Modals/ConfirmModal";
 import ModalAddImage from "../Modals/ModalAddImage";
 import ModalAddMoreActive from "../../../../components/ModalAddMoreActive";
 
-const FromNewBook = ({category}:{category:string}) => {
+const FromNewBook = ({ category }: { category: string }) => {
   const { register, setValue, watch, handleSubmit, reset } = useForm<Book>();
-  setValue("PublishedYear", 0)
+  setValue("PublishedYear", 0);
   const handleReset = () => {
-    reset(); 
-    setValue("Cover", "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?w=360"); 
+    reset();
+    setValue(
+      "Cover",
+      "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?w=360"
+    );
   };
   const [NeedMore, setNeedMore] = useState(false);
-  const { mutate: createBook} = UseCreateNewBook({ Open: setNeedMore, Reset:handleReset, category:category});
+  const { mutate: createBook } = UseCreateNewBook({
+    Open: setNeedMore,
+    Reset: handleReset,
+    category: category,
+  });
 
   const [showModal, setShowModal] = useState(false);
 
@@ -44,7 +51,10 @@ const FromNewBook = ({category}:{category:string}) => {
     setModalOpen(true);
   };
   useEffect(() => {
-    setValue("Cover", "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?w=360");
+    setValue(
+      "Cover",
+      "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?w=360"
+    );
   }, [setValue]);
 
   return (
@@ -130,6 +140,7 @@ const FromNewBook = ({category}:{category:string}) => {
               <TextInput
                 id="PublicationYear"
                 type="number"
+                min={0}
                 {...register("PublishedYear")}
               />
             </span>
@@ -163,11 +174,25 @@ const FromNewBook = ({category}:{category:string}) => {
                 value="Categoría de estante"
                 className="text-xl"
               />
-              <TextInput
-                id="category"
-                type="text"
-                {...register("ShelfCategory")}
-              />
+              {category == "books"?   <Select {...register("ShelfCategory")} required>
+                <option value="">Seleccione una categoria</option>
+                <option value="Ciencias Sociales">Ciencias Sociales</option>
+                <option value="Literatura">Literatura</option>
+                <option value="Geografía">Geografía</option>
+                <option value="Artes y Recreación">Artes y Recreación</option>
+                <option value="Ciencias Naturales">Ciencias Naturales</option>
+                <option value="Filosofía y Psicología">
+                  Filosofía y Psicología
+                </option>
+                <option value="Tecnología">Tecnología</option>
+                <option value="Religión">Religión</option>
+                <option value="Lenguas">Lenguas</option>
+                <option value="Obras Generales">Obras Generales</option>
+              </Select> : <Select {...register("ShelfCategory")} required>
+              <option value="">Seleccione una categoria</option>
+              <option value="0-5Años">0-5 Años</option>
+              <option value="+6Años">+6 Años</option>
+                </Select>}
             </span>
             <span>
               <Label
@@ -235,7 +260,7 @@ const FromNewBook = ({category}:{category:string}) => {
           Accion="Añadir"
         />
       )}
-      <ModalAddMoreActive open={NeedMore} Close={setNeedMore}/>
+      <ModalAddMoreActive open={NeedMore} Close={setNeedMore} />
     </>
   );
 };

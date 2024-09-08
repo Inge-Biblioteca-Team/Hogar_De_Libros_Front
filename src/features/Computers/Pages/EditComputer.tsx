@@ -122,6 +122,7 @@ const EditComputer = () => {
                 id="MachineNumber"
                 type="number"
                 sizing="md"
+                min={0}
                 {...register("MachineNumber")}
               />
             </span>

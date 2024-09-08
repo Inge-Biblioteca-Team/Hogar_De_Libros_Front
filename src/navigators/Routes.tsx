@@ -14,7 +14,6 @@ import AdvancedSearch from "../features/Books/Pages/AdvancedSearch";
 import AdminComputerInformation from "../features/Computers/Pages/AdminComputer";
 import ComputerNew from "../features/Computers/Pages/ComputerNew";
 import AvailableComputers from "../features/Computers/components/AvailableComputers";
-import BookLoan from "../features/Books/Pages/BookLoand";
 import ManageChildrenBooks from "../features/Books/Pages/ChildrenBooks/ManageChildrenBooks";
 import NewCBook from "../features/Books/Pages/ChildrenBooks/NewCBook";
 import AdminCBooksInformation from "../features/Books/Pages/ChildrenBooks/AdminCBooksInformation";
@@ -290,16 +289,22 @@ const Routes = createBrowserRouter([
               },
               {
                 path: "Pendientes",
+               //   element:<PendingRequest/>
               },
               {
                 path: "Finalizados",
+                //  element: <FinishedLoans/>
               },
               {
                 path: "EnProceso",
+               //   element:<InProgressLoans/>
+              },
+              {
+                path: "Pendientes/Ver/:Code",
               },
               {
                 path: "SolicitarLibro/:Objetive",
-                element: <BookLoan/>
+              //  element: <BookLoan/>
               },
             ],
           },

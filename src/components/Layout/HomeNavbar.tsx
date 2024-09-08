@@ -22,12 +22,12 @@ const HomeNavbar = () => {
         />
       </button>
       <Sidebar
-        className={` bottom-0 left-0 top-20 mt-5 pb-24 opacity-95 ${
+        className={` bottom-0 left-0 top-20 w-80 mt-5 pb-24 opacity-95 ${
           visible ? ` fixed` : `hidden`
         }`}
         id="sideBar"
       >
-        <Sidebar.Items>
+        <Sidebar.Items className=" w-72">
           <Sidebar.ItemGroup>
             <Sidebar.Item href="/" className="text-xl hover:text-blue-500">
               Inicio
@@ -69,7 +69,7 @@ const HomeNavbar = () => {
             </Sidebar.Item>
             <Sidebar.Item className="" href="/HogarDeLibros">
               Disponibilidad <br />
-              de Equipo de salas
+              de salas
             </Sidebar.Item>
           </Sidebar.ItemGroup>
           <Sidebar.ItemGroup>
