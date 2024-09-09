@@ -1,14 +1,14 @@
-// src/components/Register.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Register.css';
+import { TextInput, Button, Checkbox, Label, Card, Select } from 'flowbite-react';
+import axios from 'axios';
 
-const Register: React.FC = () => {
+const Register = () => {
   const [formData, setFormData] = useState({
     Email: '',
     Name: '',
     LastName: '',
-    PhoneNumber: '',
+    PhoneNumber: 0,
     Province: '',
     District: '',
     Gender: '',
@@ -19,7 +19,10 @@ const Register: React.FC = () => {
     AcceptTermsAndConditions: false,
   });
 
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<any>({
+    repeatPassword: '',
+  });
+
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -35,267 +38,253 @@ const Register: React.FC = () => {
         ...formData,
         [name]: value,
       });
-    }
-  };
 
-  const validateForm = () => {
-    const newErrors: any = {};
-    if (!formData.Email) newErrors.Email = 'El correo electrónico es requerido';
-    if (!formData.Name) newErrors.Name = 'El nombre es requerido';
-    if (!formData.LastName) newErrors.LastName = 'Los apellidos son requeridos';
-    if (!formData.PhoneNumber) newErrors.PhoneNumber = 'El número de teléfono es requerido';
-    if (!formData.Province) newErrors.Province = 'La provincia es requerida';
-    if (!formData.District) newErrors.District = 'El cantón es requerido';
-    if (!formData.Gender) newErrors.Gender = 'El género es requerido';
-    if (!formData.Address) newErrors.Address = 'La dirección es requerida';
-    if (!formData.BirthDate) newErrors.BirthDate = 'La fecha de nacimiento es requerida';
-    if (!formData.Password) newErrors.Password = 'La contraseña es requerida';
-    if (formData.Password !== formData.repeatPassword) newErrors.repeatPassword = 'Las contraseñas no coinciden';
-    if (!formData.AcceptTermsAndConditions) newErrors.AcceptTermsAndConditions = 'Debe aceptar los términos y condiciones';
-    return newErrors;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-    } else {
-      try {
-        const response = await fetch('https://tu-backend.com/api/usuarios', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            Email: formData.Email,
-            Name: formData.Name,
-            LastName: formData.LastName,
-            PhoneNumber: parseInt(formData.PhoneNumber),
-            Province: formData.Province,
-            District: formData.District,
-            Gender: formData.Gender,
-            Address: formData.Address,
-            BirthDate: new Date(formData.BirthDate),
-            Password: formData.Password,
-            AccpetTermsAndConditions: formData.AcceptTermsAndConditions,
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error('Error al registrar el usuario');
+      if (name === 'repeatPassword') {
+        if (value !== formData.Password) {
+          setErrors((prevErrors: any) => ({
+            ...prevErrors,
+            repeatPassword: 'Las contraseñas no coinciden',
+          }));
+        } else {
+          setErrors((prevErrors: any) => ({
+            ...prevErrors,
+            repeatPassword: '',
+          }));
         }
-
-        console.log('Usuario registrado exitosamente');
-        navigate('/dashboard');
-      } catch (error) {
-        console.error(error);
       }
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData.Password !== formData.repeatPassword) {
+      setErrors((prevErrors: any) => ({
+        ...prevErrors,
+        repeatPassword: 'Las contraseñas no coinciden',
+      }));
+      return;
+    }
+
+    console.log('Formulario Enviado:', formData); 
+
+    try {
+      const response = await axios.post('https://tu-backend.com/api/usuarios', {
+        Email: formData.Email,
+        Name: formData.Name,
+        LastName: formData.LastName,
+        PhoneNumber: formData.PhoneNumber,
+        Province: formData.Province,
+        District: formData.District,
+        Gender: formData.Gender,
+        Address: formData.Address,
+        BirthDate: new Date(formData.BirthDate),
+        Password: formData.Password,
+        AcceptTermsAndConditions: formData.AcceptTermsAndConditions,
+      });
+
+      if (response.status === 200) {
+        console.log('Usuario registrado exitosamente');
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      console.error('Error al registrar el usuario:', error);
+    }
+  };
+
   return (
-    <div className="register-container">
-      <div className="register-card">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="register-form w-full md:w-1/2">
-            <div className="card bg-white rounded-lg shadow-lg p-6 border border-gray-300">
-              <h2 className="text-2xl font-bold text-gray-700 mb-4">Registro de usuario</h2>
-              <p className="text-sm text-gray-500 mb-4">
-                ¿Posees una cuenta? <a href="/LogIn" className="text-blue-500 hover:underline">Inicia Sesión aquí.</a>
-              </p>
+    <div className="flex justify-center items-center min-h-screen bg-gray-800">
+      <Card className="max-w-screen-lg w-full">
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-1/2 p-6">
+            <h2 className="text-2xl font-bold mb-4 text-blue-600">Registro de usuario</h2>
+            <p className="text-sm mb-4">
+              ¿Posees una cuenta? <a href="/LogIn" className="text-blue-500 hover:underline">Inicia Sesión aquí.</a>
+            </p>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="Name" className="block text-sm font-medium text-gray-700">Nombre</label>
-                    <input
-                      type="text"
-                      id="Name"
-                      name="Name"
-                      value={formData.Name}
-                      onChange={handleChange}
-                      className="border border-gray-300 p-2 w-full rounded"
-                    />
-                    {errors.Name && <span className="text-red-500 text-sm">{errors.Name}</span>}
-                  </div>
-
-                  <div>
-                    <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">Apellidos</label>
-                    <input
-                      type="text"
-                      id="LastName"
-                      name="LastName"
-                      value={formData.LastName}
-                      onChange={handleChange}
-                      className="border border-gray-300 p-2 w-full rounded"
-                    />
-                    {errors.LastName && <span className="text-red-500 text-sm">{errors.LastName}</span>}
-                  </div>
-
-                  <div>
-                    <label htmlFor="Email" className="block text-sm font-medium text-gray-700">Correo</label>
-                    <input
-                      type="email"
-                      id="Email"
-                      name="Email"
-                      value={formData.Email}
-                      onChange={handleChange}
-                      className="border border-gray-300 p-2 w-full rounded"
-                    />
-                    {errors.Email && <span className="text-red-500 text-sm">{errors.Email}</span>}
-                  </div>
-
-                  <div>
-                    <label htmlFor="PhoneNumber" className="block text-sm font-medium text-gray-700">Número de Teléfono</label>
-                    <input
-                      type="tel"
-                      id="PhoneNumber"
-                      name="PhoneNumber"
-                      value={formData.PhoneNumber}
-                      onChange={handleChange}
-                      className="border border-gray-300 p-2 w-full rounded"
-                    />
-                    {errors.PhoneNumber && <span className="text-red-500 text-sm">{errors.PhoneNumber}</span>}
-                  </div>
-
-                  <div>
-                    <label htmlFor="Password" className="block text-sm font-medium text-gray-700">Contraseña</label>
-                    <input
-                      type="password"
-                      id="Password"
-                      name="Password"
-                      value={formData.Password}
-                      onChange={handleChange}
-                      className="border border-gray-300 p-2 w-full rounded"
-                    />
-                    {errors.Password && <span className="text-red-500 text-sm">{errors.Password}</span>}
-                  </div>
-
-                  <div>
-                    <label htmlFor="repeatPassword" className="block text-sm font-medium text-gray-700">Repita la Contraseña</label>
-                    <input
-                      type="password"
-                      id="repeatPassword"
-                      name="repeatPassword"
-                      value={formData.repeatPassword}
-                      onChange={handleChange}
-                      className="border border-gray-300 p-2 w-full rounded"
-                    />
-                    {errors.repeatPassword && <span className="text-red-500 text-sm">{errors.repeatPassword}</span>}
-                  </div>
-
-                  <div>
-                    <label htmlFor="Province" className="block text-sm font-medium text-gray-700">Provincia</label>
-                    <input
-                      type="text"
-                      id="Province"
-                      name="Province"
-                      value={formData.Province}
-                      onChange={handleChange}
-                      className="border border-gray-300 p-2 w-full rounded"
-                    />
-                    {errors.Province && <span className="text-red-500 text-sm">{errors.Province}</span>}
-                  </div>
-
-                  <div>
-                    <label htmlFor="District" className="block text-sm font-medium text-gray-700">Cantón</label>
-                    <input
-                      type="text"
-                      id="District"
-                      name="District"
-                      value={formData.District}
-                      onChange={handleChange}
-                      className="border border-gray-300 p-2 w-full rounded"
-                    />
-                    {errors.District && <span className="text-red-500 text-sm">{errors.District}</span>}
-                  </div>
-
-                  <div>
-                    <label htmlFor="Gender" className="block text-sm font-medium text-gray-700">Género</label>
-                    <input
-                      type="text"
-                      id="Gender"
-                      name="Gender"
-                      value={formData.Gender}
-                      onChange={handleChange}
-                      className="border border-gray-300 p-2 w-full rounded"
-                    />
-                    {errors.Gender && <span className="text-red-500 text-sm">{errors.Gender}</span>}
-                  </div>
-
-                  <div>
-                    <label htmlFor="BirthDate" className="block text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
-                    <input
-                      type="date"
-                      id="BirthDate"
-                      name="BirthDate"
-                      value={formData.BirthDate}
-                      onChange={handleChange}
-                      className="border border-gray-300 p-2 w-full rounded"
-                    />
-                    {errors.BirthDate && <span className="text-red-500 text-sm">{errors.BirthDate}</span>}
-                  </div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="Name" value="Nombre" />
+                  <TextInput
+                    id="Name"
+                    name="Name"
+                    value={formData.Name}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
                 <div>
-                  <label htmlFor="Address" className="block text-sm font-medium text-gray-700">Dirección</label>
-                  <input
-                    type="text"
-                    id="Address"
-                    name="Address"
-                    value={formData.Address}
+                  <Label htmlFor="LastName" value="Apellidos" />
+                  <TextInput
+                    id="LastName"
+                    name="LastName"
+                    value={formData.LastName}
                     onChange={handleChange}
-                    className="border border-gray-300 p-2 w-full rounded"
+                    required
                   />
-                  {errors.Address && <span className="text-red-500 text-sm">{errors.Address}</span>}
                 </div>
 
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="AcceptTermsAndConditions"
-                    name="AcceptTermsAndConditions"
-                    checked={formData.AcceptTermsAndConditions}
+                <div>
+                  <Label htmlFor="Email" value="Correo" />
+                  <TextInput
+                    id="Email"
+                    name="Email"
+                    type="email"
+                    value={formData.Email}
                     onChange={handleChange}
-                    className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                    required
                   />
-                  <label htmlFor="AcceptTermsAndConditions" className="ml-2 block text-sm text-gray-900">
-                    Términos y Condiciones
-                  </label>
                 </div>
-                {errors.AcceptTermsAndConditions && <span className="text-red-500 text-sm">{errors.AcceptTermsAndConditions}</span>}
 
-                <div className="flex justify-between mt-4">
-                  <button
-                    type="button"
-                    className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
-                    onClick={() => navigate('/')}
-                  >
-                    Cancelar
-                  </button>
-                  <button
-                    type="submit"
-                    className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-                  >
-                    Confirmar
-                  </button>
+                <div>
+                  <Label htmlFor="PhoneNumber" value="Teléfono" />
+                  <TextInput
+                    id="PhoneNumber"
+                    name="PhoneNumber"
+                    inputMode="numeric"
+                    type="number"
+                    pattern="[0-9]*"
+                    value={formData.PhoneNumber}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
-              </form>
-            </div>
+
+                <div>
+                  <Label htmlFor="Password" value="Contraseña" />
+                  <TextInput
+                    id="Password"
+                    name="Password"
+                    type="password"
+                    value={formData.Password}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="relative">
+                  <Label htmlFor="repeatPassword" value="Repita la Contraseña" />
+                  <TextInput
+                    id="repeatPassword"
+                    name="repeatPassword"
+                    type="password"
+                    value={formData.repeatPassword}
+                    onChange={handleChange}
+                    required
+                    color={errors.repeatPassword ? 'failure' : undefined}
+                    helperText={
+                      errors.repeatPassword && (
+                        <span className="absolute text-red-600">{errors.repeatPassword}</span>
+                      )
+                    }
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="Province" value="Provincia" />
+                  <TextInput
+                    id="Province"
+                    name="Province"
+                    value={formData.Province}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="District" value="Cantón" />
+                  <TextInput
+                    id="District"
+                    name="District"
+                    value={formData.District}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="Gender" value="Género" />
+                  <Select
+                    id="Gender"
+                    name="Gender"
+                    value={formData.Gender}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="" disabled>
+                      Selecciona tu género
+                    </option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                    <option value="Otros">Otros</option>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="BirthDate" value="Fecha de Nacimiento" />
+                  <TextInput
+                    id="BirthDate"
+                    name="BirthDate"
+                    type="date"
+                    value={formData.BirthDate}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="Address" value="Dirección" />
+                <TextInput
+                  id="Address"
+                  name="Address"
+                  value={formData.Address}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="flex items-center">
+                <Checkbox
+                  id="AcceptTermsAndConditions"
+                  name="AcceptTermsAndConditions"
+                  checked={formData.AcceptTermsAndConditions}
+                  onChange={handleChange}
+                  required
+                />
+                <Label htmlFor="AcceptTermsAndConditions" className="ml-2">
+                  Acepto los Términos y Condiciones
+                </Label>
+              </div>
+
+              <div className="flex justify-between mt-4">
+                <Button type="button" color="failure" onClick={() => navigate('/')}>
+                  Cancelar
+                </Button>
+                <Button type="submit" color="primary" className="bg-blue-600 text-white hover:bg-blue-800">
+                  Confirmar
+                </Button>
+              </div>
+            </form>
           </div>
 
-
-          <div className="register-image w-full md:w-1/2 p-4">
-            <div className="register-header">
-              <h6 className="register-title ml-20 text-lg">Biblioteca Pública Municipal de Nicoya</h6>
+          <div className="md:w-1/2 p-6 flex justify-center items-center">
+            <div className="text-center">
+              <h6 className="text-lg font-bold text-blue-600 mb-4">Biblioteca Pública Municipal de Nicoya</h6>
+              <img
+                src="src/Assets/young-woman.jpg"
+                alt="Mujer leyendo"
+                className="rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+              />
             </div>
-            <img src="src/Assets/young-woman.jpg" alt="Mujer leyendo" className="rounded-lg shadow-lg" />
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };
 
 export default Register;
+
+
