@@ -62,6 +62,11 @@ const ManageChildrenBooks = () => {
     sessionStorage.setItem("currentPage", currentPage.toString());
   }, [currentPage]);
 
+  useEffect(() => {
+    setCurrentPage(1); 
+  }, [searchTitleDelay, seachISBNDelay, seachAuthorDelay, seachSignaCodeDelay, searchStatus]);
+
+
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">

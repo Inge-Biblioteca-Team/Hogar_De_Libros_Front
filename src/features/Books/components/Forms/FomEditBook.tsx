@@ -7,7 +7,7 @@ import ConfirmButton from "../../../../components/ConfirmButton";
 import ConfirmModal from "../Modals/ConfirmModal";
 import ModalAddImage from "../Modals/ModalAddImage";
 
-const FormEditBook = ({ book, category }: { book: Book; category:string }) => {
+const FormEditBook = ({ book, category }: { book: Book; category: string }) => {
   const { register, setValue, watch, handleSubmit } = useForm<Book>();
   useEffect(() => {
     if (book) {
@@ -136,6 +136,7 @@ const FormEditBook = ({ book, category }: { book: Book; category:string }) => {
               <TextInput
                 id="PublicationYear"
                 type="number"
+                min={0}
                 {...register("PublishedYear")}
               />
             </span>
@@ -169,11 +170,29 @@ const FormEditBook = ({ book, category }: { book: Book; category:string }) => {
                 value="Categoría de estante"
                 className="text-xl"
               />
-              <TextInput
-                id="category"
-                type="text"
-                {...register("ShelfCategory")}
-              />
+              {category == "books" ? (
+                <Select {...register("ShelfCategory")} required>
+                  <option value="">Seleccione una categoria</option>
+                  <option value="Ciencias Sociales">Ciencias Sociales</option>
+                  <option value="Literatura">Literatura</option>
+                  <option value="Geografía">Geografía</option>
+                  <option value="Artes y Recreación">Artes y Recreación</option>
+                  <option value="Ciencias Naturales">Ciencias Naturales</option>
+                  <option value="Filosofía y Psicología">
+                    Filosofía y Psicología
+                  </option>
+                  <option value="Tecnología">Tecnología</option>
+                  <option value="Religión">Religión</option>
+                  <option value="Lenguas">Lenguas</option>
+                  <option value="Obras Generales">Obras Generales</option>
+                </Select>
+              ) : (
+                <Select {...register("ShelfCategory")} required>
+                  <option value="">Seleccione una categoria</option>
+                  <option value="0-5Años">0-5 Años</option>
+                  <option value="+6Años">+6 Años</option>
+                </Select>
+              )}
             </span>
             <span>
               <Label

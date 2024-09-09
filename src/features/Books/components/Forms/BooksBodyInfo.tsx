@@ -49,8 +49,6 @@ const BooksBodyInfo = ({ book }: { book: Book }) => {
           {book?.BookCode && (
             <BtnReserve
               Objetive="Prestamo"
-              Goto={book.BookCode}
-              id={book?.BookCode}
               text="Generar Prestamo"
             />
           )}
