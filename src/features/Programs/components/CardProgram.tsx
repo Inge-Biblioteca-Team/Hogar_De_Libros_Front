@@ -19,7 +19,7 @@ const CardProgram = ({ program }: { program: Programs }) => {
         <strong>{program.Name}</strong>
         <br />
         <span className=" text-base">
-          Descripcion del programa: {program.Description}
+          Descripción del programa: {program.Description}
         </span>
         </p>
         <button

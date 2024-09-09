@@ -17,21 +17,21 @@ const LandingHome = () => {
       <div className=" flex gap-5 h-52 w-4/5 max-sm:w-full max-sm:h-auto ">
         <LandingHomeCards
           Icon={faBookOpen}
-          Title="Prestamos"
-          Message="Explora la amplia cantidad de diversos libros, solicita una sala para tus activadesde e incluso equipo tecnologico"
-          Path="/Sistema"
+          Title="Préstamos"
+          Message="Explora la ámplia cantidad de diversos libros, solicita una sala para tus activadesde e incluso equipo tecnológico"
+          Path="/HogarDeLibros"
         />
         <LandingHomeCards
           Icon={faChalkboardUser}
           Title="Cursos y Eventos"
           Message="Matricula en los diversos cursos y talleres brindados por nosotros y por los voluntariados de la biblioteca"
-            Path="/Sistema"
+            Path="/HogarDeLibros"
         />
         <LandingHomeCards
           Icon={faChildren}
           Title="Amiguitos De la biblioteca"
           Message="Unete a nuestro programa de voluntariado donde podras ayudar a la biblioteca de diversas maneras."
-            Path="/Sistema"
+            Path="/HogarDeLibros"
         />
       </div>
     </section>

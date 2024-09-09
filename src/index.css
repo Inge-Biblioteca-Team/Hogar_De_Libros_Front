@@ -1,9 +1,13 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 
 :root {
 background-color: #dfe2e6;
+  font-family: 'Mulish', sans-serif;
+  font-weight: 300;
 }
 
 @keyframes scroll{
@@ -18,3 +22,16 @@ background-color: #dfe2e6;
 .animate-scroll{
     animation: scroll 20s linear infinite;
 }
+.custom-breadcrumb a{
+    font-size: 1.3rem !important;
+  }
+  .custom-breadcrumb span{
+    font-size: 1.3rem !important;
+  }
+  .custom-breadcrumb svg{
+    scale: 1.4 !important;
+  }
+  .custom-breadcrumb{
+    margin: 4px;
+  }
+
