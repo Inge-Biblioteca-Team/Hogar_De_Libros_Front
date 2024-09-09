@@ -299,12 +299,22 @@ const Routes = createBrowserRouter([
               },
               {
                 path: "Pendientes",
+               //   element:<PendingRequest/>
               },
               {
                 path: "Finalizados",
+                //  element: <FinishedLoans/>
               },
               {
                 path: "EnProceso",
+               //   element:<InProgressLoans/>
+              },
+              {
+                path: "Pendientes/Ver/:Code",
+              },
+              {
+                path: "SolicitarLibro/:Objetive",
+              //  element: <BookLoan/>
               },
             ],
           },

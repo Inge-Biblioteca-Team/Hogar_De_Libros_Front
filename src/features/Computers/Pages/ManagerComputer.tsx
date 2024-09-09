@@ -124,6 +124,7 @@ const ManagerComputer = () => {
                   <EquipmentAccionBTNS
                     Code={computers.EquipmentUniqueCode}
                     Serial={computers.EquipmentSerial}
+                    Status = {computers.Status}
                     />
                     </Table.Cell>
                 </Table.Row>

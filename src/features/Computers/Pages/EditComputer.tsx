@@ -89,6 +89,8 @@ const EditComputer = () => {
                 <option value={"Teclado"}>Teclado</option>
                 <option value={"Monitor"}>Monitor</option>
                 <option value={"Mouse"}>Mouse</option>
+                <option value={"UPS"}>UPS</option>
+                <option value={"Otros"}>Otros</option>
               </Select>
             </span>
             <span>
@@ -120,6 +122,7 @@ const EditComputer = () => {
                 id="MachineNumber"
                 type="number"
                 sizing="md"
+                min={0}
                 {...register("MachineNumber")}
               />
             </span>
@@ -133,10 +136,11 @@ const EditComputer = () => {
                 {...register("ConditionRating")}
                 required
               >
-                <option value={""}>Seleccione la condición</option>
-                <option value={4}>Optimo</option>
-                <option value={3}>Regular</option>
-                <option value={2}>Deficiente</option>
+                <option value={0}>Seleccione la condición</option>
+                <option value={5}>Optimo</option>
+                <option value={4}>Regular</option>
+                <option value={3}>Deficiente</option>
+                <option value={2}>Deplorable</option>
                 <option value={1}>Deplorable</option>
               </Select>
             </span>

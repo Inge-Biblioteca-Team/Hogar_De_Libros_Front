@@ -32,7 +32,7 @@ const MostPopularBooks = () => {
              "
           >
             <BookCardLanding Book={book} />
-            <BtnReserve id={book.BookCode} Goto={book.BookCode} Objetive="Solicitud" text="Solicitar Prestamo"/>
+            <BtnReserve  Objetive="Solicitud" text="Solicitar Prestamo"/>
           </figure>
         ))}
       </div>
