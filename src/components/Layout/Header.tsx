@@ -27,7 +27,7 @@ const Header = ({NavBarType}:{NavBarType: string }) => {
           Biblioteca Pública Municipal de Nicoya
         </span>
       </div>
-        <div className="flex-shrink-0 hidden">
+        <div className=" fixed right-8">
         <UserData/>
         </div>
     </Navbar.Brand>

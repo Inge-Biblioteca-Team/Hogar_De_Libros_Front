@@ -20,6 +20,11 @@ import AdminCBooksInformation from "../features/Books/Pages/ChildrenBooks/AdminC
 import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBookInformation";
 import SearchChildrenCatalog from "../features/Books/Pages/ChildrenBooks/SearchChlindrenBook";
 import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInformationChild";
+import PendingRequest from "../features/Loan/Pages/PendingRequest";
+import BookLoan from "../features/Books/Pages/BookLoand";
+import FinishedLoans from "../features/Loan/Pages/FinishedLoans";
+import InProgressLoans from "../features/Loan/Pages/InProgressLoans";
+import MyLoanHIstory from "../features/Users/Pages/MyLoanHIstory";
 
 const Routes = createBrowserRouter([
   {
@@ -63,7 +68,6 @@ const Routes = createBrowserRouter([
             path: "Infantiles",
             element: <SearchChildrenCatalog />,
           },
-
         ],
       },
       {
@@ -72,7 +76,7 @@ const Routes = createBrowserRouter([
       },
       {
         path: "CatalogoDeLibros/LibroI/:BookCode",
-        element: <BookInformationChild/>,
+        element: <BookInformationChild />,
       },
       {
         path: "Gestion",
@@ -289,27 +293,31 @@ const Routes = createBrowserRouter([
               },
               {
                 path: "Pendientes",
-               //   element:<PendingRequest/>
+                element: <PendingRequest />,
               },
               {
                 path: "Finalizados",
-                //  element: <FinishedLoans/>
+                element: <FinishedLoans />,
               },
               {
                 path: "EnProceso",
-               //   element:<InProgressLoans/>
+                element: <InProgressLoans />,
               },
               {
                 path: "Pendientes/Ver/:Code",
               },
               {
                 path: "SolicitarLibro/:Objetive",
-              //  element: <BookLoan/>
+                element: <BookLoan />,
               },
             ],
           },
         ],
       },
+      {
+        path:"Perfil",
+        element:<MyLoanHIstory/>
+      }
     ],
   },
 ]);
