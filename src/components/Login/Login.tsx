@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import RecoverPasswordModal from './RecoverPasswordModal';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const [showRecoverPasswordModal, setShowRecoverPasswordModal] = useState(false);
+
+  const openRecoverPasswordModal = () => {
+    setShowRecoverPasswordModal(true);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,9 +85,21 @@ const Login = () => {
                   >
                     Regresar
                   </button>
-                  <a href="/forgot-password" className="text-blue-500 hover:underline">
-                    ¿Olvidó su contraseña?
-                  </a>
+                  <div className="flex justify-end">
+                    <button
+                      className="text-blue-500 hover:underline"
+                      onClick={openRecoverPasswordModal}
+                    >
+                      ¿Olvidó su contraseña?
+                    </button>
+                  </div>
+
+                  {showRecoverPasswordModal && (
+                    <RecoverPasswordModal
+                      openModal={showRecoverPasswordModal}
+                      setOpenModal={setShowRecoverPasswordModal}
+                    />
+                  )}
                 </div>
               </form>
             </div>
