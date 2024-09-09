@@ -20,6 +20,8 @@ import AdminCBooksInformation from "../features/Books/Pages/ChildrenBooks/AdminC
 import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBookInformation";
 import SearchChildrenCatalog from "../features/Books/Pages/ChildrenBooks/SearchChlindrenBook";
 import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInformationChild";
+import Login from "../components/Login/Login";
+import Register from "../components/Login/Register";
 
 const Routes = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ const Routes = createBrowserRouter([
         element: <Landing />,
       },
     ],
+  },
+  {
+    path: "LogIn",
+    element: < Login/>,
+  },
+  {
+    path: "register",
+    element: < Register/>
   },
   {
     path: "HogarDeLibros",
