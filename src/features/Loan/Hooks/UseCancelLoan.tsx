@@ -12,7 +12,7 @@ const UseCancelLoan = () => {
     },
     {
       onSuccess: (data) => {
-        queryClient.invalidateQueries("RLoans");
+        queryClient.invalidateQueries("PRLoans");
         toast.success("Préstamo cancelado correctamente:", data);
       },
       onError: () => {

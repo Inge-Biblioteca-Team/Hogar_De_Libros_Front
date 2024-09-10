@@ -17,3 +17,19 @@ export type LoanResponse = {
     UserCedula:string
   }
   
+  export type newloan={
+    LoanRequestDate: string;
+    BookPickUpDate: string;
+    LoanExpirationDate: string;
+    BookCode:string;
+    Cedula:number;
+    InscriptionCode:string;
+    SignaCode:string
+    Title:string
+    Author:string
+  }
+
+  export type finishLoan={
+    Observation:string;
+    BookLoanId:number
+  }

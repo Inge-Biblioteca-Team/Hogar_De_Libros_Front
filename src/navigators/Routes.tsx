@@ -27,6 +27,7 @@ import FinishedLoans from "../features/Loan/Pages/FinishedLoans";
 import InProgressLoans from "../features/Loan/Pages/InProgressLoans";
 import MyLoanHIstory from "../features/Users/Pages/MyLoanHIstory";
 import Login from "../features/Users/Auth/Login";
+import NewAdminLoan from "../features/Loan/Components/Forms/NewAdminLoan";
 
 const Routes = createBrowserRouter([
   {
@@ -109,6 +110,10 @@ const Routes = createBrowserRouter([
               {
                 path: "Editar/:BookCode",
                 element: <EditBookInformation />,
+              },
+              {
+                path: "Prestamos/:BookCode",
+                element: <NewAdminLoan/>,
               },
             ],
           },

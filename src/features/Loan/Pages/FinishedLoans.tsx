@@ -12,6 +12,7 @@ import { LoanResponse } from "../Types/BookLoan";
 import SltCurrentLimit from "../../../components/SltCurrentLimit";
 import PaginatationSelector from "../../../components/PaginatationSelector";
 import { useEffect, useState } from "react";
+import FinishedLoanSearch from "../Components/Input/FinishedLoanSearch";
 
 const FinishedLoans = () => {
   const { data: Loan } = useQuery<LoanResponse, Error>(
@@ -46,8 +47,9 @@ const FinishedLoans = () => {
         <LoanCrumb />
         <LastCrumb CurrentPage="Prestamos Finalizados" />
       </Breadcrumb>
-      <div className="flex place-content-center mt-20">
+      <div className="flex place-content-center mt-14">
         <div className="w-4/5">
+        <FinishedLoanSearch/>
           {Loan && <TBLLoan Loan={Loan} />}
           <div className=" w-full flex justify-between">
             <div>

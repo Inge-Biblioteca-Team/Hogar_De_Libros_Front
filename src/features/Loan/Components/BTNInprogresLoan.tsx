@@ -5,9 +5,12 @@ import { Link } from "react-router-dom";
 import { Loans } from "../Types/BookLoan";
 import { useState } from "react";
 import LoanRenuve from "./Modals/LoanRenuve";
+import UseFinishLoan from "../Hooks/UseFinishLoan";
 const BTNInprogresLoan = ({ Loan }: { Loan: Loans }) => {
   const [showR, setShowR] = useState<boolean>(false);
-  
+
+  const { mutate: finalizeLoan } = UseFinishLoan();
+
   return (
     <>
       <div className=" flex justify-center gap-x-12">
@@ -21,7 +24,16 @@ const BTNInprogresLoan = ({ Loan }: { Loan: Loans }) => {
         >
           <TfiReload size={30} color="green" />
         </button>
-        <button type="button" title="Finalizar Prestamo">
+        <button
+          type="button"
+          title="Finalizar Prestamo"
+          onClick={() =>
+            finalizeLoan({
+              BookLoanId: Loan.BookLoanId,
+              Observation: "NA",
+            })
+          }
+        >
           <PiCalendarXLight size={30} color="red" />
         </button>
       </div>

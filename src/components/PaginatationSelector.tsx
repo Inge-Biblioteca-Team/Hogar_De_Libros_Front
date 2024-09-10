@@ -12,7 +12,6 @@ const PaginatationSelector = ({
   return (
     <Pagination
       className=" text-lg"
-      layout="navigation"
       currentPage={currentPage}
       totalPages={totalPages}
       onPageChange={onPageChange}

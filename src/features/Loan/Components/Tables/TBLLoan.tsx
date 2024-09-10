@@ -39,8 +39,7 @@ const TBLLoan = ({
           {Loan.data.map((Loan) => {
             const reqDate = new Date(Loan.LoanRequestDate);
             const PickUpDate = new Date(Loan.BookPickUpDate);
-            return (
-              <>
+            return (  
               <Table.Row
                 key={Loan.BookLoanId}
                 className=" h-20"
@@ -62,7 +61,6 @@ const TBLLoan = ({
                   {Inprogress ? <BTNInprogresLoan Loan={Loan} /> : <BTNResolveLoan Loan={Loan} />}
                 </Table.Cell>
               </Table.Row>
-              </>
             );
           })}
         </Table.Body>

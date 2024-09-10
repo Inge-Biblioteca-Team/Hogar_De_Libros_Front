@@ -1,4 +1,4 @@
-import { Breadcrumb } from "flowbite-react";
+import { Breadcrumb, Pagination } from "flowbite-react";
 import {
   HomeCrumb,
   ManageCrumb,
@@ -9,9 +9,10 @@ import TBLLoan from "../Components/Tables/TBLLoan";
 import { useQuery } from "react-query";
 import { GetInProgressLoan } from "../Services/SvBookLoan";
 import { LoanResponse } from "../Types/BookLoan";
-import PaginatationSelector from "../../../components/PaginatationSelector";
 import SltCurrentLimit from "../../../components/SltCurrentLimit";
 import { useEffect, useState } from "react";
+import SearchInputs from "../Components/Input/SearchInputs";
+import NoRequest from "../Components/NoRequest";
 
 const InProgressLoans = () => {
   const { data: Loan } = useQuery<LoanResponse, Error>(
@@ -38,7 +39,7 @@ const InProgressLoans = () => {
   useEffect(() => {
     sessionStorage.setItem("currentPage", currentPage.toString());
   }, [currentPage]);
-  
+
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">
@@ -47,27 +48,35 @@ const InProgressLoans = () => {
         <LoanCrumb />
         <LastCrumb CurrentPage="Prestamos en progreso" />
       </Breadcrumb>
-      <div className="flex place-content-center mt-20">
-        <div className="w-4/5">
-          {Loan && <TBLLoan Loan={Loan} NeedAccions Inprogress />}
-          <div className=" w-full flex justify-between">
-            <div>
-              <span className=" pl-5">
-                Mostrar{" "}
-                <span>
-                  <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                </span>{" "}
-                Libros por pagina
-              </span>
+      {Loan?.count == 0 ? (
+        <NoRequest text="No Hay Prestamos En Progreso" />
+      ) : (
+        <div className="flex place-content-center mt-14 pb-3">
+          <div className="w-4/5">
+            <SearchInputs />
+            {Loan && <TBLLoan Loan={Loan} NeedAccions Inprogress />}
+            <div className=" w-full flex justify-between">
+              <div>
+                <span className=" pl-5">
+                  Mostrar{" "}
+                  <span>
+                    <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
+                  </span>{" "}
+                  Libros por pagina
+                </span>
+              </div>
+              <Pagination
+                nextLabel="Siguiente"
+                previousLabel="Anterior"
+                currentPage={currentPage}
+                totalPages={MaxPage}
+                onPageChange={onPageChange}
+                showIcons
+              />
             </div>
-            <PaginatationSelector
-              totalPages={MaxPage}
-              currentPage={currentPage}
-              onPageChange={onPageChange}
-            />
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

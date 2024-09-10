@@ -12,6 +12,7 @@ import { LoanResponse } from "../Types/BookLoan";
 import { useEffect, useState } from "react";
 import SltCurrentLimit from "../../../components/SltCurrentLimit";
 import PaginatationSelector from "../../../components/PaginatationSelector";
+import NoRequest from "../Components/NoRequest";
 
 const PendingRequest = () => {
   const { data: Loan } = useQuery<LoanResponse, Error>(
@@ -37,6 +38,7 @@ const PendingRequest = () => {
   useEffect(() => {
     sessionStorage.setItem("currentPage", currentPage.toString());
   }, [currentPage]);
+
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">
@@ -45,27 +47,31 @@ const PendingRequest = () => {
         <LoanCrumb />
         <LastCrumb CurrentPage="Solicitudes Pendientes" />
       </Breadcrumb>
-      <div className="flex place-content-center mt-20">
-        <div className="w-4/5">
-          {Loan && <TBLLoan Loan={Loan} NeedAccions />}
-          <div className=" w-full flex justify-between">
-            <div>
-              <span className=" pl-5">
-                Mostrar{" "}
-                <span>
-                  <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                </span>{" "}
-                Libros por pagina
-              </span>
+      {Loan?.count == 0 ? (
+        <NoRequest text={"No Hay Solicitudes Pendientes"} />
+      ) : (
+        <div className="flex place-content-center mt-20">
+          <div className="w-4/5">
+            {Loan && <TBLLoan Loan={Loan} NeedAccions />}
+            <div className=" w-full flex justify-between">
+              <div>
+                <span className=" pl-5">
+                  Mostrar{" "}
+                  <span>
+                    <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
+                  </span>{" "}
+                  Libros por pagina
+                </span>
+              </div>
+              <PaginatationSelector
+                totalPages={MaxPage}
+                currentPage={currentPage}
+                onPageChange={onPageChange}
+              />
             </div>
-            <PaginatationSelector
-              totalPages={MaxPage}
-              currentPage={currentPage}
-              onPageChange={onPageChange}
-            />
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

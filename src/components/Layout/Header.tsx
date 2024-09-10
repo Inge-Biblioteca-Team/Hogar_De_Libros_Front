@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar } from "flowbite-react";
 import LandingNavbar from "./LandingNavbar";
 import HomeNavbar from "./HomeNavbar";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserData from "../../features/Loan/Components/UserLoans/UserData";
 
 const Header = ({NavBarType}:{NavBarType: string }) => {
@@ -29,7 +29,6 @@ const Header = ({NavBarType}:{NavBarType: string }) => {
       </div>
         <div className=" fixed right-8">
         <UserData/>
-        <Link to={"/InicioDeSecion"}> Si</Link>
         </div>
     </Navbar.Brand>
     <Navbar.Toggle className="bg-white" />
