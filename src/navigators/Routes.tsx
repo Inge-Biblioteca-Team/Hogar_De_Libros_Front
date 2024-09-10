@@ -20,13 +20,13 @@ import AdminCBooksInformation from "../features/Books/Pages/ChildrenBooks/AdminC
 import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBookInformation";
 import SearchChildrenCatalog from "../features/Books/Pages/ChildrenBooks/SearchChlindrenBook";
 import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInformationChild";
-import Login from "../components/Login/Login";
-import Register from "../components/Login/Register";
+import Register from "../features/Users/Auth/Register";
 import PendingRequest from "../features/Loan/Pages/PendingRequest";
 import BookLoan from "../features/Books/Pages/BookLoand";
 import FinishedLoans from "../features/Loan/Pages/FinishedLoans";
 import InProgressLoans from "../features/Loan/Pages/InProgressLoans";
 import MyLoanHIstory from "../features/Users/Pages/MyLoanHIstory";
+import Login from "../features/Users/Auth/Login";
 
 const Routes = createBrowserRouter([
   {
@@ -44,12 +44,12 @@ const Routes = createBrowserRouter([
     ],
   },
   {
-    path: "LogIn",
-    element: < Login/>,
+    path: "InicioDeSecion",
+    element: <Login />,
   },
   {
     path: "register",
-    element: < Register/>
+    element: <Register />,
   },
   {
     path: "HogarDeLibros",
@@ -325,9 +325,9 @@ const Routes = createBrowserRouter([
         ],
       },
       {
-        path:"Perfil",
-        element:<MyLoanHIstory/>
-      }
+        path: "Perfil",
+        element: <MyLoanHIstory />,
+      },
     ],
   },
 ]);

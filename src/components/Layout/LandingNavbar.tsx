@@ -1,5 +1,3 @@
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar, NavbarCollapse } from "flowbite-react";
 import { useEffect } from "react";
 
@@ -83,13 +81,6 @@ const LandingNavbar = () => {
           >
             Contáctanos
           </Navbar.Link>
-          <Navbar.Link
-  className="text-white hover:!text-black"
-  href="/LogIn"
->
-  <FontAwesomeIcon icon={faUser} className="text-white h-5 w-5" /> {/* Ícono de usuario */}
-</Navbar.Link>
-
         </NavbarCollapse>
       </div>
   );

@@ -35,24 +35,5 @@ const GetPendandRequest = async () =>{
        throw error;
      }
    }
-   const CancelRequest= async (LoanID:number) =>{
-    try {
-       const response = await api.patch( `/book-loan/${LoanID}/reject`);
-       return response.data;
-     } catch (error) {
-       console.error("Error to post book:", error);
-       throw error;
-     }
-   }
-   const AproveRequest = async (LoanID:number) =>{
-    try {
-       const response = await api.patch( `/book-loan/${LoanID}/in-process`);
-       return response.data;
-     } catch (error) {
-       console.error("Error to post book:", error);
-       throw error;
-     }
-   }
-   
 
-export {GetPendandRequest, GetInProgressLoan, GetDoneLoans, CancelRequest, AproveRequest}
+export {GetPendandRequest, GetInProgressLoan, GetDoneLoans}

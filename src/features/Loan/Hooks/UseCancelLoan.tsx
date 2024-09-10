@@ -1,0 +1,25 @@
+import { useMutation, useQueryClient } from "react-query";
+import { CancelRequest } from "../Services/SvBookLoan";
+import toast from "react-hot-toast";
+
+const UseCancelLoan = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    async (bookLoanId: number) => {
+      const data = await CancelRequest(bookLoanId);
+      return data;
+    },
+    {
+      onSuccess: (data) => {
+        queryClient.invalidateQueries("RLoans");
+        toast.success("Préstamo cancelado correctamente:", data);
+      },
+      onError: () => {
+        toast.error("Error al cancelar el préstamo.");
+      },
+    }
+  );
+};
+
+export default UseCancelLoan;

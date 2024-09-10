@@ -2,12 +2,21 @@ import { Table } from "flowbite-react";
 import BTNResolveLoan from "../BTNResolveLoan";
 import { useNavigate } from "react-router-dom";
 import BTNInprogresLoan from "../BTNInprogresLoan";
-const TBLLoan = ({ NeedAccions, Inprogress }: { NeedAccions: boolean, Inprogress:boolean }) => {
-  const rows = Array(5).fill(null);
+import { LoanResponse } from "../../Types/BookLoan";
+const TBLLoan = ({
+  NeedAccions,
+  Inprogress,
+  Loan,
+}: {
+  NeedAccions?: boolean;
+  Inprogress?: boolean;
+  Loan: LoanResponse;
+}) => {
   const useNavi = useNavigate();
   const Goto = (LoanCode: number) => {
     useNavi(`/HogarDeLibros/Gestion/Prestamos/Pendientes/Ver/${LoanCode}`);
   };
+
   return (
     <>
       <Table hoverable className=" text-center">
@@ -27,25 +36,35 @@ const TBLLoan = ({ NeedAccions, Inprogress }: { NeedAccions: boolean, Inprogress
           ></Table.HeadCell>
         </Table.Head>
         <Table.Body>
-          {rows.map((_, index) => (
-            <Table.Row
-              key={index}
-              className=" h-20"
-              onClick={!NeedAccions ? () => Goto(2) : undefined}
-            >
-              <Table.Cell className="w-56">25/02/2003</Table.Cell>
-              <Table.Cell className="w-56">25/02/2003</Table.Cell>
-              <Table.Cell className="w-64">Adrian Aguilar</Table.Cell>
-              <Table.Cell className="w-44">Nier</Table.Cell>
-              <Table.Cell className="w-52">CR.12345.2352.5</Table.Cell>
-              <Table.Cell className={`${NeedAccions ? `hidden` : ``} w-64`}>
-                Adrian Aguilar
-              </Table.Cell>
-              <Table.Cell className={`${NeedAccions ? `` : `hidden`}`}>
-                {Inprogress ? <BTNInprogresLoan/>:<BTNResolveLoan /> }
-              </Table.Cell>
-            </Table.Row>
-          ))}
+          {Loan.data.map((Loan) => {
+            const reqDate = new Date(Loan.LoanRequestDate);
+            const PickUpDate = new Date(Loan.BookPickUpDate);
+            return (
+              <>
+              <Table.Row
+                key={Loan.BookLoanId}
+                className=" h-20"
+                onClick={!NeedAccions ? () => Goto(2) : undefined}
+              >
+                <Table.Cell className="w-56">
+                  {reqDate.toLocaleDateString("es-Es")}
+                </Table.Cell>
+                <Table.Cell className="w-56">
+                  {PickUpDate.toLocaleDateString("es-ES")}
+                </Table.Cell>
+                <Table.Cell className="w-64">{Loan.UserCedula}</Table.Cell>
+                <Table.Cell className="w-44">{Loan.BookTitle}</Table.Cell>
+                <Table.Cell className="w-52">{Loan.BookCode} </Table.Cell>
+                <Table.Cell className={`${NeedAccions ? `hidden` : ``} w-64`}>
+                  Adrian Aguilar
+                </Table.Cell>
+                <Table.Cell className={`${NeedAccions ? `` : `hidden`}`}>
+                  {Inprogress ? <BTNInprogresLoan Loan={Loan} /> : <BTNResolveLoan Loan={Loan} />}
+                </Table.Cell>
+              </Table.Row>
+              </>
+            );
+          })}
         </Table.Body>
       </Table>
     </>
