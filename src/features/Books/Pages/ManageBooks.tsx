@@ -16,7 +16,7 @@ import BookTBL from "../components/BookTBL";
 
 const ManageBooks = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("currentPage");
+    const savedPage = sessionStorage.getItem("MBPage");
     return savedPage ? Number(savedPage) : 1;
   });
 
@@ -29,7 +29,7 @@ const ManageBooks = () => {
   const [searchStatus, setSearchStatus] = useState<string>("");
   const onPageChange = (page: number) => {
     setCurrentPage(page);
-    sessionStorage.setItem("currentPage", page.toString());
+    sessionStorage.setItem("MBPage", page.toString());
   };
 
   const viewAdvanceSerch = useCallback(() => setAdvance((prev) => !prev), []);
@@ -56,7 +56,7 @@ const ManageBooks = () => {
   const MaxPage = Math.ceil((books?.count ?? 0) / currentLimit);
 
   useEffect(() => {
-    sessionStorage.setItem("currentPage", currentPage.toString());
+    sessionStorage.setItem("MBPage", currentPage.toString());
   }, [currentPage]);
   
   useEffect(() => {

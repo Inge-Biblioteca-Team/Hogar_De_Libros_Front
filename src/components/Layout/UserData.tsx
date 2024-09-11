@@ -146,9 +146,10 @@ const userData = () => {
             <button
               type="button"
               onClick={() => window.location.href = "/EditUser"}
+              
               className="absolute top-2 right-2 text-white hover:text-gray-200"
             >
-              <FaEdit size={20} />
+              {""} <FaEdit size={20} />
             </button>
           </div>
 
@@ -163,8 +164,10 @@ const userData = () => {
             </p>
             <div className="flex flex-col items-center">
               <button
+              type="button"
                 className="rounded-full bg-red-600 p-2 text-white hover:bg-red-800"
               >
+                {""}
                 <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
               </button>
               <p className="mt-1 text-sm">Cerrar Sesión</p>

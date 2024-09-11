@@ -20,10 +20,18 @@ import AdminCBooksInformation from "../features/Books/Pages/ChildrenBooks/AdminC
 import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBookInformation";
 import SearchChildrenCatalog from "../features/Books/Pages/ChildrenBooks/SearchChlindrenBook";
 import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInformationChild";
-import Login from "../components/Login/Login";
-import Register from "../components/Login/Register";
+import Register from "../features/Users/Auth/Register";
+import PendingRequest from "../features/Loan/Pages/Books/PendingRequest";
+import BookLoan from "../features/Books/Pages/BookLoand";
+import FinishedLoans from "../features/Loan/Pages/Books/FinishedLoans";
+import InProgressLoans from "../features/Loan/Pages/Books/InProgressLoans";
+import MyLoanHIstory from "../features/Loan/Components/UserLoans/MyLoanHIstory";
+import NewAdminLoan from "../features/Loan/Components/BooksLoans/NewAdminLoan";
+import ManageUsers from "../features/Users/Pages/ManageUsers";
+import WorkStationsLoanHistory from "../features/Loan/Pages/WorkStations/WorkStationsLoanHistory";
+import ManageLoansWS from "../features/Loan/Pages/WorkStations/ManageLoansWS";
 import EditUser from "../components/Users/EditUser";
-// import EditUserAdmin from "../features/Users/EditUserAdmin";
+import Login from "../features/Users/Auth/Login";
 import SingleUser from "../features/Users/SingleUser";
 
 const Routes = createBrowserRouter([
@@ -51,7 +59,7 @@ const Routes = createBrowserRouter([
   },
   {
     path: "register",
-    element: < Register/>
+    element: <Register />,
   },
   {
     path: "HogarDeLibros",
@@ -80,7 +88,6 @@ const Routes = createBrowserRouter([
             path: "Infantiles",
             element: <SearchChildrenCatalog />,
           },
-
         ],
       },
       {
@@ -89,7 +96,7 @@ const Routes = createBrowserRouter([
       },
       {
         path: "CatalogoDeLibros/LibroI/:BookCode",
-        element: <BookInformationChild/>,
+        element: <BookInformationChild />,
       },
       {
         path: "Gestion",
@@ -112,6 +119,10 @@ const Routes = createBrowserRouter([
               {
                 path: "Editar/:BookCode",
                 element: <EditBookInformation />,
+              },
+              {
+                path: "Prestamos/:BookCode",
+                element: <NewAdminLoan/>,
               },
             ],
           },
@@ -169,6 +180,7 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
+                element:<ManageUsers/>
               },
               {
                 path: "Nuevo",
@@ -313,26 +325,38 @@ const Routes = createBrowserRouter([
               },
               {
                 path: "Pendientes",
-               //   element:<PendingRequest/>
+                element: <PendingRequest />,
               },
               {
                 path: "Finalizados",
-                //  element: <FinishedLoans/>
+                element: <FinishedLoans />,
               },
               {
                 path: "EnProceso",
-               //   element:<InProgressLoans/>
+                element: <InProgressLoans />,
+              },
+              {
+                path: "HistorialDeEquipos",
+                element: <WorkStationsLoanHistory/>,
+              },
+              {
+                path: "Computadoras",
+                element: <ManageLoansWS/>,
               },
               {
                 path: "Pendientes/Ver/:Code",
               },
               {
                 path: "SolicitarLibro/:Objetive",
-              //  element: <BookLoan/>
+                element: <BookLoan />,
               },
             ],
           },
         ],
+      },
+      {
+        path: "Perfil",
+        element: <MyLoanHIstory />,
       },
     ],
   },
