@@ -19,7 +19,7 @@ import InpSearchTitle from "../../../components/InpSearchTitle";
 
 const ManagerComputer = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("currentPage");
+    const savedPage = sessionStorage.getItem("MCPage");
     return savedPage ? Number(savedPage) : 1;
   });
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -35,7 +35,7 @@ const ManagerComputer = () => {
   const searchEStatusDelay = UseDebounce(searchEStatus, 1000);
   const onPageChange = (page: number) => {
     setCurrentPage(page);
-    sessionStorage.setItem("currentPage", page.toString());
+    sessionStorage.setItem("MCPage", page.toString());
   };
   const viewAdvanceSerchComp = () => setAdvance(!advance);
 

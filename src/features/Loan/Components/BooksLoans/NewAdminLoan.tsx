@@ -89,7 +89,7 @@ const NewAdminLoan = () => {
                   type="text"
                   id="disabledInput1"
                   placeholder="Numero de cedula sin guiones"
-                  {...register("userId")}
+                  {...register("userCedula")}
                   required
                 />
               </span>

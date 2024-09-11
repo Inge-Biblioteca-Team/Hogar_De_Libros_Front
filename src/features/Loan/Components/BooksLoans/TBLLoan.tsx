@@ -39,7 +39,7 @@ const TBLLoan = ({
           {Loan.data.map((Loan) => {
             const reqDate = new Date(Loan.LoanRequestDate);
             const PickUpDate = new Date(Loan.BookPickUpDate);
-            return (  
+            return (
               <Table.Row
                 key={Loan.BookLoanId}
                 className=" h-20"
@@ -52,13 +52,21 @@ const TBLLoan = ({
                   {PickUpDate.toLocaleDateString("es-ES")}
                 </Table.Cell>
                 <Table.Cell className="w-64">{Loan.user.name}</Table.Cell>
-                <Table.Cell className="w-44 line-clamp-1 mt-3">{Loan.book.Title}</Table.Cell>
-                <Table.Cell className="w-52">{Loan.book.SignatureCode} </Table.Cell>
+                <Table.Cell className="w-44 line-clamp-1 mt-3">
+                  {Loan.book.Title}
+                </Table.Cell>
+                <Table.Cell className="w-52">
+                  {Loan.book.signatureCode}{" "}
+                </Table.Cell>
                 <Table.Cell className={`${NeedAccions ? `hidden` : ``} w-64`}>
                   Adrian Aguilar
                 </Table.Cell>
                 <Table.Cell className={`${NeedAccions ? `` : `hidden`}`}>
-                  {Inprogress ? <BTNInprogresLoan Loan={Loan} /> : <BTNResolveLoan Loan={Loan} />}
+                  {Inprogress ? (
+                    <BTNInprogresLoan Loan={Loan} />
+                  ) : (
+                    <BTNResolveLoan Loan={Loan} />
+                  )}
                 </Table.Cell>
               </Table.Row>
             );

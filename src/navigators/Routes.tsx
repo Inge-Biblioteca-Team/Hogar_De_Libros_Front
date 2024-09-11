@@ -21,14 +21,16 @@ import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBoo
 import SearchChildrenCatalog from "../features/Books/Pages/ChildrenBooks/SearchChlindrenBook";
 import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInformationChild";
 import Register from "../features/Users/Auth/Register";
-import PendingRequest from "../features/Loan/Pages/PendingRequest";
+import PendingRequest from "../features/Loan/Pages/Books/PendingRequest";
 import BookLoan from "../features/Books/Pages/BookLoand";
-import FinishedLoans from "../features/Loan/Pages/FinishedLoans";
-import InProgressLoans from "../features/Loan/Pages/InProgressLoans";
+import FinishedLoans from "../features/Loan/Pages/Books/FinishedLoans";
+import InProgressLoans from "../features/Loan/Pages/Books/InProgressLoans";
 import MyLoanHIstory from "../features/Loan/Components/UserLoans/MyLoanHIstory";
 import Login from "../features/Users/Auth/Login";
 import NewAdminLoan from "../features/Loan/Components/BooksLoans/NewAdminLoan";
 import ManageUsers from "../features/Users/Pages/ManageUsers";
+import WorkStationsLoanHistory from "../features/Loan/Pages/WorkStations/WorkStationsLoanHistory";
+import ManageLoansWS from "../features/Loan/Pages/WorkStations/ManageLoansWS";
 
 const Routes = createBrowserRouter([
   {
@@ -319,6 +321,14 @@ const Routes = createBrowserRouter([
               {
                 path: "EnProceso",
                 element: <InProgressLoans />,
+              },
+              {
+                path: "HistorialDeEquipos",
+                element: <WorkStationsLoanHistory/>,
+              },
+              {
+                path: "Computadoras",
+                element: <ManageLoansWS/>,
               },
               {
                 path: "Pendientes/Ver/:Code",

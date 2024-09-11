@@ -1,41 +1,43 @@
-import { Breadcrumb } from "flowbite-react";
+import { Breadcrumb, Pagination } from "flowbite-react";
 import {
   HomeCrumb,
-  LastCrumb,
-  LoanCrumb,
   ManageCrumb,
-} from "../../../components/BreadCrumb";
-import TBLLoan from "../Components/BooksLoans/TBLLoan";
+  LoanCrumb,
+  LastCrumb,
+} from "../../../../components/BreadCrumb";
+import TBLLoan from "../../Components/BooksLoans/TBLLoan";
 import { useQuery } from "react-query";
-import { GetPendandRequest } from "../Services/SvBookLoan";
-import { LoanResponse } from "../Types/BookLoan";
+import { GetInProgressLoan } from "../../Services/SvBookLoan";
+import { LoanResponse } from "../../Types/BookLoan";
+import SltCurrentLimit from "../../../../components/SltCurrentLimit";
 import { useEffect, useState } from "react";
-import SltCurrentLimit from "../../../components/SltCurrentLimit";
-import PaginatationSelector from "../../../components/PaginatationSelector";
-import NoRequest from "../Components/NoRequest";
+import SearchInputs from "../../Components/BooksLoans/SearchInputs";
+import NoRequest from "../../Components/NoRequest";
 
-const PendingRequest = () => {
+const InProgressLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
   const [currentPage, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("currentRLoan");
+    const savedPage = sessionStorage.getItem("INLPage");
     return savedPage ? Number(savedPage) : 1;
   });
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
-    sessionStorage.setItem("currentPage", page.toString());
+    sessionStorage.setItem("INLPage", page.toString());
   };
 
   useEffect(() => {
-    sessionStorage.setItem("currentPage", currentPage.toString());
+    sessionStorage.setItem("INLPage", currentPage.toString());
   }, [currentPage]);
+  
   const { data: Loan } = useQuery<LoanResponse, Error>(
-    ["PRLoans", currentPage, currentLimit],
-    () => GetPendandRequest(currentPage, currentLimit),
+    ["IPLoans", currentPage, currentLimit],
+    () => GetInProgressLoan(currentPage, currentLimit),
     {
       staleTime: 600,
     }
   );
+
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>
@@ -43,14 +45,15 @@ const PendingRequest = () => {
         <HomeCrumb />
         <ManageCrumb />
         <LoanCrumb />
-        <LastCrumb CurrentPage="Solicitudes Pendientes" />
+        <LastCrumb CurrentPage="Prestamos en progreso" />
       </Breadcrumb>
       {Loan?.count == 0 ? (
-        <NoRequest text={"No Hay Solicitudes Pendientes"} />
+        <NoRequest text="No Hay Prestamos En Progreso" />
       ) : (
-        <div className="flex place-content-center mt-20">
+        <div className="flex place-content-center mt-14 pb-3">
           <div className="w-4/5">
-            {Loan && <TBLLoan Loan={Loan} NeedAccions />}
+            <SearchInputs />
+            {Loan && <TBLLoan Loan={Loan} NeedAccions Inprogress />}
             <div className=" w-full flex justify-between">
               <div>
                 <span className=" pl-5">
@@ -61,10 +64,13 @@ const PendingRequest = () => {
                   Libros por pagina
                 </span>
               </div>
-              <PaginatationSelector
-                totalPages={MaxPage}
+              <Pagination
+                nextLabel="Siguiente"
+                previousLabel="Anterior"
                 currentPage={currentPage}
+                totalPages={MaxPage}
                 onPageChange={onPageChange}
+                showIcons
               />
             </div>
           </div>
@@ -74,4 +80,4 @@ const PendingRequest = () => {
   );
 };
 
-export default PendingRequest;
+export default InProgressLoans;

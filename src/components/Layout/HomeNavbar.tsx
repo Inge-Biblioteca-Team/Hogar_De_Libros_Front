@@ -77,7 +77,10 @@ const HomeNavbar = () => {
               <Sidebar.ItemGroup>
                 <Sidebar.Collapse label="Gestión">
                   <Sidebar.Item href="/HogarDeLibros/Gestion/Equipos">
-                    Equipo de Cómputo
+                    Equipos de Cómputo
+                  </Sidebar.Item>
+                  <Sidebar.Item href="/HogarDeLibros/Gestion/Prestamos/Computadoras">
+                    Prestamo de <br />Equipos de Cómputo
                   </Sidebar.Item>
                   <Sidebar.Collapse className=" font-bold" label="Libros">
                     <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
@@ -120,6 +123,9 @@ const HomeNavbar = () => {
                   </Sidebar.Item>
                   <Sidebar.Item href="/HogarDeLibros/Gestion/Prestamos/Finalizados">
                     Prestamos Finalizados
+                  </Sidebar.Item>
+                  <Sidebar.Item href="/HogarDeLibros/Gestion/Prestamos/HistorialDeEquipos">
+                    Historial de uso <br /> Equipo de cómputo
                   </Sidebar.Item>
                 </Sidebar.Collapse>
               </Sidebar.ItemGroup>

@@ -51,6 +51,7 @@ const GetDoneLoans = async (page: number, limit: number) => {
   }
 };
 
+
 //Path Status
 const CancelRequest = async (LoanID: number) => {
   try {
@@ -120,5 +121,5 @@ export {
   AproveRequest,
   PostNewLoan,
   FinalizeLoan,
-  RefuseRequest
+  RefuseRequest,
 };
