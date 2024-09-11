@@ -1,103 +1,132 @@
-import { Table } from "flowbite-react";
-import { useState, useEffect } from "react";
-
-import { FaSearch } from 'react-icons/fa'; 
-import SltCurrentLimit from "../../components/SltCurrentLimit";
-import PaginatationSelector from "../../components/PaginatationSelector";
+import { useState } from "react";
+import { Modal, Button, Label, TextInput, Checkbox, Dropdown, Select } from "flowbite-react";
 
 const EditUserAdmin = () => {
-  const [, setCurrentLimit] = useState<number>(5);
-  const [currentPage, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("UersCPages");
-    return savedPage ? Number(savedPage) : 1;
+  const [isOpen, setIsOpen] = useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [formData, setFormData] = useState({ //Testing testiiiiiiiiiiing
+    cedula: "504430491",
+    nombre: "Nazareth",
+    apellidos: "Gómez Gómez",
+    genero: "Mujer",
+    edad: 21,
+    salas: false,
+    privilegiosLibros: "Medio"
   });
 
-  const [searchName, setSearchName] = useState<string>("");
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const target = e.target;
+  
+    if (target instanceof HTMLInputElement && target.type === "checkbox") {
+      setFormData((prevData) => ({
+        ...prevData,
+        [target.name]: target.checked,  
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [target.name]: target.value,  
+      }));
+    }
+  };
+  
 
-  const onPageChange = (page: number) => {
-    setCurrentPage(page);
-    sessionStorage.setItem("UersCPages", page.toString());
+  const handleOpenModal = () => setIsOpen(true);
+  const handleCloseModal = () => setIsOpen(false);
+  const handleOpenConfirm = () => setIsConfirmOpen(true);
+  const handleCloseConfirm = () => setIsConfirmOpen(false);
+  const handleSave = () => {
+    handleOpenConfirm(); 
   };
 
-  useEffect(() => {
-    sessionStorage.setItem("UersCPages", currentPage.toString());
-  }, [currentPage]);
-
-//   const { data: Users } = useQuery<UsersResponse, Error>(
-//     ["Users", currentPage, currentLimit],
-//     () => GetUsersList(currentPage, currentLimit, searchName), 
-//     {
-//       staleTime: 600,
-//     }
-//   );
-
-//   const MaxPage = Math.ceil((Users?.count ?? 0) / 5);
-let MaxPage = 4;
+  const handleConfirmSave = () => {
+    console.log("Información guardada:", formData);
+    handleCloseConfirm();
+    handleCloseModal();
+  };
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-4 text-center" style={{ fontFamily: "Arial" }}>
-        Edición de Usuario Administrador
-      </h1>
+      <Button onClick={handleOpenModal}>Editar Usuario</Button>
 
-      <div className="flex items-center mb-4 w-80 ml-32">
-        <input
-          type="text"
-          placeholder="Buscar por nombre"
-          className="border p-2 w-full"
-          value={searchName}
-          onChange={(e) => setSearchName(e.target.value)}
-        />
-        <button className="ml-2 p-2 bg-blue-500 text-white">
-          <FaSearch />
-        </button>
-      </div>
-
-      {/* {Users?.count == 0 ? (
-        <NoRequest text="No hay nada que mostrar aquí" />
-      ) : ( */}
-        <div className="flex place-content-center">
-          <div className="w-4/5">
-            <Table hoverable className=" text-center">
-              <Table.Head className=" h-20 text-sm">
-                <Table.HeadCell>CEDULA</Table.HeadCell>
-                <Table.HeadCell>NOMBRE</Table.HeadCell>
-                <Table.HeadCell>APELLIDOS</Table.HeadCell>
-                <Table.HeadCell>GENERO</Table.HeadCell>
-                <Table.HeadCell>EDAD</Table.HeadCell>
-                <Table.HeadCell>CORREO</Table.HeadCell>
-                <Table.HeadCell>PRIVILEGIOS</Table.HeadCell>
-                <Table.HeadCell></Table.HeadCell>
-              </Table.Head>
-              <Table.Body>
-                {/* {Users?.data.map((user: User) => (
-                  <TBLUsers user={user} />
-                ))} */}
-              </Table.Body>
-            </Table>
-
-            <div className=" w-full flex justify-between">
-              <div>
-                <span className=" pl-5">
-                  Mostrar{" "}
-                  <span>
-                    <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                  </span>{" "}
-                  Usuarios por página
-                </span>
-              </div>
-              <PaginatationSelector
-                totalPages={MaxPage}
-                currentPage={currentPage}
-                onPageChange={onPageChange}
-              />
+      <Modal show={isOpen} onClose={handleCloseModal} size="lg">
+        <Modal.Header className="bg-blue-950"><h6 className="text-white font-bold ">Editar Usuario</h6></Modal.Header>
+        <Modal.Body>
+          <form className="flex flex-col gap-4">
+            <div>
+              <Label htmlFor="cedula" value="Cédula" />
+              <TextInput id="cedula" name="cedula" value={formData.cedula} disabled={true} />
             </div>
-          </div>
-        </div>
-      {/* )} */}
+            <div>
+              <Label htmlFor="nombre" value="Nombre" />
+              <TextInput id="nombre" name="nombre" value={formData.nombre} onChange={handleInputChange} />
+            </div>
+            <div>
+              <Label htmlFor="apellidos" value="Apellidos" />
+              <TextInput id="apellidos" name="apellidos" value={formData.apellidos} onChange={handleInputChange} />
+            </div>
+            <div>
+              <Label htmlFor="genero" value="Género" />
+              <Dropdown inline={true} label={formData.genero}>
+                {["Hombre", "Mujer", "Otros"].map((genero) => (
+                  <Dropdown.Item key={genero} onClick={() => setFormData({ ...formData, genero })}>
+                    {genero}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown>
+            </div>
+            <div>
+              <Label htmlFor="edad" value="Edad" />
+              <TextInput id="edad" name="edad" type="number" value={formData.edad} onChange={handleInputChange} />
+            </div>
+            <div className="flex items-center gap-2">
+              <Checkbox id="salas" name="salas" checked={formData.salas} onChange={handleInputChange} />
+              <Label htmlFor="salas" value="Préstamo de Salas" />
+            </div>
+            <div>
+              <Label htmlFor="privilegiosLibros" value="Préstamo de Libros" />
+              <Select id="privilegiosLibros" name="privilegiosLibros" value={formData.privilegiosLibros} onChange={handleInputChange}>
+                <option value="Minimo">Mínimo (8/1)</option>
+                <option value="Medio">Medio (15/2)</option>
+                <option value="Alto">Alto (22/3)</option>
+                <option value="Total">Total (30/5)</option>
+              </Select>
+            </div>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button color="gray" onClick={handleCloseModal}>
+            Cancelar
+          </Button>
+          <Button onClick={handleSave}>Guardar</Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={isConfirmOpen} onClose={handleCloseConfirm} size="md">
+        <Modal.Header className="bg-amber-300"><h6 className="font-bold">Confirmar Guardado</h6></Modal.Header>
+        <Modal.Body>
+          <h6 className="text-center text-slate-950 font-semibold">¿Seguro que quieres guardar la siguiente información?</h6>
+          <ul className="list-disc pl-5">
+            <li>Cédula: {formData.cedula}</li>
+            <li>Nombre: {formData.nombre}</li>
+            <li>Apellidos: {formData.apellidos}</li>
+            <li>Género: {formData.genero}</li>
+            <li>Edad: {formData.edad}</li>
+            <li>Préstamo de Salas: {formData.salas ? "Sí" : "No"}</li>
+            <li>Préstamo de Libros: {formData.privilegiosLibros}</li>
+          </ul>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button color="green" onClick={handleConfirmSave}>
+            Sí, estoy seguro
+          </Button>
+          <Button color="red" onClick={handleCloseConfirm}>
+            No, cancelar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
 
 export default EditUserAdmin;
-
