@@ -20,6 +20,9 @@ import AdminCBooksInformation from "../features/Books/Pages/ChildrenBooks/AdminC
 import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBookInformation";
 import SearchChildrenCatalog from "../features/Books/Pages/ChildrenBooks/SearchChlindrenBook";
 import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInformationChild";
+import BookLoan from "../features/Loan/Pages/BookLoand";
+import ManageFurniture from "../features/Furniture/Pages/ManageFurniture";
+import FurnitureNew from "../features/Furniture/Pages/FurnitureNew";
 
 const Routes = createBrowserRouter([
   {
@@ -201,9 +204,11 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
+                element: <ManageFurniture />,
               },
               {
                 path: "Nuevo",
+                element: <FurnitureNew/>
               },
               {
                 path: "Editar/:Code",
@@ -303,8 +308,8 @@ const Routes = createBrowserRouter([
                 path: "Pendientes/Ver/:Code",
               },
               {
-                path: "SolicitarLibro/:Objetive",
-              //  element: <BookLoan/>
+                path: "SolicitarLibro/:BookCode",
+                element: <BookLoan/>
               },
             ],
           },

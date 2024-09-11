@@ -1,0 +1,64 @@
+import axios from "axios";
+import { FurnitureEdit } from "../type/furniture";
+
+const api = axios.create({
+    baseURL: `https://66de71d6de4426916ee12042.mockapi.io/Furniture`,
+    timeout: 1000,
+  });
+
+  const PostNewFurniture = async (furniture:FurnitureEdit) =>{
+    try{
+        console.table(furniture);
+        const response = await api.post(`/Furniture`, furniture);
+        return response.data;
+    } catch (error){
+        console.error("Error to post furniture", error);
+        throw error;
+    }
+  }
+
+  ///paginacion
+  const GetFurniturePaginated = async (
+    page: number,
+    limit: number,
+    description?: string,
+    location?: string,
+    inchargeperson?: string,
+    status?: string
+  ) => {
+    try {
+      const params: { [key: string]: string | number | undefined } = {
+        Page: page,
+        Limit: limit,
+      };
+  
+      if (description) params.description = description;
+      if (location) params.location = location;
+      if (inchargeperson) params.inchargeperson = inchargeperson;
+      if (status) params.Status = status;
+  
+      const response = await api.get("/Furniture", { params });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
+  //dar de baja 
+  
+const DownFurniture = async (Id: string) => {
+    try {
+      const response = await api.patch(`Furniture/${Id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error to post book:", error);
+      throw error;
+    }
+  };
+
+  export {
+    PostNewFurniture,
+    GetFurniturePaginated,
+    DownFurniture
+  }
