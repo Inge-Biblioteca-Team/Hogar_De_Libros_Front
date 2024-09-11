@@ -6,6 +6,7 @@ import axios from 'axios';
 const Register = () => {
   const [formData, setFormData] = useState({
     Email: '',
+    IDNumber: '',
     Name: '',
     LastName: '',
     PhoneNumber: 0,
@@ -55,6 +56,7 @@ const Register = () => {
     }
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.Password !== formData.repeatPassword) {
@@ -65,7 +67,7 @@ const Register = () => {
       return;
     }
 
-    console.log('Formulario Enviado:', formData); 
+    console.log('Formulario Enviado:', formData);
 
     try {
       const response = await axios.post('https://tu-backend.com/api/usuarios', {
@@ -77,6 +79,7 @@ const Register = () => {
         District: formData.District,
         Gender: formData.Gender,
         Address: formData.Address,
+        IDNumber: formData.IDNumber,
         BirthDate: new Date(formData.BirthDate),
         Password: formData.Password,
         AcceptTermsAndConditions: formData.AcceptTermsAndConditions,
@@ -92,14 +95,28 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800">
+    <div className="flex justify-center items-center min-h-screen bg-gray-800 p-8">
       <Card className="max-w-screen-lg w-full">
         <div className="flex flex-col md:flex-row">
-          <div className="md:w-1/2 p-6">
+          <div className="md:w-1/2">
             <h2 className="text-2xl font-bold mb-4 text-blue-600">Registro de usuario</h2>
             <p className="text-sm mb-4">
               ¿Posees una cuenta? <a href="/LogIn" className="text-blue-500 hover:underline">Inicia Sesión aquí.</a>
             </p>
+
+            <div>
+              <Label htmlFor="IDNumber" value="Número de Cédula" /> {/* Nuevo campo */}
+              <TextInput
+                id="IDNumber"
+                name="IDNumber"
+                inputMode="numeric"
+                type="number"
+                pattern="[0-9]*"
+                value={formData.IDNumber}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
@@ -150,6 +167,7 @@ const Register = () => {
                     required
                   />
                 </div>
+
 
                 <div>
                   <Label htmlFor="Password" value="Contraseña" />

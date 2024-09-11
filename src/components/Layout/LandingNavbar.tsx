@@ -36,62 +36,62 @@ const LandingNavbar = () => {
   }, []);
 
   return (
-      <div className=" w-full flex justify-center items-center max-sm:">
-        <NavbarCollapse>
-          <Navbar.Link className="text-white hover:!text-black " href="#Home">
-            Sobre Nosotros
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#MostPopularBooks"
-          >
-            Libros
-          </Navbar.Link>
-          <Navbar.Link className="text-white hover:!text-black " href="#Rooms">
-            Salas
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#Computers"
-          >
-            Equipo de Cómputo
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#Courses"
-          >
-            Cursos
-          </Navbar.Link>
-          <Navbar.Link className="text-white hover:!text-black " href="#Events">
-            Eventos
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#Programs"
-          >
-            Programas
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#Friends"
-          >
-            Amiguitos de La biblioteca
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#ContacUs"
-          >
-            Contáctanos
-          </Navbar.Link>
-          <Navbar.Link
-  className="text-white hover:!text-black"
-  href="/LogIn"
->
-  <FontAwesomeIcon icon={faUser} className="text-white h-5 w-5" /> {/* Ícono de usuario */}
-</Navbar.Link>
+    <div className=" w-full flex justify-center items-center max-sm:">
+      <NavbarCollapse>
+        <Navbar.Link className="text-white hover:!text-black " href="#Home">
+          Sobre Nosotros
+        </Navbar.Link>
+        <Navbar.Link
+          className="text-white hover:!text-black "
+          href="#MostPopularBooks"
+        >
+          Libros
+        </Navbar.Link>
+        <Navbar.Link className="text-white hover:!text-black " href="#Rooms">
+          Salas
+        </Navbar.Link>
+        <Navbar.Link
+          className="text-white hover:!text-black "
+          href="#Computers"
+        >
+          Equipo de Cómputo
+        </Navbar.Link>
+        <Navbar.Link
+          className="text-white hover:!text-black "
+          href="#Courses"
+        >
+          Cursos
+        </Navbar.Link>
+        <Navbar.Link className="text-white hover:!text-black " href="#Events">
+          Eventos
+        </Navbar.Link>
+        <Navbar.Link
+          className="text-white hover:!text-black "
+          href="#Programs"
+        >
+          Programas
+        </Navbar.Link>
+        <Navbar.Link
+          className="text-white hover:!text-black "
+          href="#Friends"
+        >
+          Amiguitos de La biblioteca
+        </Navbar.Link>
+        <Navbar.Link
+          className="text-white hover:!text-black "
+          href="#ContacUs"
+        >
+          Contáctanos
+        </Navbar.Link>
+        <Navbar.Link
+          className="text-white hover:!text-black"
+          href="/LogIn"
+        >
+          <FontAwesomeIcon icon={faUser} className="text-white h-5 w-5" />
+        </Navbar.Link>
 
-        </NavbarCollapse>
-      </div>
+      </NavbarCollapse>
+    </div>
   );
 };
 

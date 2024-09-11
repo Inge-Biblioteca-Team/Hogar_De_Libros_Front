@@ -22,6 +22,9 @@ import SearchChildrenCatalog from "../features/Books/Pages/ChildrenBooks/SearchC
 import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInformationChild";
 import Login from "../components/Login/Login";
 import Register from "../components/Login/Register";
+import EditUser from "../components/Users/EditUser";
+// import EditUserAdmin from "../features/Users/EditUserAdmin";
+import SingleUser from "../features/Users/SingleUser";
 
 const Routes = createBrowserRouter([
   {
@@ -37,6 +40,10 @@ const Routes = createBrowserRouter([
         element: <Landing />,
       },
     ],
+  },
+  {
+    path: "EditUser",
+    element: < EditUser/>,
   },
   {
     path: "LogIn",
@@ -157,6 +164,8 @@ const Routes = createBrowserRouter([
           },
           {
             path: "Usuarios",
+            // element: < EditUserAdmin/>,
+            element: < SingleUser/>,
             children: [
               {
                 index: true,
@@ -170,7 +179,12 @@ const Routes = createBrowserRouter([
               {
                 path: "Ver/:Code",
               },
-            ],
+              {
+                path: "User",
+              },
+
+   
+      ],
           },
           {
             path: "Salas",
