@@ -6,7 +6,7 @@ const api = axios.create({
     timeout: 1000,
   });
 
-export const finalizeLoan = async (Id:number) => {
+export const finalizeLoan = async (Id:string) => {
     const response = await api.put(`loand/${Id}/finalize`);
     return response.data;
   };

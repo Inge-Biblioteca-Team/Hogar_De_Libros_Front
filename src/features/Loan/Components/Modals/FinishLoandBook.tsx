@@ -33,7 +33,7 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
             <TextInput
             id="reason"
             type="text"
-            placeholder="Escriba la razón de la baja"
+            placeholder="Escriba condición del libro entregado"
             value={reason}
             onChange={(e) => setReason(e.target.value)}
             className="mb-4"
