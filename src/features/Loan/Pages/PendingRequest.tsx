@@ -5,7 +5,7 @@ import {
   LoanCrumb,
   ManageCrumb,
 } from "../../../components/BreadCrumb";
-import TBLLoan from "../Components/Tables/TBLLoan";
+import TBLLoan from "../Components/BooksLoans/TBLLoan";
 import { useQuery } from "react-query";
 import { GetPendandRequest } from "../Services/SvBookLoan";
 import { LoanResponse } from "../Types/BookLoan";
@@ -15,20 +15,11 @@ import PaginatationSelector from "../../../components/PaginatationSelector";
 import NoRequest from "../Components/NoRequest";
 
 const PendingRequest = () => {
-  const { data: Loan } = useQuery<LoanResponse, Error>(
-    ["PRLoans"],
-    () => GetPendandRequest(),
-    {
-      staleTime: 600,
-    }
-  );
   const [currentLimit, setCurrentLimit] = useState<number>(5);
   const [currentPage, setCurrentPage] = useState<number>(() => {
     const savedPage = sessionStorage.getItem("currentRLoan");
     return savedPage ? Number(savedPage) : 1;
   });
-
-  const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
@@ -38,7 +29,14 @@ const PendingRequest = () => {
   useEffect(() => {
     sessionStorage.setItem("currentPage", currentPage.toString());
   }, [currentPage]);
-
+  const { data: Loan } = useQuery<LoanResponse, Error>(
+    ["PRLoans", currentPage, currentLimit],
+    () => GetPendandRequest(currentPage, currentLimit),
+    {
+      staleTime: 600,
+    }
+  );
+  const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">

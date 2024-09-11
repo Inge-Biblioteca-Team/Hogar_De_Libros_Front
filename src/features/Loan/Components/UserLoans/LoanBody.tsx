@@ -1,46 +1,58 @@
 import { useState } from "react";
 import { Loans } from "../../Types/BookLoan";
 import MDLoanInfo from "./Modals/MDLoanInfo";
-import { Card } from "flowbite-react";
+import { Button, Popover, Table } from "flowbite-react";
 
 const LoanBody = ({
-  Loan,
-  Done,
-  Retry,
-  Aprov,
+  Loan
 }: {
   Loan: Loans;
   Done?: boolean;
   Retry?: boolean;
   Aprov?: boolean;
 }) => {
-  const [open, SetOpen] = useState(false);
+  const [showCancel, setShowCancel] = useState(false);
+  const [showChange,setShowChange ] = useState(false);
   const reqDate = new Date(Loan.LoanRequestDate);
-  const PickUpDate = new Date(Loan.BookPickUpDate);
+  const pickUpDate = new Date(Loan.BookPickUpDate);
+  
   return (
     <>
-      <Card
-        key={Loan.BookLoanId}
-        className=" shadow-lg p-3 flex flex-col rounded-xl mt-4
-      hover:shadow-blue-300 hover:scale-110 "
-        onClick={() => SetOpen(true)}
+      <Popover
+        placement="bottom"
+        aria-labelledby="profile-popover"
+        content={
+          <div className=" flex items-center justify-center flex-col m-2">
+            <span>Solicitud #{Loan.BookLoanId} </span>
+            {Loan.Status == "Pendiente" && (
+              <Button color={"failure"}
+              onClick={()=>setShowCancel(true)}>Cancelar Solicitud</Button>
+            )}
+            {Loan.Status == "En progreso" && (
+              <Button color={"success"}
+              onClick={()=>setShowChange(true)}>Solicitar Extencion de prestamo</Button>
+            )}
+            {Loan.Status == "Finalizado" && (
+              <Button color={"success"}>Solicitar Denuevo</Button>
+            )}
+          </div>
+        }
       >
-        <span className=" line-clamp-1">
-          <strong>Titulo:</strong>
-          {Loan.BookLoanId}
-        </span>
-        <span>
-          {" "}
-          <strong>Fecha de solicitud:</strong>{" "}
-          {reqDate.toLocaleDateString("es-Es")}
-        </span>
-        <span>
-          {" "}
-          <strong>Fecha de Vencimiento:</strong>{" "}
-          {PickUpDate.toLocaleDateString("es-Es")}
-        </span>
-      </Card>
-      <MDLoanInfo open={open} SetOpen={SetOpen} Aprov={Aprov} Done={Done} Retry={Retry} Loan={Loan} />
+        <Table.Row className="cursor-pointer" key={Loan.BookLoanId}>
+          <Table.Cell>{Loan.BookLoanId}</Table.Cell>
+          <Table.Cell className=" line-clamp-1">{Loan.book.Title}</Table.Cell>
+          <Table.Cell>{reqDate.toLocaleDateString("es-ES")}</Table.Cell>
+          {Loan.Status !=="Finalizado"? <Table.Cell>{pickUpDate.toLocaleDateString("es-ES")}</Table.Cell> : null}
+        </Table.Row>
+      </Popover>
+
+      <MDLoanInfo
+        setShowCancel={setShowCancel}
+        setShowChange={setShowChange}
+        showChange={showChange}
+        showCancel={showCancel}
+        Loan={Loan}
+       />
     </>
   );
 };

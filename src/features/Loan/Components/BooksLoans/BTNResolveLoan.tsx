@@ -3,9 +3,9 @@ import { GiConfirmed } from "react-icons/gi";
 import { MdCancel } from "react-icons/md";
 import { PiEyeFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import DenyRequest from "./Modals/DenyRequest";
-import { Loans } from "../Types/BookLoan";
-import UseAproveLoan from "../Hooks/UseAproveLoan";
+import DenyRequest from "./DenyRequest";
+import { Loans } from "../../Types/BookLoan";
+import UseAproveLoan from "../../Hooks/Books/UseAproveLoan";
 const BTNResolveLoan = ({Loan}:{Loan:Loans}) => {
   const [showD,setShowD] = useState<boolean>(false)
 

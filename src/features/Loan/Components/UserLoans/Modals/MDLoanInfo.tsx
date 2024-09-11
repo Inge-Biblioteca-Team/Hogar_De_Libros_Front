@@ -1,92 +1,33 @@
 import { Button, Modal, TextInput } from "flowbite-react";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction} from "react";
 import { Loans } from "../../../Types/BookLoan";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import UseCancelLoan from "../../../Hooks/UseCancelLoan";
+import UseCancelLoan from "../../../Hooks/Books/UseCancelLoan";
 
 const MDLoanInfo = ({
   Loan,
-  open,
-  SetOpen,
-  Done,
-  Retry,
-  Aprov,
+  showCancel,
+  setShowCancel,
+  showChange,
+  setShowChange
 }: {
   Loan: Loans;
-  open: boolean;
-  SetOpen: Dispatch<SetStateAction<boolean>>;
-  Done?: boolean;
-  Retry?: boolean;
-  Aprov?: boolean;
-}) => {
-  const [showCancel, setShowCancel] = useState<boolean>(false);
-  const [showChange, setShowChange] = useState<boolean>(false);
+  showCancel: boolean;
+  setShowCancel: Dispatch<SetStateAction<boolean>>;
+  showChange: boolean;
+  setShowChange: Dispatch<SetStateAction<boolean>>;
 
+
+}) => {
   const { mutate: cancelLoan } = UseCancelLoan();
 
   const handleCancel = () => {
     cancelLoan(Loan.BookLoanId);
+    setShowCancel(false)
   };
 
-  const reqDate = new Date(Loan.LoanRequestDate);
-  const PickUpDate = new Date(Loan.BookPickUpDate);
   return (
     <>
-      <Modal show={open} onClose={() => SetOpen(false)}>
-        <Modal.Header>Información del Préstamo</Modal.Header>
-        <Modal.Body>
-          <p>
-            <strong>Título del libro:</strong> Los cuentos de mi tia panchita
-          </p>
-          <p>
-            <strong>Autor:</strong> Carmen Lira
-          </p>
-          <p>
-            <strong>Título del libro:</strong> Los cuentos de mi tia panchita
-          </p>
-          <p>
-            <strong>Fecha de solicitud:</strong>{" "}
-            {reqDate.toLocaleDateString("es-Es")}
-          </p>
-          <p>
-            <strong>Fecha limite de devolucion:</strong>{" "}
-            {PickUpDate.toLocaleDateString("es-Es")}
-          </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            type="button"
-            gradientMonochrome="info"
-            onClick={() => SetOpen(false)}
-          >
-            Regresar
-          </Button>
-          <Button
-            type="button"
-            color={"failure"}
-            onClick={() => setShowCancel(true)}
-            className={`${Aprov ? `` : ` hidden`}`}
-          >
-            Cancelar solicitud
-          </Button>
-          <Button
-            type="button"
-            color={"blue"}
-            onClick={() => SetOpen(false)}
-            className={`${Done ? `` : ` hidden`}`}
-          >
-            Solicitar Denuevo
-          </Button>
-          <Button
-            type="button"
-            color={"blue"}
-            onClick={() => setShowChange(true)}
-            className={`${Retry ? `` : ` hidden`}`}
-          >
-            solicitar extencion de prestamo
-          </Button>
-        </Modal.Footer>
-      </Modal>
       <Modal show={showCancel} popup onClose={() => setShowCancel(false)}>
         <Modal.Header />
         <Modal.Body>
@@ -97,8 +38,7 @@ const MDLoanInfo = ({
               <Button
                 color="blue"
                 onClick={() => {
-                  setShowCancel(false);
-                  SetOpen(false);
+                  setShowCancel(false)
                 }}
               >
                 Regresar
@@ -120,8 +60,7 @@ const MDLoanInfo = ({
               <Button
                 color="failure"
                 onClick={() => {
-                  setShowChange(false);
-                  SetOpen(false);
+                  setShowChange(false)
                 }}
               >
                 Regresar

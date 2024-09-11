@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import { CancelRequest } from "../Services/SvBookLoan";
+import { CancelRequest } from "../../Services/SvBookLoan";
 import toast from "react-hot-toast";
 
 const UseCancelLoan = () => {
@@ -13,6 +13,8 @@ const UseCancelLoan = () => {
     {
       onSuccess: (data) => {
         queryClient.invalidateQueries("PRLoans");
+        queryClient.invalidateQueries("RLoans");
+        queryClient.invalidateQueries("DLoans");
         toast.success("Préstamo cancelado correctamente:", data);
       },
       onError: () => {

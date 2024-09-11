@@ -2,10 +2,10 @@ import { TfiReload } from "react-icons/tfi";
 import { PiCalendarXLight } from "react-icons/pi";
 import { PiEyeFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import { Loans } from "../Types/BookLoan";
+import { Loans } from "../../Types/BookLoan";
 import { useState } from "react";
-import LoanRenuve from "./Modals/LoanRenuve";
-import UseFinishLoan from "../Hooks/UseFinishLoan";
+import LoanRenuve from "./LoanRenuve";
+import UseFinishLoan from "../../Hooks/Books/UseFinishLoan";
 const BTNInprogresLoan = ({ Loan }: { Loan: Loans }) => {
   const [showR, setShowR] = useState<boolean>(false);
 

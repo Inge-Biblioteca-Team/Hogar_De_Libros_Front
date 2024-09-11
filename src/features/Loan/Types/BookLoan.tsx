@@ -21,8 +21,8 @@ export type LoanResponse = {
     LoanRequestDate: string;
     BookPickUpDate: string;
     LoanExpirationDate: string;
-    BookCode:string;
-    Cedula:number;
+    bookBookCode:string;
+    userId:number;
     InscriptionCode:string;
     SignaCode:string
     Title:string

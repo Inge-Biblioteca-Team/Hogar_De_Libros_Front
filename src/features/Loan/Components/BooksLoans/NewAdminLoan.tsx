@@ -20,7 +20,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { newloan } from "../../Types/BookLoan";
 import { addDays, subDays } from "date-fns";
-import UseGenerateNewLoan from "../../Hooks/UseGenerateNewLoan";
+import UseGenerateNewLoan from "../../Hooks/Books/UseGenerateNewLoan";
 
 const NewAdminLoan = () => {
   const { BookCode } = useParams<{ BookCode?: string }>();
@@ -40,7 +40,7 @@ const NewAdminLoan = () => {
     if (book) {
       const now = new Date().toISOString().slice(0, 16);
       setValue("Title", book.Title);
-      setValue("BookCode", book.BookCode);
+      setValue("bookBookCode", book.BookCode);
       setValue("SignaCode", book.SignatureCode);
       setValue("InscriptionCode", book.InscriptionCode);
       setValue("Author", book.Author);
@@ -89,7 +89,7 @@ const NewAdminLoan = () => {
                   type="text"
                   id="disabledInput1"
                   placeholder="Numero de cedula sin guiones"
-                  {...register("Cedula")}
+                  {...register("userId")}
                   required
                 />
               </span>

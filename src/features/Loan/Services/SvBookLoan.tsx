@@ -7,32 +7,46 @@ const api = axios.create({
 });
 
 //Gets
-const GetPendandRequest = async () => {
+const GetPendandRequest = async (page: number, limit: number) => {
   try {
-    const response = await api.get(`book-loan/pending`);
+    const response = await api.get(`book-loan/pending`, {
+      params: {
+        page: page,
+        limit: limit,
+      },
+    });
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error to get pending requests:", error);
+    throw error;
+  }
+};
+const GetInProgressLoan = async (page: number, limit: number) => {
+  try {
+    const response = await api.get(`book-loan/in-progress`, {
+      params: {
+        page: page,
+        limit: limit,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error to get requests:", error);
     throw error;
   }
 };
 
-const GetInProgressLoan = async () => {
+const GetDoneLoans = async (page: number, limit: number) => {
   try {
-    const response = await api.get(`book-loan/in-progress`);
+    const response = await api.get(`book-loan/completed`, {
+      params: {
+        page: page,
+        limit: limit,
+      },
+    });
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
-    throw error;
-  }
-};
-
-const GetDoneLoans = async () => {
-  try {
-    const response = await api.get(`book-loan/completed`);
-    return response.data;
-  } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error to get requests:", error);
     throw error;
   }
 };
@@ -40,7 +54,20 @@ const GetDoneLoans = async () => {
 //Path Status
 const CancelRequest = async (LoanID: number) => {
   try {
-    const response = await api.patch(`/book-loan/${LoanID}/reject`);
+    const response = await api.patch(`/book-loan/${LoanID}/finalize`,{
+      Observations: "Cancelado por el Usuario"
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error to post book:", error);
+    throw error;
+  }
+};
+const RefuseRequest = async (LoanID: number) => {
+  try {
+    const response = await api.patch(`/book-loan/${LoanID}/finalize`,{
+      Observations: "Cancelado por administrador"
+    });
     return response.data;
   } catch (error) {
     console.error("Error to post book:", error);
@@ -93,4 +120,5 @@ export {
   AproveRequest,
   PostNewLoan,
   FinalizeLoan,
+  RefuseRequest
 };

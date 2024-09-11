@@ -25,9 +25,10 @@ import PendingRequest from "../features/Loan/Pages/PendingRequest";
 import BookLoan from "../features/Books/Pages/BookLoand";
 import FinishedLoans from "../features/Loan/Pages/FinishedLoans";
 import InProgressLoans from "../features/Loan/Pages/InProgressLoans";
-import MyLoanHIstory from "../features/Users/Pages/MyLoanHIstory";
+import MyLoanHIstory from "../features/Loan/Components/UserLoans/MyLoanHIstory";
 import Login from "../features/Users/Auth/Login";
-import NewAdminLoan from "../features/Loan/Components/Forms/NewAdminLoan";
+import NewAdminLoan from "../features/Loan/Components/BooksLoans/NewAdminLoan";
+import ManageUsers from "../features/Users/Pages/ManageUsers";
 
 const Routes = createBrowserRouter([
   {
@@ -169,6 +170,7 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
+                element:<ManageUsers/>
               },
               {
                 path: "Nuevo",

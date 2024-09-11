@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import { AproveRequest } from "../Services/SvBookLoan";
 import toast from "react-hot-toast";
+import { AproveRequest } from "../../Services/SvBookLoan";
 
 const UseAproveLoan = () => {
   const queryClient = useQueryClient();

@@ -1,15 +1,12 @@
 import { useQuery } from "react-query";
 import { LoanResponse, Loans } from "../../Types/BookLoan";
 import LoanBody from "./LoanBody";
-import { GetDoneLoans } from "../../../Users/Services/SvUsuer";
+import { Table, TextInput } from "flowbite-react";
+import { GetDoneLoans } from "../../Services/SvBookLoan";
 
 const DoneLoan = () => {
-  const { data: Loan } = useQuery<LoanResponse, Error>(
-    ["DLoans"],
-    () => GetDoneLoans(),
-    {
-      staleTime: 600,
-    }
+  const { data: Loan } = useQuery<LoanResponse, Error>(["DLoans"], () =>
+    GetDoneLoans(1, 5)
   );
   if (Loan?.count == 0) {
     return null;
@@ -17,12 +14,21 @@ const DoneLoan = () => {
   return (
     <>
       <div className="">
-        <h5 className=" font-bold">Finalizados Recientes</h5>
-        <div className=" flex gap-2 items-center justify-center">
-          {Loan?.data.map((loans: Loans) => (
-            <LoanBody Loan={loans} key={loans.BookLoanId} Done />
-          ))}
-        </div>
+        <h5 className=" font-bold">Ultimos Prestamos </h5>
+        <Table hoverable className=" text-center">
+          <Table.Head>
+            <Table.HeadCell>#De Solicitud</Table.HeadCell>
+            <Table.HeadCell>Título</Table.HeadCell>
+            <Table.HeadCell className="flex items-center justify-center gap-2">
+              Fecha de solicitud <TextInput type="date"></TextInput>{" "}
+            </Table.HeadCell>
+          </Table.Head>
+          <Table.Body>
+            {Loan?.data.map((loans: Loans) => (
+              <LoanBody Loan={loans} key={loans.BookLoanId} Done />
+            ))}
+          </Table.Body>
+        </Table>
       </div>
     </>
   );

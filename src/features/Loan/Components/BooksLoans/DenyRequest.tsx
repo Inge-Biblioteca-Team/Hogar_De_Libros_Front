@@ -1,8 +1,8 @@
 import { Modal, Button } from "flowbite-react";
 import { Dispatch, SetStateAction} from "react";
-import UseCancelLoan from "../../Hooks/UseCancelLoan";
 import { Loans } from "../../Types/BookLoan";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import UseRefuseLoan from "../../Hooks/Books/UseRefuseLoan";
 
 const DenyRequest = ({
   Loan,
@@ -13,10 +13,10 @@ const DenyRequest = ({
   showCancel: boolean;
   setShowCancel: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { mutate: cancelLoan } = UseCancelLoan();
+  const { mutate: refuse } = UseRefuseLoan();
 
   const handleCancel = () => {
-    cancelLoan(Loan.BookLoanId);
+    refuse(Loan.BookLoanId);
     setShowCancel(false)
   };
 

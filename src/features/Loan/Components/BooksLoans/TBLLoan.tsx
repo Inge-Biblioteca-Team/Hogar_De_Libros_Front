@@ -1,7 +1,7 @@
 import { Table } from "flowbite-react";
-import BTNResolveLoan from "../BTNResolveLoan";
+import BTNResolveLoan from "./BTNResolveLoan";
 import { useNavigate } from "react-router-dom";
-import BTNInprogresLoan from "../BTNInprogresLoan";
+import BTNInprogresLoan from "./BTNInprogresLoan";
 import { LoanResponse } from "../../Types/BookLoan";
 const TBLLoan = ({
   NeedAccions,
@@ -51,9 +51,9 @@ const TBLLoan = ({
                 <Table.Cell className="w-56">
                   {PickUpDate.toLocaleDateString("es-ES")}
                 </Table.Cell>
-                <Table.Cell className="w-64">{Loan.UserCedula}</Table.Cell>
-                <Table.Cell className="w-44">{Loan.BookTitle}</Table.Cell>
-                <Table.Cell className="w-52">{Loan.BookCode} </Table.Cell>
+                <Table.Cell className="w-64">{Loan.user.name}</Table.Cell>
+                <Table.Cell className="w-44 line-clamp-1 mt-3">{Loan.book.Title}</Table.Cell>
+                <Table.Cell className="w-52">{Loan.book.SignatureCode} </Table.Cell>
                 <Table.Cell className={`${NeedAccions ? `hidden` : ``} w-64`}>
                   Adrian Aguilar
                 </Table.Cell>

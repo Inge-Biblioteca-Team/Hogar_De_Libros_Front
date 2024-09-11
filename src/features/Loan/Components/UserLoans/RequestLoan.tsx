@@ -1,12 +1,13 @@
-import { GetPendandRequest } from "../../../Users/Services/SvUsuer";
 import { useQuery } from "react-query";
 import { LoanResponse, Loans } from "../../Types/BookLoan";
 import LoanBody from "./LoanBody";
+import { Table } from "flowbite-react";
+import { GetPendandRequest } from "../../Services/SvBookLoan";
 
 const RequestLoan = () => {
   const { data: Loan } = useQuery<LoanResponse, Error>(
     ["RLoans"],
-    () => GetPendandRequest(),
+    () => GetPendandRequest(1, 5),
     {
       staleTime: 600,
     }
@@ -17,14 +18,22 @@ const RequestLoan = () => {
 
   return (
     <>
-        <div className="">
-          <h5 className=" font-bold">Solicitudes Pendientes de Aprobacion</h5>
-          <div className="flex gap-2 items-center justify-center">
-          {Loan?.data.map((loans: Loans) => (
-            <LoanBody Loan={loans} key={loans.BookLoanId} Aprov/>
-          ))}
-          </div>
-        </div>
+      <div className="">
+        <h5 className=" font-bold">Solicitudes Pendientes de Aprobacion</h5>
+        <Table hoverable className="text-center">
+          <Table.Head>
+            <Table.HeadCell>#De Solicitud</Table.HeadCell>
+            <Table.HeadCell>Título</Table.HeadCell>
+            <Table.HeadCell>Fecha de solicitud</Table.HeadCell>
+            <Table.HeadCell>Fecha de vencimiento</Table.HeadCell>
+          </Table.Head>
+          <Table.Body>
+            {Loan?.data.map((loans: Loans) => (
+              <LoanBody Loan={loans} key={loans.BookLoanId} Aprov />
+            ))}
+          </Table.Body>
+        </Table>
+      </div>
     </>
   );
 };

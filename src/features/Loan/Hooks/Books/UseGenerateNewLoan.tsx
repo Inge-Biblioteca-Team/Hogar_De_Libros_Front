@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import toast from "react-hot-toast";
-import { PostNewLoan } from "../Services/SvBookLoan";
 import { useNavigate } from "react-router-dom";
+import { PostNewLoan } from "../../Services/SvBookLoan";
 
 const UseGenerateNewLoan = () => {
   const navi = useNavigate()
