@@ -26,11 +26,13 @@ import BookLoan from "../features/Books/Pages/BookLoand";
 import FinishedLoans from "../features/Loan/Pages/Books/FinishedLoans";
 import InProgressLoans from "../features/Loan/Pages/Books/InProgressLoans";
 import MyLoanHIstory from "../features/Loan/Components/UserLoans/MyLoanHIstory";
-import Login from "../features/Users/Auth/Login";
 import NewAdminLoan from "../features/Loan/Components/BooksLoans/NewAdminLoan";
 import ManageUsers from "../features/Users/Pages/ManageUsers";
 import WorkStationsLoanHistory from "../features/Loan/Pages/WorkStations/WorkStationsLoanHistory";
 import ManageLoansWS from "../features/Loan/Pages/WorkStations/ManageLoansWS";
+import EditUser from "../components/Users/EditUser";
+import Login from "../features/Users/Auth/Login";
+import SingleUser from "../features/Users/SingleUser";
 
 const Routes = createBrowserRouter([
   {
@@ -48,8 +50,12 @@ const Routes = createBrowserRouter([
     ],
   },
   {
-    path: "InicioDeSecion",
-    element: <Login />,
+    path: "EditUser",
+    element: < EditUser/>,
+  },
+  {
+    path: "LogIn",
+    element: < Login/>,
   },
   {
     path: "register",
@@ -169,6 +175,8 @@ const Routes = createBrowserRouter([
           },
           {
             path: "Usuarios",
+            // element: < EditUserAdmin/>,
+            element: < SingleUser/>,
             children: [
               {
                 index: true,
@@ -183,7 +191,12 @@ const Routes = createBrowserRouter([
               {
                 path: "Ver/:Code",
               },
-            ],
+              {
+                path: "User",
+              },
+
+   
+      ],
           },
           {
             path: "Salas",
