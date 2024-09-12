@@ -53,9 +53,9 @@ const WorkStationsLoanHistory = () => {
               <Table.HeadCell>Hora de Fin</Table.HeadCell>
             </Table.Head>
             <Table.Body>
-            {WSLoan?.data.map((loans) => (
-              <HistoryRegist WSLoan={loans} key={loans.ComputerLoanId} />
-            ))}
+              {WSLoan?.data.map((loans) => (
+                <HistoryRegist WSLoan={loans} key={loans.ComputerLoanId} />
+              ))}
             </Table.Body>
           </Table>
           <div className=" w-full flex justify-between">

@@ -1,6 +1,6 @@
 import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Breadcrumb, Button, Popover } from "flowbite-react";
+import { Breadcrumb, Popover } from "flowbite-react";
 import {
   HomeCrumb,
   LastCrumb,
@@ -8,7 +8,7 @@ import {
 } from "../../../../components/BreadCrumb";
 import { GetStatus } from "../../Services/SvComputerLoan";
 import { useQuery } from "react-query";
-import { HiAdjustments, HiCloudDownload, HiUserCircle } from "react-icons/hi";
+import ButtonsAccions from "../../Components/WorkStations/ButtonsAccions";
 
 type ComputerStatus = {
   Status: string;
@@ -45,26 +45,7 @@ const ManageLoansWS = () => {
             >
               <Popover
                 content={
-                  <Button.Group>
-                    {computer.Status == "En Uso" ? null : (
-                      <Button color="gray">
-                        <HiUserCircle className="mr-3 h-4 w-4" />
-                        En Uso
-                      </Button>
-                    )}
-                    {computer.Status == "Mantenimiento" ? null : (
-                      <Button color="gray">
-                        <HiAdjustments className="mr-3 h-4 w-4" />
-                        Mantenimiento
-                      </Button>
-                    )}
-                    {computer.Status == "Disponible" ? null : (
-                      <Button color="gray">
-                        <HiCloudDownload className="mr-3 h-4 w-4" />
-                        Disponible
-                      </Button>
-                    )}
-                  </Button.Group>
+                 <ButtonsAccions computer={computer}/>
                 }
               >
                 <div className={`text-6xl ${conditionColors[computer.Status]}`}>
@@ -79,7 +60,6 @@ const ManageLoansWS = () => {
           ))}
         </div>
       </div>
-
       <div className="flex justify-center mt-5 space-x-8">
         <div className="flex items-center">
           <span className="text-green-500 text-2xl">●</span>

@@ -88,7 +88,7 @@ const FinalizeLoan = async (Loan: finishLoan) => {
   try {
     const response = await api.patch(
       `/book-loan/${Loan.BookLoanId}/finalize`,
-      Loan
+      { Observations: Loan.Observation } 
     );
     return response.data;
   } catch (error) {
