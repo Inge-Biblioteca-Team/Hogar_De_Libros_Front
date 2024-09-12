@@ -33,6 +33,7 @@ import ManageLoansWS from "../features/Loan/Pages/WorkStations/ManageLoansWS";
 import EditUser from "../components/Users/EditUser";
 import Login from "../features/Users/Auth/Login";
 import SingleUser from "../features/Users/SingleUser";
+import NewUsaerLoan from "../features/Loan/Components/UserLoans/NewUserLoan";
 
 const Routes = createBrowserRouter([
   {
@@ -54,11 +55,11 @@ const Routes = createBrowserRouter([
     element: < EditUser/>,
   },
   {
-    path: "LogIn",
+    path: "IniciarSesion",
     element: < Login/>,
   },
   {
-    path: "register",
+    path: "Registro",
     element: <Register />,
   },
   {
@@ -97,6 +98,10 @@ const Routes = createBrowserRouter([
       {
         path: "CatalogoDeLibros/LibroI/:BookCode",
         element: <BookInformationChild />,
+      },
+      {
+        path: "Solicitud/:BookCode",
+        element: <NewUsaerLoan/>,
       },
       {
         path: "Gestion",

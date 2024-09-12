@@ -2,7 +2,6 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { GetBookByTtit_Category, GetByBookCode } from "../services/SvBooks";
 import { Book, BookApiResponse } from "../type/Book";
-import BtnReserve from "../components/BTN/BtnReserve";
 import { Breadcrumb } from "flowbite-react";
 import BookCard from "../components/Cards/BookCard";
 import {
@@ -11,6 +10,7 @@ import {
   LastCrumb,
   SearchCrumb,
 } from "../../../components/BreadCrumb";
+import BtnRequest from "../components/BTN/BtnRequest";
 
 const BookInformation = () => {
   const { BookCode } = useParams<{ BookCode?: string }>();
@@ -88,7 +88,7 @@ const BookInformation = () => {
           <span>{book?.SignatureCode}</span>
           <div className="">
             {book?.BookCode && (
-              <BtnReserve
+              <BtnRequest
                 Objetive={book.BookCode}
                 text="Solicitar Prestamo"
               />

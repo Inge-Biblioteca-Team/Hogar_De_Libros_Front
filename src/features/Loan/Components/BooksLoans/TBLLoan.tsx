@@ -46,10 +46,10 @@ const TBLLoan = ({
                 onClick={!NeedAccions ? () => Goto(2) : undefined}
               >
                 <Table.Cell className="w-56">
-                  {reqDate.toLocaleDateString("es-Es")}
+                  {reqDate.toLocaleDateString("es-CR")}
                 </Table.Cell>
                 <Table.Cell className="w-56">
-                  {PickUpDate.toLocaleDateString("es-ES")}
+                  {PickUpDate.toLocaleDateString("es-CR")}
                 </Table.Cell>
                 <Table.Cell className="w-64">{Loan.user.name}</Table.Cell>
                 <Table.Cell className="w-44 line-clamp-1 mt-3">

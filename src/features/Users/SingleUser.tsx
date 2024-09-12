@@ -47,8 +47,8 @@ const SingleUser = () => {
           value={searchName}
           onChange={(e) => setSearchName(e.target.value)}
         />
-        <button className="ml-2 p-2 bg-blue-500 text-white">
-          <FaSearch />
+        <button type="button" className="ml-2 p-2 bg-blue-500 text-white">
+        {""}  <FaSearch />
         </button>
       </div>
 

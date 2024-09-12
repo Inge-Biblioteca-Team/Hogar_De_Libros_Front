@@ -41,8 +41,8 @@ const LoanBody = ({
         <Table.Row className="cursor-pointer" key={Loan.BookLoanId}>
           <Table.Cell>{Loan.BookLoanId}</Table.Cell>
           <Table.Cell className=" line-clamp-1">{Loan.book.Title}</Table.Cell>
-          <Table.Cell>{reqDate.toLocaleDateString("es-ES")}</Table.Cell>
-          {Loan.Status !=="Finalizado"? <Table.Cell>{pickUpDate.toLocaleDateString("es-ES")}</Table.Cell> : null}
+          <Table.Cell>{reqDate.toLocaleDateString("es-CR")}</Table.Cell>
+          {Loan.Status !=="Finalizado"? <Table.Cell>{pickUpDate.toLocaleDateString("es-CR")}</Table.Cell> : null}
         </Table.Row>
       </Popover>
 

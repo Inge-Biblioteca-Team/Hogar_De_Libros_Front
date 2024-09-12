@@ -112,6 +112,16 @@ const PostNewLoan = async (Loan: newloan) => {
     throw error;
   }
 };
+const PostNewUserLoan = async (Loan: newloan) => {
+  try {
+    const response = await api.post(`/book-loan`, Loan);
+    response.data;
+    return response.data;
+  } catch (error) {
+    console.error("Error to post book:", error);
+    throw error;
+  }
+};
 
 export {
   GetPendandRequest,
@@ -122,4 +132,5 @@ export {
   PostNewLoan,
   FinalizeLoan,
   RefuseRequest,
+  PostNewUserLoan
 };

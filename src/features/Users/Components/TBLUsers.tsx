@@ -14,7 +14,7 @@ const TBLUsers = ({ user }: { user:User }) => {
         <Table.Cell className="w-56">{user.id} </Table.Cell>
         <Table.Cell className="w-56">{user.province} </Table.Cell>
         <Table.Cell className="w-56">{user.phoneNumber} </Table.Cell>
-        <Table.Cell className="w-56">{regDate.toLocaleDateString('es-ES')} </Table.Cell>
+        <Table.Cell className="w-56">{regDate.toLocaleDateString('es-CR')} </Table.Cell>
         <Table.Cell className="w-56">{user.status} </Table.Cell>
         <Table.Cell className="w-56">
           <BTNAccions />
