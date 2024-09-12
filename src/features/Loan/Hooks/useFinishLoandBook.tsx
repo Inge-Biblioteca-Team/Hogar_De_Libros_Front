@@ -1,20 +1,18 @@
-import { useMutation } from "react-query";
-import { finalizeLoan } from "../Services/SvBookLoan";
+import { useMutation, useQueryClient } from "react-query";
+import { FinalizeLoan } from "../Services/SvBookLoan";
+import toast from "react-hot-toast";
 
 const useFinalizeLoan = () => {
-    const mutation = useMutation({
-      mutationFn: finalizeLoan,
-      onSuccess: () => {
-        
-        console.log('Préstamo finalizado exitosamente');
-      },
-      onError: (error) => {
-        
-        console.error('Error al finalizar el préstamo:', error);
-      },
-    });
-  
-    return mutation;
+  const queryClient = useQueryClient();
+  return useMutation(FinalizeLoan, {
+    onSuccess: () => {
+      toast.success("Préstamo finalizado con éxito.");
+      queryClient.invalidateQueries("IPLoans");
+    },
+    onError: () => {
+      toast.error("Error al finalizar el préstamo.");
+    },
+  });
   };
   
   export default useFinalizeLoan;
