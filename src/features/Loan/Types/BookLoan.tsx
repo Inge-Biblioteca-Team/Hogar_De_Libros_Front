@@ -1,5 +1,14 @@
 
-export type newloan = {
+
+export type LoanResponse = {
+  data: Loans[];
+  count: number;
+};
+
+export type Loans= {
+  Status: string;
+  Observations: string;
+  BookLoanId: number;
   LoanRequestDate: string;
   BookPickUpDate: string;
   LoanExpirationDate: string;
@@ -39,12 +48,15 @@ export type Loans = {
   LoanRequestDate: string;
   BookPickUpDate: string;
   LoanExpirationDate: string;
-  Observations: string;
-  book: Book;
-  user: User;
-};
+  bookBookCode:string;
+  userId:number;
+  InscriptionCode:string;
+  SignaCode:string
+  Title:string
+  Author:string
+}
 
-export type LoanResponse = {
-  data: Loans[];
-  count: number;
-};
+export type finishLoan={
+  Observation:string;
+  BookLoanId:number
+}

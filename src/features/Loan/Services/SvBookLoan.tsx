@@ -1,5 +1,6 @@
 import axios from "axios";
-import { finishLoan, newloan } from "../Types/BookLoan";
+import { finishLoan } from "../Types/BookLoan";
+
 
 const api = axios.create({
   baseURL: "http://localhost:3000",
