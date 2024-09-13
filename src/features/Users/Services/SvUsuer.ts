@@ -25,17 +25,27 @@ const api2 = axios.create({
   timeout: 1000,
 });
 
-
-const GetUserData = async (NCedula:string)=>{
+const GetUserData = async (NCedula: string) => {
   try {
-    const response = await api2.get('' ,{
-      params:{
-        Cedula:NCedula,
+    const response = await api2.get("", {
+      params: {
+        Cedula: NCedula,
       },
-    })
-    return response.data
-  }catch(error){
-    console.error("Usuario no encontrado")
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Usuario no encontrado");
   }
-}
-export { GetUsersList, GetUserData };
+};
+
+const DownUser = async (cedula: number) => {
+  try {
+    const response = await api.patch(`user/status/${cedula}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error to disbale:", error);
+    throw error;
+  }
+};
+
+export { GetUsersList, GetUserData, DownUser };

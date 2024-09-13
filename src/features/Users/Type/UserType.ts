@@ -1,13 +1,12 @@
 export type User = {
-  id: number;
-  Cedula: number;
+  cedula: number;
   email: string;
   name: string;
   lastName: string;
   phoneNumber: string;
   registerDate: Date;
   province: string;
-  status: string;
+  status: boolean;
 };
 
 export type UsersResponse = {

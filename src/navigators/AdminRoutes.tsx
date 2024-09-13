@@ -14,7 +14,6 @@ import EditComputer from "../features/Computers/Pages/EditComputer";
 import ManagerComputer from "../features/Computers/Pages/ManagerComputer";
 import NewAdminLoan from "../features/Loan/Components/BooksLoans/NewAdminLoan";
 import ManageUsers from "../features/Users/Pages/ManageUsers";
-import SingleUser from "../features/Users/SingleUser";
 import Layout from "../Pages/Layout";
 import ManageLoansWS from "../features/Loan/Pages/WorkStations/ManageLoansWS";
 import FinishedLoans from "../features/Loan/Pages/Books/FinishedLoans";
@@ -105,7 +104,6 @@ const adminRoutes = [
       },
       {
         path: "Usuarios",
-        element: <SingleUser />,
         children: [
           {
             index: true,
