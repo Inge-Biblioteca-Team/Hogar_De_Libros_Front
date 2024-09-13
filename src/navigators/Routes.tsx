@@ -20,19 +20,10 @@ import AdminCBooksInformation from "../features/Books/Pages/ChildrenBooks/AdminC
 import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBookInformation";
 import SearchChildrenCatalog from "../features/Books/Pages/ChildrenBooks/SearchChlindrenBook";
 import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInformationChild";
-import Register from "../features/Users/Auth/Register";
-import PendingRequest from "../features/Loan/Pages/Books/PendingRequest";
-import BookLoan from "../features/Books/Pages/BookLoand";
-import FinishedLoans from "../features/Loan/Pages/Books/FinishedLoans";
-import InProgressLoans from "../features/Loan/Pages/Books/InProgressLoans";
+import BookLoan from "../features/Loan/Pages/BookLoand";
+import ManageFurniture from "../features/Furniture/Pages/ManageFurniture";
+import FurnitureNew from "../features/Furniture/Pages/FurnitureNew";
 import MyLoanHIstory from "../features/Loan/Components/UserLoans/MyLoanHIstory";
-import NewAdminLoan from "../features/Loan/Components/BooksLoans/NewAdminLoan";
-import ManageUsers from "../features/Users/Pages/ManageUsers";
-import WorkStationsLoanHistory from "../features/Loan/Pages/WorkStations/WorkStationsLoanHistory";
-import ManageLoansWS from "../features/Loan/Pages/WorkStations/ManageLoansWS";
-import EditUser from "../components/Users/EditUser";
-import Login from "../features/Users/Auth/Login";
-import SingleUser from "../features/Users/SingleUser";
 
 const Routes = createBrowserRouter([
   {
@@ -237,9 +228,11 @@ const Routes = createBrowserRouter([
             children: [
               {
                 index: true,
+                element: <ManageFurniture />,
               },
               {
                 path: "Nuevo",
+                element: <FurnitureNew/>
               },
               {
                 path: "Editar/:Code",
@@ -347,8 +340,8 @@ const Routes = createBrowserRouter([
                 path: "Pendientes/Ver/:Code",
               },
               {
-                path: "SolicitarLibro/:Objetive",
-                element: <BookLoan />,
+                path: "SolicitarLibro/:BookCode",
+                element: <BookLoan/>
               },
             ],
           },
