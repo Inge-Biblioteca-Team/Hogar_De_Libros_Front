@@ -29,3 +29,9 @@ export type UserForNewLoan ={
   Cedula: string
 }
 
+
+
+export type SingIng={
+  username:string;
+  password:string
+}

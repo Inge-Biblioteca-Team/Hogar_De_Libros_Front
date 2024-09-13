@@ -48,4 +48,19 @@ const DownUser = async (cedula: number) => {
   }
 };
 
-export { GetUsersList, GetUserData, DownUser };
+const signIn = async (username:string, password:string) => {
+  try {
+    const response = await api.post('auth/login', {
+      username:username,
+      password:password,
+    });
+    console.log(response.data.access_token); 
+  } catch (error) {
+    if (error) {
+      console.error("Error to disbale:", error);
+      throw error;
+    }
+  }
+};
+
+export { GetUsersList, GetUserData, DownUser, signIn };

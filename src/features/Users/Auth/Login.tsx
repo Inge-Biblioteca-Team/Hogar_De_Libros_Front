@@ -2,6 +2,11 @@ import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, TextInput, Label, Modal } from 'flowbite-react';
 import RecoverPasswordModal from './RecoverPasswordModal';
+import { useForm } from 'react-hook-form';
+import { signIn } from '../Services/SvUsuer';
+import { SingIng } from '../Type/UserType';
+import { useMutation } from 'react-query';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,6 +15,33 @@ const Login = () => {
   const openRecoverPasswordModal = () => {
     setShowRecoverPasswordModal(true);
   };
+
+
+  const {register, handleSubmit, reset}=useForm<SingIng>()
+
+  const onSubmit = (data:SingIng)=>{
+    mutation.mutate({
+      username: data.username,
+      password: data.password,
+    });
+    signIn(data.username, data.password)
+  }
+  const mutation = useMutation({
+    mutationFn: ({ username, password }: { username: string; password: string }) =>
+      signIn(username, password), 
+    onSuccess: (data) => {
+      console.log('Inicio de sesión exitoso:', data.access_token);
+      sessionStorage.setItem('token', data.access_token);
+      toast.success("Inicio de sesión Exitoso")
+      navigate("/HogarDeLibros")
+      reset()
+    },
+    onError: () => {
+      toast.error("Error al iniciar sesión Revise sus datos")
+    },
+  });
+
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <div className="flex flex-col md:flex-row items-center max-w-4xl w-full bg-white shadow-lg rounded-lg">
@@ -20,7 +52,7 @@ const Login = () => {
               ¿No posees una cuenta? <a href="/Registro" className="text-blue-500 hover:underline">Regístrate aquí.</a>
             </p>
 
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <Label htmlFor="email" value="Correo Electrónico" />
                 <TextInput
@@ -28,6 +60,7 @@ const Login = () => {
                   type="email"
                   placeholder="Tucorreo@ejemplo.com"
                   required
+                  {...register("username")}
                 />
               </div>
 
@@ -38,6 +71,7 @@ const Login = () => {
                   type="password"
                   placeholder="********"
                   required
+                  {...register("password")}
                 />
               </div>
 
