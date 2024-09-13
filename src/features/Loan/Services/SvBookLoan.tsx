@@ -1,12 +1,25 @@
 import axios from "axios";
+import { finishLoan } from "../Types/BookLoan";
 
 
 const api = axios.create({
-    baseURL: `https://66de71d6de4426916ee12042.mockapi.io/loand`,
-    timeout: 1000,
-  });
+  baseURL: "http://localhost:3000",
+  timeout: 1000,
+});
 
-export const finalizeLoan = async (Id:string) => {
-    const response = await api.put(`loand/${Id}/finalize`);
-    return response.data;
+  const FinalizeLoan = async (Loan: finishLoan) => {
+    try {
+      const response = await api.patch(
+        `/book-loan/${Loan.BookLoanId}/finalize`,
+        Loan
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error to post book:", error);
+      throw error;
+    }
   };
+
+  export {
+    FinalizeLoan
+  }
