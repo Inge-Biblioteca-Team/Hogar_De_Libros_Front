@@ -17,12 +17,13 @@ const GetStatus = async () => {
   }
 };
 
-const GetWSLoans = async (page: number, limit: number) => {
+const GetWSLoans = async (page: number, limit: number, StartDate?: string) => {
   try {
     const response = await api.get(`computer-loan`, {
       params: {
         Page: page,
         Limit: limit,
+        ...(StartDate && { StartDate }), 
       },
     });
     return response.data;
@@ -31,6 +32,7 @@ const GetWSLoans = async (page: number, limit: number) => {
     throw error;
   }
 };
+
 
 const FinalizeLoan = async (NMachine: number) => {
   try {
