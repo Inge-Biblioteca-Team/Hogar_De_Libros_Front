@@ -113,6 +113,7 @@ const PostNewLoan = async (Loan: newloan) => {
   }
 };
 const PostNewUserLoan = async (Loan: newloan) => {
+  console.table(Loan)
   try {
     const response = await api.post(`/book-loan`, Loan);
     response.data;

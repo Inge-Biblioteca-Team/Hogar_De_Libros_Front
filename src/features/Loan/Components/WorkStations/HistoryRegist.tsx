@@ -6,7 +6,7 @@ const HistoryRegist = ({ WSLoan }: { WSLoan: WSLoan }) => {
   const EndtDate = new Date(WSLoan.LoanExpireDate);
 
   return (
-    <Table.Row>
+    <Table.Row className=" h-24">
       <Table.Cell>{WSLoan.UserName} </Table.Cell>
       <Table.Cell>{WSLoan.AdminName} </Table.Cell>
       <Table.Cell>{StartDate.toLocaleString("es-CR")} </Table.Cell>

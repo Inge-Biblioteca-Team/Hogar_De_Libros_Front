@@ -16,11 +16,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { GetByBookCode } from "../../../Books/services/SvBooks";
 import { Book } from "../../../Books/type/Book";
-import { useEffect } from "react";
+import { useEffect} from "react";
 import { useForm } from "react-hook-form";
 import { newloan } from "../../Types/BookLoan";
 import { addDays, subDays } from "date-fns";
 import UseGenerateNewUserLoan from "../../Hooks/Books/UseGenerateNewUserLoan";
+import { GetUserData } from "../../../Users/Services/SvUsuer";
+import { UserForNewLoan } from "../../../Users/Type/UserType";
 
 const NewUsaerLoan = () => {
   const { BookCode } = useParams<{ BookCode?: string }>();
@@ -36,34 +38,22 @@ const NewUsaerLoan = () => {
     },
     { enabled: !!BookCode }
   );
-
   useEffect(() => {
     if (book) {
-      const now = new Date();
-      const localDate = now.toLocaleString("sv-SE", {
-        timeZone: "America/Costa_Rica",
-        hour12: false,
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-      const formattedDate = localDate.replace(" ", "T");
+      const now = new Date().toISOString().slice(0, 16);
       setValue("Title", book.Title);
       setValue("bookBookCode", book.BookCode);
       setValue("SignaCode", book.SignatureCode);
       setValue("InscriptionCode", book.InscriptionCode);
       setValue("Author", book.Author);
-      setValue("LoanRequestDate", formattedDate);
-      setValue("BookPickUpDate", now.toLocaleDateString("sv-SE"));
-
+      setValue("LoanRequestDate", now);
     }
   }, [book, setValue]);
 
+
   const today = new Date();
 
-  const futureDate = addDays(today, 29);
+  const futureDate = addDays(today, 15);
   const maxDate = futureDate.toISOString().split("T")[0];
 
   const previousDate = subDays(today, 1);
@@ -79,6 +69,31 @@ const NewUsaerLoan = () => {
   const goBack = () => {
     Navi(-1);
   };
+
+  localStorage.setItem("Cedula","504420813")
+
+  const NCedula = localStorage.getItem("Cedula")
+
+  const { data: User } = useQuery<UserForNewLoan[], Error>(
+    ["UserLoan", NCedula],
+    () => {
+      if (!NCedula) {
+        throw new Error("Error No existe ID de libro para buscar");
+      }
+      return GetUserData(NCedula);
+    },
+    { enabled: !!NCedula }
+  );
+
+  useEffect(() => {
+    if (User && User.length > 0 && NCedula) {
+      console.log("Datos del usuario:", User[0]);
+      setValue("userCedula",NCedula)
+      setValue("Name", User[0].Name);
+      setValue("Mail", User[0].Mail);
+      setValue("PhoneNumber", User[0].PhoneNumber);
+    }
+  }, [NCedula, User, setValue]);
 
   return (
     <>
@@ -103,7 +118,7 @@ const NewUsaerLoan = () => {
                   id="disabledInput1"
                   placeholder="Numero de cedula sin guiones"
                   {...register("userCedula")}
-                  required
+                  disabled
                 />
               </span>
               <span>
@@ -111,7 +126,9 @@ const NewUsaerLoan = () => {
                 <TextInput
                   type="text"
                   id="disabledInput2"
-                  placeholder="Nombre"
+                  placeholder="Tu nombre"
+                  {...register("Name")}
+                  disabled
                 />
               </span>
               <span>
@@ -119,12 +136,19 @@ const NewUsaerLoan = () => {
                 <TextInput
                   type="text"
                   id="disabledInput2"
-                  placeholder="TuCorreo@ejemplo.com"
+                  placeholder="Tu@gmail.com"
+                  {...register("Mail")}
+                  disabled
                 />
               </span>
               <span>
                 <Label htmlFor="disabledInput2">Número de teléfono</Label>
-                <TextInput type="text" id="disabledInput2" placeholder="+xxx xxxx xxxx" />
+                <TextInput
+                  type="text"
+                  id="disabledInput2"
+                  placeholder="+Codigo Tu numero"
+                  {...register("PhoneNumber")}
+                />
               </span>
             </fieldset>
             <fieldset className=" flex flex-col gap-7">
@@ -192,6 +216,7 @@ const NewUsaerLoan = () => {
                   type="date"
                   {...register("BookPickUpDate")}
                   min={minDate}
+                  required
                 />
               </span>
               <span>
@@ -203,6 +228,7 @@ const NewUsaerLoan = () => {
                   {...register("LoanExpirationDate")}
                   min={minDate}
                   max={maxDate}
+                  required
                 />
               </span>
               <div className="flex flex-col justify-end pt-6">
@@ -226,7 +252,7 @@ const NewUsaerLoan = () => {
                     </div>
                   }
                 >
-                  <Button color={"blue"}>Enviar Solicitud</Button>
+                  <Button color={"blue"}>Confirmar Prestamo</Button>
                 </Popover>
               </div>
             </fieldset>

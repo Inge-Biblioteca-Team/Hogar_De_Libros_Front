@@ -10,10 +10,11 @@ const NewSetMaintenance = () => {
     onSuccess: (data) => {
       console.log("Maintenance updated successfully:", data);
       queryClient.invalidateQueries("WSStatus");
-      toast.success("Estado del equipo cambiado a En Mantenimiento")
+      toast.success("Exito: Estado del equipo cambiado a En Mantenimiento")
     },
     onError: (error) => {
       console.error("Error updating maintenance:", error);
+      toast.error("Ha Ocurrido un error")
     },
   });
 };

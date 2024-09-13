@@ -22,7 +22,6 @@ const ModalMantenance = ({
   const onSubmit = (data: NewWSMantenance) => {
     mutate(data, {
       onSuccess: () => {
-        console.log("Loan created successfully");
         setOpen(false);
       },
     });

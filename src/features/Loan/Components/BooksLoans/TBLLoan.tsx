@@ -38,7 +38,7 @@ const TBLLoan = ({
         <Table.Body>
           {Loan.data.map((Loan) => {
             const reqDate = new Date(Loan.LoanRequestDate);
-            const PickUpDate = new Date(Loan.BookPickUpDate);
+            const PickUpDate = new Date(Loan.LoanExpirationDate);
             return (
               <Table.Row
                 key={Loan.BookLoanId}

@@ -4,11 +4,15 @@ export type newloan = {
   BookPickUpDate: string;
   LoanExpirationDate: string;
   bookBookCode: string;
-  userCedula: number;
+  userCedula: string;
   InscriptionCode: string;
   SignaCode: string;
   Title: string;
   Author: string;
+  Name:string;
+  Mail:string;
+  PhoneNumber:string;
+  Cedula:string;
 };
 
 export type finishLoan = {

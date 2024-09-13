@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FaBookReader } from "react-icons/fa";
 
 import ForAdmin from "./NavbarOptions/ForAdmin";
+import ForAll from "./NavbarOptions/ForAll";
 
 const HomeNavbar = () => {
   const [visible, setVisible] = useState(false);
@@ -32,7 +33,7 @@ const HomeNavbar = () => {
         <Drawer.Items>
           <Sidebar className="[&>div]:bg-transparent [&>div]:p-0 w-full">
             <Sidebar.Items className=" w-72">
-             
+             <ForAll/>
               <ForAdmin/>
             </Sidebar.Items>
           </Sidebar>

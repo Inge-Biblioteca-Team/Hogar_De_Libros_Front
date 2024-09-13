@@ -21,3 +21,12 @@ export type LoanInfo = {
   email: string;
   phoneNumber: string;
 };
+
+
+export type UserForNewLoan ={
+  Name: string
+  Mail:string
+  PhoneNumber:string
+  Cedula: string
+}
+

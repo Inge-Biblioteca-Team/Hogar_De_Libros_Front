@@ -19,4 +19,23 @@ const GetUsersList = async (page: number, limit: number) => {
     throw error;
   }
 };
-export { GetUsersList };
+
+const api2 = axios.create({
+  baseURL: "https://662bb9d2de35f91de1594809.mockapi.io/api/test/Test",
+  timeout: 1000,
+});
+
+
+const GetUserData = async (NCedula:string)=>{
+  try {
+    const response = await api2.get('' ,{
+      params:{
+        Cedula:NCedula,
+      },
+    })
+    return response.data
+  }catch(error){
+    console.error("Usuario no encontrado")
+  }
+}
+export { GetUsersList, GetUserData };

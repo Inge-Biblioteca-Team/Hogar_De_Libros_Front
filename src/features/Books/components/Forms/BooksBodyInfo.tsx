@@ -46,11 +46,10 @@ const BooksBodyInfo = ({ book }: { book: Book }) => {
         <span>{book?.Observations}</span>
         {book?.ReserveBook ? <strong>Libro de Reserva</strong> : null}
         <span>
-          {book?.BookCode && (
-            <BtnReserve
-              Objetive={book.BookCode}
-              text="Generar Prestamo"
-            />
+          {book?.Status == false ? (
+            <strong>No Disponible Para Prestamo</strong>
+          ) : (
+            <BtnReserve Objetive={book.BookCode} text="Generar Prestamo" />
           )}
         </span>
       </span>

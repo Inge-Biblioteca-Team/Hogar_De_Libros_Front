@@ -9,7 +9,7 @@ const UseFinalizeSWLoan = () => {
     onSuccess: (data) => {
       console.log("Loan finalized successfully:", data);
       queryClient.invalidateQueries("WSStatus");
-      toast.success("El Equipo esta nuevamente disponible")
+      toast.success("Exito: El Equipo esta nuevamente disponible")
     },
     onError: (error: Error) => {
       console.error("Error finalizing loan:", error);
