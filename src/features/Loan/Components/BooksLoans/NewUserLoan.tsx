@@ -38,31 +38,41 @@ const NewUsaerLoan = () => {
     },
     { enabled: !!BookCode }
   );
+  
   useEffect(() => {
     if (book) {
-      const now = new Date().toISOString().slice(0, 16);
+      const now = new Date();
+      const localDate = now.toLocaleString("sv-SE", {
+        timeZone: "America/Costa_Rica",
+        hour12: false,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      const formattedDate = localDate.replace(" ", "T");
       setValue("Title", book.Title);
       setValue("bookBookCode", book.BookCode);
       setValue("SignaCode", book.SignatureCode);
       setValue("InscriptionCode", book.InscriptionCode);
       setValue("Author", book.Author);
-      setValue("LoanRequestDate", now);
+      setValue("LoanRequestDate", formattedDate);
+      setValue("BookPickUpDate", now.toLocaleDateString("sv-SE"));
+
     }
   }, [book, setValue]);
 
-
   const today = new Date();
 
-  const futureDate = addDays(today, 15);
+  const futureDate = addDays(today, 29);
   const maxDate = futureDate.toISOString().split("T")[0];
 
   const previousDate = subDays(today, 1);
   const minDate = previousDate.toISOString().split("T")[0];
-
   const { mutate: NewLoan } = UseGenerateNewUserLoan();
 
   const onSubmit = (New: newloan) => {
-    console.log(New);
     NewLoan(New);
   };
   const Navi = useNavigate();

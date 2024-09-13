@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import DenyRequest from "./DenyRequest";
 import { Loans } from "../../Types/BookLoan";
 import UseAproveLoan from "../../Hooks/Books/UseAproveLoan";
+import { Button, Popover } from "flowbite-react";
 const BTNResolveLoan = ({Loan}:{Loan:Loans}) => {
   const [showD,setShowD] = useState<boolean>(false)
 
@@ -24,9 +25,15 @@ const BTNResolveLoan = ({Loan}:{Loan:Loans}) => {
         <button type="button" title="Rechazar Prestamo" onClick={()=>setShowD(true)}>
           <MdCancel size={30} color="red" />
         </button>
-        <button type="button" title="Aprobar Prestamo" onClick={()=>handleAprove()} >
+        <Popover
+        content={
+          <Button onClick={()=>handleAprove()} color={"blue"} >Confirmar</Button>
+        }
+        >
+        <button type="button" title="Aprobar Prestamo"  >
           <GiConfirmed size={30} color="green" />
         </button>
+        </Popover>
       </div>
       <DenyRequest Loan={Loan} showCancel={showD} setShowCancel={setShowD} />
     </>

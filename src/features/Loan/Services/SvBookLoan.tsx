@@ -1,5 +1,5 @@
 import axios from "axios";
-import { finishLoan } from "../Types/BookLoan";
+import { ChangeExpiredDate, finishLoan, newloan } from "../Types/BookLoan";
 
 
 const api = axios.create({
@@ -124,6 +124,17 @@ const PostNewUserLoan = async (Loan: newloan) => {
     throw error;
   }
 };
+const PatchLoan = async (Loan:ChangeExpiredDate) => {
+  console.table(Loan)
+  try {
+    const response = await api.patch(`/book-loan/${Loan.BookLoanId}`, Loan);
+    response.data;
+    return response.data;
+  } catch (error) {
+    console.error("Error to post book:", error);
+    throw error;
+  }
+};
 
 export {
   GetPendandRequest,
@@ -134,5 +145,6 @@ export {
   PostNewLoan,
   FinalizeLoan,
   RefuseRequest,
-  PostNewUserLoan
+  PostNewUserLoan,
+  PatchLoan
 };
