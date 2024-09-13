@@ -23,6 +23,7 @@ import BookInformationChild from "../features/Books/Pages/ChildrenBooks/BookInfo
 import BookLoan from "../features/Loan/Pages/BookLoand";
 import ManageFurniture from "../features/Furniture/Pages/ManageFurniture";
 import FurnitureNew from "../features/Furniture/Pages/FurnitureNew";
+import MyLoanHIstory from "../features/Loan/Components/UserLoans/MyLoanHIstory";
 
 const Routes = createBrowserRouter([
   {
@@ -38,6 +39,18 @@ const Routes = createBrowserRouter([
         element: <Landing />,
       },
     ],
+  },
+  {
+    path: "EditUser",
+    element: < EditUser/>,
+  },
+  {
+    path: "LogIn",
+    element: < Login/>,
+  },
+  {
+    path: "register",
+    element: <Register />,
   },
   {
     path: "HogarDeLibros",
@@ -66,7 +79,6 @@ const Routes = createBrowserRouter([
             path: "Infantiles",
             element: <SearchChildrenCatalog />,
           },
-
         ],
       },
       {
@@ -75,7 +87,7 @@ const Routes = createBrowserRouter([
       },
       {
         path: "CatalogoDeLibros/LibroI/:BookCode",
-        element: <BookInformationChild/>,
+        element: <BookInformationChild />,
       },
       {
         path: "Gestion",
@@ -98,6 +110,10 @@ const Routes = createBrowserRouter([
               {
                 path: "Editar/:BookCode",
                 element: <EditBookInformation />,
+              },
+              {
+                path: "Prestamos/:BookCode",
+                element: <NewAdminLoan/>,
               },
             ],
           },
@@ -150,9 +166,12 @@ const Routes = createBrowserRouter([
           },
           {
             path: "Usuarios",
+            // element: < EditUserAdmin/>,
+            element: < SingleUser/>,
             children: [
               {
                 index: true,
+                element:<ManageUsers/>
               },
               {
                 path: "Nuevo",
@@ -163,7 +182,12 @@ const Routes = createBrowserRouter([
               {
                 path: "Ver/:Code",
               },
-            ],
+              {
+                path: "User",
+              },
+
+   
+      ],
           },
           {
             path: "Salas",
@@ -294,15 +318,23 @@ const Routes = createBrowserRouter([
               },
               {
                 path: "Pendientes",
-               //   element:<PendingRequest/>
+                element: <PendingRequest />,
               },
               {
                 path: "Finalizados",
-                //  element: <FinishedLoans/>
+                element: <FinishedLoans />,
               },
               {
                 path: "EnProceso",
-               //   element:<InProgressLoans/>
+                element: <InProgressLoans />,
+              },
+              {
+                path: "HistorialDeEquipos",
+                element: <WorkStationsLoanHistory/>,
+              },
+              {
+                path: "Computadoras",
+                element: <ManageLoansWS/>,
               },
               {
                 path: "Pendientes/Ver/:Code",
@@ -314,6 +346,10 @@ const Routes = createBrowserRouter([
             ],
           },
         ],
+      },
+      {
+        path: "Perfil",
+        element: <MyLoanHIstory />,
       },
     ],
   },

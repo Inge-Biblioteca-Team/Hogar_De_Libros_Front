@@ -16,15 +16,15 @@ import BookChildCardList from "../../components/Cards/BookChildCardList";
 
 const SearchChildrenCatalog = () => {
   const [page, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("currentBookChilPage");
+    const savedPage = sessionStorage.getItem("BCPage");
     return savedPage ? Number(savedPage) : 1;
   });
   const onPageChange = (page: number) => {
     setCurrentPage(page);
-    sessionStorage.setItem("currentBookPage", page.toString());
+    sessionStorage.setItem("BCPage", page.toString());
   };
   useEffect(() => {
-    sessionStorage.setItem("currentBookChilPage", page.toString());
+    sessionStorage.setItem("BCPage", page.toString());
   }, [page]);
 
   const [limit, setCurrentLimit] = useState<number>(10);

@@ -16,7 +16,7 @@ import { GetChildrenBPaginated } from "../../services/SvChildBooks";
 
 const ManageChildrenBooks = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("currentChild");
+    const savedPage = sessionStorage.getItem("MBCPage");
     return savedPage ? Number(savedPage) : 1;
   });
 
@@ -29,7 +29,7 @@ const ManageChildrenBooks = () => {
   const [searchStatus, setSearchStatus] = useState<string>("");
   const onPageChange = (page: number) => {
     setCurrentPage(page);
-    sessionStorage.setItem("currentChild", page.toString());
+    sessionStorage.setItem("MBCPage", page.toString());
   };
 
   const viewAdvanceSerch = useCallback(() => setAdvance((prev) => !prev), []);

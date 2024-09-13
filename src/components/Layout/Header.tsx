@@ -4,7 +4,7 @@ import { Navbar } from "flowbite-react";
 import LandingNavbar from "./LandingNavbar";
 import HomeNavbar from "./HomeNavbar";
 import { useNavigate } from "react-router-dom";
-import UserData from "./UserData";
+import UserData from "../../features/Loan/Components/UserLoans/UserData";
 
 const Header = ({NavBarType}:{NavBarType: string }) => {
   
@@ -27,7 +27,7 @@ const Header = ({NavBarType}:{NavBarType: string }) => {
           Biblioteca Pública Municipal de Nicoya
         </span>
       </div>
-        <div className="flex-shrink-0 hidden">
+        <div className="flex-shrink-0">
         <UserData/>
         </div>
     </Navbar.Brand>

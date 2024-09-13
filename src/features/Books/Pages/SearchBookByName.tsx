@@ -16,15 +16,15 @@ import { BooksCrumb } from "../../../components/BreadCrumb";
 
 const SearchBookByName = () => {
   const [page, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("currentBookPage");
+    const savedPage = sessionStorage.getItem("SBPage");
     return savedPage ? Number(savedPage) : 1;
   });
   const onPageChange = (page: number) => {
     setCurrentPage(page);
-    sessionStorage.setItem("currentBookPage", page.toString());
+    sessionStorage.setItem("SBPage", page.toString());
   };
   useEffect(() => {
-    sessionStorage.setItem("currentBookPage", page.toString());
+    sessionStorage.setItem("SBPage", page.toString());
   }, [page]);
 
   const [limit, setCurrentLimit] = useState<number>(10);
