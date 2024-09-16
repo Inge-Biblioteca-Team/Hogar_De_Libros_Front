@@ -21,7 +21,7 @@ const BTNResolveLoan = ({Loan}:{Loan:Loans}) => {
   return (
     <>
       <div className=" flex justify-center gap-x-12">
-        <button type="button" onClick={()=>setSee(false)}>
+        <button type="button" onClick={()=>setSee(true)}>
          {""} <PiEyeFill size={30} color="blue" />
         </button>
         <button type="button" title="Rechazar Prestamo" onClick={()=>setShowD(true)}>

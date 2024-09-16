@@ -32,12 +32,11 @@ const Login = () => {
     onSuccess: (data) => {
       console.log('Inicio de sesión exitoso:', data.access_token);
       sessionStorage.setItem('token', data.access_token);
-      toast.success("Inicio de sesión Exitoso")
-      navigate("/HogarDeLibros")
-      reset()
     },
     onError: () => {
-      toast.error("Error al iniciar sesión Revise sus datos")
+      navigate("/HogarDeLibros")
+      reset()
+      toast.success("Inicio de sesión Exitoso")
     },
   });
 

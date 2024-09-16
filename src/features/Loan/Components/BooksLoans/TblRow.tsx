@@ -4,6 +4,7 @@ import BTNResolveLoan from "./BTNResolveLoan";
 import { Loans } from "../../Types/BookLoan";
 import { useState } from "react";
 import SeeLoanInfo from "../Modals/SeeLoanInfo";
+import { format } from "@formkit/tempo";
 
 const TblRow = ({
   Loan,
@@ -14,8 +15,18 @@ const TblRow = ({
   NeedAccions?: boolean;
   Inprogress?: boolean;
 }) => {
-  const reqDate = new Date(Loan.LoanRequestDate);
-  const PickUpDate = new Date(Loan.LoanExpirationDate);
+  const ReqDate = format({
+    date: Loan.LoanRequestDate,
+    format: "DD/MM/YYYY hh:MM A",
+    tz: "America/Costa_Rica",
+  });
+
+  const ExDate = format({
+    date: Loan.LoanExpirationDate,
+    format: "DD/MM/YYYY",
+    tz: "America/Costa_Rica",
+  });
+
   const [see, setSee] = useState<boolean>(false);
   return (
     <>
@@ -23,12 +34,8 @@ const TblRow = ({
         className=" h-20"
         onClick={!NeedAccions ? () => setSee(true) : undefined}
       >
-        <Table.Cell className="w-56">
-          {reqDate.toLocaleDateString("es-CR")}
-        </Table.Cell>
-        <Table.Cell className="w-56">
-          {PickUpDate.toLocaleDateString("es-CR")}
-        </Table.Cell>
+        <Table.Cell className="w-56">{ReqDate}</Table.Cell>
+        <Table.Cell className="w-56">{ExDate}</Table.Cell>
         <Table.Cell className="w-64">{Loan.user.name}</Table.Cell>
         <Table.Cell className="w-44 line-clamp-1 mt-3">
           {Loan.book.Title}

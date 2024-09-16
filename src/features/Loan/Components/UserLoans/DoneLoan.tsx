@@ -1,16 +1,24 @@
 import { useQuery } from "react-query";
 import { LoanResponse, Loans } from "../../Types/BookLoan";
 import LoanBody from "./LoanBody";
-import { Table, TextInput } from "flowbite-react";
+import { Pagination, Table, TextInput } from "flowbite-react";
 import { GetDoneLoans } from "../../Services/SvBookLoan";
+import { useState } from "react";
 
 const DoneLoan = () => {
-  const { data: Loan } = useQuery<LoanResponse, Error>(["DLoans"], () =>
-    GetDoneLoans(1, 5)
+  const [startDate,setStartDate] = useState<string>("")
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const onPageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const { data: Loan } = useQuery<LoanResponse, Error>(
+    ["DLoans", currentPage, startDate],
+    () => GetDoneLoans(currentPage, 3,startDate, "", "504420813")
   );
-  if (Loan?.count == 0) {
-    return null;
-  }
+  const MaxPage = Math.ceil((Loan?.count ?? 0) / 3);
+
+  
   return (
     <>
       <div className="">
@@ -20,15 +28,37 @@ const DoneLoan = () => {
             <Table.HeadCell>#De Solicitud</Table.HeadCell>
             <Table.HeadCell>Título</Table.HeadCell>
             <Table.HeadCell className="flex items-center justify-center gap-2">
-              Fecha de solicitud <TextInput type="date"></TextInput>{" "}
+              Fecha de solicitud <TextInput type="date"
+              onChange={(event)=>{setStartDate(event.target.value)}}></TextInput>{" "}
             </Table.HeadCell>
           </Table.Head>
-          <Table.Body>
-            {Loan?.data.map((loans: Loans) => (
-              <LoanBody Loan={loans} key={loans.BookLoanId} Done />
-            ))}
+          <Table.Body className=" h-44 max-h-44">
+            {Loan?.count === 0 ? (
+              <Table.Row>
+                <Table.Cell colSpan={6}>
+                  No ha realizado prestamos. Te invitamos a visitar nuestro{" "}
+                  <a href="/HogarDeLibros/Busqueda/Titulo">
+                    Catalogo de libros.
+                  </a>
+                </Table.Cell>
+              </Table.Row>
+            ) : (
+              Loan?.data.map((loans: Loans) => (
+                <LoanBody Loan={loans} key={loans.BookLoanId} Aprov />
+              ))
+            )}
           </Table.Body>
         </Table>
+        <div className=" w-full flex items-end justify-end">
+          <Pagination
+            nextLabel="Siguiente"
+            previousLabel="Anterior"
+            currentPage={currentPage}
+            totalPages={MaxPage}
+            onPageChange={onPageChange}
+            showIcons
+          />
+        </div>
       </div>
     </>
   );

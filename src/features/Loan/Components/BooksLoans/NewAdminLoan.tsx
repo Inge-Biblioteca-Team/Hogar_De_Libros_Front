@@ -19,7 +19,6 @@ import { Book } from "../../../Books/type/Book";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { newloan } from "../../Types/BookLoan";
-import { addDays, subDays } from "date-fns";
 import UseGenerateNewLoan from "../../Hooks/Books/UseGenerateNewLoan";
 import { UserForNewLoan } from "../../../Users/Type/UserType";
 import { GetUserData } from "../../../Users/Services/SvUsuer";
@@ -27,7 +26,7 @@ import UseDebounce from "../../../../hooks/UseDebounce";
 
 const NewAdminLoan = () => {
   const { BookCode } = useParams<{ BookCode?: string }>();
-  const { register, setValue, handleSubmit } = useForm<newloan>();
+  const { register, setValue, handleSubmit, watch } = useForm<newloan>();
 
   const { data: book } = useQuery<Book, Error>(
     ["OneBookForUser", BookCode],
@@ -59,28 +58,8 @@ const NewAdminLoan = () => {
       setValue("Author", book.Author);
       setValue("LoanRequestDate", formattedDate);
       setValue("BookPickUpDate", now.toLocaleDateString("sv-SE"));
-
     }
   }, [book, setValue]);
-
-  const today = new Date();
-
-  const futureDate = addDays(today, 29);
-  const maxDate = futureDate.toISOString().split("T")[0];
-
-  const previousDate = subDays(today, 1);
-  const minDate = previousDate.toISOString().split("T")[0];
-  
-  const { mutate: NewLoan } = UseGenerateNewLoan();
-
-  const onSubmit = (New: newloan) => {
-    console.log(New);
-    NewLoan(New);
-  };
-  const Navi = useNavigate();
-  const goBack = () => {
-    Navi(-1);
-  };
 
   const [Cedula, SetCedula] = useState<string>("");
   const NCedula = UseDebounce(Cedula, 1000);
@@ -104,6 +83,33 @@ const NewAdminLoan = () => {
       setValue("PhoneNumber", User[0].PhoneNumber);
     }
   }, [User, setValue]);
+
+  const todayMin = new Date().toISOString().split("T")[0];
+  const [minDate, setMinDate] = useState("");
+  const [maxDate, setMaxDate] = useState("");
+  const bookPickUpDate = watch("BookPickUpDate");
+
+  useEffect(() => {
+    if (bookPickUpDate) {
+      const pickUpDate = new Date(bookPickUpDate);
+      pickUpDate.setDate(pickUpDate.getDate() + 1);
+      setMinDate(pickUpDate.toISOString().split("T")[0]);
+
+      const maxDate = new Date(pickUpDate);
+      maxDate.setMonth(maxDate.getMonth() + 1);
+      setMaxDate(maxDate.toISOString().split("T")[0]);
+    }
+  }, [bookPickUpDate]);
+
+  const { mutate: NewLoan } = UseGenerateNewLoan();
+
+  const onSubmit = (New: newloan) => {
+    NewLoan(New);
+  };
+  const Navi = useNavigate();
+  const goBack = () => {
+    Navi(-1);
+  };
 
   return (
     <>
@@ -231,7 +237,7 @@ const NewAdminLoan = () => {
                 <TextInput
                   type="date"
                   {...register("BookPickUpDate")}
-                  min={minDate}
+                  min={todayMin}
                   required
                 />
               </span>

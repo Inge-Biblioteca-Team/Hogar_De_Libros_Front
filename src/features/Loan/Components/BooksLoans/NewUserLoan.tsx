@@ -16,17 +16,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { GetByBookCode } from "../../../Books/services/SvBooks";
 import { Book } from "../../../Books/type/Book";
-import { useEffect} from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { newloan } from "../../Types/BookLoan";
-import { addDays, subDays } from "date-fns";
 import UseGenerateNewUserLoan from "../../Hooks/Books/UseGenerateNewUserLoan";
 import { GetUserData } from "../../../Users/Services/SvUsuer";
 import { UserForNewLoan } from "../../../Users/Type/UserType";
 
 const NewUsaerLoan = () => {
   const { BookCode } = useParams<{ BookCode?: string }>();
-  const { register, setValue, handleSubmit } = useForm<newloan>();
+  const { register, setValue, handleSubmit, watch } = useForm<newloan>();
 
   const { data: book } = useQuery<Book, Error>(
     ["OneBookForUser", BookCode],
@@ -38,7 +37,7 @@ const NewUsaerLoan = () => {
     },
     { enabled: !!BookCode }
   );
-  
+
   useEffect(() => {
     if (book) {
       const now = new Date();
@@ -59,30 +58,12 @@ const NewUsaerLoan = () => {
       setValue("Author", book.Author);
       setValue("LoanRequestDate", formattedDate);
       setValue("BookPickUpDate", now.toLocaleDateString("sv-SE"));
-
     }
   }, [book, setValue]);
 
-  const today = new Date();
+  localStorage.setItem("Cedula", "504420813");
 
-  const futureDate = addDays(today, 29);
-  const maxDate = futureDate.toISOString().split("T")[0];
-
-  const previousDate = subDays(today, 1);
-  const minDate = previousDate.toISOString().split("T")[0];
-  const { mutate: NewLoan } = UseGenerateNewUserLoan();
-
-  const onSubmit = (New: newloan) => {
-    NewLoan(New);
-  };
-  const Navi = useNavigate();
-  const goBack = () => {
-    Navi(-1);
-  };
-
-  localStorage.setItem("Cedula","504420813")
-
-  const NCedula = localStorage.getItem("Cedula")
+  const NCedula = localStorage.getItem("Cedula");
 
   const { data: User } = useQuery<UserForNewLoan[], Error>(
     ["UserLoan", NCedula],
@@ -98,12 +79,40 @@ const NewUsaerLoan = () => {
   useEffect(() => {
     if (User && User.length > 0 && NCedula) {
       console.log("Datos del usuario:", User[0]);
-      setValue("userCedula",NCedula)
+      setValue("userCedula", NCedula);
       setValue("Name", User[0].Name);
       setValue("Mail", User[0].Mail);
       setValue("PhoneNumber", User[0].PhoneNumber);
     }
   }, [NCedula, User, setValue]);
+
+  const todayMin = new Date().toISOString().split("T")[0];
+  const [minDate, setMinDate] = useState("");
+  const [maxDate, setMaxDate] = useState("");
+  const bookPickUpDate = watch("BookPickUpDate");
+
+  useEffect(() => {
+    if (bookPickUpDate) {
+      const pickUpDate = new Date(bookPickUpDate);
+      pickUpDate.setDate(pickUpDate.getDate() + 1);
+      setMinDate(pickUpDate.toISOString().split("T")[0]);
+
+      const maxDate = new Date(pickUpDate);
+      maxDate.setMonth(maxDate.getMonth() + 1);
+      setMaxDate(maxDate.toISOString().split("T")[0]);
+    }
+  }, [bookPickUpDate]);
+
+
+  const { mutate: NewLoan } = UseGenerateNewUserLoan();
+
+  const onSubmit = (New: newloan) => {
+    NewLoan(New);
+  };
+  const Navi = useNavigate();
+  const goBack = () => {
+    Navi(-1);
+  };
 
   return (
     <>
@@ -225,7 +234,7 @@ const NewUsaerLoan = () => {
                 <TextInput
                   type="date"
                   {...register("BookPickUpDate")}
-                  min={minDate}
+                  min={todayMin}
                   required
                 />
               </span>

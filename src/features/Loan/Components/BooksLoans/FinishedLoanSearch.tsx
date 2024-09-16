@@ -3,14 +3,14 @@ import { FaFileSignature } from "react-icons/fa6";
 import { FaIdBadge } from "react-icons/fa";
 
 const FinishedLoanSearch = ({
-  setCedula,
+  setName,
   setEndtDate,
   setSignaCode,
   setStartDate,
 }: {
   setStartDate: (StartDate: string) => void;
   setEndtDate: (EndDate: string) => void;
-  setCedula: (Cedula: string) => void;
+  setName: (Name: string) => void;
   setSignaCode: (SignaCode: string) => void;
 }) => {
   return (
@@ -21,7 +21,6 @@ const FinishedLoanSearch = ({
         </Label>
         <TextInput id="InitialDate" type="Date"
          onChange={(event) => {
-          console.log('Fecha recibida del input:', event.target.value);
           setStartDate(event.target.value);
         }}  />
       </div>
@@ -30,9 +29,9 @@ const FinishedLoanSearch = ({
         <TextInput type="date" onChange={(event)=>(setEndtDate(event.target.value))}/>
       </div>
       <div>
-        <Label className=" text-lg">Cedula Del Usuario</Label>
-        <TextInput type="text" placeholder="Cedula" icon={FaIdBadge} 
-        onChange={(event)=>(setCedula(event.target.value))}/>
+        <Label className=" text-lg">Nombre del solicitante</Label>
+        <TextInput type="text" placeholder="Nombre de solicitante" icon={FaIdBadge} 
+        onChange={(event)=>(setName(event.target.value))}/>
       </div>
       <div>
         <Label className=" text-lg">Código De Signatura</Label>

@@ -34,10 +34,10 @@ const FinishedLoans = () => {
 
   const [StartDate, setStartDate] = useState<string>("");
   const [EndDate, setEndtDate] = useState<string>("");
-  const [Cedula, setCedula] = useState<string>("");
+  const [Name, setName] = useState<string>("");
   const [SignaCode, setSignaCode] = useState<string>("");
 
-  const SCedula = UseDebounce(Cedula, 1000);
+  const SName = UseDebounce(Name, 1000);
   const sSignaCode = UseDebounce(SignaCode, 1000);
 
   
@@ -48,7 +48,7 @@ const FinishedLoans = () => {
       currentLimit,
       StartDate,
       EndDate,
-      SCedula,
+      SName,
       sSignaCode,
     ],
     () =>
@@ -57,8 +57,9 @@ const FinishedLoans = () => {
         currentLimit,
         StartDate,
         EndDate,
-        SCedula,
-        sSignaCode
+        "",
+        SName,
+        sSignaCode,
       ),
     {
       staleTime: 600,
@@ -78,7 +79,7 @@ const FinishedLoans = () => {
           <FinishedLoanSearch
             setStartDate={setStartDate}
             setEndtDate={setEndtDate}
-            setCedula={setCedula}
+            setName={setName}
             setSignaCode={setSignaCode}
           />
           {Loan?.count == 0 ? (

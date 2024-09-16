@@ -1,6 +1,7 @@
 import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { Loans } from "../../Types/BookLoan";
+import { format } from "@formkit/tempo";
 
 const SeeLoanInfo = ({
   see,
@@ -11,8 +12,17 @@ const SeeLoanInfo = ({
   setSee: Dispatch<SetStateAction<boolean>>;
   Loan: Loans;
 }) => {
-  const ReDate = new Date(Loan.LoanRequestDate).toLocaleDateString("es-ES");
-  const ExDate = new Date(Loan.LoanExpirationDate).toLocaleDateString("es-ES");
+  const requestDate = format({
+    date: Loan.LoanRequestDate,
+    format: "DD/MM/YYYY hh:MM A",
+    tz: "America/Costa_Rica",
+  });
+
+  const ExpiredDate = format({
+    date: Loan.LoanExpirationDate,
+    format: {date: "full"},
+    tz: "America/Costa_Rica"
+  })
 
   return (
     <Modal show={see} onClose={() => setSee(false)}>
@@ -35,9 +45,9 @@ const SeeLoanInfo = ({
           </span>
           <span className=" flex flex-col">
             <strong>Sobre el prestamo</strong>
-            <span>Numero de Prestamo: {Loan.BookLoanId}</span>
-            <span>Fecha de Solicitud: {ReDate}</span>
-            <span>Fecha de vencimiento: {ExDate}</span>
+            <span>Codigo de Prestamo: {Loan.BookLoanId}</span>
+            <span>Fecha de Solicitud: {requestDate}</span>
+            <span>Fecha de vencimiento: {ExpiredDate}</span>
             <span>Observaciones: {Loan.Observations} </span>
             <span>Estado: {Loan.Status} </span>
           </span>
