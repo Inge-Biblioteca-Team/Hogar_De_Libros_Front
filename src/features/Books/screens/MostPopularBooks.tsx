@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
-import BtnReserve from "../components/BTN/BtnReserve";
 import BtnShowMore from "../components/BTN/BtnShowMore";
 import { GetBooks } from "../services/SvBooks";
 import { Book } from "../type/Book";
 import BookCardLanding from "../components/Cards/BookCardLanding";
+import BtnRequest from "../components/BTN/BtnRequest";
 
 const MostPopularBooks = () => {
   const {
@@ -32,7 +32,7 @@ const MostPopularBooks = () => {
              "
           >
             <BookCardLanding Book={book} />
-            <BtnReserve  Objetive="Solicitud" text="Solicitar Prestamo"/>
+            <BtnRequest  Objetive="Solicitud" text="Solicitar Prestamo"/>
           </figure>
         ))}
       </div>

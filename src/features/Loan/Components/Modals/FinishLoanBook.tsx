@@ -1,9 +1,9 @@
 import { Modal, TextInput, Button } from "flowbite-react";
 import { useState } from "react";
-import useFinalizeLoan from "../../Hooks/useFinishLoandBook";
+import useFinalizeLoan from "../../Hooks/Books/useFinishLoandBook";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
-const ModalDownFurniture = ({
+const FinishLoanBook = ({
   open,
   setOpen,
   BookLoanId,
@@ -29,9 +29,6 @@ const ModalDownFurniture = ({
         onSuccess: () => {
           setOpen(false);
         },
-        onError: (error) => {
-          console.error("Error al finalizar el préstamo:", error);
-        },
       }
     );
   };
@@ -46,7 +43,7 @@ const ModalDownFurniture = ({
             ¿Estás seguro de que deseas finalizar este préstamo?
           </h3>
           <p className="mb-4 text-md font-semibold text-gray-600 dark:text-gray-300">
-            Usuario: {UserCedula} <br />
+            Nombre del Usuario: {UserCedula} <br />
             Título del libro: {BookTitle}
           </p>
           <TextInput
@@ -58,11 +55,11 @@ const ModalDownFurniture = ({
             className="mb-4"
           />
           <div className="flex justify-center gap-4">
-            <Button color="failure" onClick={handleConfirm}>
-              Confirmar
-            </Button>
-            <Button color="gray" onClick={() => setOpen(false)}>
+            <Button color="failure" onClick={() => setOpen(false)}>
               Cancelar
+            </Button>
+            <Button color="blue" onClick={handleConfirm}>
+              Confirmar
             </Button>
           </div>
         </div>
@@ -71,7 +68,7 @@ const ModalDownFurniture = ({
   );
 };
 
-export default ModalDownFurniture;
+export default FinishLoanBook;
 
 
 

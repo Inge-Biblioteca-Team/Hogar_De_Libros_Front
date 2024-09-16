@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Card, TextInput, Label, Alert, Modal } from 'flowbite-react';
+import { Button, Card, TextInput, Label, Modal } from 'flowbite-react';
 import RecoverPasswordModal from './RecoverPasswordModal';
+import { useForm } from 'react-hook-form';
+import { signIn } from '../Services/SvUsuer';
+import { SingIng } from '../Type/UserType';
+import { useMutation } from 'react-query';
+import toast from 'react-hot-toast';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
   const [showRecoverPasswordModal, setShowRecoverPasswordModal] = useState(false);
 
@@ -14,17 +16,30 @@ const Login = () => {
     setShowRecoverPasswordModal(true);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
 
-    const isValid = email === 'test@ejemplo.com' && password === '123456';
-    if (!isValid) {
-      setErrorMessage('Correo electrónico o contraseña incorrecta.');
-      return;
-    }
+  const {register, handleSubmit, reset}=useForm<SingIng>()
 
-    navigate('/dashboard');
-  };
+  const onSubmit = (data:SingIng)=>{
+    mutation.mutate({
+      username: data.username,
+      password: data.password,
+    });
+    signIn(data.username, data.password)
+  }
+  const mutation = useMutation({
+    mutationFn: ({ username, password }: { username: string; password: string }) =>
+      signIn(username, password), 
+    onSuccess: (data) => {
+      console.log('Inicio de sesión exitoso:', data.access_token);
+      sessionStorage.setItem('token', data.access_token);
+    },
+    onError: () => {
+      navigate("/HogarDeLibros")
+      reset()
+      toast.success("Inicio de sesión Exitoso")
+    },
+  });
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
@@ -33,25 +48,18 @@ const Login = () => {
           <Card className="max-w-lg w-full">
             <h2 className="text-2xl font-bold text-gray-700 mb-4">Iniciar Sesión</h2>
             <p className="text-sm text-gray-500 mb-4">
-              ¿No posees una cuenta? <a href="/register" className="text-blue-500 hover:underline">Regístrate aquí.</a>
+              ¿No posees una cuenta? <a href="/Registro" className="text-blue-500 hover:underline">Regístrate aquí.</a>
             </p>
 
-            {errorMessage && (
-              <Alert color="failure" className="mb-4">
-                {errorMessage}
-              </Alert>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <Label htmlFor="email" value="Correo Electrónico" />
                 <TextInput
                   id="email"
                   type="email"
                   placeholder="Tucorreo@ejemplo.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
                   required
+                  {...register("username")}
                 />
               </div>
 
@@ -61,9 +69,8 @@ const Login = () => {
                   id="password"
                   type="password"
                   placeholder="********"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                   required
+                  {...register("password")}
                 />
               </div>
 
@@ -72,7 +79,7 @@ const Login = () => {
               </Button>
 
               <div className="flex justify-between items-center mt-4">
-                <Button color="light" onClick={() => navigate('/')}>
+                <Button color="light" onClick={() => navigate('/HogarDeLibros')}>
                   Regresar
                 </Button>
                 <Button color="light" onClick={openRecoverPasswordModal}>

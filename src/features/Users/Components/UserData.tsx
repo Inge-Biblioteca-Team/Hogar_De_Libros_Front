@@ -2,11 +2,13 @@ import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Popover } from "flowbite-react";
 import { FaUserFriends } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-const userData = () => {
+const UserData = () => {
+  const Navi = useNavigate();
+
   return (
     <Popover
-      aria-labelledby="profile-popover"
       content={
         <div className="w-64 p-3">
           <div className="mb-2 flex items-center justify-between">
@@ -20,9 +22,10 @@ const userData = () => {
             <div>
               <button
                 type="button"
+                onClick={() => Navi("/HogarDeLibros/Perfil/EditarPerfil")}
                 className="rounded-lg bg-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Cerrar sesión
+                Editar Perfil
               </button>
             </div>
           </div>
@@ -36,10 +39,18 @@ const userData = () => {
           </p>
           <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
             <a
-              href="/HogarDeLibros/Perfil"
+              href="mailto:user@example.com"
               className="hover:underline text-gray-800 dark:text-gray-200"
             >
               user@example.com
+            </a>
+          </p>
+          <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
+            <a
+              href="/HogarDeLibros/Perfil/MisPrestamos"
+              className="hover:underline text-gray-800 dark:text-gray-200"
+            >
+              Mis Prestamos
             </a>
           </p>
           <div className="flex items-center mb-4">
@@ -49,24 +60,25 @@ const userData = () => {
             </span>
           </div>
           <button
+          onClick={()=>Navi("/IniciarSesion")}
             type="button"
             className="w-full rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700"
           >
-            Editar perfil
+            Cerrar Sesión
           </button>
+          <div></div>
         </div>
       }
     >
       <button
         title="Usuario"
         type="button"
-        className="bg-Bottoms text-white text-2xl rounded-lg px-2
-      hover:bg-Bottoms-dark hover:scale-105
-       max-sm:hidden w-12 "
+        className="bg-Bottoms text-white text-2xl rounded-lg px-2 hover:bg-Bottoms-dark hover:scale-105 max-sm:hidden w-12"
       >
         <FontAwesomeIcon icon={faUserAlt} />
       </button>
     </Popover>
   );
 };
-export default userData;
+
+export default UserData;

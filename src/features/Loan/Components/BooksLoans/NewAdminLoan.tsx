@@ -16,15 +16,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { GetByBookCode } from "../../../Books/services/SvBooks";
 import { Book } from "../../../Books/type/Book";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { newloan } from "../../Types/BookLoan";
-import { addDays, subDays } from "date-fns";
 import UseGenerateNewLoan from "../../Hooks/Books/UseGenerateNewLoan";
+import { UserForNewLoan } from "../../../Users/Type/UserType";
+import { GetUserData } from "../../../Users/Services/SvUsuer";
+import UseDebounce from "../../../../hooks/UseDebounce";
 
 const NewAdminLoan = () => {
   const { BookCode } = useParams<{ BookCode?: string }>();
-  const { register, setValue, handleSubmit } = useForm<newloan>();
+  const { register, setValue, handleSubmit, watch } = useForm<newloan>();
 
   const { data: book } = useQuery<Book, Error>(
     ["OneBookForUser", BookCode],
@@ -38,28 +40,70 @@ const NewAdminLoan = () => {
   );
   useEffect(() => {
     if (book) {
-      const now = new Date().toISOString().slice(0, 16);
+      const now = new Date();
+      const localDate = now.toLocaleString("sv-SE", {
+        timeZone: "America/Costa_Rica",
+        hour12: false,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      const formattedDate = localDate.replace(" ", "T");
       setValue("Title", book.Title);
       setValue("bookBookCode", book.BookCode);
       setValue("SignaCode", book.SignatureCode);
       setValue("InscriptionCode", book.InscriptionCode);
       setValue("Author", book.Author);
-      setValue("LoanRequestDate", now);
+      setValue("LoanRequestDate", formattedDate);
+      setValue("BookPickUpDate", now.toLocaleDateString("sv-SE"));
     }
   }, [book, setValue]);
 
-  const today = new Date();
+  const [Cedula, SetCedula] = useState<string>("");
+  const NCedula = UseDebounce(Cedula, 1000);
 
-  const futureDate = addDays(today, 15);
-  const maxDate = futureDate.toISOString().split("T")[0];
+  const { data: User } = useQuery<UserForNewLoan[], Error>(
+    ["UserLoan", NCedula],
+    () => {
+      if (!Cedula) {
+        throw new Error("Error No existe ID de libro para buscar");
+      }
+      return GetUserData(NCedula);
+    },
+    { enabled: !!Cedula }
+  );
 
-  const previousDate = subDays(today, 1);
-  const minDate = previousDate.toISOString().split("T")[0];
+  useEffect(() => {
+    if (User && User.length > 0) {
+      console.log("Datos del usuario:", User[0]);
+      setValue("Name", User[0].Name);
+      setValue("Mail", User[0].Mail);
+      setValue("PhoneNumber", User[0].PhoneNumber);
+    }
+  }, [User, setValue]);
+
+  const todayMin = new Date().toISOString().split("T")[0];
+  const [minDate, setMinDate] = useState("");
+  const [maxDate, setMaxDate] = useState("");
+  const bookPickUpDate = watch("BookPickUpDate");
+
+  useEffect(() => {
+    if (bookPickUpDate) {
+      const pickUpDate = new Date(bookPickUpDate);
+      pickUpDate.setDate(pickUpDate.getDate() + 1);
+      setMinDate(pickUpDate.toISOString().split("T")[0]);
+
+      const maxDate = new Date(pickUpDate);
+      maxDate.setMonth(maxDate.getMonth() + 1);
+      setMaxDate(maxDate.toISOString().split("T")[0]);
+    }
+  }, [bookPickUpDate]);
 
   const { mutate: NewLoan } = UseGenerateNewLoan();
 
   const onSubmit = (New: newloan) => {
-    console.log(New);
     NewLoan(New);
   };
   const Navi = useNavigate();
@@ -86,11 +130,17 @@ const NewAdminLoan = () => {
               <span>
                 <Label htmlFor="disabledInput1">Número de Cedula</Label>
                 <TextInput
-                  type="text"
+                  type="number"
                   id="disabledInput1"
                   placeholder="Numero de cedula sin guiones"
                   {...register("userCedula")}
+                  onChange={(event) => SetCedula(event.target.value)}
                   required
+                  style={{
+                    MozAppearance: "textfield",
+                    WebkitAppearance: "none",
+                    appearance: "none",
+                  }}
                 />
               </span>
               <span>
@@ -99,6 +149,8 @@ const NewAdminLoan = () => {
                   type="text"
                   id="disabledInput2"
                   placeholder="Tu nombre"
+                  {...register("Name")}
+                  disabled
                 />
               </span>
               <span>
@@ -107,11 +159,18 @@ const NewAdminLoan = () => {
                   type="text"
                   id="disabledInput2"
                   placeholder="Tu@gmail.com"
+                  {...register("Mail")}
+                  disabled
                 />
               </span>
               <span>
                 <Label htmlFor="disabledInput2">Número de teléfono</Label>
-                <TextInput type="text" id="disabledInput2" placeholder="" />
+                <TextInput
+                  type="text"
+                  id="disabledInput2"
+                  placeholder=""
+                  {...register("PhoneNumber")}
+                />
               </span>
             </fieldset>
             <fieldset className=" flex flex-col gap-7">
@@ -178,7 +237,8 @@ const NewAdminLoan = () => {
                 <TextInput
                   type="date"
                   {...register("BookPickUpDate")}
-                  min={minDate}
+                  min={todayMin}
+                  required
                 />
               </span>
               <span>
@@ -190,6 +250,7 @@ const NewAdminLoan = () => {
                   {...register("LoanExpirationDate")}
                   min={minDate}
                   max={maxDate}
+                  required
                 />
               </span>
               <div className="flex flex-col justify-end pt-6">
@@ -213,7 +274,7 @@ const NewAdminLoan = () => {
                     </div>
                   }
                 >
-                  <Button color={"blue"}>Enviar Solicitud</Button>
+                  <Button color={"blue"}>Confirmar Prestamo</Button>
                 </Popover>
               </div>
             </fieldset>

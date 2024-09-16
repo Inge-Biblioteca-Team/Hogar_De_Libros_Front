@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { List, ListItem } from "flowbite-react";
 import { Book } from "../../type/Book";
-import BtnReserve from "../BTN/BtnReserve";
+import BtnRequest from "../BTN/BtnRequest";
 
 
 const BookCardList = ({Book}: {Book:Book}) => {
@@ -40,7 +40,7 @@ const BookCardList = ({Book}: {Book:Book}) => {
         </ListItem>
       </List>
       <div className="mt-4">
-        <BtnReserve Objetive="Solicitar" text="Solicitar Prestamo" />
+        <BtnRequest Objetive={Book.BookCode} text="Solicitar Prestamo" />
       </div>
     </div>
   </div>

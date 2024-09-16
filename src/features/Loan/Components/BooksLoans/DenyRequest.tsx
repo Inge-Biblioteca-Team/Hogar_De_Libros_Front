@@ -30,15 +30,15 @@ const DenyRequest = ({
             <h3>Esta Seguro de cancelar la solicitud de prestamo</h3>
             <div className="flex justify-center gap-4 mt-10">
               <Button
-                color="blue"
+                color="failure"
                 onClick={() => {
                   setShowCancel(false);
                 }}
               >
                 Regresar
               </Button>
-              <Button color="failure" onClick={() => handleCancel()}>
-                Cancelar
+              <Button color="blue" onClick={() => handleCancel()}>
+                Confirmar
               </Button>
             </div>
           </div>

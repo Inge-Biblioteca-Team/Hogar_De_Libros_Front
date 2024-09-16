@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   TextInput,
   Button,
@@ -8,20 +9,37 @@ import {
 } from "flowbite-react";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800">
+    <div className="flex justify-center items-center min-h-screen bg-gray-800 p-8">
       <Card className="max-w-screen-lg w-full">
         <div className="flex flex-col md:flex-row">
-          <div className="md:w-1/2 p-6">
+          <div className="md:w-1/2">
             <h2 className="text-2xl font-bold mb-4 text-blue-600">
               Registro de usuario
             </h2>
             <p className="text-sm mb-4">
               ¿Posees una cuenta?{" "}
-              <a href="/InicioDeSecion" className="text-blue-500 hover:underline">
+              <a
+                href="/IniciarSesion"
+                className="text-blue-500 hover:underline"
+              >
                 Inicia Sesión aquí.
               </a>
             </p>
+
+            <div>
+              <Label htmlFor="IDNumber" value="Número de Cédula" />{" "}
+              <TextInput
+                id="IDNumber"
+                name="IDNumber"
+                inputMode="numeric"
+                type="text"
+                pattern="[0-9]*"
+                required
+              />
+            </div>
 
             <form className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
@@ -29,6 +47,7 @@ const Register = () => {
                   <Label htmlFor="Name" value="Nombre" />
                   <TextInput id="Name" name="Name" required />
                 </div>
+
                 <div>
                   <Label htmlFor="LastName" value="Apellidos" />
                   <TextInput id="LastName" name="LastName" required />
@@ -124,7 +143,11 @@ const Register = () => {
               </div>
 
               <div className="flex justify-between mt-4">
-                <Button type="button" color="failure">
+                <Button
+                  type="button"
+                  color="failure"
+                  onClick={() => navigate("/HogarDeLibros")}
+                >
                   Cancelar
                 </Button>
                 <Button
@@ -137,7 +160,6 @@ const Register = () => {
               </div>
             </form>
           </div>
-
           <div className="md:w-1/2 p-6 flex justify-center items-center">
             <div className="text-center">
               <h6 className="text-lg font-bold text-blue-600 mb-4">

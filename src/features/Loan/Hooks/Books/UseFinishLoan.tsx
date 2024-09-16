@@ -1,5 +1,3 @@
-
-// src/hooks/useFinalizeLoan.ts
 import { useMutation, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import { FinalizeLoan } from "../../Services/SvBookLoan";

@@ -13,7 +13,7 @@ import NoRequest from "../../Loan/Components/NoRequest";
 import TBLUsers from "../Components/TBLUsers";
 import SearchUsers from "../Components/SearchUers";
 import { GetUsersList } from "../Services/SvUsuer";
-import { User, UsersResponse } from "../Type/UserType";
+import { User } from "../Type/UserType";
 
 const ManageUsers = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -31,15 +31,15 @@ const ManageUsers = () => {
     sessionStorage.setItem("UersCPages", currentPage.toString());
   }, [currentPage]);
 
-  const { data: Users } = useQuery<UsersResponse, Error>(
-    ["Users", currentPage, currentLimit],
+  const { data: Users } = useQuery<User[], Error>(
+    ["UsersMG", currentPage, currentLimit],
     () => GetUsersList(currentPage, currentLimit),
     {
       staleTime: 600,
     }
   );
 
-  const MaxPage = Math.ceil((Users?.count ?? 0) / 5);
+  const MaxPage = Math.ceil((Users?.length ?? 0) / 5);
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">
@@ -48,8 +48,8 @@ const ManageUsers = () => {
         <LoanCrumb />
         <LastCrumb CurrentPage="Lista de Usuarios" />
       </Breadcrumb>
-      {Users?.count == 0 ? (
-        <NoRequest text="No hay nada que mostrar aqui" />
+      {Users?.length == 0 ? (
+        <NoRequest text="No hay" />
       ) : (
         <div className="flex place-content-center mt-14">
           <div className="w-4/5">
@@ -66,7 +66,7 @@ const ManageUsers = () => {
                 <Table.HeadCell></Table.HeadCell>
               </Table.Head>
               <Table.Body>
-                {Users?.data.map((user: User) => (
+                {Users?.slice(0,5).map((user: User) => (
                   <TBLUsers user={user} />
                 ))}
               </Table.Body>

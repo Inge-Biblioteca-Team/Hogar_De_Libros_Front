@@ -7,29 +7,53 @@ export type LoanResponse = {
 
 export type Loans= {
   Status: string;
-  Observations: string;
   BookLoanId: number;
-  LoanRequestDate: string;
-  BookPickUpDate: string;
-  LoanExpirationDate: string;
-  BookTitle:string,
-  BookCode:string,
-  UserCedula:string
-}
+  LoanRequestDate: Date;
+  BookPickUpDate: Date;
+  LoanExpirationDate: Date;
+  Observations: string;
+  user: User;
+  book: Book;
+  Name:string;
+  Mail:string;
+  PhoneNumber:string;
+  Cedula:string;
+};
 
-export type newloan={
-  LoanRequestDate: string;
-  BookPickUpDate: string;
-  LoanExpirationDate: string;
-  bookBookCode:string;
-  userId:number;
-  InscriptionCode:string;
-  SignaCode:string
-  Title:string
-  Author:string
-}
+export type Book = {
+  Title: string;
+  signatureCode: string;
+  InscriptionCode: string;
+  BookCode: number;
+};
+
+export type User = {
+  cedula: string;
+  name: string;
+  lastName: string;
+};
 
 export type finishLoan={
   Observation:string;
   BookLoanId:number
+}
+
+export type newloan = {
+  LoanRequestDate: string;
+  BookPickUpDate: string;
+  LoanExpirationDate: string;
+  bookBookCode: string;
+  userCedula: string;
+  InscriptionCode: string;
+  SignaCode: string;
+  Title: string;
+  Author: string;
+  Name:string;
+  Mail:string;
+  PhoneNumber:string
+};
+
+export type ChangeExpiredDate = {
+  BookLoanId:number;
+  LoanExpirationDate: string;
 }

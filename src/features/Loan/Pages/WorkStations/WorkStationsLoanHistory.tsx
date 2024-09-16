@@ -1,4 +1,4 @@
-import { Breadcrumb, Table } from "flowbite-react";
+import { Breadcrumb, Table, TextInput } from "flowbite-react";
 import {
   HomeCrumb,
   LastCrumb,
@@ -24,12 +24,14 @@ const WorkStationsLoanHistory = () => {
     sessionStorage.setItem("WSPage", page.toString());
   };
 
+  const [StartDate, SetStartDate] = useState<string>("");
+
   useEffect(() => {
     sessionStorage.setItem("WSPage", currentPage.toString());
   }, [currentPage]);
   const { data: WSLoan } = useQuery<ApiWSResponse, Error>(
-    ["WSLoans", currentPage, currentLimit],
-    () => GetWSLoans(currentPage, currentLimit),
+    ["WSLoans", currentPage, currentLimit, StartDate],
+    () => GetWSLoans(currentPage, currentLimit, StartDate),
     {
       staleTime: 600,
     }
@@ -46,16 +48,24 @@ const WorkStationsLoanHistory = () => {
       <div className=" w-full flex items-center justify-center mt-12">
         <div className=" w-4/5">
           <Table hoverable className=" text-center">
-            <Table.Head>
+            <Table.Head className=" h-16 text-sm">
               <Table.HeadCell>Nombre del Usuario</Table.HeadCell>
               <Table.HeadCell>Aprovado Por</Table.HeadCell>
-              <Table.HeadCell>Fecha y hora de inicio</Table.HeadCell>
+              <Table.HeadCell>
+                <span className=" flex items-center justify-center gap-2">
+                  <span>Fecha de inicio</span>
+                  <TextInput
+                    type="date"
+                    onChange={(event) => SetStartDate(event.target.value)}
+                  />
+                </span>{" "}
+              </Table.HeadCell>
               <Table.HeadCell>Hora de Fin</Table.HeadCell>
             </Table.Head>
             <Table.Body>
-            {WSLoan?.data.map((loans) => (
-              <HistoryRegist WSLoan={loans} key={loans.ComputerLoanId} />
-            ))}
+              {WSLoan?.data.map((loans) => (
+                <HistoryRegist WSLoan={loans} key={loans.ComputerLoanId} />
+              ))}
             </Table.Body>
           </Table>
           <div className=" w-full flex justify-between">

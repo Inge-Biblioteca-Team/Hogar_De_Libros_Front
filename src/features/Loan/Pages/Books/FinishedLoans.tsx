@@ -14,6 +14,7 @@ import PaginatationSelector from "../../../../components/PaginatationSelector";
 import { useEffect, useState } from "react";
 import FinishedLoanSearch from "../../Components/BooksLoans/FinishedLoanSearch";
 import NoRequest from "../../Components/NoRequest";
+import UseDebounce from "../../../../hooks/UseDebounce";
 
 const FinishedLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -30,15 +31,41 @@ const FinishedLoans = () => {
   useEffect(() => {
     sessionStorage.setItem("DLPage", currentPage.toString());
   }, [currentPage]);
+
+  const [StartDate, setStartDate] = useState<string>("");
+  const [EndDate, setEndtDate] = useState<string>("");
+  const [Name, setName] = useState<string>("");
+  const [SignaCode, setSignaCode] = useState<string>("");
+
+  const SName = UseDebounce(Name, 1000);
+  const sSignaCode = UseDebounce(SignaCode, 1000);
+
+  
   const { data: Loan } = useQuery<LoanResponse, Error>(
-    ["DLoans", currentPage, currentLimit],
-    () => GetDoneLoans(currentPage, currentLimit),
+    [
+      "DLoans",
+      currentPage,
+      currentLimit,
+      StartDate,
+      EndDate,
+      SName,
+      sSignaCode,
+    ],
+    () =>
+      GetDoneLoans(
+        currentPage,
+        currentLimit,
+        StartDate,
+        EndDate,
+        "",
+        SName,
+        sSignaCode,
+      ),
     {
       staleTime: 600,
     }
   );
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
-
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">
@@ -47,32 +74,39 @@ const FinishedLoans = () => {
         <LoanCrumb />
         <LastCrumb CurrentPage="Prestamos Finalizados" />
       </Breadcrumb>
-      {Loan?.count == 0 ? (
-        <NoRequest text="No hay nada que mostrar aqui" />
-      ) : (
-        <div className="flex place-content-center mt-14">
-          <div className="w-4/5">
-            <FinishedLoanSearch />
-            {Loan && <TBLLoan Loan={Loan} />}
-            <div className=" w-full flex justify-between">
-              <div>
-                <span className=" pl-5">
-                  Mostrar{" "}
-                  <span>
-                    <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                  </span>{" "}
-                  Prestamos por pagina
-                </span>
+      <div className="flex place-content-center mt-14">
+        <div className="w-4/5">
+          <FinishedLoanSearch
+            setStartDate={setStartDate}
+            setEndtDate={setEndtDate}
+            setName={setName}
+            setSignaCode={setSignaCode}
+          />
+          {Loan?.count == 0 ? (
+            <NoRequest text="No hay Resultados" />
+          ) : (
+            <>
+              {Loan && <TBLLoan Loan={Loan} />}
+              <div className=" w-full flex justify-between">
+                <div>
+                  <span className=" pl-5">
+                    Mostrar{" "}
+                    <span>
+                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
+                    </span>{" "}
+                    Prestamos por pagina
+                  </span>
+                </div>
+                <PaginatationSelector
+                  totalPages={MaxPage}
+                  currentPage={currentPage}
+                  onPageChange={onPageChange}
+                />
               </div>
-              <PaginatationSelector
-                totalPages={MaxPage}
-                currentPage={currentPage}
-                onPageChange={onPageChange}
-              />
-            </div>
-          </div>
+            </>
+          )}
         </div>
-      )}
+      </div>
     </>
   );
 };
