@@ -29,14 +29,13 @@ const Login = () => {
   const mutation = useMutation({
     mutationFn: ({ username, password }: { username: string; password: string }) =>
       signIn(username, password), 
-    onSuccess: (data) => {
-      console.log('Inicio de sesión exitoso:', data.access_token);
-      sessionStorage.setItem('token', data.access_token);
+    onSuccess: () => {
+      toast.success("Inicio de Sesion Exitoso")
     },
     onError: () => {
       navigate("/HogarDeLibros")
       reset()
-      toast.success("Inicio de sesión Exitoso")
+      toast.error("Inicio de sesión Erroneo")
     },
   });
 

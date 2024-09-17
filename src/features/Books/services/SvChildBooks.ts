@@ -1,9 +1,5 @@
-import axios from "axios";
+import api from "../../../Services/AxiosConfig";
 
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-  timeout: 1000,
-});
 
 const GetChildrenBPaginated = async (
   page: number,

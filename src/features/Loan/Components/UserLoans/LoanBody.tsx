@@ -40,7 +40,7 @@ const LoanBody = ({
             )}
             {Loan.Status == "En progreso" && (
               <Button color={"blue"} onClick={() => setShowChange(true)}>
-                Solicitar Extencion de prestamo
+                Solicitar Extencion de préstamo
               </Button>
             )}
             {Loan.Status == "Finalizado" && (

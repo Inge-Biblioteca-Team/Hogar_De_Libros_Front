@@ -56,7 +56,7 @@ const ManageUsers = () => {
             <SearchUsers />
             <Table hoverable className=" text-center">
               <Table.Head className=" h-20 text-sm">
-                <Table.HeadCell>Cedula</Table.HeadCell>
+                <Table.HeadCell>Cédula</Table.HeadCell>
                 <Table.HeadCell>Nombre</Table.HeadCell>
                 <Table.HeadCell>Rol</Table.HeadCell>
                 <Table.HeadCell>Provincia</Table.HeadCell>

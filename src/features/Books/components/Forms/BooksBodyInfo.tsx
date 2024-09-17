@@ -25,7 +25,7 @@ const BooksBodyInfo = ({ book }: { book: Book }) => {
         <span>{book?.ISBN}</span>
         <strong>Codigo de Signatura</strong>
         <span>{book?.SignatureCode}</span>
-        <strong>Categoria de estante</strong>
+        <strong>Categoría de estante</strong>
         <span>{book?.ShelfCategory}</span>
       </span>
       <span className="inline-grid ">
@@ -47,9 +47,9 @@ const BooksBodyInfo = ({ book }: { book: Book }) => {
         {book?.ReserveBook ? <strong>Libro de Reserva</strong> : null}
         <span>
           {book?.Status == false ? (
-            <strong>No Disponible Para Prestamo</strong>
+            <strong>No Disponible Para préstamo</strong>
           ) : (
-            <BtnReserve Objetive={book.BookCode} text="Generar Prestamo" />
+            <BtnReserve Objetive={book.BookCode} text="Generar préstamo" />
           )}
         </span>
       </span>

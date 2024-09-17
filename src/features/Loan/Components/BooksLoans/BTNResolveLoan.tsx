@@ -24,7 +24,7 @@ const BTNResolveLoan = ({Loan}:{Loan:Loans}) => {
         <button type="button" onClick={()=>setSee(true)}>
          {""} <PiEyeFill size={30} color="blue" />
         </button>
-        <button type="button" title="Rechazar Prestamo" onClick={()=>setShowD(true)}>
+        <button type="button" title="Rechazar préstamo" onClick={()=>setShowD(true)}>
           <MdCancel size={30} color="red" />
         </button>
         <Popover
@@ -32,7 +32,7 @@ const BTNResolveLoan = ({Loan}:{Loan:Loans}) => {
           <Button onClick={()=>handleAprove()} color={"blue"} >Confirmar</Button>
         }
         >
-        <button type="button" title="Aprobar Prestamo"  >
+        <button type="button" title="Aprobar préstamo"  >
           <GiConfirmed size={30} color="green" />
         </button>
         </Popover>

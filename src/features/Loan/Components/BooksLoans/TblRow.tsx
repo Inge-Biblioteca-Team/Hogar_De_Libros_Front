@@ -17,7 +17,7 @@ const TblRow = ({
 }) => {
   const ReqDate = format({
     date: Loan.LoanRequestDate,
-    format: "DD/MM/YYYY hh:MM A",
+    format: "DD/MM/YYYY hh:mm A",
     tz: "America/Costa_Rica",
   });
 
