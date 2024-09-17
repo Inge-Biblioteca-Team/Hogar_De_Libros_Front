@@ -1,10 +1,7 @@
-import axios from "axios";
+import api from "../../../Services/AxiosConfig";
 import { NewWSLoan, NewWSMantenance } from "../Types/ComputerLoan";
 
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-  timeout: 1000,
-});
+
 
 //Gets
 const GetStatus = async () => {
@@ -17,13 +14,14 @@ const GetStatus = async () => {
   }
 };
 
-const GetWSLoans = async (page: number, limit: number, StartDate?: string) => {
+const GetWSLoans = async (page: number, limit: number, StartDate?: string, MachineNumber?:string) => {
   try {
     const response = await api.get(`computer-loan`, {
       params: {
         Page: page,
         Limit: limit,
         ...(StartDate && { StartDate }), 
+        ...(MachineNumber && {MachineNumber})
       },
     });
     return response.data;

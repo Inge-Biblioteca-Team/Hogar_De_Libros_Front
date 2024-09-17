@@ -1,10 +1,6 @@
-import axios from "axios";
+import api from "../../../Services/AxiosConfig";
 import { FurnitureEdit } from "../type/furniture";
 
-const api = axios.create({
-    baseURL: `https://66de71d6de4426916ee12042.mockapi.io/Furniture`,
-    timeout: 1000,
-  });
 
   const PostNewFurniture = async (furniture:FurnitureEdit) =>{
     try{

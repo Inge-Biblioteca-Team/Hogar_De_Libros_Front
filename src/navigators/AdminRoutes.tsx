@@ -8,9 +8,6 @@ import EditBookInformation from "../features/Books/Pages/EditBookInformation";
 import ManageBooks from "../features/Books/Pages/ManageBooks";
 import NewBook from "../features/Books/Pages/NewBook";
 import AvailableComputers from "../features/Computers/components/AvailableComputers";
-import AdminComputerInformation from "../features/Computers/Pages/AdminComputer";
-import ComputerNew from "../features/Computers/Pages/ComputerNew";
-import EditComputer from "../features/Computers/Pages/EditComputer";
 import ManagerComputer from "../features/Computers/Pages/ManagerComputer";
 import NewAdminLoan from "../features/Loan/Components/BooksLoans/NewAdminLoan";
 import ManageUsers from "../features/Users/Pages/ManageUsers";
@@ -51,7 +48,7 @@ const adminRoutes = [
             element: <EditBookInformation />,
           },
           {
-            path: "Prestamos/:BookCode",
+            path: "Préstamos/:BookCode",
             element: <NewAdminLoan />,
           },
         ],
@@ -87,19 +84,7 @@ const adminRoutes = [
           {
             path: "disponible",
             element: <AvailableComputers />,
-          },
-          {
-            path: "NuevoEquipo",
-            element: <ComputerNew />,
-          },
-          {
-            path: "Editar/:Code",
-            element: <EditComputer />,
-          },
-          {
-            path: "Ver/:Code",
-            element: <AdminComputerInformation />,
-          },
+          }
         ],
       },
       {
@@ -112,7 +97,7 @@ const adminRoutes = [
         ],
       },
       {
-        path: "Prestamos",
+        path: "Préstamos",
         children: [
           {
             index: true,

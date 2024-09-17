@@ -76,7 +76,7 @@ const BookInformation = () => {
           <span className=" w-96 line-clamp-2">{book?.Author}</span>
           <strong>Editorial</strong>
           <span>{book?.Editorial}</span>
-          <strong>Categoria</strong>
+          <strong>Categoría</strong>
           <span>{book?.ShelfCategory}</span>
           <strong>Año de publicación</strong>
           <span>
@@ -90,7 +90,7 @@ const BookInformation = () => {
             {book?.BookCode && (
               <BtnRequest
                 Objetive={book.BookCode}
-                text="Solicitar Prestamo"
+                text="Solicitar préstamo"
               />
             )}
           </div>

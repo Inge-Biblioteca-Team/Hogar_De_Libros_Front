@@ -33,16 +33,13 @@ const ConfirmModal = ({
         </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button
-          className="bg-Bottoms text-white text-2xl rounded-lg px-2
-    hover:bg-Bottoms-dark hover:scale-105
-     max-sm:hidden"
+        <Button color="failure" onClick={onCancel}>
+          Cancelar
+        </Button>
+        <Button color={"blue"}
           onClick={() => onConfirm(Equip)}
         >
           Sí, estoy seguro
-        </Button>
-        <Button color="red" onClick={onCancel}>
-          Cancelar
         </Button>
       </Modal.Footer>
     </Modal>

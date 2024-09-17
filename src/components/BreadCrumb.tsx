@@ -49,8 +49,8 @@ const LastCrumb = ({ CurrentPage }: { CurrentPage: string }) => {
 const LoanCrumb = () => {
   return (
     <>
-      <Breadcrumb.Item href="/HogarDeLibros/Gestion/Prestamos">
-        Prestamos
+      <Breadcrumb.Item href="/HogarDeLibros/Gestion/Préstamos">
+        Préstamos
       </Breadcrumb.Item>
     </>
   );

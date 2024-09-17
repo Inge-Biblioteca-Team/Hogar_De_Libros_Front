@@ -34,7 +34,7 @@ const ManageLoansWS = () => {
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
         <ManageCrumb />
-        <LastCrumb CurrentPage="Manejo de prestamos de equipos" />
+        <LastCrumb CurrentPage="Manejo de Préstamos de equipos" />
       </Breadcrumb>
       <div className=" w-full flex items-center justify-center mt-12">
         <div className="grid grid-cols-4 gap-26 w-4/5">

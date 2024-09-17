@@ -2,17 +2,29 @@ import { Button, Modal } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { Dispatch, SetStateAction } from "react";
 
 const ModalAddMoreActive = ({
   open,
   Close,
+  setSNew
 }: {
   open: boolean;
   Close: (open: boolean) => void;
+  setSNew?: Dispatch<SetStateAction<boolean>>;
 }) => {
   const useNavi = useNavigate();
   const Back = () => {
     useNavi(-1);
+  };
+
+  const handleNoClick = () => {
+    if (setSNew) {
+      setSNew(false); 
+      Close(false)
+    } else {
+      Back(); 
+    }
   };
   return (
     <Modal show={open} >
@@ -23,13 +35,11 @@ const ModalAddMoreActive = ({
               Desea Añadir Otro Activo ?
             </h3>
             <div className="flex justify-center gap-4">
-              <Button color="red" onClick={Back}>
+              <Button color="failure" onClick={handleNoClick}>
                 No, Regresar.
               </Button>
               <Button
-                className="bg-Bottoms text-white text-2xl rounded-lg 
-            hover:bg-Bottoms-dark hover:scale-105
-            max-sm:hidden"
+                color={"blue"}
                 onClick={() => Close(false)}
               >
                 Sí, Añadir otro activo

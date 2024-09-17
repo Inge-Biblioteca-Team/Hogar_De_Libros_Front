@@ -47,10 +47,10 @@ const UserData = () => {
           </p>
           <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
             <a
-              href="/HogarDeLibros/Perfil/MisPrestamos"
+              href="/HogarDeLibros/Perfil/MisPréstamos"
               className="hover:underline text-gray-800 dark:text-gray-200"
             >
-              Mis Prestamos
+              Mis Préstamos
             </a>
           </p>
           <div className="flex items-center mb-4">

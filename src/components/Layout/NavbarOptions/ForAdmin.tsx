@@ -8,8 +8,8 @@ const ForAdmin = () => {
                   <Sidebar.Item href="/HogarDeLibros/Gestion/Equipos">
                     Equipos de Cómputo
                   </Sidebar.Item>
-                  <Sidebar.Item href="/HogarDeLibros/Gestion/Prestamos/Computadoras">
-                    Prestamo de <br />Equipos de Cómputo
+                  <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Computadoras">
+                    Préstamo de <br />Equipos de Cómputo
                   </Sidebar.Item>
                   <Sidebar.Collapse className=" font-bold" label="Libros">
                     <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
@@ -44,16 +44,16 @@ const ForAdmin = () => {
               </Sidebar.ItemGroup>
               <Sidebar.ItemGroup>
                 <Sidebar.Collapse label="Préstamos">
-                  <Sidebar.Item href="/HogarDeLibros/Gestion/Prestamos/Pendientes">
+                  <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Pendientes">
                     Solicitudes Pendientes
                   </Sidebar.Item>
-                  <Sidebar.Item href="/HogarDeLibros/Gestion/Prestamos/EnProceso">
-                    Prestamos Activos
+                  <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/EnProceso">
+                    Préstamos Activos
                   </Sidebar.Item>
-                  <Sidebar.Item href="/HogarDeLibros/Gestion/Prestamos/Finalizados">
-                    Prestamos Finalizados
+                  <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Finalizados">
+                    Préstamos Finalizados
                   </Sidebar.Item>
-                  <Sidebar.Item href="/HogarDeLibros/Gestion/Prestamos/HistorialDeEquipos">
+                  <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/HistorialDeEquipos">
                     Historial de uso <br /> Equipo de cómputo
                   </Sidebar.Item>
                 </Sidebar.Collapse>
