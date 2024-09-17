@@ -1,76 +1,60 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { furniture } from "../../type/furniture";
-import { useQuery } from "react-query";
-import { GetFurniturebyID } from "../../services/SvFurniture";
 import { useForm } from "react-hook-form";
 import useEditFurniture from "../../Hooks/useEditFuniture";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import ConfirmModalFurniture from "./ConfirmModalFurniture";
 
 const ModalEditFurniture = ({
-    open,
-    setOpen,
-  }: {
-    open: boolean;
-    setOpen: (open: boolean) => void;
-  }) => {
-    const { Id } = useParams<{ Id?: string }>();
-    const [NewData, setNewData] = useState<furniture | null>(null);
-    const [isModalOpen, setModalOpen] = useState(false);
-    
-    const { data: FurnitureI } = useQuery<furniture, Error>(
-      ["FurnitureEdit", Id],
-      () => {
-        if (!Id) {
-          throw new Error("Error: No existe ID de mobiliario para buscar");
-        }
-        return GetFurniturebyID(Id);
-      },
-      { enabled: !!Id, staleTime: 60000 }
-    );
-  
-    const { register, handleSubmit, setValue } = useForm<furniture>();
+  open,
+  setOpen,
+  furniture,
+}: {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  furniture: furniture;
+}) => {
+ 
+  const [NewData, setNewData] = useState<furniture | null>(null);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const { register, handleSubmit, setValue } = useForm<furniture>();
   const { mutate: editFurniture } = useEditFurniture();
 
   useEffect(() => {
-    if (FurnitureI) {
-      setValue("Description", FurnitureI.Description);
-      setValue("Location", FurnitureI.Location);
-      setValue("InChargePerson", FurnitureI.InChargePerson);
-      setValue("ConditionRating", FurnitureI.ConditionRating);
-      setValue("Status", FurnitureI.Status);
+    if (furniture) {
+      setValue("Id",furniture.Id);
+      setValue("Description", furniture.Description);
+      setValue("Location", furniture.Location);
+      setValue("InChargePerson", furniture.InChargePerson);
+      setValue("ConditionRating", furniture.ConditionRating);
+      setValue("Status", furniture.Status);
     }
-  }, [FurnitureI, setValue]);
+  }, [furniture, setValue]);
 
   const onSubmit = (formData: furniture) => {
-    if (!Id) {
-      console.error("Id is undefined");
-      return;
-    }
-
-    editFurniture({ furniture: formData, Id: Id.toString() }); 
+  
+    editFurniture({ furniture: formData, Id: furniture.Id.toString() });
     setNewData(formData);
     setModalOpen(true);
     setOpen(false);
   };
-  
-    const handleClose = () => setOpen(false);
 
-    const handleConfirm = () => {
-        if (FurnitureI?.Id && NewData) {
-          editFurniture({ furniture: NewData, Id: FurnitureI.Id.toString() });
-        }
-        setModalOpen(false);
-      };
-  
-    const handleCancel = () => {
-      setModalOpen(false);
-    };
-  
-  
-    return (
-      <>
+  const handleClose = () => setOpen(false);
+
+  const handleConfirm = () => {
+    if (furniture?.Id && NewData) {
+      editFurniture({ furniture: NewData, Id: furniture.Id.toString() });
+    }
+    setModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <>
       <Modal show={open} size="md" onClose={handleClose}>
         <Modal.Header>Editar Mobiliario</Modal.Header>
         <Modal.Body>
@@ -140,11 +124,7 @@ const ModalEditFurniture = ({
               </span>
               <span>
                 <Label htmlFor="Status" value="Estado" />
-                <Select
-                  id="Status"
-                  {...register("Status")}
-                  required
-                >
+                <Select id="Status" {...register("Status")} required>
                   <option value={"Active"}>Activo</option>
                   <option value={"Inactive"}>Inactivo</option>
                 </Select>
@@ -162,17 +142,16 @@ const ModalEditFurniture = ({
         </Modal.Body>
       </Modal>
       {NewData && (
-          <ConfirmModalFurniture
-            Accion="Editar"
-            isOpen={isModalOpen}
-            onConfirm={handleConfirm}
-            onCancel={handleCancel}
-            FurnitureItem={NewData}
-          />
-        )}
-      </>
+        <ConfirmModalFurniture
+          Accion="Editar"
+          isOpen={isModalOpen}
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+          FurnitureItem={NewData}
+        />
+      )}
+    </>
+  );
+};
 
-    );
-  };
-  
-  export default ModalEditFurniture;
+export default ModalEditFurniture;

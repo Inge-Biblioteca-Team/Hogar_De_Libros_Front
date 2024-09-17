@@ -13,7 +13,7 @@ const ModalAddNewFurniture = ({
     sNew: boolean;
     setSNew: Dispatch<SetStateAction<boolean>>;
   }) => {
-    const { register, reset, handleSubmit, setValue } = useForm<furniture>();
+    const { register, reset, handleSubmit } = useForm<furniture>();
     const [NeedMore, setNeedMore] = useState(false);
     const { mutate: CreateFurniture } = useNewFurniture({
       Open: setNeedMore,
@@ -23,8 +23,7 @@ const ModalAddNewFurniture = ({
     const [newFurnitureData, setNewFurnitureData] = useState<furniture | null>(null);
     const [isModalOpen, setModalOpen] = useState(false);
   
-   
-    setValue("Id", 0);
+  
   
     const onSubmit = (NewFurniture: furniture) => {
       setNewFurnitureData(NewFurniture);
@@ -55,7 +54,7 @@ const ModalAddNewFurniture = ({
                   id="Lincensenumber"
                   type="text"
                   sizing="md"
-                  {...register("Lincensenumber")}
+                  {...register("LicenseNumber")}
                   required
                 />
               </span>

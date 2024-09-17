@@ -1,22 +1,9 @@
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import { furniture } from "../../type/furniture";
-import { GetFurniturebyID } from "../../services/SvFurniture";
 import ConditionStatus from "../../../../components/ConditionStatus";
 import BTNGoBack from "../../../../components/BTNGoBack";
+import { furniture } from "../../type/furniture";
 
-const FormViewFurniture = () => {
-    const { Id } = useParams<{ Id?: string }>();
-    const { data: FurnitureI } = useQuery<furniture, Error>(
-      ["OneFurniture", Id],
-      () => {
-        if (!Id) {
-          throw new Error("Error: No existe ID de mobiliario para buscar");
-        }
-        return GetFurniturebyID(Id); 
-      },
-      { enabled: !!Id, staleTime: 60000 }
-    );
+const FormViewFurniture = ({furniture}:{furniture:furniture}) => {
+    
   
     return (
       <>
@@ -26,29 +13,29 @@ const FormViewFurniture = () => {
               <span>
                 <strong>Descripción</strong>
                 <br />
-                {FurnitureI?.Description}
+                {furniture?.Description}
               </span>
               <span>
                 <strong>Ubicación</strong>
                 <br />
-                {FurnitureI?.Location}
+                {furniture?.Location}
               </span>
               <span>
                 <strong>Persona a Cargo</strong>
                 <br />
-                {FurnitureI?.InChargePerson}
+                {furniture?.InChargePerson}
               </span>
               <span>
                 <strong>Condición</strong>
                 <br />
-                {FurnitureI?.ConditionRating && (
-                  <ConditionStatus condition={FurnitureI?.ConditionRating} />
+                {furniture?.ConditionRating && (
+                  <ConditionStatus condition={furniture?.ConditionRating} />
                 )}
               </span>
               <span>
                 <strong>Estado</strong>
                 <br />
-                {FurnitureI?.Status}
+                {furniture?.Status}
               </span>
             </span>
             <BTNGoBack />

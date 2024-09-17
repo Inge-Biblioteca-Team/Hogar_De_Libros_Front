@@ -1,14 +1,9 @@
 import { PiEyeLight, PiPencilDuotone, PiTrash } from "react-icons/pi";
 import { useState } from "react";
 import ModalDownFurniture from "../Modals/ModalDownFurniture";
+import { furniture } from "../../type/furniture";
 
-const FurnitureAccionBTNS = ({
-  id,
-  Status,
-}: {
-  id: number;
-  Status: boolean;
-}) => {
+const FurnitureAccionBTNS = ({ furniture }: { furniture: furniture }) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -17,38 +12,38 @@ const FurnitureAccionBTNS = ({
         title="Ver Información Completa"
         type="button"
         onClick={() => {
-          if (Status) {
+          if (furniture.Status) {
             setOpenModal(true);
           }
         }}
       >
         <PiEyeLight size={24} />
       </button>
-      
+
       <button
         title="Editar Mobiliario"
         type="button"
-        className={`${Status ? "" : "cursor-not-allowed"}`}
+        className={`${furniture.Status ? "" : "cursor-not-allowed"}`}
         onClick={() => {
-          if (Status) {
+          if (furniture.Status) {
             setOpenModal(true);
           }
         }}
-        disabled={!Status}
+        disabled={!furniture.Status}
       >
         <PiPencilDuotone size={24} />
       </button>
-      
+
       <button
         title="Deshabilitar Moviliario"
         type="button"
-        className={`${Status ? "" : "cursor-not-allowed"}`}
+        className={`${furniture.Status ? "" : "cursor-not-allowed"}`}
         onClick={() => {
-          if (Status) {
+          if (furniture.Status) {
             setOpenModal(true);
           }
         }}
-        disabled={!Status}
+        disabled={!furniture.Status}
       >
         <PiTrash size={24} />
       </button>
@@ -56,8 +51,8 @@ const FurnitureAccionBTNS = ({
         <ModalDownFurniture
           open={openModal}
           setOpen={setOpenModal}
-          id={id}
-          Description=""
+          id={furniture.Id}
+          Description={furniture.Description}
         />
       </>
     </div>

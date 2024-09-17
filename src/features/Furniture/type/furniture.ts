@@ -1,6 +1,6 @@
 export type furniture ={
     Id: number; //id
-    Lincensenumber: string;
+    LicenseNumber: string;
     Description: string;
     Location: string;
     InChargePerson: string;
@@ -14,8 +14,8 @@ export type apiResponseFt ={
 }
 
 export type FurnitureEdit = {
-    Id: number; //id
-    Lincensenumber: string;
+    Id: number; 
+    LicenseNumber: string;
     Description: string;
     Location: string;
     InChargePerson: string;
