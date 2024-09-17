@@ -1,17 +1,17 @@
-import { Breadcrumb, Table } from "flowbite-react";
+import { Breadcrumb, Button, Table } from "flowbite-react";
 import { HomeCrumb, LastCrumb, ManageCrumb } from "../../../components/BreadCrumb";
 import { GetFurniturePaginated } from "../services/SvFurniture";
-import { apiResponseFt, FurnitureEdit } from "../type/furniture";
+import { apiResponseFt} from "../type/furniture";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import UseDebounce from "../../../hooks/UseDebounce";
 import PaginatationSelector from "../../../components/PaginatationSelector";
 import SltCurrentLimit from "../../../components/SltCurrentLimit";
 import FurnitureAccionBTNS from "../Components/BTN/FurnitureAccionBTNS";
-import CreateNewFurniture from "../Components/BTN/CreateNewFurniture";
 import InpSearchTitle from "../../../components/InpSearchTitle";
 import BtnSerchFur from "../Components/BTN/BtnSerchFur";
 import AdminAdvancedSearchFur from "../Components/BTN/AdminAdvancedSerchFur";
+import ModalAddNewFurniture from "../Components/Modals/ModalAddNewFurniture";
 
 const ManageFurniture =()=>{
     const [currentPage, setCurrentPage] = useState<number>(() => {
@@ -23,9 +23,9 @@ const ManageFurniture =()=>{
     
       const [searchDescription, setSearchDescription] = useState<string>("");
       const searchDescriptionDelay = UseDebounce(searchDescription, 1000);
-      const [searchUbication, setSearchUbication] = useState<string>("");
+      const [searchUbication] = useState<string>("");
       const searchUbicationDelay = UseDebounce(searchUbication, 1000);
-      const [searchResponsible, setSearchResponsible] = useState<string>("");
+      const [searchResponsible] = useState<string>("");
       const searchResponsibleDelay = UseDebounce(searchResponsible, 1000);
       const [searchStatus, setSearchStatus] = useState<string>("");
       const searchStatusDelay = UseDebounce(searchStatus, 1000);
@@ -36,6 +36,7 @@ const ManageFurniture =()=>{
       };
       
       const viewAdvanceSearchComp = () => setAdvance(!advance);
+      const[sNew, setSNew] = useState<boolean>(false)
     
       const { data: furnitures } = useQuery<apiResponseFt, Error>(
         [
@@ -81,13 +82,15 @@ const ManageFurniture =()=>{
                   />
                   <BtnSerchFur click={viewAdvanceSearchComp} icon={advance} />
                 </div>
-                <CreateNewFurniture objetive="Mobiliario" />
+                <Button color={"blue"} onClick={()=>setSNew(true)}>Añadir Mobiliario</Button>
               </div>
+              <ModalAddNewFurniture sNew={sNew} setSNew={setSNew}/>
               <Table
                 hoverable
                 className="flex items-center justify-between text-center"
               >
                 <Table.Head className=" h-16">
+                  <Table.HeadCell className=" w-44">Número de placa</Table.HeadCell>
                   <Table.HeadCell className=" w-44">Descripción</Table.HeadCell>
                   <Table.HeadCell className=" w-44">Ubicación</Table.HeadCell>
                   <Table.HeadCell className=" w-44">Responsable</Table.HeadCell>
@@ -101,6 +104,9 @@ const ManageFurniture =()=>{
                       key={furniture.Id}
                       className=" h-24"
                     >
+                      <Table.Cell className="w-52">
+                        {furniture.Lincensenumber}
+                      </Table.Cell>
                       <Table.Cell className="w-52">
                         {furniture.Description}
                       </Table.Cell>

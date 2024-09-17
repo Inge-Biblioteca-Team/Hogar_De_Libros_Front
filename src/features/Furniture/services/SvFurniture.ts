@@ -2,8 +2,8 @@ import axios from "axios";
 import { FurnitureEdit } from "../type/furniture";
 
 const api = axios.create({
-    baseURL: `https://66de71d6de4426916ee12042.mockapi.io/Furniture`,
-    timeout: 1000,
+  baseURL: "http://localhost:3000",
+  timeout: 5000,
   });
 
   const PostNewFurniture = async (furniture:FurnitureEdit) =>{
@@ -45,6 +45,20 @@ const api = axios.create({
     }
   };
 
+  //edit
+  const PatchEditFurniture = async (
+    furniture: FurnitureEdit, 
+    ObjetiveID: string
+  ) => {
+    try {
+      const response = await api.patch(`furniture/${ObjetiveID}`, furniture); 
+      return response.data;
+    } catch (error) {
+      console.error("Error al editar mobiliario:", error); 
+      throw error;
+    }
+  };
+
   //dar de baja 
   
 const DownFurniture = async (Id: string) => {
@@ -56,9 +70,22 @@ const DownFurniture = async (Id: string) => {
       throw error;
     }
   };
+  
+  ///get by id
+  const GetFurniturebyID = async (Id:string) => {
+    try {
+      const response = await api.get(`furniture/${Id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error al obtener el mobiliario:", error);
+      throw error;
+    }
+  };
 
   export {
     PostNewFurniture,
     GetFurniturePaginated,
-    DownFurniture
+    DownFurniture,
+    PatchEditFurniture,
+    GetFurniturebyID
   }

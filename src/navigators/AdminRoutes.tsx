@@ -20,6 +20,7 @@ import FinishedLoans from "../features/Loan/Pages/Books/FinishedLoans";
 import InProgressLoans from "../features/Loan/Pages/Books/InProgressLoans";
 import PendingRequest from "../features/Loan/Pages/Books/PendingRequest";
 import WorkStationsLoanHistory from "../features/Loan/Pages/WorkStations/WorkStationsLoanHistory";
+import ManageFurniture from "../features/Furniture/Pages/ManageFurniture";
 
 
 const adminRoutes = [
@@ -110,6 +111,10 @@ const adminRoutes = [
             element: <ManageUsers />,
           },
         ],
+      },
+      {
+        path: "Mobiliario",
+        element: <ManageFurniture />,
       },
       {
         path: "Prestamos",
