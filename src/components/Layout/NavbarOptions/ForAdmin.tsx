@@ -9,7 +9,7 @@ const ForAdmin = () => {
                     Equipos de Cómputo
                   </Sidebar.Item>
                   <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Computadoras">
-                    préstamo de <br />Equipos de Cómputo
+                    Préstamo de <br />Equipos de Cómputo
                   </Sidebar.Item>
                   <Sidebar.Collapse className=" font-bold" label="Libros">
                     <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">

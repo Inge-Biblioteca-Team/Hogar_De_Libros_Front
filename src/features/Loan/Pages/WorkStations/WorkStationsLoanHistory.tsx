@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { GetWSLoans } from "../../Services/SvComputerLoan";
 import { ApiWSResponse } from "../../Types/ComputerLoan";
+import UseDebounce from "../../../../hooks/UseDebounce";
 
 const WorkStationsLoanHistory = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -25,13 +26,17 @@ const WorkStationsLoanHistory = () => {
   };
 
   const [StartDate, SetStartDate] = useState<string>("");
+  const [MachineNumber, SetMachineNumber] = useState<string>("");
+
+  const MachineNumberDelay = UseDebounce(MachineNumber, 100);
 
   useEffect(() => {
     sessionStorage.setItem("WSPage", currentPage.toString());
   }, [currentPage]);
+
   const { data: WSLoan } = useQuery<ApiWSResponse, Error>(
-    ["WSLoans", currentPage, currentLimit, StartDate],
-    () => GetWSLoans(currentPage, currentLimit, StartDate),
+    ["WSLoans", currentPage, currentLimit, StartDate, MachineNumberDelay],
+    () => GetWSLoans(currentPage, currentLimit, StartDate, MachineNumberDelay),
     {
       staleTime: 600,
     }
@@ -49,7 +54,14 @@ const WorkStationsLoanHistory = () => {
         <div className=" w-4/5">
           <Table hoverable className=" text-center">
             <Table.Head className=" h-16 text-sm">
-              <Table.HeadCell>Nombre del Usuario</Table.HeadCell>
+              <Table.HeadCell>
+                <span className=" flex items-center justify-center gap-2">
+                  Numero de Maquina
+                  <TextInput className="w-8" type="number" placeholder="#" onChange={(event)=>SetMachineNumber(event.target.value)} />
+                </span>
+              </Table.HeadCell>
+              <Table.HeadCell>
+                Nombre del Usuario</Table.HeadCell>
               <Table.HeadCell>Aprovado Por</Table.HeadCell>
               <Table.HeadCell>
                 <span className=" flex items-center justify-center gap-2">

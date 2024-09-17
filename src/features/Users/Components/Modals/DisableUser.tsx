@@ -30,7 +30,7 @@ const DisableUser = ({
             ¿Estás seguro de que deseas dar de baja al Usuario?
           </h3>
           <p className="mb-4 text-md font-semibold text-gray-600 dark:text-gray-300">
-            {User.name} {User.lastName}; Cedula {User.cedula} <br />
+            {User.name} {User.lastName}; Cédula {User.cedula} <br />
           </p>
           <TextInput
             id="reason"

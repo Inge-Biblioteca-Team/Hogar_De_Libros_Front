@@ -1,0 +1,19 @@
+import { useEffect } from "react";
+import { signIn } from "../features/Users/Services/SvUsuer";
+
+const AutoLoginComponent = () => {
+  useEffect(() => {
+    const username = "12@gmail.com";
+    const password = "12";
+    const intervalTime = 30 * 60 * 1000;
+    const autoLogin = () => {
+      signIn(username, password);
+    };
+    autoLogin();
+    const intervalId = setInterval(autoLogin, intervalTime);
+    return () => clearInterval(intervalId);
+  }, []);
+  return <></>;
+};
+
+export default AutoLoginComponent;

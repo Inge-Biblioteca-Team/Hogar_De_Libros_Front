@@ -21,7 +21,7 @@ const UserInfo = ({
           <strong>Información Del Usaurio </strong>
           <span>Nombre: {User.name}</span>
           <span>Apellidos: {User.lastName}</span>
-          <span>Cedula: {User.cedula}</span>
+          <span>Cédula: {User.cedula}</span>
           <span>Provincia: {User.province}</span>
           <span>Fecha de registro: {}</span>
           <span>Estado {User.status}</span>
