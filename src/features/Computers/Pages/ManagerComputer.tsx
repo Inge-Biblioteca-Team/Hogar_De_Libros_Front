@@ -1,4 +1,4 @@
-import { Breadcrumb, Table } from "flowbite-react";
+import { Breadcrumb, Button, Table } from "flowbite-react";
 import { useState } from "react";
 import { apiResponseCE } from "../types/Computer";
 import SltCurrentLimit from "../../../components/SltCurrentLimit";
@@ -6,16 +6,16 @@ import { GetComputerPaginated } from "../Services/SvComputer";
 import { useQuery } from "react-query";
 import AdminAdvancedSearchComp from "../components/AdminAvdvaceSearchComp";
 import BtnAdminAdSearchCm from "../components/BtnAdSerchCm";
-import EquipmentAccionBTNS from "../components/EquipmentAccionBTNS";
 import UseDebounce from "../../../hooks/UseDebounce";
 import {
   HomeCrumb,
   LastCrumb,
   ManageCrumb,
 } from "../../../components/BreadCrumb";
-import CreateNewActive from "../../../components/CreateNewActive";
 import PaginatationSelector from "../../../components/PaginatationSelector";
 import InpSearchTitle from "../../../components/InpSearchTitle";
+import TblRows from "../components/TblRows";
+import NewComponent from "../components/Modals/NewComponent";
 
 const ManagerComputer = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
@@ -24,7 +24,7 @@ const ManagerComputer = () => {
   });
   const [currentLimit, setCurrentLimit] = useState<number>(5);
   const [advance, setAdvance] = useState<boolean>(false);
-
+  const[sNew, setSNew] = useState<boolean>(false)
   const [searchMNum, setSearMNum] = useState<string>("");
   const searchMNumDealy = UseDebounce(searchMNum, 1000);
   const [searchEBrand, setSearEBrand] = useState<string>("");
@@ -85,7 +85,7 @@ const ManagerComputer = () => {
               />
               <BtnAdminAdSearchCm click={viewAdvanceSerchComp} icon={advance} />
             </div>
-            <CreateNewActive objetive="Equipo" />
+            <Button color={"blue"} onClick={()=>setSNew(true)}>Añadir Equipo</Button>
           </div>
           <Table
             hoverable
@@ -93,7 +93,7 @@ const ManagerComputer = () => {
           >
             <Table.Head className=" h-16">
               <Table.HeadCell>Número de Maquina</Table.HeadCell>
-              <Table.HeadCell>Categoria</Table.HeadCell>
+              <Table.HeadCell>Categoría</Table.HeadCell>
               <Table.HeadCell>Marca</Table.HeadCell>
               <Table.HeadCell>Serial</Table.HeadCell>
               <Table.HeadCell>Estado</Table.HeadCell>
@@ -101,33 +101,9 @@ const ManagerComputer = () => {
             </Table.Head>
             <Table.Body className="divide-y">
               {computers?.data.map((computers) => (
-                <Table.Row
-                  key={computers.EquipmentUniqueCode}
-                  className=" h-24"
-                >
-                  <Table.Cell className=" w-52">
-                    {computers.MachineNumber}
-                  </Table.Cell>
-                  <Table.Cell className="w-52">
-                    {computers.EquipmentCategory}
-                  </Table.Cell>
-                  <Table.Cell className="w-44 ">
-                    {computers.EquipmentBrand}
-                  </Table.Cell>
-                  <Table.Cell className="w-64">
-                    {computers.EquipmentSerial}
-                  </Table.Cell>
-                  <Table.Cell className="w-64">
-                    {computers.Status ? "Activo" : "Inactivo"}
-                  </Table.Cell>
-                  <Table.Cell>
-                  <EquipmentAccionBTNS
-                    Code={computers.EquipmentUniqueCode}
-                    Serial={computers.EquipmentSerial}
-                    Status = {computers.Status}
-                    />
-                    </Table.Cell>
-                </Table.Row>
+                <>
+                  <TblRows computers={computers} />
+                </>
               ))}
             </Table.Body>
           </Table>
@@ -149,6 +125,7 @@ const ManagerComputer = () => {
           </div>
         </div>
       </div>
+      <NewComponent sNew={sNew} setSNew={setSNew} />
     </>
   );
 };

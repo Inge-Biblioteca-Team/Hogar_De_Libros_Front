@@ -43,7 +43,7 @@ const WorkStationsLoanHistory = () => {
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
         <ManageCrumb />
-        <LastCrumb CurrentPage="Historial de uso de equipos de computó" />
+        <LastCrumb CurrentPage="Historial de uso de equipos de cómputo" />
       </Breadcrumb>
       <div className=" w-full flex items-center justify-center mt-12">
         <div className=" w-4/5">

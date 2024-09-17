@@ -19,14 +19,14 @@ const BTNInprogresLoan = ({ Loan }: { Loan: Loans }) => {
         </button>
         <button
           type="button"
-          title="Renovar Prestamo"
+          title="Renovar préstamo"
           onClick={() => setShowR(true)}
         >
           <TfiReload size={30} color="green" />
         </button>
         <button
           type="button"
-          title="Finalizar Prestamo"
+          title="Finalizar préstamo"
           onClick={() => setShowF(true)}
         >
           <PiCalendarXLight size={30} color="red" />

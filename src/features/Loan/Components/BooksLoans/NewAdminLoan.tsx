@@ -220,7 +220,7 @@ const NewAdminLoan = () => {
               </span>
             </fieldset>
             <fieldset className=" flex flex-col gap-7">
-              <legend className=" pb-3 font-bold">Sobre el prestamo</legend>
+              <legend className=" pb-3 font-bold">Sobre el préstamo</legend>
               <span>
                 <Label htmlFor="disabledInput1">
                   Fecha y hora de Solicitud
@@ -243,7 +243,7 @@ const NewAdminLoan = () => {
               </span>
               <span>
                 <Label htmlFor="disabledInput2">
-                  Fecha de vencimiento del prestamo
+                  Fecha de vencimiento del préstamo
                 </Label>
                 <TextInput
                   type="date"
@@ -274,7 +274,7 @@ const NewAdminLoan = () => {
                     </div>
                   }
                 >
-                  <Button color={"blue"}>Confirmar Prestamo</Button>
+                  <Button color={"blue"}>Confirmar préstamo</Button>
                 </Popover>
               </div>
             </fieldset>

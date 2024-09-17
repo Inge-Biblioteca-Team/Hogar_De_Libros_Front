@@ -18,7 +18,7 @@ const UserInfo = ({
       </Modal.Header>
       <Modal.Body className="flex flex-col gap-2 ml-3">
         <span className=" flex-col flex">
-          <strong>Informacion Del Usaurio </strong>
+          <strong>Información Del Usaurio </strong>
           <span>Nombre: {User.name}</span>
           <span>Apellidos: {User.lastName}</span>
           <span>Cedula: {User.cedula}</span>
@@ -26,7 +26,7 @@ const UserInfo = ({
           <span>Fecha de registro: {}</span>
           <span>Estado {User.status}</span>
           <span>Rol: </span>
-          <span>Privilegios de Prestamo: </span>
+          <span>Privilegios de préstamo: </span>
         </span>
         <span className="flex-col flex">
           <strong>Contactos</strong>

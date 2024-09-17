@@ -9,11 +9,11 @@ const ModalInfo = ({WS, show, setShow}:{WS:WSLoan, show:boolean, setShow: Dispat
     <>
       <Modal show={show} onClose={()=>setShow(false)} >
         <Modal.Header>
-            <span>Información de prestamo de equipo</span>
+            <span>Información de préstamo de equipo</span>
         </Modal.Header>
             <span className=" flex-col flex ml-3 gap-4 mt-3">
                 <span>
-                    Numero de Prestamo: {WS.ComputerLoanId}
+                    Numero de préstamo: {WS.ComputerLoanId}
                 </span>
                 <span>
                     Numero de Maquina: {WS.workStation}

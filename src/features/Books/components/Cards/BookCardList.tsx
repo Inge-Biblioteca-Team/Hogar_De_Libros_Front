@@ -40,7 +40,7 @@ const BookCardList = ({Book}: {Book:Book}) => {
         </ListItem>
       </List>
       <div className="mt-4">
-        <BtnRequest Objetive={Book.BookCode} text="Solicitar Prestamo" />
+        <BtnRequest Objetive={Book.BookCode} text="Solicitar préstamo" />
       </div>
     </div>
   </div>

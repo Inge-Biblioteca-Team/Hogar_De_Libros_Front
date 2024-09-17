@@ -17,14 +17,14 @@ const BTNAccions = ({
       <div className=" w-full flex gap-3 items-center justify-center text-3xl">
         <button
           type="button"
-          title="Ver Informacion de Usuario"
+          title="Ver Información de Usuario"
           onClick={() => setSee(true)}
         >
           <BiTargetLock />
         </button>
         <button
           type="button"
-          title="Editar Informacion de Usuario"
+          title="Editar Información de Usuario"
           onClick={() => setEdit(true)}
         >
           <TbUserEdit />

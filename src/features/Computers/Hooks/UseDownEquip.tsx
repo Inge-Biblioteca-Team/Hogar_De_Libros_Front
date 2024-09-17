@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
 import { DownEquipment } from "../Services/SvComputer";
+import toast from "react-hot-toast";
 
 const UseDownEquip = () => {
   const queryClient = useQueryClient();
@@ -9,11 +10,12 @@ const UseDownEquip = () => {
       return data;
     },
     {
-      onSuccess: (data) => {
+      onSuccess: () => {
         queryClient.invalidateQueries("EquipCatalog");
-        console.log("Estado actualizado correctamente:", data);
+        toast.success("Estado Actualizado Correctamente")
       },
       onError: (error) => {
+        toast.error("Error al actualizar el estado")
         console.error("Error actualizando el estado:", error);
       },
     }
