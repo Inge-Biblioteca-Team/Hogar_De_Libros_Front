@@ -1,61 +1,55 @@
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import { furniture } from "../../type/furniture";
-import { GetFurniturebyID } from "../../services/SvFurniture";
+import { Button, Modal } from "flowbite-react";
 import ConditionStatus from "../../../../components/ConditionStatus";
-import BTNGoBack from "../../../../components/BTNGoBack";
+import { furniture } from "../../type/furniture";
 
-const FormViewFurniture = () => {
-    const { Id } = useParams<{ Id?: string }>();
-    const { data: FurnitureI } = useQuery<furniture, Error>(
-      ["OneFurniture", Id],
-      () => {
-        if (!Id) {
-          throw new Error("Error: No existe ID de mobiliario para buscar");
-        }
-        return GetFurniturebyID(Id); 
-      },
-      { enabled: !!Id, staleTime: 60000 }
-    );
-  
+const ModalViewFurniture = ({
+    openVModal,
+    setVModal,
+    furniture,
+  }: {
+    openVModal: boolean;
+    setVModal: (open: boolean) => void;
+    furniture: furniture;
+  })=> {
+
+     
     return (
-      <>
-        <div className="flex text-2xl text-center place-content-center mt-32">
-          <div className="shadow-lg p-6 rounded-2xl bg-white">
-            <span className="grid grid-cols-2 place-content-center gap-x-20 gap-y-11">
-              <span>
-                <strong>Descripción</strong>
-                <br />
-                {FurnitureI?.Description}
+        <>
+        <Modal show={openVModal} onClose={() => setVModal(false)}>
+          <Modal.Header>Detalles del Mobiliario</Modal.Header>
+          <Modal.Body className="grid grid-cols-2 place-content-center gap-x-20 gap-y-11">
+          <span>
+                <strong>Número de placa:</strong> {furniture.LicenseNumber || "Desconocido"}
               </span>
               <span>
-                <strong>Ubicación</strong>
-                <br />
-                {FurnitureI?.Location}
+                <strong>Descripción:</strong> {furniture.Description || "Desconocida"}
               </span>
               <span>
-                <strong>Persona a Cargo</strong>
-                <br />
-                {FurnitureI?.InChargePerson}
+                <strong>Ubicación:</strong> {furniture.Location || "No especificada"}
               </span>
               <span>
-                <strong>Condición</strong>
-                <br />
-                {FurnitureI?.ConditionRating && (
-                  <ConditionStatus condition={FurnitureI?.ConditionRating} />
+                <strong>Persona a Cargo:</strong> {furniture.InChargePerson || "Sin asignar"}
+              </span>
+              <span>
+                <strong>Condición:</strong>
+                {furniture.ConditionRating ? (
+                  <ConditionStatus condition={furniture.ConditionRating} />
+                ) : (
+                  "No especificada"
                 )}
               </span>
               <span>
-                <strong>Estado</strong>
-                <br />
-                {FurnitureI?.Status}
+                <strong>Estado:</strong> {furniture.Status || "Indefinido"}
               </span>
-            </span>
-            <BTNGoBack />
-          </div>
-        </div>
+          </Modal.Body>
+          <Modal.Footer className="flex w-full items-center justify-center">
+            <Button color={"blue"} onClick={()=> setVModal(false)}>
+              Cerrar
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </>
     );
   };
   
-  export default FormViewFurniture;
+  export default ModalViewFurniture;

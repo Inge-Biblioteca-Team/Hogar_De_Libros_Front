@@ -16,12 +16,12 @@ const ModalDownFurniture= ({
   const [reason, setReason] = useState("");
   
   const handleConfirm = () => {
-      PatchStatus(id.toString(), {
-        onSuccess: () => {
-          setOpen(false); 
-        },
-      });
-    };
+    PatchStatus(id.toString(), {
+      onSuccess: () => {
+        setOpen(false); 
+      },
+    });
+  };
   
     return (
       <Modal show={open} size="md" onClose={() => setOpen(false)} popup>
@@ -40,16 +40,16 @@ const ModalDownFurniture= ({
             onChange={(e) => setReason(e.target.value)}
             className="mb-4"
           />
-            <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={()=>handleConfirm()}>
-                {"Confimar"}
-              </Button>
-              <Button color="gray" onClick={() => setOpen(false)}>
-                Cancelar
-              </Button>
-            </div>
           </div>
         </Modal.Body>
+        <Modal.Footer className="flex w-full items-center justify-center">
+            <Button color={"failure"} onClick={()=>setOpen(false)}>
+                Cancelar
+            </Button>
+            <Button color={"blue"} type="submit" onClick={()=>handleConfirm()}>
+                Confirmar
+            </Button>
+        </Modal.Footer>
       </Modal>
     );
   };

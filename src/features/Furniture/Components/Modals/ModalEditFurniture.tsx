@@ -1,68 +1,66 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { furniture } from "../../type/furniture";
-import { useQuery } from "react-query";
-import { GetFurniturebyID } from "../../services/SvFurniture";
 import { useForm } from "react-hook-form";
+import { useQueryClient } from "react-query";
 import useEditFurniture from "../../Hooks/useEditFuniture";
+import toast from "react-hot-toast";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import ConfirmModalFurniture from "./ConfirmModalFurniture";
 
+
 const ModalEditFurniture = ({
-    open,
-    setOpen,
+    sEdit,
+    setEdit,
+    furniture,
   }: {
-    open: boolean;
-    setOpen: (open: boolean) => void;
+    sEdit: boolean;
+    setEdit: (open: boolean) => void;
+    furniture: furniture;
   }) => {
-    const { Id } = useParams<{ Id?: string }>();
+    const queryClient = useQueryClient();
     const [NewData, setNewData] = useState<furniture | null>(null);
     const [isModalOpen, setModalOpen] = useState(false);
-    
-    const { data: FurnitureI } = useQuery<furniture, Error>(
-      ["FurnitureEdit", Id],
-      () => {
-        if (!Id) {
-          throw new Error("Error: No existe ID de mobiliario para buscar");
-        }
-        return GetFurniturebyID(Id);
-      },
-      { enabled: !!Id, staleTime: 60000 }
-    );
+
   
     const { register, handleSubmit, setValue } = useForm<furniture>();
-  const { mutate: editFurniture } = useEditFurniture();
+    const { mutate: editFurniture } = useEditFurniture();
 
   useEffect(() => {
-    if (FurnitureI) {
-      setValue("Description", FurnitureI.Description);
-      setValue("Location", FurnitureI.Location);
-      setValue("InChargePerson", FurnitureI.InChargePerson);
-      setValue("ConditionRating", FurnitureI.ConditionRating);
-      setValue("Status", FurnitureI.Status);
+    if (furniture) {
+      setValue("LicenseNumber",furniture.LicenseNumber);
+      setValue("Description", furniture.Description);
+      setValue("Location", furniture.Location);
+      setValue("InChargePerson", furniture.InChargePerson);
+      setValue("ConditionRating", furniture.ConditionRating);
+      setValue("Status", furniture.Status);
     }
-  }, [FurnitureI, setValue]);
+  }, [furniture, setValue]);
 
   const onSubmit = (formData: furniture) => {
-    if (!Id) {
-      console.error("Id is undefined");
-      return;
-    }
 
-    editFurniture({ furniture: formData, Id: Id.toString() }); 
+    editFurniture({ furniture: formData, Id: furniture.Id.toString() }); 
     setNewData(formData);
     setModalOpen(true);
-    setOpen(false);
+    setEdit(false);
   };
-  
-    const handleClose = () => setOpen(false);
 
-    const handleConfirm = () => {
-        if (FurnitureI?.Id && NewData) {
-          editFurniture({ furniture: NewData, Id: FurnitureI.Id.toString() });
+    const handleConfirm = () => { 
+     if (furniture?.Id && NewData) {
+        editFurniture({ furniture: NewData, Id: furniture.Id.toString()},
+        {
+            onSuccess: ()=>{
+            toast.success("Informacion del mobiliario actializado con Exito");
+            setEdit(false);
+            queryClient.invalidateQueries("FurnitureCatalog");         
+        },
+        onError: ()=>{
+            toast.error("Error al editar mobiliario")
+        },
         }
-        setModalOpen(false);
-      };
+     );
+    }
+    setModalOpen(false);
+    };
   
     const handleCancel = () => {
       setModalOpen(false);
@@ -71,7 +69,7 @@ const ModalEditFurniture = ({
   
     return (
       <>
-      <Modal show={open} size="md" onClose={handleClose}>
+      <Modal show={sEdit} size="md" onClose={()=>setEdit(false)}>
         <Modal.Header>Editar Mobiliario</Modal.Header>
         <Modal.Body>
           <form
@@ -81,12 +79,12 @@ const ModalEditFurniture = ({
             <fieldset className="grid grid-cols-2 gap-7 text-center">
               <legend className="pb-3">Información del Mobiliario</legend>
               <span>
-                <Label htmlFor="Id" value="Id" />
+                <Label htmlFor="LicenseNumber" value="Número de placa" />
                 <TextInput
-                  id="Id"
+                  id="LicenseNumber"
                   type="text"
                   sizing="md"
-                  {...register("Id")}
+                  {...register("LicenseNumber")}
                   readOnly
                 />
               </span>
@@ -121,7 +119,7 @@ const ModalEditFurniture = ({
                 />
               </span>
             </fieldset>
-            <fieldset className="grid grid-cols-2 gap-7 text-center">
+            <fieldset className="grid grid-cols-1 gap-7 text-center">
               <legend>Información Adicional</legend>
               <span>
                 <Label htmlFor="ConditionRating" value="Condición" />
@@ -138,28 +136,18 @@ const ModalEditFurniture = ({
                   <option value={1}>Deplorable</option>
                 </Select>
               </span>
-              <span>
-                <Label htmlFor="Status" value="Estado" />
-                <Select
-                  id="Status"
-                  {...register("Status")}
-                  required
-                >
-                  <option value={"Active"}>Activo</option>
-                  <option value={"Inactive"}>Inactivo</option>
-                </Select>
-              </span>
+              
             </fieldset>
-            <div className="flex justify-end gap-4">
-              <Button color="gray" onClick={handleClose}>
-                Cancelar
-              </Button>
-              <Button type="submit" color="success">
-                Confirmar
-              </Button>
-            </div>
           </form>
         </Modal.Body>
+        <Modal.Footer className="flex w-full items-center justify-center">
+            <Button color={"failure"} onClick={()=>setEdit(false)}>
+                Cancelar
+            </Button>
+            <Button color={"blue"} type="submit" onClick={()=>handleConfirm()}>
+                Confirmar
+            </Button>
+        </Modal.Footer>
       </Modal>
       {NewData && (
           <ConfirmModalFurniture

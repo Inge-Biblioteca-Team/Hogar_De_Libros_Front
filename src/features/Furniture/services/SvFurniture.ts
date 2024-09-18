@@ -63,7 +63,7 @@ const api = axios.create({
   
 const DownFurniture = async (Id: string) => {
     try {
-      const response = await api.patch(`Furniture/${Id}`);
+      const response = await api.patch('furniture/{$id}/Down');
       return response.data;
     } catch (error) {
       console.error("Error to post book:", error);
