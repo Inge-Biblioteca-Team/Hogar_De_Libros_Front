@@ -13,7 +13,7 @@ const SearchUsers = () => {
         <TextInput
           id="InitialDate"
           type="text"
-          placeholder="Cedula sin guiones"
+          placeholder="Cédula sin guiones"
           icon={FaIdBadge}
         />
       </div>

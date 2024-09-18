@@ -20,11 +20,11 @@ const AdminAdvancedSearchComp = ({
     <div className={`flex gap-2 ${see ? `block` : `hidden`}`}>
       <div className="relative">
         <select
-          title="Seleccione una categoria"
+          title="Seleccione una categoría"
           className="pl-8 pr-4 py-2 border rounded-lg"
           onChange={(event) => ECategory(event.target.value)}
         >
-          <option value="">Seleccione una categoria</option>
+          <option value="">Seleccione una categoría</option>
           <option value="Mouse">Mouse</option>
           <option value="Teclado">Teclado</option>
           <option value="CPU">CPU</option>

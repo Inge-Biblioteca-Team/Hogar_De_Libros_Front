@@ -1,7 +1,11 @@
 import { Breadcrumb, Button, Table } from "flowbite-react";
-import { HomeCrumb, LastCrumb, ManageCrumb } from "../../../components/BreadCrumb";
+import {
+  HomeCrumb,
+  LastCrumb,
+  ManageCrumb,
+} from "../../../components/BreadCrumb";
 import { GetFurniturePaginated } from "../services/SvFurniture";
-import { apiResponseFt} from "../type/furniture";
+import { apiResponseFt } from "../type/furniture";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import UseDebounce from "../../../hooks/UseDebounce";

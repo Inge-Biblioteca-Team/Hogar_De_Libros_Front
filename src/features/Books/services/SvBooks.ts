@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Book } from "../type/Book";
+import api from "../../../Services/AxiosConfig";
 
 const GetPopularBooks = async () => {
   const response = await axios.get(
@@ -61,11 +62,6 @@ const GetAllBooks = async (page: number, limit: number) => {
 
 // Fetch Finales
 // Api cuando esten los usuarios se le suman los headers y se cambia el url base
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-  // baseURL: "https://662bb9d2de35f91de1594809.mockapi.io/api/test/Test",
-  timeout: 1000,
-});
 
 //Get por paginacion con parametros opcionales
 const GetBookPaginated = async (

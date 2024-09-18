@@ -72,7 +72,7 @@ const FinishedLoans = () => {
         <HomeCrumb />
         <ManageCrumb />
         <LoanCrumb />
-        <LastCrumb CurrentPage="Prestamos Finalizados" />
+        <LastCrumb CurrentPage="Préstamos Finalizados" />
       </Breadcrumb>
       <div className="flex place-content-center mt-14">
         <div className="w-4/5">
@@ -94,7 +94,7 @@ const FinishedLoans = () => {
                     <span>
                       <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
                     </span>{" "}
-                    Prestamos por pagina
+                    Préstamos por pagina
                   </span>
                 </div>
                 <PaginatationSelector

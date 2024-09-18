@@ -40,7 +40,7 @@ const BookChildCardList = ({Book}: {Book:Book}) => {
         </ListItem>
       </List>
       <div className="mt-4">
-        <BtnReserve Objetive="Solicitar" text="Solicitar Prestamo" />
+        <BtnReserve Objetive="Solicitar" text="Solicitar préstamo" />
       </div>
     </div>
   </div>

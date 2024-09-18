@@ -150,18 +150,16 @@ const ModalEditFurniture = ({
         </Modal.Footer>
       </Modal>
       {NewData && (
-          <ConfirmModalFurniture
-            Accion="Editar"
-            isOpen={isModalOpen}
-            onConfirm={handleConfirm}
-            onCancel={handleCancel}
-            FurnitureItem={NewData}
-          />
-        )}
-      </>
-
-    );
-  };
-  
+        <ConfirmModalFurniture
+          Accion="Editar"
+          isOpen={isModalOpen}
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+          FurnitureItem={NewData}
+        />
+      )}
+    </>
+  );
+};
   export default ModalEditFurniture;
   

@@ -1,9 +1,6 @@
 import axios from "axios";
+import api from "../../../Services/AxiosConfig";
 
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-  timeout: 1000,
-});
 
 const GetUsersList = async (page: number, limit: number) => {
   try {
@@ -54,7 +51,7 @@ const signIn = async (username:string, password:string) => {
       username:username,
       password:password,
     });
-    console.log(response.data.access_token); 
+    sessionStorage.setItem("Token",response.data.access_token)
   } catch (error) {
     if (error) {
       console.error("Error to disbale:", error);

@@ -1,48 +1,39 @@
 import { PiEyeLight, PiPencilDuotone, PiTrash } from "react-icons/pi";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import ModalDownEquip from "./ModalDownEquip";
+import { Equipment } from "../types/Computer";
+import EditComponent from "./Modals/EditComponent";
+import SeeComponent from "./Modals/SeeComponent";
 
-const EquipmentAccionBTNS = ({
-  Code,
-  Serial,
-  Status,
-}: {
-  Code: string;
-  Serial: string;
-  Status: boolean;
-}) => {
+const EquipmentAccionBTNS = ({ computers }: { computers: Equipment }) => {
   const [openModal, setOpenModal] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openSee, setOpenSee] = useState(false);
   return (
     <div className=" flex gap-7 ">
-      <Link
-        title="Ver Informacion Completa"
-        to={`/HogarDeLibros/Gestion/Equipos/Ver/${Code}`}
+      <button
+        title="ver información"
+        type="button"
+        onClick={() => setOpenSee(true)}
       >
         <PiEyeLight size={24} />
-      </Link>
-      <Link
-        title="Editar Activo"
-        to={Status ? `/HogarDeLibros/Gestion/Equipos/Editar/${Code}` : "#"}
-        className={`${Status ? "" : "cursor-not-allowed"}`}
-        onClick={(e) => {
-          if (!Status) {
-            e.preventDefault(); 
-          }
-        }}
+      </button>
+      <button
+        title="Editar información"
+        type="button"
+        className={`${computers.Status ? "" : "cursor-not-allowed"}`}
+        onClick={() => setOpenEdit(true)}
+        disabled={!computers.Status}
       >
         <PiPencilDuotone size={24} />
-      </Link>
+      </button>
+
       <button
         title="Deshabilitar Activo"
         type="button"
-        className={`${Status ? "" : "cursor-not-allowed"}`}
-        onClick={() => {
-          if (Status) {
-            setOpenModal(true);
-          }
-        }}
-        disabled={!Status} 
+        className={`${computers.Status ? "" : "cursor-not-allowed"}`}
+        onClick={() => setOpenModal(true)}
+        disabled={!computers.Status}
       >
         <PiTrash size={24} />
       </button>
@@ -50,8 +41,18 @@ const EquipmentAccionBTNS = ({
         <ModalDownEquip
           open={openModal}
           setOpen={setOpenModal}
-          Code={Code}
-          Serial={Serial}
+          Code={computers.EquipmentUniqueCode}
+          Serial={computers.EquipmentSerial}
+        />
+        <EditComponent
+          sEdit={openEdit}
+          setSEdit={setOpenEdit}
+          component={computers}
+        />
+        <SeeComponent
+          sSee={openSee}
+          setSee={setOpenSee}
+          component={computers}
         />
       </>
     </div>
