@@ -24,8 +24,8 @@ import { FurnitureEdit } from "../type/furniture";
   ) => {
     try {
       const params: { [key: string]: string | number | undefined } = {
-        Page: page,
-        Limit: limit,
+        page: page,
+        limit: limit,
       };
   
       if (description) params.description = description;
@@ -41,14 +41,39 @@ import { FurnitureEdit } from "../type/furniture";
     }
   };
 
+  //edit
+  const PatchEditFurniture = async (
+    furniture: FurnitureEdit, 
+    ObjetiveID: string
+  ) => {
+    try {
+      const response = await api.patch(`furniture/${ObjetiveID}`, furniture); 
+      return response.data;
+    } catch (error) {
+      console.error("Error al editar mobiliario:", error); 
+      throw error;
+    }
+  };
+
   //dar de baja 
   
-const DownFurniture = async (Id: string) => {
+const DownFurniture = async (Id: string, acction:string) => {
     try {
-      const response = await api.patch(`Furniture/${Id}`);
+      const response = await api.patch(`furniture/${Id}/${acction}`);
       return response.data;
     } catch (error) {
       console.error("Error to post book:", error);
+      throw error;
+    }
+  };
+  
+  ///get by id
+  const GetFurniturebyID = async (Id:string) => {
+    try {
+      const response = await api.get(`furniture/${Id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error al obtener el mobiliario:", error);
       throw error;
     }
   };
@@ -56,5 +81,8 @@ const DownFurniture = async (Id: string) => {
   export {
     PostNewFurniture,
     GetFurniturePaginated,
-    DownFurniture
+    DownFurniture,
+    PatchEditFurniture,
+    GetFurniturebyID
   }
+  

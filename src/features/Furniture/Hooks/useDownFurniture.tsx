@@ -4,13 +4,13 @@ import { DownFurniture } from "../services/SvFurniture";
 const UseDownEquip = () => {
   const queryClient = useQueryClient();
   return useMutation(
-    async (Id: string) => {
-      const data = await DownFurniture(Id);
+    async ({ Id, acction }: { Id: string; acction: string }) => {
+      const data = await DownFurniture(Id, acction); 
       return data;
     },
     {
       onSuccess: (data) => {
-        queryClient.invalidateQueries("EquipCatalog");
+        queryClient.invalidateQueries("FurnitureCatalog");
         console.log("Estado actualizado correctamente:", data);
       },
       onError: (error) => {

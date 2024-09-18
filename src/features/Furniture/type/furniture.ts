@@ -1,10 +1,11 @@
 export type furniture ={
     Id: number; //id
+    LicenseNumber: string;
     Description: string;
     Location: string;
     InChargePerson: string;
     ConditionRating: number;
-    Status: boolean;
+    Status: string;
 }
 
 export type apiResponseFt ={
@@ -14,10 +15,11 @@ export type apiResponseFt ={
 
 export type FurnitureEdit = {
     Id: number; //id
+    LicenseNumber: string;
     Description: string;
     Location: string;
     InChargePerson: string;
     ConditionRating: number;
-    Status: boolean;
+    Status: string;
 }
 
