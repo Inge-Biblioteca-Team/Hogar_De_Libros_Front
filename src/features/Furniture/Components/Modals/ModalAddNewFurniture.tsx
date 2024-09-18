@@ -91,7 +91,7 @@ const ModalAddNewFurniture = ({
                                 />
                             </span>
                         </fieldset>
-                        <fieldset  className="grid p-5 gap-7 text-center">
+                        <fieldset  className="grid grid-cols-1 gap-7 text-center mt-6">
                         <span>
                             <Label htmlFor="ConditionRating" value="Condición" />
                             <Select
@@ -129,7 +129,7 @@ const ModalAddNewFurniture = ({
                     Accion="Crear"
                 />
             )}
-            <ModalAddMoreActive open={NeedMore} Close={setNeedMore} />
+           <ModalAddMoreActive open={NeedMore} Close={setNeedMore} setSNew={setSNewF} />
         </>
     );
 };
