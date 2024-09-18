@@ -20,6 +20,34 @@ const getLocalArtist = async (page: number, limit: number) => {
   }
 };
 
+const createLocalArtist = async (data: Object) => {
+  try {
+    const addArtist = await api.post('local-artist', data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return addArtist.data;
+  } catch (error) {
+    console.log("Error to post Artist:", error);
+  }
+};
+
+
+const editArtist = async (id: number, data: Object) => {
+  try {
+    const response = await api.patch(`local-artist/${id}`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error editing artist:', error);
+    throw error;
+  }
+};
+
 const DownArtist = async (id: number) => {
   try {
     const response = await api.patch(`local-artist/${id}/Down`);
@@ -30,4 +58,4 @@ const DownArtist = async (id: number) => {
   }
 };
 
-export { getLocalArtist, DownArtist };
+export { getLocalArtist, DownArtist, createLocalArtist, editArtist };

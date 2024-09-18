@@ -1,6 +1,4 @@
-import { BiTargetLock } from "react-icons/bi";
-import { TbUserEdit } from "react-icons/tb";
-import { TiUserDeleteOutline } from "react-icons/ti";
+import { PiEyeLight, PiPencilDuotone, PiTrash } from "react-icons/pi";
 import { TbTruckReturn } from "react-icons/tb";
 import { Dispatch, SetStateAction } from "react";
 const BTNAccions = ({
@@ -20,14 +18,14 @@ const BTNAccions = ({
           title="Ver Informacion de Artista"
           onClick={() => setSee(true)}
         >
-          <BiTargetLock />
+          <PiEyeLight size={24} />
         </button>
         <button
           type="button"
           title="Editar Informacion de Artista"
           onClick={() => setEdit(true)}
         >
-          <TbUserEdit />
+          <PiPencilDuotone size={24} />
         </button>
         <button
           type="button"
@@ -35,7 +33,7 @@ const BTNAccions = ({
           className=""
           onClick={() => setDow(true)}
         >
-          <TiUserDeleteOutline />
+          <PiTrash size={24} />
         </button>
         <button type="button" title="Rehabilitar Artista" className="hidden">
           <TbTruckReturn />

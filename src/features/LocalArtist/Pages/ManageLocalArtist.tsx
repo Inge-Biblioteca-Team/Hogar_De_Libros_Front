@@ -9,6 +9,7 @@ import { getLocalArtist } from "../services/SvArtist";
 import { useEffect, useState } from "react";
 import TBLArtists from "../components/TBLArtists";
 import SearchArtists from "../components/SearchArtists";
+import CreateArtist from "../components/Modals/CreateArtist";
 
 const ManageLocalArtist = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(10);
@@ -26,7 +27,7 @@ const ManageLocalArtist = () => {
     sessionStorage.setItem("ArtistPages", currentPage.toString());
   }, [currentPage]);
 
-  const { data: Artists } = useQuery< ResponseA, Error>(
+  const { data: Artists } = useQuery<ResponseA, Error>(
     ["LocalArtistMG", currentPage, currentLimit],
     () => getLocalArtist(currentPage, currentLimit),
     {
@@ -46,12 +47,22 @@ const ManageLocalArtist = () => {
         <LoanCrumb />
         <LastCrumb CurrentPage="Lista de Artistas" />
       </Breadcrumb>
+      {/* Por si no hay datos poder añadir */}
+      <div className="flex justify-center items-center p-4">
+        <div className="flex items-center space-x-0">
+          <SearchArtists />
+          <CreateArtist />
+        </div>
+      </div>
       {Artists?.data.length == 0 ? (
         <NoRequest text="No hay" />
       ) : (
-         <div className=" w-full flex items-center justify-center mt-12">
-        <div className=" w-4/5">
-            <SearchArtists />
+        <div className=" w-full flex items-center justify-center">
+          <div className=" w-4/5">
+            {/* <div className="flex justify-between items-center p-4">
+              <SearchArtists />
+              <CreateArtist />
+            </div> */}
             <Table hoverable className=" text-center">
               <Table.Head className=" h-20 text-sm">
                 <Table.HeadCell>Nombre</Table.HeadCell>
@@ -61,7 +72,7 @@ const ManageLocalArtist = () => {
                 <Table.HeadCell>Estado</Table.HeadCell>
               </Table.Head>
               <Table.Body>
-                {Artists?.data.slice(0,5).map((artist: Artist) => ( 
+                {Artists?.data.slice(0, 5).map((artist: Artist) => (
                   <TBLArtists artist={artist} />
                 ))}
               </Table.Body>
