@@ -1,8 +1,17 @@
 export type Artist = {
-  id: string;
-  name:string;
-  image: string;
-  work: string;
-  Local: boolean;
-  address: string;
+  ID: number;
+  Name:string;
+  Cover: string;
+  ArtisProfession: string;
+  MoreInfo: string;
+  FBLink: string;
+  IGLink: string;
+  LILink: string;
+  Actived: boolean;
 };
+
+export type ResponseA ={
+
+  data: Artist[],
+  count: number
+}
