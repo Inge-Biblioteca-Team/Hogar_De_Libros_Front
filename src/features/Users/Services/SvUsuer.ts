@@ -1,6 +1,7 @@
 import axios from "axios";
 import api from "../../../Services/AxiosConfig";
-
+import { SingIng } from "../Type/UserType";
+import { jwtDecode, JwtPayload } from "jwt-decode";
 
 const GetUsersList = async (page: number, limit: number) => {
   try {
@@ -45,13 +46,13 @@ const DownUser = async (cedula: number) => {
   }
 };
 
-const signIn = async (username:string, password:string) => {
+const signIn = async (username: string, password: string) => {
   try {
-    const response = await api.post('auth/login', {
-      username:username,
-      password:password,
+    const response = await api.post("auth/login", {
+      username: username,
+      password: password,
     });
-    sessionStorage.setItem("Token",response.data.access_token)
+    sessionStorage.setItem("Token", response.data.access_token);
   } catch (error) {
     if (error) {
       console.error("Error to disbale:", error);
@@ -60,4 +61,48 @@ const signIn = async (username:string, password:string) => {
   }
 };
 
-export { GetUsersList, GetUserData, DownUser, signIn };
+interface Payload extends JwtPayload {
+  sub: string;
+  email: string;
+  role: string;
+}
+
+const LogIn = async (Data: SingIng) => {
+  try {
+    const response = await api.post("auth/login", Data);
+    sessionStorage.setItem("Token2", response.data.access_token);
+    const Token = response.data.access_token;
+    if (Token) {
+      try {
+        const decodedToken: Payload = jwtDecode(Token);
+        console.log(decodedToken);
+        const sub = decodedToken.sub;
+        const email = decodedToken.email;
+        const role = decodedToken.role;
+        sessionStorage.setItem("cedula", sub);
+        sessionStorage.setItem("email", email);
+        sessionStorage.setItem("role", role);
+      } catch (error) {
+        console.error("Error al decodificar el token:", error);
+      }
+    } else {
+      console.error("Token no encontrado");
+    }
+  } catch (error) {
+    if (error) {
+      throw error;
+    }
+  }
+};
+
+const GetUserInfo = async (NCedula: string) => {
+  try {
+    const response = await api.get(`user/${NCedula}`);
+    return response.data;
+  } catch (error) {
+    console.error("Usuario no encontrado");
+  }
+};
+
+
+export { GetUsersList, GetUserData, DownUser, signIn, LogIn, GetUserInfo };

@@ -67,7 +67,7 @@ const ManageUsers = () => {
               </Table.Head>
               <Table.Body>
                 {Users?.slice(0,5).map((user: User) => (
-                  <TBLUsers user={user} />
+                  <TBLUsers user={user} key={user.cedula} />
                 ))}
               </Table.Body>
             </Table>

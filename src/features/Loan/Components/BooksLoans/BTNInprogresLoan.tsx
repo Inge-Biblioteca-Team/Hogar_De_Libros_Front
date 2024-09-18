@@ -1,11 +1,10 @@
-import { TfiReload } from "react-icons/tfi";
-import { PiCalendarXLight } from "react-icons/pi";
-import { PiEyeFill } from "react-icons/pi";
+import { PiCalendarXLight, PiEyeFill } from "react-icons/pi";
 import { Loans } from "../../Types/BookLoan";
 import { useState } from "react";
 import LoanRenuve from "./LoanRenuve";
 import FinishLoanBook from "../Modals/FinishLoanBook";
 import SeeLoanInfo from "../Modals/SeeLoanInfo";
+import { MdOutlineUpdate } from "react-icons/md";
 const BTNInprogresLoan = ({ Loan }: { Loan: Loans }) => {
   const [showR, setShowR] = useState<boolean>(false);
   const [showF, setShowF] = useState<boolean>(false);
@@ -14,15 +13,15 @@ const BTNInprogresLoan = ({ Loan }: { Loan: Loans }) => {
   return (
     <>
       <div className=" flex justify-center gap-x-12">
-        <button type="button" onClick={()=>setSee(true)} >
-         {""} <PiEyeFill size={30} color="blue" />
+        <button type="button" onClick={() => setSee(true)}>
+          {""} <PiEyeFill size={30} color="blue" />
         </button>
         <button
           type="button"
           title="Renovar préstamo"
           onClick={() => setShowR(true)}
         >
-          <TfiReload size={30} color="green" />
+          <MdOutlineUpdate size={30} color="green" />
         </button>
         <button
           type="button"

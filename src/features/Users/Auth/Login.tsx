@@ -1,53 +1,41 @@
-import  { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button, Card, TextInput, Label, Modal } from 'flowbite-react';
-import RecoverPasswordModal from './RecoverPasswordModal';
-import { useForm } from 'react-hook-form';
-import { signIn } from '../Services/SvUsuer';
-import { SingIng } from '../Type/UserType';
-import { useMutation } from 'react-query';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, Card, TextInput, Label, Modal } from "flowbite-react";
+import RecoverPasswordModal from "./RecoverPasswordModal";
+import { useForm } from "react-hook-form";
+import { SingIng } from "../Type/UserType";
+import UseAuth from "../Hooks/UseAuth";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [showRecoverPasswordModal, setShowRecoverPasswordModal] = useState(false);
+  const [showRecoverPasswordModal, setShowRecoverPasswordModal] =
+    useState(false);
 
   const openRecoverPasswordModal = () => {
     setShowRecoverPasswordModal(true);
   };
 
+  const { register, handleSubmit } = useForm<SingIng>();
 
-  const {register, handleSubmit, reset}=useForm<SingIng>()
+  const { mutate: LogIn } = UseAuth();
 
-  const onSubmit = (data:SingIng)=>{
-    mutation.mutate({
-      username: data.username,
-      password: data.password,
-    });
-    signIn(data.username, data.password)
-  }
-  const mutation = useMutation({
-    mutationFn: ({ username, password }: { username: string; password: string }) =>
-      signIn(username, password), 
-    onSuccess: () => {
-      toast.success("Inicio de Sesion Exitoso")
-    },
-    onError: () => {
-      navigate("/HogarDeLibros")
-      reset()
-      toast.error("Inicio de sesión Erroneo")
-    },
-  });
-
+  const onSubmit = (data: SingIng) => {
+    LogIn(data);
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <div className="flex flex-col md:flex-row items-center max-w-4xl w-full bg-white shadow-lg rounded-lg">
         <div className="w-full md:w-1/2 p-8">
           <Card className="max-w-lg w-full">
-            <h2 className="text-2xl font-bold text-gray-700 mb-4">Iniciar Sesión</h2>
+            <h2 className="text-2xl font-bold text-gray-700 mb-4">
+              Iniciar Sesión
+            </h2>
             <p className="text-sm text-gray-500 mb-4">
-              ¿No posees una cuenta? <a href="/Registro" className="text-blue-500 hover:underline">Regístrate aquí.</a>
+              ¿No posees una cuenta?{" "}
+              <a href="/Registro" className="text-blue-500 hover:underline">
+                Regístrate aquí.
+              </a>
             </p>
 
             <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
@@ -78,7 +66,10 @@ const Login = () => {
               </Button>
 
               <div className="flex justify-between items-center mt-4">
-                <Button color="light" onClick={() => navigate('/HogarDeLibros')}>
+                <Button
+                  color="light"
+                  onClick={() => navigate("/HogarDeLibros")}
+                >
                   Regresar
                 </Button>
                 <Button color="light" onClick={openRecoverPasswordModal}>
@@ -116,6 +107,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-

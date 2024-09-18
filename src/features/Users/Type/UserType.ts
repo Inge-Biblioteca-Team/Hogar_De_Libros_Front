@@ -6,7 +6,10 @@ export type User = {
   phoneNumber: string;
   registerDate: Date;
   province: string;
+  district:string;
+  address:string;
   status: boolean;
+  role:string;
 };
 
 export type UsersResponse = {
