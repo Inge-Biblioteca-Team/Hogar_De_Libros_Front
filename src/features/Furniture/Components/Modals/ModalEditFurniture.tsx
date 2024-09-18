@@ -164,3 +164,4 @@ const ModalEditFurniture = ({
   };
   
   export default ModalEditFurniture;
+  

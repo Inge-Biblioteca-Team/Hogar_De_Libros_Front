@@ -53,3 +53,4 @@ const ModalViewFurniture = ({
   };
   
   export default ModalViewFurniture;
+  

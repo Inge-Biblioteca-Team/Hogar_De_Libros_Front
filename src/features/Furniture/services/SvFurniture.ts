@@ -89,3 +89,4 @@ const DownFurniture = async (Id: string) => {
     PatchEditFurniture,
     GetFurniturebyID
   }
+  
