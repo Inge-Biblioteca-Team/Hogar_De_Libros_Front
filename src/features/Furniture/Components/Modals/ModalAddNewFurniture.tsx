@@ -35,7 +35,6 @@ const ModalAddNewFurniture = ({
         CreateFurniture(furniture);
         reset();
         setModalOpen(false);
-        setSNewF(false);
     };
 
     const handleCancel = () => {
@@ -129,7 +128,7 @@ const ModalAddNewFurniture = ({
                     Accion="Crear"
                 />
             )}
-           <ModalAddMoreActive open={NeedMore} Close={setNeedMore} setSNew={setSNewF} />
+            <ModalAddMoreActive open={NeedMore} Close={setNeedMore} setSNew={setSNewF} />
         </>
     );
 };

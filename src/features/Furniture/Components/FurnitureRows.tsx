@@ -11,9 +11,7 @@ const FurnitureRows = ({ furniture }: { furniture: furniture }) => {
         <Table.Cell className="w-52">{furniture.Location}</Table.Cell>
         <Table.Cell className="w-44">{furniture.InChargePerson}</Table.Cell>
         <Table.Cell className="w-64">{furniture.ConditionRating}</Table.Cell>
-        <Table.Cell className="w-64">
-          {furniture.Status ? "Activo" : "Inactivo"}
-        </Table.Cell>
+        <Table.Cell className="w-64">{furniture.Status}</Table.Cell>
         <Table.Cell>
           <FurnitureAccionBTNS furniture={furniture} />
         </Table.Cell>

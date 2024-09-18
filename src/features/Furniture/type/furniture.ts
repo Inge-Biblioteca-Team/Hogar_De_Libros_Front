@@ -5,7 +5,7 @@ export type furniture ={
     Location: string;
     InChargePerson: string;
     ConditionRating: number;
-    Status: boolean;
+    Status: string;
 }
 
 export type apiResponseFt ={
@@ -20,6 +20,6 @@ export type FurnitureEdit = {
     Location: string;
     InChargePerson: string;
     ConditionRating: number;
-    Status: boolean;
+    Status: string;
 }
 

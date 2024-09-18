@@ -5,7 +5,7 @@ const UseDownEquip = () => {
   const queryClient = useQueryClient();
   return useMutation(
     async (Id: string) => {
-      const data = await DownFurniture(Id);
+      const data = await DownFurniture(Id, "Down"); //Aqui debe recibir por parametro revise los edit de books
       return data;
     },
     {
