@@ -36,13 +36,11 @@ const ConfirmModalFurniture = ({
         </p>
       </Modal.Body>
       <Modal.Footer  className="flex w-full items-center justify-center">
-        <Button color="red" onClick={onCancel}>
+        <Button color="failure" onClick={onCancel}>
           Cancelar
         </Button>
         <Button
-          className="bg-Bottoms text-white text-2xl rounded-lg px-2
-              hover:bg-Bottoms-dark hover:scale-105
-              max-sm:hidden"
+          color={"blue"}
           onClick={() => onConfirm(FurnitureItem)}
         >
           Sí, estoy seguro

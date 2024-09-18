@@ -103,7 +103,7 @@ const ManageFurniture = () => {
             </Table.Head>
             <Table.Body>
               {furnitures?.data.map((furniture) => (
-                <FurnitureRows furniture={furniture} />
+                <FurnitureRows key={furniture.Id} furniture={furniture} />
               ))}
             </Table.Body>
           </Table>

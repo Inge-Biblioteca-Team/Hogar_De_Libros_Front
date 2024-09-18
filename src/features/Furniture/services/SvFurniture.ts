@@ -24,8 +24,8 @@ import { FurnitureEdit } from "../type/furniture";
   ) => {
     try {
       const params: { [key: string]: string | number | undefined } = {
-        Page: page,
-        Limit: limit,
+        page: page,
+        limit: limit,
       };
   
       if (description) params.description = description;

@@ -7,27 +7,25 @@ import toast from "react-hot-toast";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import ConfirmModalFurniture from "./ConfirmModalFurniture";
 
-
 const ModalEditFurniture = ({
-    sEdit,
-    setEdit,
-    furniture,
-  }: {
-    sEdit: boolean;
-    setEdit: (open: boolean) => void;
-    furniture: furniture;
-  }) => {
-    const queryClient = useQueryClient();
-    const [NewData, setNewData] = useState<furniture | null>(null);
-    const [isModalOpen, setModalOpen] = useState(false);
+  sEdit,
+  setEdit,
+  furniture,
+}: {
+  sEdit: boolean;
+  setEdit: (open: boolean) => void;
+  furniture: furniture;
+}) => {
+  const queryClient = useQueryClient();
+  const [NewData, setNewData] = useState<furniture | null>(null);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  
-    const { register, handleSubmit, setValue } = useForm<furniture>();
-    const { mutate: editFurniture } = useEditFurniture();
+  const { register, handleSubmit, setValue } = useForm<furniture>();
+  const { mutate: editFurniture } = useEditFurniture();
 
   useEffect(() => {
     if (furniture) {
-      setValue("LicenseNumber",furniture.LicenseNumber);
+      setValue("LicenseNumber", furniture.LicenseNumber);
       setValue("Description", furniture.Description);
       setValue("Location", furniture.Location);
       setValue("InChargePerson", furniture.InChargePerson);
@@ -37,46 +35,39 @@ const ModalEditFurniture = ({
   }, [furniture, setValue]);
 
   const onSubmit = (formData: furniture) => {
-
-    editFurniture({ furniture: formData, Id: furniture.Id.toString() }); 
     setNewData(formData);
     setModalOpen(true);
-    setEdit(false);
   };
 
-    const handleConfirm = () => { 
-     if (furniture?.Id && NewData) {
-        editFurniture({ furniture: NewData, Id: furniture.Id.toString()},
+  const handleConfirm = () => {
+    if (furniture?.Id && NewData) {
+      editFurniture(
+        { furniture: NewData, Id: furniture.Id.toString() },
         {
-            onSuccess: ()=>{
-            toast.success("Informacion del mobiliario actializado con Exito");
+          onSuccess: () => {
             setEdit(false);
-            queryClient.invalidateQueries("FurnitureCatalog");         
-        },
-        onError: ()=>{
-            toast.error("Error al editar mobiliario")
-        },
+            queryClient.invalidateQueries("FurnitureCatalog");
+          },
+          onError: () => {
+            toast.error("Error al editar mobiliario");
+          },
         }
-     );
+      );
     }
     setModalOpen(false);
-    };
-  
-    const handleCancel = () => {
-      setModalOpen(false);
-    };
-  
-  
-    return (
-      <>
-      <Modal show={sEdit} size="md" onClose={()=>setEdit(false)}>
+  };
+
+  const handleCancel = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <>
+      <Modal show={sEdit} size="md" onClose={() => setEdit(false)}>
         <Modal.Header>Editar Mobiliario</Modal.Header>
-        <Modal.Body>
-          <form
-            className="flex flex-col gap-7"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <fieldset className="grid grid-cols-2 gap-7 text-center">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Modal.Body className="flex flex-col gap-3">
+            <fieldset className="grid grid-cols-2 gap-2 text-center">
               <legend className="pb-3">Información del Mobiliario</legend>
               <span>
                 <Label htmlFor="LicenseNumber" value="Número de placa" />
@@ -86,6 +77,7 @@ const ModalEditFurniture = ({
                   sizing="md"
                   {...register("LicenseNumber")}
                   readOnly
+                  disabled
                 />
               </span>
               <span>
@@ -136,18 +128,17 @@ const ModalEditFurniture = ({
                   <option value={1}>Deplorable</option>
                 </Select>
               </span>
-              
             </fieldset>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="flex w-full items-center justify-center">
-            <Button color={"failure"} onClick={()=>setEdit(false)}>
-                Cancelar
+          </Modal.Body>
+          <Modal.Footer className="flex w-full items-center justify-center">
+            <Button color={"failure"} onClick={() => setEdit(false)}>
+              Cancelar
             </Button>
-            <Button color={"blue"} type="submit" onClick={()=>handleConfirm()}>
-                Confirmar
+            <Button color={"blue"} type="submit">
+              Confirmar
             </Button>
-        </Modal.Footer>
+          </Modal.Footer>
+        </form>
       </Modal>
       {NewData && (
         <ConfirmModalFurniture
@@ -161,5 +152,4 @@ const ModalEditFurniture = ({
     </>
   );
 };
-  export default ModalEditFurniture;
-  
+export default ModalEditFurniture;
