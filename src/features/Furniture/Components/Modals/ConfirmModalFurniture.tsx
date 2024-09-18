@@ -53,3 +53,4 @@ const ConfirmModalFurniture = ({
 };
 
 export default ConfirmModalFurniture;
+
