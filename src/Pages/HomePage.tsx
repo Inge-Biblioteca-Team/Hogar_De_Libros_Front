@@ -8,7 +8,7 @@ const HomePage = () => {
         <ListMostPopularBooks />
       </section>
       <section>
-        <h2>Actividades Proximas</h2>
+        <h2>Actividades Próximas</h2>
         
       </section>
       <section>

@@ -6,11 +6,42 @@ import {
   Label,
   Card,
   Select,
+  Popover,
 } from "flowbite-react";
-
+import { useForm } from "react-hook-form";
+import UseRegister from "../Hooks/UseRegister";
+import { RegisterInfo } from "../Type/UserType";
+import toast from "react-hot-toast";
+import { MdOutlineError } from "react-icons/md";
 const Register = () => {
   const navigate = useNavigate();
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    trigger,
+  } = useForm<RegisterInfo>({ mode: "onChange" });
+
+  const password = watch("password");
+
+  const { mutate: signUp } = UseRegister();
+
+  const onSubmit = (data: RegisterInfo) => {
+    console.log(data);
+    signUp(data);
+  };
+  const handleValidationErrors = async () => {
+    const result = await trigger();
+    if (!result) {
+      toast.error(
+        "Por favor, corrige los errores antes de enviar el formulario"
+      );
+    }
+
+    return result;
+  };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-800 p-8">
       <Card className="max-w-screen-lg w-full">
@@ -29,132 +60,203 @@ const Register = () => {
               </a>
             </p>
 
-            <div>
-              <Label htmlFor="IDNumber" value="Número de Cédula" />{" "}
-              <TextInput
-                id="IDNumber"
-                name="IDNumber"
-                inputMode="numeric"
-                type="text"
-                pattern="[0-9]*"
-                required
-              />
-            </div>
+            <form
+              className="space-y-4"
+              onSubmit={async (e) => {
+                e.preventDefault();
 
-            <form className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+                const isValid = await handleValidationErrors();
+
+                if (isValid) {
+                  handleSubmit(onSubmit)();
+                }
+              }}
+            >
+              <fieldset className=" grid grid-cols-2 gap-3">
+                <div>
+                  <Label htmlFor="IDNumber" value="Número de Cédula" />{" "}
+                  <TextInput
+                    id="IDNumber"
+                    inputMode="numeric"
+                    type="text"
+                    pattern="[0-9]*"
+                    required
+                    {...register("cedula")}
+                  />
+                </div>
                 <div>
                   <Label htmlFor="Name" value="Nombre" />
-                  <TextInput id="Name" name="Name" required />
+                  <TextInput id="Name" required {...register("name")} />
                 </div>
-
                 <div>
                   <Label htmlFor="LastName" value="Apellidos" />
-                  <TextInput id="LastName" name="LastName" required />
+                  <TextInput id="LastName" required {...register("lastName")} />
                 </div>
-
                 <div>
-                  <Label htmlFor="Email" value="Correo" />
-                  <TextInput id="Email" name="Email" type="email" required />
+                  <Label htmlFor="BirthDate" value="Fecha de Nacimiento" />
+                  <TextInput
+                    id="BirthDate"
+                    type="date"
+                    required
+                    {...register("birthDate")}
+                  />
                 </div>
+                <div>
+                  <Label htmlFor="Gender" value="Género" />
+                  <Select id="Gender" required {...register("gender")}>
+                    <option value="" disabled>
+                      Selecciona tu género
+                    </option>
+                    <option value="H">Hombre</option>
+                    <option value="M">Mujer</option>
+                    <option value="Otros">Otros</option>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="Province" value="Provincia" />
+                  <TextInput id="Province" required {...register("province")} />
+                </div>
+              </fieldset>
 
+              <fieldset className=" grid grid-cols-2 gap-3">
+                <div>
+                  <Label htmlFor="District" value="Cantón" />
+                  <TextInput id="District" required {...register("district")} />
+                </div>
+                <div>
+                  <Label htmlFor="Address" value="Dirección" />
+                  <TextInput id="Address" required {...register("address")} />
+                </div>
+              </fieldset>
+              <fieldset className=" grid grid-cols-2 gap-3">
                 <div>
                   <Label htmlFor="PhoneNumber" value="Teléfono" />
                   <TextInput
                     id="PhoneNumber"
-                    name="PhoneNumber"
                     inputMode="numeric"
                     type="number"
                     pattern="[0-9]*"
                     required
+                    {...register("phoneNumber")}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="Email" value="Correo" />
+                  <TextInput
+                    id="Email"
+                    type="email"
+                    required
+                    {...register("email")}
                   />
                 </div>
 
-                <div>
+                <div className="relative" >
                   <Label htmlFor="Password" value="Contraseña" />
                   <TextInput
                     id="Password"
-                    name="Password"
                     type="password"
                     required
+                    {...register("password", {
+                      required: "La contraseña es obligatoria",
+                      minLength: {
+                        value: 8,
+                        message:
+                          "La contraseña debe tener al menos 8 caracteres",
+                      },
+                      pattern: {
+                        value: /^[A-Za-z0-9]+$/,
+                        message:
+                          "La contraseña solo puede contener letras y números",
+                      },
+                    })}
+                    className={`border ${
+                      errors.password ? "border-red-500" : "border-gray-300"
+                    } rounded-lg`}
                   />
+                   {errors.password && (
+                    <Popover
+                      trigger="hover"
+                      placement="top"
+                      content={
+                        <div className="bg-slate-50 text-red-600 p-1 text-sm">
+                          {errors.password.message}
+                        </div>
+                      }
+                      className="z-10"
+                    >
+                      <span className="absolute left-52 top-10 text-red-600 cursor-pointer">
+                        <MdOutlineError />
+                      </span>
+                    </Popover>
+                  )}
                 </div>
-
-                <div className="relative">
+                <div className=" relative">
                   <Label
                     htmlFor="repeatPassword"
                     value="Repita la Contraseña"
                   />
                   <TextInput
                     id="repeatPassword"
-                    name="repeatPassword"
                     type="password"
+                    className={`border ${
+                      errors.repeatPassword
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    } rounded-lg `}
                     required
+                    {...register("repeatPassword", {
+                      required: "Debe repetir la contraseña",
+                      validate: (value) => {
+                        if (value !== password) {
+                          return "Las contraseñas no coinciden";
+                        }
+                        return true;
+                      },
+                    })}
                   />
+                  {errors.repeatPassword && (
+                    <Popover
+                      trigger="hover"
+                      placement="top"
+                      content={
+                        <div className="bg-slate-50 text-red-600 p-2 text-sm ">
+                          {errors.repeatPassword.message}
+                        </div>
+                      }
+                      className="z-10"
+                    >
+                      <span className="absolute left-52 top-10 text-red-600 cursor-pointer">
+                        <MdOutlineError />
+                      </span>
+                    </Popover>
+                  )}
                 </div>
-
-                <div>
-                  <Label htmlFor="Province" value="Provincia" />
-                  <TextInput id="Province" name="Province" required />
-                </div>
-
-                <div>
-                  <Label htmlFor="District" value="Cantón" />
-                  <TextInput id="District" name="District" required />
-                </div>
-
-                <div>
-                  <Label htmlFor="Gender" value="Género" />
-                  <Select id="Gender" name="Gender" required>
-                    <option value="" disabled>
-                      Selecciona tu género
-                    </option>
-                    <option value="Hombre">Hombre</option>
-                    <option value="Mujer">Mujer</option>
-                    <option value="Otros">Otros</option>
-                  </Select>
-                </div>
-
-                <div>
-                  <Label htmlFor="BirthDate" value="Fecha de Nacimiento" />
-                  <TextInput
-                    id="BirthDate"
-                    name="BirthDate"
-                    type="date"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="Address" value="Dirección" />
-                <TextInput id="Address" name="Address" required />
-              </div>
-
+              </fieldset>
               <div className="flex items-center">
                 <Checkbox
                   id="AcceptTermsAndConditions"
-                  name="AcceptTermsAndConditions"
                   required
+                  {...register("acceptTermsAndConditions")}
                 />
                 <Label htmlFor="AcceptTermsAndConditions" className="ml-2">
-                  Acepto los Términos y Condiciones
+                  Acepto los{" "}
+                  <a href="" className=" hover:text-Body">
+                    {" "}
+                    Términos y Condiciones
+                  </a>
                 </Label>
               </div>
 
-              <div className="flex justify-between mt-4">
+              <div className="flex justify-between">
                 <Button
+                  tabIndex={2}
                   type="button"
                   color="failure"
                   onClick={() => navigate("/HogarDeLibros")}
                 >
                   Cancelar
                 </Button>
-                <Button
-                  type="submit"
-                  color="primary"
-                  className="bg-blue-600 text-white hover:bg-blue-800"
-                >
+                <Button type="submit" color="blue">
                   Confirmar
                 </Button>
               </div>

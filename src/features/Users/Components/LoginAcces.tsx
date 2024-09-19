@@ -1,13 +1,14 @@
-import { IoMdLogIn } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import icon from "./../../../Assets/LoginIcon.png"
 
 const LoginAcces = () => {
   const Navi = useNavigate();
   return (
     <>
-      <button type="button">
+      <button type="button" title="Iniciar Sesión">
         {""}
-        <IoMdLogIn size={34} onClick={()=>Navi("/IniciarSesion")} />
+        <img src={icon} alt="Iniciar Session" width={40} onClick={()=>Navi("/IniciarSesion")}
+        className="invert" />
       </button>
     </>
   );
