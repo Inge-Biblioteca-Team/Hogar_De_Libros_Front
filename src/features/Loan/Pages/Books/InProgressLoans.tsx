@@ -90,7 +90,7 @@ const InProgressLoans = () => {
                     <span>
                       <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
                     </span>{" "}
-                    Libros por pagina
+                    Solicitudes por pagina
                   </span>
                 </div>
                 <Pagination

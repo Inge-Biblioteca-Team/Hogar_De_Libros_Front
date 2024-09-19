@@ -2,6 +2,7 @@ import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { Loans } from "../../Types/BookLoan";
 import { format } from "@formkit/tempo";
+import CreateLoanPDF from "../../Hooks/Books/CreateLoanPDF";
 
 const SeeLoanInfo = ({
   see,
@@ -20,9 +21,9 @@ const SeeLoanInfo = ({
 
   const ExpiredDate = format({
     date: Loan.LoanExpirationDate,
-    format: {date: "full"},
-    tz: "America/Costa_Rica"
-  })
+    format: { date: "full" },
+    tz: "America/Costa_Rica",
+  });
 
   return (
     <Modal show={see} onClose={() => setSee(false)}>
@@ -54,9 +55,12 @@ const SeeLoanInfo = ({
         </div>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"blue"} onClick={() => setSee(false)}>
+        <Button color={"failure"} onClick={() => setSee(false)}>
           {" "}
           Cerrar{" "}
+        </Button>
+        <Button color={"blue"} onClick={CreateLoanPDF}>
+          Guardar Copia
         </Button>
       </Modal.Footer>
     </Modal>

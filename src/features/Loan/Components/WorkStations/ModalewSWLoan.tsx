@@ -22,7 +22,6 @@ const ModalewSWLoan = ({
   const onSubmit = (data: NewWSLoan) => {
     mutate(data, {
       onSuccess: () => {
-        console.log("Loan created successfully");
         setOpen(false);
       },
     });

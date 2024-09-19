@@ -267,7 +267,7 @@ const NewAdminLoan = () => {
                         >
                           Cancelar
                         </Button>
-                        <Button color={"success"} type="submit">
+                        <Button color={"blue"} type="submit">
                           Confirmar
                         </Button>
                       </div>

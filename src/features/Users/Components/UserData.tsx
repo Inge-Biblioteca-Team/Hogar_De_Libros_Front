@@ -2,23 +2,44 @@ import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Popover } from "flowbite-react";
 import { FaUserFriends } from "react-icons/fa";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { GetUserInfo } from "../Services/SvUsuer";
+import { User } from "../Type/UserType";
 
 const UserData = () => {
   const Navi = useNavigate();
+
+  const email = sessionStorage.getItem("email");
+  const cedula = sessionStorage.getItem("cedula");
+
+  const { data: User } = useQuery<User>(
+    ["userInfo", cedula],
+    () =>
+      cedula ? GetUserInfo(cedula) : Promise.reject("Cedula no encontrada"),
+    {
+      enabled: !!cedula,
+      staleTime: Infinity,
+      cacheTime: Infinity, 
+    }
+  );
+
+  const goToMyLoans = () =>{
+    Navi("/HogarDeLibros/Perfil/MisPréstamos")
+  }
 
   return (
     <Popover
       content={
         <div className="w-64 p-3">
           <div className="mb-2 flex items-center justify-between">
-            <a href="#">
+            <span>
               <img
                 className="h-10 w-10 rounded-full"
                 src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
                 alt="User Profile"
               />
-            </a>
+            </span>
             <div>
               <button
                 type="button"
@@ -33,25 +54,22 @@ const UserData = () => {
             id="profile-popover"
             className="text-base font-semibold leading-none text-gray-900 dark:text-gray-100"
           >
-            <a href="#" className="text-gray-900 dark:text-gray-100">
-              Nombre del Usuario
-            </a>
+            <span className="text-gray-900 dark:text-gray-100">
+              {User?.name}
+            </span>
           </p>
           <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
-            <a
-              href="mailto:user@example.com"
-              className="hover:underline text-gray-800 dark:text-gray-200"
-            >
-              user@example.com
-            </a>
+            <span className="hover:underline text-gray-800 dark:text-gray-200">
+              {email}
+            </span>
           </p>
           <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
-            <a
-              href="/HogarDeLibros/Perfil/MisPréstamos"
-              className="hover:underline text-gray-800 dark:text-gray-200"
+            <span
+              className="hover:underline text-gray-800 dark:text-gray-200 cursor-pointer"
+              onClick={goToMyLoans}
             >
               Mis Préstamos
-            </a>
+            </span>
           </p>
           <div className="flex items-center mb-4">
             <FaUserFriends className="text-gray-800 dark:text-gray-200 mr-2" />
@@ -60,7 +78,7 @@ const UserData = () => {
             </span>
           </div>
           <button
-          onClick={()=>Navi("/IniciarSesion")}
+            onClick={() => Navi("/IniciarSesion")}
             type="button"
             className="w-full rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700"
           >

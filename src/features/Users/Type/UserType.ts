@@ -6,7 +6,10 @@ export type User = {
   phoneNumber: string;
   registerDate: Date;
   province: string;
+  district:string;
+  address:string;
   status: boolean;
+  role:string;
 };
 
 export type UsersResponse = {
@@ -30,8 +33,23 @@ export type UserForNewLoan ={
 }
 
 
-
 export type SingIng={
   username:string;
   password:string
 }
+
+export type RegisterInfo = {
+  cedula: string;
+  email: string;
+  name: string;
+  lastName: string;
+  phoneNumber: string;
+  province: string;
+  district: string;
+  gender: 'M' | 'F';
+  address: string;
+  birthDate: string;
+  password: string;
+  acceptTermsAndConditions: boolean;
+  repeatPassword: string;
+};
