@@ -1,43 +1,69 @@
 import { Button, Modal } from "flowbite-react";
 import { WSLoan } from "../../Types/ComputerLoan";
 import { Dispatch, SetStateAction } from "react";
+import { format } from "@formkit/tempo";
 
-const ModalInfo = ({WS, show, setShow}:{WS:WSLoan, show:boolean, setShow: Dispatch<SetStateAction<boolean>>}) => {
-    const StartDate = new Date(WS.LoanStartDate);
-    const EndtDate = new Date(WS.LoanExpireDate);
+const ModalInfo = ({
+  WS,
+  show,
+  setShow,
+}: {
+  WS: WSLoan;
+  show: boolean;
+  setShow: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const LoanDate = format({
+    date: WS.LoanStartDate,
+    format: "DD/MM/YYYY hh:mm A",
+    tz: "America/Costa_Rica",
+  });
+
+  const LoanEDate = format({
+    date: WS.LoanExpireDate,
+    format: "hh:mm A",
+    tz: "America/Costa_Rica",
+  });
   return (
     <>
-      <Modal show={show} onClose={()=>setShow(false)} >
+      <Modal show={show} onClose={() => setShow(false)}>
         <Modal.Header>
-            <span>Información de prestamo de equipo</span>
+          <span>Información de préstamo de equipo</span>
         </Modal.Header>
-            <span className=" flex-col flex ml-3 gap-4 mt-3">
-                <span>
-                    Numero de Prestamo: {WS.ComputerLoanId}
-                </span>
-                <span>
-                    Numero de Maquina: {WS.workStation}
-                </span>
-                <span>
-                    Usuario: {WS.UserName}
-                </span>
-                <span>
-                    Aprobado Por: {WS.AdminName}
-                </span>
-                <span>
-                    Fecha y Hora del uso: {StartDate.toLocaleDateString("es-CR")}
-                </span>
-                <span>
-                    Hora de Finalizacion: {EndtDate.toLocaleTimeString('es-CR')}
-                </span>
-                <span>
-                    Estado: {WS.Status}
-                </span>
-            </span>
+        <span className=" flex-col flex ml-3 gap-4 mt-3">
+          <span>
+            {" "}
+            <strong>Numero de préstamo: </strong> {WS.ComputerLoanId}
+          </span>
+          <span>
+            {" "}
+            <strong>Numero de Maquina:</strong> {WS.workStation}
+          </span>
+          <span>
+            {" "}
+            <strong>Usuario:</strong> {WS.UserName}
+          </span>
+          <span>
+            {" "}
+            <strong>Aprobado Por:</strong> {WS.AdminName}
+          </span>
+          <span>
+            {" "}
+            <strong>Fecha y Hora del uso:</strong> {LoanDate}
+          </span>
+          <span>
+            <strong>Hora de Fin:</strong>{" "}
+            {WS.Status == "En curso" ? "Pendiente" : LoanEDate}
+          </span>
+          <span>
+            <strong>Estado:</strong> {WS.Status}
+          </span>
+        </span>
         <Modal.Body></Modal.Body>
 
         <Modal.Footer className=" flex items-center justify-center">
-            <Button color={"blue"} onClick={()=>setShow(false)}>Regresar</Button>
+          <Button color={"blue"} onClick={() => setShow(false)}>
+            Regresar
+          </Button>
         </Modal.Footer>
       </Modal>
     </>

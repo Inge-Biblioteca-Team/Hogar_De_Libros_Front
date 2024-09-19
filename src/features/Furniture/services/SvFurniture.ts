@@ -1,10 +1,6 @@
-import axios from "axios";
+import api from "../../../Services/AxiosConfig";
 import { FurnitureEdit } from "../type/furniture";
 
-const api = axios.create({
-    baseURL: `https://66de71d6de4426916ee12042.mockapi.io/Furniture`,
-    timeout: 1000,
-  });
 
   const PostNewFurniture = async (furniture:FurnitureEdit) =>{
     try{
@@ -28,8 +24,8 @@ const api = axios.create({
   ) => {
     try {
       const params: { [key: string]: string | number | undefined } = {
-        Page: page,
-        Limit: limit,
+        page: page,
+        limit: limit,
       };
   
       if (description) params.description = description;
@@ -45,14 +41,39 @@ const api = axios.create({
     }
   };
 
+  //edit
+  const PatchEditFurniture = async (
+    furniture: FurnitureEdit, 
+    ObjetiveID: string
+  ) => {
+    try {
+      const response = await api.patch(`furniture/${ObjetiveID}`, furniture); 
+      return response.data;
+    } catch (error) {
+      console.error("Error al editar mobiliario:", error); 
+      throw error;
+    }
+  };
+
   //dar de baja 
   
-const DownFurniture = async (Id: string) => {
+const DownFurniture = async (Id: string, acction:string) => {
     try {
-      const response = await api.patch(`Furniture/${Id}`);
+      const response = await api.patch(`furniture/${Id}/${acction}`);
       return response.data;
     } catch (error) {
       console.error("Error to post book:", error);
+      throw error;
+    }
+  };
+  
+  ///get by id
+  const GetFurniturebyID = async (Id:string) => {
+    try {
+      const response = await api.get(`furniture/${Id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error al obtener el mobiliario:", error);
       throw error;
     }
   };
@@ -60,5 +81,8 @@ const DownFurniture = async (Id: string) => {
   export {
     PostNewFurniture,
     GetFurniturePaginated,
-    DownFurniture
+    DownFurniture,
+    PatchEditFurniture,
+    GetFurniturebyID
   }
+  

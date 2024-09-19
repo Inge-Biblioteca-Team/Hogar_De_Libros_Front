@@ -10,12 +10,12 @@ const UseEditBook = () => {
         ({ book, BookCode, Category }: { book: Book; BookCode: string, Category:string }) => PatchEditBook(book, BookCode, Category),
         {
           onSuccess: () => {
-            toast.success("Informacion Actualizada Correctamente")
+            toast.success("Información Actualizada Correctamente")
             Navi(-1)
 
           },
           onError: () => {
-            toast.error('Error al acutualizar informacion:');
+            toast.error('Error al acutualizar información:');
           },
         }
       );

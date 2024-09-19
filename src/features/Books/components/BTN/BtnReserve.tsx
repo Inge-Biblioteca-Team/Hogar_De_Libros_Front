@@ -5,7 +5,7 @@ const BtnReserve = ({ text, Objetive }: { text:string, Objetive:string }) => {
 const Navigate = useNavigate()
 
 const Navi = () =>{
-  Navigate(`/HogarDeLibros/Gestion/Libros/Prestamos/${Objetive}`)
+  Navigate(`/HogarDeLibros/Gestion/Libros/Préstamos/${Objetive}`)
 }
 
   return (

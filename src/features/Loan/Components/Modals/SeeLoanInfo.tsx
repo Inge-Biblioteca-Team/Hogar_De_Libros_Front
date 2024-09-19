@@ -2,6 +2,7 @@ import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { Loans } from "../../Types/BookLoan";
 import { format } from "@formkit/tempo";
+import CreateLoanPDF from "../../Hooks/Books/CreateLoanPDF";
 
 const SeeLoanInfo = ({
   see,
@@ -14,25 +15,25 @@ const SeeLoanInfo = ({
 }) => {
   const requestDate = format({
     date: Loan.LoanRequestDate,
-    format: "DD/MM/YYYY hh:MM A",
+    format: "DD/MM/YYYY hh:mm A",
     tz: "America/Costa_Rica",
   });
 
   const ExpiredDate = format({
     date: Loan.LoanExpirationDate,
-    format: {date: "full"},
-    tz: "America/Costa_Rica"
-  })
+    format: { date: "full" },
+    tz: "America/Costa_Rica",
+  });
 
   return (
     <Modal show={see} onClose={() => setSee(false)}>
       <Modal.Header>
-        <span>Informacion del Prestamo</span>
+        <span>Información del préstamo</span>
       </Modal.Header>
       <Modal.Body>
         <div className="flex flex-col gap-4 text-lg">
           <span className=" flex flex-col">
-            <strong>Informacion del Usuario</strong>
+            <strong>Información del Usuario</strong>
             <span>Nombre: {Loan.user.name}</span>
             <span>Apellidos: {Loan.user.lastName}</span>
             <span>Cedula: {Loan.user.cedula}</span>
@@ -44,8 +45,8 @@ const SeeLoanInfo = ({
             <span>Codigo De Inscripcion: {Loan.book.InscriptionCode}</span>
           </span>
           <span className=" flex flex-col">
-            <strong>Sobre el prestamo</strong>
-            <span>Codigo de Prestamo: {Loan.BookLoanId}</span>
+            <strong>Sobre el préstamo</strong>
+            <span>Codigo de préstamo: {Loan.BookLoanId}</span>
             <span>Fecha de Solicitud: {requestDate}</span>
             <span>Fecha de vencimiento: {ExpiredDate}</span>
             <span>Observaciones: {Loan.Observations} </span>
@@ -54,9 +55,12 @@ const SeeLoanInfo = ({
         </div>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"blue"} onClick={() => setSee(false)}>
+        <Button color={"failure"} onClick={() => setSee(false)}>
           {" "}
           Cerrar{" "}
+        </Button>
+        <Button color={"blue"} onClick={CreateLoanPDF}>
+          Guardar Copia
         </Button>
       </Modal.Footer>
     </Modal>

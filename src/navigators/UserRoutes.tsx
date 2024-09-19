@@ -17,7 +17,7 @@ const UserRoutes = [
         path: "Perfil",
         children: [
           {
-            path: "MisPrestamos",
+            path: "MisPréstamos",
             element: <MyLoanHIstory />,
           },
           {

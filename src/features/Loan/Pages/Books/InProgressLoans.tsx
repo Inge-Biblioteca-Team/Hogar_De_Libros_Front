@@ -66,18 +66,20 @@ const InProgressLoans = () => {
         <HomeCrumb />
         <ManageCrumb />
         <LoanCrumb />
-        <LastCrumb CurrentPage="Prestamos en progreso" />
+        <LastCrumb CurrentPage="Préstamos en progreso" />
       </Breadcrumb>
       <div className="flex place-content-center mt-14 pb-3">
         <div className="w-4/5">
           <SearchInputs
+            SignaCode={SignaCode}
+            EndDate={EndDate}
             clearSearch={clearSearch}
             setStartDate={setStartDate}
             setEndtDate={setEndtDate}
             setSignaCode={setSignaCode}
           />
           {Loan?.count == 0 ? (
-            <NoRequest text="No Hay Prestamos En Progreso" />
+            <NoRequest text="No Hay Préstamos En Progreso" />
           ) : (
             <>
               {Loan && <TBLLoan Loan={Loan} NeedAccions Inprogress />}
@@ -88,7 +90,7 @@ const InProgressLoans = () => {
                     <span>
                       <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
                     </span>{" "}
-                    Libros por pagina
+                    Solicitudes por pagina
                   </span>
                 </div>
                 <Pagination

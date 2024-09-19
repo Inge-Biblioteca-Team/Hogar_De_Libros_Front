@@ -30,8 +30,8 @@ const AdminComputerInformation = () => {
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
         <ManageCrumb />
-        <ManageCrumbObj Objetive="Equipo De Computo" LK="Equipos" />
-        <LastCrumb CurrentPage="Ver Informacion del equipo" />
+        <ManageCrumbObj Objetive="Equipo De cómputo" LK="Equipos" />
+        <LastCrumb CurrentPage="Ver Información del equipo" />
         {EquipmentI?.EquipmentSerial && (
           <LastCrumb CurrentPage={EquipmentI?.EquipmentSerial} />
         )}

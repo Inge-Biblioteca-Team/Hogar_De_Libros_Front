@@ -3,7 +3,7 @@ import { GetRooms } from "../Services/SvRooms";
 import RoomCard from "../Components/RoomCard";
 import { Room } from "../Types/Room_Interface";
 
-// funcion que trae la informacion de las salas y las muestra en las tarjetas
+
 function RoomList() {
   const {
     data: Rooms,

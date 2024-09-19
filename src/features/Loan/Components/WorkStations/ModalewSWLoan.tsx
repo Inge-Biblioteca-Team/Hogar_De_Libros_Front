@@ -22,7 +22,6 @@ const ModalewSWLoan = ({
   const onSubmit = (data: NewWSLoan) => {
     mutate(data, {
       onSuccess: () => {
-        console.log("Loan created successfully");
         setOpen(false);
       },
     });
@@ -31,7 +30,7 @@ const ModalewSWLoan = ({
   return (
     <Modal show={open} onClose={() => setOpen(false)} className="text-center">
       <Modal.Header>
-        <h5>Nuevo Prestamo de Equipo {MNumber} </h5>
+        <h5>Nuevo préstamo de Equipo {MNumber} </h5>
       </Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>

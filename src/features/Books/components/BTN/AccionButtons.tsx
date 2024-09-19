@@ -18,7 +18,7 @@ const AccionButtons = ({
   return (
     <div className=" flex gap-7 justify-center">
       <Link
-        title="Ver Informacion Completa"
+        title="Ver Información Completa"
         to={`/HogarDeLibros/Gestion/Libros/Ver/${id}`}
       >
         <PiEyeLight size={24} />

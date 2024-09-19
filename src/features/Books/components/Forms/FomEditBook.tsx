@@ -172,7 +172,7 @@ const FormEditBook = ({ book, category }: { book: Book; category: string }) => {
               />
               {category == "books" ? (
                 <Select {...register("ShelfCategory")} required>
-                  <option value="">Seleccione una categoria</option>
+                  <option value="">Seleccione una categoría</option>
                   <option value="Ciencias Sociales">Ciencias Sociales</option>
                   <option value="Literatura">Literatura</option>
                   <option value="Geografía">Geografía</option>
@@ -188,7 +188,7 @@ const FormEditBook = ({ book, category }: { book: Book; category: string }) => {
                 </Select>
               ) : (
                 <Select {...register("ShelfCategory")} required>
-                  <option value="">Seleccione una categoria</option>
+                  <option value="">Seleccione una categoría</option>
                   <option value="0-5Años">0-5 Años</option>
                   <option value="+6Años">+6 Años</option>
                 </Select>

@@ -1,6 +1,7 @@
 import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { User } from "../../Type/UserType";
+import { format } from "@formkit/tempo";
 
 const UserInfo = ({
   see,
@@ -11,6 +12,16 @@ const UserInfo = ({
   setSee: Dispatch<SetStateAction<boolean>>;
   User: User;
 }) => {
+  const roleMapping: { [key: string]: string } = {
+    admin: "Administrador",
+    creator: "Ayudante",
+  };
+
+  const RegDate = format({
+    date: User.registerDate,
+    format: "DD/MM/YYYY",
+    tz: "America/Costa_Rica",
+  });
   return (
     <Modal show={see} onClose={() => setSee(false)}>
       <Modal.Header>
@@ -18,15 +29,15 @@ const UserInfo = ({
       </Modal.Header>
       <Modal.Body className="flex flex-col gap-2 ml-3">
         <span className=" flex-col flex">
-          <strong>Informacion Del Usaurio </strong>
+          <strong>Información Del Usaurio </strong>
           <span>Nombre: {User.name}</span>
           <span>Apellidos: {User.lastName}</span>
-          <span>Cedula: {User.cedula}</span>
+          <span>Cédula: {User.cedula}</span>
           <span>Provincia: {User.province}</span>
-          <span>Fecha de registro: {}</span>
-          <span>Estado {User.status}</span>
-          <span>Rol: </span>
-          <span>Privilegios de Prestamo: </span>
+          <span>Fecha de registro: {RegDate}</span>
+          <span>Estado {User.status? "Activo": "Deshabilitado"}</span>
+          <span>Rol: {roleMapping[User.role] || "Basico"} </span>
+          <span>Privilegios de préstamo: 5 Libros Maximo por 30 Días </span>
         </span>
         <span className="flex-col flex">
           <strong>Contactos</strong>
@@ -34,7 +45,7 @@ const UserInfo = ({
           <span>Telfono {User.phoneNumber}</span>
         </span>
       </Modal.Body>
-      <Modal.Footer>
+      <Modal.Footer  className=" flex items-center justify-center">
         <Button color={"blue"} onClick={() => setSee(false)}>
           Cerrar
         </Button>
