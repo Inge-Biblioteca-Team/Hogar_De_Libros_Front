@@ -1,16 +1,16 @@
-import { BiTargetLock } from "react-icons/bi";
-import { TbUserEdit } from "react-icons/tb";
-import { TiUserDeleteOutline } from "react-icons/ti";
-import { TbTruckReturn } from "react-icons/tb";
 import { Dispatch, SetStateAction } from "react";
+import { FaCircleUp } from "react-icons/fa6";
+import { PiEyeLight, PiPencilDuotone, PiTrash } from "react-icons/pi";
 const BTNAccions = ({
   setSee,
   setDow,
   setEdit,
+  UserStatus,
 }: {
   setSee: Dispatch<SetStateAction<boolean>>;
   setEdit: Dispatch<SetStateAction<boolean>>;
   setDow: Dispatch<SetStateAction<boolean>>;
+  UserStatus: boolean;
 }) => {
   return (
     <>
@@ -20,26 +20,29 @@ const BTNAccions = ({
           title="Ver Información de Usuario"
           onClick={() => setSee(true)}
         >
-          <BiTargetLock />
+          <PiEyeLight />
         </button>
         <button
           type="button"
           title="Editar Información de Usuario"
           onClick={() => setEdit(true)}
         >
-          <TbUserEdit />
+          <PiPencilDuotone />
         </button>
-        <button
-          type="button"
-          title="Desabilitar Usuario"
-          className=""
-          onClick={() => setDow(true)}
-        >
-          <TiUserDeleteOutline />
-        </button>
-        <button type="button" title="Rehabilitar Usuario" className="hidden">
-          <TbTruckReturn />
-        </button>
+        {UserStatus ? (
+          <button
+            type="button"
+            title="Desabilitar Usuario"
+            className=""
+            onClick={() => setDow(true)}
+          >
+            <PiTrash />
+          </button>
+        ) : (
+          <button type="button" title="Rehabilitar Usuario">
+            <FaCircleUp />
+          </button>
+        )}
       </div>
     </>
   );

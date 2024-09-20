@@ -3,6 +3,7 @@ import adminRoutes from "./AdminRoutes";
 import bookRoutes from "./BookRoutes";
 import homeRoutes from "./HomeRoutes";
 import UserRoutes from "./UserRoutes";
+import localArtistRoutes from "./LocalArtistRoutes";
 
 
 const Routes = createBrowserRouter([
@@ -10,6 +11,7 @@ const Routes = createBrowserRouter([
   ...bookRoutes,
   ...adminRoutes,
   ...UserRoutes,
+  ...localArtistRoutes,
 ]);
 
 export default Routes;
