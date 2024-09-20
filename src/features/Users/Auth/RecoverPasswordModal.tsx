@@ -11,6 +11,7 @@ const RecoverPasswordModal: React.FC<RecoverPasswordModalProps> = ({
   setOpenModal,
 }) => {
   const [email, setEmail] = useState<string>("");
+  const [cedula, setCedula] = useState<string>("");
   const { mutate } = UseRecoveryPassword();
 
   function onCloseModal() {
@@ -18,7 +19,7 @@ const RecoverPasswordModal: React.FC<RecoverPasswordModalProps> = ({
   }
 
   function onConfirm() {
-    mutate({ Email: email });
+    mutate({ Email: email, Cedula: cedula });
   }
 
   return (
@@ -42,9 +43,10 @@ const RecoverPasswordModal: React.FC<RecoverPasswordModalProps> = ({
             <div className="mb-2 block">
               <Label htmlFor="cedula" value="Cédula" />
             </div>
-            <TextInput id="cedula" placeholder="Número de cédula" />
+            <TextInput id="cedula" placeholder="Número de cédula" 
+            type="text"
+            onChange={(event)=>setCedula(event.target.value)}/>
           </div>
-
           <div className="flex justify-between mt-4 space-x-2">
             <Button
               color="gray"

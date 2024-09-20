@@ -14,6 +14,7 @@ import TBLUsers from "../Components/TBLUsers";
 import SearchUsers from "../Components/SearchUers";
 import { GetUsersList } from "../Services/SvUsuer";
 import { User, UsersResponse } from "../Type/UserType";
+import UseDebounce from "../../../hooks/UseDebounce";
 
 const ManageUsers = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -31,9 +32,18 @@ const ManageUsers = () => {
     sessionStorage.setItem("UersCPages", currentPage.toString());
   }, [currentPage]);
 
+  const [name, setName] = useState<string>("");
+  const [cedula, setCedula] = useState<string>("");
+  const [rol, setRol] = useState<string>("");
+  const [year, setYear] = useState<string>("");
+
+  const SName = UseDebounce(name, 500);
+  const SCedula = UseDebounce(cedula, 500);
+  const SYear = UseDebounce(year, 100);
+
   const { data: Users } = useQuery<UsersResponse, Error>(
-    ["UsersMG", currentPage, currentLimit],
-    () => GetUsersList(currentPage, currentLimit),
+    ["UsersMG", currentPage, currentLimit, SName, SCedula, rol, SYear],
+    () => GetUsersList(currentPage, currentLimit, SCedula, SName, rol, SYear),
     {
       staleTime: 600,
     }
@@ -48,49 +58,56 @@ const ManageUsers = () => {
         <LoanCrumb />
         <LastCrumb CurrentPage="Lista de Usuarios" />
       </Breadcrumb>
-      {Users?.count == 0 ? (
-        <NoRequest text="No hay" />
-      ) : (
-        <div className="flex place-content-center mt-14">
-          <div className="w-4/5">
-            <SearchUsers />
-            <Table hoverable className=" text-center">
-              <Table.Head className=" h-20 text-sm">
-                <Table.HeadCell>Cédula</Table.HeadCell>
-                <Table.HeadCell>Nombre</Table.HeadCell>
-                <Table.HeadCell>Rol</Table.HeadCell>
-                <Table.HeadCell>Provincia</Table.HeadCell>
-                <Table.HeadCell>Telefono</Table.HeadCell>
-                <Table.HeadCell>Fecha de registro</Table.HeadCell>
-                <Table.HeadCell>Estado</Table.HeadCell>
-                <Table.HeadCell></Table.HeadCell>
-              </Table.Head>
-              <Table.Body>
-                {Users?.data.map((user: User) => (
-                  <TBLUsers user={user} key={user.cedula} />
-                ))}
-              </Table.Body>
-            </Table>
+      <div className="flex place-content-center mt-14">
+        <div className="w-4/5">
+          <SearchUsers
+          setYear={setYear}
+          setRol={setRol}
+          setCedula={setCedula}
+          setName={setName}
+          />
+          {Users?.count == 0 ? (
+            <NoRequest text="No hay" />
+          ) : (
+            <>
+              <Table hoverable className=" text-center">
+                <Table.Head className=" h-20 text-sm">
+                  <Table.HeadCell>Cédula</Table.HeadCell>
+                  <Table.HeadCell>Nombre</Table.HeadCell>
+                  <Table.HeadCell>Rol</Table.HeadCell>
+                  <Table.HeadCell>Provincia</Table.HeadCell>
+                  <Table.HeadCell>Telefono</Table.HeadCell>
+                  <Table.HeadCell>Fecha de registro</Table.HeadCell>
+                  <Table.HeadCell>Estado</Table.HeadCell>
+                  <Table.HeadCell></Table.HeadCell>
+                </Table.Head>
+                <Table.Body>
+                  {Users?.data.map((user: User) => (
+                    <TBLUsers user={user} key={user.cedula} />
+                  ))}
+                </Table.Body>
+              </Table>
 
-            <div className=" w-full flex justify-between">
-              <div>
-                <span className=" pl-5">
-                  Mostrar{" "}
-                  <span>
-                    <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                  </span>{" "}
-                  Libros por pagina
-                </span>
+              <div className=" w-full flex justify-between">
+                <div>
+                  <span className=" pl-5">
+                    Mostrar{" "}
+                    <span>
+                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
+                    </span>{" "}
+                    Libros por pagina
+                  </span>
+                </div>
+                <PaginatationSelector
+                  totalPages={MaxPage}
+                  currentPage={currentPage}
+                  onPageChange={onPageChange}
+                />
               </div>
-              <PaginatationSelector
-                totalPages={MaxPage}
-                currentPage={currentPage}
-                onPageChange={onPageChange}
-              />
-            </div>
-          </div>
+            </>
+          )}
         </div>
-      )}
+      </div>
     </>
   );
 };

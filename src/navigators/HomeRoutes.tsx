@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import EditUser from "../components/Users/EditUser";
+import EditUser from "../features/Users/Pages/EditUser";
 import Login from "../features/Users/Auth/Login";
 import Register from "../features/Users/Auth/Register";
 import Layout from "../Pages/Layout";

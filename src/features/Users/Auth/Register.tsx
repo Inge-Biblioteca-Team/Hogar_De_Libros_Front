@@ -36,7 +36,7 @@ const Register = () => {
     const result = await trigger();
     if (!result) {
       toast.error(
-        "Por favor, corrige los errores antes de enviar el formulario"
+        "Por favor, corregir los errores antes de enviar el formulario"
       );
     }
 
