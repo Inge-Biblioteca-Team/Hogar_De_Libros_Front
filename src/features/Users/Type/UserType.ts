@@ -1,5 +1,5 @@
 export type User = {
-  cedula: number;
+  cedula: string;
   email: string;
   name: string;
   lastName: string;
@@ -10,6 +10,7 @@ export type User = {
   address:string;
   status: boolean;
   role:string;
+  birthDate:Date;
 };
 
 export type UsersResponse = {

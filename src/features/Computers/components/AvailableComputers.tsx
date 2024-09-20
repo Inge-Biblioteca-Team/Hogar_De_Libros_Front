@@ -31,25 +31,35 @@ const AvailableComputers = () => {
       </Breadcrumb>
       <div className=" flex items-center justify-center mt-10">
         <Card className="ml-4">
-          <p className="w-80">
-            Recuerda que la biblioteca cuenta con el servicio de préstamo de
-            equipos de cómputo. Si necesitas utilizar uno, puedes acudir a la
-            biblioteca. <br />
-            Sin embargo, solicitamos que tomes en cuenta las siguientes
-            consideraciones: <br />
+          <p className="w-96">
+            La biblioteca ofrece el servicio de préstamo de equipos de cómputo.
+            Si necesita utilizar uno, puede acudir al área correspondiente
+            dentro de la biblioteca. <br />
+            Sin embargo, es importante tener en cuenta las siguientes normas:{" "}
+            <br />
             <ul className="list-disc list-inside">
-              <li> <strong>No</strong> se permite comer junto al equipo de cómputo.</li>
               <li>
-                Cualquier <strong>daño</strong> causado al equipo será responsabilidad del
-                usuario, quien deberá reemplazar el componente dañado.
+                <strong>No</strong> está permitido comer, ni beber cerca de los
+                equipos de cómputo.
               </li>
-              <li>No apagues el equipo directamente desde el botón del CPU.</li>
-              <li>En caso de requerir audífonos, solicítalos al personal.</li>
+              <li>
+                Cualquier <strong>daño</strong> causado al equipo será
+                responsabilidad del usuario, quien deberá cubrir los costos de
+                reparación o reemplazo del equipo dañado.
+              </li>
+              <li>No apague el equipo directamente desde el botón del CPU.</li>
+              <li>
+                En caso de requerir audífonos, puede solicitarlos al personal a
+                cargo de la biblioteca.
+              </li>
+              <li>
+                El usuario es responsable de finalizar correctamente el préstamo
+                del equipo al termino de su uso.
+              </li>
             </ul>
-            Aqui puedes ver el estado actual de cada Equipo por su respectivo
-            numero. <br />
-            Su Disponibilidad esta presentada por colores de la siguiente
-            manera.
+            A continuación, se muestra el estado actual de cada equipo con su
+            respectivo número. <br />
+            La disponibilidad se indica mediante los siguientes colores:
             <ul>
               <li>
                 <span className="text-green-500 text-2xl">●</span>
@@ -57,11 +67,11 @@ const AvailableComputers = () => {
               </li>
               <li>
                 <span className="text-yellow-500 text-2xl">●</span>
-                <span className="ml-2">En Mantenimiento</span>
+                <span className="ml-2">En mantenimiento</span>
               </li>
               <li>
                 <span className="text-red-500 text-2xl">●</span>
-                <span className="ml-2">En Uso</span>
+                <span className="ml-2">En uso</span>
               </li>
             </ul>
           </p>

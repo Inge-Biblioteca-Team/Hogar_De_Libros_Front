@@ -1,9 +1,19 @@
-import { Label, TextInput } from "flowbite-react";
+import { Label, Select, TextInput } from "flowbite-react";
 import { FaFileSignature } from "react-icons/fa6";
 import { FaIdBadge } from "react-icons/fa";
 import { BsPersonSquare } from "react-icons/bs";
 import { CgScrollV } from "react-icons/cg";
-const SearchUsers = () => {
+const SearchUsers = ({
+  setYear,
+  setRol,
+  setCedula,
+  setName,
+}: {
+  setYear: (Year: string) => void;
+  setRol: (Rol: string) => void;
+  setCedula: (Cedula: string) => void;
+  setName: (Name: string) => void;
+}) => {
   return (
     <div className="w-full grid grid-cols-5 gap-2 pb-4">
       <div>
@@ -13,21 +23,37 @@ const SearchUsers = () => {
         <TextInput
           id="InitialDate"
           type="text"
-          placeholder="Cédula sin guiones"
+          placeholder="Cédula"
           icon={FaIdBadge}
+          onChange={(event) => setCedula(event.target.value)}
         />
       </div>
       <div>
         <Label className=" text-lg">Nombre</Label>
-        <TextInput type="text" placeholder="Nombre" icon={BsPersonSquare} />
+        <TextInput
+          type="text"
+          placeholder="Nombre"
+          icon={BsPersonSquare}
+          onChange={(event) => setName(event.target.value)}
+        />
       </div>
       <div>
-        <Label className=" text-lg">Privilegios</Label>
-        <TextInput type="text" placeholder="Roll" icon={CgScrollV} />
+        <Label className=" text-lg">Tipo de Usuario</Label>
+        <Select
+          icon={CgScrollV}
+          onChange={(event) => setRol(event.target.value)}
+        >
+          <option value="">Rol del usuario</option>
+          <option value="viewer">Usuario de Sala</option>
+          <option value="creator">Colaborador</option>
+          <option value="external_user">Usuario Externo</option>
+          <option value="admin">Administrador</option>
+        </Select>
       </div>
       <div>
         <Label className=" text-lg">Año de registro</Label>
         <TextInput
+          onChange={(event) => setYear(event.target.value)}
           type="text"
           icon={FaFileSignature}
           placeholder="Año de Registro"

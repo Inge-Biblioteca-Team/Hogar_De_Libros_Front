@@ -6,15 +6,19 @@ import UserInfo from "./Modals/UserInfo";
 import EditUser from "./Modals/EditUser";
 import DisableUser from "./Modals/DisableUser";
 import { format } from "@formkit/tempo";
+import ReactiveUser from "./Modals/ReactiveUser";
 
 const TBLUsers = ({ user }: { user: User }) => {
   const [see, setSee] = useState<boolean>(false);
   const [down, setDow] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(false);
+  const [reactive, setREACTIVE] = useState<boolean>(false);
 
   const roleMapping: { [key: string]: string } = {
     admin: "Administrador",
     creator: "Ayudante",
+    viewer: "Usuario de sala",
+    external_user: "Usuario Externo",
   };
 
   const RegDate = format({
@@ -31,7 +35,7 @@ const TBLUsers = ({ user }: { user: User }) => {
           {user.name} {user.lastName}{" "}
         </Table.Cell>
         <Table.Cell className="w-56">
-          {roleMapping[user.role] || "Basico"}{" "}
+          {roleMapping[user.role] || "Usuario de Sala"}{" "}
         </Table.Cell>
         <Table.Cell className="w-56">{user.province} </Table.Cell>
         <Table.Cell className="w-56">{user.phoneNumber} </Table.Cell>
@@ -40,12 +44,19 @@ const TBLUsers = ({ user }: { user: User }) => {
           {user.status ? "Activo" : "Inactivo"}{" "}
         </Table.Cell>
         <Table.Cell className="w-52">
-          <BTNAccions setSee={setSee} setDow={setDow} setEdit={setEdit} UserStatus={user.status} />
+          <BTNAccions
+            setREACTIVE={setREACTIVE}
+            setSee={setSee}
+            setDow={setDow}
+            setEdit={setEdit}
+            UserStatus={user.status}
+          />
         </Table.Cell>
       </Table.Row>
       <UserInfo see={see} setSee={setSee} User={user} />
       <EditUser edit={edit} setEdit={setEdit} User={user} />
       <DisableUser dow={down} setDow={setDow} User={user} />
+      <ReactiveUser dow={reactive} setDow={setREACTIVE} User={user} />
     </>
   );
 };
