@@ -40,7 +40,7 @@ const TBLUsers = ({ user }: { user: User }) => {
           {user.status ? "Activo" : "Inactivo"}{" "}
         </Table.Cell>
         <Table.Cell className="w-52">
-          <BTNAccions setSee={setSee} setDow={setDow} setEdit={setEdit} />
+          <BTNAccions setSee={setSee} setDow={setDow} setEdit={setEdit} UserStatus={user.status} />
         </Table.Cell>
       </Table.Row>
       <UserInfo see={see} setSee={setSee} User={user} />

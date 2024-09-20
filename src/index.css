@@ -45,3 +45,10 @@ input[type="number"] {
   -moz-appearance: textfield;
   appearance: none;
 }
+
+
+.custom-file-input input[type="file"]::file-selector-button {
+  background-color: #1a53d9; 
+ 
+}
+

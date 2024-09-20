@@ -13,7 +13,7 @@ import NoRequest from "../../Loan/Components/NoRequest";
 import TBLUsers from "../Components/TBLUsers";
 import SearchUsers from "../Components/SearchUers";
 import { GetUsersList } from "../Services/SvUsuer";
-import { User } from "../Type/UserType";
+import { User, UsersResponse } from "../Type/UserType";
 
 const ManageUsers = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -31,7 +31,7 @@ const ManageUsers = () => {
     sessionStorage.setItem("UersCPages", currentPage.toString());
   }, [currentPage]);
 
-  const { data: Users } = useQuery<User[], Error>(
+  const { data: Users } = useQuery<UsersResponse, Error>(
     ["UsersMG", currentPage, currentLimit],
     () => GetUsersList(currentPage, currentLimit),
     {
@@ -39,7 +39,7 @@ const ManageUsers = () => {
     }
   );
 
-  const MaxPage = Math.ceil((Users?.length ?? 0) / 5);
+  const MaxPage = Math.ceil((Users?.count ?? 0) / 5);
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">
@@ -48,7 +48,7 @@ const ManageUsers = () => {
         <LoanCrumb />
         <LastCrumb CurrentPage="Lista de Usuarios" />
       </Breadcrumb>
-      {Users?.length == 0 ? (
+      {Users?.count == 0 ? (
         <NoRequest text="No hay" />
       ) : (
         <div className="flex place-content-center mt-14">
@@ -66,7 +66,7 @@ const ManageUsers = () => {
                 <Table.HeadCell></Table.HeadCell>
               </Table.Head>
               <Table.Body>
-                {Users?.slice(0,5).map((user: User) => (
+                {Users?.data.map((user: User) => (
                   <TBLUsers user={user} key={user.cedula} />
                 ))}
               </Table.Body>

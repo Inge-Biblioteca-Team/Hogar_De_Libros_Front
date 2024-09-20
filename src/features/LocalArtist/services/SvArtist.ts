@@ -1,30 +1,36 @@
 import axios from "axios";
+import api from "../../../Services/AxiosConfig";
+import { createArtist, updateArtist } from "../types/LocalArtist";
 
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-  timeout: 1000,
-});
-
-const getLocalArtist = async (page: number, limit: number) => {
+const getLocalArtist = async (
+  page: number,
+  limit: number,
+  Name?: string,
+  Type?: string,
+  Status?: string
+) => {
   try {
-    const response = await api.get(`local-artist`, {
-      params: {
-        page: page,
-        limit: limit,
-      },
-    });
+    const params: { [key: string]: string | number | undefined } = {
+      page,
+      limit,
+    };
+    if (Name) params.Name = Name;
+    if (Type) params.ArtisProfession = Type;
+    if (Status) params.Actived = Status;
+
+    const response = await api.get("/local-artist", { params });
     return response.data;
   } catch (error) {
-    console.error("Error to get requests:", error);
+    console.error(error);
     throw error;
   }
 };
 
-const createLocalArtist = async (data: Object) => {
+const createLocalArtist = async (data: createArtist) => {
   try {
-    const addArtist = await api.post('local-artist', data, {
+    const addArtist = await api.post("local-artist", data, {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
     return addArtist.data;
@@ -33,17 +39,16 @@ const createLocalArtist = async (data: Object) => {
   }
 };
 
-
-const editArtist = async (id: number, data: Object) => {
+const editArtist = async (id: number, data: updateArtist) => {
   try {
     const response = await api.patch(`local-artist/${id}`, data, {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
     return response.data;
   } catch (error) {
-    console.error('Error editing artist:', error);
+    console.error("Error editing artist:", error);
     throw error;
   }
 };
@@ -58,4 +63,34 @@ const DownArtist = async (id: number) => {
   }
 };
 
-export { getLocalArtist, DownArtist, createLocalArtist, editArtist };
+const uploadImage = async (file: File): Promise<string> => {
+  if (file) {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/files/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      return response.data.filePath;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      throw new Error("Error uploading image");
+    }
+  }
+  throw new Error("No file provided");
+};
+
+export {
+  getLocalArtist,
+  DownArtist,
+  createLocalArtist,
+  editArtist,
+  uploadImage,
+};

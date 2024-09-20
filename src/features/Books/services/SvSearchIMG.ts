@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Covers, IMGsearh } from "../type/SearchIMG";
+import api from "../../../Services/AxiosConfig";
 
 const searchImages = async (search: string): Promise<IMGsearh[]> => {
   try {
@@ -25,7 +26,7 @@ const uploadImage = async (file: File): Promise<string> => {
     formData.append('image', file);
 
     try {
-      const response = await axios.post('http://localhost:3000/files/upload', formData, {
+      const response = await api.post('/files/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
