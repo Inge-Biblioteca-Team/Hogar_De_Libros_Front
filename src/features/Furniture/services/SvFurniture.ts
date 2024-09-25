@@ -4,7 +4,6 @@ import { FurnitureEdit } from "../type/furniture";
 
   const PostNewFurniture = async (furniture:FurnitureEdit) =>{
     try{
-        console.table(furniture);
         const response = await api.post(`/Furniture`, furniture);
         return response.data;
     } catch (error){

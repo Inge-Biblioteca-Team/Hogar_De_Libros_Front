@@ -90,7 +90,7 @@ interface Payload extends JwtPayload {
 const LogIn = async (Data: SingIng) => {
   try {
     const response = await api.post("auth/login", Data);
-    sessionStorage.setItem("Token2", response.data.access_token);
+    sessionStorage.setItem("Token", response.data.access_token);
     const Token = response.data.access_token;
     if (Token) {
       try {

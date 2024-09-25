@@ -57,7 +57,7 @@ const ModalewSWLoan = ({
           >
             Cancelar
           </Button>
-          <Button type="submit" color={"success"}>
+          <Button type="submit" color={"blue"}>
             Confirmar
           </Button>
         </Modal.Footer>
