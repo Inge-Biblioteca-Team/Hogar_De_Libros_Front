@@ -40,7 +40,6 @@ const EditUserAdmin = () => {
   };
 
   const handleConfirmSave = () => {
-    console.log("Información guardada:", formData);
     handleCloseConfirm();
     handleCloseModal();
   };

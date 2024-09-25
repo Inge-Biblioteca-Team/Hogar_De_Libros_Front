@@ -29,7 +29,6 @@ const Register = () => {
   const { mutate: signUp } = UseRegister();
 
   const onSubmit = (data: RegisterInfo) => {
-    console.log(data);
     signUp(data);
   };
   const handleValidationErrors = async () => {

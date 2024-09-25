@@ -42,7 +42,7 @@ const ModalMantenance = ({
         </Modal.Body>
         <Modal.Footer className=" w-full flex items-center justify-center">
           <Button type="button" color={"failure"} onClick={() => setOpen(false)} >Cancelar</Button>
-          <Button type="submit" color={"success"}>Confirmar</Button>
+          <Button type="submit" color={"blue"}>Confirmar</Button>
         </Modal.Footer>
       </form>
     </Modal>
