@@ -1,4 +1,5 @@
 import axios from "axios";
+import api from "../../../Services/AxiosConfig";
 
 const getEvents = async () => {
   const response = await axios.get(
@@ -7,4 +8,21 @@ const getEvents = async () => {
   return response.data;
 };
 
-export { getEvents };
+
+const GetNextEvents = async (
+  month?: string,
+  type?: string
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {};
+    if (month) params.month = month;
+    if (type) params.type = type;
+
+    const response = await api.get("/events/NextEvents", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+export { getEvents, GetNextEvents };

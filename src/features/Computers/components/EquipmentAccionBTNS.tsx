@@ -10,7 +10,7 @@ const EquipmentAccionBTNS = ({ computers }: { computers: Equipment }) => {
   const [openEdit, setOpenEdit] = useState(false);
   const [openSee, setOpenSee] = useState(false);
   return (
-    <div className=" flex gap-7 ">
+    <div className=" flex gap-7 w-full items-end justify-end mr-9 ">
       <button
         title="ver información"
         type="button"

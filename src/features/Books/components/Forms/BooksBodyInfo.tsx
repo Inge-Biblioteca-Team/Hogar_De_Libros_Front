@@ -17,19 +17,19 @@ const BooksBodyInfo = ({ book }: { book: Book }) => {
         />
       </figure>
       <span className=" inline-grid ">
-        <strong>Titulo del Libro</strong>
+        <strong>Título del Libro</strong>
         <span>{book?.Title}</span>
         <strong>Autor</strong>
         <span>{book?.Author}</span>
-        <strong>Codigo ISBN</strong>
+        <strong>Código ISBN</strong>
         <span>{book?.ISBN}</span>
-        <strong>Codigo de Signatura</strong>
+        <strong>Código de Signatura</strong>
         <span>{book?.SignatureCode}</span>
         <strong>Categoría de estante</strong>
         <span>{book?.ShelfCategory}</span>
       </span>
       <span className="inline-grid ">
-        <strong>Codigo de inscripción</strong>
+        <strong>Código de inscripción</strong>
         {book?.InscriptionCode == "" ? (
           <span>Pendiente</span>
         ) : (

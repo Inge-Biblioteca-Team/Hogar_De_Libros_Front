@@ -91,7 +91,7 @@ const NewComponent = ({
               <span>
                 <Label
                   htmlFor="EquipamentMachineNumber"
-                  value="Numero de Maquina"
+                  value="Número de Máquina"
                 />
                 <TextInput
                   id="MachineNumber"
@@ -102,7 +102,7 @@ const NewComponent = ({
                 />
               </span>
             </fieldset>
-            <fieldset className="grid grid-cols-2 gap-7 text-center">
+            <fieldset className="grid grid-cols-2 gap-7 text-center mt-8">
               <legend>Información Adicional</legend>
               <span>
                 <Label htmlFor="ConditionRating" value="Condición" />

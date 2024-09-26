@@ -22,10 +22,10 @@ const BTNResolveLoan = ({Loan}:{Loan:Loans}) => {
     <>
       <div className=" flex justify-center gap-x-12">
         <button type="button" onClick={()=>setSee(true)}>
-         {""} <PiEyeFill size={30} color="blue" />
+         {""} <PiEyeFill size={30}  />
         </button>
         <button type="button" title="Rechazar préstamo" onClick={()=>setShowD(true)}>
-          <MdCancel size={30} color="red" />
+          <MdCancel size={30}  />
         </button>
         <Popover
         content={
@@ -33,7 +33,7 @@ const BTNResolveLoan = ({Loan}:{Loan:Loans}) => {
         }
         >
         <button type="button" title="Aprobar préstamo"  >
-          <GiConfirmed size={30} color="green" />
+          <GiConfirmed size={30}  />
         </button>
         </Popover>
       </div>

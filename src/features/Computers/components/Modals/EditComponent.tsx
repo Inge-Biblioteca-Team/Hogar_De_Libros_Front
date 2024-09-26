@@ -65,7 +65,7 @@ const EditComponent = ({
   return (
     <>
       <Modal show={sEdit} onClose={() => setSEdit(false)}>
-        <Modal.Header>Añadir Nuevo Componete de cómputo</Modal.Header>
+        <Modal.Header>Editar componente del equipo</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
             <fieldset className=" grid grid-cols-2 gap-7 text-center">
@@ -109,7 +109,7 @@ const EditComponent = ({
               <span>
                 <Label
                   htmlFor="EquipamentMachineNumber"
-                  value="Numero de Maquina"
+                  value="Número de Máquina"
                 />
                 <TextInput
                   id="MachineNumber"
@@ -120,7 +120,7 @@ const EditComponent = ({
                 />
               </span>
             </fieldset>
-            <fieldset className="grid grid-cols-2 gap-7 text-center">
+            <fieldset className="grid grid-cols-2 gap-7 text-center mt-8">
               <legend>Información Adicional</legend>
               <span>
                 <Label htmlFor="ConditionRating" value="Condición" />

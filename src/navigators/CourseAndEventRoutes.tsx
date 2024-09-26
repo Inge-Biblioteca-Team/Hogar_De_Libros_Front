@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Layout from "../Pages/Layout";
 import CoruseSchedule from "../features/Courses/Pages/CoruseSchedule";
+import EventsSchedule from "../features/EventsSection/Pages/EventsSchedule";
 
 const CorusesAndEventRoutes = [
     {
@@ -32,6 +33,15 @@ const CorusesAndEventRoutes = [
             },
           ],
         },
+        {
+          path:'ProximosEventos',
+          children:[
+            {
+              index:true,
+              element: <EventsSchedule/>
+            }
+          ]
+        }
       ],
     },
   ];

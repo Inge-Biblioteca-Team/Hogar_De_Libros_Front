@@ -62,7 +62,7 @@ const FormEditBook = ({ book, category }: { book: Book; category: string }) => {
           style={{ gridTemplateColumns: "" }}
         >
           <fieldset className="flex-none w-full">
-            <legend className=" pb-3 font-bold ">Caratula del libro</legend>
+            <legend className=" pb-3 font-bold ">Carátula del libro</legend>
             <figure className="relative ">
               <img
                 className="rounded-xl shadow-xl w-full"
@@ -85,6 +85,7 @@ const FormEditBook = ({ book, category }: { book: Book; category: string }) => {
                 />
                 <Button
                   className=" rounded-none rounded-s-md"
+                  color={"blue"}
                   onClick={() => setShowModal(true)}
                 >
                   Cambiar Imagen
@@ -153,11 +154,12 @@ const FormEditBook = ({ book, category }: { book: Book; category: string }) => {
               />
             </span>
             <span>
-              <Checkbox id="Reserva" {...register("ReserveBook")} />
+              <Checkbox id="Reserva" {...register("ReserveBook")}
+              className="" />
               <Label
                 htmlFor="Reserva"
                 value="Libro de Reserva"
-                className="text-xl"
+                className="text-xl ml-2"
               />
             </span>
           </fieldset>

@@ -132,7 +132,7 @@ const NewAdminLoan = () => {
                 <TextInput
                   type="number"
                   id="disabledInput1"
-                  placeholder="Numero de cedula sin guiones"
+                  placeholder="Número de cedula sin guiones"
                   {...register("userCedula")}
                   onChange={(event) => SetCedula(event.target.value)}
                   required
@@ -243,7 +243,7 @@ const NewAdminLoan = () => {
               </span>
               <span>
                 <Label htmlFor="disabledInput2">
-                  Fecha de vencimiento del préstamo
+                  Fecha de devolución
                 </Label>
                 <TextInput
                   type="date"

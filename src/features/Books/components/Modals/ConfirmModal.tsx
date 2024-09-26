@@ -21,7 +21,7 @@ const ConfirmModal = ({
         <p>
           ¿Está seguro de que desea {Accion} este Libro?
           <br />
-          <strong>Titulo:</strong>
+          <strong>Título:</strong>
           <span> {Book.Title}</span>
           <br />
           <strong>Editorial:</strong>

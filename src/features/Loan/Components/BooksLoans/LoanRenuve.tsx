@@ -36,11 +36,11 @@ const LoanRenuve = ({
   return (
     <>
       <Modal show={showChange} onClose={() => setShowChange(false)}>
-        <Modal.Header>Extencion de fecha de devolucion</Modal.Header>
+        <Modal.Header>Extencion de fecha de devolución</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
             <div className="">
-              <label htmlFor="NewDate">Ingrese la fecha de devolucion</label>
+              <label htmlFor="NewDate">Ingrese la fecha de devolución</label>
               <TextInput
                 id="NewDate"
                 type="date"
@@ -56,7 +56,7 @@ const LoanRenuve = ({
                   Regresar
                 </Button>
                 <Button color="blue" type="submit">
-                  Enviar
+                  Guardar
                 </Button>
               </div>
             </div>

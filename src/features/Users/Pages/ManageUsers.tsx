@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import {
   HomeCrumb,
-  ManageCrumb,
   LoanCrumb,
   LastCrumb,
 } from "../../../components/BreadCrumb";
@@ -54,7 +53,6 @@ const ManageUsers = () => {
     <>
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
-        <ManageCrumb />
         <LoanCrumb />
         <LastCrumb CurrentPage="Lista de Usuarios" />
       </Breadcrumb>
@@ -76,7 +74,7 @@ const ManageUsers = () => {
                   <Table.HeadCell>Nombre</Table.HeadCell>
                   <Table.HeadCell>Rol</Table.HeadCell>
                   <Table.HeadCell>Provincia</Table.HeadCell>
-                  <Table.HeadCell>Telefono</Table.HeadCell>
+                  <Table.HeadCell>Teléfono</Table.HeadCell>
                   <Table.HeadCell>Fecha de registro</Table.HeadCell>
                   <Table.HeadCell>Estado</Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
@@ -88,14 +86,14 @@ const ManageUsers = () => {
                 </Table.Body>
               </Table>
 
-              <div className=" w-full flex justify-between">
+              <div className=" w-full flex justify-between mt-4">
                 <div>
                   <span className=" pl-5">
                     Mostrar{" "}
                     <span>
                       <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
                     </span>{" "}
-                    Libros por pagina
+                    Usuarios por página
                   </span>
                 </div>
                 <PaginatationSelector

@@ -56,13 +56,13 @@ const WorkStationsLoanHistory = () => {
             <Table.Head className=" h-16 text-sm">
               <Table.HeadCell>
                 <span className=" flex items-center justify-center gap-2">
-                  Numero de Maquina
+                  Número de Máquina
                   <TextInput className="w-8" type="number" placeholder="#" onChange={(event)=>SetMachineNumber(event.target.value)} />
                 </span>
               </Table.HeadCell>
               <Table.HeadCell>
                 Nombre del Usuario</Table.HeadCell>
-              <Table.HeadCell>Aprovado Por</Table.HeadCell>
+              <Table.HeadCell>Aprobado Por</Table.HeadCell>
               <Table.HeadCell>
                 <span className=" flex items-center justify-center gap-2">
                   <span>Fecha de inicio</span>
@@ -87,7 +87,7 @@ const WorkStationsLoanHistory = () => {
                 <span>
                   <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
                 </span>{" "}
-                Resultados por pagina
+                Resultados por página
               </span>
             </div>
             <PaginatationSelector

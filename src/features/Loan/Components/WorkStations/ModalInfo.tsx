@@ -29,36 +29,37 @@ const ModalInfo = ({
         <Modal.Header>
           <span>Información de préstamo de equipo</span>
         </Modal.Header>
-        <span className=" flex-col flex ml-3 gap-4 mt-3">
-          <span>
-            {" "}
-            <strong>Numero de préstamo: </strong> {WS.ComputerLoanId}
+        <Modal.Body>
+          <span className=" flex-col flex ml-3 gap-4 mt-3">
+            <span>
+              {" "}
+              <strong>Número de préstamo: </strong> {WS.ComputerLoanId}
+            </span>
+            <span>
+              {" "}
+              <strong>Número de Máquina:</strong> {WS.workStation}
+            </span>
+            <span>
+              {" "}
+              <strong>Usuario:</strong> {WS.UserName}
+            </span>
+            <span>
+              {" "}
+              <strong>Aprobado Por:</strong> {WS.AdminName}
+            </span>
+            <span>
+              {" "}
+              <strong>Fecha y Hora del uso:</strong> {LoanDate}
+            </span>
+            <span>
+              <strong>Hora de Fin:</strong>{" "}
+              {WS.Status == "En curso" ? "Pendiente" : LoanEDate}
+            </span>
+            <span>
+              <strong>Estado:</strong> {WS.Status}
+            </span>
           </span>
-          <span>
-            {" "}
-            <strong>Numero de Maquina:</strong> {WS.workStation}
-          </span>
-          <span>
-            {" "}
-            <strong>Usuario:</strong> {WS.UserName}
-          </span>
-          <span>
-            {" "}
-            <strong>Aprobado Por:</strong> {WS.AdminName}
-          </span>
-          <span>
-            {" "}
-            <strong>Fecha y Hora del uso:</strong> {LoanDate}
-          </span>
-          <span>
-            <strong>Hora de Fin:</strong>{" "}
-            {WS.Status == "En curso" ? "Pendiente" : LoanEDate}
-          </span>
-          <span>
-            <strong>Estado:</strong> {WS.Status}
-          </span>
-        </span>
-        <Modal.Body></Modal.Body>
+        </Modal.Body>
 
         <Modal.Footer className=" flex items-center justify-center">
           <Button color={"blue"} onClick={() => setShow(false)}>

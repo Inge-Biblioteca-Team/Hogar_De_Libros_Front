@@ -55,7 +55,7 @@ const EditArtist = ({
   return (
     <>
       <Modal show={edit} onClose={() => setEdit(false)}>
-        <Modal.Header>Añadir nuevo Artista</Modal.Header>
+        <Modal.Header>Editar Artista</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
             <div className="w-full flex items-center justify-center">

@@ -106,7 +106,7 @@ const EditUser = () => {
           </fieldset>
           <fieldset>
             <legend className=" text-2xl font-bold">
-              Informacíon de contacto
+              Información de contacto
             </legend>
             <Card>
               <div className=" flex items-end justify-between">
