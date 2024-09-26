@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { getCourses } from "../services/SvCourses";
+import { getCoursesS } from "../services/SvCourses";
 import { Course } from "../types/Courses";
 import CardCourses from "../components/CardCourses";
 
@@ -9,7 +9,7 @@ const UpcomingCourses = () => {
     data: UpCourses,
     isLoading,
     error,
-  } = useQuery<Course[], Error>("courses", getCourses);
+  } = useQuery<Course[], Error>("courses", getCoursesS);
   const [showAll, setShowAll] = useState(false);
 
   if (isLoading) return <span>Loading...</span>;
@@ -47,8 +47,3 @@ const UpcomingCourses = () => {
 };
 
 export default UpcomingCourses;
-
-//Ver menos falta
-//Cambiar a carrusel y cambiar a flex
-//El boton show more se ha de eliminar o remplazar
-

@@ -1,6 +1,6 @@
-import { Course } from "../types/Courses";
+import { Courses } from "../types/Courses";
 
-const CardCourses = ({ Courses }: { Courses: Course }) => {
+const CardCourses = ({ Courses }: { Courses: Courses }) => {
   return (
     <figure
       className=" rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3
@@ -9,23 +9,23 @@ const CardCourses = ({ Courses }: { Courses: Course }) => {
       <img
         className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-fit
             max-sm:h-48 max-sm:rounded-md"
-        src={Courses.Image}
-        alt={Courses.Name}
+        src={Courses.image}
+        alt={Courses.courseType}
       />
       <figcaption className=" text-lg break-words max-w-80 px-4 max-sm:text-sm">
-        <strong>{Courses.CourseType}</strong>
+        <strong>{Courses.courseType}</strong>
         <p>
-          <span>{Courses.Name}</span>
+          <span>{Courses.instructor}</span>
           <br />
-          <span>Lugar: {Courses.Location}</span>
+          <span>Lugar: {Courses.location}</span>
           <br />
-          {Courses.Quota ? (
-            <span>Cupos:{Courses.MaxQuota}</span>
+          {Courses.capacity ? (
+            <span>Cupos:{Courses.capacity}</span>
           ) : (
             <span>Abierto a todo Publico</span>
           )}
           <br />
-          <span>Fecha: {Courses.date}</span>
+          <span>Fecha: {new Date(Courses.endDate).toLocaleDateString()}</span>
         </p>
         <button
           className="bg-Bottoms text-Text text-lg rounded-lg p-1.5 mt-5 mb-5

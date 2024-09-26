@@ -75,7 +75,7 @@ const EditArtist = ({
               )}
             </div>
             <fieldset className="grid grid-cols-2 gap-3">
-              <legend>Infomación Basica</legend>
+              <legend>Infomación Básica</legend>
               <div>
                 <Label htmlFor="Name" value="Nombre" />
                 <TextInput

@@ -4,6 +4,9 @@ import Login from "../features/Users/Auth/Login";
 import Register from "../features/Users/Auth/Register";
 import Layout from "../Pages/Layout";
 import Landing from "../screens/Landing";
+import CourseInfo from "../features/Courses/components/Modals/CourseInfo";
+import EditCourse from "../features/Courses/components/Modals/EditCourse";
+import CreateCourse from "../features/Courses/components/Modals/CreateCourse";
 
 const homeRoutes = [
   {
@@ -31,6 +34,18 @@ const homeRoutes = [
   {
     path: "EditUser",
     element: <EditUser />,
+  },
+  {
+    path: "vista-curso",
+    element: < CourseInfo />
+  },
+  {
+    path: "editar-curso",
+    element: < EditCourse />
+  },
+  {
+    path: "añadir-curso",
+    element: < CreateCourse />
   },
 ];
 

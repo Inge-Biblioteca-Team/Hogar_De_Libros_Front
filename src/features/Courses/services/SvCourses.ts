@@ -1,7 +1,10 @@
 import axios, { AxiosError } from "axios";
 import api from "../../../Services/AxiosConfig";
+import { createCourse, updateCourse } from "../types/Courses";
 
-const getCourses = async () => {
+
+
+const getCoursesS = async () => {
   const response = await axios.get(
     "https://668c2a850b61b8d23b0ca034.mockapi.io/Courses"
   );
@@ -30,6 +33,7 @@ const GetNextCourses = async (
     throw error;
   }
 };
+
 const GetUserEnrollment = async (
   page?: number,
   limit?: number,
@@ -71,4 +75,92 @@ const CancelEroll = async (courseID: number, userCedula: string) => {
     throw new Error("Error desconocido al cancelar la matrícula");
   }
 };
-export { getCourses, GetNextCourses, GetUserEnrollment, CancelEroll };
+
+
+const getCourses = async (page: number, limit: number, Name?: string) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {
+      page,
+      limit,
+    };
+    if (Name) params.Name = Name;
+    const response = await api.get("courses", {params});
+    return response.data;
+  } catch (error) {
+    console.error("Error to get courses:", error);
+    throw error;
+  }
+};
+
+const DownCourse = async (courseId: number) => {
+  try {
+    const response = await api.patch(`courses/${courseId}/disable`);
+    return response.data;
+  } catch (error) {
+    console.error("Error to disbale:", error);
+    throw error;
+  }
+};
+
+const editCourse = async (courseId: number, data: updateCourse) => {
+  try {
+    const response = await api.patch(`/courses/${courseId}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error editing course:", error);
+    throw error;
+  }
+};
+
+const CreateCourses = async (data: createCourse) => {
+  try {
+    const addCourse = await api.post("courses", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return addCourse.data;
+  } catch (error) {
+    console.log("Error to post Course:", error);
+  }
+};
+
+const uploadImage = async (file: File): Promise<string> => {
+  if (file) {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/files/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      return response.data.filePath;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      throw new Error("Error uploading image");
+    }
+  }
+  throw new Error("No file provided");
+};
+
+export {
+  CreateCourses,
+  getCourses,
+  GetNextCourses,
+  GetUserEnrollment,
+  CancelEroll,
+  uploadImage,
+  editCourse,
+  DownCourse,
+  getCoursesS
+};
