@@ -1,19 +1,30 @@
 import axios from "axios";
 import api from "../../../Services/AxiosConfig";
-import { SingIng } from "../Type/UserType";
+import { SingIng, User } from "../Type/UserType";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 
-const GetUsersList = async (page: number, limit: number) => {
+const GetUsersList = async (
+  page: number,
+  limit: number,
+  cedula?: string,
+  name?: string,
+  rol?: string,
+  year?: string
+) => {
   try {
-    const response = await api.get(`user`, {
-      params: {
-        page: page,
-        limit: limit,
-      },
-    });
+    const params: { [key: string]: string | number | undefined } = {
+      page,
+      limit,
+    };
+
+    if (name) params.name = name;
+    if (cedula) params.cedula = cedula;
+    if (rol) params.role = rol;
+    if (year) params.registerDate = year;
+    const response = await api.get("user", { params });
     return response.data;
   } catch (error) {
-    console.error("Error to get requests:", error);
+    console.error(error);
     throw error;
   }
 };
@@ -36,9 +47,18 @@ const GetUserData = async (NCedula: string) => {
   }
 };
 
-const DownUser = async (cedula: number) => {
+const DownUser = async (cedula: string) => {
   try {
-    const response = await api.patch(`user/status/${cedula}`);
+    const response = await api.patch(`user/change-status/${cedula}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error to disbale:", error);
+    throw error;
+  }
+};
+const UpUser = async (cedula: string) => {
+  try {
+    const response = await api.patch(`user/Up-status/${cedula}`);
     return response.data;
   } catch (error) {
     console.error("Error to disbale:", error);
@@ -70,12 +90,11 @@ interface Payload extends JwtPayload {
 const LogIn = async (Data: SingIng) => {
   try {
     const response = await api.post("auth/login", Data);
-    sessionStorage.setItem("Token2", response.data.access_token);
+    sessionStorage.setItem("Token", response.data.access_token);
     const Token = response.data.access_token;
     if (Token) {
       try {
         const decodedToken: Payload = jwtDecode(Token);
-        console.log(decodedToken);
         const sub = decodedToken.sub;
         const email = decodedToken.email;
         const role = decodedToken.role;
@@ -104,5 +123,23 @@ const GetUserInfo = async (NCedula: string) => {
   }
 };
 
+const PatchUserByAdmin = async (user: User, cedula: string) => {
+  try {
+    const response = await api.patch(`user/update/${cedula}`, user);
+    return response.data;
+  } catch (error) {
+    console.error;
+    throw error;
+  }
+};
 
-export { GetUsersList, GetUserData, DownUser, signIn, LogIn, GetUserInfo };
+export {
+  GetUsersList,
+  GetUserData,
+  DownUser,
+  signIn,
+  LogIn,
+  GetUserInfo,
+  PatchUserByAdmin,
+  UpUser
+};

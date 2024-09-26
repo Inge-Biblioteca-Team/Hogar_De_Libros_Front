@@ -5,7 +5,7 @@ const SltCurrentLimit = ({setCurrentLimit}:{setCurrentLimit: Dispatch<SetStateAc
     <select
     name="Limit"
     id="Limit"
-    title="Resultados por pagina"
+    title="Resultados por página"
     className=" bg-transparent border-none rounded-lg"
     onChange={(e) => setCurrentLimit(Number(e.target.value))}
   >

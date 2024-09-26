@@ -29,14 +29,13 @@ const Register = () => {
   const { mutate: signUp } = UseRegister();
 
   const onSubmit = (data: RegisterInfo) => {
-    console.log(data);
     signUp(data);
   };
   const handleValidationErrors = async () => {
     const result = await trigger();
     if (!result) {
       toast.error(
-        "Por favor, corrige los errores antes de enviar el formulario"
+        "Por favor, corregir los errores antes de enviar el formulario"
       );
     }
 

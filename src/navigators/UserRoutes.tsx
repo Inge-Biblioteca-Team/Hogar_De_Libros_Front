@@ -1,8 +1,10 @@
 import { Outlet } from "react-router-dom";
-import EditUser from "../components/Users/EditUser";
+import EditUser from "../features/Users/Pages/EditUser";
 import MyLoanHIstory from "../features/Loan/Components/UserLoans/MyLoanHIstory";
 import Layout from "../Pages/Layout";
 import NewUsaerLoan from "../features/Loan/Components/BooksLoans/NewUserLoan";
+import ChangePassword from "../features/Users/Components/ChangePassword";
+import UserEnrollmentCourses from "../features/Courses/screens/UserEnrollmentCourses";
 
 const UserRoutes = [
   {
@@ -21,9 +23,13 @@ const UserRoutes = [
             element: <MyLoanHIstory />,
           },
           {
-            path: "EditarPerfil",
+            path: "EditarPerfil/:Cedula",
             element: <EditUser />,
           },
+          {
+            path: "CursosMatriculados",
+            element: <UserEnrollmentCourses/>
+          }
         ],
       },
       {
@@ -37,6 +43,10 @@ const UserRoutes = [
       },
     ],
   },
+  {
+    path:"reset-password",
+    element: <ChangePassword/>
+  }
 ];
 
 export default UserRoutes;

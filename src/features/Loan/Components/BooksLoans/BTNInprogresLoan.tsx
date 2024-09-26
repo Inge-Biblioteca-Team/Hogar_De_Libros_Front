@@ -14,21 +14,21 @@ const BTNInprogresLoan = ({ Loan }: { Loan: Loans }) => {
     <>
       <div className=" flex justify-center gap-x-12">
         <button type="button" onClick={() => setSee(true)}>
-          {""} <PiEyeFill size={30} color="blue" />
+          {""} <PiEyeFill size={30} />
         </button>
         <button
           type="button"
           title="Renovar préstamo"
           onClick={() => setShowR(true)}
         >
-          <MdOutlineUpdate size={30} color="green" />
+          <MdOutlineUpdate size={30} />
         </button>
         <button
           type="button"
           title="Finalizar préstamo"
           onClick={() => setShowF(true)}
         >
-          <PiCalendarXLight size={30} color="red" />
+          <PiCalendarXLight size={30} />
         </button>
       </div>
       <LoanRenuve Loan={Loan} showChange={showR} setShowChange={setShowR} />

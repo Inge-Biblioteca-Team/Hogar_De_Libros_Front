@@ -9,10 +9,10 @@ const BookTBL = ({ books, accion1 }: { books: BookApiResponse, accion1:boolean }
     <>
       <Table hoverable className=" text-center">
         <Table.Head className="">
-          <Table.HeadCell className=" w-44">Titulo</Table.HeadCell>
+          <Table.HeadCell className=" w-44">Título</Table.HeadCell>
           <Table.HeadCell className=" w-44">Autor</Table.HeadCell>
           <Table.HeadCell className=" w-44">ISBN</Table.HeadCell>
-          <Table.HeadCell className=" w-44">Codigo De Signatura</Table.HeadCell>
+          <Table.HeadCell className=" w-44">Código De Signatura</Table.HeadCell>
           <Table.HeadCell className=" w-44">Estado</Table.HeadCell>
           <Table.HeadCell>
             <span className="sr-only">Acciones</span>

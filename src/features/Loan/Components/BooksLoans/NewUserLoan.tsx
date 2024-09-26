@@ -135,7 +135,7 @@ const NewUsaerLoan = () => {
                 <TextInput
                   type="text"
                   id="disabledInput1"
-                  placeholder="Numero de cedula sin guiones"
+                  placeholder="Número de cedula sin guiones"
                   {...register("userCedula")}
                   disabled
                 />
@@ -165,7 +165,7 @@ const NewUsaerLoan = () => {
                 <TextInput
                   type="text"
                   id="disabledInput2"
-                  placeholder="+Codigo Tu numero"
+                  placeholder="+Código Tu número"
                   {...register("PhoneNumber")}
                 />
               </span>
@@ -240,9 +240,10 @@ const NewUsaerLoan = () => {
               </span>
               <span>
                 <Label htmlFor="disabledInput2">
-                  Fecha de vencimiento del préstamo
+                  Fecha de devolución
                 </Label>
                 <TextInput
+                className=" w-72"
                   type="date"
                   {...register("LoanExpirationDate")}
                   min={minDate}
@@ -264,7 +265,7 @@ const NewUsaerLoan = () => {
                         >
                           Cancelar
                         </Button>
-                        <Button color={"success"} type="submit">
+                        <Button color={"blue"} type="submit">
                           Confirmar
                         </Button>
                       </div>

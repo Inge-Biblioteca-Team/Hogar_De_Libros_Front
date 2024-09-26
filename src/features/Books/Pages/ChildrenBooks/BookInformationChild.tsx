@@ -70,7 +70,7 @@ const BookInformationChild = () => {
           />
         </figure>
         <span className="flex flex-col justify-center text-2xl gap-2 ml-4  ">
-          <strong>Titulo</strong>
+          <strong>Título</strong>
           <span>{book?.Title}</span>
           <strong>Autor</strong>
           <span className=" w-96 line-clamp-2">{book?.Author}</span>
@@ -82,9 +82,9 @@ const BookInformationChild = () => {
           <span>
             {book?.PublishedYear == 0 ? "Desconocido" : book?.PublishedYear}
           </span>
-          <strong>Codigo ISBN</strong>
+          <strong>Código ISBN</strong>
           <span>{book?.ISBN}</span>
-          <strong>Codigo de Signatura</strong>
+          <strong>Código de Signatura</strong>
           <span>{book?.SignatureCode}</span>
           <div className="">
             {book?.BookCode && (

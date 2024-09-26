@@ -31,7 +31,7 @@ const ModalViewFurniture = ({
                 <strong>Persona a Cargo:</strong> {furniture.InChargePerson || "Sin asignar"}
               </span>
               <span>
-                <strong>Condición:</strong>
+                <strong>Condición: </strong>
                 {furniture.ConditionRating ? (
                   <ConditionStatus condition={furniture.ConditionRating} />
                 ) : (

@@ -11,7 +11,7 @@ const BtnAdminAdSearchCm = ({
 }) => {
   return (
     <button
-      title="Busqueda Avanzada"
+      title="Búsqueda Avanzada"
       type="button"
       className="bg-Bottoms text-white text-2xl rounded-lg px-2
       hover:bg-Bottoms-dark hover:scale-105

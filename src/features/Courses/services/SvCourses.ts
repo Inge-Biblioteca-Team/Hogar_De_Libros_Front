@@ -1,23 +1,85 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import api from "../../../Services/AxiosConfig";
 import { createCourse, updateCourse } from "../types/Courses";
 
-const getCourses = async (
-  page: number,
-  limit: number,
-  Name?: string,
+const GetNextCourses = async (
+  page?: number,
+  limit?: number,
+  month?: string,
+  type?: string,
+  cedula?: string
 ) => {
-  try { //revisar tipado
+  try {
+    const params: { [key: string]: string | number | undefined } = {};
+    if (page) params.page = page;
+    if (limit) params.limit = limit;
+    if (month) params.month = month;
+    if (type) params.type = type;
+    if (cedula) params.userCedula = cedula;
+
+    const response = await api.get("/courses/NextCourtes", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+const GetUserEnrollment = async (
+  page?: number,
+  limit?: number,
+  cedula?: string
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {};
+    if (page) params.page = page;
+    if (limit) params.limit = limit;
+    if (cedula) params.userCedula = cedula;
+
+    const response = await api.get("courses/User_Courses", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+interface ErrorResponse {
+  message: string;
+  error: string;
+  statusCode: number;
+}
+
+const CancelEroll = async (courseID: number, userCedula: string) => {
+  try {
+    const response = await api.patch(
+      `enrollments/cancel?courseId=${courseID}&userCedula=${userCedula}`
+    );
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const axiosError = error as AxiosError<ErrorResponse>;
+      if (axiosError.response) {
+        throw new Error(axiosError.response.data.message);
+      }
+    }
+    throw new Error("Error desconocido al cancelar la matrícula");
+  }
+};
+
+const getCourses = async (page: number, limit: number, Name?: string) => {
+  try {
+    //revisar tipado
     const params: { [key: string]: string | number | undefined } = {
       page: page || 1,
       limit: limit || 10,
     };
     if (Name) params.Name = Name;
-      const response = await api.get("/courses");
-      return response.data;
+    const response = await api.get("/courses");
+    return response.data;
   } catch (error) {
-      console.error("Error to get courses:", error);
-      throw error;
+    console.error("Error to get courses:", error);
+    throw error;
   }
 };
 
@@ -82,6 +144,13 @@ const uploadImage = async (file: File): Promise<string> => {
   throw new Error("No file provided");
 };
 
-
-
-export { getCourses, DownCourse, editCourse, uploadImage, CreateCourses };
+export {
+  CreateCourses,
+  getCourses,
+  GetNextCourses,
+  GetUserEnrollment,
+  CancelEroll,
+  uploadImage,
+  editCourse,
+  DownCourse,
+};

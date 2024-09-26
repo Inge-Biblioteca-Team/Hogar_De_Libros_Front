@@ -36,7 +36,7 @@ const ModalewSWLoan = ({
         <Modal.Body>
           <Label htmlFor="UserName">Nombre de Usuario</Label>
           <TextInput
-            className=""
+            className=" mb-4"
             type="text"
             required
             {...register("UserName")}
@@ -57,7 +57,7 @@ const ModalewSWLoan = ({
           >
             Cancelar
           </Button>
-          <Button type="submit" color={"success"}>
+          <Button type="submit" color={"blue"}>
             Confirmar
           </Button>
         </Modal.Footer>

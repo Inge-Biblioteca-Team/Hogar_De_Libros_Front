@@ -36,11 +36,11 @@ const ManageLocalArtist = () => {
     sessionStorage.setItem("ArtistPages", currentPage.toString());
   }, [currentPage]);
 
-  const Name = UseDebounce(SName, 100)
-  const Type = UseDebounce(SType, 100)
+  const Name = UseDebounce(SName, 100);
+  const Type = UseDebounce(SType, 100);
 
   const { data: Artists } = useQuery<ResponseA, Error>(
-    ["LocalArtistMG", currentPage, currentLimit,Name, Type, Status],
+    ["LocalArtistMG", currentPage, currentLimit, Name, Type, Status],
     () => getLocalArtist(currentPage, currentLimit, Name, Type, Status),
     {
       staleTime: 600,
@@ -58,52 +58,55 @@ const ManageLocalArtist = () => {
         <LastCrumb CurrentPage="Lista de Artistas" />
       </Breadcrumb>
 
-      {Artists?.data.length == 0 ? (
-        <NoRequest text="No Existen Artistas Locales registrados" />
-      ) : (
-        <div className=" w-full flex items-center justify-center pt-12">
-          <div className=" w-4/5">
-            <div className="flex items-center">
-              <SearchArtists 
+      <div className=" w-full flex items-center justify-center pt-12">
+        <div className=" w-4/5">
+          <div className="flex items-center">
+            <SearchArtists
               Status={SetStatus}
               SName={SetSName}
-              SType={SetSType}/>
-              <CreateArtist />
-            </div>
-            <Table hoverable className=" text-center">
-              <Table.Head className=" h-20 text-sm">
-                <Table.HeadCell>Nombre</Table.HeadCell>
-                <Table.HeadCell>Tipo de Artista</Table.HeadCell>
-                <Table.HeadCell>Información Relevante</Table.HeadCell>
-                <Table.HeadCell>Redes Sociales</Table.HeadCell>
-                <Table.HeadCell>Estado</Table.HeadCell>
-                <Table.HeadCell></Table.HeadCell>
-              </Table.Head>
-              <Table.Body>
-                {Artists?.data.map((artist: Artist) => (
-                  <TBLArtists key={artist.ID} artist={artist} />
-                ))}
-              </Table.Body>
-            </Table>
-            <div className=" w-full flex justify-between">
-              <div>
-                <span className=" pl-5">
-                  Mostrar{" "}
-                  <span>
-                    <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                  </span>{" "}
-                  Artistas por página
-                </span>
-              </div>
-              <PaginatationSelector
-                totalPages={MaxPage}
-                currentPage={currentPage}
-                onPageChange={onPageChange}
-              />
-            </div>
+              SType={SetSType}
+            />
+            <CreateArtist />
           </div>
+          {Artists?.data.length == 0 ? (
+            <NoRequest text="No Existen Artistas Locales registrados" />
+          ) : (
+            <>
+              <Table hoverable className=" text-center">
+                <Table.Head className=" h-20 text-sm">
+                  <Table.HeadCell>Nombre</Table.HeadCell>
+                  <Table.HeadCell>Tipo de Artista</Table.HeadCell>
+                  <Table.HeadCell>Información Relevante</Table.HeadCell>
+                  <Table.HeadCell>Redes Sociales</Table.HeadCell>
+                  <Table.HeadCell>Estado</Table.HeadCell>
+                  <Table.HeadCell></Table.HeadCell>
+                </Table.Head>
+                <Table.Body>
+                  {Artists?.data.map((artist: Artist) => (
+                    <TBLArtists key={artist.ID} artist={artist} />
+                  ))}
+                </Table.Body>
+              </Table>
+              <div className=" w-full flex justify-between">
+                <div>
+                  <span className=" pl-5">
+                    Mostrar{" "}
+                    <span>
+                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
+                    </span>{" "}
+                    Artistas por página
+                  </span>
+                </div>
+                <PaginatationSelector
+                  totalPages={MaxPage}
+                  currentPage={currentPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
+            </>
+          )}
         </div>
-      )}
+      </div>
     </>
   );
 };

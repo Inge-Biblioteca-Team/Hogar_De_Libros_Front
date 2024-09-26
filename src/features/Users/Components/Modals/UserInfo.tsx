@@ -1,7 +1,6 @@
 import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { User } from "../../Type/UserType";
-import { format } from "@formkit/tempo";
 
 const UserInfo = ({
   see,
@@ -12,40 +11,50 @@ const UserInfo = ({
   setSee: Dispatch<SetStateAction<boolean>>;
   User: User;
 }) => {
-  const roleMapping: { [key: string]: string } = {
-    admin: "Administrador",
-    creator: "Ayudante",
+  const LoanMapping: { [key: string]: string } = {
+    admin: "Ilimitado",
+    creator: "5 Libros por 30 días",
+    viewer: "No Apto Para Prestamos",
+    external_user: "5 Libros por maximo 30 días",
   };
 
-  const RegDate = format({
-    date: User.registerDate,
-    format: "DD/MM/YYYY",
-    tz: "America/Costa_Rica",
-  });
   return (
     <Modal show={see} onClose={() => setSee(false)}>
       <Modal.Header>
         <span>Información del Usuario</span>
       </Modal.Header>
-      <Modal.Body className="flex flex-col gap-2 ml-3">
-        <span className=" flex-col flex">
-          <strong>Información Del Usaurio </strong>
-          <span>Nombre: {User.name}</span>
-          <span>Apellidos: {User.lastName}</span>
-          <span>Cédula: {User.cedula}</span>
-          <span>Provincia: {User.province}</span>
-          <span>Fecha de registro: {RegDate}</span>
-          <span>Estado {User.status? "Activo": "Deshabilitado"}</span>
-          <span>Rol: {roleMapping[User.role] || "Basico"} </span>
-          <span>Privilegios de préstamo: 5 Libros Maximo por 30 Días </span>
+      <Modal.Body className="">
+        <figure className=" w-full flex items-center justify-center flex-col">
+          <img
+            className=" rounded-full w-40 h-40"
+            src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-512.png"
+            alt=""
+          />
+          <figcaption className=" font-bold mt-1">
+            {User.name} {User.lastName}
+          </figcaption>
+        </figure>
+        <span className=" flex-col flex items-center justify-center w-full gap-2">
+          <strong className=" font-bold mt-4">Información Del Usuario </strong>
+          <span>
+            <strong className=" font-bold">Cédula:</strong> {User.cedula}
+          </span>
+          <span>
+            <strong className=" font-bold">Cantón:</strong> {User.district}
+          </span>
         </span>
-        <span className="flex-col flex">
-          <strong>Contactos</strong>
-          <span>Correo: {User.email}</span>
-          <span>Telfono {User.phoneNumber}</span>
+        <span className="flex-col flex items-center justify-center w-full gap-2 mt-4">
+          <strong className=" font-bold">Contactos</strong>
+          <span>
+            <strong className=" font-bold">Correo:</strong> {User.email}
+          </span>
+          <span>
+            <strong className=" font-bold">Teléfono:</strong> {User.phoneNumber}
+          </span>
+          <span className=" font-bold">{LoanMapping[User.role] || "N/A"}</span>
         </span>
       </Modal.Body>
-      <Modal.Footer  className=" flex items-center justify-center">
+      <Modal.Footer className=" flex items-center justify-center">
         <Button color={"blue"} onClick={() => setSee(false)}>
           Cerrar
         </Button>

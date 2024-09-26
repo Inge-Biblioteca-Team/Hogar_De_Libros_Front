@@ -17,8 +17,8 @@ const TBLLoan = ({
           <Table.HeadCell>Fecha de solicitud</Table.HeadCell>
           <Table.HeadCell>Fecha de vencimiento</Table.HeadCell>
           <Table.HeadCell>Nombre del Solicitante</Table.HeadCell>
-          <Table.HeadCell>Titulo del libro</Table.HeadCell>
-          <Table.HeadCell>Codigo de signatura</Table.HeadCell>
+          <Table.HeadCell>Título del libro</Table.HeadCell>
+          <Table.HeadCell>Código de signatura</Table.HeadCell>
           <Table.HeadCell
             className={`${NeedAccions ? `hidden` : ``} rounded-r-xl`}
           >

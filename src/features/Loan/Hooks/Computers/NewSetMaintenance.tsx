@@ -7,8 +7,7 @@ const NewSetMaintenance = () => {
     const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (data: NewWSMantenance) => MantenanceWS(data),
-    onSuccess: (data) => {
-      console.log("Maintenance updated successfully:", data);
+    onSuccess: () => {
       queryClient.invalidateQueries("WSStatus");
       toast.success("Exito: Estado del equipo cambiado a En Mantenimiento")
     },

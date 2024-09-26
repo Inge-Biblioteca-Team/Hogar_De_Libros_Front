@@ -6,15 +6,17 @@ const BTNAccions = ({
   setDow,
   setEdit,
   UserStatus,
+  setREACTIVE
 }: {
   setSee: Dispatch<SetStateAction<boolean>>;
   setEdit: Dispatch<SetStateAction<boolean>>;
   setDow: Dispatch<SetStateAction<boolean>>;
+  setREACTIVE: Dispatch<SetStateAction<boolean>>;
   UserStatus: boolean;
 }) => {
   return (
     <>
-      <div className=" w-full flex gap-3 items-center justify-center text-3xl">
+      <div className=" w-full flex gap-3 items-center justify-center text-2xl">
         <button
           type="button"
           title="Ver Información de Usuario"
@@ -39,7 +41,8 @@ const BTNAccions = ({
             <PiTrash />
           </button>
         ) : (
-          <button type="button" title="Rehabilitar Usuario">
+          <button type="button" title="Rehabilitar Usuario"
+          onClick={()=>setREACTIVE(true)}>
             <FaCircleUp />
           </button>
         )}

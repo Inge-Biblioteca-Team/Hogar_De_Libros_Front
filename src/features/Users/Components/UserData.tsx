@@ -1,6 +1,6 @@
 import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Popover } from "flowbite-react";
+import { Button, Popover } from "flowbite-react";
 import { FaUserFriends } from "react-icons/fa";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -28,6 +28,10 @@ const UserData = () => {
     Navi("/HogarDeLibros/Perfil/MisPréstamos")
   }
 
+  const goToEnrolmentCurses=()=>{
+    Navi("/HogarDeLibros/Perfil/CursosMatriculados")
+  }
+
   return (
     <Popover
       content={
@@ -43,7 +47,7 @@ const UserData = () => {
             <div>
               <button
                 type="button"
-                onClick={() => Navi("/HogarDeLibros/Perfil/EditarPerfil")}
+                onClick={() => Navi(`/HogarDeLibros/Perfil/EditarPerfil/${cedula}`)}
                 className="rounded-lg bg-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Editar Perfil
@@ -71,19 +75,28 @@ const UserData = () => {
               Mis Préstamos
             </span>
           </p>
+          <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
+            <span
+              className="hover:underline text-gray-800 dark:text-gray-200 cursor-pointer"
+              onClick={goToEnrolmentCurses}
+            >
+              Cursos Matriculados
+            </span>
+          </p>
           <div className="flex items-center mb-4">
             <FaUserFriends className="text-gray-800 dark:text-gray-200 mr-2" />
             <span className="text-sm text-gray-800 dark:text-gray-200">
               Amigo
             </span>
           </div>
-          <button
+          <Button
             onClick={() => Navi("/IniciarSesion")}
             type="button"
-            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+            color={"gray"}
+            className="w-full hover:!text-red-800 hover:!border-red-400"
           >
             Cerrar Sesión
-          </button>
+          </Button>
           <div></div>
         </div>
       }

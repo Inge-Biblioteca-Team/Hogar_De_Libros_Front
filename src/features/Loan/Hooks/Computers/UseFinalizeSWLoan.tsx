@@ -6,8 +6,7 @@ const UseFinalizeSWLoan = () => {
   const queryClient = useQueryClient(); 
   return useMutation({
     mutationFn: FinalizeLoan,
-    onSuccess: (data) => {
-      console.log("Loan finalized successfully:", data);
+    onSuccess: () => {
       queryClient.invalidateQueries("WSStatus");
       toast.success("Exito: El Equipo esta nuevamente disponible")
     },

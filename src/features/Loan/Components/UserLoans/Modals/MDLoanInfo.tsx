@@ -51,10 +51,10 @@ const MDLoanInfo = ({
         </Modal.Body>
       </Modal>
       <Modal show={showChange} onClose={() => setShowChange(false)}>
-        <Modal.Header>Extencion de fecha de devolucion</Modal.Header>
+        <Modal.Header>Extencion de fecha de devolución</Modal.Header>
         <Modal.Body>
           <div className="">
-            <label htmlFor="NewDate">Ingrese la fecha de devolucion</label>
+            <label htmlFor="NewDate">Ingrese la fecha de devolución</label>
             <TextInput id="NewDate" type="date" />
             <div className="flex justify-center gap-4 mt-10">
               <Button

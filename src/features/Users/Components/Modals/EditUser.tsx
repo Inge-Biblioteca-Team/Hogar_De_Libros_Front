@@ -2,6 +2,9 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 import { User } from "../../Type/UserType";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
+import UseEditInfoUser from "../../Hooks/UseEditInfoUser";
+import toast from "react-hot-toast";
+import { useQueryClient } from "react-query";
 
 const EditUser = ({
   edit,
@@ -12,7 +15,7 @@ const EditUser = ({
   setEdit: Dispatch<SetStateAction<boolean>>;
   User: User;
 }) => {
-  const { register, setValue } = useForm<User>();
+  const { register, setValue, handleSubmit } = useForm<User>();
 
   useEffect(() => {
     if (User) {
@@ -25,13 +28,33 @@ const EditUser = ({
     }
   }, [User, setValue]);
 
+  const { mutate: patchUser } = UseEditInfoUser();
+
+  const useClient = useQueryClient();
+
+  const handleConfirm = (data: User) => {
+    patchUser(
+      { user: data, cedula: User.cedula },
+      {
+        onSuccess: () => {
+          setEdit(false);
+          toast.success("Editado correctamente");
+          useClient.invalidateQueries("UsersMG");
+        },
+        onError: () => {
+          toast.error("Error al editar");
+        },
+      }
+    );
+  };
+
   return (
     <Modal show={edit} onClose={() => setEdit(false)}>
       <Modal.Header>
         <span>Editar Información del Usuario {User.name}</span>
       </Modal.Header>
-      <Modal.Body>
-        <form>
+      <form onSubmit={handleSubmit(handleConfirm)}>
+        <Modal.Body>
           <fieldset className="mb-4">
             <legend className="text-lg font-semibold mb-2">
               Información de contacto
@@ -76,8 +99,7 @@ const EditUser = ({
               </div>
               <div>
                 <Label htmlFor="canton">Cantón</Label>
-                <Select id="canton" title="Canton"
-                {...register("district")}>
+                <Select id="canton" title="Canton" {...register("district")}>
                   <option value="">Seleccione el cantón</option>
                   <option value="NI">Nicoya</option>
                 </Select>
@@ -100,8 +122,7 @@ const EditUser = ({
             </legend>
 
             <Label htmlFor="rol">Rol</Label>
-            <Select id="" title="Rol"
-            {...register("role")}>
+            <Select id="" title="Rol" {...register("role")}>
               <option value="">Rol Del Usuario</option>
               <option value="admin">Administrador</option>
               <option value="creator">Asistente</option>
@@ -111,14 +132,16 @@ const EditUser = ({
 
             <div></div>
           </fieldset>
-        </form>
-      </Modal.Body>
-      <Modal.Footer className=" flex items-center justify-center gap-9">
-        <Button color={"failure"} onClick={() => setEdit(false)}>
-          Cancelar
-        </Button>
-        <Button color={"blue"}>Confirmar</Button>
-      </Modal.Footer>
+        </Modal.Body>
+        <Modal.Footer className=" flex items-center justify-center gap-9">
+          <Button color={"failure"} onClick={() => setEdit(false)}>
+            Cancelar
+          </Button>
+          <Button color={"blue"} type="submit">
+            Confirmar
+          </Button>
+        </Modal.Footer>
+      </form>
     </Modal>
   );
 };

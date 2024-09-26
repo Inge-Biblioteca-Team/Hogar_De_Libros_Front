@@ -70,13 +70,13 @@ const ManageBooks = () => {
         <HomeRoute />
         <ManageRoute />
         <BooksCrumb/>
-        <LastCrumb CurrentPage="Catalogo Libros Generales"/>
+        <LastCrumb CurrentPage="Católogo De Libros Generales"/>
       </Breadcrumb>
       <div className=" flex w-full place-content-center mt-5 pb-6">
         <div className=" w-5/6 flex flex-col gap-4">
           <div className=" flex justify-between">
             <div className="flex gap-2">
-              <InpSearchTitle onSearch={setSearchTitle} Criterio="Titulo" />
+              <InpSearchTitle onSearch={setSearchTitle} Criterio="Título" />
               <AdminAdvaceSearch
                 see={advance}
                 Author={setSearchAuthor}
@@ -96,7 +96,7 @@ const ManageBooks = () => {
                 <span>
                   <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
                 </span>{" "}
-                Libros por pagina
+                Libros por página
               </span>
             </div>
             <PaginatationSelector

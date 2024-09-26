@@ -14,7 +14,7 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
     navi(`/`);
   };
 
-  const Token = sessionStorage.getItem("Token2");
+  const Token = sessionStorage.getItem("Token");
 
 
   return (

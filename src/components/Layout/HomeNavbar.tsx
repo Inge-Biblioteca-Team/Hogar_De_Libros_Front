@@ -14,6 +14,8 @@ const HomeNavbar = () => {
 
   const handleClose = () => setVisible(false);
 
+  const rol = sessionStorage.getItem("role")
+
   return (
     <>
       <button type="button" className=" absolute left-4" onClick={showSidebar}>
@@ -34,7 +36,7 @@ const HomeNavbar = () => {
           <Sidebar className="[&>div]:bg-transparent [&>div]:p-0 w-full">
             <Sidebar.Items className=" w-72">
              <ForAll/>
-              <ForAdmin/>
+              {rol=="admin"?  <ForAdmin/>:""}
             </Sidebar.Items>
           </Sidebar>
         </Drawer.Items>

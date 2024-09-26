@@ -36,13 +36,13 @@ const ModalMantenance = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
           <Label htmlFor="UserName">Realizado Por</Label>
-          <TextInput className="" type="text" required {...register("userName")} />
+          <TextInput className="mb-5" type="text" required {...register("userName")} />
           <Label htmlFor="UserName">Ubicacion del equipo</Label>
           <TextInput className="" type="text" required {...register("location")} />
         </Modal.Body>
         <Modal.Footer className=" w-full flex items-center justify-center">
           <Button type="button" color={"failure"} onClick={() => setOpen(false)} >Cancelar</Button>
-          <Button type="submit" color={"success"}>Confirmar</Button>
+          <Button type="submit" color={"blue"}>Confirmar</Button>
         </Modal.Footer>
       </form>
     </Modal>
