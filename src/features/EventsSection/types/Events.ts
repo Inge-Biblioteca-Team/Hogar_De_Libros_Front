@@ -1,13 +1,50 @@
-//cambiar a course cuando este el api
 
 export type Events = {
-  date: string;
-  title: string;
-  location: string;
-  details: string;
+  EventId: number;
+  Location: string;
+  Title: string;
+  Details: string;
+  Category: string;
+  Date: string;
+  Time: string;
   Image: string;
-  TargetAudience:string;
-  id: string;
+  TargetAudience: string;
+  Status: string;
+  InchargePerson: string;
 };
+
+export type apiResponseE ={
+  data:Events[],
+  count:number
+}
+
+export type createEvents ={
+  EventId: number;
+  Location: string;
+  Title: string;
+  Details: string;
+  Category: string;
+  Date: string;
+  Time: string;
+  Image: string;
+  TargetAudience: string;
+  Status: string;
+  InchargePerson: string;
+}
+
+export type updateEvent ={
+  EventId: number;
+  Location: string;
+  Title: string;
+  Details: string;
+  Category: string;
+  Date: string;
+  Time: string;
+  Image: string;
+  TargetAudience: string;
+  Status: string;
+  InchargePerson: string;
+}
+
 
 

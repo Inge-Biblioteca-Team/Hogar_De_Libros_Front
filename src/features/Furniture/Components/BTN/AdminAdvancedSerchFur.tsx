@@ -2,6 +2,7 @@ import {
     faHashtag,
   } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
   
   const AdminAdvancedSearchFur = ({
     see,
@@ -9,19 +10,24 @@ import {
   }: {
     see: boolean;
     EStatus: (EStatus: string) => void;
-    
   }) => {
+    const [Accion, SetAcction] = useState<string>("")
     return (
       <div className={`flex gap-2 ${see ? `block` : `hidden`}`}>
         <div className="relative">
           <select
             title="Seleccione el estado"
             className="pl-8 pr-4 py-2 border rounded-lg"
-            onChange={(event) => EStatus(event.target.value)}
+            onChange={(event) => {
+              SetAcction(event.target.value);
+              console.log("Estado seleccionado:", event.target.value);
+              EStatus(event.target.value); 
+            }}
           >
             <option value="">Seleccione el estado</option>
-            <option value="1">Activo</option>
-            <option value="0">Inactivo</option>
+            <option value="Down">Baja</option>
+            <option value="SE">S.E.</option>
+            <option value="NA">N.A.</option>
           </select>
           <span className="absolute left-2 top-2">
             <FontAwesomeIcon icon={faHashtag} />

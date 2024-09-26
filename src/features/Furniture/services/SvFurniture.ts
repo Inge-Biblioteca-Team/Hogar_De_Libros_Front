@@ -32,6 +32,8 @@ import { FurnitureEdit } from "../type/furniture";
       if (location) params.location = location;
       if (inchargeperson) params.inchargeperson = inchargeperson;
       if (status) params.Status = status;
+
+      console.log("Params enviados a la API:", params);
   
       const response = await api.get("/Furniture", { params });
       return response.data;
