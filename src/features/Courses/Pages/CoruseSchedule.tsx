@@ -84,7 +84,7 @@ const CoruseSchedule = () => {
               <span>No hay Cursos Próximos</span>
             ) : (
               Courses?.data.map((course) => (
-                <CourseTimeItem course={course} key={course.Id} />
+                <CourseTimeItem course={course} key={course.courseId} />
               ))
             )}
           </Timeline>

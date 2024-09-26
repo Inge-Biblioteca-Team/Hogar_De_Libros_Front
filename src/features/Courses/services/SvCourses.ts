@@ -2,6 +2,15 @@ import axios, { AxiosError } from "axios";
 import api from "../../../Services/AxiosConfig";
 import { createCourse, updateCourse } from "../types/Courses";
 
+
+
+const getCoursesS = async () => {
+  const response = await axios.get(
+    "https://668c2a850b61b8d23b0ca034.mockapi.io/Courses"
+  );
+  return response.data;
+};
+
 const GetNextCourses = async (
   page?: number,
   limit?: number,
@@ -67,15 +76,15 @@ const CancelEroll = async (courseID: number, userCedula: string) => {
   }
 };
 
+
 const getCourses = async (page: number, limit: number, Name?: string) => {
   try {
-    //revisar tipado
     const params: { [key: string]: string | number | undefined } = {
-      page: page || 1,
-      limit: limit || 10,
+      page,
+      limit,
     };
     if (Name) params.Name = Name;
-    const response = await api.get("/courses");
+    const response = await api.get("courses", {params});
     return response.data;
   } catch (error) {
     console.error("Error to get courses:", error);
@@ -153,4 +162,5 @@ export {
   uploadImage,
   editCourse,
   DownCourse,
+  getCoursesS
 };
