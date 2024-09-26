@@ -102,7 +102,7 @@ const ManagerComputer = () => {
             <Table.Body className="divide-y">
               {computers?.data.map((computers) => (
                 <>
-                  <TblRows computers={computers} />
+                  <TblRows key={computers.EquipmentUniqueCode} computers={computers} />
                 </>
               ))}
             </Table.Body>

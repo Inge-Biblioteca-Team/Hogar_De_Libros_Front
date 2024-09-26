@@ -35,7 +35,7 @@ const createLocalArtist = async (data: createArtist) => {
     });
     return addArtist.data;
   } catch (error) {
-    console.log("Error to post Artist:", error);
+    console.error("Error to post Artist:", error);
   }
 };
 

@@ -23,10 +23,10 @@ const ForAll = () => {
             Catálogo Infantil
           </Sidebar.Item>
         </Sidebar.Collapse>
-        <Sidebar.Item className="" href="/HogarDeLibros">
+        <Sidebar.Item className="" href="/HogarDeLibros/ProximosEventos">
           Cronograma de eventos
         </Sidebar.Item>
-        <Sidebar.Item className="" href="/HogarDeLibros">
+        <Sidebar.Item className="" href="/HogarDeLibros/ProximosCursos">
           Cronograma de cursos
         </Sidebar.Item>
         <Sidebar.Item className="" href="/HogarDeLibros">
