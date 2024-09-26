@@ -1,23 +1,16 @@
-import { Breadcrumb, Select, Timeline } from "flowbite-react";
-import CourseTimeItem from "../components/CourseTimeItem";
+import { useState } from "react";
+import { GetNextEvents } from "../services/SvEvents";
+import { ApiEventsResponse } from "../types/Events";
 import { useQuery } from "react-query";
-import { ApiCourseResponse } from "../types/Courses";
-import { GetNextCourses } from "../services/SvCourses";
+import { Breadcrumb, Select, Timeline } from "flowbite-react";
 import { HomeCrumb, LastCrumb } from "../../../components/BreadCrumb";
 import { CiCalendarDate } from "react-icons/ci";
 import { FaReadme } from "react-icons/fa6";
-import { useState } from "react";
-const CoruseSchedule = () => {
+import EventTimeItem from "../components/EventTimeItem";
+
+const EventsSchedule = () => {
   const [month, setMonth] = useState<string>("");
   const [type, setType] = useState<string>("");
-
-  const { data: Courses } = useQuery<ApiCourseResponse, Error>(
-    ["CourseCatalog", month, type],
-    () => GetNextCourses(0, 0, month, type),
-    {
-      staleTime: 600,
-    }
-  );
 
   const months = [
     "Enero",
@@ -42,12 +35,20 @@ const CoruseSchedule = () => {
     const monthIndex = (curretnMonth + i) % 12;
     monthOpt.push({ month: months[monthIndex], value: monthIndex + 1 });
   }
-  
+
+  const { data: events } = useQuery<ApiEventsResponse, Error>(
+    ["CourseCatalog", month, type],
+    () => GetNextEvents(month, type),
+    {
+      staleTime: 600,
+    }
+  );
+
   return (
     <>
       <Breadcrumb className=" custom-breadcrumb">
         <HomeCrumb />
-        <LastCrumb CurrentPage="Proximos Cursos" />
+        <LastCrumb CurrentPage="Proximos Eventos" />
       </Breadcrumb>
       <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
         <div className=" flex gap-4 w-4/5 items-start ml-5">
@@ -66,25 +67,26 @@ const CoruseSchedule = () => {
             icon={FaReadme}
             onChange={(event) => setType(event.target.value)}
           >
-            <option value="">Tipo de Curso</option>
-            <option value="Taller">Talleres</option>
-            <option value="Info">Informatica</option>
-            <option value="Infan">Talleres Infantiles</option>
+            <option value="">Tipo de Evento</option>
+            <option value="Tertuliasr">Tertulias</option>
+            <option value="Expo">Exposición</option>
+            <option value="Juvenil">Tarde Juvenil</option>
+            <option value="Otros">Otros</option>
           </Select>
         </div>
         <div
           className=" w-4/5 overflow-x-scroll pt-7 px-8 custom-bar"
-          style={{ height: "45rem" }}
+          style={{ height: "42rem" }}
         >
           <Timeline
             className="custom-timeline border-blue-900 h-full "
             horizontal
           >
-            {Courses?.count == 0 ? (
+            {events?.count == 0 ? (
               <span>No hay Cursos Proximos</span>
             ) : (
-              Courses?.data.map((course) => (
-                <CourseTimeItem course={course} key={course.Id} />
+              events?.data.map((event) => (
+                <EventTimeItem event={event} key={event.id} />
               ))
             )}
           </Timeline>
@@ -95,4 +97,4 @@ const CoruseSchedule = () => {
   );
 };
 
-export default CoruseSchedule;
+export default EventsSchedule;

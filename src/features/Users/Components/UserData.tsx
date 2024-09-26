@@ -28,6 +28,10 @@ const UserData = () => {
     Navi("/HogarDeLibros/Perfil/MisPréstamos")
   }
 
+  const goToEnrolmentCurses=()=>{
+    Navi("/HogarDeLibros/Perfil/CursosMatriculados")
+  }
+
   return (
     <Popover
       content={
@@ -74,7 +78,7 @@ const UserData = () => {
           <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
             <span
               className="hover:underline text-gray-800 dark:text-gray-200 cursor-pointer"
-              onClick={goToMyLoans}
+              onClick={goToEnrolmentCurses}
             >
               Cursos Matriculados
             </span>

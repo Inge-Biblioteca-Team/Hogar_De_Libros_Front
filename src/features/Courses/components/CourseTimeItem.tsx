@@ -43,7 +43,7 @@ const CourseTimeItem = ({ course }: { course: Courses }) => {
                   alt=""
                 />
               </figure>
-              <div className=" flex flex-col ml-6 gap-2 h-72 ">
+              <div className=" flex flex-col ml-6 gap-2 h-72 mr-6 ">
                 <span className=" font-bold text-black">
                   {course.courseType}{" "}
                 </span>
@@ -51,14 +51,14 @@ const CourseTimeItem = ({ course }: { course: Courses }) => {
                   Impartido por <br />
                   {course.instructor}{" "}
                 </span>
-                <span>
-                  Matricula <br />
-                  {course.avaibleQuota}/{course.capacity}{" "}
-                </span>
                 <span>Comienzo: {fullDate.toUpperCase()}</span>
                 <span>Duracion: {course.duration} </span>
                 <span>
                   {course.location} {time}{" "}
+                </span>
+                <span>
+                  Cupos <br />
+                  {course.avaibleQuota}/{course.capacity}{" "}
                 </span>
               </div>
               <div className=" flex justify-center items-center mb-2">
