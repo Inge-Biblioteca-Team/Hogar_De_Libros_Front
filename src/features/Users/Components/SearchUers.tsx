@@ -18,7 +18,7 @@ const SearchUsers = ({
     <div className="w-full grid grid-cols-5 gap-2 pb-4">
       <div>
         <Label className=" text-lg" htmlFor="InitialDate">
-          Cedula
+          Cédula
         </Label>
         <TextInput
           id="InitialDate"

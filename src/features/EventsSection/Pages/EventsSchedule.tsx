@@ -48,7 +48,7 @@ const EventsSchedule = () => {
     <>
       <Breadcrumb className=" custom-breadcrumb">
         <HomeCrumb />
-        <LastCrumb CurrentPage="Proximos Eventos" />
+        <LastCrumb CurrentPage="Próximos Eventos" />
       </Breadcrumb>
       <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
         <div className=" flex gap-4 w-4/5 items-start ml-5">
@@ -56,7 +56,7 @@ const EventsSchedule = () => {
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
           >
-            <option value="">Mes De Realización</option>
+            <option value="">Mes Del Elaboración</option>
             {monthOpt.map((opt, index) => (
               <option key={index} value={opt.value}>
                 {opt.month}
@@ -83,7 +83,7 @@ const EventsSchedule = () => {
             horizontal
           >
             {events?.count == 0 ? (
-              <span>No hay Cursos Proximos</span>
+              <strong className=" flex w-full items-center justify-center text-2xl">No hay eventos Próximos</strong>
             ) : (
               events?.data.map((event) => (
                 <EventTimeItem event={event} key={event.id} />

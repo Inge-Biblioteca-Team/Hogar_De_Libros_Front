@@ -92,7 +92,8 @@ const ModalAddImage = ({
         )}
         <div className="mt-6">
           <p className="mb-2 font-semibold">O cargar una imagen local</p>
-          <FileInput onChange={handleLocalImageUpload} />
+          <FileInput onChange={handleLocalImageUpload}
+          className="custom-file-input" />
 
           {localImage && (
             <div className="mt-4">

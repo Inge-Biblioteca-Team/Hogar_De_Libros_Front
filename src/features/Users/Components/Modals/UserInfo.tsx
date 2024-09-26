@@ -13,7 +13,7 @@ const UserInfo = ({
 }) => {
   const LoanMapping: { [key: string]: string } = {
     admin: "Ilimitado",
-    creator: "5 Libros por maximo 30 días",
+    creator: "5 Libros por 30 días",
     viewer: "No Apto Para Prestamos",
     external_user: "5 Libros por maximo 30 días",
   };
@@ -35,21 +35,21 @@ const UserInfo = ({
           </figcaption>
         </figure>
         <span className=" flex-col flex items-center justify-center w-full gap-2">
-          <strong className=" font-bold mt-1">Información Del Usaurio </strong>
+          <strong className=" font-bold mt-4">Información Del Usuario </strong>
           <span>
             <strong className=" font-bold">Cédula:</strong> {User.cedula}
           </span>
           <span>
-            <strong className=" font-bold">Canton:</strong> {User.district}
+            <strong className=" font-bold">Cantón:</strong> {User.district}
           </span>
         </span>
-        <span className="flex-col flex items-center justify-center w-full gap-2 mt-1">
+        <span className="flex-col flex items-center justify-center w-full gap-2 mt-4">
           <strong className=" font-bold">Contactos</strong>
           <span>
             <strong className=" font-bold">Correo:</strong> {User.email}
           </span>
           <span>
-            <strong className=" font-bold">Telefono:</strong> {User.phoneNumber}
+            <strong className=" font-bold">Teléfono:</strong> {User.phoneNumber}
           </span>
           <span className=" font-bold">{LoanMapping[User.role] || "N/A"}</span>
         </span>

@@ -9,7 +9,7 @@ const UseRecoveryPassword =  () => {
     return useMutation({
       mutationFn: RecoveryPassword,
       onSuccess: () => {
-        toast.success("Codigo Enviado al Correo");
+        toast.success("Código Enviado al Correo");
         navigate("/HogarDeLibros");
       },
       onError: () => {

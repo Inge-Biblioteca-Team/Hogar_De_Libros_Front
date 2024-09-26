@@ -47,7 +47,7 @@ const CoruseSchedule = () => {
     <>
       <Breadcrumb className=" custom-breadcrumb">
         <HomeCrumb />
-        <LastCrumb CurrentPage="Proximos Cursos" />
+        <LastCrumb CurrentPage="Próximos Cursos" />
       </Breadcrumb>
       <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
         <div className=" flex gap-4 w-4/5 items-start ml-5">
@@ -55,7 +55,7 @@ const CoruseSchedule = () => {
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
           >
-            <option value="">Mes De Realización</option>
+            <option value="">Mes De Elaboración</option>
             {monthOpt.map((opt, index) => (
               <option key={index} value={opt.value}>
                 {opt.month}
@@ -74,14 +74,14 @@ const CoruseSchedule = () => {
         </div>
         <div
           className=" w-4/5 overflow-x-scroll pt-7 px-8 custom-bar"
-          style={{ height: "45rem" }}
+          style={{ height: "42rem" }}
         >
           <Timeline
             className="custom-timeline border-blue-900 h-full "
             horizontal
           >
             {Courses?.count == 0 ? (
-              <span>No hay Cursos Proximos</span>
+              <span>No hay Cursos Próximos</span>
             ) : (
               Courses?.data.map((course) => (
                 <CourseTimeItem course={course} key={course.Id} />

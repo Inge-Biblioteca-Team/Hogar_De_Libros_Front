@@ -13,7 +13,7 @@ const ProgressLoan = () => {
   return (
     <>
       <div className="">
-        <h5 className=" font-bold">Pendientes de Devolucion</h5>
+        <h5 className=" font-bold">Pendientes de Devolución</h5>
         <Table hoverable className=" text-center">
           <Table.Head>
             <Table.HeadCell className="w-10">#De Solicitud</Table.HeadCell>

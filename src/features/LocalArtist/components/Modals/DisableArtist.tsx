@@ -33,11 +33,11 @@ const DisableArtist = ({
             {Artist.Name}
           </p>
           <div className="flex justify-center gap-4">
-            <Button color="failure" onClick={() => handleDisbale()}>
-              Confirmar
-            </Button>
-            <Button color="blue" onClick={() => setDow(false)}>
+            <Button color="failure" onClick={() => setDow(false)}  >
               Cancelar
+            </Button>
+            <Button color="blue" onClick={() => handleDisbale()}>
+              Confirmar
             </Button>
           </div>
         </div>

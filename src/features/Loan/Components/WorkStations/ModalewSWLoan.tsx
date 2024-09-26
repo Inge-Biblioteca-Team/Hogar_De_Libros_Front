@@ -36,7 +36,7 @@ const ModalewSWLoan = ({
         <Modal.Body>
           <Label htmlFor="UserName">Nombre de Usuario</Label>
           <TextInput
-            className=""
+            className=" mb-4"
             type="text"
             required
             {...register("UserName")}

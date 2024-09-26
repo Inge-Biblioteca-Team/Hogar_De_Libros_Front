@@ -78,7 +78,7 @@ const ManageChildrenBooks = () => {
         <div className=" w-5/6 flex flex-col gap-4">
           <div className=" flex justify-between">
             <div className="flex gap-2">
-              <InpSearchTitle onSearch={setSearchTitle} Criterio="Titulo" />
+              <InpSearchTitle onSearch={setSearchTitle} Criterio="Título" />
               <AdminAdvaceSearch
                 see={advance}
                 Author={setSearchAuthor}
@@ -106,7 +106,7 @@ const ManageChildrenBooks = () => {
                 <span>
                   <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
                 </span>{" "}
-                Libros por pagina
+                Libros por página
               </span>
             </div>
             <PaginatationSelector

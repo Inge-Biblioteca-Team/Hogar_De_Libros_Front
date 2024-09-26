@@ -76,7 +76,7 @@ const ManagerComputer = () => {
         <div className=" w-5/6 flex flex-col gap-4">
           <div className=" flex justify-between">
             <div className="flex gap-2">
-              <InpSearchTitle Criterio="# Maquina" onSearch={setSearMNum} />
+              <InpSearchTitle Criterio="# Máquina" onSearch={setSearMNum} />
               <AdminAdvancedSearchComp
                 see={advance}
                 EBrand={setSearEBrand}
@@ -92,7 +92,7 @@ const ManagerComputer = () => {
             className="felx items-center justify-center text-center"
           >
             <Table.Head className=" h-16">
-              <Table.HeadCell>Número de Maquina</Table.HeadCell>
+              <Table.HeadCell>Número de Máquina</Table.HeadCell>
               <Table.HeadCell>Categoría</Table.HeadCell>
               <Table.HeadCell>Marca</Table.HeadCell>
               <Table.HeadCell>Serial</Table.HeadCell>
@@ -114,7 +114,7 @@ const ManagerComputer = () => {
                 <span>
                   <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
                 </span>{" "}
-                Libros por pagina
+                Equipos por página
               </span>
             </div>
             <PaginatationSelector
