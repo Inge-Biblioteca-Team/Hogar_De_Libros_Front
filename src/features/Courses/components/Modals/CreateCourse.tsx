@@ -11,72 +11,72 @@ import { FaUserEdit } from "react-icons/fa";
 import { CreateCourses } from "../../services/SvCourses";
 
 const CreateCourse = () => {
-    const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-    const [imageUrl, setImageUrl] = useState<string | null>(null);
-    const navigate = useNavigate();
-    const {
-        register,
-        handleSubmit,
-        setValue,
-    } = useForm<createCourse>();
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+  } = useForm<createCourse>();
 
-    const QueryCli = useQueryClient()
+  const QueryCli = useQueryClient()
 
-    const navi = useNavigate();
-    const Goto = () => {
-        navi(`/`);
-    };
+  const navi = useNavigate();
+  const Goto = () => {
+    navi(`/`);
+  };
 
-    const onSubmit = async (data: createCourse) => {
-        try {
-          await CreateCourses(data);
-          alert("Curso añadido con éxito");
-          navigate('/HogarDeLibros/Gestion/Cursos');
-          QueryCli.invalidateQueries("CursoMG")
-        } catch (error) {
-          console.error("Error al añadir el curso:", error);
-          alert("Hubo un error al añadir curso...");
-        }
-      };
+  const onSubmit = async (data: createCourse) => {
+    try {
+      await CreateCourses(data);
+      alert("Curso añadido con éxito");
+      navigate('/HogarDeLibros/Gestion/Cursos');
+      QueryCli.invalidateQueries("CursoMG")
+    } catch (error) {
+      console.error("Error al añadir el curso:", error);
+      alert("Hubo un error al añadir curso...");
+    }
+  };
 
-      const handleImageSelect = (url: string) => {
-        setImageUrl(url);
-        setValue("image", url);
-      };
+  const handleImageSelect = (url: string) => {
+    setImageUrl(url);
+    setValue("image", url);
+  };
 
-    return (
-        <>
-            <Navbar className="sticky top-0 z-50 text-white w-full bg-Body py-4">
-                <Navbar.Brand className="w-full flex items-center justify-between p-4 max-sm:w-4/5 max-sm:p-0">
-                    <div className="flex items-center flex-grow justify-center space-x-2">
-                        <FontAwesomeIcon
-                            onClick={Goto}
-                            icon={faBookOpen}
-                            className="text-white h-6 w-6 cursor-pointer"
-                        />
-                        <span className="text-white text-3xl font-semibold break-words max-sm:text-xl">
-                            Biblioteca Pública Municipal de Nicoya
-                        </span>
-                    </div>
-                </Navbar.Brand>
-                <Navbar.Toggle className="bg-white" />
-            </Navbar>
-            <div className="flex justify-center items-center p-4">
-      <Card className="w-full max-w-6xl bg-white shadow-lg rounded-lg">
-        <div className="flex">
-          <figure className="w-1/3 flex items-center justify-center p-4">
-            {imageUrl ? (
-              <img
-                onClick={() => setIsImageModalOpen(true)}
-                src={imageUrl}
-                alt="Imagen del Curso"
-                className="rounded-lg h-64 shadow-md w-64 object-cover"
-              />
-            ) : (
-              <FaUserEdit size={120} className=" cursor-pointer" 
-              onClick={()=>setIsImageModalOpen(true)} />
-            )}
-          </figure>
+  return (
+    <>
+      <Navbar className="sticky top-0 z-50 text-white w-full bg-Body py-4">
+        <Navbar.Brand className="w-full flex items-center justify-between p-4 max-sm:w-4/5 max-sm:p-0">
+          <div className="flex items-center flex-grow justify-center space-x-2">
+            <FontAwesomeIcon
+              onClick={Goto}
+              icon={faBookOpen}
+              className="text-white h-6 w-6 cursor-pointer"
+            />
+            <span className="text-white text-3xl font-semibold break-words max-sm:text-xl">
+              Biblioteca Pública Municipal de Nicoya
+            </span>
+          </div>
+        </Navbar.Brand>
+        <Navbar.Toggle className="bg-white" />
+      </Navbar>
+      <div className="flex justify-center items-center p-4">
+        <Card className="w-full max-w-6xl bg-white shadow-lg rounded-lg">
+          <div className="flex">
+            <figure className="w-1/3 flex items-center justify-center p-4">
+              {imageUrl ? (
+                <img
+                  onClick={() => setIsImageModalOpen(true)}
+                  src={imageUrl}
+                  alt="Imagen del Curso"
+                  className="rounded-lg h-64 shadow-md w-64 object-cover"
+                />
+              ) : (
+                <FaUserEdit size={120} className=" cursor-pointer"
+                  onClick={() => setIsImageModalOpen(true)} />
+              )}
+            </figure>
 
             <div className="w-2/3 p-6 grid grid-cols-2 gap-4">
               <h2 className="col-span-2 text-3xl font-bold text-gray-800 mb-4">
@@ -84,12 +84,22 @@ const CreateCourse = () => {
               </h2>
 
               <div>
-                <Label htmlFor="courseType" value="Nombre del Curso" />
+                <Label htmlFor="courseName" value="Nombre del Curso" />
+                <TextInput
+                  id="courseName"
+                  type="text"
+                  {...register("courseName", { required: true })}
+                  placeholder="Nombre del Curso..."
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="courseType" value="Categoría del Curso" />
                 <TextInput
                   id="courseType"
                   type="text"
                   {...register("courseType", { required: true })}
-                  placeholder="Nombre del Curso..."
+                  placeholder="Categoría del Curso..."
                 />
               </div>
 
@@ -142,6 +152,16 @@ const CreateCourse = () => {
               </div>
 
               <div>
+                <Label htmlFor="programProgramsId" value="ProgramId" />
+                <TextInput
+                  id="programProgramsId"
+                  type="number"
+                  {...register("programProgramsId", { required: true })}
+                  placeholder="0"
+                />
+              </div>
+
+              <div>
                 <Label htmlFor="duration" value="Duración del Curso" />
                 <TextInput
                   id="duration"
@@ -170,35 +190,38 @@ const CreateCourse = () => {
                 />
               </div>
 
-              <div>
+              {/* <div>
                 <Label htmlFor="Status" value="Estado" />
-                <TextInput
+                <select
                   id="Status"
-                  type="text"
                   {...register("Status", { required: true })}
-                  placeholder="Estado del Curso"
-                />
-              </div>
+                >
+                  <option value="true">Activo</option>
+                  <option value="false">Inactivo</option>
+                </select>
+              </div> */}
+
+
             </div>
           </div>
 
-        <div className="flex justify-center p-4 space-x-4">
-          <Button color="failure" onClick={() => navigate('/HogarDeLibros/Gestion/Cursos')}>
-            Cancelar
-          </Button>
-          <Button type="submit" color={"blue"} onClick={handleSubmit(onSubmit)}>
-            Guardar
-          </Button>
-        </div>
-      </Card>
+          <div className="flex justify-center p-4 space-x-4">
+            <Button color="failure" onClick={() => navigate('/HogarDeLibros/Gestion/Cursos')}>
+              Cancelar
+            </Button>
+            <Button type="submit" color={"blue"} onClick={handleSubmit(onSubmit)}>
+              Guardar
+            </Button>
+          </div>
+        </Card>
 
-      <AddImage
-        showModal={isImageModalOpen}
-        onCloseModal={() => setIsImageModalOpen(false)}
-        onImageSelect={handleImageSelect}
-      />
-    </div>
-        </>
-    );
+        <AddImage
+          showModal={isImageModalOpen}
+          onCloseModal={() => setIsImageModalOpen(false)}
+          onImageSelect={handleImageSelect}
+        />
+      </div>
+    </>
+  );
 };
 export default CreateCourse;

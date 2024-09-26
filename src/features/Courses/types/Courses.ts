@@ -3,6 +3,7 @@ export type createCourse = {
   courseTime: string;
   location: string;
   instructor: string;
+  courseName: string;
   courseType: string;
   targetAge: number;
   capacity: number;
@@ -10,6 +11,7 @@ export type createCourse = {
   image: string;
   duration: string;
   endDate: Date;
+  programProgramsId: number;
 };
 
 export type Course = {
@@ -30,6 +32,7 @@ export type Courses = {
   courseTime: string;
   location: string;
   instructor: string;
+  courseName: string;
   courseType: string;
   targetAge: number;
   capacity: number;
@@ -37,6 +40,7 @@ export type Courses = {
   image: string;
   duration: string;
   endDate: Date;
+  programProgramsId: number;
 };
 
 export type ResponseC = {
@@ -49,6 +53,7 @@ export type updateCourse = {
   courseTime: string;
   location: string;
   instructor: string;
+  courseName: string;
   courseType: string;
   targetAge: number;
   capacity: number;
@@ -56,6 +61,7 @@ export type updateCourse = {
   image: string;
   duration: string;
   endDate: Date;
+  programProgramsId: number;
 };
 
 export type NextCourses = {

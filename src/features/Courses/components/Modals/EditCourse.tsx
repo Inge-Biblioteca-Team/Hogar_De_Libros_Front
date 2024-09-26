@@ -20,6 +20,7 @@ const EditCourse = () => {
       courseTime: course.courseTime,
       location: course.location,
       instructor: course.instructor,
+      courseName: course.courseName,
       courseType: course.courseType,
       targetAge: course.targetAge,
       capacity: course.capacity,
@@ -27,6 +28,7 @@ const EditCourse = () => {
       image: course.image,
       duration: course.duration,
       endDate: course.endDate,
+      programProgramsId: course.programProgramsId,
     },
   });
 
@@ -99,12 +101,22 @@ const EditCourse = () => {
               </h2>
 
               <div>
-                <Label htmlFor="courseType" value="Nombre del Curso" />
+                <Label htmlFor="courseName" value="Nombre del Curso" />
+                <TextInput
+                  id="courseName"
+                  type="text"
+                  {...register("courseName", { required: true })}
+                  placeholder="Nombre del Curso..."
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="courseType" value="Categoría del Curso" />
                 <TextInput
                   id="courseType"
                   type="text"
                   {...register("courseType", { required: true })}
-                  placeholder="Nombre del Curso..."
+                  placeholder="Categoría del Curso..."
                 />
               </div>
 
@@ -182,16 +194,6 @@ const EditCourse = () => {
                   id="endDate"
                   type="date"
                   {...register("endDate", { required: true })}
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="Status" value="Estado" />
-                <TextInput
-                  id="Status"
-                  type="text"
-                  {...register("Status", { required: true })}
-                  placeholder="Estado del Curso"
                 />
               </div>
             </div>

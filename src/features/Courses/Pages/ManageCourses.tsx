@@ -55,9 +55,6 @@ const ManageCourses = () => {
         <ManageCrumb />
         <LastCrumb CurrentPage="Lista de Cursos" />
       </Breadcrumb>
-      {Courses?.count == 0 ? (
-        <NoRequest text="No Existen Cursos Registrados" />
-      ) : (
         <div className=" w-full flex items-center justify-center pt-12">
           <div className=" w-4/5">
             <div className="flex items-center">
@@ -79,9 +76,16 @@ const ManageCourses = () => {
                 <Table.HeadCell>Estado</Table.HeadCell>
               </Table.Head>
               <Table.Body>
-                {Courses?.data.map((course: Courses) => (
-                  <TBLCourses key={course.courseId} course={course} />
-                ))}
+                {/* This validation in this place fixes the bug about map function can not be empty. */}
+                {Courses?.data && Array.isArray(Courses.data) && Courses.data.length > 0 ? (
+                  Courses.data.map((course: Courses) => (
+                    <TBLCourses key={course.courseId} course={course} />
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={7} className="text-center"><NoRequest text="No Existen Cursos Registrados" /></td>
+                  </tr>
+                )}
               </Table.Body>
             </Table>
             <div className=" w-full flex justify-between">
@@ -102,7 +106,6 @@ const ManageCourses = () => {
             </div>
           </div>
         </div>
-      )}
     </>
   );
 };
