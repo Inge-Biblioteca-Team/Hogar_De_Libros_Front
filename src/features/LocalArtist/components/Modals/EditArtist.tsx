@@ -55,7 +55,7 @@ const EditArtist = ({
   return (
     <>
       <Modal show={edit} onClose={() => setEdit(false)}>
-        <Modal.Header>Añadir nuevo Artista</Modal.Header>
+        <Modal.Header>Editar Artista</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
             <div className="w-full flex items-center justify-center">
@@ -75,7 +75,7 @@ const EditArtist = ({
               )}
             </div>
             <fieldset className="grid grid-cols-2 gap-3">
-              <legend>Infomación Basica</legend>
+              <legend>Infomación Básica</legend>
               <div>
                 <Label htmlFor="Name" value="Nombre" />
                 <TextInput

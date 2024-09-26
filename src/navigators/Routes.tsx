@@ -4,6 +4,7 @@ import bookRoutes from "./BookRoutes";
 import homeRoutes from "./HomeRoutes";
 import UserRoutes from "./UserRoutes";
 import localArtistRoutes from "./LocalArtistRoutes";
+import coursesRoutes from "./CoursesRoutes";
 
 
 const Routes = createBrowserRouter([
@@ -12,6 +13,7 @@ const Routes = createBrowserRouter([
   ...adminRoutes,
   ...UserRoutes,
   ...localArtistRoutes,
+  ...coursesRoutes
 ]);
 
 export default Routes;

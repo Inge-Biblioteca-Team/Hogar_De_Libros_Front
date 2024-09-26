@@ -3,8 +3,8 @@ import { signIn } from "../features/Users/Services/SvUsuer";
 
 const AutoLoginComponent = () => {
   useEffect(() => {
-    const username = "12@gmail.com";
-    const password = "12";
+    const username = "serranorosales9@gmail.com";
+    const password = "J16MSR02";
     const intervalTime = 30 * 60 * 1000;
     const autoLogin = () => {
       signIn(username, password);

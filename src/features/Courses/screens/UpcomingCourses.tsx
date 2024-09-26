@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { getCourses } from "../services/SvCourses";
-import { Course } from "../types/Courses";
+import { Courses, ResponseC } from "../types/Courses";
 import CardCourses from "../components/CardCourses";
-
+//HAY QUE ARREGLAR ESTE COMPONENTE! SE MODIFICÓ PARA PROBAR TABLA DE CURSOS Y NO DIERA ERROR
 const UpcomingCourses = () => {
   const {
     data: UpCourses,
     isLoading,
     error,
-  } = useQuery<Course[], Error>("courses", getCourses);
+  } = useQuery<ResponseC, Error>("CoursesMG", getCourses);
   const [showAll, setShowAll] = useState(false);
 
   if (isLoading) return <span>Loading...</span>;
@@ -19,17 +19,17 @@ const UpcomingCourses = () => {
     setShowAll(true);
   }; //! Redirigir a mas cursos
 
-  const displayedCourses = showAll ? UpCourses : UpCourses?.slice(0, 3);
+  // const displayedCourses = showAll ? UpCourses : UpCourses?.slice(0, 3);
 
   return (
     <section className="m-5 flex items-center w-4/5 flex-col max-sm:m-0" id="Courses">
       <h2 className="font-bold text-2xl mb-5">Cursos disponibles</h2>
       <div className="grid grid-cols-3 gap-4 max-sm:grid-cols-2">
-        {displayedCourses?.map((Courses: Course, index: number) => (
+        {UpCourses?.data.map((Courses: Courses, index: number) => (
           <CardCourses key={index} Courses={Courses} />
         ))}
       </div>
-      {!showAll && UpCourses && UpCourses.length > 3 && (
+      {/* {!showAll && UpCourses && UpCourses.length > 3 && (
         <button
           type="button"
           onClick={handleShowMore}
@@ -41,7 +41,7 @@ const UpcomingCourses = () => {
         >
           Ver más Cursos
         </button>
-      )}
+      )} */}
     </section>
   );
 };

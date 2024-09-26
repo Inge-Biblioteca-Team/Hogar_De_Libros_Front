@@ -53,8 +53,8 @@ const ManageLocalArtist = () => {
     <>
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
-        <ManageCrumb />
         <LoanCrumb />
+        <ManageCrumb />
         <LastCrumb CurrentPage="Lista de Artistas" />
       </Breadcrumb>
 
