@@ -11,7 +11,7 @@ const CreateEvent = () => {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const { register, handleSubmit, formState: { errors }, setValue, reset } = useForm<createEvents>();
-  
+
   const { mutate: createEvent } = useCreateEvent({
     Open: setIsModalOpen,
     Reset: () => {
@@ -22,7 +22,7 @@ const CreateEvent = () => {
 
   const onSubmit = async (data: createEvents) => {
     if (imageUrl) {
-      data.Image = imageUrl; 
+      data.Image = imageUrl;
     }
     try {
       await createEvent(data);
@@ -71,7 +71,9 @@ const CreateEvent = () => {
             </div>
 
             <fieldset className="grid grid-cols-2 gap-3 mt-4">
-              <legend>Información Básica</legend>
+              <legend className="text-center w-full p-2">
+                Información Básica
+              </legend>
               <div>
                 <Label htmlFor="Location" value="Ubicación" />
                 <TextInput
@@ -100,7 +102,9 @@ const CreateEvent = () => {
             </fieldset>
 
             <fieldset className="grid grid-cols-2 gap-3 mt-4">
-              <legend>Detalles del Evento</legend>
+              <legend className="text-center w-full p-2">
+                Detalles del Evento
+              </legend>
               <div>
                 <Label htmlFor="Details" value="Detalles" />
                 <TextInput
@@ -126,7 +130,9 @@ const CreateEvent = () => {
             </fieldset>
 
             <fieldset className="grid grid-cols-2 gap-3 mt-4">
-              <legend>Fecha y Hora</legend>
+              <legend className="text-center w-full p-2">
+                Fecha y Hora
+              </legend>
               <div>
                 <Label htmlFor="Date" value="Fecha" />
                 <TextInput
@@ -152,7 +158,9 @@ const CreateEvent = () => {
             </fieldset>
 
             <fieldset className="grid grid-cols-2 gap-3 mt-4">
-              <legend>Información Adicional</legend>
+              <legend className="text-center w-full p-2">
+                Información Adicional
+              </legend>
               <div>
                 <Label htmlFor="TargetAudience" value="Público Objetivo" />
                 <TextInput
@@ -178,7 +186,7 @@ const CreateEvent = () => {
               color="failure"
               onClick={() => {
                 setIsModalOpen(false);
-                reset(); 
+                reset();
               }}
               tabIndex={2}
             >
@@ -199,4 +207,4 @@ const CreateEvent = () => {
   );
 };
 
-export default CreateEvent;
+export default CreateEvent; 

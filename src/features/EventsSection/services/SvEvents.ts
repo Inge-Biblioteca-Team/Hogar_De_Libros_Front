@@ -20,13 +20,13 @@ const GetEvents = async (
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
-      page: page,
-      limit: limit,
+      Page: page,
+      Limit: limit,
     };
 
-    if (title) params.title = title;
-    if (location) params.location = location;
-    if (inchargeperson) params.inchargeperson = inchargeperson;
+    if (title) params.Title = title;
+    if (location) params.Location = location;
+    if (inchargeperson) params.Inchargeperson = inchargeperson;
     if (status) params.Status = status;
 
     console.log("Params enviados a la API:", params);
@@ -62,9 +62,9 @@ const PostNewEvent = async (data: createEvents) => {
 }
 };
 
-const editEvent = async (id: number, data: updateEvent ) => {
+const editEvent = async (eventId: number, eventData: updateEvent) => {
   try {
-    const response = await api.put(`events/${id}`, data, {
+    const response = await api.put(`/events?id=${eventId}`, eventData, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -78,8 +78,8 @@ const editEvent = async (id: number, data: updateEvent ) => {
 
 const uploadEventImage = async (file: File): Promise<string> => {
   if (file) {
-    const formData = new FormData();
-    formData.append("eventImage", file); 
+    const formData = new FormData(); 
+    formData.append("image", file);
 
     try {
       const response = await axios.post(

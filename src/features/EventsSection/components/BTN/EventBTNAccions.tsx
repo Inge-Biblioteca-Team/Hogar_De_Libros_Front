@@ -36,6 +36,7 @@ const EventBTNAccions = ({
             <PiTrash size={24} />
           </button>
         </div>
+
       </>
     );
   };

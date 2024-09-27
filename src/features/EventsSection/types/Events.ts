@@ -15,11 +15,11 @@ export type Events = {
 
 export type apiResponseE ={
   data:Events[],
+  
   count:number
 }
 
 export type createEvents ={
-  EventId: number;
   Location: string;
   Title: string;
   Details: string;

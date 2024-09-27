@@ -47,7 +47,7 @@ const AddImage = ({
           <div className="mt-4">
             <p className="mb-2 font-semibold">Previsualización:</p>
             <img
-              src={localImage ?? undefined} // Ajustamos el src para evitar errores de tipo
+              src={localImage ?? undefined} 
               alt="Previsualización de la imagen local"
               className="rounded shadow-md w-full h-auto"
             />
