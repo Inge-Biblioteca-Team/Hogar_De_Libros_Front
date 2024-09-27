@@ -1,0 +1,67 @@
+import { Button, Modal } from "flowbite-react";
+import { Dispatch, SetStateAction } from "react";
+import { updateEvent } from "../../types/Events";
+import { FaCalendarAlt } from "react-icons/fa"; 
+
+const ViewEvent = ({
+    see,
+    setSee,
+    event,
+  }: {
+    see: boolean;
+    setSee: Dispatch<SetStateAction<boolean>>;
+    event: updateEvent; 
+  }) => {
+    return (
+      <Modal show={see} onClose={() => setSee(false)} size-40>
+        <Modal.Header>
+          <span>Evento: {event.Title} </span>
+        </Modal.Header>
+        <Modal.Body className="flex flex-col gap-2">
+          <figure className="w-full flex items-center justify-center">
+            {event.Image ? (
+              <img
+                src={event.Image}
+                alt="Imagen del evento"
+                className="rounded-lg shadow-lg w-full h-48 object-cover"
+              />
+            ) : (
+              <FaCalendarAlt size={120} className="text-gray-400" />
+            )}
+          </figure>
+          <div className="flex-col flex gap-2 text-left justify-start">
+          <strong className="text-center p-2">Información del Evento</strong>
+          <span>
+            <strong>Ubicación:</strong> {event.Location}
+          </span>
+          <span>
+            <strong>Fecha:</strong> {event.Date}
+          </span>
+          <span>
+            <strong>Hora:</strong> {event.Time}
+          </span>
+          <span>
+            <strong>Categoría:</strong> {event.Category}
+          </span>
+          {event.TargetAudience && (
+            <span>
+              <strong>Público objetivo:</strong> {event.TargetAudience}
+            </span>
+          )}
+          {event.InchargePerson && (
+            <span>
+              <strong>Persona a cargo:</strong> {event.InchargePerson}
+            </span>
+          )}
+          </div>
+        </Modal.Body>
+        <Modal.Footer className="flex items-center justify-center">
+          <Button color={"blue"} onClick={() => setSee(false)}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  };
+  
+  export default ViewEvent;
