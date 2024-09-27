@@ -1,37 +1,38 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import AddEventsImage from "./AddEventsImage";
 import { createEvents } from "../../types/Events";
 import useCreateEvent from "../../Hooks/useCreateEvent";
+import { addDay, format } from "@formkit/tempo";
 
 const CreateEvent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const { register, handleSubmit, formState: { errors }, setValue, reset } = useForm<createEvents>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    reset,
+  } = useForm<createEvents>();
 
-  const { mutate: createEvent } = useCreateEvent({
-    Open: setIsModalOpen,
-    Reset: () => {
-      reset();
-      setImageUrl(null);
-    },
-  });
+  const { mutate: createEvent } = useCreateEvent();
 
   const onSubmit = async (data: createEvents) => {
     if (imageUrl) {
       data.Image = imageUrl;
     }
-    try {
-      await createEvent(data);
-      toast.success("Evento añadido con éxito");
-      setIsModalOpen(false);
-    } catch (error) {
-      console.error("Error al añadir el evento:", error);
-      toast.error("Hubo un error al añadir el evento");
-    }
+
+    createEvent(data, {
+      onSuccess: () => {
+        reset();
+        setImageUrl("");
+        setIsModalOpen(false);
+      },
+      onError: () => {},
+    });
   };
 
   const handleImageSelect = (url: string) => {
@@ -39,41 +40,43 @@ const CreateEvent = () => {
     setValue("Image", url);
   };
 
+  const tomorrow = addDay(new Date())
+
+  const toDay = format({
+    date: tomorrow,
+    format: "YYYY-MM-DD",
+    tz: "America/Costa_Rica",
+  });
+
+
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setIsModalOpen(true)}
-        className="w-40 bg-Body text-white mt-2 p-2 rounded-md hover:bg-blue-800"
-      >
+      <Button type="button" onClick={() => setIsModalOpen(true)} color={"blue"}>
         Añadir Evento
-      </button>
+      </Button>
       <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <Modal.Header>Añadir nuevo Evento</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body>
+          <Modal.Body className=" flex flex-col gap-4">
             <div className="w-full flex items-center justify-center">
               {imageUrl ? (
                 <img
                   onClick={() => setIsImageModalOpen(true)}
                   src={imageUrl}
                   alt="Imagen del evento"
-                  className="h-32 w-32 rounded-md cursor-pointer"
+                  className="h-28 w-full rounded-md cursor-pointer"
                 />
               ) : (
                 <div
                   onClick={() => setIsImageModalOpen(true)}
-                  className="h-32 w-32 border-dashed border-2 border-gray-300 flex items-center justify-center rounded-md cursor-pointer"
+                  className="h-28 w-full border-dashed border-2 border-gray-300 flex items-center justify-center rounded-md cursor-pointer"
                 >
                   <span>Selecciona una imagen</span>
                 </div>
               )}
             </div>
-
-            <fieldset className="grid grid-cols-2 gap-3 mt-4">
-              <legend className="text-center w-full p-2">
-                Información Básica
-              </legend>
+            <fieldset className="grid grid-cols-2 gap-3 ">
+              <legend className="text-center w-full">Información Básica</legend>
               <div>
                 <Label htmlFor="Location" value="Ubicación" />
                 <TextInput
@@ -101,8 +104,8 @@ const CreateEvent = () => {
               </div>
             </fieldset>
 
-            <fieldset className="grid grid-cols-2 gap-3 mt-4">
-              <legend className="text-center w-full p-2">
+            <fieldset className="grid grid-cols-2 gap-3">
+              <legend className="text-center w-full">
                 Detalles del Evento
               </legend>
               <div>
@@ -129,15 +132,14 @@ const CreateEvent = () => {
               </div>
             </fieldset>
 
-            <fieldset className="grid grid-cols-2 gap-3 mt-4">
-              <legend className="text-center w-full p-2">
-                Fecha y Hora
-              </legend>
+            <fieldset className="grid grid-cols-2 gap-3 ">
+              <legend className="text-center w-full p-2">Fecha y Hora</legend>
               <div>
                 <Label htmlFor="Date" value="Fecha" />
                 <TextInput
                   id="Date"
                   type="date"
+                  min={toDay}
                   {...register("Date", { required: true })}
                 />
                 {errors.Date && (
@@ -149,7 +151,14 @@ const CreateEvent = () => {
                 <TextInput
                   id="Time"
                   type="time"
-                  {...register("Time", { required: true })}
+                  {...register("Time", {
+                    required: true,
+                    onChange: (e) => {
+                      const timeValue = e.target.value;
+                      const timeWithSeconds = `${timeValue}:00`;
+                      e.target.value = timeWithSeconds;
+                    },
+                  })}
                 />
                 {errors.Time && (
                   <span className="text-red-500">Este campo es requerido</span>
@@ -157,8 +166,8 @@ const CreateEvent = () => {
               </div>
             </fieldset>
 
-            <fieldset className="grid grid-cols-2 gap-3 mt-4">
-              <legend className="text-center w-full p-2">
+            <fieldset className="grid grid-cols-2 gap-3">
+              <legend className="text-center w-full">
                 Información Adicional
               </legend>
               <div>
@@ -207,4 +216,4 @@ const CreateEvent = () => {
   );
 };
 
-export default CreateEvent; 
+export default CreateEvent;

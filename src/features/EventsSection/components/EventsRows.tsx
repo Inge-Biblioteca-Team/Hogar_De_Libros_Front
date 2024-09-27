@@ -18,9 +18,9 @@ const EventsRows = ({ event }: { event: Events }) => {
         <Table.Cell className="w-52">{new Date(event.Date).toLocaleDateString()}</Table.Cell>
         <Table.Cell className="w-64">{event.Time}</Table.Cell>
         <Table.Cell className="w-64">
-          {event.Status === "inprogress"
-            ? "En Progreso"
-            : event.Status === "finalized"
+          {event.Status === "P"
+            ? "Próximamente"
+            : event.Status === "F"
               ? "Finalizado"
               : "En Ejecución"}
         </Table.Cell>

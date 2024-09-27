@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import api from "../../../Services/AxiosConfig";
 import { createEvents, updateEvent } from "../types/Events";
@@ -14,9 +13,9 @@ const GetEvents = async (
   page: number,
   limit: number,
   title?: string,
+  status?: string,
   location?: string,
-  inchargeperson?: string,
-  status?: string
+  inchargeperson?: string
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -40,26 +39,29 @@ const GetEvents = async (
 };
 
 const PostNewEvent = async (data: createEvents) => {
-  console.log("Datos a enviar:", data); 
+  console.log("Datos a enviar:", data);
   try {
-      const addEvent = await api.post("events", data, {
-          headers: {
-              "Content-Type": "application/json",
-          },
-      });
-      console.log("Respuesta de la API:", addEvent.data); 
-      return addEvent.data;
+    const addEvent = await api.post("events", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("Respuesta de la API:", addEvent.data);
+    return addEvent.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
-       
-        console.error("Error al crear el evento:", error.response?.data || error.message);
-        throw new Error(error.response?.data.message || "Error al crear el evento");
+      console.error(
+        "Error al crear el evento:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al crear el evento"
+      );
     } else {
-        
-        console.error("Error desconocido:", error);
-        throw new Error("Error desconocido");
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
     }
-}
+  }
 };
 
 const editEvent = async (eventId: number, eventData: updateEvent) => {
@@ -78,12 +80,12 @@ const editEvent = async (eventId: number, eventData: updateEvent) => {
 
 const uploadEventImage = async (file: File): Promise<string> => {
   if (file) {
-    const formData = new FormData(); 
+    const formData = new FormData();
     formData.append("image", file);
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/files/upload", 
+        "http://localhost:3000/files/upload",
         formData,
         {
           headers: {
@@ -91,19 +93,13 @@ const uploadEventImage = async (file: File): Promise<string> => {
           },
         }
       );
-      return response.data.filePath; 
+      return response.data.filePath;
     } catch (error) {
-      console.error("Error uploading event image:", error); 
-      throw new Error("Error uploading event image"); 
+      console.error("Error uploading event image:", error);
+      throw new Error("Error uploading event image");
     }
   }
   throw new Error("No file provided");
 };
 
-export { 
-  GetEvents,
-  PostNewEvent,
-  editEvent,
-  uploadEventImage,
-  getEvents,
-};
+export { GetEvents, PostNewEvent, editEvent, uploadEventImage, getEvents };

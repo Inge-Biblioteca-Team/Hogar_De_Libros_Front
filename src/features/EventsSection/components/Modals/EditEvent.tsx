@@ -5,6 +5,8 @@ import { updateEvent } from "../../types/Events";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { editEvent } from "../../services/SvEvents";
 import AddEventsImage from "./AddEventsImage";
+import toast from "react-hot-toast";
+import { useQueryClient } from "react-query";
 
 const EditEvent = ({
   edit,
@@ -31,12 +33,15 @@ const EditEvent = ({
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
+  const UseClient = useQueryClient()
+
   const onSubmit = async (data: updateEvent) => {
     try {
       console.log("EventId:", event.EventId);
       await editEvent(event.EventId, data);
-      alert("Evento editado con éxito");
+      toast.success("Evento editado con éxito");
       setEdit(false);
+      UseClient.invalidateQueries("EventCatalog")
     } catch (error) {
       console.error("Error al actualizar evento:", error);
     }
@@ -59,14 +64,14 @@ const EditEvent = ({
       <Modal show={edit} onClose={() => setEdit(false)}>
         <Modal.Header>Editar Evento</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body>
-            <div className="w-full flex items-center justify-center mb-4">
+          <Modal.Body className=" flex flex-col">
+            <div className="w-full flex items-center justify-center">
               {imageUrl ? (
                 <img
                   onClick={() => setIsImageModalOpen(true)}
                   src={imageUrl}
                   alt="Imagen del evento"
-                  className="rounded-lg shadow-lg w-full h-48 object-cover"
+                  className="rounded-lg shadow-lg w-full h-32 object-cover"
                 />
               ) : (
                 <FaCalendarAlt
