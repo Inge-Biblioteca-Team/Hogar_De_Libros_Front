@@ -68,9 +68,10 @@ const EventsSchedule = () => {
             onChange={(event) => setType(event.target.value)}
           >
             <option value="">Tipo de Evento</option>
-            <option value="Tertuliasr">Tertulias</option>
+            <option value="Charla">Charlas</option>
             <option value="Expo">Exposición</option>
             <option value="Juvenil">Tarde Juvenil</option>
+            <option value="Abiertos">Eventos Abiertos</option>
             <option value="Otros">Otros</option>
           </Select>
         </div>
