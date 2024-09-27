@@ -5,8 +5,8 @@ import CancelEnrollment from "./Modals/CancelEnrollment";
 import { useState } from "react";
 
 const CarEnrolment = ({ course }: { course: Courses }) => {
-  const courseTime = course.CourseTime;
-  const courseDate = course.Date;
+  const courseTime = course.courseTime;
+  const courseDate = course.date;
   const dateTimeString = `${courseDate}T${courseTime}`;
   const dateTime = new Date(dateTimeString);
 
@@ -38,7 +38,7 @@ const CarEnrolment = ({ course }: { course: Courses }) => {
             <span>{course.instructor} </span>
             <span>{course.location} </span>
             <span>{fullDate} </span>
-            <span>{time} </span>
+            <span>{time}</span>
           </div>
         </div>
       </Card>

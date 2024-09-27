@@ -1,17 +1,13 @@
 import { Table } from "flowbite-react";
 import { useState } from "react";
-import { Courses } from "../../types/Courses";
-import BTNAccions from "./BTNAccions";
-// import CourseInfo from "./CourseInfo";
-import DisableCourse from "./DisableCourse";
-// import EditCourse from "./EditCourse";
 import { useNavigate } from 'react-router-dom';
+import { Courses } from "../types/Courses";
+import BTNAccions from "./Modals/BTNAccions";
+import DisableCourse from "./Modals/DisableCourse";
 
 
 const TBLCourses = ({ course }: { course: Courses }) => {
-  // const [see, setSee] = useState<boolean>(false);
   const [down, setDow] = useState<boolean>(false);
-  // const [edit, setEdit] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleViewCourse = () => {
@@ -29,9 +25,8 @@ const TBLCourses = ({ course }: { course: Courses }) => {
         <Table.Cell className="w-56">{course.instructor} </Table.Cell>
         <Table.Cell className="w-56">
           <div>
-            {/* <a href={course.date.toString()}>Fecha</a> / <a href={course.courseTime}>Hora</a> */}
-            <span>Fecha: {new Date(course.date).toLocaleDateString()}</span> / 
-            <span>Hora: {course.courseTime}</span>
+            <span>{new Date(course.date).toLocaleDateString()}</span>... 
+            <span>{course.courseTime}</span>
           </div>
         </Table.Cell>
         <Table.Cell className="w-56">
@@ -50,8 +45,6 @@ const TBLCourses = ({ course }: { course: Courses }) => {
           <BTNAccions setSee={handleViewCourse} setDow={setDow} setEdit={handleEditCourse} />
         </Table.Cell>
       </Table.Row>
-      {/* <CourseInfo see={see} setSee={setSee} Course={course} /> */}
-      {/* <EditCourse edit={edit} setEdit={setEdit} Course={course} /> */}
       <DisableCourse dow={down} setDow={setDow} Course={course} />
     </>
   )
