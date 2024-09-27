@@ -1,16 +1,16 @@
 import { Card } from "flowbite-react";
-import { Courses } from "../types/Courses";
+import { NextCourses } from "../types/Courses";
 import { format } from "@formkit/tempo";
 import CancelEnrollment from "./Modals/CancelEnrollment";
 import { useState } from "react";
 
-const CarEnrolment = ({ course }: { course: Courses }) => {
+const CarEnrolment = ({ course }: { course: NextCourses }) => {
   const courseTime = course.CourseTime;
   const courseDate = course.Date;
   const dateTimeString = `${courseDate}T${courseTime}`;
   const dateTime = new Date(dateTimeString);
 
-  const [open, setopen] = useState<boolean>(false)
+  const [open, setopen] = useState<boolean>(false);
 
   const time = format({
     date: dateTime,
@@ -24,7 +24,7 @@ const CarEnrolment = ({ course }: { course: Courses }) => {
   });
   return (
     <>
-      <Card className=" hover:scale-105" onClick={()=>setopen(true)}>
+      <Card className=" hover:scale-105" onClick={() => setopen(true)}>
         <div className=" flex gap-4">
           <figure className="rounded-xl">
             <img

@@ -1,9 +1,9 @@
 import { Button, Card, Timeline } from "flowbite-react";
-import { Courses } from "../types/Courses";
+import { NextCourses } from "../types/Courses";
 
 import { CiCalendarDate } from "react-icons/ci";
 import { format } from "@formkit/tempo";
-const CourseTimeItem = ({ course }: { course: Courses }) => {
+const CourseTimeItem = ({ course }: { course: NextCourses }) => {
   const courseTime = course.CourseTime;
   const courseDate = course.Date;
   const dateTimeString = `${courseDate}T${courseTime}`;
@@ -45,7 +45,7 @@ const CourseTimeItem = ({ course }: { course: Courses }) => {
               </figure>
               <div className=" flex flex-col ml-6 gap-2 h-72 mr-6 ">
                 <span className=" font-bold text-black">
-                  {course.courseType}{" "}
+                  {course.courseName}{" "}
                 </span>
                 <span>
                   Impartido por <br />

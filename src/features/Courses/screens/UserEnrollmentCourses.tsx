@@ -31,7 +31,7 @@ const UserEnrollmentCourses = () => {
             <div className=" text-center w-full mt-72 ml-96 text-3xl font-bold ">No hay cursos matriculados</div>
           ) : (
             Courses?.data.map((course) => (
-              <CarEnrolment course={course} key={course.courseId} />
+              <CarEnrolment course={course} key={course.Id} />
             ))
           )}
         </div>
