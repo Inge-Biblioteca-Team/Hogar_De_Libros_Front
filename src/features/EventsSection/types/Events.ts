@@ -48,3 +48,21 @@ export type updateEvent ={
 
 
 
+export type Event = {
+  id: string;
+  eventType: string;
+  image: string;
+  instructor: string;
+  location: string;
+  date: Date;
+  eventTime: string;
+  objetiveAge: string;
+  status: string;
+  details: string;
+  title: string;
+};
+
+export type ApiEventsResponse = {
+  data:Event[];
+  count: number;
+};

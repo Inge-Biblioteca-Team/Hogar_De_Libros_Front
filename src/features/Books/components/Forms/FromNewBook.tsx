@@ -66,7 +66,7 @@ const FromNewBook = ({ category }: { category: string }) => {
           style={{ gridTemplateColumns: "" }}
         >
           <fieldset className="flex-none w-full">
-            <legend className=" pb-3 font-bold ">Caratula del libro</legend>
+            <legend className=" pb-3 font-bold ">Carátula del libro</legend>
             <figure className="relative ">
               <img
                 className="rounded-xl shadow-xl w-full"
@@ -90,6 +90,7 @@ const FromNewBook = ({ category }: { category: string }) => {
                 <Button
                   className=" rounded-none rounded-s-md"
                   onClick={() => setShowModal(true)}
+                  color={"blue"}
                 >
                   Cambiar Imagen
                 </Button>
@@ -161,7 +162,7 @@ const FromNewBook = ({ category }: { category: string }) => {
               <Label
                 htmlFor="Reserva"
                 value="Libro de Reserva"
-                className="text-xl"
+                className="text-xl ml-2"
               />
             </span>
           </fieldset>

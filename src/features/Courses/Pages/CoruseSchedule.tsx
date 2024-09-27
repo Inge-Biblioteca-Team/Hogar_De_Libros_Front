@@ -19,7 +19,7 @@ const CoruseSchedule = () => {
     }
   );
 
-  const meses = [
+  const months = [
     "Enero",
     "Febrero",
     "Marzo",
@@ -34,21 +34,20 @@ const CoruseSchedule = () => {
     "Diciembre",
   ];
 
-  const fechaActual = new Date();
-  const mesActual = fechaActual.getMonth();
+  const currentDate = new Date();
+  const curretnMonth = currentDate.getMonth();
 
-  const opcionesMeses = [];
+  const monthOpt = [];
   for (let i = 0; i < 3; i++) {
-    const mesIndex = (mesActual + i) % 12;
-    opcionesMeses.push({ mes: meses[mesIndex], value: mesIndex + 1 });
+    const monthIndex = (curretnMonth + i) % 12;
+    monthOpt.push({ month: months[monthIndex], value: monthIndex + 1 });
   }
-
   
   return (
     <>
       <Breadcrumb className=" custom-breadcrumb">
         <HomeCrumb />
-        <LastCrumb CurrentPage="Proximos Cursos" />
+        <LastCrumb CurrentPage="Próximos Cursos" />
       </Breadcrumb>
       <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
         <div className=" flex gap-4 w-4/5 items-start ml-5">
@@ -56,10 +55,10 @@ const CoruseSchedule = () => {
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
           >
-            <option value="">Mes De Realización</option>
-            {opcionesMeses.map((opcion, index) => (
-              <option key={index} value={opcion.value}>
-                {opcion.mes}
+            <option value="">Mes De Elaboración</option>
+            {monthOpt.map((opt, index) => (
+              <option key={index} value={opt.value}>
+                {opt.month}
               </option>
             ))}
           </Select>
@@ -82,10 +81,10 @@ const CoruseSchedule = () => {
             horizontal
           >
             {Courses?.count == 0 ? (
-              <span>No hay Cursos Proximos</span>
+              <span>No hay Cursos Próximos</span>
             ) : (
               Courses?.data.map((course) => (
-                <CourseTimeItem course={course} key={course.Id} />
+                <CourseTimeItem course={course} key={course.courseId} />
               ))
             )}
           </Timeline>

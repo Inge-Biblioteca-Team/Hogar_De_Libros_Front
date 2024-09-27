@@ -94,7 +94,7 @@ const FinishedLoans = () => {
                     <span>
                       <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
                     </span>{" "}
-                    Préstamos por pagina
+                    Préstamos por página
                   </span>
                 </div>
                 <PaginatationSelector

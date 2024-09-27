@@ -40,13 +40,13 @@ const SeeLoanInfo = ({
           </span>
           <span className=" flex flex-col">
             <strong>Sobre el Libro</strong>
-            <span>Titulo: {Loan.book.Title}</span>
-            <span>Codigo de Signatura: {Loan.book.signatureCode}</span>
-            <span>Codigo De Inscripcion: {Loan.book.InscriptionCode}</span>
+            <span>Título: {Loan.book.Title}</span>
+            <span>Código de Signatura: {Loan.book.signatureCode}</span>
+            <span>Código De Inscripcion: {Loan.book.InscriptionCode}</span>
           </span>
           <span className=" flex flex-col">
             <strong>Sobre el préstamo</strong>
-            <span>Codigo de préstamo: {Loan.BookLoanId}</span>
+            <span>Código de préstamo: {Loan.BookLoanId}</span>
             <span>Fecha de Solicitud: {requestDate}</span>
             <span>Fecha de vencimiento: {ExpiredDate}</span>
             <span>Observaciones: {Loan.Observations} </span>

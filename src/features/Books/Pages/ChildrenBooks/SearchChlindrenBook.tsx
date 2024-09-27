@@ -60,7 +60,7 @@ const SearchChildrenCatalog = () => {
       <Breadcrumb className="custom-breadcrumb pb-4">
         <HomeRoute />
         <BooksCrumb />
-        <CurrentRoute CurrentPage={"Busqueda Por Título y Categoría"} />
+        <CurrentRoute CurrentPage={"Búsqueda Por Título y Categoría"} />
       </Breadcrumb>
       <section className="flex flex-col justify-center items-center">
         <div className="w-4/5 flex flex-col items-center justify-center pt-1">
@@ -77,7 +77,7 @@ const SearchChildrenCatalog = () => {
           <div className="w-full pt-2">
             {books?.count == 0 ? (
               <Alert color="warning" rounded>
-                No existen Libros disponibles que considan con su busqueda
+                No existen Libros disponibles que considan con su búsqueda
               </Alert>
             ) : view === "grid" ? (
               <div className="grid grid-cols-5 gap-5">

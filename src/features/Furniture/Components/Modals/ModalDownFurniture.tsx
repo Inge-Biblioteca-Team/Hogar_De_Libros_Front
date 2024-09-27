@@ -33,7 +33,7 @@ const ModalDownFurniture= ({
               Seleccione el nuevo estado del mobiliario <br /> {Description}
             </h3>
             <Select onChange={(event)=>SetAcction(event.target.value)} required>
-              <option value="">Seleccione Una Opcion</option>
+              <option value="">Seleccione una opción</option>
               <option value="Down">Baja</option>
               <option value="SE">S.E.</option>
               <option value="NA">N.A.</option>

@@ -62,7 +62,7 @@ const SearchCrumb = () => {
   };
   return (
     <>
-      <Breadcrumb.Item onClick={goback}><span className=" text-black cursor-pointer">Busqueda</span></Breadcrumb.Item>
+      <Breadcrumb.Item onClick={goback}><span className=" text-black cursor-pointer">Búsqueda</span></Breadcrumb.Item>
     </>
   );
 };

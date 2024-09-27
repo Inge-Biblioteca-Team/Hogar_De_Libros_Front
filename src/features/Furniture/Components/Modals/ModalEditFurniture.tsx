@@ -66,8 +66,8 @@ const ModalEditFurniture = ({
       <Modal show={sEdit} size="md" onClose={() => setEdit(false)}>
         <Modal.Header>Editar Mobiliario</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className="flex flex-col gap-3">
-            <fieldset className="grid grid-cols-2 gap-2 text-center">
+          <Modal.Body className="flex flex-col gap-6">
+            <fieldset className="grid grid-cols-2 gap-8 text-center">
               <legend className="pb-3">Información del Mobiliario</legend>
               <span>
                 <Label htmlFor="LicenseNumber" value="Número de placa" />
@@ -113,7 +113,7 @@ const ModalEditFurniture = ({
             </fieldset>
             <fieldset className="grid grid-cols-1 gap-7 text-center">
               <legend>Información Adicional</legend>
-              <span>
+              <span className=" mt-2">
                 <Label htmlFor="ConditionRating" value="Condición" />
                 <Select
                   id="ConditionRating"

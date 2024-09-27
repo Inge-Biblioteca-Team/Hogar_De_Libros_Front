@@ -91,7 +91,7 @@ const ManageFurniture = () => {
             </Button>
           </div>
           <ModalAddNewFurniture sNewF={sNew} setSNewF={setSNew} />
-          <Table hoverable>
+          <Table hoverable className=" text-center">
             <Table.Head className=" h-16">
               <Table.HeadCell className=" w-44">Número de placa</Table.HeadCell>
               <Table.HeadCell className=" w-44">Descripción</Table.HeadCell>
@@ -114,7 +114,7 @@ const ManageFurniture = () => {
                 <span>
                   <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
                 </span>{" "}
-                mobiliario por página
+                Piezas de mobiliario por página
               </span>
             </div>
             <PaginatationSelector

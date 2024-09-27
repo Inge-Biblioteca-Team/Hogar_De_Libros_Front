@@ -1,3 +1,4 @@
+import { Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 
 const CreateNewActive = ({objetive}:{objetive:string}) => {
@@ -6,15 +7,13 @@ const CreateNewActive = ({objetive}:{objetive:string}) => {
     navi(`/HogarDeLibros/Gestion/${objetive}s/Nuevo${objetive}`)
   }
   return (
-    <button
+    <Button
       type="button"
-      className="bg-Bottoms text-Text text-lg rounded-lg py-1 px-2
-      hover:bg-Bottoms-dark hover:scale-105
-       max-sm:hidden"
+    color={"blue"}
        onClick={Goto}
       >
       Añadir {objetive}
-    </button>
+    </Button>
   );
 };
 

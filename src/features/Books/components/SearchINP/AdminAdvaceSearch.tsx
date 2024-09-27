@@ -35,7 +35,7 @@ const AdminAdvaceSearch = ({see, Author,ISBN,SigCode,Status,}: {
       <div className="relative">
         <input
           type="text"
-          placeholder="Codigo de signatura"
+          placeholder="Código de signatura"
           className="pl-8 pr-4 py-2 border rounded-lg"
           onChange={(event) => SigCode(event.target.value)}
         />

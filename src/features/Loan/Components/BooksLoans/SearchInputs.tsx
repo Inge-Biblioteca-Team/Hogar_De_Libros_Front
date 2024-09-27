@@ -49,13 +49,13 @@ const SearchInputs = ({
         <TextInput
           type="text"
           icon={FaFileSignature}
-          placeholder="Codigo De Signaruta"
+          placeholder="Código De Signaruta"
           value={SignaCode}
           onChange={(event) => setSignaCode(event.target.value)}
         />
       </div>
       <Button className=" h-10" color={"blue"} onClick={clearSearch}>
-        Borrar Busqueda
+        Borrar búsqueda
       </Button>
     </div>
   );

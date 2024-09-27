@@ -36,7 +36,7 @@ const ModalMantenance = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
           <Label htmlFor="UserName">Realizado Por</Label>
-          <TextInput className="" type="text" required {...register("userName")} />
+          <TextInput className="mb-5" type="text" required {...register("userName")} />
           <Label htmlFor="UserName">Ubicacion del equipo</Label>
           <TextInput className="" type="text" required {...register("location")} />
         </Modal.Body>

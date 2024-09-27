@@ -60,12 +60,12 @@ const AdvancedSearch = () => {
       <Breadcrumb className="custom-breadcrumb fixed">
         <HomeCrumb />
         <BooksCrumb />
-        <LastCrumb CurrentPage="Busqueda Avanzada" />
+        <LastCrumb CurrentPage="Búsqueda Avanzada" />
       </Breadcrumb>
       <section className="flex flex-col w-full py-6 ">
         <div className="flex justify-center">
           <div className="flex flex-col w-1/4 p-4 space-y-4 fixed left-0 top-52 ">
-            <strong className=" text-xl text-center">Criterios De Busqueda</strong>
+            <strong className=" text-xl text-center">Criterios De Búsqueda</strong>
             <div>
               <Label htmlFor="Title">Título</Label>
               <TextInput
@@ -117,11 +117,11 @@ const AdvancedSearch = () => {
               />
             </div>
             <div className=" flex flex-col">
-              <Label htmlFor="ItemsPerPage">Item por pagina</Label>
+              <Label htmlFor="ItemsPerPage">Item por página</Label>
               <select
                 onChange={(e) => setLimit(Number(e.target.value))}
                 className=" rounded-md border-white bg-gray-50 focus:ring-cyan-300 focus:border-cyan-300"
-                title="Items Por pagina"
+                title="Items Por página"
                 id="PerPage"
               >
                 <option value={5}>5</option>

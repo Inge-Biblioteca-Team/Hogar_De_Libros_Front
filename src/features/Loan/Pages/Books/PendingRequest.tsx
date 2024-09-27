@@ -58,7 +58,7 @@ const PendingRequest = () => {
                   <span>
                     <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
                   </span>{" "}
-                  Solicitudes por pagina
+                  Solicitudes por página
                 </span>
               </div>
               <PaginatationSelector

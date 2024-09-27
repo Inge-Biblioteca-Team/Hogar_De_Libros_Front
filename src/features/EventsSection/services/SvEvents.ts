@@ -102,4 +102,22 @@ const uploadEventImage = async (file: File): Promise<string> => {
   throw new Error("No file provided");
 };
 
-export { GetEvents, PostNewEvent, editEvent, uploadEventImage, getEvents };
+
+const GetNextEvents = async (
+  month?: string,
+  type?: string
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {};
+    if (month) params.month = month;
+    if (type) params.type = type;
+
+    const response = await api.get("/events/NextEvents", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export { GetEvents, PostNewEvent, editEvent, uploadEventImage, getEvents, GetNextEvents };
