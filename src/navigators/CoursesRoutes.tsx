@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Layout from "../Pages/Layout";
-import ManageLocalArtist from "../features/LocalArtist/Pages/ManageLocalArtist";
+import ManageCourses from "../features/Courses/Pages/ManageCourses";
 
-const localArtistRoutes = [
+const coursesRoutes = [
     {
         path: "HogarDeLibros",
         element: (
@@ -15,13 +15,13 @@ const localArtistRoutes = [
                 path: "Gestion",
                 children: [
                     {
-                        path: "Artistas",
-                        element: < ManageLocalArtist />
-                    }
+                        path: "Cursos",
+                        element: < ManageCourses />
+                    },
                 ]
             }
         ]
     }
 ];
 
-export default localArtistRoutes;
+export default coursesRoutes;

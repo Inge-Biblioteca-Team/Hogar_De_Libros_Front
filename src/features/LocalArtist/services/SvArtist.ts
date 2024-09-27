@@ -31,6 +31,8 @@ const createLocalArtist = async (data: createArtist) => {
     const addArtist = await api.post("local-artist", data, {
       headers: {
         "Content-Type": "application/json",
+        //just for testing queries with auth. It worked
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1MDQzNzAxNzMiLCJlbWFpbCI6InNlcnJhbm9yb3NhbGVzOUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjcxMzQ1NzAsImV4cCI6MTcyNzEzODE3MH0.P6rumVObIXFaWhZi-mVIA12gKsXZV4MAAVQblBKeouw"
       },
     });
     return addArtist.data;
