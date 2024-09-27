@@ -28,7 +28,7 @@ const UserEnrollmentCourses = () => {
       <div className=" w-full flex items-center justify-center mt-12">
         <div className=" w-4/5 grid grid-cols-3 gap-5">
           {Courses?.count == 0 ? (
-            <span>No hay cursos matriculados</span>
+            <div className=" text-center w-full mt-72 ml-96 text-3xl font-bold ">No hay cursos matriculados</div>
           ) : (
             Courses?.data.map((course) => (
               <CarEnrolment course={course} key={course.Id} />

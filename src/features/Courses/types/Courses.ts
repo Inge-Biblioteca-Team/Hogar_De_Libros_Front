@@ -68,6 +68,7 @@ export type NextCourses = {
   Id: number;
   image: string;
   courseType: string;
+  courseName: string;
   instructor: string;
   avaibleQuota: number;
   capacity: number;
@@ -80,6 +81,6 @@ export type NextCourses = {
   duration: string;
 };
 export type ApiCourseResponse = {
-  data: Courses[];
+  data: NextCourses[];
   count: number;
 };

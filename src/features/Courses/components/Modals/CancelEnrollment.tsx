@@ -1,14 +1,14 @@
 import { Button, Modal } from "flowbite-react";
 import { format } from "@formkit/tempo";
 import UseCancelEnrollment from "../../Hooks/UseCancelEnrollment";
-import { Courses } from "../../types/Courses";
+import { NextCourses } from "../../types/Courses";
 
 const CancelEnrollment = ({
   course,
   open,
   setopen,
 }: {
-  course: Courses;
+  course: NextCourses;
   open: boolean;
   setopen: (open: boolean) => void;
 }) => {
@@ -24,15 +24,15 @@ const CancelEnrollment = ({
 
   const handleCancel = () => {
     if (Cedula) {
-        mutate(
-          { courseId: course.Id, userCedula: Cedula },
-          {
-            onSuccess: () => {
-              setopen(false);
-            },
-          }
-        );
-      }
+      mutate(
+        { courseId: course.Id, userCedula: Cedula },
+        {
+          onSuccess: () => {
+            setopen(false);
+          },
+        }
+      );
+    }
   };
 
   return (
@@ -42,12 +42,12 @@ const CancelEnrollment = ({
         <span>
           {" "}
           Esta seguro que desea cancelar la matricula del curso{" "}
-          <strong>{course.courseType}</strong> del dia <br />
+          <strong>{course.courseType}</strong> del día <br />
           <strong>{fullDate}. </strong> <br />
         </span>
         <span>
           {" "}
-          En caso de aceptar y cancelar, no podra revertir esta accion.
+          En caso de aceptar y cancelar, no podra revertir esta acción.
         </span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
