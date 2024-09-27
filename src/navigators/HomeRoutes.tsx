@@ -4,9 +4,9 @@ import Login from "../features/Users/Auth/Login";
 import Register from "../features/Users/Auth/Register";
 import Layout from "../Pages/Layout";
 import Landing from "../screens/Landing";
-import CourseInfo from "../features/Courses/components/Modals/CourseInfo";
-import EditCourse from "../features/Courses/components/Modals/EditCourse";
-import CreateCourse from "../features/Courses/components/Modals/CreateCourse";
+import CourseInfo from "../features/Courses/components/Crud/CourseInfo";
+import EditCourse from "../features/Courses/components/Crud/EditCourse";
+import CreateCourse from "../features/Courses/components/Crud/CreateCourse";
 
 const homeRoutes = [
   {

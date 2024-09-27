@@ -7,8 +7,7 @@ const UseDownCourse = () => {
 
   return useMutation(DownCourse, {
     onSuccess: () => {
-      // toast.success("Curso deshabilitado.");
-      alert("Curso dado de baja con éxito");
+      toast.success("Curso deshabilitado.");
       queryClient.invalidateQueries("CursoMG");
     },
     onError: () => {

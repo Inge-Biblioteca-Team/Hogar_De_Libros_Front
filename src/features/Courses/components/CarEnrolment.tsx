@@ -38,7 +38,7 @@ const CarEnrolment = ({ course }: { course: NextCourses }) => {
             <span>{course.instructor} </span>
             <span>{course.location} </span>
             <span>{fullDate} </span>
-            <span>{time} </span>
+            <span>{time}</span>
           </div>
         </div>
       </Card>

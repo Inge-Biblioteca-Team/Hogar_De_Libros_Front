@@ -175,7 +175,7 @@ const FromNewBook = ({ category }: { category: string }) => {
                 value="Categoría de estante"
                 className="text-xl"
               />
-              {category == "books"?   <Select {...register("ShelfCategory")} required>
+              {category == "books" ? <Select {...register("ShelfCategory")} required>
                 <option value="">Seleccione una categoría</option>
                 <option value="Ciencias Sociales">Ciencias Sociales</option>
                 <option value="Literatura">Literatura</option>
@@ -190,10 +190,10 @@ const FromNewBook = ({ category }: { category: string }) => {
                 <option value="Lenguas">Lenguas</option>
                 <option value="Obras Generales">Obras Generales</option>
               </Select> : <Select {...register("ShelfCategory")} required>
-              <option value="">Seleccione una categoría</option>
-              <option value="0-5Años">0-5 Años</option>
-              <option value="+6Años">+6 Años</option>
-                </Select>}
+                <option value="">Seleccione una categoría</option>
+                <option value="0-5Años">0-5 Años</option>
+                <option value="+6Años">+6 Años</option>
+              </Select>}
             </span>
             <span>
               <Label
