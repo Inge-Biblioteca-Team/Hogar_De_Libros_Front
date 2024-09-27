@@ -110,7 +110,7 @@ const GetNextEvents = async (
   try {
     const params: { [key: string]: string | number | undefined } = {};
     if (month) params.month = month;
-    if (type) params.type = type;
+    if (type) params.category = type;
 
     const response = await api.get("/events/NextEvents", { params });
     return response.data;
