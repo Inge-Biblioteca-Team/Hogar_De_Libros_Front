@@ -15,14 +15,14 @@ const BTNAccions = ({
       <div className=" w-full flex gap-3 items-center justify-center text-3xl">
         <button
           type="button"
-          title="Ver Informacion de Artista"
+          title="Ver Información de Artista"
           onClick={() => setSee(true)}
         >
           <PiEyeLight size={24} />
         </button>
         <button
           type="button"
-          title="Editar Informacion de Artista"
+          title="Editar Información de Artista"
           onClick={() => setEdit(true)}
         >
           <PiPencilDuotone size={24} />

@@ -19,6 +19,7 @@ import PendingRequest from "../features/Loan/Pages/Books/PendingRequest";
 import WorkStationsLoanHistory from "../features/Loan/Pages/WorkStations/WorkStationsLoanHistory";
 import ManageFurniture from "../features/Furniture/Pages/ManageFurniture";
 import ManageEvents from "../features/EventsSection/Pages/ManageEvent";
+import ManagePrograms from "../features/Programs/Pages/ManagePrograms";
 
 
 const adminRoutes = [
@@ -105,6 +106,10 @@ const adminRoutes = [
       {
         path: "Eventos",
         element: < ManageEvents />,
+      },
+      {
+        path: "Programas",
+        element: < ManagePrograms />,
       },
       {
         path: "Préstamos",

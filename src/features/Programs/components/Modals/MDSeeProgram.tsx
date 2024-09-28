@@ -1,0 +1,52 @@
+import { Modal, Button } from "flowbite-react";
+import { Dispatch, SetStateAction } from "react";
+import { Program } from "../../types/Programs";
+
+const MDSeeProgram = ({
+  open,
+  setOpen,
+  program,
+}: {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  program: Program;
+}) => {
+  return (
+    <Modal show={open} onClose={() => setOpen(false)}>
+      <Modal.Header>Información del Programa</Modal.Header>
+      <Modal.Body className=" grid grid-cols-3 gap-5">
+        <div>
+          <figure>
+            <img
+              className="w-full h-48 rounded-lg"
+              src={program.image}
+              alt={program.programName}
+            />
+          </figure>
+        </div>
+        <div className=" col-span-2 flex flex-col justify-center">
+          <div>
+            <strong className=" font-bold">Nombre:</strong>{" "}
+            <span>{program.programName} </span>
+          </div>
+          <div>
+            <strong className=" font-bold">Descripción:</strong>{" "}
+            <span className=" line-clamp-3">{program.description} </span>
+          </div>
+          <div>
+            <strong className=" font-bold">Estado:</strong>
+            <span>{program.status ? "Activo" : "Inactivo"} </span>
+          </div>
+          <a className=" hover:text-Body cursor-pointer">Cursos relacionados al programa</a>
+        </div>
+      </Modal.Body>
+      <Modal.Footer className=" flex items-center justify-center">
+        <Button color={"blue"} onClick={() => setOpen(false)}>
+          Regresar
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export default MDSeeProgram;

@@ -1,21 +1,22 @@
-import { Modal, Button, FileInput } from "flowbite-react";
+import { Button, FileInput, Modal } from "flowbite-react";
+import uploadImage from "../Services/UploadImg";
 import { Dispatch, SetStateAction, useState } from "react";
 
-import { uploadImage } from "../../services/SvSearchIMG";
-
-const ModalAddImage = ({
+const AddImage = ({
   showModal,
   onCloseModal,
   onImageSelect,
+  text,
 }: {
   showModal: boolean;
-  onCloseModal: Dispatch<SetStateAction<boolean>>;
+  onCloseModal:  Dispatch<SetStateAction<boolean>>;
   onImageSelect: (url: string) => void;
+  text: string;
 }) => {
   const [localImage, setLocalImage] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
 
-  const handleLocalImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files?.[0];
     if (uploadedFile) {
       setFile(uploadedFile);
@@ -27,11 +28,11 @@ const ModalAddImage = ({
   const handleConfirmLocalImage = async () => {
     if (file) {
       try {
-        const imageUrl = await uploadImage(file);
-        onImageSelect(imageUrl);
+        const filePath = await uploadImage(file);
+        onImageSelect(filePath);
         setLocalImage(null);
         setFile(null);
-        onCloseModal(false)
+        onCloseModal(false);
       } catch (error) {
         console.error("Error uploading image:", error);
       }
@@ -39,29 +40,25 @@ const ModalAddImage = ({
   };
 
   return (
-    <Modal show={showModal} onClose={() => onCloseModal(false)}>
-      <Modal.Header>Buscar Carátulas de Libros</Modal.Header>
+    <Modal show={showModal} onClose={()=>onCloseModal(false)} popup>
+      <Modal.Header>Cargar Imagen {text} </Modal.Header>
       <Modal.Body className="flex flex-col">
-        <p className="mb-2 font-semibold">Seleccionar Imagen Local</p>
-        <FileInput
-          onChange={handleLocalImageUpload}
-          className="custom-file-input"
-        />
-
+        <p className="mb-2 font-semibold">Cargar una imagen local:</p>
+        <FileInput onChange={handleImageUpload} className="custom-file-input" />
         {localImage && (
           <div className="mt-4">
             <p className="mb-2 font-semibold">Previsualización:</p>
             <img
-              src={localImage}
+              src={localImage ?? undefined}
               alt="Previsualización de la imagen local"
-              className="rounded shadow-md h-60 w-full"
+              className="rounded shadow-md w-full h-auto"
             />
             <Button
               className="mt-3"
-              color={"blue"}
+              color="blue"
               onClick={handleConfirmLocalImage}
             >
-              Confirmar Imagen Local
+              Confirmar
             </Button>
           </div>
         )}
@@ -70,4 +67,4 @@ const ModalAddImage = ({
   );
 };
 
-export default ModalAddImage;
+export default AddImage;
