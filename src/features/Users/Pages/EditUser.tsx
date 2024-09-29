@@ -122,7 +122,7 @@ const EditUser = () => {
                 </div>
                 <div>
                   <Button color={"blue"} onClick={() => setOpneC(true)}>
-                    Editar Informacion de contacto
+                    Editar Información de contacto
                   </Button>
                 </div>
               </div>
