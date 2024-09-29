@@ -15,6 +15,7 @@ const BTNProgramsAct = ({ program }: { program: Program }) => {
       <button
         title="ver información"
         type="button"
+        className="hover:text-Body"
         onClick={() => setOpenS(true)}
       >
         <PiEyeLight size={24} />
@@ -22,7 +23,7 @@ const BTNProgramsAct = ({ program }: { program: Program }) => {
       <button
         title="Editar información"
         type="button"
-        className={`${program.status ? "" : "cursor-not-allowed"}`}
+        className={`${program.status ? "" : "cursor-not-allowed"} hover:text-yellow-400`}
         onClick={() => setOpenE(true)}
         disabled={!program.status}
       >
@@ -32,7 +33,7 @@ const BTNProgramsAct = ({ program }: { program: Program }) => {
       <button
         title="Deshabilitar Activo"
         type="button"
-        className={`${program.status ? "" : "cursor-not-allowed"}`}
+        className={`${program.status ? "" : "cursor-not-allowed"} hover:text-red-800`}
         onClick={() => setOpenD(true)}
         disabled={!program.status}
       >
