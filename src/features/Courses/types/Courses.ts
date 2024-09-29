@@ -36,11 +36,12 @@ export type Courses = {
   courseType: string;
   targetAge: number;
   capacity: number;
-  Status: boolean;
+  Status: string;
   image: string;
   duration: string;
   endDate: Date;
   programProgramsId: number;
+  programsName: number;
 };
 
 export type ResponseC = {
