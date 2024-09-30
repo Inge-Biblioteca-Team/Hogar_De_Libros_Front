@@ -42,6 +42,8 @@ export type Courses = {
   endDate: Date;
   programProgramsId: number;
   programsName: number;
+  availableQuota:number;
+  currentStatus:string;
 };
 
 export type ResponseC = {
