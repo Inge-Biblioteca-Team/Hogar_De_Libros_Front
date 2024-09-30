@@ -13,7 +13,7 @@ import { Courses, ResponseC } from "../types/Courses";
 import TBLCourses from "../components/TBLCourses";
 import UseDebounce from "../../../hooks/UseDebounce";
 import SearchCourses from "../components/Modals/SearchCourses";
-import { useNavigate } from "react-router-dom";
+import CreateCourse from "../components/Crud/CreateCourse";
 
 const ManageCourses = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -22,7 +22,6 @@ const ManageCourses = () => {
     return savedPage ? Number(savedPage) : 1;
   });
   const [SName, SetSName] = useState<string>("");
-  const navigate = useNavigate();
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
@@ -56,22 +55,15 @@ const ManageCourses = () => {
         <div className=" w-4/5">
           <div className="flex items-center">
             <SearchCourses SName={SetSName} />
-            <button
-              className="w-40 bg-Body text-white mt-2 p-2 rounded-md hover:bg-blue-800"
-              onClick={() => navigate("/añadir-curso")}
-            >
-              Añadir Curso
-            </button>
-
+            <CreateCourse />
           </div>
           <Table hoverable className=" text-center">
             <Table.Head className=" h-20 text-sm">
               <Table.HeadCell>Nombre</Table.HeadCell>
               <Table.HeadCell>Encargado</Table.HeadCell>
-              <Table.HeadCell>Fecha y Hora</Table.HeadCell>
-              <Table.HeadCell>Ubicación</Table.HeadCell>
+              <Table.HeadCell>Fecha</Table.HeadCell>
+              <Table.HeadCell>Hora</Table.HeadCell>
               <Table.HeadCell>Cupos Disponibles</Table.HeadCell>
-              <Table.HeadCell>Duración del Curso</Table.HeadCell>
               <Table.HeadCell>Estado</Table.HeadCell>
               <Table.HeadCell></Table.HeadCell>
             </Table.Head>
