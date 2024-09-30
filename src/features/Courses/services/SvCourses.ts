@@ -173,6 +173,14 @@ const uploadImage = async (file: File): Promise<string> => {
   throw new Error("No file provided");
 };
 
+const GetUserData = async (NCedula: string) => {
+  try {
+    const response = await api.get(`http://localhost:3000/user/${NCedula}`,);
+    return response.data;
+  } catch (error) {
+    console.error("Usuario no encontrado");
+  }
+};
 
  const GetProgramsIntoCourses = async () => {
   const response = await api.get('programs/Actived');
@@ -189,5 +197,6 @@ export {
   editCourse,
   DownCourse,
   getCoursesS,
-  GetProgramsIntoCourses
+  GetProgramsIntoCourses,
+  GetUserData
 };
