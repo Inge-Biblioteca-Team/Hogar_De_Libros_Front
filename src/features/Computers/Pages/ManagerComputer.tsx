@@ -89,7 +89,7 @@ const ManagerComputer = () => {
           </div>
           <Table
             hoverable
-            className="felx items-center justify-center text-center"
+            className="text-center"
           >
             <Table.Head className=" h-16">
               <Table.HeadCell>Número de Máquina</Table.HeadCell>
@@ -99,7 +99,7 @@ const ManagerComputer = () => {
               <Table.HeadCell>Estado</Table.HeadCell>
               <Table.HeadCell></Table.HeadCell>
             </Table.Head>
-            <Table.Body className="divide-y">
+            <Table.Body>
               {computers?.data.map((computers) => (
                 <>
                   <TblRows key={computers.EquipmentUniqueCode} computers={computers} />

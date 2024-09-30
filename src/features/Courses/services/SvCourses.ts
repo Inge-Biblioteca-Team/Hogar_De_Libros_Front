@@ -100,17 +100,27 @@ const DownCourse = async (courseId: number) => {
   }
 };
 
-const editCourse = async (courseId: number, data: updateCourse) => {
+const editCourse = async ( data: updateCourse) => {
   try {
-    const response = await api.patch(`/courses/${courseId}`, data, {
+    const response = await api.patch(`/courses/${data.Id}`, data, {
       headers: {
         "Content-Type": "application/json",
       },
     });
     return response.data;
-  } catch (error) {
-    console.error("Error editing course:", error);
-    throw error;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al crear el Curso:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al crear el Curso"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 

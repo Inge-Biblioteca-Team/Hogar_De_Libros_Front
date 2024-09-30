@@ -1,6 +1,6 @@
 import { Table } from "flowbite-react";
 import { Courses } from "../types/Courses";
-import BTNAccions from "./Modals/BTNAccions";
+import BTNAccions from "./BTNAccions";
 import { format } from "@formkit/tempo";
 
 const TBLCourses = ({ course }: { course: Courses }) => {

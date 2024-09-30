@@ -52,15 +52,15 @@ export type ResponseC = {
 };
 
 export type updateCourse = {
+  Id:number;
+  courseName: string;
   date: Date;
   courseTime: string;
   location: string;
   instructor: string;
-  courseName: string;
   courseType: string;
   targetAge: number;
   capacity: number;
-  Status: boolean;
   image: string;
   duration: string;
   endDate: Date;

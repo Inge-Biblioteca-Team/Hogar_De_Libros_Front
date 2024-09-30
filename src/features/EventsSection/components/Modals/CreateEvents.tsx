@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Label, Modal, TextInput } from "flowbite-react";
+import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import AddEventsImage from "./AddEventsImage";
 import { createEvents } from "../../types/Events";
 import useCreateEvent from "../../Hooks/useCreateEvent";
@@ -10,13 +10,7 @@ const CreateEvent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-    reset,
-  } = useForm<createEvents>();
+  const { register, handleSubmit, setValue, reset } = useForm<createEvents>();
 
   const { mutate: createEvent } = useCreateEvent();
 
@@ -40,14 +34,13 @@ const CreateEvent = () => {
     setValue("Image", url);
   };
 
-  const tomorrow = addDay(new Date())
+  const tomorrow = addDay(new Date());
 
   const toDay = format({
     date: tomorrow,
     format: "YYYY-MM-DD",
     tz: "America/Costa_Rica",
   });
-
 
   return (
     <>
@@ -76,18 +69,18 @@ const CreateEvent = () => {
               )}
             </div>
             <fieldset className="grid grid-cols-2 gap-3 ">
-              <legend className="text-center w-full">Información Básica</legend>
+              <legend className="text-center w-full">
+                Detalles del evento
+              </legend>
               <div>
                 <Label htmlFor="Location" value="Ubicación" />
                 <TextInput
                   id="Location"
                   type="text"
+                  required
                   {...register("Location", { required: true })}
                   placeholder="Escribe la ubicación del evento"
                 />
-                {errors.Location && (
-                  <span className="text-red-500">Este campo es requerido</span>
-                )}
               </div>
 
               <div>
@@ -95,24 +88,17 @@ const CreateEvent = () => {
                 <TextInput
                   id="Title"
                   type="text"
-                  {...register("Title", { required: true })}
+                  required
+                  {...register("Title")}
                   placeholder="Escribe el título del evento"
                 />
-                {errors.Title && (
-                  <span className="text-red-500">Este campo es requerido</span>
-                )}
               </div>
-            </fieldset>
-
-            <fieldset className="grid grid-cols-2 gap-3">
-              <legend className="text-center w-full">
-                Detalles del Evento
-              </legend>
               <div>
                 <Label htmlFor="Details" value="Detalles" />
                 <TextInput
                   id="Details"
                   type="text"
+                  required
                   {...register("Details")}
                   placeholder="Detalles del evento"
                 />
@@ -120,15 +106,18 @@ const CreateEvent = () => {
 
               <div>
                 <Label htmlFor="Category" value="Categoría" />
-                <TextInput
-                  id="Category"
-                  type="text"
-                  {...register("Category", { required: true })}
-                  placeholder="Escribe la categoría del evento"
-                />
-                {errors.Category && (
-                  <span className="text-red-500">Este campo es requerido</span>
-                )}
+                <Select
+                 required
+                   id="Category"
+                 {...register("Category")}
+                >
+                  <option value="">Categoría del evento</option>
+                  <option value="Exposición">Exposición de libro</option>
+                  <option value="Presentación">Presentación de libro</option>
+                  <option value="cultural">Artistico cultural</option>
+                  <option value="Tertulias">Tertulias</option>
+                  <option value="Inducción">Inducción</option>
+                </Select>
               </div>
             </fieldset>
 
@@ -140,17 +129,16 @@ const CreateEvent = () => {
                   id="Date"
                   type="date"
                   min={toDay}
-                  {...register("Date", { required: true })}
+                  required
+                  {...register("Date")}
                 />
-                {errors.Date && (
-                  <span className="text-red-500">Este campo es requerido</span>
-                )}
               </div>
               <div>
                 <Label htmlFor="Time" value="Hora" />
                 <TextInput
                   id="Time"
                   type="time"
+                  required
                   {...register("Time", {
                     required: true,
                     onChange: (e) => {
@@ -160,9 +148,6 @@ const CreateEvent = () => {
                     },
                   })}
                 />
-                {errors.Time && (
-                  <span className="text-red-500">Este campo es requerido</span>
-                )}
               </div>
             </fieldset>
 

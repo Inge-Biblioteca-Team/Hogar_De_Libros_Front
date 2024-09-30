@@ -5,10 +5,12 @@ const BTNAccions = ({
   setSee,
   setDow,
   setEdit,
+  status,
 }: {
   setSee: Dispatch<SetStateAction<boolean>>;
   setEdit: Dispatch<SetStateAction<boolean>>;
   setDow: Dispatch<SetStateAction<boolean>>;
+  status: boolean;
 }) => {
   return (
     <>
@@ -16,23 +18,33 @@ const BTNAccions = ({
         <button
           type="button"
           title="Ver Información de Artista"
+          className="hover:text-Body"
           onClick={() => setSee(true)}
         >
+          {""}
           <PiEyeLight size={24} />
         </button>
         <button
           type="button"
-          title="Editar Información de Artista"
+          className={`${
+            status ? "" : "cursor-not-allowed"
+          } hover:text-yellow-400`}
           onClick={() => setEdit(true)}
+          disabled={!status}
         >
+          {" "}
+          {""}
           <PiPencilDuotone size={24} />
         </button>
         <button
           type="button"
           title="Desabilitar Artista"
-          className=""
+          className={`${status ? "" : "cursor-not-allowed"} hover:text-red-800`}
           onClick={() => setDow(true)}
+          disabled={!status}
         >
+          {" "}
+          {""}
           <PiTrash size={24} />
         </button>
         <button type="button" title="Rehabilitar Artista" className="hidden">

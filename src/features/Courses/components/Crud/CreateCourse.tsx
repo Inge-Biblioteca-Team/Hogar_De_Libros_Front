@@ -29,6 +29,7 @@ const CreateCourse = () => {
   const onSubmit = async (data: createCourse) => {
     createCourse(data, {
       onSuccess: () => {
+        setIsModalOpen(false);
         reset();
         setImageUrl("");
       },
@@ -101,13 +102,18 @@ const CreateCourse = () => {
 
                 <span>
                   <Label htmlFor="courseType" value="Categoría del Curso" />
-                  <TextInput
-                    id="courseType"
-                    type="text"
-                    required
-                    {...register("courseType")}
-                    placeholder="Categoría del Curso"
-                  />
+                  <Select
+                   id="courseType"
+                   required>
+                    <option value="Categoría de curso">
+                      Categoría de curso
+                    </option>
+                    <option value="Taller">Taller</option>
+                    <option value="Capacitación">Capacitación</option>
+                    <option value="Cómputo">Cómputo</option>
+                    <option value="Curso Articulado">Curso Articulado</option>
+                    <option value="Manualidades">Manualidades</option>
+                  </Select>
                 </span>
 
                 <span>
