@@ -103,6 +103,7 @@ const CreateCourse = () => {
                 <span>
                   <Label htmlFor="courseType" value="Categoría del Curso" />
                   <Select
+                  {...register('courseType')}
                    id="courseType"
                    required>
                     <option value="Categoría de curso">
@@ -209,10 +210,10 @@ const CreateCourse = () => {
                 <Label htmlFor="program" value="Programa del Curso" />
                 <Select
                   id="program"
-                  {...register("programProgramsId")}
+                  onChange={(event)=>setValue("programProgramsId",(event?.target.value))}
                   icon={FaReadme}
                 >
-                  <option value="">Curso Libre</option>
+                  <option value={""}>Curso Libre</option>
                   {programs?.map((program) => (
                     <option key={program.programsId} value={program.programsId}>
                       {program.programName}

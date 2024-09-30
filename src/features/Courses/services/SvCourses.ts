@@ -125,6 +125,7 @@ const editCourse = async ( data: updateCourse) => {
 };
 
 const CreateCourses = async (data: createCourse) => {
+  console.table(data)
   try {
     const addCourse = await api.post("courses", data, {
       headers: {

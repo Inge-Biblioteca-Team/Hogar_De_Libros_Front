@@ -11,7 +11,7 @@ export type createCourse = {
   image: string;
   duration: string;
   endDate: Date;
-  programProgramsId: number;
+  programProgramsId?: string;
 };
 
 export type Course = {
