@@ -39,7 +39,8 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.24.0",
     "styled-components": "^6.1.13",
-    "tempo": "^0.2.7"
+    "tempo": "^0.2.7",
+    "tempojs": "^1.0.3"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.7",

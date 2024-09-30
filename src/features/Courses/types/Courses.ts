@@ -85,3 +85,8 @@ export type ApiCourseResponse = {
   data: NextCourses[];
   count: number;
 };
+
+export type program = {
+  programName: string;
+  programsId: number;
+}

@@ -6,6 +6,7 @@ import UserRoutes from "./UserRoutes";
 import localArtistRoutes from "./LocalArtistRoutes";
 import CorusesAndEventRoutes from "./CourseAndEventRoutes";
 import coursesRoutes from "./CoursesRoutes";
+import EventRoutes from "./EventRoutes";
 
 
 const Routes = createBrowserRouter([
@@ -15,7 +16,8 @@ const Routes = createBrowserRouter([
   ...UserRoutes,
   ...localArtistRoutes,
   ...CorusesAndEventRoutes,
-  ...coursesRoutes
+  ...coursesRoutes,
+  ...EventRoutes
 ]);
 
 export default Routes;
