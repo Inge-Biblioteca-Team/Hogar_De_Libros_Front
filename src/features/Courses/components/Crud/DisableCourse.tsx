@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Button, Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Courses } from "../../types/Courses";
-import UseDownCourse from "../../Hooks/UseDownCourse";
+import UseCancelCourse from "../../Hooks/UseCancelCourse";
 
 const DisableCourse = ({
   dow,
@@ -13,18 +13,21 @@ const DisableCourse = ({
   setDow: Dispatch<SetStateAction<boolean>>;
   Course: Courses;
 }) => {
-  const { mutate: Disable } = UseDownCourse();
 
+  const { mutate: PatchStatus } = UseCancelCourse();
   const handleDisbale = () => {
-    Disable(Course.courseId);
-    setDow(false);
+    PatchStatus(Course.courseId, {
+      onSuccess: () => {
+        setDow(false);
+      },
+    });
   };
 
   return (
-    <Modal show={dow} onClose={() => setDow(false)}>
+    <Modal show={dow} onClose={() => setDow(false)} size={"lg"}>
       <Modal.Body>
-        <div className="text-center">
-          <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+        <div className="text-center mt-4">
+          <HiOutlineExclamationCircle className="mx-auto h-14 w-14 text-gray-400 dark:text-gray-200" />
           <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
             ¿Estás seguro de que deseas dar de baja al Curso?
           </h3>

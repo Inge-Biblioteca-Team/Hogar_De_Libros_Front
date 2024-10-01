@@ -1,65 +1,115 @@
-import { useLocation } from 'react-router-dom';
+import { Modal, Button } from "flowbite-react";
+import { Dispatch, SetStateAction } from "react";
 import { Courses } from "../../types/Courses";
+import { format } from "@formkit/tempo";
 
-const CourseInfo = () => {
-    const location = useLocation();
-    const course: Courses = location.state.course;
+const CourseInfo = ({
+  open,
+  setOpen,
+  course,
+}: {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  course: Courses;
+}) => {
+  const Time = course.courseTime;
+  const courseDate = course.date;
+  const dateTimeString = `${courseDate}T${Time}`;
+  const dateTime = new Date(dateTimeString);
 
-    return (
-        <div className="flex flex-col justify-center items-center p-4">
-            <div className="flex w-full max-w-4xl">
-                <figure className="w-1/3 flex items-center justify-center p-4">
-                    <img
-                        src={course.image || 'src/Assets/course.jpg'}
-                        alt={course.courseType}
-                        className="rounded-lg h-64 shadow-md w-64 object-cover"
-                    />
-                </figure>
-                <div className="w-2/3 p-6">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                        Curso: {course.courseType}
-                    </h2>
-                    <div className="grid grid-cols-2 gap-4">
-                        <p className="text-gray-600">
-                            <strong>Encargado:</strong> {course.instructor}
-                        </p>
-                        <p className="text-gray-600">
-                            <strong>Fecha Inicial:</strong> {new Date(course.date).toLocaleDateString()}
-                        </p>
-                        <p className="text-gray-600">
-                            <strong>Ubicación:</strong> {course.location}
-                        </p>
-                        <p className="text-gray-600">
-                            <strong>Hora:</strong> {course.courseTime}
-                        </p>
-                        <p className="text-gray-600">
-                            <strong>Cupos Disponibles:</strong> {course.capacity}
-                        </p>
-                        <p className="text-gray-600">
-                            <strong>Rango de Edad:</strong> {course.targetAge}
-                        </p>
-                        <p className="text-gray-600">
-                            <strong>Fecha Final:</strong> {new Date(course.endDate).toLocaleDateString()}
-                        </p>
-                        <p className="text-gray-600">
-                            <strong>Estado:</strong> {course.Status ? "Activo" : "Inactivo"}
-                        </p>
-                        <p className="text-gray-600">
-                            <strong>Duración:</strong> {course.duration} Meses
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="mt-6 flex justify-center w-full">
-                <a
-                    href="/HogarDeLibros/Gestion/Cursos"
-                    className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300"
-                >
-                    Regresar
-                </a>
-            </div>
+  const date = format({
+    date: courseDate,
+    format: "DD-MM-YYYY",
+    tz: "America/Costa_Rica",
+  });
+  const endDate = format({
+    date: course.endDate,
+    format: "DD-MM-YYYY",
+    tz: "America/Costa_Rica",
+  });
+  const courseTime = format({
+    date: dateTime,
+    format: "h:mm A",
+    tz: "America/Costa_Rica",
+  });
+
+  return (
+    <Modal show={open} onClose={() => setOpen(false)}>
+      <Modal.Header>Información del Curso</Modal.Header>
+      <Modal.Body className=" flex flex-col gap-4">
+        <div>
+          <figure className="w-full flex items-center justify-center">
+            <img
+              className="w-full h-64 rounded-lg shadow-mdr"
+              src={course.image || "src/Assets/course.jpg"}
+              alt={course.courseType}
+            />
+          </figure>
         </div>
-    );
+        <div className="flex justify-between h-fit">
+          <div className=" flex flex-col gap-3">
+            <span>
+              <strong className="font-bold">Nombre:</strong>{" "}
+              <span>{course.courseName}</span>
+            </span>
+            <span>
+              <strong className="font-bold">Tipo de curso:</strong>{" "}
+              <span>{course.courseType}</span>
+            </span>
+            <span>
+              <strong className="font-bold">Encargado:</strong>{" "}
+              <span>{course.instructor}</span>
+            </span>
+            <span>
+              <strong className="font-bold">Duración:</strong>{" "}
+              <span>{course.duration} Meses</span>
+            </span>
+            <span>
+              <strong className="font-bold">Ubicación:</strong>{" "}
+              <span>{course.location}</span>
+            </span>
+            <span>
+              <strong className="font-bold">Fecha de inicio:</strong>{" "}
+              <span>{date}</span>
+            </span>
+
+            <br />
+          </div>
+          <div className=" flex-col flex gap-3">
+            <span>
+              <strong className="font-bold">Estado de ejecución:</strong>{" "}
+              <span>{course.currentStatus}</span>
+            </span>
+            <span>
+              <strong className="font-bold">Rango de Edad:</strong>{" "}
+              <span>{course.targetAge}</span>
+            </span>
+            <span>
+              <strong className="font-bold">Cupos Disponibles:</strong>{" "}
+              <span>{course.availableQuota}</span>
+            </span>
+            <span>
+              <strong className="font-bold">Matricula maxima:</strong>{" "}
+              <span>{course.capacity}</span>
+            </span>
+            <span>
+              <strong className="font-bold">Hora:</strong>{" "}
+              <span>{courseTime}</span>
+            </span>
+            <span>
+              <strong className="font-bold">Fecha de fin:</strong>{" "}
+              <span>{endDate}</span>
+            </span>
+          </div>
+        </div>
+      </Modal.Body>
+      <Modal.Footer className="flex items-center justify-center">
+        <Button color={"blue"} onClick={() => setOpen(false)}>
+          Regresar
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
 };
 
 export default CourseInfo;

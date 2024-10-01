@@ -58,6 +58,8 @@ const MDCreateNewProgram = ({
               )}
             </div>
           </figure>
+
+          
           <div className=" col-span-2 space-y-4">
             <div>
               <Label>Nombre del Programa</Label>

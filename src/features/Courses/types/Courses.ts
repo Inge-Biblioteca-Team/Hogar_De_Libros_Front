@@ -42,6 +42,8 @@ export type Courses = {
   endDate: Date;
   programProgramsId: number;
   programsName: number;
+  availableQuota:number;
+  currentStatus:string;
 };
 
 export type ResponseC = {
@@ -50,15 +52,15 @@ export type ResponseC = {
 };
 
 export type updateCourse = {
+  Id:number;
+  courseName: string;
   date: Date;
   courseTime: string;
   location: string;
   instructor: string;
-  courseName: string;
   courseType: string;
   targetAge: number;
   capacity: number;
-  Status: boolean;
   image: string;
   duration: string;
   endDate: Date;
@@ -85,3 +87,8 @@ export type ApiCourseResponse = {
   data: NextCourses[];
   count: number;
 };
+
+export type program = {
+  programName: string;
+  programsId: number;
+}

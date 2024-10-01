@@ -14,6 +14,7 @@ const EquipmentAccionBTNS = ({ computers }: { computers: Equipment }) => {
       <button
         title="ver información"
         type="button"
+        className="hover:text-Body"
         onClick={() => setOpenSee(true)}
       >
         <PiEyeLight size={24} />
@@ -21,7 +22,7 @@ const EquipmentAccionBTNS = ({ computers }: { computers: Equipment }) => {
       <button
         title="Editar información"
         type="button"
-        className={`${computers.Status ? "" : "cursor-not-allowed"}`}
+        className={`${computers.Status ? "" : "cursor-not-allowed"}hover:text-yellow-500`}
         onClick={() => setOpenEdit(true)}
         disabled={!computers.Status}
       >
@@ -31,7 +32,7 @@ const EquipmentAccionBTNS = ({ computers }: { computers: Equipment }) => {
       <button
         title="Deshabilitar Activo"
         type="button"
-        className={`${computers.Status ? "" : "cursor-not-allowed"}`}
+        className={`${computers.Status ? "" : "cursor-not-allowed"}hover:text-red-800`}
         onClick={() => setOpenModal(true)}
         disabled={!computers.Status}
       >
@@ -60,3 +61,5 @@ const EquipmentAccionBTNS = ({ computers }: { computers: Equipment }) => {
 };
 
 export default EquipmentAccionBTNS;
+
+

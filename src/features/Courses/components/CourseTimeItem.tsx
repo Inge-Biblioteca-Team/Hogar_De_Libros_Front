@@ -3,6 +3,8 @@ import { NextCourses } from "../types/Courses";
 
 import { CiCalendarDate } from "react-icons/ci";
 import { format } from "@formkit/tempo";
+import { useState } from "react";
+import EnrollmentToCourse from "./Modals/EnrollmentToCourse";
 const CourseTimeItem = ({ course }: { course: NextCourses }) => {
   const courseTime = course.CourseTime;
   const courseDate = course.Date;
@@ -24,6 +26,8 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
     format: "DD MMMM YYYY",
     tz: "America/Costa_Rica",
   });
+
+  const [open, setopen] = useState<boolean>(false)
 
   return (
     <>
@@ -62,12 +66,14 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
                 </span>
               </div>
               <div className=" flex justify-center items-center mb-2">
-                <Button color={"blue"}>Matricular</Button>
+                <Button color={"blue"}
+                onClick={()=>setopen(true)}>Matricular</Button>
               </div>
             </Card>
           </Timeline.Body>
         </Timeline.Content>
       </Timeline.Item>
+      <EnrollmentToCourse course={course} open={open} setOpen={setopen} />
     </>
   );
 };

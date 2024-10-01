@@ -16,6 +16,7 @@ const FurnitureAccionBTNS = ({ furniture }: { furniture: furniture }) => {
         <button
           title="Ver Información Completa"
           type="button"
+          className="hover:text-Body"
           onClick={() => {
             if (furniture.Status) {
               setVModal(true);
@@ -27,7 +28,7 @@ const FurnitureAccionBTNS = ({ furniture }: { furniture: furniture }) => {
         <button
           title="Editar Mobiliario"
           type="button"
-          className={`${furniture.Status ? "" : "cursor-not-allowed"}`}
+          className={`${furniture.Status ? "" : "cursor-not-allowed"} hover:text-yellow-400`}
           onClick={() => {
             if (furniture.Status) {
               setEditModal(true);
@@ -40,7 +41,7 @@ const FurnitureAccionBTNS = ({ furniture }: { furniture: furniture }) => {
         <button
           title="Deshabilitar Moviliario"
           type="button"
-          className={`${furniture.Status ? "" : "cursor-not-allowed"}`}
+          className={`${furniture.Status ? "" : "cursor-not-allowed"} hover:text-red-900`}
           onClick={() => {
             if (furniture.Status) {
               setOpenModal(true);
