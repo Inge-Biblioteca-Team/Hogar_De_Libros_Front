@@ -102,11 +102,7 @@ const uploadEventImage = async (file: File): Promise<string> => {
   throw new Error("No file provided");
 };
 
-
-const GetNextEvents = async (
-  month?: string,
-  type?: string
-) => {
+const GetNextEvents = async (month?: string, type?: string) => {
   try {
     const params: { [key: string]: string | number | undefined } = {};
     if (month) params.month = month;
@@ -120,4 +116,36 @@ const GetNextEvents = async (
   }
 };
 
-export { GetEvents, PostNewEvent, editEvent, uploadEventImage, getEvents, GetNextEvents };
+const cancelEvent = async (Id: number) => {
+  try {
+    const response = await api.patch(`events/CancelEvent?id=${Id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al deshabilitar el programa:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al deshabilitar el programa"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
+
+export {
+  GetEvents,
+  PostNewEvent,
+  editEvent,
+  uploadEventImage,
+  getEvents,
+  GetNextEvents,
+  cancelEvent,
+};
