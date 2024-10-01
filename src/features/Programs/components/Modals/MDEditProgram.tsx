@@ -2,8 +2,8 @@ import { Modal, Button, Label, Textarea, TextInput } from "flowbite-react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Program } from "../../types/Programs";
 import { useForm } from "react-hook-form";
-import ModalAddImage from "../../../../components/ModalAddImage";
 import UseeditProgram from "../../Hooks/UseeditProgram";
+import ModalAddImage from "../../../../components/Modals/ModalAddImage";
 
 const MDEditProgram = ({
   open,

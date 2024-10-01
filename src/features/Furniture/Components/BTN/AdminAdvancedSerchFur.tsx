@@ -2,7 +2,7 @@ import {
     faHashtag,
   } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+
   
   const AdminAdvancedSearchFur = ({
     see,
@@ -11,7 +11,6 @@ import { useState } from "react";
     see: boolean;
     EStatus: (EStatus: string) => void;
   }) => {
-    const [Accion, SetAcction] = useState<string>("")
     return (
       <div className={`flex gap-2 ${see ? `block` : `hidden`}`}>
         <div className="relative">
@@ -19,8 +18,6 @@ import { useState } from "react";
             title="Seleccione el estado"
             className="pl-8 pr-4 py-2 border rounded-lg"
             onChange={(event) => {
-              SetAcction(event.target.value);
-              console.log("Estado seleccionado:", event.target.value);
               EStatus(event.target.value); 
             }}
           >

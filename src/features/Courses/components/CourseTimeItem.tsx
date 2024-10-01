@@ -27,7 +27,7 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
     tz: "America/Costa_Rica",
   });
 
-  const [open, setopen] = useState<boolean>(false)
+  const [open, setopen] = useState<boolean>(false);
 
   return (
     <>
@@ -42,12 +42,12 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
             <Card className="p0">
               <figure className=" w-full rounded-xl">
                 <img
-                  className=" w-full rounded-t-lg h-40"
+                  className=" w-full rounded-t-lg h-28"
                   src={course.image}
                   alt=""
                 />
               </figure>
-              <div className=" flex flex-col ml-6 gap-2 h-72 mr-6 ">
+              <div className=" flex flex-col ml-3 justify-between mr-3 h-80 ">
                 <span className=" font-bold text-black">
                   {course.courseName}{" "}
                 </span>
@@ -64,10 +64,16 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
                   Cupos <br />
                   {course.avaibleQuota}/{course.capacity}{" "}
                 </span>
+                {course.materials == "" ? (
+                  "Te esperamos"
+                ) : (
+                  <span>Necesitaras: {course.materials}</span>
+                )}
               </div>
               <div className=" flex justify-center items-center mb-2">
-                <Button color={"blue"}
-                onClick={()=>setopen(true)}>Matricular</Button>
+                <Button color={"blue"} onClick={() => setopen(true)}>
+                  Matricular
+                </Button>
               </div>
             </Card>
           </Timeline.Body>

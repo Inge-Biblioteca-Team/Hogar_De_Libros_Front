@@ -6,8 +6,8 @@ import {
   LoanCrumb,
   LastCrumb,
 } from "../../../components/BreadCrumb";
-import PaginatationSelector from "../../../components/PaginatationSelector";
-import SltCurrentLimit from "../../../components/SltCurrentLimit";
+import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
+import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
 import NoRequest from "../../Loan/Components/NoRequest";
 import TBLUsers from "../Components/TBLUsers";
 import SearchUsers from "../Components/SearchUers";

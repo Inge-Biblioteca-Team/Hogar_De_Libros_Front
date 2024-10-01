@@ -1,6 +1,6 @@
 import { Button, FileInput, Modal } from "flowbite-react";
-import uploadImage from "../Services/UploadImg";
 import { Dispatch, SetStateAction, useState } from "react";
+import uploadImage from "../../Services/UploadImg";
 
 const AddImage = ({
   showModal,

@@ -1,4 +1,4 @@
-import ConditionStatus from "../../../../components/ConditionStatus";
+import ConditionStatus from "../../../../components/Maps/ConditionStatus";
 import { Book } from "../../type/Book";
 import BtnReserve from "../BTN/BtnReserve";
 

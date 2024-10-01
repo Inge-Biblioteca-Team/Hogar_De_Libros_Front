@@ -1,6 +1,6 @@
 import { Breadcrumb, Label, Table, TextInput } from "flowbite-react";
-import SltCurrentLimit from "../../../components/SltCurrentLimit";
-import PaginatationSelector from "../../../components/PaginatationSelector";
+import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
+import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
 import { useEffect, useState } from "react";
 import {
   HomeCrumb,
@@ -32,7 +32,7 @@ const ManageCourses = () => {
     sessionStorage.setItem("CoursesPages", currentPage.toString());
   }, [currentPage]);
 
-  const Name = UseDebounce(SName, 5);
+  const Name = UseDebounce(SName, 600);
 
   const { data: Courses } = useQuery<ResponseC, Error>(
     ["CourseMG", currentPage, currentLimit, Name],
@@ -43,6 +43,10 @@ const ManageCourses = () => {
   );
 
   const MaxPage = Math.ceil((Courses?.count ?? 0) / 5);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [Name]);
 
   return (
     <>

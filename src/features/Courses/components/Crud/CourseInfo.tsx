@@ -32,6 +32,14 @@ const CourseInfo = ({
     format: "h:mm A",
     tz: "America/Costa_Rica",
   });
+  const AgeMapping: { [key: string]: string} = {
+    1: "Todo publico",
+    3: "Niños 0-3 Años",
+    11: "Niños +3 Años",
+    24: "Jovenes",
+    59: "Adultos",
+    60: "Adultos Mayores",
+  };
 
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
@@ -62,7 +70,7 @@ const CourseInfo = ({
             </span>
             <span>
               <strong className="font-bold">Duración:</strong>{" "}
-              <span>{course.duration} Meses</span>
+              <span>{course.duration}</span>
             </span>
             <span>
               <strong className="font-bold">Ubicación:</strong>{" "}
@@ -81,8 +89,8 @@ const CourseInfo = ({
               <span>{course.currentStatus}</span>
             </span>
             <span>
-              <strong className="font-bold">Rango de Edad:</strong>{" "}
-              <span>{course.targetAge}</span>
+              <strong className="font-bold">Edad Objetivo:</strong>{" "}
+              <span>{AgeMapping[course.targetAge || "Todo Publico"]}</span>
             </span>
             <span>
               <strong className="font-bold">Cupos Disponibles:</strong>{" "}

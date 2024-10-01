@@ -1,28 +1,24 @@
 import { Button, Label, Select, TextInput, Modal } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { program, createCourse } from "../../types/Courses";
-import { useQuery } from "react-query";
-import { GetProgramsIntoCourses } from "../../services/SvCourses";
+import { createCourse } from "../../types/Courses";
 import AddImage from "../Modals/AddImage";
 import { FaReadme } from "react-icons/fa6";
 import UseCreateCourse from "../../Hooks/UseCreateCourse";
 import { addDay, format } from "@formkit/tempo";
+import CategoryOPT from "../OPTS/CategoryOPT";
+import AgeOPT from "../OPTS/AgeOPT";
+import ProgramsOPT from "../OPTS/ProgramsOPT";
 
 const CreateCourse = () => {
-  const { register, setValue, reset, handleSubmit } = useForm<createCourse>();
+  const { register, setValue, reset, handleSubmit, watch } =
+    useForm<createCourse>();
 
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const { data: programs } = useQuery<program[], Error>(
-    ["ProgramList"],
-    () => GetProgramsIntoCourses(),
-    {
-      staleTime: 600,
-    }
-  );
+  const [duration, setDuration] = useState("1");
+  const [durationN, setDurationN] = useState("Días");
 
   const { mutate: createCourse } = UseCreateCourse();
 
@@ -46,6 +42,16 @@ const CreateCourse = () => {
 
   const minDay = format({
     date: tomorrow,
+    format: "YYYY-MM-DD",
+    tz: "America/Costa_Rica",
+  });
+
+  useEffect(() => {
+    setValue("duration", durationN + " " + duration);
+  }, [duration, durationN, setValue]);
+
+  const minDay2 = format({
+    date: watch("date"),
     format: "YYYY-MM-DD",
     tz: "America/Costa_Rica",
   });
@@ -102,18 +108,8 @@ const CreateCourse = () => {
 
                 <span>
                   <Label htmlFor="courseType" value="Categoría del Curso" />
-                  <Select
-                  {...register('courseType')}
-                   id="courseType"
-                   required>
-                    <option value="Categoría de curso">
-                      Categoría de curso
-                    </option>
-                    <option value="Taller">Taller</option>
-                    <option value="Capacitación">Capacitación</option>
-                    <option value="Cómputo">Cómputo</option>
-                    <option value="Curso Articulado">Curso Articulado</option>
-                    <option value="Manualidades">Manualidades</option>
+                  <Select {...register("courseType")} id="courseType" required>
+                    <CategoryOPT />
                   </Select>
                 </span>
 
@@ -140,13 +136,17 @@ const CreateCourse = () => {
                 <div>
                   <Label htmlFor="targetAge" value="Edad Objetivo" />
                   <Select id="targetAge" required {...register("targetAge")}>
-                    <option value="">Seleccione la edad objetivo</option>
-                    <option value="0">Todo Publico</option>
-                    <option value="3">Niños 0-3 años</option>
-                    <option value="11">Niños + 3 años</option>
-                    <option value="24">Jovenes</option>
-                    <option value="59">Adultos</option>
-                    <option value="60">Adultos Mayores</option>
+                    <AgeOPT />
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="program" value="Programa del Curso" />
+                  <Select
+                    id="program"
+                    {...register("programProgramsId")}
+                    icon={FaReadme}
+                  >
+                    <ProgramsOPT />
                   </Select>
                 </div>
               </fieldset>
@@ -182,18 +182,26 @@ const CreateCourse = () => {
                   <TextInput
                     type="date"
                     {...register("endDate")}
-                    min={minDay}
+                    min={minDay2}
                   />
                 </div>
                 <span>
                   <Label htmlFor="duration" value="Duración del Curso" />
-                  <TextInput
-                    id="duration"
-                    type="text"
-                    required
-                    {...register("duration")}
-                    placeholder="Duración del Curso..."
-                  />
+                  <div className="w-full grid-cols-3 grid gap-1">
+                    <TextInput
+                      type="number"
+                      placeholder="Duracion"
+                      onChange={(event) => setDurationN(event.target.value)}
+                    />
+                    <Select
+                      className=" col-span-2"
+                      onChange={(event) => setDuration(event.target.value)}
+                    >
+                      <option value="Días">Días</option>
+                      <option value="Meses">Meses</option>
+                      <option value="Años">Años</option>
+                    </Select>
+                  </div>
                 </span>
                 <span>
                   <Label htmlFor="capacity" value="Cupos Disponibles" />
@@ -205,26 +213,23 @@ const CreateCourse = () => {
                     placeholder="0"
                   />
                 </span>
+                <div>
+                  <Label htmlFor="materials" value="Observaciones" />
+                  <TextInput
+                    id="material"
+                    {...register("materials")}
+                    placeholder="Ej. Se necesita un lapiz"
+                  />
+                </div>
               </fieldset>
-              <div className=" col-span-2">
-                <Label htmlFor="program" value="Programa del Curso" />
-                <Select
-                  id="program"
-                  onChange={(event)=>setValue("programProgramsId",(event?.target.value))}
-                  icon={FaReadme}
-                >
-                  <option value={""}>Curso Libre</option>
-                  {programs?.map((program) => (
-                    <option key={program.programsId} value={program.programsId}>
-                      {program.programName}
-                    </option>
-                  ))}
-                </Select>
-              </div>
             </div>
           </Modal.Body>
           <Modal.Footer className="flex items-center justify-center">
-            <Button color={"failure"} onClick={() => setIsModalOpen(false)}>
+            <Button
+              color={"failure"}
+              onClick={() => setIsModalOpen(false)}
+              tabIndex={2}
+            >
               Cancelar
             </Button>
             <Button color={"blue"} type="submit">

@@ -6,8 +6,8 @@ import {
   ManageCrumb,
 } from "../../../components/BreadCrumb";
 import NoRequest from "../../Loan/Components/NoRequest";
-import SltCurrentLimit from "../../../components/SltCurrentLimit";
-import PaginatationSelector from "../../../components/PaginatationSelector";
+import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
+import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
 import { useQuery } from "react-query";
 import { Artist, ResponseA } from "../types/LocalArtist";
 import { getLocalArtist } from "../services/SvArtist";

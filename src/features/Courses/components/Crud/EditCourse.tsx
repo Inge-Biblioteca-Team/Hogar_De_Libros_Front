@@ -1,13 +1,14 @@
-import { Courses, program, updateCourse } from "../../types/Courses";
+import { Courses, updateCourse } from "../../types/Courses";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import { GetProgramsIntoCourses } from "../../services/SvCourses";
 import AddImage from "../Modals/AddImage";
 import { addDay, format } from "@formkit/tempo";
-import { useQuery } from "react-query";
 import UseUpdateCourse from "../../Hooks/UseUpdateCourse";
 import { FaReadme } from "react-icons/fa6";
+import CategoryOPT from "../OPTS/CategoryOPT";
+import AgeOPT from "../OPTS/AgeOPT";
+import ProgramsOPT from "../OPTS/ProgramsOPT";
 
 const EditCourse = ({
   open,
@@ -18,7 +19,7 @@ const EditCourse = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   course: Courses;
 }) => {
-  const { register, handleSubmit, setValue } = useForm<updateCourse>({
+  const { register, handleSubmit, setValue, watch } = useForm<updateCourse>({
     defaultValues: {
       Id: course.courseId,
       date: course.date,
@@ -33,18 +34,13 @@ const EditCourse = ({
       duration: course.duration,
       endDate: course.endDate,
       programProgramsId: course.programProgramsId,
+      materials: course.materials,
     },
   });
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>("");
-
-  const { data: programs } = useQuery<program[], Error>(
-    ["ProgramList"],
-    () => GetProgramsIntoCourses(),
-    {
-      staleTime: 600,
-    }
-  );
+  const [duration, setDuration] = useState("1");
+  const [durationN, setDurationN] = useState("Días");
 
   const { mutate: updateCourse } = UseUpdateCourse();
 
@@ -52,7 +48,6 @@ const EditCourse = ({
     updateCourse(data, {
       onSuccess: () => {
         setOpen(false);
-        setImageUrl("");
       },
       onError: () => {},
     });
@@ -76,6 +71,30 @@ const EditCourse = ({
       setImageUrl(course.image);
     }
   }, [course.image]);
+
+  useEffect(() => {
+    if (course.duration) {
+      const durationString = course.duration;
+      const [num, unit] = durationString.split(" ");
+      setDurationN(num);
+      setDuration(unit);
+    }
+  }, [course.duration]);
+
+  useEffect(() => {
+    setValue("duration", durationN + " " + duration);
+  }, [duration, durationN, setValue]);
+
+
+  const minDate2 = watch("date")
+
+  
+  const minDay2 = format({
+    date: minDate2,
+    format: "YYYY-MM-DD",
+    tz: "America/Costa_Rica",
+  });
+
   return (
     <>
       <Modal show={open} onClose={() => setOpen(false)} size={"5xl"}>
@@ -121,13 +140,9 @@ const EditCourse = ({
 
                 <span>
                   <Label htmlFor="courseType" value="Categoría del Curso" />
-                  <TextInput
-                    id="courseType"
-                    type="text"
-                    required
-                    {...register("courseType")}
-                    placeholder="Categoría del Curso"
-                  />
+                  <Select id="courseType" required {...register("courseType")}>
+                    <CategoryOPT />
+                  </Select>
                 </span>
 
                 <span>
@@ -153,13 +168,18 @@ const EditCourse = ({
                 <div>
                   <Label htmlFor="targetAge" value="Edad Objetivo" />
                   <Select id="targetAge" required {...register("targetAge")}>
-                    <option value="">Seleccione la edad objetivo</option>
-                    <option value="0">Todo Publico</option>
-                    <option value="3">Niños 0-3 años</option>
-                    <option value="11">Niños + 3 años</option>
-                    <option value="24">Jovenes</option>
-                    <option value="59">Adultos</option>
-                    <option value="60">Adultos Mayores</option>
+                    <AgeOPT />
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="program" value="Programa del Curso" />
+                  <Select
+                    id="program"
+                    {...register("programProgramsId")}
+                    icon={FaReadme}
+                    required
+                  >
+                   <ProgramsOPT/>
                   </Select>
                 </div>
               </fieldset>
@@ -170,6 +190,7 @@ const EditCourse = ({
                   <Label htmlFor="startDate" value="Fecha de inicio" />
                   <TextInput
                     type="date"
+                    required
                     id="startDate"
                     {...register("date")}
                     min={minDay}
@@ -195,18 +216,28 @@ const EditCourse = ({
                   <TextInput
                     type="date"
                     {...register("endDate")}
-                    min={minDay}
+                    min={minDay2}
                   />
                 </div>
                 <span>
                   <Label htmlFor="duration" value="Duración del Curso" />
-                  <TextInput
-                    id="duration"
-                    type="text"
-                    required
-                    {...register("duration")}
-                    placeholder="Duración del Curso..."
-                  />
+                  <div className="w-full grid-cols-3 grid gap-1">
+                    <TextInput
+                      type="number"
+                      placeholder="Duración"
+                      value={durationN}
+                      onChange={(event) => setDurationN(event.target.value)}
+                    />
+                    <Select
+                      className=" col-span-2"
+                      onChange={(event) => setDuration(event.target.value)}
+                      value={duration}
+                    >
+                      <option value="Días">Días</option>
+                      <option value="Meses">Meses</option>
+                      <option value="Años">Años</option>
+                    </Select>
+                  </div>
                 </span>
                 <span>
                   <Label htmlFor="capacity" value="Cupos Disponibles" />
@@ -217,27 +248,24 @@ const EditCourse = ({
                     {...register("capacity")}
                     placeholder="0"
                   />
+                  <div>
+                    <Label htmlFor="materials" value="Observaciones" />
+                    <TextInput
+                      id="material"
+                      {...register("materials")}
+                      placeholder="Ej. Se necesita un lapiz"
+                    />
+                  </div>
                 </span>
               </fieldset>
-              <div className=" col-span-2">
-                <Label htmlFor="program" value="Programa del Curso" />
-                <Select
-                  id="program"
-                  {...register("programProgramsId")}
-                  icon={FaReadme}
-                >
-                  <option value="">Curso Libre</option>
-                  {programs?.map((program) => (
-                    <option key={program.programsId} value={program.programsId}>
-                      {program.programName}
-                    </option>
-                  ))}
-                </Select>
-              </div>
             </div>
           </Modal.Body>
           <Modal.Footer className="flex items-center justify-center">
-            <Button color={"failure"} onClick={() => setOpen(false)}>
+            <Button
+              color={"failure"}
+              onClick={() => setOpen(false)}
+              tabIndex={2}
+            >
               Cancelar
             </Button>
             <Button color={"blue"} type="submit">

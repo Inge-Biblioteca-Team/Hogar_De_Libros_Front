@@ -9,7 +9,7 @@ import TBLLoan from "../../Components/BooksLoans/TBLLoan";
 import { useQuery } from "react-query";
 import { GetInProgressLoan } from "../../Services/SvBookLoan";
 import { LoanResponse } from "../../Types/BookLoan";
-import SltCurrentLimit from "../../../../components/SltCurrentLimit";
+import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
 import { useEffect, useState } from "react";
 import SearchInputs from "../../Components/BooksLoans/SearchInputs";
 import NoRequest from "../../Components/NoRequest";

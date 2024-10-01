@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { BookApiResponse } from "../../type/Book";
 import UseDebounce from "../../../../hooks/UseDebounce";
-import InpSearchTitle from "../../../../components/InpSearchTitle";
+import InpSearchTitle from "../../../../components/Inputs/InpSearchTitle";
 import { CurrentRoute, HomeRoute } from "../../components/Redirections";
 import { BooksCrumb } from "../../../../components/BreadCrumb";
 import { GetChildrenBCategory } from "../../services/SvChildBooks";
