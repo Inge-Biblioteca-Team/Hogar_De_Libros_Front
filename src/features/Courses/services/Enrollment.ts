@@ -26,10 +26,11 @@ const EnrollToCourse = async (data: Enrollment) => {
   }
 };
 
-const getEnrollByCourse = async (CourseId?: string) => {
+const getEnrollByCourse = async (CourseId: number, page?: number) => {
   try {
     const params: { [key: string]: string | number | undefined } = {};
     if (CourseId) params.courseId = CourseId;
+    if (page) params.page = page;
     const response = await api.get("enrollments", { params });
     return response.data;
   } catch (error) {

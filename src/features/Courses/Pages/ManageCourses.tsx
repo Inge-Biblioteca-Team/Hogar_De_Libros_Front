@@ -76,6 +76,7 @@ const ManageCourses = () => {
               <Table.HeadCell>Fecha</Table.HeadCell>
               <Table.HeadCell>Hora</Table.HeadCell>
               <Table.HeadCell>Cupos Disponibles</Table.HeadCell>
+              <Table.HeadCell>Matricula</Table.HeadCell>
               <Table.HeadCell>Estado</Table.HeadCell>
               <Table.HeadCell></Table.HeadCell>
             </Table.Head>
