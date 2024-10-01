@@ -10,8 +10,8 @@ import { useQuery } from "react-query";
 import { GetPendandRequest } from "../../Services/SvBookLoan";
 import { LoanResponse } from "../../Types/BookLoan";
 import { useEffect, useState } from "react";
-import SltCurrentLimit from "../../../../components/SltCurrentLimit";
-import PaginatationSelector from "../../../../components/PaginatationSelector";
+import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
+import PaginatationSelector from "../../../../components/Paginations/PaginatationSelector";
 import NoRequest from "../../Components/NoRequest";
 
 const PendingRequest = () => {

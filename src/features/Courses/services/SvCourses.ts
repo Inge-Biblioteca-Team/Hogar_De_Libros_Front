@@ -81,7 +81,7 @@ const getCourses = async (page: number, limit: number, Name?: string) => {
       page,
       limit,
     };
-    if (Name) params.Name = Name;
+    if (Name) params.courseName = Name;
     const response = await api.get("courses", {params});
     return response.data;
   } catch (error) {
@@ -125,6 +125,7 @@ const editCourse = async ( data: updateCourse) => {
 };
 
 const CreateCourses = async (data: createCourse) => {
+  console.table(data)
   try {
     const addCourse = await api.post("courses", data, {
       headers: {

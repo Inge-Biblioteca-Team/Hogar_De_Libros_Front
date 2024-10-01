@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Program } from "../../types/Programs";
 import { Dispatch, SetStateAction, useState } from "react";
 import UseCreateProgram from "../../Hooks/UseCreateProgram";
-import ModalAddImage from "../../../../components/ModalAddImage";
+import ModalAddImage from "../../../../components/Modals/ModalAddImage";
 
 const MDCreateNewProgram = ({
   open,

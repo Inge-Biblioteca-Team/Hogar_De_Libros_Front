@@ -32,7 +32,7 @@ const EnrollmentToCourse = ({
     { enabled: !!NCedula }
   );
 
-  const { register, handleSubmit, setValue } = useForm<Enrollment>();
+  const { register, handleSubmit, setValue, reset } = useForm<Enrollment>();
 
   const { mutate: EnrollMe } = UseEnrollToCourse();
 
@@ -45,69 +45,96 @@ const EnrollmentToCourse = ({
     if (User) {
       setValue("userCedula", User.cedula);
       setValue("UserName", User.name);
-      setValue("direcction", User.address);
+      setValue("direction", User.address);
       setValue("phone", User.phoneNumber);
+      setValue("email", User.email);
     }
   }, [User, setValue]);
 
+  const handleClose = () => {
+    setOpen(false);
+    reset();
+  };
+
   const onSubmit = async (data: Enrollment) => {
     EnrollMe(data, {
-      onSuccess: () => {},
+      onSuccess: () => {
+        setOpen(false);
+        reset();
+      },
       onError: () => {},
     });
   };
 
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal show={open} onClose={handleClose}>
       <Modal.Header>Matricula de Curso</Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Body>
-          <div>
-            <Label
-              htmlFor="Cedula"
-              value="Cedula de la persona asistente al curso"
-            />
-            <TextInput
-              id="Cedula"
-              placeholder="Cedula"
-              onChange={handleCedula}
-            />
-          </div>
-          <div>
-            <Label htmlFor="name" value="Nombre" />
-            <TextInput
-              id="name"
-              placeholder="Nombre"
-              {...register("UserName")}
-            />
-          </div>
-          <div>
-            <Label htmlFor="direcction" value="Lugar de residencia" />
-            <TextInput
-              id="direcction"
-              placeholder="Lugar"
-              {...register("direcction")}
-            />
-          </div>
-          <div>
-            <Label htmlFor="phone" value="Telefono" />
-            <TextInput
-              id="phone"
-              placeholder="Telefono"
-              {...register("phone")}
-            />
-          </div>
-          <div>
-            <Label htmlFor="Ephone" value="Contacto de Emergencia" />
-            <TextInput
-              id="Ephone"
-              placeholder="Telefono"
-              {...register("ePhone")}
-            />
+        <Modal.Body className=" flex flex-col gap-2">
+          {course.materials == "" ? (
+            ""
+          ) : (
+            <span className=" font-bold">
+              Te recordamos que para el curso {course.courseName} necesitaras lo
+              siguiente: {course.materials}{" "}
+            </span>
+          )}
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <Label
+                htmlFor="Cedula"
+                value="Cedula de la persona asistente al curso"
+              />
+              <TextInput
+                id="Cedula"
+                placeholder="Cedula"
+                onChange={handleCedula}
+              />
+            </div>
+            <div>
+              <Label htmlFor="name" value="Nombre" />
+              <TextInput
+                id="name"
+                placeholder="Nombre"
+                {...register("UserName")}
+              />
+            </div>
+            <div>
+              <Label htmlFor="direcction" value="Lugar de residencia" />
+              <TextInput
+                id="direcction"
+                placeholder="Lugar"
+                {...register("direction")}
+              />
+            </div>
+            <div>
+              <Label htmlFor="email" value="Correo" />
+              <TextInput
+                id="emai"
+                placeholder="Correo"
+                {...register("email")}
+              />
+            </div>
+            <div>
+              <Label htmlFor="phone" value="Telefono" />
+              <TextInput
+                id="phone"
+                placeholder="Telefono"
+                {...register("phone")}
+              />
+            </div>
+            <div>
+              <Label htmlFor="Ephone" value="Contacto de Emergencia" />
+              <TextInput
+                id="Ephone"
+                placeholder="Telefono"
+                {...register("ePhone")}
+              />
+            </div>
           </div>
         </Modal.Body>
         <Modal.Footer className=" flex items-center justify-center">
-          <Button color={"failure"} tabIndex={2} onClick={() => setOpen(false)}>
+          <Button color={"failure"} tabIndex={2} onClick={handleClose}>
             Cancelar
           </Button>
           <Button color={"blue"} type="submit">

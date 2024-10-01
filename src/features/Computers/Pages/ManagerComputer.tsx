@@ -1,7 +1,7 @@
 import { Breadcrumb, Button, Table } from "flowbite-react";
 import { useState } from "react";
 import { apiResponseCE } from "../types/Computer";
-import SltCurrentLimit from "../../../components/SltCurrentLimit";
+import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
 import { GetComputerPaginated } from "../Services/SvComputer";
 import { useQuery } from "react-query";
 import AdminAdvancedSearchComp from "../components/AdminAvdvaceSearchComp";
@@ -12,8 +12,8 @@ import {
   LastCrumb,
   ManageCrumb,
 } from "../../../components/BreadCrumb";
-import PaginatationSelector from "../../../components/PaginatationSelector";
-import InpSearchTitle from "../../../components/InpSearchTitle";
+import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
+import InpSearchTitle from "../../../components/Inputs/InpSearchTitle";
 import TblRows from "../components/TblRows";
 import NewComponent from "../components/Modals/NewComponent";
 

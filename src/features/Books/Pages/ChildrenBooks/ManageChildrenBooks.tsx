@@ -1,11 +1,11 @@
 import { Breadcrumb } from "flowbite-react";
 import { useQuery } from "react-query";
 import { BookApiResponse } from "../../type/Book";
-import InpSearchTitle from "../../../../components/InpSearchTitle";
+import InpSearchTitle from "../../../../components/Inputs/InpSearchTitle";
 import { useCallback, useEffect, useState } from "react";
 import BtnAdvanceSearch from "../../components/BTN/BtnAdvanceSearch";
-import SltCurrentLimit from "../../../../components/SltCurrentLimit";
-import PaginatationSelector from "../../../../components/PaginatationSelector";
+import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
+import PaginatationSelector from "../../../../components/Paginations/PaginatationSelector";
 import { HomeRoute, ManageRoute } from "../../components/Redirections";
 import AdminAdvaceSearch from "../../components/SearchINP/AdminAdvaceSearch";
 import UseDebounce from "../../../../hooks/UseDebounce";

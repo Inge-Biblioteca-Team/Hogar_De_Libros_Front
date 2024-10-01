@@ -1,5 +1,5 @@
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
-import ModalAddMoreActive from "../../../../components/ModalAddMoreActive";
+import ModalAddMoreActive from "../../../../components/Modals/ModalAddMoreActive";
 import ConfirmModalFurniture from "./ConfirmModalFurniture";
 import { useForm } from "react-hook-form";
 import { Dispatch, SetStateAction, useState } from "react";
