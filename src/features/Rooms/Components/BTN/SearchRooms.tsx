@@ -23,9 +23,9 @@ const SearchRooms = ({
         <Label className="text-lg">Estado</Label>
         <Select onChange={(room) => RStatus(room.target.value)}>
           <option value="">Seleccione un estado</option>
-          <option value="F">Disponible</option>
-          <option value="E">Mantenimiento</option>
-          <option value="P">Clausurado</option>
+          <option value="D">Disponible</option>
+          <option value="M">Mantenimiento</option>
+          <option value="C">Clausurado</option>
         </Select>
       </div>
       <div>
