@@ -27,13 +27,13 @@ const CreateCourse = () => {
     const { mutate: createCourse } = UseCreateCourse();
 
     const onSubmit = async (data: createCourse) => {
-     createCourse(data, {
-        onSuccess: () => {
-          reset();
-          setImageUrl("");
-        },
-        onError: () => {},
-      });
+        createCourse(data, {
+            onSuccess: () => {
+                reset();
+                setImageUrl("");
+            },
+            onError: () => { },
+        });
     };
 
 
@@ -52,125 +52,127 @@ const CreateCourse = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Modal.Body className="grid grid-cols-6 grid-rows-1 gap-3">
                         <figure className="col-span-2">
-                                {imageUrl ? (
-                                    <img
-                                        onClick={() => setIsImageModalOpen(true)}
-                                        src={imageUrl}
-                                        alt="Imagen del programa"
-                                        className="w-full rounded-md cursor-pointer"
-                                        style={{ height: "100%" }}
-                                    />
-                                ) : (
-                                    <div
-                                        onClick={() => setIsImageModalOpen(true)}
-                                        className="h-52 w-full border-dashed border-2 border-gray-300 flex items-center justify-center rounded-md cursor-pointer"
-                                    >
-                                        <span>Selecciona una imagen</span>
-                                    </div>
-                                )}
+                            {imageUrl ? (
+                                <img
+                                    onClick={() => setIsImageModalOpen(true)}
+                                    src={imageUrl}
+                                    alt="Imagen del programa"
+                                    className="w-full rounded-md cursor-pointer"
+                                    style={{ height: "100%" }}
+                                />
+                            ) : (
+                                <div
+                                    onClick={() => setIsImageModalOpen(true)}
+                                    className="h-52 w-full border-dashed border-2 border-gray-300 flex items-center justify-center rounded-md cursor-pointer"
+                                >
+                                    <span>Selecciona una imagen</span>
+                                </div>
+                            )}
                         </figure>
+
+                        
                         <div className=" grid grid-col-2 gap-3 col-span-4">
-                        <fieldset>
-                            <legend className="pb-3 font-bold">Información Básica</legend>
-                            <span>
-                                <Label htmlFor="courseName" value="Nombre del Curso" />
-                                <TextInput
-                                    id="courseName"
-                                    type="text"
-                                    {...register("courseName", { required: true })}
-                                    placeholder="Nombre del Curso..."
-                                />
-                            </span>
-
-                            <span>
-                                <Label htmlFor="courseType" value="Categoría del Curso" />
-                                <TextInput
-                                    id="courseType"
-                                    type="text"
-                                    {...register("courseType", { required: true })}
-                                    placeholder="Categoría del Curso..."
+                            <fieldset>
+                                <legend className="pb-3 font-bold">Información Básica</legend>
+                                <span>
+                                    <Label htmlFor="courseName" value="Nombre del Curso" />
+                                    <TextInput
+                                        id="courseName"
+                                        type="text"
+                                        {...register("courseName", { required: true })}
+                                        placeholder="Nombre del Curso..."
                                     />
-                            </span>
+                                </span>
 
-                            <span>
-                                <Label htmlFor="instructor" value="Encargado del Curso" />
-                                <TextInput
-                                    id="instructor"
-                                    type="text"
-                                    {...register("instructor", { required: true })}
-                                    placeholder="Encargado del Curso..."
-                                />
-                            </span>
-                            <span>
-                                <Label htmlFor="capacity" value="Cupos Disponibles" />
-                                <TextInput
-                                    id="capacity"
-                                    type="number"
-                                    {...register("capacity", { required: true })}
-                                    placeholder="0s"
+                                <span>
+                                    <Label htmlFor="courseType" value="Categoría del Curso" />
+                                    <TextInput
+                                        id="courseType"
+                                        type="text"
+                                        {...register("courseType", { required: true })}
+                                        placeholder="Categoría del Curso..."
                                     />
-                            </span>
-                            <div>
-                        <Label htmlFor="startDate" value="Edad Objetivo" />
-                            <TextInput />
-                        </div>
+                                </span>
+
+                                <span>
+                                    <Label htmlFor="instructor" value="Encargado del Curso" />
+                                    <TextInput
+                                        id="instructor"
+                                        type="text"
+                                        {...register("instructor", { required: true })}
+                                        placeholder="Encargado del Curso..."
+                                    />
+                                </span>
+                                <span>
+                                    <Label htmlFor="capacity" value="Cupos Disponibles" />
+                                    <TextInput
+                                        id="capacity"
+                                        type="number"
+                                        {...register("capacity", { required: true })}
+                                        placeholder="0s"
+                                    />
+                                </span>
+                                <div>
+                                    <Label htmlFor="startDate" value="Edad Objetivo" />
+                                    <TextInput />
+                                </div>
                             </fieldset>
                             <fieldset>
                                 <legend className="pb-3 font-bold">
                                     Fechas del curso
-                                    </legend>
-                        <div>
-                        <Label htmlFor="startDate" value="Fecha De Inicio" />
-                            <TextInput 
-                            type="date"
-                           {...register("date")} />
-                        </div>
-                        <div>
-                        <Label htmlFor="startDate" value="Hora De Inicio" />
-                            <TextInput
-                            type="time"
-                            {...register("courseTime")}
-                             />
-                        </div>
-                        <div>
-                        <Label htmlFor="startDate" value="Fecha De Fin" />
-                            <TextInput
-                             type="date"
-                             {...register("endDate")} />
-                        </div>
-                        <span>
-                                <Label htmlFor="location" value="Ubicación del Curso" />
-                                <TextInput
-                                    id="location"
-                                    type="text"
-                                    {...register("location", { required: true })}
-                                    placeholder="Ubicación del Curso..."
-                                    />
-                            </span>
-
-                            <span>
-                                <Label htmlFor="duration" value="Duración del Curso" />
-                                <TextInput
-                                    id="duration"
-                                    type="text"
-                                    {...register("duration", { required: true })}
-                                    placeholder="Duración del Curso..."
-                                    />
-                            </span>
-                                </fieldset>
-                                <div className=" col-span-2">
-                            <Label htmlFor="program" value="Programa del Curso" />
-                            <Select id="program" {...register("programProgramsId")}
-                            icon={FaReadme} >
-                                <option value="">Curso Libre</option>
-                                {programs?.map((program) => (
-                                    <option key={program.programsId} value={program.programsId}>
-                                        {program.programName}
-                                    </option>
-                                ))}
-                            </Select>
-                        </div>
+                                </legend>
+                                <div>
+                                    <Label htmlFor="startDate" value="Fecha De Inicio" />
+                                    <TextInput
+                                        type="date"
+                                        {...register("date")} />
                                 </div>
+                                <div>
+                                    <Label htmlFor="startDate" value="Hora De Inicio" />
+                                    <TextInput
+                                        type="time"
+                                        {...register("courseTime")}
+                                    />
+                                </div>
+                                <div>
+                                    <Label htmlFor="startDate" value="Fecha De Fin" />
+                                    <TextInput
+                                        type="date"
+                                        {...register("endDate")} />
+                                </div>
+                                <span>
+                                    <Label htmlFor="location" value="Ubicación del Curso" />
+                                    <TextInput
+                                        id="location"
+                                        type="text"
+                                        {...register("location", { required: true })}
+                                        placeholder="Ubicación del Curso..."
+                                    />
+                                </span>
+
+                                <span>
+                                    <Label htmlFor="duration" value="Duración del Curso" />
+                                    <TextInput
+                                        id="duration"
+                                        type="text"
+                                        {...register("duration", { required: true })}
+                                        placeholder="Duración del Curso..."
+                                    />
+                                </span>
+                            </fieldset>
+                            <div className=" col-span-2">
+                                <Label htmlFor="program" value="Programa del Curso" />
+                                <Select id="program" {...register("programProgramsId")}
+                                    icon={FaReadme} >
+                                    <option value="">Curso Libre</option>
+                                    {programs?.map((program) => (
+                                        <option key={program.programsId} value={program.programsId}>
+                                            {program.programName}
+                                        </option>
+                                    ))}
+                                </Select>
+                            </div>
+                        </div>
                     </Modal.Body>
                     <Modal.Footer className="flex items-center justify-center">
                         <Button color={"failure"} onClick={() => setIsModalOpen(false)}>

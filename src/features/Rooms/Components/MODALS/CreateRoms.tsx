@@ -3,32 +3,49 @@ import { useForm } from "react-hook-form";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { CreateRoom } from "../../Types/Room_Interface";
 import UseCreateRooms from "../../Hooks/UseCreateRoms";
-import AddImage from "../../../../Services/AddImage";
+import AddImage from "../../Services/AddImage";
 
 const CreateRooms = () => {
     const { register, setValue, reset, handleSubmit } =
         useForm<CreateRoom>();
     const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-    const [imageUrl, setImageUrl] = useState<string>("");
+    const [imageUrls, setImageUrls] = useState<(string | null)[]>([null, null, null, null]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { mutate: createRoom } = UseCreateRooms();
+
+    const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null);
+
+    const openImageModal = (index: number) => {
+        setCurrentImageIndex(index);
+        setIsImageModalOpen(true);
+    };
+
+    const closeImageModal = () => {
+        setCurrentImageIndex(null);
+        setIsImageModalOpen(false);
+    };
+
 
     const onSubmit = async (data: CreateRoom) => {
         createRoom(data, {
             onSuccess: () => {
                 setIsModalOpen(false);
                 reset();
-                setImageUrl("");
+                setImageUrls([]);
+                console.log(data);
             },
             onError: () => { },
         });
     };
 
-    const handleImageSelect = (url: string) => {
-        setImageUrl(url);
-        setValue("image", url);
+    const handleImageSelect = (url: string, index: number) => {
+        const newImageUrls = [...imageUrls];
+        newImageUrls[index] = url;
+        setImageUrls(newImageUrls);
+        setValue(`image.${index}`, url);
     };
+
     return (
         <>
             <Button onClick={() => setIsModalOpen(true)} color="blue">
@@ -41,34 +58,43 @@ const CreateRooms = () => {
             >
                 <Modal.Header>Crear Nueva Sala</Modal.Header>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <Modal.Body className=" grid grid-cols-3 gap-3">
-                        <fieldset className=" flex">
-                            <legend className=" font-bold pb-3">Imagen de la Sala</legend>
-                            <figure className=" w-full">
-                                {imageUrl ? (
-                                    <img
-                                        onClick={() => setIsImageModalOpen(true)}
-                                        src={imageUrl}
-                                        alt="Imagen de la sala"
-                                        className="w-full rounded-md cursor-pointer"
-                                        style={{ height: "100%" }}
-                                    />
-                                ) : (
-                                    <div
-                                        onClick={() => setIsImageModalOpen(true)}
-                                        className="w-full border-dashed border-2 border-gray-300 flex items-center justify-center rounded-md cursor-pointer"
-                                        style={{ height: "100%" }}
-                                    >
-                                        <span>Selecciona una imagen</span>
-                                    </div>
-                                )}
-                                <TextInput className=" hidden" {...register("image")} />
-                            </figure>
+                    <Modal.Body className=" grid grid-cols-3 gap-4">
+                        <fieldset className="flex flex-col">
+                            <legend className="font-bold pb-8">Imágenes de la Sala</legend>
+                            <div className="grid grid-cols-2 gap-4">
+                                {imageUrls.map((url, index) => (
+                                    <figure key={index} className="w-full">
+                                        {url ? (
+                                            <img
+                                                onClick={() => openImageModal(index)}
+                                                src={url}
+                                                alt={`Imagen ${index + 1}`}
+                                                className="w-full rounded-md cursor-pointer"
+                                                style={{ height: "100%" }}
+                                            />
+                                        ) : (
+                                            <div
+                                                onClick={() => openImageModal(index)}
+                                                className="w-full border-dashed border-2 border-gray-300 flex items-center justify-center rounded-md cursor-pointer"
+                                                style={{ height: "100%" }}
+                                            >
+                                                <span>Selecciona una imagen</span>
+                                            </div>
+                                        )}
+                                        <TextInput
+                                            className="hidden"
+                                            {...register(`image.${index}`)}
+                                            value={url || ''}
+                                        />
+                                    </figure>
+                                ))}
+                            </div>
                         </fieldset>
 
 
-                        <div className=" col-span-2 grid grid-cols-2 gap-3">
-                            <fieldset className="flex flex-col justify-between">
+
+                        <div className=" col-span-2 grid grid-cols-2 gap-8">
+                            <fieldset>
                                 <legend className="font-bold pb-2">Información General</legend>
                                 <span>
                                     <Label htmlFor="name" value="Nombre de la sala" />
@@ -102,9 +128,11 @@ const CreateRooms = () => {
                                         placeholder="0"
                                     />
                                 </span>
-
+                            </fieldset>
+                            <fieldset>
+                                <legend className="font-bold pb-2">Detalles de Sala</legend>
                                 <span>
-                                    <Label htmlFor="capacity" value="Salas Disponibles" />
+                                    <Label htmlFor="capacity" value="Aforo de sala" />
                                     <TextInput
                                         id="capacity"
                                         type="number"
@@ -153,11 +181,14 @@ const CreateRooms = () => {
                     </Modal.Footer>
                 </form>
             </Modal>
-            <AddImage
-                showModal={isImageModalOpen}
-                onCloseModal={() => setIsImageModalOpen(false)}
-                onImageSelect={handleImageSelect}
-            />
+            {currentImageIndex !== null && (
+                <AddImage
+                    showModal={isImageModalOpen}
+                    onCloseModal={closeImageModal}
+                    onImageSelect={handleImageSelect}
+                    imageIndex={currentImageIndex}
+                />
+            )}
         </>
     );
 };

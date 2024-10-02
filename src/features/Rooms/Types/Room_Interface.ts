@@ -1,5 +1,5 @@
 export type Room = {
-    image: string,
+    image: string[],
     name: string,
     area: number,
     capacity: number,
@@ -15,7 +15,7 @@ export type CreateRoom = {
     area: number,
     capacity: number,
     observations: string,
-    image?: string,
+    image?: string[],
     location: string;
 }
 
@@ -26,6 +26,6 @@ export type updateRooms = {
     area: number,
     capacity: number,
     observations: string,
-    image?: string,
+    image?: string[],
     location: string;
 }

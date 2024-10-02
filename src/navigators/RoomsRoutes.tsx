@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Layout from "../Pages/Layout";
-import CreateRoom from "../features/Rooms/Components/MODALS/CreateRoms";
+import ManageRooms from "../features/Rooms/Pages/ManageRooms";
 
 const RoomsRoutes = [
     {
@@ -16,7 +16,7 @@ const RoomsRoutes = [
                 children: [
                     {
                         path: "Salas",
-                        element: < CreateRoom />
+                        element: < ManageRooms />
                     }
                 ]
             }

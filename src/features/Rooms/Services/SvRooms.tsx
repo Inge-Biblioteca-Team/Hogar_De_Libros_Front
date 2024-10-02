@@ -59,6 +59,28 @@ const EDITINGROOMS = async ( data: updateRooms) => {
   }
 };
 
+const uploadImages = async (files: File[]): Promise<string[]> => {
+  if (files.length > 0) {
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append("image", file);
+    });
+
+    try {
+      const response = await api.post("/files/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data.filePaths; 
+    } catch (error) {
+      console.error("Error uploading images:", error);
+      throw new Error("Error uploading images");
+    }
+  }
+  throw new Error("No files provided");
+};
 
 
-export {GetRooms, ADDINGROOMS, EDITINGROOMS}
+
+export {GetRooms, ADDINGROOMS, EDITINGROOMS, uploadImages}
