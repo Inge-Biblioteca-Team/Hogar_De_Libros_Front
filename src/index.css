@@ -66,3 +66,8 @@ input[type="number"] {
 .p0 div{
   padding: 0;
 }
+
+.custom-DatePicker .bg-cyan-700 {
+ background: #1e439fdc;
+ 
+}

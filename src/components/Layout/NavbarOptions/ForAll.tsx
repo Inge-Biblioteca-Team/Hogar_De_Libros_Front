@@ -42,7 +42,7 @@ const ForAll = () => {
           Disponibilidad <br />
           de Equipo de cómputo
         </Sidebar.Item>
-        <Sidebar.Item className="" href="/HogarDeLibros">
+        <Sidebar.Item className="" href="/HogarDeLibros/Salas/Disponibilidad">
           Disponibilidad <br />
           de salas
         </Sidebar.Item>
