@@ -8,10 +8,6 @@ const ForAdmin = () => {
           <Sidebar.Item href="/HogarDeLibros/Gestion/Equipos">
             Equipos de Cómputo
           </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Computadoras">
-            Préstamo de <br />
-            Equipos de Cómputo
-          </Sidebar.Item>
           <Sidebar.Collapse className=" font-bold" label="Libros">
             <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
               Catálogo General
@@ -42,23 +38,40 @@ const ForAdmin = () => {
         </Sidebar.Collapse>
       </Sidebar.ItemGroup>
       <Sidebar.ItemGroup>
-        <Sidebar.Collapse label="Préstamos">
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Pendientes">
-            Solicitudes Pendientes
-          </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/EnProceso">
-            Préstamos Activos
-          </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Finalizados">
-            Préstamos Finalizados
-          </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/HistorialDeEquipos">
-            Historial de uso <br /> Equipo de cómputo
-          </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/SolicitudesDeSalas">
-            Solicitudes de Salas
-          </Sidebar.Item>
-        </Sidebar.Collapse>
+        <Sidebar.ItemGroup>
+          <Sidebar.Collapse label="Prestamos">
+            <Sidebar.Collapse label="Libros">
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Pendientes">
+                Solicitudes Pendientes
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/EnProceso">
+                Préstamos Activos
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Finalizados">
+                Historial de préstamos
+              </Sidebar.Item>
+            </Sidebar.Collapse>
+            <Sidebar.Collapse label="Equipo de Computo">
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Computadoras">
+                Generar Préstamos
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/HistorialDeEquipos">
+                Historial de usos
+              </Sidebar.Item>
+            </Sidebar.Collapse>
+            <Sidebar.Collapse label="Prestamos de salas">
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/SolicitudesDeSalas">
+                Solicitudes de Salas
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/SalasReservadas">
+                Préstamos en aprovados
+              </Sidebar.Item>
+              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/HistorialDePrestamos">
+                Historial de Préstamos
+              </Sidebar.Item>
+            </Sidebar.Collapse>
+          </Sidebar.Collapse>
+        </Sidebar.ItemGroup>
       </Sidebar.ItemGroup>
     </>
   );

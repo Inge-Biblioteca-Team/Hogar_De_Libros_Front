@@ -21,6 +21,8 @@ import ManageFurniture from "../features/Furniture/Pages/ManageFurniture";
 import ManageEvents from "../features/EventsSection/Pages/ManageEvent";
 import ManagePrograms from "../features/Programs/Pages/ManagePrograms";
 import ReservationList from "../features/Loan/Pages/Rooms/ReservationList";
+import OldReservationList from "../features/Loan/Pages/Rooms/OldReservationList";
+import AprovedReservationList from "../features/Loan/Pages/Rooms/AprovedReservationList";
 
 
 const adminRoutes = [
@@ -141,7 +143,16 @@ const adminRoutes = [
           {
             path: "SolicitudesDeSalas",
             element:<ReservationList/>
-          }
+          },
+          {
+            path: "SalasReservadas",
+            element:<AprovedReservationList/>
+          },
+          {
+            path: "HistorialDePrestamos",
+            element:<OldReservationList/>
+          },
+
         ],
       },
     ],

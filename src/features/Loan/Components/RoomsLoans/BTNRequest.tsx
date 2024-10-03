@@ -2,10 +2,10 @@ import { Button, Popover } from "flowbite-react";
 import { GiConfirmed } from "react-icons/gi";
 import { MdCancel } from "react-icons/md";
 import { PiEyeFill } from "react-icons/pi";
-import { Reserve } from "../../../Rooms/Types/RoomType";
 import { useState } from "react";
 import MDSeeReservation from "./MDSeeReservation";
 import MDRefuseReservation from "./MDRefuseReservation";
+import { Reserve } from "../../Types/RoomsReservations";
 
 const BTNRequest = ({ reserve }: { reserve: Reserve }) => {
   const [openS, setOpenS] = useState<boolean>(false);

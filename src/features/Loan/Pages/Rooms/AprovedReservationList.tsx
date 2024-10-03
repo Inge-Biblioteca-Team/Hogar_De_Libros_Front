@@ -1,42 +1,41 @@
 import { Breadcrumb, Table } from "flowbite-react";
-import PaginatationSelector from "../../../../components/Paginations/PaginatationSelector";
-import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
+import { useState, useEffect } from "react";
 import {
   HomeCrumb,
-  LastCrumb,
   LoanCrumb,
+  LastCrumb,
 } from "../../../../components/BreadCrumb";
-import { useEffect, useState } from "react";
-import TblOldReservation from "../../Components/RoomsLoans/TblOldReservation";
-import { ReserveResponse } from "../../Types/RoomsReservations";
+import PaginatationSelector from "../../../../components/Paginations/PaginatationSelector";
+import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
+import TBLAprovReservations from "../../Components/RoomsLoans/TBLAprovReservations";
 import { useQuery } from "react-query";
+import { ReserveResponse } from "../../Types/RoomsReservations";
 import { GetDoneLoans } from "../../Services/SvBookLoan";
 import NoRequest from "../../Components/NoRequest";
 
-const OldReservationList = () => {
+const AprovedReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
   const [currentPage, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("OldR");
+    const savedPage = sessionStorage.getItem("AprovPage");
     return savedPage ? Number(savedPage) : 1;
   });
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
-    sessionStorage.setItem("OldR", page.toString());
+    sessionStorage.setItem("AprovPage", page.toString());
   };
 
   useEffect(() => {
-    sessionStorage.setItem("OldR", currentPage.toString());
+    sessionStorage.setItem("AprovPage", currentPage.toString());
   }, [currentPage]);
 
   const { data: reservations } = useQuery<ReserveResponse, Error>(
-    ["Oldreservations", currentPage, currentLimit],
+    ["reserveRequest", currentPage, currentLimit],
     () => GetDoneLoans(currentPage, currentLimit),
     {
       staleTime: 600,
     }
   );
-
   const MaxPage = Math.ceil((reservations?.count ?? 0) / 5);
 
   return (
@@ -48,13 +47,11 @@ const OldReservationList = () => {
       </Breadcrumb>
       <div className=" w-full flex items-center justify-center mt-16">
         <div className="w-4/5">
-          {reservations?.count == 0 ? (
-            <NoRequest text={"No existen solicitudes pendientes"} />
-          ) : (
+          { reservations?.count == 0? <NoRequest text={"No existen solicitudes pendientes"}/> :
             <>
               <Table hoverable className="w-full text-center">
                 {reservations?.data.map((reserve) => (
-                  <TblOldReservation reserve={reserve} />
+                  <TBLAprovReservations reserve={reserve} />
                 ))}
               </Table>
               <div className=" w-full flex justify-between">
@@ -74,11 +71,10 @@ const OldReservationList = () => {
                 />
               </div>
             </>
-          )}
+          }
         </div>
       </div>
     </>
   );
 };
-
-export default OldReservationList;
+export default AprovedReservationList;

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Layout from "../Pages/Layout";
-import RoomsScheduleManage from "../features/Rooms/Pages/RoomsScheduleManage";
+import RoomsScheduleManage from "../features/Loan/Pages/Rooms/RoomsScheduleManage";
 
 const RoomRoutes = [
   {

@@ -3,13 +3,15 @@ import {
   Checkbox,
   Label,
   Modal,
+  Select,
   Textarea,
   TextInput,
 } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import { Reservation } from "../../Types/RoomType";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import PostNewRoomReservation from "../../Hooks/PostNewRoomReservation";
+import { Reservation } from "../../Types/RoomsReservations";
+import PostNewRoomReservation from "../../Hooks/Rooms/PostNewRoomReservation";
+import ProgramsOPT from "../../../Courses/components/OPTS/ProgramsOPT";
 
 const ReservationForm = ({
   open,
@@ -36,13 +38,12 @@ const ReservationForm = ({
   const [needF, setNeedF] = useState<boolean>(false);
 
   const cedula = sessionStorage.getItem("cedula");
+  const rol = sessionStorage.getItem("role");
 
   useEffect(() => {
     if (cedula) {
       setValue("userCedula", cedula);
     }
-    setValue("startTime", start);
-    setValue("endTime", end);
     setValue("roomId", Number(roomId));
     setValue("date", date);
   }, [cedula, start, end, roomId, date, setValue]);
@@ -109,12 +110,25 @@ const ReservationForm = ({
               />
             </div>
           </fieldset>
-          <fieldset className=" grid grid-cols-2 gap-3">
+          <fieldset
+            className={`${
+              rol === "admin"
+                ? " flex flex-col gap-4"
+                : "grid grid-cols-2 gap-3"
+            }`}
+          >
             <legend className=" text-center font-bold">
-              En base a sus necesidades, Marque y rellene los siguientes campos
-              en caso de requerirlo
+              {rol == "admin" ? (
+                <span>Curso o Evento relacionado a la reserva</span>
+              ) : (
+                <span>
+                  {" "}
+                  En base a sus necesidades, Marque y rellene los siguientes
+                  campos en caso de requerirlo
+                </span>
+              )}
             </legend>
-            <div>
+            <div className={`${rol === "admin" ? "hidden" : "visible"}`}>
               <Checkbox
                 color={"blue"}
                 id="needInternet"
@@ -126,7 +140,7 @@ const ReservationForm = ({
                 className="ml-2"
               />
             </div>
-            <div>
+            <div className={`${rol === "admin" ? "hidden" : "visible"}`}>
               <Checkbox
                 color={"blue"}
                 id="needFood"
@@ -138,7 +152,7 @@ const ReservationForm = ({
                 className="ml-2"
               />
             </div>
-            <div>
+            <div className={`${rol === "admin" ? "hidden" : "visible"}`}>
               <Label value="Moviliario Requerido" />
               <Textarea
                 rows={3}
@@ -147,7 +161,7 @@ const ReservationForm = ({
                 onChange={(event) => setFuritureRequire(event.target.value)}
               />
             </div>
-            <div>
+            <div className={`${rol === "admin" ? "hidden" : "visible"}`}>
               <Label value="Comentarios Extras" />
               <Textarea
                 rows={3}
@@ -155,6 +169,18 @@ const ReservationForm = ({
                 placeholder="Comentarios, si tienes alguna situacion o necesitas algo que no este contemplado en lo anterior puedes escibirlo aqui"
                 onChange={(event) => setExtra(event.target.value)}
               />
+            </div>
+            <div className={`${rol !== "admin" ? "hidden" : "visible"}`}>
+              <Label value="Evento Realizado" />
+              <Select {...register("EventId")}>
+                <ProgramsOPT />
+              </Select>
+            </div>
+            <div className={`${rol !== "admin" ? "hidden" : "visible"}`}>
+              <Label value="Curso Realizado" />
+              <Select {...register("courseId")}>
+                <ProgramsOPT />
+              </Select>
             </div>
           </fieldset>
         </Modal.Body>

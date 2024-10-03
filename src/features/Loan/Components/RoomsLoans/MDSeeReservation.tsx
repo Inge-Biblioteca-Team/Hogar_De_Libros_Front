@@ -1,7 +1,7 @@
 import { Modal, Button } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
-import { Reserve } from "../../../Rooms/Types/RoomType";
-import { format } from "@formkit/tempo";
+import { HourMapping, Reserve } from "../../Types/RoomsReservations";
+import { formatToDMY } from "../../../../components/FormatTempo";
 
 const MDSeeReservation = ({
   open,
@@ -12,30 +12,9 @@ const MDSeeReservation = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   reserve: Reserve;
 }) => {
-  const Time = reserve.startTime;
-  const TimeE = reserve.startTime;
-  const dateAux = reserve.date;
-  const dateTimeString = `${dateAux}T${Time}`;
-  const dateTimeEString = `${dateAux}T${TimeE}`;
-  const dateTime = new Date(dateTimeString);
-  const dateTimeE = new Date(dateTimeEString);
-
-  const reserveDay = format({
-    date: reserve.date,
-    format: "DD/MM/YYYY",
-    tz: "America/Costa_Rica",
-  });
-
-  const start = format({
-    date: dateTime,
-    format: "h:mm A",
-    tz: "America/Costa_Rica",
-  });
-  const end = format({
-    date: dateTimeE,
-    format: "h:mm A",
-    tz: "America/Costa_Rica",
-  });
+  const reserveDay = formatToDMY(reserve.date);
+  const start = HourMapping[Math.min(...reserve.selectedHours)];
+  const end = HourMapping[Math.max(...reserve.selectedHours)];
 
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
@@ -55,7 +34,7 @@ const MDSeeReservation = ({
           <div>{reserveDay} </div>
         </div>
         <div>
-          <strong>Sala solicitdada</strong>
+          <strong>Sala solicitada</strong>
           <div>{reserve.personNumber} </div>
         </div>
         <div>

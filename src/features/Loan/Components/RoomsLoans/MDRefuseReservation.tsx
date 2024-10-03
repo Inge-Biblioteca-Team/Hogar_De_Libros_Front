@@ -1,7 +1,7 @@
 import { Button, Modal, Textarea } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
-import { Reserve } from "../../../Rooms/Types/RoomType";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { Reserve } from "../../Types/RoomsReservations";
 
 const MDRefuseReservation = ({
   open,

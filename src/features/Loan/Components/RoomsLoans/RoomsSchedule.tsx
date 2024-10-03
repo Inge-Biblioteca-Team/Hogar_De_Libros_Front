@@ -1,9 +1,9 @@
 import { Button, Table } from "flowbite-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import ReservationForm from "./Forms/ReservationForm";
+import ReservationForm from "../../Pages/Rooms/ReservationForm";
 
-const RoomsSchedule = ({date}:{date:string}) => {
+const RoomsSchedule = ({ date }: { date: string }) => {
   const rooms = ["1", "2", "3"];
   const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 
@@ -108,7 +108,7 @@ const RoomsSchedule = ({date}:{date:string}) => {
         </Button>
       </div>
       <ReservationForm
-      date={date}
+        date={date}
         open={open}
         setOpen={setOpen}
         start={start}

@@ -1,17 +1,24 @@
 import { addDay } from "@formkit/tempo";
 import { Datepicker } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
+import { formatToYMD } from "../../../../components/FormatTempo";
 
 const SearchCalendar = ({
   setSearchDate,
 }: {
-  setSearchDate: Dispatch<SetStateAction<Date>>;
+  setSearchDate: Dispatch<SetStateAction<string>>;
 }) => {
+  const handleChange = (date: Date | null) => {
+    if (date) {
+      const searchDate = formatToYMD(date);
+      setSearchDate(searchDate);
+    }
+  };
   return (
     <div>
       <div className=" font-bold text-center text-lg">Fecha a consultar</div>
       <Datepicker
-        onSelectedDateChanged={(e) => setSearchDate(e)}
+        onSelectedDateChanged={handleChange}
         className="custom-DatePicker"
         size={120}
         inline

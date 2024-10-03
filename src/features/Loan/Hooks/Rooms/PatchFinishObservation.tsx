@@ -1,13 +1,13 @@
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";
-import { ApiError } from "../../../Types/ApiTypes";
-import { NewReservation } from "../Services/SvRooms";
+import { ApiError } from "../../../../Types/ApiTypes";
+import { PatchEndReservation } from "../../Services/SVReservations";
 
-const PostNewRoomReservation = () => {
+const PatchFinishObservation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: NewReservation,
+    mutationFn: PatchEndReservation,
     onSuccess: () => {
       queryClient.invalidateQueries("ProgramCatalog");
       toast.success("Programa añadido con éxito!");
@@ -17,4 +17,4 @@ const PostNewRoomReservation = () => {
     },
   });
 };
-export default PostNewRoomReservation;
+export default PatchFinishObservation;

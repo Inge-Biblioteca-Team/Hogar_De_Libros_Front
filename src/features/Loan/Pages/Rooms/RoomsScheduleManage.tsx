@@ -1,19 +1,16 @@
 import { Breadcrumb } from "flowbite-react";
-import { HomeCrumb, LastCrumb } from "../../../components/BreadCrumb";
-import RoomsSchedule from "../Components/RoomsSchedule";
-import SearchCalendar from "../Components/SearchCalendar";
+import { HomeCrumb, LastCrumb } from "../../../../components/BreadCrumb";
+import RoomsSchedule from "../../Components/RoomsLoans/RoomsSchedule";
+import SearchCalendar from "../../Components/RoomsLoans/SearchCalendar";
 import { useState } from "react";
-import { format } from "@formkit/tempo";
+import { formatToYMD } from "../../../../components/FormatTempo";
+import { addDay } from "@formkit/tempo";
 
 const RoomsScheduleManage = () => {
-  const [SearchDate, setSearchDate] = useState<Date>(new Date());
+  const tomorrow = addDay(new Date());
+  const StartDate = formatToYMD(tomorrow);
 
-  const date = format({
-    date: SearchDate,
-    format: "YYYY-MM-DD",
-    tz: "America/Costa_Rica",
-  });
-
+  const [SearchDate, setSearchDate] = useState<string>(StartDate);
 
   return (
     <>
@@ -24,7 +21,7 @@ const RoomsScheduleManage = () => {
       <div className=" w-full flex items-center justify-center mt-40">
         <div className=" w-11/12 flex items-start justify-between gap-6">
           <SearchCalendar setSearchDate={setSearchDate} />
-          <RoomsSchedule date={date} />
+          <RoomsSchedule date={SearchDate} />
         </div>
       </div>
     </>
