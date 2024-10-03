@@ -88,6 +88,7 @@ const ViewRoom = ({
               <strong>Comentarios:</strong> {room.observations}
             </span>
           )}
+           {/* enlace para calendario  */}
         </div>
       </Modal.Body>
       <Modal.Footer className="flex items-center justify-center">

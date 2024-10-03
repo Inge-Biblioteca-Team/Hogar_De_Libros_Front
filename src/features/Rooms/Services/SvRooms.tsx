@@ -27,9 +27,9 @@ const GetRooms = async (
   }
 };
 
-const CloseRoom =async (roomId: number)  => {
+const ActionRoom =async (roomId: number, action:string)  => {
   try {
-    const response = await api.patch(`rooms/closed/${roomId}`);
+    const response = await api.patch(`rooms/${action}/${roomId}`);
     return response.data;
   } catch (error) {
     console.error("Error closing room:", error);
@@ -38,30 +38,7 @@ const CloseRoom =async (roomId: number)  => {
 };
 
 
-const RoomToAvailable = async (roomId: number) =>  {
-  try {
-    const response = await api.patch(`rooms/available/${roomId}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error setting room to available:", error);
-    throw error;
-  }
-};
-
-const MaintenanceRoom = async (roomId: number) => {
-  try {
-    const response = await api.patch(`rooms/maintenance/${roomId}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error putting room in maintenance:", error);
-    throw error;
-  }
-};
-
-
 export {
   GetRooms,
-  CloseRoom,
-  RoomToAvailable,
-  MaintenanceRoom,
+  ActionRoom,
 }
