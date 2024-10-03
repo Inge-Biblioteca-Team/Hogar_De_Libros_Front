@@ -1,38 +1,31 @@
-import { useState } from "react";
 import { Room } from "../../Types/Room_Interface";
 import AccionBTNR from "../BTN/AccionBTNR";
 
-const RoomCard = ({room}: {room:Room}) => {
-    const [see, setSee] = useState<boolean>(false);
-    const [down, setDown] = useState<boolean>(false);
-    const [edit, setEdit] = useState<boolean>(false);
-    return (
-        <div className="max-w-xs rounded-lg shadow-lg overflow-hidden">
-       
-        <figure className="w-full">
-          <img
-            src={room.image} 
-            alt="Imagen del Sala"
-            className="w-full h-48 object-cover"
-          />
-        </figure>
-  
-       
-        <div className="p-4">
-          <h3 className="text-lg font-semibold mb-2">Sala {room.name}</h3>
-          <p className="text-gray-600">Aforo recomendado: {room.capacity}</p>
-          <p className="text-gray-600">Ubicación: {room.location}</p>
-  
-          
-          <div className="mt-4 flex justify-between">
-          <AccionBTNR
-            setSee={setSee}
-            setEdit={setEdit}
-            setDown={setDown} />
-          </div>
-        </div>
 
-      </div>
-    );
-  };
-export default RoomCard;  
+const RoomCard = ({ Rooms }: { Rooms: Room }) => {
+  return (
+    <figure className="rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3 max-sm:p-0">
+      <img
+        className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover
+        max-sm:h-32"
+        src={Rooms.image}
+        alt={Rooms.name}
+      />
+      <figcaption className="text-lg max-w-80 break-words max-sm:text-sm max-sm:h-40 max-sm:flex max-sm:flex-col max-sm:justify-end">
+        <strong>{Rooms.name}</strong>
+        <p>
+          <span>Área: {Rooms.area} m²</span>
+          <br />
+          <span>Aforo: {Rooms.capacity} Personas</span>
+          <br />
+          <span>Ubicación: {Rooms.location}</span>
+        </p>
+        <div className="mt-5">
+          <AccionBTNR rooms={Rooms} />
+        </div>
+      </figcaption>
+    </figure>
+  );
+};
+
+export default RoomCard;
