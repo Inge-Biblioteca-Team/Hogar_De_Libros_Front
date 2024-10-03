@@ -20,6 +20,7 @@ import WorkStationsLoanHistory from "../features/Loan/Pages/WorkStations/WorkSta
 import ManageFurniture from "../features/Furniture/Pages/ManageFurniture";
 import ManageEvents from "../features/EventsSection/Pages/ManageEvent";
 import ManagePrograms from "../features/Programs/Pages/ManagePrograms";
+import ManageRoom from "../features/Rooms/Pages/ManageRoom";
 
 
 const adminRoutes = [
@@ -110,6 +111,10 @@ const adminRoutes = [
       {
         path: "Programas",
         element: < ManagePrograms />,
+      },
+      {
+        path: "Salas",
+        element: < ManageRoom />,
       },
       {
         path: "Préstamos",
