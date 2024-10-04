@@ -23,6 +23,7 @@ import ManagePrograms from "../features/Programs/Pages/ManagePrograms";
 import ReservationList from "../features/Loan/Pages/Rooms/ReservationList";
 import OldReservationList from "../features/Loan/Pages/Rooms/OldReservationList";
 import AprovedReservationList from "../features/Loan/Pages/Rooms/AprovedReservationList";
+import ManageRoom from "../features/Rooms/Pages/ManageRoom";
 
 
 const adminRoutes = [
@@ -113,6 +114,10 @@ const adminRoutes = [
       {
         path: "Programas",
         element: < ManagePrograms />,
+      },
+      {
+        path: "Salas",
+        element: < ManageRoom />,
       },
       {
         path: "Préstamos",
