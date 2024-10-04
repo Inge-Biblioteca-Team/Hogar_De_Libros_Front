@@ -3,7 +3,7 @@ import UseEditBook from "../../Hooks/UseEditBook";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, TextInput, Label, Checkbox, Select } from "flowbite-react";
-import ConfirmButton from "../../../../components/ConfirmButton";
+import ConfirmButton from "../../../../components/BTNS/ConfirmButton";
 import ConfirmModal from "../Modals/ConfirmModal";
 import ModalAddImage from "../Modals/ModalAddImage";
 

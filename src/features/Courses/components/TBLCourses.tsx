@@ -1,31 +1,61 @@
 import { Table } from "flowbite-react";
 import { Courses } from "../types/Courses";
-import BTNAccions from "./Modals/BTNAccions";
+import BTNAccions from "./BTNAccions";
+import { format } from "@formkit/tempo";
+import { useState } from "react";
+import EnrolList from "./EnrolList";
+import toast from "react-hot-toast";
 
 const TBLCourses = ({ course }: { course: Courses }) => {
+  const Time = course.courseTime;
+  const courseDate = course.date;
+  const dateTimeString = `${courseDate}T${Time}`;
+  const dateTime = new Date(dateTimeString);
+  const date = format({
+    date: courseDate,
+    format: "DD/MM/YYYY",
+    tz: "America/Costa_Rica",
+  });
+  const courseTime = format({
+    date: dateTime,
+    format: "h:mm A",
+    tz: "America/Costa_Rica",
+  });
+
+  const [open, setOpen] = useState<boolean>(false);
+
+  const handleOpen = () => {
+    if (course.capacity == course.availableQuota) {
+      toast.error("No existe lista de matricula para el curso");
+    } else {
+      setOpen(true);
+    }
+  };
+
   return (
     <>
-      <Table.Row className=" h-20" key={course.courseId}>
-        <Table.Cell>{course.courseType}</Table.Cell>
+      <Table.Row className=" h-20">
+        <Table.Cell>{course.courseName}</Table.Cell>
         <Table.Cell>{course.instructor} </Table.Cell>
+        <Table.Cell>{date}</Table.Cell>
+        <Table.Cell>{courseTime}</Table.Cell>
         <Table.Cell>
-            {new Date(course.date).toLocaleDateString()}
+          {course.availableQuota} / {course.capacity}
         </Table.Cell>
-        <Table.Cell>
-            {course.courseTime}
+        <Table.Cell
+          className="hover:text-Body cursor-pointer"
+          onClick={handleOpen}
+        >
+          Lista de Matricula
         </Table.Cell>
-        <Table.Cell>
-          {course.capacity}
-        </Table.Cell>
-        <Table.Cell>
-          {course.Status ? "Activo" : "Inactivo"}{" "}
-        </Table.Cell>
+        <Table.Cell>{course.currentStatus}</Table.Cell>
         <Table.Cell>
           {" "}
-          <BTNAccions Course={course} />  {" "}
+          <BTNAccions Course={course} />{" "}
         </Table.Cell>
       </Table.Row>
+      <EnrolList Course={course} open={open} setOpen={setOpen} />
     </>
-  )
-}
+  );
+};
 export default TBLCourses;

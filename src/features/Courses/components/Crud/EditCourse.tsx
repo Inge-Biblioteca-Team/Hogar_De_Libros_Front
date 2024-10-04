@@ -1,18 +1,27 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import { Courses, updateCourse } from "../../types/Courses";
-import { useEffect, useState } from "react";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import { editCourse } from "../../services/SvCourses";
 import AddImage from "../Modals/AddImage";
-import toast from "react-hot-toast";
+import { addDay, format } from "@formkit/tempo";
+import UseUpdateCourse from "../../Hooks/UseUpdateCourse";
+import { FaReadme } from "react-icons/fa6";
+import CategoryOPT from "../OPTS/CategoryOPT";
+import AgeOPT from "../OPTS/AgeOPT";
+import ProgramsOPT from "../OPTS/ProgramsOPT";
 
-
-const EditCourse = () => {
-  const location = useLocation();
-  const course: Courses = location.state.course;
+const EditCourse = ({
+  open,
+  setOpen,
+  course,
+}: {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  course: Courses;
+}) => {
   const { register, handleSubmit, setValue, watch } = useForm<updateCourse>({
     defaultValues: {
+      Id: course.courseId,
       date: course.date,
       courseTime: course.courseTime,
       location: course.location,
@@ -21,26 +30,27 @@ const EditCourse = () => {
       courseType: course.courseType,
       targetAge: course.targetAge,
       capacity: course.capacity,
-      Status: course.Status,
       image: course.image,
       duration: course.duration,
       endDate: course.endDate,
       programProgramsId: course.programProgramsId,
+      materials: course.materials,
     },
   });
-
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [, setImageUrl] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [duration, setDuration] = useState("1");
+  const [durationN, setDurationN] = useState("Días");
+
+  const { mutate: updateCourse } = UseUpdateCourse();
 
   const onSubmit = async (data: updateCourse) => {
-    try {
-      await editCourse(course.courseId, data);
-      toast.success("Curso añadido correctamente...");
-      navigate('/HogarDeLibros/Gestion/Cursos');
-    } catch (error) {
-      console.error("Error updating curso:", error);
-    }
+    updateCourse(data, {
+      onSuccess: () => {
+        setOpen(false);
+      },
+      onError: () => {},
+    });
   };
 
   const handleImageSelect = (url: string) => {
@@ -48,172 +58,222 @@ const EditCourse = () => {
     setValue("image", url);
   };
 
+  const tomorrow = addDay(new Date());
+
+  const minDay = format({
+    date: tomorrow,
+    format: "YYYY-MM-DD",
+    tz: "America/Costa_Rica",
+  });
+
   useEffect(() => {
-    if (course) {
+    if (course.image) {
       setImageUrl(course.image);
     }
-  }, [course, setValue]);
+  }, [course.image]);
+
+  useEffect(() => {
+    if (course.duration) {
+      const durationString = course.duration;
+      const [num, unit] = durationString.split(" ");
+      setDurationN(num);
+      setDuration(unit);
+    }
+  }, [course.duration]);
+
+  useEffect(() => {
+    setValue("duration", durationN + " " + duration);
+  }, [duration, durationN, setValue]);
+
+
+  const minDate2 = watch("date")
+
+  
+  const minDay2 = format({
+    date: minDate2,
+    format: "YYYY-MM-DD",
+    tz: "America/Costa_Rica",
+  });
 
   return (
     <>
-      <div className="w-full flex place-content-center pt-10">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="grid gap-14 w-4/5 text-2xl grid-cols-3 "
-          style={{ gridTemplateColumns: "" }}
-        >
-          <fieldset className="flex-none w-full">
-            <legend className=" pb-3 font-bold ">Imagen del Curso</legend>
-            <figure className="relative">
-              <img
-                onClick={() => setIsImageModalOpen(true)}
-                src={watch("image")}
-                alt="Imagen del Curso"
-                className="rounded-xl shadow-xl w-full"
-                style={{
-                  height: "22.8em",
-                  maxHeight: "22.8em",
-                  zIndex: "88888",
-                }}
-              />
-              <figcaption className="absolute w-full flex justify-center" style={{ top: "100%" }}>
-                <Button
-                  className="items-center rounded-none rounded-s-md"
-                  onClick={() => setIsImageModalOpen(true)}
-                  color={"blue"}
-                >
-                  Cambiar Imagen
-                </Button>
-              </figcaption>
-            </figure>
-          </fieldset>
+      <Modal show={open} onClose={() => setOpen(false)} size={"5xl"}>
+        <Modal.Header>Crear Nuevo Curso</Modal.Header>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Modal.Body className=" grid grid-cols-3 gap-3">
+            <fieldset className=" flex">
+              <legend className=" font-bold pb-3">Imagen del Curso</legend>
+              <figure className=" w-full">
+                {imageUrl ? (
+                  <img
+                    onClick={() => setIsImageModalOpen(true)}
+                    src={imageUrl}
+                    alt="Imagen del programa"
+                    className="w-full rounded-md cursor-pointer"
+                    style={{ height: "100%" }}
+                  />
+                ) : (
+                  <div
+                    onClick={() => setIsImageModalOpen(true)}
+                    className="w-full border-dashed border-2 border-gray-300 flex items-center justify-center rounded-md cursor-pointer"
+                    style={{ height: "100%" }}
+                  >
+                    <span>Selecciona una imagen</span>
+                  </div>
+                )}
+                <TextInput className=" hidden" {...register("image")} />
+              </figure>
+            </fieldset>
+            <div className=" col-span-2 grid grid-cols-2 gap-3">
+              <fieldset className="flex flex-col justify-between">
+                <legend className="font-bold pb-2">Información General</legend>
+                <span>
+                  <Label htmlFor="courseName" value="Nombre del Curso" />
+                  <TextInput
+                    required
+                    id="courseName"
+                    type="text"
+                    {...register("courseName")}
+                    placeholder="Nombre del Curso"
+                  />
+                </span>
 
-          <fieldset className=" flex flex-col gap-7">
-            <legend className=" pb-3 font-bold">Información básica</legend>
+                <span>
+                  <Label htmlFor="courseType" value="Categoría del Curso" />
+                  <Select id="courseType" required {...register("courseType")}>
+                    <CategoryOPT />
+                  </Select>
+                </span>
 
-            <span>
-              <Label htmlFor="courseType" value="Categoría del Curso" />
-              <TextInput
-                id="courseType"
-                type="text"
-                {...register("courseType", { required: true })}
-                placeholder="Categoría del Curso..."
-              />
-            </span>
+                <span>
+                  <Label htmlFor="instructor" value="Encargado del Curso" />
+                  <TextInput
+                    id="instructor"
+                    type="text"
+                    required
+                    {...register("instructor")}
+                    placeholder="Encargado del Curso"
+                  />
+                </span>
+                <span>
+                  <Label htmlFor="location" value="Lugar de ejecución" />
+                  <TextInput
+                    id="location"
+                    type="text"
+                    required
+                    {...register("location")}
+                    placeholder="Lugar"
+                  />
+                </span>
+                <div>
+                  <Label htmlFor="targetAge" value="Edad Objetivo" />
+                  <Select id="targetAge" required {...register("targetAge")}>
+                    <AgeOPT />
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="program" value="Programa del Curso" />
+                  <Select
+                    id="program"
+                    {...register("programProgramsId")}
+                    icon={FaReadme}
+                    required
+                  >
+                   <ProgramsOPT/>
+                  </Select>
+                </div>
+              </fieldset>
 
-            <span>
-              <Label htmlFor="courseName" value="Nombre del Curso" />
-              <TextInput
-                id="courseName"
-                type="text"
-                {...register("courseName", { required: true })}
-                placeholder="Nombre del Curso..."
-              />
-            </span>
-
-            <span>
-              <Label htmlFor="instructor" value="Encargado del Curso" />
-              <TextInput
-                id="instructor"
-                type="text"
-                {...register("instructor", { required: true })}
-                placeholder="Encargado del Curso..."
-              />
-            </span>
-
-
-
-            <span>
-              <Label htmlFor="location" value="Ubicación del Curso" />
-              <TextInput
-                id="location"
-                type="text"
-                {...register("location", { required: true })}
-                placeholder="Ubicación del Curso..."
-              />
-            </span>
-
-            <span>
-              <Label htmlFor="duration" value="Duración del Curso" />
-              <TextInput
-                id="duration"
-                type="text"
-                {...register("duration", { required: true })}
-                placeholder="Duración del Curso..."
-              />
-            </span>
-
-            <span>
-              <Label htmlFor="capacity" value="Cupos Disponibles" />
-              <TextInput
-                id="capacity"
-                type="number"
-                {...register("capacity", { required: true })}
-                placeholder="0"
-              />
-            </span>
-          </fieldset>
-
-
-          <fieldset className=" flex flex-col gap-7">
-            <legend className=" pb-3 font-bold ">Detalles</legend>
-
-            <span>
-              <Label htmlFor="date" value="Fecha inicial del Curso" />
-              <TextInput
-                id="date"
-                type="date"
-                {...register("date", { required: true })}
-              />
-            </span>
-
-            <span>
-              <Label htmlFor="endDate" value="Fecha final del curso" />
-              <TextInput
-                id="endDate"
-                type="date"
-                {...register("endDate", { required: true })}
-              />
-            </span>
-
-            <span>
-              <Label htmlFor="courseTime" value="Hora del Curso" />
-              <TextInput
-                id="courseTime"
-                type="time"
-                {...register("courseTime", { required: true })}
-              />
-            </span>
-
-            <span>
-              <Label htmlFor="targetAge" value="Rango de Edad" />
-              <TextInput
-                id="targetAge"
-                type="number"
-                {...register("targetAge", { required: true })}
-                placeholder="Edad objetivo"
-              />
-            </span>
-
-            <span>
-              <Label htmlFor="programProgramsId" value="ProgramId" />
-              <TextInput
-                id="programProgramsId"
-                type="number"
-                {...register("programProgramsId", { required: true })}
-                placeholder="0"
-              />
-            </span>
-
-            <div className="flex justify-center p-4 space-x-4">
-              <Button type="submit" color={"blue"} onClick={handleSubmit(onSubmit)}>
-                Guardar
-              </Button>
+              <fieldset className="flex flex-col justify-between gap-2">
+                <legend className="font-bold pb-2">Fechas y Matricula</legend>
+                <div>
+                  <Label htmlFor="startDate" value="Fecha de inicio" />
+                  <TextInput
+                    type="date"
+                    required
+                    id="startDate"
+                    {...register("date")}
+                    min={minDay}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="courseTime" value="Hora de inicio" />
+                  <TextInput
+                    type="time"
+                    id="courseTime"
+                    {...register("courseTime", {
+                      required: true,
+                      onChange: (e) => {
+                        const timeValue = e.target.value;
+                        const timeWithSeconds = `${timeValue}:00`;
+                        e.target.value = timeWithSeconds;
+                      },
+                    })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="startDate" value="Fecha De Fin" />
+                  <TextInput
+                    type="date"
+                    {...register("endDate")}
+                    min={minDay2}
+                  />
+                </div>
+                <span>
+                  <Label htmlFor="duration" value="Duración del Curso" />
+                  <div className="w-full grid-cols-3 grid gap-1">
+                    <TextInput
+                      type="number"
+                      placeholder="Duración"
+                      value={durationN}
+                      onChange={(event) => setDurationN(event.target.value)}
+                    />
+                    <Select
+                      className=" col-span-2"
+                      onChange={(event) => setDuration(event.target.value)}
+                      value={duration}
+                    >
+                      <option value="Días">Días</option>
+                      <option value="Meses">Meses</option>
+                      <option value="Años">Años</option>
+                    </Select>
+                  </div>
+                </span>
+                <span>
+                  <Label htmlFor="capacity" value="Cupos Disponibles" />
+                  <TextInput
+                    id="capacity"
+                    type="number"
+                    required
+                    {...register("capacity")}
+                    placeholder="0"
+                  />
+                  <div>
+                    <Label htmlFor="materials" value="Observaciones" />
+                    <TextInput
+                      id="material"
+                      {...register("materials")}
+                      placeholder="Ej. Se necesita un lapiz"
+                    />
+                  </div>
+                </span>
+              </fieldset>
             </div>
-
-          </fieldset>
+          </Modal.Body>
+          <Modal.Footer className="flex items-center justify-center">
+            <Button
+              color={"failure"}
+              onClick={() => setOpen(false)}
+              tabIndex={2}
+            >
+              Cancelar
+            </Button>
+            <Button color={"blue"} type="submit">
+              Guardar
+            </Button>
+          </Modal.Footer>
         </form>
-      </div>
+      </Modal>
       <AddImage
         showModal={isImageModalOpen}
         onCloseModal={() => setIsImageModalOpen(false)}

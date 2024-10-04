@@ -10,7 +10,7 @@ import { BookApiResponse } from "../type/Book";
 import UseDebounce from "../../../hooks/UseDebounce";
 import BookCard from "../components/Cards/BookCard";
 import BookCardList from "../components/Cards/BookCardList";
-import InpSearchTitle from "../../../components/InpSearchTitle";
+import InpSearchTitle from "../../../components/Inputs/InpSearchTitle";
 import { CurrentRoute, HomeRoute } from "../components/Redirections";
 import { BooksCrumb } from "../../../components/BreadCrumb";
 

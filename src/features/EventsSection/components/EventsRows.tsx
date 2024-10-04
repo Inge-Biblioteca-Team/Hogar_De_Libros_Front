@@ -4,6 +4,7 @@ import { Events } from "../types/Events";
 import EventBTNAccions from "./BTN/EventBTNAccions";
 import EditEvent from "./Modals/EditEvent";
 import ViewEvent from "./Modals/ViewEvent";
+import CancelEvent from "./Modals/CancelEvent";
 
 const EventsRows = ({ event }: { event: Events }) => {
   const [see, setSee] = useState<boolean>(false);
@@ -33,6 +34,7 @@ const EventsRows = ({ event }: { event: Events }) => {
       </Table.Row>
       <EditEvent edit={edit} setEdit={setEdit} event={event} />
       <ViewEvent see={see}  setSee={setSee} event={event}/>
+      <CancelEvent open={down} setOpen={setDown} event={event} />
     </>
   );
 };

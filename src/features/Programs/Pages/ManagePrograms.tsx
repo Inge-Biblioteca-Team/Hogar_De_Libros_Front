@@ -10,8 +10,8 @@ import {
   TextInput,
 } from "flowbite-react";
 import NoRequest from "../../Loan/Components/NoRequest";
-import SltCurrentLimit from "../../../components/SltCurrentLimit";
-import PaginatationSelector from "../../../components/PaginatationSelector";
+import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
+import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
 import { useQuery } from "react-query";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { ApiProgramsResponse } from "../types/Programs";

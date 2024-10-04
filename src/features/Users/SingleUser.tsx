@@ -1,8 +1,8 @@
 import { Table } from "flowbite-react";
 import { useState, useEffect } from "react";
 import { FaSearch } from 'react-icons/fa'; // Importamos el icono de lupa
-import SltCurrentLimit from "../../components/SltCurrentLimit";
-import PaginatationSelector from "../../components/PaginatationSelector";
+import SltCurrentLimit from "../../components/Paginations/SltCurrentLimit";
+import PaginatationSelector from "../../components/Paginations/PaginatationSelector";
 
 const SingleUser = () => {
   const [, setCurrentLimit] = useState<number>(5);

@@ -16,3 +16,20 @@ export type ApiProgramsResponse = {
   data: Program[];
   count: number;
 };
+
+export type Course = {
+  Status: boolean;
+  courseId: number;
+  courseName: string;
+  date: string;
+  courseTime: string;
+  location: string;
+  instructor: string;
+  courseType: string;
+  targetAge: number;
+  capacity: number;
+  image: string;
+  duration: string;
+  endDate: string;
+  programProgramsId: number;
+}

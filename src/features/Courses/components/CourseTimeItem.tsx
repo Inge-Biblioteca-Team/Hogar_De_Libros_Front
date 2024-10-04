@@ -3,6 +3,8 @@ import { NextCourses } from "../types/Courses";
 
 import { CiCalendarDate } from "react-icons/ci";
 import { format } from "@formkit/tempo";
+import { useState } from "react";
+import EnrollmentToCourse from "./Modals/EnrollmentToCourse";
 const CourseTimeItem = ({ course }: { course: NextCourses }) => {
   const courseTime = course.CourseTime;
   const courseDate = course.Date;
@@ -25,6 +27,8 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
     tz: "America/Costa_Rica",
   });
 
+  const [open, setopen] = useState<boolean>(false);
+
   return (
     <>
       <Timeline.Item className=" !w-72 min-w-72">
@@ -38,12 +42,12 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
             <Card className="p0">
               <figure className=" w-full rounded-xl">
                 <img
-                  className=" w-full rounded-t-lg h-40"
+                  className=" w-full rounded-t-lg h-28"
                   src={course.image}
                   alt=""
                 />
               </figure>
-              <div className=" flex flex-col ml-6 gap-2 h-72 mr-6 ">
+              <div className=" flex flex-col ml-3 justify-between mr-3 h-80 ">
                 <span className=" font-bold text-black">
                   {course.courseName}{" "}
                 </span>
@@ -60,14 +64,22 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
                   Cupos <br />
                   {course.avaibleQuota}/{course.capacity}{" "}
                 </span>
+                {course.materials == "" ? (
+                  "Te esperamos"
+                ) : (
+                  <span>Necesitaras: {course.materials}</span>
+                )}
               </div>
               <div className=" flex justify-center items-center mb-2">
-                <Button color={"blue"}>Matricular</Button>
+                <Button color={"blue"} onClick={() => setopen(true)}>
+                  Matricular
+                </Button>
               </div>
             </Card>
           </Timeline.Body>
         </Timeline.Content>
       </Timeline.Item>
+      <EnrollmentToCourse course={course} open={open} setOpen={setopen} />
     </>
   );
 };

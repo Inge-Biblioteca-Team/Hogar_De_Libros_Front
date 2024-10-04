@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import useNewComputer from "../../Hooks/useNewComputer";
 import { Equipment } from "../../types/Computer";
 import ConfirmModal from "../ConfirmModal";
-import ModalAddMoreActive from "../../../../components/ModalAddMoreActive";
+import ModalAddMoreActive from "../../../../components/Modals/ModalAddMoreActive";
 
 const NewComponent = ({
   sNew,

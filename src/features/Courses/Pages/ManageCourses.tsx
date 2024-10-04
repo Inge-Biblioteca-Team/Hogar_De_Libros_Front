@@ -1,6 +1,6 @@
-import { Breadcrumb, Table } from "flowbite-react";
-import SltCurrentLimit from "../../../components/SltCurrentLimit";
-import PaginatationSelector from "../../../components/PaginatationSelector";
+import { Breadcrumb, Label, Table, TextInput } from "flowbite-react";
+import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
+import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
 import { useEffect, useState } from "react";
 import {
   HomeCrumb,
@@ -12,7 +12,7 @@ import { getCourses } from "../services/SvCourses";
 import { Courses, ResponseC } from "../types/Courses";
 import TBLCourses from "../components/TBLCourses";
 import UseDebounce from "../../../hooks/UseDebounce";
-import SearchCourses from "../components/Modals/SearchCourses";
+import { BsPersonSquare } from "react-icons/bs";
 import CreateCourse from "../components/Crud/CreateCourse";
 
 const ManageCourses = () => {
@@ -32,7 +32,7 @@ const ManageCourses = () => {
     sessionStorage.setItem("CoursesPages", currentPage.toString());
   }, [currentPage]);
 
-  const Name = UseDebounce(SName, 5);
+  const Name = UseDebounce(SName, 600);
 
   const { data: Courses } = useQuery<ResponseC, Error>(
     ["CourseMG", currentPage, currentLimit, Name],
@@ -44,6 +44,10 @@ const ManageCourses = () => {
 
   const MaxPage = Math.ceil((Courses?.count ?? 0) / 5);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [Name]);
+
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">
@@ -53,8 +57,16 @@ const ManageCourses = () => {
       </Breadcrumb>
       <div className=" w-full flex items-center justify-center pt-12">
         <div className=" w-4/5">
-          <div className="flex items-center">
-            <SearchCourses SName={SetSName} />
+          <div className="flex items-end justify-between mb-3">
+            <div>
+              <Label className=" text-lg">Nombre</Label>
+              <TextInput
+                type="text"
+                placeholder="Nombre"
+                icon={BsPersonSquare}
+                onChange={(event) => SetSName(event.target.value)}
+              />
+            </div>
             <CreateCourse />
           </div>
           <Table hoverable className=" text-center">
@@ -64,17 +76,22 @@ const ManageCourses = () => {
               <Table.HeadCell>Fecha</Table.HeadCell>
               <Table.HeadCell>Hora</Table.HeadCell>
               <Table.HeadCell>Cupos Disponibles</Table.HeadCell>
+              <Table.HeadCell>Matricula</Table.HeadCell>
               <Table.HeadCell>Estado</Table.HeadCell>
               <Table.HeadCell></Table.HeadCell>
             </Table.Head>
             <Table.Body>
-              {Courses?.data && Array.isArray(Courses.data) && Courses.data.length > 0 ? (
+              {Courses?.data &&
+              Array.isArray(Courses.data) &&
+              Courses.data.length > 0 ? (
                 Courses.data.map((course: Courses) => (
                   <TBLCourses key={course.courseId} course={course} />
                 ))
               ) : (
                 <tr>
-                  <td colSpan={7} className="text-center">No Existen Cursos Registrados</td>
+                  <td colSpan={7} className="text-center">
+                    No Existen Cursos Registrados
+                  </td>
                 </tr>
               )}
             </Table.Body>

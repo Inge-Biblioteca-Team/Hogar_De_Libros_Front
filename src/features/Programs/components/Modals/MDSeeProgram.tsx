@@ -24,7 +24,7 @@ const MDSeeProgram = ({
             />
           </figure>
         </div>
-        <div className=" col-span-2 flex flex-col justify-center">
+        <div className=" col-span-2 flex flex-col justify-center gap-2">
           <div>
             <strong className=" font-bold">Nombre:</strong>{" "}
             <span>{program.programName} </span>
@@ -37,7 +37,6 @@ const MDSeeProgram = ({
             <strong className=" font-bold">Estado:</strong>
             <span>{program.status ? "Activo" : "Inactivo"} </span>
           </div>
-          <a className=" hover:text-Body cursor-pointer">Cursos relacionados al programa</a>
         </div>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">

@@ -5,8 +5,8 @@ import {
   ManageCrumb,
 } from "../../../../components/BreadCrumb";
 import HistoryRegist from "../../Components/WorkStations/HistoryRegist";
-import PaginatationSelector from "../../../../components/PaginatationSelector";
-import SltCurrentLimit from "../../../../components/SltCurrentLimit";
+import PaginatationSelector from "../../../../components/Paginations/PaginatationSelector";
+import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { GetWSLoans } from "../../Services/SvComputerLoan";

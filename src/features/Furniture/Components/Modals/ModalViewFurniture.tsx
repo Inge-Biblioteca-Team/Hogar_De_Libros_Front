@@ -1,5 +1,5 @@
 import { Button, Modal } from "flowbite-react";
-import ConditionStatus from "../../../../components/ConditionStatus";
+import ConditionStatus from "../../../../components/Maps/ConditionStatus";
 import { furniture } from "../../type/furniture";
 
 const ModalViewFurniture = ({

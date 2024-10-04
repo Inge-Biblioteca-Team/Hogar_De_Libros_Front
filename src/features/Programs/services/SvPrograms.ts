@@ -103,4 +103,14 @@ const DisableProgram = async (Id: string) => {
   }
 };
 
-export { GetPrograms, PostNewProgram, GetProgramsList, PatchProgram, DisableProgram };
+const GetProgramsCourses = async (id:string) => {
+  try {
+    const response = await api.get(`programs/${id}/courses`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export { GetPrograms, PostNewProgram, GetProgramsList, PatchProgram, DisableProgram,GetProgramsCourses };

@@ -9,10 +9,10 @@ import {
   LastCrumb,
   ManageCrumb,
 } from "../../../components/BreadCrumb";
-import PaginatationSelector from "../../../components/PaginatationSelector";
+import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
 import NoRequest from "../../Loan/Components/NoRequest";
 import EventsRows from "../components/EventsRows";
-import SltCurrentLimit from "../../../components/SltCurrentLimit";
+import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
 import SearchEvents from "../components/BTN/SerchEvents";
 import CreateEvents from "../components/Modals/CreateEvents";
 

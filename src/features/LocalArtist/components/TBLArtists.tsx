@@ -20,14 +20,20 @@ const TBLArtists = ({ artist }: { artist: Artist }) => {
         </Table.Cell>
         <Table.Cell className="w-56">
           <div>
-            <a href={artist.FBLink}>FB</a> / <a href={artist.IGLink}>IG</a> / <a href={artist.LILink}>LI</a>
+            <a href={artist.FBLink}>FB</a> / <a href={artist.IGLink}>IG</a> /{" "}
+            <a href={artist.LILink}>LI</a>
           </div>
         </Table.Cell>
         <Table.Cell className="w-56">
           {artist.Actived ? "Activo" : "Inactivo"}{" "}
         </Table.Cell>
         <Table.Cell className="w-52">
-          <BTNAccions setSee={setSee} setDow={setDow} setEdit={setEdit} />
+          <BTNAccions
+            setSee={setSee}
+            setDow={setDow}
+            setEdit={setEdit}
+            status={artist.Actived}
+          />
         </Table.Cell>
       </Table.Row>
       <ArtistInfo see={see} setSee={setSee} Artist={artist} />

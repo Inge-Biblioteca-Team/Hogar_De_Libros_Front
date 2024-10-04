@@ -9,7 +9,7 @@ import {
   ManageCrumbObj,
   LastCrumb,
 } from "../../../components/BreadCrumb";
-import BTNGoBack from "../../../components/BTNGoBack";
+import BTNGoBack from "../../../components/BTNS/BTNGoBack";
 import ConditionStatusComputer from "../components/ConditionStatusComputer";
 
 const AdminComputerInformation = () => {
