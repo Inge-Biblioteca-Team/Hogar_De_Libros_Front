@@ -9,7 +9,7 @@ const UseCreateRooms = () => {
   return useMutation({
     mutationFn: ADDINGROOMS,
     onSuccess: () => {
-      queryClient.invalidateQueries("RoomMG");
+      queryClient.invalidateQueries("Rooms");
       toast.success("Sala añadida con éxito!");
     },
     onError: (error: ApiError) => {
