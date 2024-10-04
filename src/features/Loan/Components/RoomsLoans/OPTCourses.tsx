@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
-import { program } from "../../../Courses/types/Courses";
+import { Courses } from "../../../Courses/types/Courses";
 import { getCoursesList } from "../../Services/SVReservations";
 
 const OPTCourses = () => {
-  const { data: programs } = useQuery<program[], Error>(
-    ["ProgramList"],
+  const { data: courses } = useQuery<Courses[], Error>(
+    ["CoursesList"],
     () => getCoursesList(),
     {
       staleTime: 600,
@@ -12,10 +12,10 @@ const OPTCourses = () => {
   );
   return (
     <>
-      <option value="0">Cursos Libres</option>
-      {programs?.map((program) => (
-        <option key={program.programsId} value={program.programsId}>
-          {program.programName}
+      <option value="0">No Aplica</option>
+      {courses?.map((course) => (
+        <option key={course.courseId} value={course.courseId}>
+          {course.courseName}
         </option>
       ))}
     </>

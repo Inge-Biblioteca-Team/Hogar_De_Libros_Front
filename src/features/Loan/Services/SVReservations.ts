@@ -137,11 +137,11 @@ const getMyReservations = async (cedula: string) => {
 };
 
 const getCoursesList = async () => {
-  const response = await api.get("programs/Actived");
+  const response = await api.get("courses/CourseList");
   return response.data;
 };
 const getEventList = async () => {
-  const response = await api.get("programs/Actived");
+  const response = await api.get("events/EventList");
   return response.data;
 };
 const getQueQueReservations = async (sDate: string) => {

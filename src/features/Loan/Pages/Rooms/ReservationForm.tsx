@@ -11,7 +11,8 @@ import { useForm } from "react-hook-form";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Reservation } from "../../Types/RoomsReservations";
 import PostNewRoomReservation from "../../Hooks/Rooms/PostNewRoomReservation";
-import ProgramsOPT from "../../../Courses/components/OPTS/ProgramsOPT";
+import OPTEvents from "../../Components/RoomsLoans/OPTEvents";
+import OPTCourses from "../../Components/RoomsLoans/OPTCourses";
 
 const ReservationForm = ({
   open,
@@ -176,13 +177,13 @@ const ReservationForm = ({
             <div className={`${rol !== "admin" ? "hidden" : "visible"}`}>
               <Label value="Evento Realizado" />
               <Select {...register("EventId")}>
-                <ProgramsOPT />
+                <OPTEvents />
               </Select>
             </div>
             <div className={`${rol !== "admin" ? "hidden" : "visible"}`}>
               <Label value="Curso Realizado" />
               <Select {...register("courseId")}>
-                <ProgramsOPT />
+                <OPTCourses />
               </Select>
             </div>
           </fieldset>

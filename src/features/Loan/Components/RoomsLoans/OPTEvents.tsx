@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
-import { program } from "../../../Courses/types/Courses";
 import { getEventList } from "../../Services/SVReservations";
+import { Events } from "../../../EventsSection/types/Events";
 const OPTEvents = () => {
-  const { data: programs } = useQuery<program[], Error>(
-    ["ProgramList"],
+  const { data: events } = useQuery<Events[], Error>(
+    ["EventsList"],
     () => getEventList(),
     {
       staleTime: 600,
@@ -11,10 +11,10 @@ const OPTEvents = () => {
   );
   return (
     <>
-      <option value="NULL">Cursos Libres</option>
-      {programs?.map((program) => (
-        <option key={program.programsId} value={program.programsId}>
-          {program.programName}
+      <option value="NULL">No aplica</option>
+      {events?.map((program) => (
+        <option key={program.EventId} value={program.EventId}>
+          {program.Title}
         </option>
       ))}
     </>
