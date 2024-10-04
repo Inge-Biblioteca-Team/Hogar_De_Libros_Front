@@ -1,5 +1,7 @@
 import { Sidebar } from "flowbite-react";
 
+const role = sessionStorage.getItem("role");
+
 const ForAll = () => {
   return (
     <>
@@ -42,10 +44,11 @@ const ForAll = () => {
           Disponibilidad <br />
           de Equipo de cómputo
         </Sidebar.Item>
-        <Sidebar.Item className="" href="/HogarDeLibros/Salas/Disponibilidad">
-          Disponibilidad <br />
-          de salas
-        </Sidebar.Item>
+        {(role === "admin" || role === "creator") && (
+          <Sidebar.Item className="" href="/HogarDeLibros/Salas/Disponibilidad">
+            Reserva de salas
+          </Sidebar.Item>
+        )}
       </Sidebar.ItemGroup>
     </>
   );

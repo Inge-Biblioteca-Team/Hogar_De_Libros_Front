@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 
 interface Payload extends JwtPayload {
-  sub: string;
+  id: string;
   email: string;
   role: string;
 }
@@ -38,14 +38,14 @@ const ChangePassword = () => {
     if (tokenFromUrl) {
       try {
         const decodedToken: Payload = jwtDecode<Payload>(tokenFromUrl);
-        const Tcedula = decodedToken.sub;
+        const Tcedula = decodedToken.id;
         setCedula(Tcedula);
         setToken(tokenFromUrl);
       } catch (error) {
         console.error("Error al decodificar el token", error);
       }
     }
-  }, [location]);
+  }, [cedula, location, token]);
 
   const onSubmit = (data: recovery) => {
     if (token) {

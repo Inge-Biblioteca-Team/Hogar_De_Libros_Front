@@ -9,11 +9,12 @@ const PostNewRoomReservation = () => {
   return useMutation({
     mutationFn: NewReservation,
     onSuccess: () => {
-      queryClient.invalidateQueries("ProgramCatalog");
-      toast.success("Programa añadido con éxito!");
+      queryClient.invalidateQueries("QueQueReservations");
+      queryClient.invalidateQueries("countReservation");
+      toast.success("Solicitud de reserva enviada con exito!");
     },
     onError: (error: ApiError) => {
-      toast.error("Error al crear el programa: " + error.message);
+      toast.error("Error al cenviar la solicitud: " + error.message);
     },
   });
 };

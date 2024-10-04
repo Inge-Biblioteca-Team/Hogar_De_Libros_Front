@@ -27,7 +27,7 @@ const RoomsScheduleManage = () => {
     <>
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
-        <LastCrumb CurrentPage="Disponibilidad de salas" />
+        <LastCrumb CurrentPage="Reserva y disponibilidad de salas" />
       </Breadcrumb>
       <div className=" w-full flex items-center justify-center mt-40">
         <div className=" w-11/12 flex items-start justify-between gap-6">

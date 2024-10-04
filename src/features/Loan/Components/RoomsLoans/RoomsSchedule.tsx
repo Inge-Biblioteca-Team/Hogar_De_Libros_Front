@@ -92,6 +92,10 @@ const RoomsSchedule = ({
     }
   };
 
+  const finishReservation = () => {
+    setSelectedHours([]);
+  };
+
   return (
     <div className="w-full flex flex-col h-full justify-between">
       <div className="font-bold text-center text-lg">
@@ -102,7 +106,7 @@ const RoomsSchedule = ({
           <Table.HeadCell className="w-10">Número de sala</Table.HeadCell>
           {hours.map((hour) => (
             <Table.HeadCell key={hour}>
-              <div className="rotate-12">{HourMapping[hour]}</div>
+              <div>{HourMapping[hour]}</div>
             </Table.HeadCell>
           ))}
         </Table.Head>
@@ -155,6 +159,7 @@ const RoomsSchedule = ({
           setOpen={setOpen}
           roomId={selectedRoom?.roomId.toString()}
           selectHours={selectedHours}
+          finish={finishReservation}
         />
       )}
     </div>

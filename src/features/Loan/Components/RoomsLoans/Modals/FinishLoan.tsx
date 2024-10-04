@@ -1,8 +1,8 @@
 import { Button, Checkbox, Label, Modal, Textarea } from "flowbite-react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import PatchFinishObservation from "../../Hooks/Rooms/PatchFinishObservation";
-import { EndReservation, Reserve } from "../../Types/RoomsReservations";
+import PatchFinishObservation from "../../../Hooks/Rooms/PatchFinishObservation";
+import { EndReservation, Reserve } from "../../../Types/RoomsReservations";
 
 const FinishLoan = ({
   open,
@@ -40,15 +40,16 @@ const FinishLoan = ({
       observation += Damage1;
     }
     if (Damage2 != "") {
-      observation += Damage2;
+      observation += Damage2 + ". ";
     }
     if (extra != "") {
-      observation += extra;
+      observation += extra + ". ";
     }
     data.finishObservation = observation;
     endReserve(data, {
       onSuccess: () => {
         reset();
+        setOpen(false);
       },
       onError: () => {},
     });
@@ -57,7 +58,7 @@ const FinishLoan = ({
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
       <Modal.Header>
-        <h3>Formulario: Finalización de Prestamo</h3>
+        <h3>Finalización de Prestamo</h3>
       </Modal.Header>
       <Modal.Body className=" grid grid-cols-2 gap-3">
         <div>

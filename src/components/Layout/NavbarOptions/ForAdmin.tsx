@@ -64,7 +64,7 @@ const ForAdmin = () => {
                 Solicitudes de Salas
               </Sidebar.Item>
               <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/SalasReservadas">
-                Préstamos en aprovados
+                Préstamos en aprobados
               </Sidebar.Item>
               <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/HistorialDePrestamos">
                 Historial de Préstamos

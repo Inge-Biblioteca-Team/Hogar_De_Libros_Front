@@ -12,16 +12,23 @@ export type Reservation = {
 };
 export type Reserve = {
   observations: string;
+  personNumber: string;
+  reason: string;
+  finishObservation: string;
   selectedHours: number[];
   reservationDate: string;
+  EventName: string;
+  CourseName: string;
+  UserName: string;
+  UserLastName: string;
+  UserEmail: string;
+  UserPhone: string;
+  room: string;
+  roomName: string;
   date: string;
   name: string;
-  EventId?: number;
-  courseId?: number;
   userCedula: string;
   roomId: number;
-  reason: string;
-  personNumber: string;
   rommReservationId: number;
 };
 
@@ -40,7 +47,7 @@ export type queque = {
   selectedHours: string[];
   reason: string;
   roomNumber: string;
-  roomId:number;
+  roomId: number;
 };
 
 export const HourMapping: { [key: number]: string } = {
@@ -54,4 +61,23 @@ export const HourMapping: { [key: number]: string } = {
   15: "3 PM",
   16: "4 PM",
   17: "5 PM",
+};
+
+export type myReservation = {
+  rommReservationId: number;
+  name: string;
+  date: Date;
+  selectedHours: number[];
+  observations: string;
+  personNumber: string;
+  reason: string;
+  reserveStatus: string;
+  room: number;
+  roomName: string;
+  images: string[];
+};
+
+export type responseMyReservations = {
+  data: myReservation[];
+  count: number;
 };

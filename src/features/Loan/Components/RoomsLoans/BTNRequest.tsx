@@ -3,10 +3,10 @@ import { GiConfirmed } from "react-icons/gi";
 import { MdCancel } from "react-icons/md";
 import { PiEyeFill } from "react-icons/pi";
 import { useState } from "react";
-import MDSeeReservation from "./MDSeeReservation";
-import MDRefuseReservation from "./MDRefuseReservation";
+import MDSeeReservation from "./Modals/MDSeeReservation";
 import { Reserve } from "../../Types/RoomsReservations";
 import UseRefuese from "../../Hooks/Rooms/UseRefuese";
+import MDRefuseReservation from "./Modals/MDRefuseReservation";
 
 const BTNRequest = ({ reserve }: { reserve: Reserve }) => {
   const { mutate: responseReserve } = UseRefuese("Aprove");

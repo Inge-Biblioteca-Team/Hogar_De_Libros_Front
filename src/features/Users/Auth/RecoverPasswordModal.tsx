@@ -1,14 +1,13 @@
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import UseRecoveryPassword from "../Hooks/UseRecoveryPassword";
 import { useState } from "react";
-interface RecoverPasswordModalProps {
-  openModal: boolean;
-  setOpenModal: (open: boolean) => void;
-}
 
-const RecoverPasswordModal: React.FC<RecoverPasswordModalProps> = ({
+const RecoverPasswordModal = ({
   openModal,
   setOpenModal,
+}: {
+  openModal: boolean;
+  setOpenModal: (open: boolean) => void;
 }) => {
   const [email, setEmail] = useState<string>("");
   const [cedula, setCedula] = useState<string>("");
@@ -35,17 +34,23 @@ const RecoverPasswordModal: React.FC<RecoverPasswordModalProps> = ({
             <div className="mb-2 block">
               <Label htmlFor="email" value="Correo Electrónico" />
             </div>
-            <TextInput id="email" placeholder="nombre@ejemplo.com" 
-            onChange={(event)=>setEmail(event.target.value)}/>
+            <TextInput
+              id="email"
+              placeholder="nombre@ejemplo.com"
+              onChange={(event) => setEmail(event.target.value)}
+            />
           </div>
 
           <div>
             <div className="mb-2 block">
               <Label htmlFor="cedula" value="Cédula" />
             </div>
-            <TextInput id="cedula" placeholder="Número de cédula" 
-            type="text"
-            onChange={(event)=>setCedula(event.target.value)}/>
+            <TextInput
+              id="cedula"
+              placeholder="Número de cédula"
+              type="text"
+              onChange={(event) => setCedula(event.target.value)}
+            />
           </div>
           <div className="flex justify-between mt-4 space-x-2">
             <Button

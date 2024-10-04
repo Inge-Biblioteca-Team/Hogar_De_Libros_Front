@@ -9,11 +9,12 @@ const PatchFinishObservation = () => {
   return useMutation({
     mutationFn: PatchEndReservation,
     onSuccess: () => {
-      queryClient.invalidateQueries("ProgramCatalog");
-      toast.success("Programa añadido con éxito!");
+      queryClient.invalidateQueries("QueQueReservations");
+      queryClient.invalidateQueries("reserveRequest");
+      toast.success("Reservacion finalizada con exito!");
     },
     onError: (error: ApiError) => {
-      toast.error("Error al crear el programa: " + error.message);
+      toast.error("Error al finlizar la reservacion: " + error.message);
     },
   });
 };

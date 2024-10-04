@@ -19,12 +19,14 @@ const ReservationForm = ({
   roomId,
   date,
   selectHours,
+  finish,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   roomId: string;
   date: string;
   selectHours: number[];
+  finish: () => void;
 }) => {
   const { register, handleSubmit, setValue, reset } = useForm<Reservation>();
 
@@ -66,7 +68,9 @@ const ReservationForm = ({
     data.observations = observation;
     createReservation(data, {
       onSuccess: () => {
+        finish();
         reset();
+        setOpen(false);
       },
       onError: () => {},
     });

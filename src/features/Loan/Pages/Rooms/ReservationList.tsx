@@ -4,7 +4,6 @@ import {
   LastCrumb,
   LoanCrumb,
 } from "../../../../components/BreadCrumb";
-import TblRowsReservation from "../../Components/RoomsLoans/TblRowsReservation";
 import PaginatationSelector from "../../../../components/Paginations/PaginatationSelector";
 import { useEffect, useState } from "react";
 import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
@@ -12,32 +11,33 @@ import { useQuery } from "react-query";
 import { ReserveResponse } from "../../Types/RoomsReservations";
 import NoRequest from "../../Components/NoRequest";
 import { getReservations } from "../../Services/SVReservations";
+import TblRowsReservation from "../../Components/RoomsLoans/TablesHeaders/TblRowsReservation";
 
 const ReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
   const [currentPage, setCurrentPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("ArtistPages");
+    const savedPage = sessionStorage.getItem("PRpage");
     return savedPage ? Number(savedPage) : 1;
   });
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
-    sessionStorage.setItem("ArtistCPages", page.toString());
+    sessionStorage.setItem("PRpage", page.toString());
   };
 
   useEffect(() => {
-    sessionStorage.setItem("ArtistPages", currentPage.toString());
+    sessionStorage.setItem("PRpage", currentPage.toString());
   }, [currentPage]);
 
   const { data: reservations } = useQuery<ReserveResponse, Error>(
-    ["Oldreservations", currentPage, currentLimit],
+    ["PendingRreservations", currentPage, currentLimit],
     () => getReservations(currentPage, currentLimit, "Pendiente"),
     {
       staleTime: 600,
     }
   );
 
-  const MaxPage = Math.ceil((reservations?.count ?? 0) / 5);
+  const MaxPage = Math.ceil((reservations?.count ?? 0) / currentLimit);
   return (
     <>
       <Breadcrumb className="custom-breadcrumb">
@@ -51,7 +51,11 @@ const ReservationList = () => {
             <NoRequest text={"No existen solicitudes pendientes"} />
           ) : (
             <>
-              <Table hoverable className="w-full text-center">
+              <Table
+                hoverable
+                className="w-full text-center"
+                style={{ height: "60vh" }}
+              >
                 {reservations && <TblRowsReservation reserve={reservations} />}
               </Table>
               <div className=" w-full flex justify-between">

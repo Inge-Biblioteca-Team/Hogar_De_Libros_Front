@@ -1,13 +1,14 @@
 import { Table } from "flowbite-react";
-import BTNRequest from "./BTNRequest";
-import { HourMapping, ReserveResponse } from "../../Types/RoomsReservations";
-import { formatToDMY } from "../../../../components/FormatTempo";
+
 import React from "react";
+import { formatToDMY } from "../../../../../components/FormatTempo";
+import { ReserveResponse, HourMapping } from "../../../Types/RoomsReservations";
+import BTNRequest from "../BTNRequest";
 
 const TblRowsReservation = ({ reserve }: { reserve: ReserveResponse }) => {
   return (
     <>
-      <Table.Head>
+      <Table.Head className="h-11">
         <Table.HeadCell>Solicitante</Table.HeadCell>
         <Table.HeadCell>Fecha de Solicitud</Table.HeadCell>
         <Table.HeadCell>Fecha reservada</Table.HeadCell>

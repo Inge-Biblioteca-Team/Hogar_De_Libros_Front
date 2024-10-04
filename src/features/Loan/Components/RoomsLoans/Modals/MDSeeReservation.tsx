@@ -1,7 +1,7 @@
 import { Modal, Button } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
-import { HourMapping, Reserve } from "../../Types/RoomsReservations";
-import { formatToDMY } from "../../../../components/FormatTempo";
+import { HourMapping, Reserve } from "../../../Types/RoomsReservations";
+import { formatToDMY } from "../../../../../components/FormatTempo";
 
 const MDSeeReservation = ({
   open,
@@ -18,46 +18,60 @@ const MDSeeReservation = ({
 
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
-      <Modal.Header>Información de solicitud de reserva</Modal.Header>
+      <Modal.Header>Resumen de reserva de sala</Modal.Header>
       <Modal.Body className=" flex flex-col gap-2">
         <div>
           <strong>Nombre del solicitante</strong>
-          <div>{reserve.name} </div>
+          <div>
+            {reserve.UserName} {reserve.UserLastName}{" "}
+          </div>
         </div>
+        {reserve.UserName !== reserve.name && (
+          <div>
+            <strong>Nombre de Institucion</strong>
+            <div>{reserve.name}</div>
+          </div>
+        )}
         <div>
           <strong>Contactos del solicitante</strong>
-          <br /> <span>Email: </span>
-          <div>Telefono: </div>
+          <br /> <span>Email: {reserve.UserEmail} </span>
+          <div>Telefono: {reserve.UserPhone} </div>
         </div>
         <div>
-          <strong>Fecha de reserva</strong>
+          <strong>Fecha reservada</strong>
           <div>{reserveDay} </div>
         </div>
         <div>
           <strong>Sala solicitada</strong>
-          <div>{reserve.personNumber} </div>
+          <div>{reserve.room}{" "}{reserve.roomName} </div>
         </div>
         <div>
           <strong>Hora de inicio y fin</strong>
           <div>
-            {start} a {end}{" "}
+            <div>{start === end ? `${end}` : `${start} a ${end}`}</div>
           </div>
         </div>
-        {reserve.courseId != undefined && (
+        {reserve.CourseName != "" && (
           <div>
             <strong>Informacion del Curso</strong>
-            <div></div>
+            <div>{reserve.CourseName} </div>
           </div>
         )}
-        {reserve.EventId != undefined && (
+        {reserve.EventName != "" && (
           <div>
             <strong>Informacion del Evento</strong>
-            <div></div>
+            <div>{reserve.EventName} </div>
+          </div>
+        )}
+        {reserve.observations != "" && (
+          <div>
+            <strong>Observaciones</strong>
+            <div>{reserve.observations} </div>
           </div>
         )}
         <div>
-          <strong>Observaciones</strong>
-          <div>{reserve.observations} </div>
+          <strong>Observaciones Finales</strong>
+          <div>{reserve.finishObservation} </div>
         </div>
       </Modal.Body>
       <Modal.Footer className="flex items-center justify-center">

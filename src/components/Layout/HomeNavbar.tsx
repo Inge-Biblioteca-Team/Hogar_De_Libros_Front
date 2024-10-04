@@ -14,7 +14,7 @@ const HomeNavbar = () => {
 
   const handleClose = () => setVisible(false);
 
-  const rol = sessionStorage.getItem("role")
+  const rol = sessionStorage.getItem("role");
 
   return (
     <>
@@ -30,13 +30,17 @@ const HomeNavbar = () => {
           alt=""
         />
       </button>
-      <Drawer open={visible} onClose={handleClose} className=" opacity-90 w-fit">
+      <Drawer
+        open={visible}
+        onClose={handleClose}
+        className=" opacity-90 w-fit"
+      >
         <Drawer.Header title={"Menú de Navegación"} titleIcon={FaBookReader} />
         <Drawer.Items>
           <Sidebar className="[&>div]:bg-transparent [&>div]:p-0 w-full">
             <Sidebar.Items className=" w-72">
-             <ForAll/>
-              {rol=="admin"?  <ForAdmin/>:""}
+              <ForAll />
+              {rol === "admin" || rol === "creator" ? <ForAdmin /> : ""}
             </Sidebar.Items>
           </Sidebar>
         </Drawer.Items>

@@ -1,19 +1,18 @@
-import { useMutation, useQueryClient } from "react-query";
-import { PatchResolveReservation } from "../../Services/SVReservations";
 import toast from "react-hot-toast";
+import { useMutation, useQueryClient } from "react-query";
 import { ApiError } from "../../../../Types/ApiTypes";
+import { PatchCancelReservation } from "../../Services/SVReservations";
 
-const UseRefuese = (actions: string) => {
+const UseCancelReservation = () => {
   const queryClient = useQueryClient();
   return useMutation(
     async (Id: number) => {
-      const data = await PatchResolveReservation(Id, actions);
+      const data = await PatchCancelReservation(Id);
       return data;
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("reserveRequest");
-        queryClient.invalidateQueries("PendingRreservations");
+        queryClient.invalidateQueries("MyReservations");
         toast.success("Estado de la reservacion modificado con exito!");
       },
       onError: (error: ApiError) => {
@@ -23,4 +22,4 @@ const UseRefuese = (actions: string) => {
   );
 };
 
-export default UseRefuese;
+export default UseCancelReservation;
