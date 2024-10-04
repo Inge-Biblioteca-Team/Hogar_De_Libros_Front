@@ -34,7 +34,7 @@ const CreateEvent = () => {
     setValue("Image", url);
   };
 
-  const tomorrow = addDay(new Date());
+  const tomorrow =addDay (new Date());
 
   const toDay = format({
     date: tomorrow,

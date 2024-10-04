@@ -6,12 +6,16 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { GetUserInfo } from "../Services/SvUsuer";
 import { User } from "../Type/UserType";
+import { getCountReservations } from "../../Loan/Services/SVReservations";
+import { useEffect, useState } from "react";
 
 const UserData = () => {
   const Navi = useNavigate();
 
   const email = sessionStorage.getItem("email");
   const cedula = sessionStorage.getItem("cedula");
+
+  const [count, setCount] = useState<number>(0);
 
   const { data: User } = useQuery<User>(
     ["userInfo", cedula],
@@ -20,17 +24,39 @@ const UserData = () => {
     {
       enabled: !!cedula,
       staleTime: Infinity,
-      cacheTime: Infinity, 
+      cacheTime: Infinity,
     }
   );
 
-  const goToMyLoans = () =>{
-    Navi("/HogarDeLibros/Perfil/MisPréstamos")
-  }
+  const { data: countReservations } = useQuery(
+    ["countReservation", cedula],
+    () =>
+      cedula
+        ? getCountReservations(cedula)
+        : Promise.reject("Cedula no encontrada"),
+    {
+      enabled: !!cedula,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    }
+  );
 
-  const goToEnrolmentCurses=()=>{
-    Navi("/HogarDeLibros/Perfil/CursosMatriculados")
-  }
+  useEffect(() => {
+    if (countReservations) {
+      setCount(countReservations.count);
+    }
+  }, [countReservations]);
+
+  const goToMyLoans = () => {
+    Navi("/HogarDeLibros/Perfil/MisPréstamos");
+  };
+
+  const goToEnrolmentCurses = () => {
+    Navi("/HogarDeLibros/Perfil/CursosMatriculados");
+  };
+  const goToMyReservations = () => {
+    Navi("/HogarDeLibros/Perfil/MisReservaciones");
+  };
 
   return (
     <Popover
@@ -47,7 +73,9 @@ const UserData = () => {
             <div>
               <button
                 type="button"
-                onClick={() => Navi(`/HogarDeLibros/Perfil/EditarPerfil/${cedula}`)}
+                onClick={() =>
+                  Navi(`/HogarDeLibros/Perfil/EditarPerfil/${cedula}`)
+                }
                 className="rounded-lg bg-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Editar Perfil
@@ -83,6 +111,17 @@ const UserData = () => {
               Cursos Matriculados
             </span>
           </p>
+          {count > 0 &&
+            (User?.role === "admin" || User?.role === "creator") && (
+              <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
+                <span
+                  className="hover:underline text-gray-800 dark:text-gray-200 cursor-pointer"
+                  onClick={goToMyReservations}
+                >
+                  Reservas de sala
+                </span>
+              </p>
+            )}
           <div className="flex items-center mb-4">
             <FaUserFriends className="text-gray-800 dark:text-gray-200 mr-2" />
             <span className="text-sm text-gray-800 dark:text-gray-200">

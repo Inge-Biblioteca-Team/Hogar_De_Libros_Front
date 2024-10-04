@@ -7,6 +7,7 @@ import localArtistRoutes from "./LocalArtistRoutes";
 import CorusesAndEventRoutes from "./CourseAndEventRoutes";
 import coursesRoutes from "./CoursesRoutes";
 import EventRoutes from "./EventRoutes";
+import RoomRoutes from "./RoomRoutes";
 import RoomsRoutes from "./RoomsRoutes";
 
 
@@ -19,6 +20,7 @@ const Routes = createBrowserRouter([
   ...CorusesAndEventRoutes,
   ...coursesRoutes,
   ...EventRoutes,
+  ...RoomRoutes,
   ...RoomsRoutes
 ]);
 

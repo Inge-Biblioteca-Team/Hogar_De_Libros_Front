@@ -20,6 +20,9 @@ import WorkStationsLoanHistory from "../features/Loan/Pages/WorkStations/WorkSta
 import ManageFurniture from "../features/Furniture/Pages/ManageFurniture";
 import ManageEvents from "../features/EventsSection/Pages/ManageEvent";
 import ManagePrograms from "../features/Programs/Pages/ManagePrograms";
+import ReservationList from "../features/Loan/Pages/Rooms/ReservationList";
+import OldReservationList from "../features/Loan/Pages/Rooms/OldReservationList";
+import AprovedReservationList from "../features/Loan/Pages/Rooms/AprovedReservationList";
 import ManageRoom from "../features/Rooms/Pages/ManageRoom";
 
 
@@ -143,8 +146,18 @@ const adminRoutes = [
             element: <ManageLoansWS />,
           },
           {
-            path: "Pendientes/Ver/:Code",
-          }
+            path: "SolicitudesDeSalas",
+            element:<ReservationList/>
+          },
+          {
+            path: "SalasReservadas",
+            element:<AprovedReservationList/>
+          },
+          {
+            path: "HistorialDePrestamos",
+            element:<OldReservationList/>
+          },
+
         ],
       },
     ],

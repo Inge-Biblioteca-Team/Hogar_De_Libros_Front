@@ -5,6 +5,7 @@ import Layout from "../Pages/Layout";
 import NewUsaerLoan from "../features/Loan/Components/BooksLoans/NewUserLoan";
 import ChangePassword from "../features/Users/Components/ChangePassword";
 import UserEnrollmentCourses from "../features/Courses/screens/UserEnrollmentCourses";
+import RoomsReservations from "../features/Loan/Components/UserLoans/RoomsReservationsTL";
 
 const UserRoutes = [
   {
@@ -28,8 +29,12 @@ const UserRoutes = [
           },
           {
             path: "CursosMatriculados",
-            element: <UserEnrollmentCourses/>
-          }
+            element: <UserEnrollmentCourses />,
+          },
+          {
+            path: "MisReservaciones",
+            element: <RoomsReservations />,
+          },
         ],
       },
       {
@@ -44,9 +49,9 @@ const UserRoutes = [
     ],
   },
   {
-    path:"reset-password",
-    element: <ChangePassword/>
-  }
+    path: "reset-password",
+    element: <ChangePassword />,
+  },
 ];
 
 export default UserRoutes;
