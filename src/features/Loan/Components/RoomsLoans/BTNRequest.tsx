@@ -6,8 +6,18 @@ import { useState } from "react";
 import MDSeeReservation from "./MDSeeReservation";
 import MDRefuseReservation from "./MDRefuseReservation";
 import { Reserve } from "../../Types/RoomsReservations";
+import UseRefuese from "../../Hooks/Rooms/UseRefuese";
 
 const BTNRequest = ({ reserve }: { reserve: Reserve }) => {
+  const { mutate: responseReserve } = UseRefuese("Aprove");
+
+  const onSubmit = async (id:number) => {
+    responseReserve(id, {
+      onSuccess: () => {},
+      onError: () => {},
+    });
+  };
+
   const [openS, setOpenS] = useState<boolean>(false);
   const [openD, setOpenD] = useState<boolean>(false);
   return (
@@ -24,11 +34,14 @@ const BTNRequest = ({ reserve }: { reserve: Reserve }) => {
           type="button"
           title="Rechazar préstamo"
           className="hover:text-red-600"
-          onClick={()=>setOpenD(true)}
+          onClick={() => setOpenD(true)}
         >
           <MdCancel size={25} />
         </button>
-        <Popover content={<Button color={"blue"}>Confirmar</Button>}>
+        <Popover content={<Button color={"blue"}
+        onClick={() => {
+          onSubmit(reserve.rommReservationId);
+        }}>Confirmar</Button>}>
           <button
             type="button"
             title="Aprobar préstamo"

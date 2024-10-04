@@ -3,8 +3,8 @@ export type Reservation = {
   selectedHours: number[];
   date: string;
   name: string;
-  EventId?: number;
-  courseId?: number;
+  EventId?: string;
+  courseId?: string;
   userCedula: string;
   roomId: number;
   reason: string;
@@ -33,6 +33,14 @@ export type EndReservation = {
 export type ReserveResponse = {
   data: Reserve[];
   count: number;
+};
+
+export type queque = {
+  rommReservationId: 3;
+  selectedHours: string[];
+  reason: string;
+  roomNumber: string;
+  roomId:number;
 };
 
 export const HourMapping: { [key: number]: string } = {

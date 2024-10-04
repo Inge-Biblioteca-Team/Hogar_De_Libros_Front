@@ -10,8 +10,8 @@ import { useEffect, useState } from "react";
 import TblOldReservation from "../../Components/RoomsLoans/TblOldReservation";
 import { ReserveResponse } from "../../Types/RoomsReservations";
 import { useQuery } from "react-query";
-import { GetDoneLoans } from "../../Services/SvBookLoan";
 import NoRequest from "../../Components/NoRequest";
+import { getReservations } from "../../Services/SVReservations";
 
 const OldReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -31,7 +31,7 @@ const OldReservationList = () => {
 
   const { data: reservations } = useQuery<ReserveResponse, Error>(
     ["Oldreservations", currentPage, currentLimit],
-    () => GetDoneLoans(currentPage, currentLimit),
+    () => getReservations(currentPage, currentLimit),
     {
       staleTime: 600,
     }

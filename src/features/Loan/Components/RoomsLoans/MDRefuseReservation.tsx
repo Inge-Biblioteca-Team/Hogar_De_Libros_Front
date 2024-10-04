@@ -2,6 +2,7 @@ import { Button, Modal, Textarea } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Reserve } from "../../Types/RoomsReservations";
+import UseRefuese from "../../Hooks/Rooms/UseRefuese";
 
 const MDRefuseReservation = ({
   open,
@@ -12,6 +13,14 @@ const MDRefuseReservation = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   reserve: Reserve;
 }) => {
+  const { mutate: responseReserve } = UseRefuese("Refuse");
+
+  const onSubmit = async () => {
+    responseReserve(reserve.rommReservationId, {
+      onSuccess: () => {},
+      onError: () => {},
+    });
+  };
   return (
     <Modal show={open} onClose={() => setOpen(false)} popup>
       <Modal.Body className="flex items-center justify-center flex-col">
@@ -27,7 +36,9 @@ const MDRefuseReservation = ({
         <Button color={"failure"} tabIndex={2} onClick={() => setOpen(false)}>
           Regresar
         </Button>
-        <Button color={"blue"}>Confirmar</Button>{" "}
+        <Button color={"blue"} onClick={onSubmit}>
+          Confirmar
+        </Button>{" "}
       </Modal.Footer>
     </Modal>
   );

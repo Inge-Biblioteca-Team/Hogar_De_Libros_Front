@@ -1,15 +1,10 @@
 import { Table } from "flowbite-react";
 import BTNRequest from "./BTNRequest";
-import { HourMapping, Reserve } from "../../Types/RoomsReservations";
+import { HourMapping, ReserveResponse } from "../../Types/RoomsReservations";
 import { formatToDMY } from "../../../../components/FormatTempo";
+import React from "react";
 
-const TblRowsReservation = ({ reserve }: { reserve: Reserve }) => {
-  const reserveDay = formatToDMY(reserve.date);
-  const requestDay = formatToDMY(reserve.reservationDate);
-
-  const start = Math.min(...reserve.selectedHours);
-  const end = Math.max(...reserve.selectedHours);
-
+const TblRowsReservation = ({ reserve }: { reserve: ReserveResponse }) => {
   return (
     <>
       <Table.Head>
@@ -21,18 +16,29 @@ const TblRowsReservation = ({ reserve }: { reserve: Reserve }) => {
         <Table.HeadCell></Table.HeadCell>
       </Table.Head>
       <Table.Body>
-        <Table.Row className="h-20">
-          <Table.Cell>{reserve.name} </Table.Cell>
-          <Table.Cell>{requestDay} </Table.Cell>
-          <Table.Cell>{reserveDay} </Table.Cell>
-          <Table.Cell>
-            {HourMapping[start]} / {HourMapping[end]}
-          </Table.Cell>
-          <Table.Cell>{reserve.reason} </Table.Cell>
-          <Table.Cell>
-            <BTNRequest reserve={reserve} />{" "}
-          </Table.Cell>
-        </Table.Row>
+        {reserve.data.map((reservation) => {
+          const reserveDay = formatToDMY(reservation.date);
+          const requestDay = formatToDMY(reservation.reservationDate);
+
+          const start = Math.min(...reservation.selectedHours);
+          const end = Math.max(...reservation.selectedHours);
+          return (
+            <React.Fragment key={`${reservation.rommReservationId}`}>
+              <Table.Row className="h-20" key={reservation.roomId}>
+                <Table.Cell>{reservation.name} </Table.Cell>
+                <Table.Cell>{requestDay} </Table.Cell>
+                <Table.Cell>{reserveDay} </Table.Cell>
+                <Table.Cell>
+                  {HourMapping[start]} / {HourMapping[end]}
+                </Table.Cell>
+                <Table.Cell>{reservation.reason} </Table.Cell>
+                <Table.Cell>
+                  <BTNRequest reserve={reservation} />{" "}
+                </Table.Cell>
+              </Table.Row>
+            </React.Fragment>
+          );
+        })}
       </Table.Body>
     </>
   );

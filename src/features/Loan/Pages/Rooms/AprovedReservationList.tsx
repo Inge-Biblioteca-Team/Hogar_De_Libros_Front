@@ -10,8 +10,8 @@ import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit"
 import TBLAprovReservations from "../../Components/RoomsLoans/TBLAprovReservations";
 import { useQuery } from "react-query";
 import { ReserveResponse } from "../../Types/RoomsReservations";
-import { GetDoneLoans } from "../../Services/SvBookLoan";
 import NoRequest from "../../Components/NoRequest";
+import { getReservations } from "../../Services/SVReservations";
 
 const AprovedReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -31,7 +31,7 @@ const AprovedReservationList = () => {
 
   const { data: reservations } = useQuery<ReserveResponse, Error>(
     ["reserveRequest", currentPage, currentLimit],
-    () => GetDoneLoans(currentPage, currentLimit),
+    () => getReservations(currentPage, currentLimit),
     {
       staleTime: 600,
     }

@@ -27,7 +27,6 @@ const NewReservation = async (data: Reservation) => {
   }
 };
 const PatchEndReservation = async (data: EndReservation) => {
-  console.table(data);
   try {
     const response = await api.patch(
       `room-reservation/End/${data.rommReservationId}`,
@@ -54,14 +53,42 @@ const PatchEndReservation = async (data: EndReservation) => {
     }
   }
 };
+const PatchResolveReservation = async (id: number, action: string) => {
+  try {
+    const response = await api.patch(`room-reservation/${action}/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al solicitar la reserva:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al actualizar la reserva"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
 
-const getRequestReservations = async (page: number, limit: number) => {
+const getReservations = async (
+  page: number,
+  limit: number,
+  reserveStatus?: string
+) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
       page,
       limit,
     };
-    const response = await api.get("room-reservation/Pending", { params });
+    if (reserveStatus) params.reserveStatus = reserveStatus;
+    const response = await api.get("room-reservation", { params });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -77,11 +104,27 @@ const getEventList = async () => {
   const response = await api.get("programs/Actived");
   return response.data;
 };
+const getQueQueReservations = async (sDate: string) => {
+  const response = await api.get("room-reservation/queque", {
+    params: {
+      date: sDate,
+    },
+  });
+  return response.data;
+};
+
+const getRoomsList = async () => {
+  const response = await api.get("rooms/table");
+  return response.data;
+};
 
 export {
   PatchEndReservation,
   NewReservation,
-  getRequestReservations,
+  getReservations,
   getCoursesList,
   getEventList,
+  getQueQueReservations,
+  getRoomsList,
+  PatchResolveReservation,
 };

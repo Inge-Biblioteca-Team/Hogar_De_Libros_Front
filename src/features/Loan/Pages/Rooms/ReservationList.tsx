@@ -9,9 +9,9 @@ import PaginatationSelector from "../../../../components/Paginations/Paginatatio
 import { useEffect, useState } from "react";
 import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
 import { useQuery } from "react-query";
-import { GetDoneLoans } from "../../Services/SvBookLoan";
 import { ReserveResponse } from "../../Types/RoomsReservations";
 import NoRequest from "../../Components/NoRequest";
+import { getReservations } from "../../Services/SVReservations";
 
 const ReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -31,7 +31,7 @@ const ReservationList = () => {
 
   const { data: reservations } = useQuery<ReserveResponse, Error>(
     ["Oldreservations", currentPage, currentLimit],
-    () => GetDoneLoans(currentPage, currentLimit),
+    () => getReservations(currentPage, currentLimit, "Pendiente"),
     {
       staleTime: 600,
     }
@@ -52,9 +52,7 @@ const ReservationList = () => {
           ) : (
             <>
               <Table hoverable className="w-full text-center">
-                {reservations?.data.map((reserve) => (
-                  <TblRowsReservation reserve={reserve} />
-                ))}
+                {reservations && <TblRowsReservation reserve={reservations} />}
               </Table>
               <div className=" w-full flex justify-between">
                 <div>

@@ -16,17 +16,15 @@ import ProgramsOPT from "../../../Courses/components/OPTS/ProgramsOPT";
 const ReservationForm = ({
   open,
   setOpen,
-  end,
-  start,
   roomId,
   date,
+  selectHours,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  start: string;
-  end: string;
   roomId: string;
   date: string;
+  selectHours: number[];
 }) => {
   const { register, handleSubmit, setValue, reset } = useForm<Reservation>();
 
@@ -42,11 +40,12 @@ const ReservationForm = ({
 
   useEffect(() => {
     if (cedula) {
-      setValue("userCedula", cedula);
+      setValue("userCedula", cedula.toString());
     }
     setValue("roomId", Number(roomId));
     setValue("date", date);
-  }, [cedula, start, end, roomId, date, setValue]);
+    setValue("selectedHours", selectHours);
+  }, [cedula, roomId, date, setValue, selectHours]);
 
   const { mutate: createReservation } = PostNewRoomReservation();
 
