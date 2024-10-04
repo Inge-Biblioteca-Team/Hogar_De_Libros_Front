@@ -1,3 +1,10 @@
+
+  export type RoomApiResponse = {
+    data: Room[];
+    
+    count: number;
+  };
+
 export type Room = {
     image: string[],
     name: string,
