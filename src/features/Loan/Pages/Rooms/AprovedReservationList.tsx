@@ -31,7 +31,7 @@ const AprovedReservationList = () => {
 
   const { data: reservations } = useQuery<ReserveResponse, Error>(
     ["reserveRequest", currentPage, currentLimit],
-    () => getReservations(currentPage, currentLimit,"Aprobado"),
+    () => getReservations(currentPage, currentLimit, "Aprobado"),
     {
       staleTime: 600,
     }
@@ -43,16 +43,19 @@ const AprovedReservationList = () => {
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
         <LoanCrumb />
-        <LastCrumb CurrentPage="Historial de prestamos de salas" />
+        <LastCrumb CurrentPage="Solicitudes aprobadas" />
       </Breadcrumb>
       <div className=" w-full flex items-center justify-center mt-28">
         <div className="w-4/5">
           {reservations?.count == 0 ? (
-            <NoRequest text={"No existen solicitudes pendientes"} />
+            <NoRequest text={"No existen solicitudes aprobadas"} />
           ) : (
             <>
-              <Table hoverable className="w-full text-center"
-              style={{height:"60vh"}}>
+              <Table
+                hoverable
+                className="w-full text-center"
+                style={{ height: "60vh" }}
+              >
                 {reservations && (
                   <TBLAprovReservations reserve={reservations} />
                 )}

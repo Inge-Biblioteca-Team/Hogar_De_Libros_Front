@@ -40,7 +40,7 @@ const HomeNavbar = () => {
           <Sidebar className="[&>div]:bg-transparent [&>div]:p-0 w-full">
             <Sidebar.Items className=" w-72">
               <ForAll />
-              {rol === "admin" || rol === "creator" ? <ForAdmin /> : ""}
+              {rol === "admin" ? <ForAdmin /> : ""}
             </Sidebar.Items>
           </Sidebar>
         </Drawer.Items>
