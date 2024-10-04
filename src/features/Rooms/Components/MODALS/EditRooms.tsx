@@ -22,15 +22,23 @@ const EditRoom = ({
       image: room.image,
       location: room.location,
       area: room.area,
-      capacity: room.capacity
+      capacity: room.capacity,
+      observations: room.observations
     },
   });
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [imageUrls, setImageUrls] = useState<(string | null)[]>([null, null, null, null]);
+  const [imageUrls, setImageUrls] = useState<(string | null)[]>([
+    null,
+    null,
+    null,
+    null,
+  ]);
 
   const { mutate: updateRoom } = UseUpdateRoom();
 
-  const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(
+    null
+  );
 
   const openImageModal = (index: number) => {
     setCurrentImageIndex(index);
@@ -47,7 +55,7 @@ const EditRoom = ({
       onSuccess: () => {
         setOpen(false);
       },
-      onError: () => { },
+      onError: () => {},
     });
   };
 
@@ -95,14 +103,12 @@ const EditRoom = ({
                     <TextInput
                       className="hidden"
                       {...register(`image.${index}`)}
-                      value={url || ''}
+                      value={url || ""}
                     />
                   </figure>
                 ))}
               </div>
             </fieldset>
-
-
 
             <div className=" col-span-2 grid grid-cols-2 gap-8">
               <fieldset>
@@ -174,7 +180,6 @@ const EditRoom = ({
                     placeholder="Lugar"
                   />
                 </span>
-
               </fieldset>
             </div>
           </Modal.Body>

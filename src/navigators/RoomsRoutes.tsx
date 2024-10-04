@@ -1,27 +1,27 @@
 import { Outlet } from "react-router-dom";
 import Layout from "../Pages/Layout";
-import ManageRooms from "../features/Rooms/Pages/ManageRooms";
+import ManageRoom from "../features/Rooms/Pages/ManageRoom";
 
 const RoomsRoutes = [
-    {
-        path: "HogarDeLibros",
-        element: (
-            <Layout NavbarType="HogarDeLibros">
-                <Outlet />
-            </Layout>
-        ),
+  {
+    path: "HogarDeLibros",
+    element: (
+      <Layout NavbarType="HogarDeLibros">
+        <Outlet />
+      </Layout>
+    ),
+    children: [
+      {
+        path: "Gestion",
         children: [
-            {
-                path: "Gestion",
-                children: [
-                    {
-                        path: "Salas",
-                        element: < ManageRooms />
-                    }
-                ]
-            }
-        ]
-    }
+          {
+            path: "Salas",
+            element: <ManageRoom />,
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export default RoomsRoutes;

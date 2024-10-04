@@ -6,7 +6,7 @@ const RoomCard = ({ Rooms }: { Rooms: Room }) => {
       <img
         className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover
         max-sm:h-32"
-        src={Rooms.image}
+        src={Rooms.image[0]}
         alt={Rooms.name}
       />
       <figcaption className=" text-lg max-w-80 break-words max-sm:text-sm max-sm:h-40 max-sm:flex max-sm:flex-col max-sm:justify-end">
@@ -32,5 +32,4 @@ const RoomCard = ({ Rooms }: { Rooms: Room }) => {
 };
 
 export default RoomCard;
-//El boton tiene que pasar el id de la sala
-//Adaptar las variables a ingles
+
