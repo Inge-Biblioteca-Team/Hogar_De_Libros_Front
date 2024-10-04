@@ -2,10 +2,10 @@ import { useQuery } from "react-query";
 import { Courses } from "../../../Courses/types/Courses";
 import { getCoursesList } from "../../Services/SVReservations";
 
-const OPTCourses = () => {
+const OPTCourses = ({ date }: { date: string }) => {
   const { data: courses } = useQuery<Courses[], Error>(
-    ["CoursesList"],
-    () => getCoursesList(),
+    ["CoursesList", date],
+    () => getCoursesList(date),
     {
       staleTime: 600,
     }

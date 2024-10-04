@@ -1,8 +1,20 @@
 import { Sidebar } from "flowbite-react";
-
-const role = sessionStorage.getItem("role");
+import { useEffect, useState } from "react";
 
 const ForAll = () => {
+  const [role, setRole] = useState(sessionStorage.getItem("role"));
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setRole(sessionStorage.getItem("role"));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
   return (
     <>
       <Sidebar.ItemGroup>

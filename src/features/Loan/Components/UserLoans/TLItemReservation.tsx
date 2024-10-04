@@ -4,6 +4,7 @@ import { CiCalendarDate } from "react-icons/ci";
 import UseCancelReservation from "../../Hooks/Rooms/UseCancelReservation";
 import { useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { formatToDMY } from "../../../../components/FormatTempo";
 
 const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
   const start = HourMapping[Math.min(...reserve.selectedHours)];
@@ -13,7 +14,7 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
   const handleCancel = async () => {
     cancelReserve(reserve.rommReservationId, {
       onSuccess: () => {
-        setOpen(false)
+        setOpen(false);
       },
       onError: () => {},
     });
@@ -21,13 +22,17 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
 
   const [open, setOpen] = useState<boolean>();
 
+  const reserveDay = formatToDMY(reserve.date);
+
   return (
     <>
       <Timeline.Item className="!w-72 min-w-72">
         <Timeline.Point icon={CiCalendarDate} className="custom" />
         <Timeline.Content>
-          <Timeline.Time> </Timeline.Time>
-          <Timeline.Title className="h-14 line-clamp-1"></Timeline.Title>
+          <Timeline.Time>{reserveDay} </Timeline.Time>
+          <Timeline.Title className="h-14 line-clamp-1">
+            {reserve.roomName}{" "}
+          </Timeline.Title>
           <Timeline.Body>
             <Card className="p0 hover:scale-105">
               <figure className="w-full rounded-xl">
@@ -43,17 +48,20 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
                   Reservación de <br />
                   {reserve.name}
                 </span>
-                <span>Fecha de reserva: {}</span>
+                <span>Fecha reservada: {reserveDay}</span>
                 <span>Número de personas: {reserve.personNumber}</span>
                 <span>Sala: {reserve.roomName}</span>
                 <span>
                   Horas reservadas <br /> {start} a {end}
                 </span>
                 <span>
-                  Observaciones: <br />
-                  {reserve.observations || "Ninguna"}
+                  <div className=" line-clamp-2">
+                    Observaciones: <br />
+                    {reserve.observations || "Ninguna"}
+                  </div>
                 </span>
                 <span>Motivo: {reserve.reason}</span>
+                <span>{reserve.reserveStatus} </span>
               </div>
               <div className="flex justify-center items-center mb-2">
                 <Button color={"blue"} onClick={() => setOpen(true)}>
@@ -71,10 +79,9 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
           </div>
           <span>
             Esta seguro que quiere cancelar la reserva de {reserve.name}
-          </span><br />
-          <span>
-            esta accion no es reversible!!
           </span>
+          <br />
+          <span>esta accion no es reversible!!</span>
         </Modal.Body>
         <Modal.Footer className="flex items-center justify-center">
           <Button color={"failure"} tabIndex={2} onClick={() => setOpen(false)}>

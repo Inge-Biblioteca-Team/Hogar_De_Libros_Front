@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
 import { getEventList } from "../../Services/SVReservations";
 import { Events } from "../../../EventsSection/types/Events";
-const OPTEvents = () => {
+const OPTEvents = ({ date }: { date: string }) => {
   const { data: events } = useQuery<Events[], Error>(
-    ["EventsList"],
-    () => getEventList(),
+    ["EventsList", date],
+    () => getEventList(date),
     {
       staleTime: 600,
     }

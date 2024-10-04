@@ -177,13 +177,13 @@ const ReservationForm = ({
             <div className={`${rol !== "admin" ? "hidden" : "visible"}`}>
               <Label value="Evento Realizado" />
               <Select {...register("EventId")}>
-                <OPTEvents />
+                <OPTEvents date={date} />
               </Select>
             </div>
             <div className={`${rol !== "admin" ? "hidden" : "visible"}`}>
               <Label value="Curso Realizado" />
               <Select {...register("courseId")}>
-                <OPTCourses />
+                <OPTCourses date={date} />
               </Select>
             </div>
           </fieldset>
