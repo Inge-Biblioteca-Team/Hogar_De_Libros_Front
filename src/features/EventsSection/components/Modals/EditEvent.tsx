@@ -33,7 +33,7 @@ const EditEvent = ({
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-  const UseClient = useQueryClient()
+  const UseClient = useQueryClient();
 
   const onSubmit = async (data: updateEvent) => {
     try {
@@ -41,7 +41,7 @@ const EditEvent = ({
       await editEvent(event.EventId, data);
       toast.success("Evento editado con éxito");
       setEdit(false);
-      UseClient.invalidateQueries("EventCatalog")
+      UseClient.invalidateQueries("EventCatalog");
     } catch (error) {
       console.error("Error al actualizar evento:", error);
     }
@@ -119,9 +119,16 @@ const EditEvent = ({
               <div className="mb-4">
                 <Label htmlFor="Time" value="Hora" />
                 <TextInput
-                  id="Time"
                   type="time"
-                  {...register("Time", { required: true })}
+                  id="Time"
+                  {...register("Time", {
+                    required: true,
+                    onChange: (e) => {
+                      const timeValue = e.target.value;
+                      const timeWithSeconds = `${timeValue}:00`;
+                      e.target.value = timeWithSeconds;
+                    },
+                  })}
                 />
               </div>
 

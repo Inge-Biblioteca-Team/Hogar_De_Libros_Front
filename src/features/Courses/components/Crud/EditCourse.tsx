@@ -33,7 +33,8 @@ const EditCourse = ({
       image: course.image,
       duration: course.duration,
       endDate: course.endDate,
-      programProgramsId: course.programProgramsId,
+      programProgramsId:
+        course.programProgramsId === null ? 0 : course.programProgramsId,
       materials: course.materials,
     },
   });
@@ -85,10 +86,8 @@ const EditCourse = ({
     setValue("duration", durationN + " " + duration);
   }, [duration, durationN, setValue]);
 
+  const minDate2 = watch("date");
 
-  const minDate2 = watch("date")
-
-  
   const minDay2 = format({
     date: minDate2,
     format: "YYYY-MM-DD",
@@ -177,9 +176,8 @@ const EditCourse = ({
                     id="program"
                     {...register("programProgramsId")}
                     icon={FaReadme}
-                    required
                   >
-                   <ProgramsOPT/>
+                    <ProgramsOPT />
                   </Select>
                 </div>
               </fieldset>

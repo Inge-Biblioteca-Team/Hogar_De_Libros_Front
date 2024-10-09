@@ -52,7 +52,7 @@ const ManageEvents = () => {
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
         <ManageCrumb />
-        <LastCrumb CurrentPage="Gestión de Eventos" />
+        <LastCrumb CurrentPage="Eventos" />
       </Breadcrumb>
       <div className="w-full flex items-center justify-center">
         <div className="w-4/5">
@@ -77,7 +77,7 @@ const ManageEvents = () => {
                   <Table.HeadCell>Estado</Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
-                <Table.Body>
+                <Table.Body className=" h-96">
                   {Events?.data.map((event) => (
                     <EventsRows key={event.EventId} event={event} />
                   ))}

@@ -14,18 +14,19 @@ const EditRoom = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   room: Room;
 }) => {
-  const { register, handleSubmit, setValue, reset, unregister  } = useForm<updateRooms>({
-    defaultValues: {
-      roomId: room.roomId,
-      name: room.name,
-      roomNumber: room.roomNumber,
-      image: room.image,
-      location: room.location,
-      area: room.area,
-      capacity: room.capacity,
-      observations: room.observations,
-    },
-  });
+  const { register, handleSubmit, setValue, reset, unregister } =
+    useForm<updateRooms>({
+      defaultValues: {
+        roomId: room.roomId,
+        name: room.name,
+        roomNumber: room.roomNumber,
+        image: room.image,
+        location: room.location,
+        area: room.area,
+        capacity: room.capacity,
+        observations: room.observations,
+      },
+    });
 
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrls, setImageUrls] = useState<(string | null)[]>([]);
@@ -45,9 +46,9 @@ const EditRoom = ({
 
   const handleModalClose = () => {
     setOpen(false);
-    reset(); 
-    setImageUrls(room.image ? [...room.image] : [null]); 
-    setCurrentCarouselIndex(0); 
+    reset();
+    setImageUrls(room.image ? [...room.image] : [null]);
+    setCurrentCarouselIndex(0);
   };
 
   const onSubmit = async (data: updateRooms) => {
@@ -91,7 +92,7 @@ const EditRoom = ({
     if (room.image) {
       setImageUrls([...room.image]);
     } else {
-      setImageUrls([null]); 
+      setImageUrls([null]);
     }
   }, [room.image]);
 
@@ -173,17 +174,16 @@ const EditRoom = ({
                     />
                   </div>
                 </div>
-                {/* Controles */}
                 <div className="absolute top-1/2 transform -translate-y-1/2 left-4">
                   <CustomLeftControl />
                 </div>
                 <div className="absolute top-1/2 transform -translate-y-1/2 right-4">
                   <CustomRightControl />
                 </div>
-                {/* Indicadores */}
                 <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
                   {imageUrls.map((_, index) => (
                     <button
+                      title="Ir A"
                       key={index}
                       type="button"
                       onClick={() => setCurrentCarouselIndex(index)}
@@ -252,7 +252,6 @@ const EditRoom = ({
                   <TextInput
                     id="observations"
                     type="text"
-                    required
                     {...register("observations")}
                     placeholder="Observaciones"
                   />
@@ -272,11 +271,7 @@ const EditRoom = ({
             </div>
           </Modal.Body>
           <Modal.Footer className="flex items-center justify-center">
-            <Button
-              color={"failure"}
-              onClick={handleModalClose}
-              tabIndex={2}
-            >
+            <Button color={"failure"} onClick={handleModalClose} tabIndex={2}>
               Cancelar
             </Button>
             <Button color={"blue"} type="submit">

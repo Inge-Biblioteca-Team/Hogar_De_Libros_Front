@@ -1,14 +1,24 @@
 import { Label, Select, TextInput } from "flowbite-react";
+import { queque } from "../../../Loan/Types/RoomsReservations";
+import { useQuery } from "react-query";
+import { getRoomsList } from "../../../Loan/Services/SVReservations";
 
 const SearchRooms = ({
   RName,
   RStatus,
   RNumber,
 }: {
-    RName: (name: string) => void;
-    RStatus: (ES: string) => void;
-    RNumber: (num: string) => void;
+  RName: (name: string) => void;
+  RStatus: (ES: string) => void;
+  RNumber: (num: string) => void;
 }) => {
+  const { data: roomss = [] } = useQuery<queque[], Error>(
+    ["QueQueReservations"],
+    () => getRoomsList(),
+    {
+      staleTime: 600,
+    }
+  );
   return (
     <div className={`flex items-center gap-2`}>
       <div>
@@ -32,9 +42,10 @@ const SearchRooms = ({
         <Label className="text-lg">Número de Sala</Label>
         <Select onChange={(room) => RNumber(room.target.value)}>
           <option value="">Seleccione número de sala</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+          {roomss.length > 0 &&
+            roomss.map((room) => (
+              <option value={room.roomId}>{room.roomNumber} </option>
+            ))}
         </Select>
       </div>
     </div>

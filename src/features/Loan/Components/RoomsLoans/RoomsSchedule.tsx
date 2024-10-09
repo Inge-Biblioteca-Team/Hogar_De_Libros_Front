@@ -96,6 +96,12 @@ const RoomsSchedule = ({
     setSelectedHours([]);
   };
 
+  if (rooms.length == 0)
+    return (
+      <div className="w-full flex flex-col h-full justify-between text-center text-5xl mt-36">
+        De momento no existen Salas disponibles para reserva
+      </div>
+    );
   return (
     <div className="w-full flex flex-col h-full justify-between">
       <div className="font-bold text-center text-lg">
@@ -147,8 +153,13 @@ const RoomsSchedule = ({
           })}
         </Table.Body>
       </Table>
+
       <div className="mt-4">
-        <Button onClick={handleConfirmSelection} color={"blue"}>
+        <Button
+          onClick={handleConfirmSelection}
+          color={"blue"}
+          disabled={roomss.length == 0}
+        >
           Llenar formulario de solicitud
         </Button>
       </div>

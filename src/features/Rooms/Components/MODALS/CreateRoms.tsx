@@ -152,17 +152,16 @@ const CreateRooms = () => {
                     />
                   </div>
                 </div>
-                {/* Controles */}
                 <div className="absolute top-1/2 transform -translate-y-1/2 left-4">
                   <CustomLeftControl />
                 </div>
                 <div className="absolute top-1/2 transform -translate-y-1/2 right-4">
                   <CustomRightControl />
                 </div>
-                {/* Indicadores */}
                 <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
                   {imageUrls.map((_, index) => (
                     <button
+                    title="Ir A"
                       key={index}
                       type="button"
                       onClick={() => setCurrentCarouselIndex(index)}
@@ -231,7 +230,6 @@ const CreateRooms = () => {
                   <TextInput
                     id="observations"
                     type="text"
-                    required
                     {...register("observations")}
                     placeholder="Observaciones"
                   />

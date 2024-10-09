@@ -13,7 +13,7 @@ const UseRecoveryPassword =  () => {
         navigate("/HogarDeLibros");
       },
       onError: () => {
-        toast.error("Error el correo no esta registrado");
+        toast.error("Error el correo no está registrado");
       },
     });
   };

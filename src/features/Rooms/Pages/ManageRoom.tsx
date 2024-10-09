@@ -8,6 +8,7 @@ import { CurrentRoute, HomeRoute } from "../../Books/components/Redirections";
 import RoomCards from "../Components/Cards/RoomCards";
 import CreateRooms from "../Components/MODALS/CreateRoms";
 import SearchRooms from "../Components/BTN/SearchRooms";
+import { ManageCrumb } from "../../../components/BreadCrumb";
 
 const ManageRoom = () => {
   const [Sname, setName] = useState<string>("");
@@ -38,7 +39,8 @@ const ManageRoom = () => {
     <>
       <Breadcrumb className="custom-breadcrumb pb-4">
         <HomeRoute />
-        <CurrentRoute CurrentPage={"Gestión de Salas"} />
+        <ManageCrumb/>
+        <CurrentRoute CurrentPage={"Salas"} />
       </Breadcrumb>
       <section className="flex flex-col justify-center items-center">
         <div className="w-4/5 flex flex-col items-center justify-center pt-1">
@@ -52,8 +54,8 @@ const ManageRoom = () => {
           </div>
           <div className="w-full pt-2">
             {rooms?.count === 0 ? (
-              <Alert color="warning" rounded>
-                No existen salas disponibles que coincidan con su búsqueda
+              <Alert color="warning" rounded className=" mt-32 flex items-center" >
+                No existen salas disponibles
               </Alert>
             ) : (
               <div className="grid grid-cols-3 gap-5 my-4">

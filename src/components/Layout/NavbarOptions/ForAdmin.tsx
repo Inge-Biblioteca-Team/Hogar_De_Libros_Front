@@ -39,7 +39,7 @@ const ForAdmin = () => {
       </Sidebar.ItemGroup>
       <Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
-          <Sidebar.Collapse label="Prestamos">
+          <Sidebar.Collapse label="Préstamos">
             <Sidebar.Collapse label="Libros">
               <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Pendientes">
                 Solicitudes Pendientes
@@ -59,7 +59,7 @@ const ForAdmin = () => {
                 Historial de usos
               </Sidebar.Item>
             </Sidebar.Collapse>
-            <Sidebar.Collapse label="Prestamos de salas">
+            <Sidebar.Collapse label="Préstamos de salas">
               <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/SolicitudesDeSalas">
                 Solicitudes de Salas
               </Sidebar.Item>

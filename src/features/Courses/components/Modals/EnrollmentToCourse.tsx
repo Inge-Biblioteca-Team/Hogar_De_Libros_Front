@@ -83,7 +83,7 @@ const EnrollmentToCourse = ({
             <div>
               <Label
                 htmlFor="Cedula"
-                value="Cedula de la persona asistente al curso"
+                value="Cédula  de la persona asistente al curso"
               />
               <TextInput
                 id="Cedula"
@@ -116,10 +116,10 @@ const EnrollmentToCourse = ({
               />
             </div>
             <div>
-              <Label htmlFor="phone" value="Telefono" />
+              <Label htmlFor="phone" value="Teléfono" />
               <TextInput
                 id="phone"
-                placeholder="Telefono"
+                placeholder="Teléfono"
                 {...register("phone")}
               />
             </div>
@@ -127,7 +127,7 @@ const EnrollmentToCourse = ({
               <Label htmlFor="Ephone" value="Contacto de Emergencia" />
               <TextInput
                 id="Ephone"
-                placeholder="Telefono"
+                placeholder="correo, Teléfono, etc..."
                 {...register("ePhone")}
               />
             </div>

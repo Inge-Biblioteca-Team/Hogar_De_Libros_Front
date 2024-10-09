@@ -256,7 +256,7 @@ const NewUsaerLoan = () => {
                   aria-labelledby="default-popover"
                   content={
                     <div className=" flex flex-col items-center gap-4 m-3">
-                      <p>Esta seguro?</p>
+                      <p>Está seguro?</p>
                       <div className=" flex gap-3">
                         <Button
                           color={"failure"}

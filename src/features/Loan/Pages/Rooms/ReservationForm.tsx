@@ -48,6 +48,8 @@ const ReservationForm = ({
     setValue("roomId", Number(roomId));
     setValue("date", date);
     setValue("selectedHours", selectHours);
+    setValue('EventId', "0")
+    setValue('courseId', "0")
   }, [cedula, roomId, date, setValue, selectHours]);
 
   const { mutate: createReservation } = PostNewRoomReservation();

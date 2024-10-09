@@ -4,6 +4,7 @@ import { Program } from "../../types/Programs";
 import { Dispatch, SetStateAction, useState } from "react";
 import UseCreateProgram from "../../Hooks/UseCreateProgram";
 import ModalAddImage from "../../../../components/Modals/ModalAddImage";
+import ModalAddMore from "../../../../components/Modals/ModalAddMore";
 
 const MDCreateNewProgram = ({
   open,
@@ -14,6 +15,7 @@ const MDCreateNewProgram = ({
 }) => {
   const { register, setValue, reset, handleSubmit } = useForm<Program>();
 
+  const [openM, setOpenM] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [openImage, setOpenImage] = useState<boolean>(false);
 
@@ -29,6 +31,7 @@ const MDCreateNewProgram = ({
       onSuccess: () => {
         reset();
         setImageUrl("");
+        setOpenM(true);
       },
       onError: () => {},
     });
@@ -59,7 +62,6 @@ const MDCreateNewProgram = ({
             </div>
           </figure>
 
-          
           <div className=" col-span-2 space-y-4">
             <div>
               <Label>Nombre del Programa</Label>
@@ -95,6 +97,12 @@ const MDCreateNewProgram = ({
         onImageSelect={handleImageSelect}
         onCloseModal={setOpenImage}
         text="del programa"
+      />
+      <ModalAddMore
+        open={openM}
+        setOpen={setOpenM}
+        primaryOpen={setOpen}
+        text="Programa"
       />
     </Modal>
   );

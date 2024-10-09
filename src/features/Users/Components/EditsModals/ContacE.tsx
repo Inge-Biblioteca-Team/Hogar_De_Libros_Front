@@ -50,7 +50,7 @@ const ContacE = ({
       <form onSubmit={handleSubmit(handleConfirm)}>
         <Modal.Body>
           <div>
-            <Label>Telefono</Label>
+            <Label>Teléfono</Label>
             <TextInput {...register("phoneNumber")} />
           </div>
           <div>

@@ -28,14 +28,14 @@ const MDSeeReservation = ({
         </div>
         {reserve.UserName !== reserve.name && (
           <div>
-            <strong>Nombre de Institucion</strong>
+            <strong>Nombre de Institución</strong>
             <div>{reserve.name}</div>
           </div>
         )}
         <div>
           <strong>Contactos del solicitante</strong>
           <br /> <span>Email: {reserve.UserEmail} </span>
-          <div>Telefono: {reserve.UserPhone} </div>
+          <div>Teléfono: {reserve.UserPhone} </div>
         </div>
         <div>
           <strong>Fecha reservada</strong>
@@ -53,13 +53,13 @@ const MDSeeReservation = ({
         </div>
         {reserve.CourseName != "" && (
           <div>
-            <strong>Informacion del Curso</strong>
+            <strong>Información del Curso</strong>
             <div>{reserve.CourseName} </div>
           </div>
         )}
         {reserve.EventName != "" && (
           <div>
-            <strong>Informacion del Evento</strong>
+            <strong>Información del Evento</strong>
             <div>{reserve.EventName} </div>
           </div>
         )}
