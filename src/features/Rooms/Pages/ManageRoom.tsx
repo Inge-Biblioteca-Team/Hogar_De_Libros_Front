@@ -58,7 +58,7 @@ const ManageRoom = () => {
                 No existen salas disponibles
               </Alert>
             ) : (
-              <div className="grid grid-cols-3 gap-5 my-4">
+              <div className="grid grid-cols-2 gap-5 my-4">
                 {rooms?.data.map((room) => (
                   <RoomCards Rooms={room} key={room.roomId} />
                 ))}

@@ -76,7 +76,7 @@ const OldReservationList = () => {
             </div>
           </div>
           {reservations?.count == 0 ? (
-            <NoRequest text={"No existen solicitudes antiguas"} />
+            <NoRequest text={"No existen solicitudes"} />
           ) : (
             <>
               <Table

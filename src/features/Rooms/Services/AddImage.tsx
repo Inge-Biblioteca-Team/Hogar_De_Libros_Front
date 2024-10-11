@@ -5,13 +5,11 @@ import { uploadImage } from "../../Books/services/SvSearchIMG";
 const AddImage = ({
   showModal,
   onCloseModal,
-  onImageSelect,
-  imageIndex,
+  onAddImage,
 }: {
   showModal: boolean;
   onCloseModal: () => void;
-  onImageSelect: (url: string, index: number) => void;
-  imageIndex: number;
+  onAddImage: (url: string) => void;
 }) => {
   const [localImage, setLocalImage] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -29,7 +27,7 @@ const AddImage = ({
     if (file) {
       try {
         const filePath = await uploadImage(file);
-        onImageSelect(filePath, imageIndex);
+        onAddImage(filePath);
         setLocalImage(null);
         setFile(null);
         onCloseModal();

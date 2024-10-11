@@ -44,7 +44,7 @@ const SearchRooms = ({
           <option value="">Seleccione número de sala</option>
           {roomss.length > 0 &&
             roomss.map((room) => (
-              <option value={room.roomId}>{room.roomNumber} </option>
+              <option key={room.roomId} value={room.roomId}>{room.roomNumber} </option>
             ))}
         </Select>
       </div>
