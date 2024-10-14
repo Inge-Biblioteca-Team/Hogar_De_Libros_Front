@@ -9,7 +9,7 @@ import coursesRoutes from "./CoursesRoutes";
 import EventRoutes from "./EventRoutes";
 import RoomRoutes from "./RoomRoutes";
 import RoomsRoutes from "./RoomsRoutes";
-
+import AdviceRoutes from "./AdviceRoutes";
 
 const Routes = createBrowserRouter([
   ...homeRoutes,
@@ -21,7 +21,8 @@ const Routes = createBrowserRouter([
   ...coursesRoutes,
   ...EventRoutes,
   ...RoomRoutes,
-  ...RoomsRoutes
+  ...RoomsRoutes,
+  ...AdviceRoutes,
 ]);
 
 export default Routes;

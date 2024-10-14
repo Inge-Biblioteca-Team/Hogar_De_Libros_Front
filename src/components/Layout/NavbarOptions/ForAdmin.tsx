@@ -35,6 +35,9 @@ const ForAdmin = () => {
           <Sidebar.Item href="/HogarDeLibros/Gestion/Usuarios">
             Usuarios
           </Sidebar.Item>
+          <Sidebar.Item href="/HogarDeLibros/Gestion/Avisos">
+            Avisos Importantes
+          </Sidebar.Item>
         </Sidebar.Collapse>
       </Sidebar.ItemGroup>
       <Sidebar.ItemGroup>
