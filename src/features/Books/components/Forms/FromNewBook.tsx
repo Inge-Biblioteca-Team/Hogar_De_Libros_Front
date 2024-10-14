@@ -216,7 +216,7 @@ const FromNewBook = ({ category }: { category: string }) => {
               <TextInput
                 id="SignatureCode"
                 type="text"
-                {...register("SignatureCode")}
+                {...register("signatureCode")}
               />
             </span>
             <span>
