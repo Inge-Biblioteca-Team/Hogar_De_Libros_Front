@@ -1,11 +1,12 @@
 export type Advice = {
-  id: number;
+  id_Advice: number;
   reason: string;
   date: Date;
   GenerateDate: Date;
   image: string;
   extraInfo: string;
-  category:string
+  category: string;
+  status: boolean;
 };
 
 export type ApiAdvices = {

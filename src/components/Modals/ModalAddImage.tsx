@@ -1,6 +1,6 @@
 import { Button, FileInput, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction, useState } from "react";
-import uploadImage from "../../Services/UploadImg";
+import { uploadImage } from "../../Services/UploadImg";
 
 const AddImage = ({
   showModal,
@@ -9,7 +9,7 @@ const AddImage = ({
   text,
 }: {
   showModal: boolean;
-  onCloseModal:  Dispatch<SetStateAction<boolean>>;
+  onCloseModal: Dispatch<SetStateAction<boolean>>;
   onImageSelect: (url: string) => void;
   text: string;
 }) => {
@@ -40,10 +40,9 @@ const AddImage = ({
   };
 
   return (
-    <Modal show={showModal} onClose={()=>onCloseModal(false)} popup>
+    <Modal show={showModal} onClose={() => onCloseModal(false)} popup>
       <Modal.Header>Cargar Imagen {text} </Modal.Header>
       <Modal.Body className="flex flex-col">
-        <p className="mb-2 font-semibold">Cargar una imagen local:</p>
         <FileInput onChange={handleImageUpload} className="custom-file-input" />
         {localImage && (
           <div className="mt-4">

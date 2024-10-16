@@ -3,8 +3,9 @@ import ViewAdvice from "./Modals/ViewAdvice";
 import EditAdvice from "./Modals/EditAdvice";
 import DeleteAdvice from "./Modals/DeleteAdvice";
 import { useState } from "react";
+import { Advice } from "../Types/Advice";
 
-const AdviceAccionsBTN = () => {
+const AdviceAccionsBTN = ({ advice }: { advice: Advice }) => {
   const [openV, setOpenV] = useState<boolean>(false);
   const [openE, setOpenE] = useState<boolean>(false);
   const [openD, setOpenD] = useState<boolean>(false);
@@ -37,9 +38,9 @@ const AdviceAccionsBTN = () => {
           <PiTrash size={24} />
         </button>
       </div>
-      <ViewAdvice open={openV} setOpen={setOpenV} />
-      <EditAdvice open={openE} setOpen={setOpenE} />
-      <DeleteAdvice open={openD} setOpen={setOpenD} />
+      <ViewAdvice open={openV} setOpen={setOpenV} advice={advice} />
+      <EditAdvice open={openE} setOpen={setOpenE} advice={advice} />
+      <DeleteAdvice open={openD} setOpen={setOpenD} id={advice.id_Advice} />
     </>
   );
 };

@@ -1,13 +1,18 @@
 import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
+import { Advice } from "../../Types/Advice";
+import { formatToDMY } from "../../../../components/FormatTempo";
 
 const ViewAdvice = ({
   open,
   setOpen,
+  advice,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  advice: Advice;
 }) => {
+  const date = formatToDMY(advice.date);
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
       <form>
@@ -15,27 +20,23 @@ const ViewAdvice = ({
           <figure>
             <img
               className=" h-52 w-full rounded-xl"
-              src="https://i.ytimg.com/vi/6su62xI2x2Q/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhQIGIoZTAP&rs=AOn4CLB71m-kX747siXlWD9i8fyhkpUYZQ"
+              src={advice.image}
               alt=""
             />
           </figure>
           <div className=" flex flex-col justify-between gap-3 mt-4">
             <div>Información del aviso</div>
             <div>
-              <span>Motivo:</span>
-              <span></span>
+              <span>Motivo: {advice.reason} </span>
             </div>
             <div>
-              <span>Fecha:</span>
-              <span></span>
+              <span>Fecha: {date}</span>
             </div>
             <div>
-              <span>Información Extra:</span>
-              <span></span>
+              <span>Información Extra: {advice.extraInfo} </span>
             </div>
             <div>
-              <span>Categoría del aviso:</span>
-              <span></span>
+              <span>Categoría del aviso: {advice.category} </span>
             </div>
           </div>
         </Modal.Body>

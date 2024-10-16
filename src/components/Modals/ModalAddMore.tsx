@@ -6,12 +6,12 @@ const ModalAddMore = ({
   open,
   setOpen,
   primaryOpen,
-  text
+  text,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   primaryOpen: Dispatch<SetStateAction<boolean>>;
-  text:string
+  text: string;
 }) => {
   return (
     <Modal show={open}>

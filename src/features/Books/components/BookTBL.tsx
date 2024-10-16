@@ -32,7 +32,7 @@ const BookTBL = ({ books, accion1 }: { books: BookApiResponse, accion1:boolean }
                 {Books.ISBN ? Books.ISBN : "No Posee"}
               </Table.Cell>
               <Table.Cell className="w-44">
-                {Books.SignatureCode ? Books.SignatureCode : "Pendiente"}
+                {Books.signatureCode ? Books.signatureCode : "Pendiente"}
               </Table.Cell>
               <Table.Cell className="w-12">
                 {Books.Status ? "Activo" : "Inactivo"}

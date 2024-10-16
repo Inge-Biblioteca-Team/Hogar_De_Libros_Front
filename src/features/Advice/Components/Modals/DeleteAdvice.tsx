@@ -1,15 +1,27 @@
-import { Modal } from "flowbite-react";
+import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import ModalButtons from "../../../../components/BTNS/ModalButtons";
+import UseDeleteAdvice from "../../Hooks/UseDeleteAdvice";
 
 const DeleteAdvice = ({
   open,
   setOpen,
+  id,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  id: number;
 }) => {
+  const { mutate: deleteAdvice } = UseDeleteAdvice();
+
+  const onConfirm = () => {
+    deleteAdvice(id, {
+      onSuccess: () => {
+        setOpen(false);
+      },
+    });
+  };
+
   return (
     <Modal show={open} onClose={() => setOpen(false)} popup size={"md"}>
       <Modal.Body className=" mt-4 text-center">
@@ -25,7 +37,14 @@ const DeleteAdvice = ({
           En caso de aceptar y eliminarlo no podrá revertir esta acción.
         </span>
       </Modal.Body>
-      <ModalButtons setOpen={setOpen} />
+      <Modal.Footer className=" flex items-center justify-center">
+        <Button color={"failure"} onClick={() => setOpen(false)}>
+          Regresar
+        </Button>
+        <Button color={"blue"} type="submit" onClick={() => onConfirm()}>
+          Confirmar
+        </Button>
+      </Modal.Footer>
     </Modal>
   );
 };
