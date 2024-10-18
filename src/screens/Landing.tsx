@@ -9,7 +9,7 @@ import LocalArtistList from "../features/LocalArtist/screens/LocalArtistList";
 import DirectContac from "../features/Contact/screens/DirectContac";
 import Feedback from "../features/Contact/screens/Feedback";
 import CurrentPrograms from "../features/Programs/screens/CurrentsProgramns";
-import ImportanNotices from "../features/ExtraInfo/screens/ImportanNotices";
+import ImportanNotices from "../features/Advice/Screens/ImportanNotices";
 import LandingHome from "../components/LandingHome";
 import LandingFooter from "../components/Layout/LandingFooter";
 

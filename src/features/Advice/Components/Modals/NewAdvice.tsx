@@ -7,6 +7,7 @@ import ModalButtons from "../../../../components/BTNS/ModalButtons";
 import UseCreateAdvice from "../../Hooks/UseCreteAdvice";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
 import UseUploadImage from "../../Hooks/UseUploadImage";
+import {formatToYMD } from "../../../../components/FormatTempo";
 
 const NewAdvice = ({
   open,
@@ -15,6 +16,9 @@ const NewAdvice = ({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
+
+  const min = formatToYMD(new Date());
+
   const { register, reset, handleSubmit, setValue } = useForm<Advice>();
   const { mutate: createAdvice } = UseCreateAdvice();
   const onSubmit = (data: Advice) => {
@@ -114,6 +118,7 @@ const NewAdvice = ({
               variant="outlined"
               label="Fecha"
               type="Date"
+              min={min}
               {...register("date")}
             />
             <div>

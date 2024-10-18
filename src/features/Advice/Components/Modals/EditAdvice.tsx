@@ -7,6 +7,7 @@ import ModalButtons from "../../../../components/BTNS/ModalButtons";
 import UseEditAdvice from "../../Hooks/UseEditAdvice";
 import UseUploadImage from "../../Hooks/UseUploadImage";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
+import { formatToYMD } from "../../../../components/FormatTempo";
 
 const EditAdvice = ({
   open,
@@ -17,6 +18,7 @@ const EditAdvice = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   advice: Advice;
 }) => {
+  const min = formatToYMD(new Date());
   const { register, handleSubmit, reset, setValue, watch } = useForm<Advice>({
     defaultValues: {
       id_Advice: advice.id_Advice,
@@ -124,6 +126,7 @@ const EditAdvice = ({
               variant="outlined"
               label="Fecha"
               type="Date"
+              min={min}
               {...register("date")}
             />
             <div>

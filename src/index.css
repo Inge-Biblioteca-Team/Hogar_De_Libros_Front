@@ -73,5 +73,16 @@ input[type="number"] {
 }
 
 .Custom-Carousel span{
- background-color: #000000c7;
+ background-color: #323232c7;
 }
+
+.Custom-Carousel button{
+  background-color: #212121c7;
+  border-radius: 50%;
+ }
+
+
+ .Custom-Carousel button:hover{
+  background-color: #4545aec7;
+  border-radius: 50%;
+ }
