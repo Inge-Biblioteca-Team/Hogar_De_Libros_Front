@@ -41,13 +41,13 @@ const CancelEnrollment = ({
       <Modal.Body>
         <span>
           {" "}
-          Esta seguro que desea cancelar la matricula del curso{" "}
+          Está seguro que desea cancelar la matricula del curso{" "}
           <strong>{course.courseType}</strong> del día <br />
           <strong>{fullDate}. </strong> <br />
         </span>
         <span>
           {" "}
-          En caso de aceptar y cancelar, no podra revertir esta acción.
+          En caso de aceptar y cancelar, no podra revertir está acción.
         </span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">

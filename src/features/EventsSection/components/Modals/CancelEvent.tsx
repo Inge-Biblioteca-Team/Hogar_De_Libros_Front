@@ -29,11 +29,11 @@ const CancelEvent = ({
           <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
         </div>
         <span>
-          ¿Esta seguro de cancelar el evento{" "}
+          ¿Está seguro de cancelar el evento{" "}
           <strong className=" font-bold">{event.Title}</strong>?
         </span>
         <br />
-        <span>Esta acción no es revertible!!!</span>
+        <span>Está acción no es revertible!!!</span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
         <Button color={"failure"} onClick={() => setOpen(false)}>

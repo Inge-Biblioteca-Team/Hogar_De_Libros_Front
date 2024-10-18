@@ -20,4 +20,13 @@ const uploadImage = async (file: File): Promise<string> => {
   throw new Error("No file provided");
 };
 
-export default uploadImage;
+const GetImageList = async (category: string) => {
+  try {
+    const response = await api.get(`files/${category}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+export { uploadImage, GetImageList };

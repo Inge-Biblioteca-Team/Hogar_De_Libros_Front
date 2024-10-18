@@ -23,7 +23,7 @@ const RoomsReservationsTL = () => {
     <>
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
-        <LastCrumb CurrentPage="Solicitudes y reservas aprovadas" />
+        <LastCrumb CurrentPage="Solicitudes y reservas aprobadas" />
       </Breadcrumb>
       <div
         className=" w-full flex items-center justify-center mt-28"

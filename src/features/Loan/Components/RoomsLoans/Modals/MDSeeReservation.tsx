@@ -28,14 +28,20 @@ const MDSeeReservation = ({
         </div>
         {reserve.UserName !== reserve.name && (
           <div>
-            <strong>Nombre de Institucion</strong>
+            <strong>Persona o Institucion</strong>
             <div>{reserve.name}</div>
           </div>
         )}
+
+        <div>
+          <strong>Motivo de la reserva</strong>
+          <div>{reserve.reason}</div>
+        </div>
+
         <div>
           <strong>Contactos del solicitante</strong>
           <br /> <span>Email: {reserve.UserEmail} </span>
-          <div>Telefono: {reserve.UserPhone} </div>
+          <div>Teléfono: {reserve.UserPhone} </div>
         </div>
         <div>
           <strong>Fecha reservada</strong>
@@ -43,7 +49,9 @@ const MDSeeReservation = ({
         </div>
         <div>
           <strong>Sala solicitada</strong>
-          <div>{reserve.room}{" "}{reserve.roomName} </div>
+          <div>
+            {reserve.room} {reserve.roomName}{" "}
+          </div>
         </div>
         <div>
           <strong>Hora de inicio y fin</strong>
@@ -53,13 +61,13 @@ const MDSeeReservation = ({
         </div>
         {reserve.CourseName != "" && (
           <div>
-            <strong>Informacion del Curso</strong>
+            <strong>Información del Curso</strong>
             <div>{reserve.CourseName} </div>
           </div>
         )}
         {reserve.EventName != "" && (
           <div>
-            <strong>Informacion del Evento</strong>
+            <strong>Información del Evento</strong>
             <div>{reserve.EventName} </div>
           </div>
         )}
@@ -69,10 +77,12 @@ const MDSeeReservation = ({
             <div>{reserve.observations} </div>
           </div>
         )}
-        <div>
-          <strong>Observaciones Finales</strong>
-          <div>{reserve.finishObservation} </div>
-        </div>
+        {reserve.finishObservation != "" && (
+          <div>
+            <strong>Observaciones Finales</strong>
+            <div>{reserve.finishObservation} </div>
+          </div>
+        )}
       </Modal.Body>
       <Modal.Footer className="flex items-center justify-center">
         <Button color={"blue"} onClick={() => setOpen(false)}>

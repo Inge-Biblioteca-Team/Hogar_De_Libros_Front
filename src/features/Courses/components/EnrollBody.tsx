@@ -25,13 +25,27 @@ const EnrollBody = ({ courseId }: { courseId: number }) => {
     <>
       <Table hoverable className=" text-center">
         <Table.Head className=" !rounded-none">
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">Nombre</Table.HeadCell>
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">Cedula</Table.HeadCell>
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">Fecha de Matricula</Table.HeadCell>
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">Direccion</Table.HeadCell>
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">Telefono</Table.HeadCell>
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">Telefono de Emergencia</Table.HeadCell>
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">Correo</Table.HeadCell>
+          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+            Nombre
+          </Table.HeadCell>
+          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+            Cedula
+          </Table.HeadCell>
+          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+            Fecha de matrícula
+          </Table.HeadCell>
+          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+            Direccion
+          </Table.HeadCell>
+          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+            Telefono
+          </Table.HeadCell>
+          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+            Teléfono de Emergencia
+          </Table.HeadCell>
+          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+            Correo
+          </Table.HeadCell>
         </Table.Head>
         <Table.Body>
           {EnrollList?.data.map((Enroll) => (

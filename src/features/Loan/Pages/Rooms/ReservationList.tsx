@@ -43,7 +43,7 @@ const ReservationList = () => {
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
         <LoanCrumb />
-        <LastCrumb CurrentPage="Solicitudes de salas aprovadas" />
+        <LastCrumb CurrentPage="Solicitudes de salas aprobadas" />
       </Breadcrumb>
       <div className=" w-full flex items-center justify-center mt-16">
         <div className="w-4/5">

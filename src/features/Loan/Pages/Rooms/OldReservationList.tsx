@@ -49,7 +49,7 @@ const OldReservationList = () => {
       <Breadcrumb className="custom-breadcrumb">
         <HomeCrumb />
         <LoanCrumb />
-        <LastCrumb CurrentPage="Historial de prestamos de salas" />
+        <LastCrumb CurrentPage="Historial de préstamos de salas" />
       </Breadcrumb>
       <div className=" w-full flex items-center justify-center mt-16">
         <div className="w-4/5">
@@ -76,7 +76,7 @@ const OldReservationList = () => {
             </div>
           </div>
           {reservations?.count == 0 ? (
-            <NoRequest text={"No existen solicitudes antiguas"} />
+            <NoRequest text={"No existen solicitudes"} />
           ) : (
             <>
               <Table

@@ -2,6 +2,7 @@ import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { updateEvent } from "../../types/Events";
 import { FaCalendarAlt } from "react-icons/fa"; 
+import { formatToDMY } from "../../../../components/FormatTempo";
 
 const ViewEvent = ({
     see,
@@ -12,6 +13,8 @@ const ViewEvent = ({
     setSee: Dispatch<SetStateAction<boolean>>;
     event: updateEvent; 
   }) => {
+
+    const eventDay = formatToDMY(event.Date);
     return (
       <Modal show={see} onClose={() => setSee(false)} size-40>
         <Modal.Header>
@@ -35,7 +38,7 @@ const ViewEvent = ({
             <strong>Ubicación:</strong> {event.Location}
           </span>
           <span>
-            <strong>Fecha:</strong> {event.Date}
+            <strong>Fecha:</strong> {eventDay}
           </span>
           <span>
             <strong>Hora:</strong> {event.Time}

@@ -44,7 +44,7 @@ const RelatedCourses = ({
 
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
-      <Modal.Header>Cursos Relacionados al programa {programName}</Modal.Header>
+      <Modal.Header>Actividades relacionadas al programa {programName}</Modal.Header>
       <Modal.Body className=" flex flex-col gap-4">
         {error && <span className="text-red-500">{errorMessage}</span>}
         {courses?.map((course) => (

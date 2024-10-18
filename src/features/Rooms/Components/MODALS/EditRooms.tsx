@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Button, Label, Modal, TextInput } from "flowbite-react";
+import { Button, Carousel, Label, Modal, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { Room, updateRooms } from "../../Types/Room_Interface";
 import UseUpdateRoom from "../../Hooks/UseUpdateRooms";
@@ -14,7 +14,7 @@ const EditRoom = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   room: Room;
 }) => {
-  const { register, handleSubmit, setValue, reset, unregister  } = useForm<updateRooms>({
+  const { register, handleSubmit, reset } = useForm<updateRooms>({
     defaultValues: {
       roomId: room.roomId,
       name: room.name,
@@ -29,13 +29,10 @@ const EditRoom = ({
 
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrls, setImageUrls] = useState<(string | null)[]>([]);
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
 
   const { mutate: updateRoom } = UseUpdateRoom();
 
-  const openImageModal = (index: number) => {
-    setCurrentImageIndex(index);
+  const openImageModal = () => {
     setIsImageModalOpen(true);
   };
 
@@ -45,9 +42,8 @@ const EditRoom = ({
 
   const handleModalClose = () => {
     setOpen(false);
-    reset(); 
-    setImageUrls(room.image ? [...room.image] : [null]); 
-    setCurrentCarouselIndex(0); 
+    reset();
+    setImageUrls(room.image ? [...room.image] : [null]);
   };
 
   const onSubmit = async (data: updateRooms) => {
@@ -69,137 +65,62 @@ const EditRoom = ({
     });
   };
 
-  const handleImageSelect = (url: string, index: number) => {
-    const newImageUrls = [...imageUrls];
-    newImageUrls[index] = url;
-    setImageUrls(newImageUrls);
-    setValue(`image.${index}`, url);
-  };
-
-  const handleDeleteImage = (index: number) => {
-    const newImageUrls = [...imageUrls];
-    newImageUrls.splice(index, 1);
-    setImageUrls(newImageUrls);
-    unregister(`image.${index}`);
-
-    if (currentCarouselIndex >= newImageUrls.length) {
-      setCurrentCarouselIndex(newImageUrls.length - 1);
-    }
-  };
-
   useEffect(() => {
     if (room.image) {
       setImageUrls([...room.image]);
     } else {
-      setImageUrls([null]); 
+      setImageUrls([null]);
     }
   }, [room.image]);
 
-  const CustomLeftControl = () => (
-    <button
-      type="button"
-      onClick={() => {
-        if (currentCarouselIndex > 0) {
-          setCurrentCarouselIndex(currentCarouselIndex - 1);
-        }
-      }}
-      className="flex items-center justify-center h-8 w-8 bg-white rounded-full shadow-lg hover:bg-gray-200 focus:outline-none"
-    >
-      <span className="sr-only">Anterior</span>
-      &#8592;
-    </button>
-  );
+  const addImageUrl = (newUrl: string) => {
+    setImageUrls((prevUrls) => [...prevUrls, newUrl]);
+  };
 
-  const CustomRightControl = () => (
-    <button
-      type="button"
-      onClick={() => {
-        if (currentCarouselIndex < imageUrls.length - 1) {
-          setCurrentCarouselIndex(currentCarouselIndex + 1);
-        } else {
-          // agregar uno nuevo
-          setImageUrls([...imageUrls, null]);
-          setCurrentCarouselIndex(currentCarouselIndex + 1);
-        }
-      }}
-      className="flex items-center justify-center h-8 w-8 bg-white rounded-full shadow-lg hover:bg-gray-200 focus:outline-none"
-    >
-      <span className="sr-only">Siguiente</span>
-      &#8594;
-    </button>
-  );
+  const removeImage = (index: number) => {
+    setImageUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
+  };
 
   return (
     <>
       <Modal show={open} onClose={handleModalClose} size={"5xl"}>
         <Modal.Header>Editar Sala</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className=" grid grid-cols-3 gap-4">
+          <Modal.Body
+            className="grid gap-3 h-80"
+            style={{ gridTemplateColumns: "39% 59%" }}
+          >
             <fieldset className="flex flex-col">
-              <legend className="font-bold pb-8">Imágenes de la Sala</legend>
-              <div className="relative h-56 sm:h-64 xl:h-80 2xl:h-96">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative w-full h-full">
-                    {imageUrls[currentCarouselIndex] ? (
-                      <>
-                        <img
-                          onClick={() => openImageModal(currentCarouselIndex)}
-                          src={imageUrls[currentCarouselIndex]!}
-                          alt={`Imagen ${currentCarouselIndex + 1}`}
-                          className="w-full h-full object-cover rounded-md cursor-pointer"
-                        />
-                        <button
-                          type="button"
-                          onClick={() =>
-                            handleDeleteImage(currentCarouselIndex)
-                          }
-                          className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-lg hover:bg-gray-200 focus:outline-none"
-                        >
-                          &#x2715;
-                        </button>
-                      </>
-                    ) : (
-                      <div
-                        onClick={() => openImageModal(currentCarouselIndex)}
-                        className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-200"
+              <legend className="font-bold pb-2">Imágenes de la Sala</legend>
+              <Carousel slide={false} className="Custom-Carousel">
+                {imageUrls
+                  .filter((url) => url !== null)
+                  .map((url, index) => (
+                    <figure className="" key={index}>
+                      <Button
+                        className=" absolute z-50 bottom-2"
+                        color={"failure"}
+                        onClick={() => removeImage(index)}
                       >
-                        <span>Selecciona una imagen</span>
-                      </div>
-                    )}
-                    <TextInput
-                      className="hidden"
-                      {...register(`image.${currentCarouselIndex}`)}
-                      value={imageUrls[currentCarouselIndex] || ""}
-                    />
-                  </div>
-                </div>
-                {/* Controles */}
-                <div className="absolute top-1/2 transform -translate-y-1/2 left-4">
-                  <CustomLeftControl />
-                </div>
-                <div className="absolute top-1/2 transform -translate-y-1/2 right-4">
-                  <CustomRightControl />
-                </div>
-                {/* Indicadores */}
-                <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
-                  {imageUrls.map((_, index) => (
-                    <button
-                      key={index}
-                      type="button"
-                      onClick={() => setCurrentCarouselIndex(index)}
-                      className={`w-3 h-3 rounded-full ${
-                        currentCarouselIndex === index
-                          ? "bg-blue-500"
-                          : "bg-gray-300"
-                      }`}
-                    ></button>
+                        Eliminar
+                      </Button>
+                      <img
+                         className=" w-full h-64"
+                        src={url}
+                        alt={`Image ${index + 1}`}
+                      />
+                    </figure>
                   ))}
+                <div
+                  onClick={() => openImageModal()}
+                  className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-200"
+                >
+                  <p>Selecciona una imagen</p>
                 </div>
-              </div>
+              </Carousel>
             </fieldset>
-
-            <div className=" col-span-2 grid grid-cols-2 gap-8">
-              <fieldset>
+            <div className=" grid grid-cols-2 gap-4">
+              <fieldset className=" flex flex-col justify-between">
                 <legend className="font-bold pb-2">Información General</legend>
                 <span>
                   <Label htmlFor="name" value="Nombre de la sala" />
@@ -234,7 +155,7 @@ const EditRoom = ({
                   />
                 </span>
               </fieldset>
-              <fieldset>
+              <fieldset className=" flex flex-col justify-between">
                 <legend className="font-bold pb-2">Detalles de Sala</legend>
                 <span>
                   <Label htmlFor="capacity" value="Aforo de sala" />
@@ -252,7 +173,6 @@ const EditRoom = ({
                   <TextInput
                     id="observations"
                     type="text"
-                    required
                     {...register("observations")}
                     placeholder="Observaciones"
                   />
@@ -272,11 +192,7 @@ const EditRoom = ({
             </div>
           </Modal.Body>
           <Modal.Footer className="flex items-center justify-center">
-            <Button
-              color={"failure"}
-              onClick={handleModalClose}
-              tabIndex={2}
-            >
+            <Button color={"failure"} onClick={handleModalClose} tabIndex={2}>
               Cancelar
             </Button>
             <Button color={"blue"} type="submit">
@@ -289,8 +205,7 @@ const EditRoom = ({
         <AddImage
           showModal={isImageModalOpen}
           onCloseModal={closeImageModal}
-          onImageSelect={handleImageSelect}
-          imageIndex={currentImageIndex}
+          onAddImage={addImageUrl}
         />
       )}
     </>

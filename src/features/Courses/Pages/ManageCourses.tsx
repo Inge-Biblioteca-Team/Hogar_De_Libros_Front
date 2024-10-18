@@ -14,6 +14,7 @@ import TBLCourses from "../components/TBLCourses";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { BsPersonSquare } from "react-icons/bs";
 import CreateCourse from "../components/Crud/CreateCourse";
+import NoRequest from "../components/NoRequest";
 
 const ManageCourses = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -69,49 +70,45 @@ const ManageCourses = () => {
             </div>
             <CreateCourse />
           </div>
-          <Table hoverable className=" text-center">
-            <Table.Head className=" h-20 text-sm">
-              <Table.HeadCell>Nombre</Table.HeadCell>
-              <Table.HeadCell>Encargado</Table.HeadCell>
-              <Table.HeadCell>Fecha</Table.HeadCell>
-              <Table.HeadCell>Hora</Table.HeadCell>
-              <Table.HeadCell>Cupos Disponibles</Table.HeadCell>
-              <Table.HeadCell>Matricula</Table.HeadCell>
-              <Table.HeadCell>Estado</Table.HeadCell>
-              <Table.HeadCell></Table.HeadCell>
-            </Table.Head>
-            <Table.Body>
-              {Courses?.data &&
-              Array.isArray(Courses.data) &&
-              Courses.data.length > 0 ? (
-                Courses.data.map((course: Courses) => (
-                  <TBLCourses key={course.courseId} course={course} />
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={7} className="text-center">
-                    No Existen Cursos Registrados
-                  </td>
-                </tr>
-              )}
-            </Table.Body>
-          </Table>
-          <div className=" w-full flex justify-between">
-            <div>
-              <span className=" pl-5">
-                Mostrar{" "}
-                <span>
-                  <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                </span>{" "}
-                Cursos por página
-              </span>
-            </div>
-            <PaginatationSelector
-              totalPages={MaxPage}
-              currentPage={currentPage}
-              onPageChange={onPageChange}
-            />
-          </div>
+          {Courses?.count && Courses.count > 0 ? (
+            <>
+              <Table hoverable className=" text-center">
+                <Table.Head className=" h-20 text-sm">
+                  <Table.HeadCell>Nombre</Table.HeadCell>
+                  <Table.HeadCell>Encargado</Table.HeadCell>
+                  <Table.HeadCell>Fecha</Table.HeadCell>
+                  <Table.HeadCell>Hora</Table.HeadCell>
+                  <Table.HeadCell>Cupos Disponibles</Table.HeadCell>
+                  <Table.HeadCell>Matricula</Table.HeadCell>
+                  <Table.HeadCell>Estado</Table.HeadCell>
+                  <Table.HeadCell></Table.HeadCell>
+                </Table.Head>
+                <Table.Body className="h-96">
+                  {Courses?.data.map((course: Courses) => (
+                    <TBLCourses key={course.courseId} course={course} />
+                  ))}
+                </Table.Body>
+              </Table>
+              <div className=" w-full flex justify-between">
+                <div>
+                  <span className=" pl-5">
+                    Mostrar{" "}
+                    <span>
+                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
+                    </span>{" "}
+                    Cursos por página
+                  </span>
+                </div>
+                <PaginatationSelector
+                  totalPages={MaxPage}
+                  currentPage={currentPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
+            </>
+          ) : (
+            <NoRequest text="No existen registros de cursos"></NoRequest>
+          )}
         </div>
       </div>
     </>

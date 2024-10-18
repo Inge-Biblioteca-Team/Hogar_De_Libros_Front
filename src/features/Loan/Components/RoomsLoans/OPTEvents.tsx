@@ -11,7 +11,7 @@ const OPTEvents = ({ date }: { date: string }) => {
   );
   return (
     <>
-      <option value="NULL">No aplica</option>
+      <option value="0">No aplica</option>
       {events?.map((program) => (
         <option key={program.EventId} value={program.EventId}>
           {program.Title}
