@@ -18,3 +18,5 @@ const ConditionStatus = ({ condition }: { condition: number }) => {
 };
 
 export default ConditionStatus;
+
+

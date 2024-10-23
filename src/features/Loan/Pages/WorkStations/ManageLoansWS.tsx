@@ -1,11 +1,6 @@
 import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Breadcrumb, Popover } from "flowbite-react";
-import {
-  HomeCrumb,
-  LastCrumb,
-  ManageCrumb,
-} from "../../../../components/BreadCrumb";
+import { Popover } from "flowbite-react";
 import { GetStatus } from "../../Services/SvComputerLoan";
 import { useQuery } from "react-query";
 import ButtonsAccions from "../../Components/WorkStations/ButtonsAccions";
@@ -31,11 +26,6 @@ const ManageLoansWS = () => {
 
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <ManageCrumb />
-        <LastCrumb CurrentPage="Manejo de Préstamos de equipos" />
-      </Breadcrumb>
       <div className=" w-full flex items-center justify-center mt-12">
         <div className="grid grid-cols-4 gap-26 w-4/5">
           {computers?.map((computer) => (

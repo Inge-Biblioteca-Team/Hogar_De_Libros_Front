@@ -3,12 +3,11 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import { useQuery } from "react-query";
 import { RoomApiResponse } from "../Types/Room_Interface";
 import { GetRooms } from "../Services/SvRooms";
-import { Alert, Breadcrumb } from "flowbite-react";
-import { CurrentRoute, HomeRoute } from "../../Books/components/Redirections";
+import { Alert } from "flowbite-react";
 import RoomCards from "../Components/Cards/RoomCards";
-import CreateRooms from "../Components/MODALS/CreateRoms";
+import CreateRooms from "../Components/Modal/CreateRoms";
 import SearchRooms from "../Components/BTN/SearchRooms";
-import { ManageCrumb } from "../../../components/BreadCrumb";
+import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 
 const ManageRoom = () => {
   const [Sname, setName] = useState<string>("");
@@ -37,11 +36,7 @@ const ManageRoom = () => {
 
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb pb-4">
-        <HomeRoute />
-        <ManageCrumb/>
-        <CurrentRoute CurrentPage={"Salas"} />
-      </Breadcrumb>
+      <BreadCrumbManage text="Salas" />
       <section className="flex flex-col justify-center items-center">
         <div className="w-4/5 flex flex-col items-center justify-center pt-1">
           <div className="w-full flex justify-between items-end">
@@ -54,7 +49,11 @@ const ManageRoom = () => {
           </div>
           <div className="w-full pt-2">
             {rooms?.count === 0 ? (
-              <Alert color="warning" rounded className=" mt-32 flex items-center" >
+              <Alert
+                color="warning"
+                rounded
+                className=" mt-32 flex items-center"
+              >
                 No existen salas disponibles
               </Alert>
             ) : (

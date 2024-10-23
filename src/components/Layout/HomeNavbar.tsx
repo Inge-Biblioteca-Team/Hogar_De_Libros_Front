@@ -39,7 +39,12 @@ const HomeNavbar = () => {
         <Drawer.Items>
           <Sidebar className="[&>div]:bg-transparent [&>div]:p-0 w-full">
             <Sidebar.Items className=" w-72">
-              <ForAll />
+              <Sidebar.ItemGroup>
+                <Sidebar.Item href="/" className="text-xl hover:text-blue-500">
+                  Inicio
+                </Sidebar.Item>
+              </Sidebar.ItemGroup>
+              {rol !== "admin" ? <ForAll /> : ""}
               {rol === "admin" ? <ForAdmin /> : ""}
             </Sidebar.Items>
           </Sidebar>

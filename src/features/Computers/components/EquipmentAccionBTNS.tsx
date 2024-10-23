@@ -1,6 +1,6 @@
 import { PiEyeLight, PiPencilDuotone, PiTrash } from "react-icons/pi";
 import { useState } from "react";
-import ModalDownEquip from "./ModalDownEquip";
+import ModalDownEquip from "./Modals/ModalDownEquip";
 import { Equipment } from "../types/Computer";
 import EditComponent from "./Modals/EditComponent";
 import SeeComponent from "./Modals/SeeComponent";

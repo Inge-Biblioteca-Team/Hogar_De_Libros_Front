@@ -1,0 +1,60 @@
+import { Modal, Button, TextInput } from "flowbite-react";
+
+import { HiOutlineExclamationCircle } from "react-icons/hi";
+import UseDownEquip from "../../Hooks/UseDownEquip";
+import { useState } from "react";
+
+const ModalDownEquip = ({
+  open,
+  setOpen,
+  Serial,
+  Code,
+}: {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  Serial: string;
+  Code: string;
+}) => {
+  const { mutate: PatchStatus } = UseDownEquip();
+  const [reason, setReason] = useState("");
+
+  const handleConfirm = () => {
+    PatchStatus(Code, {
+      onSuccess: () => {
+        setOpen(false);
+      },
+    });
+  };
+
+  return (
+    <Modal show={open} size="md" onClose={() => setOpen(false)} popup>
+      <Modal.Header />
+      <Modal.Body>
+        <div className="text-center">
+          <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+          <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+            Está seguro de dar de baja al equipo {Serial}
+          </h3>
+          <TextInput
+            id="reason"
+            type="text"
+            placeholder="Escriba la razón de la baja"
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+            className="mb-4"
+          />
+          <div className="flex justify-center gap-4">
+            <Button color="failure" onClick={() => setOpen(false)}>
+              Cancelar
+            </Button>
+            <Button color="blue" onClick={() => handleConfirm()}>
+              Confimar
+            </Button>
+          </div>
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
+};
+
+export default ModalDownEquip;

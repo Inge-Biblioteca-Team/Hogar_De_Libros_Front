@@ -5,7 +5,7 @@ import { Equipment } from "../types/Computer";
 const TblRows = ({ computers }: { computers: Equipment }) => {
   return (
     <>
-      <Table.Row key={computers.EquipmentUniqueCode} className=" h-24">
+      <Table.Row key={computers.EquipmentUniqueCode}>
         <Table.Cell className=" w-52">{computers.MachineNumber}</Table.Cell>
         <Table.Cell className="w-52">{computers.EquipmentCategory}</Table.Cell>
         <Table.Cell className="w-44 ">{computers.EquipmentBrand}</Table.Cell>
@@ -14,9 +14,7 @@ const TblRows = ({ computers }: { computers: Equipment }) => {
           {computers.Status ? "Activo" : "Inactivo"}
         </Table.Cell>
         <Table.Cell>
-          <EquipmentAccionBTNS
-            computers={computers}
-          />
+          <EquipmentAccionBTNS computers={computers} />
         </Table.Cell>
       </Table.Row>
     </>

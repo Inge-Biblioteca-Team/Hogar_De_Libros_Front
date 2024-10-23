@@ -1,4 +1,4 @@
-import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
+import { Label, Modal, Select, TextInput } from "flowbite-react";
 import ConfirmModal from "../ConfirmModal";
 import { useForm } from "react-hook-form";
 import { Equipment } from "../../types/Computer";
@@ -6,6 +6,9 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useEditComputer from "../../Hooks/useEditComputer";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
+import OptsConditions from "../../../../components/OptsConditions";
+import OPTCategoryEquipment from "../OPTCategoryEquipment";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const EditComponent = ({
   sEdit,
@@ -57,6 +60,10 @@ const EditComponent = ({
     setModalOpen(false);
   };
 
+  const onClose = () => {
+    setSEdit(false);
+  };
+
   const onSubmit = (formData: Equipment) => {
     setNewData(formData);
     setModalOpen(true);
@@ -64,7 +71,7 @@ const EditComponent = ({
 
   return (
     <>
-      <Modal show={sEdit} onClose={() => setSEdit(false)}>
+      <Modal show={sEdit} onClose={onClose}>
         <Modal.Header>Editar componente del equipo</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
@@ -77,13 +84,7 @@ const EditComponent = ({
                   {...register("EquipmentCategory")}
                   required
                 >
-                  <option value={""}>Selecciones la categoría</option>
-                  <option value={"CPU"}>CPU</option>
-                  <option value={"Teclado"}>Teclado</option>
-                  <option value={"Monitor"}>Monitor</option>
-                  <option value={"Mouse"}>Mouse</option>
-                  <option value={"UPS"}>UPS</option>
-                  <option value={"Otros"}>Otros</option>
+                  <OPTCategoryEquipment />
                 </Select>
               </span>
               <span>
@@ -129,12 +130,7 @@ const EditComponent = ({
                   {...register("ConditionRating")}
                   required
                 >
-                  <option value={0}>Seleccione la condición</option>
-                  <option value={5}>Óptimo</option>
-                  <option value={4}>Bueno</option>
-                  <option value={3}>Regular</option>
-                  <option value={2}>Deficiente</option>
-                  <option value={1}>Deplorable</option>
+                  <OptsConditions />
                 </Select>
               </span>
               <span>
@@ -148,15 +144,7 @@ const EditComponent = ({
               </span>
             </fieldset>
           </Modal.Body>
-
-          <Modal.Footer className=" flex w-full items-center justify-center">
-            <Button color={"failure"} onClick={() => setSEdit(false)}>
-              Cancelar
-            </Button>
-            <Button color={"blue"} type="submit">
-              Confirmar
-            </Button>
-          </Modal.Footer>
+          <ModalFooters onClose={onClose} />
         </form>
       </Modal>
       {NewData && (

@@ -1,20 +1,13 @@
-import { Breadcrumb } from "flowbite-react";
-import {
-  HomeCrumb,
-  ManageCrumb,
-  LoanCrumb,
-  LastCrumb,
-} from "../../../../components/BreadCrumb";
 import TBLLoan from "../../Components/BooksLoans/TBLLoan";
 import { useQuery } from "react-query";
 import { GetDoneLoans } from "../../Services/SvBookLoan";
 import { LoanResponse } from "../../Types/BookLoan";
-import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
-import PaginatationSelector from "../../../../components/Paginations/PaginatationSelector";
 import { useEffect, useState } from "react";
 import FinishedLoanSearch from "../../Components/BooksLoans/FinishedLoanSearch";
 import NoRequest from "../../Components/NoRequest";
 import UseDebounce from "../../../../hooks/UseDebounce";
+import { BreadCrumbManage } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import CustomPagination from "../../../../components/CustomPagination";
 
 const FinishedLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -40,7 +33,6 @@ const FinishedLoans = () => {
   const SName = UseDebounce(Name, 1000);
   const sSignaCode = UseDebounce(SignaCode, 1000);
 
-  
   const { data: Loan } = useQuery<LoanResponse, Error>(
     [
       "DLoans",
@@ -59,7 +51,7 @@ const FinishedLoans = () => {
         EndDate,
         "",
         SName,
-        sSignaCode,
+        sSignaCode
       ),
     {
       staleTime: 600,
@@ -68,12 +60,7 @@ const FinishedLoans = () => {
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <ManageCrumb />
-        <LoanCrumb />
-        <LastCrumb CurrentPage="Préstamos Finalizados" />
-      </Breadcrumb>
+      <BreadCrumbManage text="Historial de préstamos" />
       <div className="flex place-content-center mt-14">
         <div className="w-4/5">
           <FinishedLoanSearch
@@ -87,22 +74,11 @@ const FinishedLoans = () => {
           ) : (
             <>
               {Loan && <TBLLoan Loan={Loan} />}
-              <div className=" w-full flex justify-between">
-                <div>
-                  <span className=" pl-5">
-                    Mostrar{" "}
-                    <span>
-                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                    </span>{" "}
-                    Préstamos por página
-                  </span>
-                </div>
-                <PaginatationSelector
-                  totalPages={MaxPage}
-                  currentPage={currentPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
+              <CustomPagination        page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+            total={Loan?.count || 0}/>
             </>
           )}
         </div>

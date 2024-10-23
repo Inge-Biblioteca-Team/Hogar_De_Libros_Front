@@ -7,13 +7,17 @@ import { useNavigate } from "react-router-dom";
 import { GetUserInfo } from "../Services/SvUsuer";
 import { User } from "../Type/UserType";
 import { getCountReservations } from "../../Loan/Services/SVReservations";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import UserContext from "../../../Context/UserContext/UserContext";
 
 const UserData = () => {
   const Navi = useNavigate();
 
-  const email = sessionStorage.getItem("email");
   const cedula = sessionStorage.getItem("cedula");
+
+  const { currentUser, isLogged } = useContext(UserContext);
+
+  const email = currentUser?.email;
 
   const [count, setCount] = useState<number>(0);
 
@@ -125,7 +129,7 @@ const UserData = () => {
           <div className="flex items-center mb-4">
             <FaUserFriends className="text-gray-800 dark:text-gray-200 mr-2" />
             <span className="text-sm text-gray-800 dark:text-gray-200">
-              Amigo
+              {isLogged ? " Amigo" : ""}
             </span>
           </div>
           <Button

@@ -1,9 +1,8 @@
-import { Breadcrumb, Timeline } from "flowbite-react";
+import { Timeline } from "flowbite-react";
 import TLItemReservation from "./TLItemReservation";
 import { responseMyReservations } from "../../Types/RoomsReservations";
 import { useQuery } from "react-query";
 import { getMyReservations } from "../../Services/SVReservations";
-import { HomeCrumb, LastCrumb } from "../../../../components/BreadCrumb";
 
 const RoomsReservationsTL = () => {
   const cedula = sessionStorage.getItem("cedula");
@@ -21,10 +20,6 @@ const RoomsReservationsTL = () => {
 
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <LastCrumb CurrentPage="Solicitudes y reservas aprobadas" />
-      </Breadcrumb>
       <div
         className=" w-full flex items-center justify-center mt-28"
         style={{ height: "60vh" }}
@@ -35,7 +30,9 @@ const RoomsReservationsTL = () => {
             horizontal
           >
             {reserves?.count === 0 ? (
-              <div className="w-full text-center text-2xl font-bold">No tiene reservas agendadas</div>
+              <div className="w-full text-center text-2xl font-bold">
+                No tiene reservas agendadas
+              </div>
             ) : (
               reserves?.data.map((reserve) => (
                 <TLItemReservation

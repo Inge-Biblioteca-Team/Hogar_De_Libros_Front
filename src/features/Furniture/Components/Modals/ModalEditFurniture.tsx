@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import useEditFurniture from "../../Hooks/useEditFuniture";
 import toast from "react-hot-toast";
-import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
+import { FloatingLabel, Label, Modal, Select } from "flowbite-react";
 import ConfirmModalFurniture from "./ConfirmModalFurniture";
+import OptsConditions from "../../../../components/OptsConditions";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const ModalEditFurniture = ({
   sEdit,
@@ -20,7 +22,7 @@ const ModalEditFurniture = ({
   const [NewData, setNewData] = useState<furniture | null>(null);
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const { register, handleSubmit, setValue } = useForm<furniture>();
+  const { register, handleSubmit, setValue, reset } = useForm<furniture>();
   const { mutate: editFurniture } = useEditFurniture();
 
   useEffect(() => {
@@ -61,83 +63,54 @@ const ModalEditFurniture = ({
     setModalOpen(false);
   };
 
+  const onClose = () => {
+    setEdit(false);
+    reset()
+  };
+
   return (
     <>
-      <Modal show={sEdit} size="md" onClose={() => setEdit(false)}>
-        <Modal.Header>Editar Mobiliario</Modal.Header>
+      <Modal show={sEdit} size="md" onClose={onClose}>
+        <Modal.Header>
+          Editar Mobiliario {furniture.LicenseNumber}{" "}
+        </Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="flex flex-col gap-6">
             <fieldset className="grid grid-cols-2 gap-8 text-center">
-              <legend className="pb-3">Información del Mobiliario</legend>
+              <FloatingLabel
+                variant="outlined"
+                label="Descripción"
+                {...register("Description")}
+                required
+              />
+              <FloatingLabel
+                variant="outlined"
+                label="Ubicación"
+                {...register("Location")}
+                required
+              />
               <span>
-                <Label htmlFor="LicenseNumber" value="Número de placa" />
-                <TextInput
-                  id="LicenseNumber"
-                  type="text"
-                  sizing="md"
-                  {...register("LicenseNumber")}
-                  readOnly
-                  disabled
-                />
+                <Label htmlFor="ConditionRating" value="Persona a cargo" />
+                <Select {...register("InChargePerson")}>
+                  <option value="">Persona responsable</option>
+                  <option value="Dian">Dian</option>
+                </Select>
               </span>
-              <span>
-                <Label htmlFor="Description" value="Descripción" />
-                <TextInput
-                  id="Description"
-                  type="text"
-                  sizing="md"
-                  {...register("Description")}
-                  required
-                />
-              </span>
-              <span>
-                <Label htmlFor="Location" value="Ubicación" />
-                <TextInput
-                  id="Location"
-                  type="text"
-                  {...register("Location")}
-                  sizing="md"
-                  required
-                />
-              </span>
-              <span>
-                <Label htmlFor="InChargePerson" value="Persona a Cargo" />
-                <TextInput
-                  id="InChargePerson"
-                  type="text"
-                  {...register("InChargePerson")}
-                  sizing="md"
-                  required
-                />
-              </span>
-            </fieldset>
-            <fieldset className="grid grid-cols-1 gap-7 text-center">
-              <legend>Información Adicional</legend>
-              <span className=" mt-2">
+              <div>
                 <Label htmlFor="ConditionRating" value="Condición" />
                 <Select
                   id="ConditionRating"
                   {...register("ConditionRating")}
                   required
                 >
-                  <option value={0}>Seleccione la condición</option>
-                  <option value={5}>Óptimo</option>
-                  <option value={4}>Regular</option>
-                  <option value={3}>Deficiente</option>
-                  <option value={2}>Deplorable</option>
-                  <option value={1}>Deplorable</option>
+                  <OptsConditions />
                 </Select>
-              </span>
+              </div>
             </fieldset>
+
+            <span className=" mt-2"></span>
           </Modal.Body>
-          <Modal.Footer className="flex w-full items-center justify-center">
-            <Button color={"failure"} onClick={() => setEdit(false)}>
-              Cancelar
-            </Button>
-            <Button color={"blue"} type="submit">
-              Confirmar
-            </Button>
-          </Modal.Footer>
+          <ModalFooters onClose={onClose} />
         </form>
       </Modal>
       {NewData && (

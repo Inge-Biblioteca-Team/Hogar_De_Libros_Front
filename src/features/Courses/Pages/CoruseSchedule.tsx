@@ -1,12 +1,12 @@
-import { Breadcrumb, Select, Timeline } from "flowbite-react";
+import {Select, Timeline } from "flowbite-react";
 import CourseTimeItem from "../components/CourseTimeItem";
 import { useQuery } from "react-query";
 import { ApiCourseResponse } from "../types/Courses";
 import { GetNextCourses } from "../services/SvCourses";
-import { HomeCrumb, LastCrumb } from "../../../components/BreadCrumb";
 import { CiCalendarDate } from "react-icons/ci";
 import { FaReadme } from "react-icons/fa6";
 import { useState } from "react";
+import { BreadCrumbsItems, BreadLastItems } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 const CoruseSchedule = () => {
   const [month, setMonth] = useState<string>("");
   const [type, setType] = useState<string>("");
@@ -45,10 +45,9 @@ const CoruseSchedule = () => {
   
   return (
     <>
-      <Breadcrumb className=" custom-breadcrumb">
-        <HomeCrumb />
-        <LastCrumb CurrentPage="Próximos Cursos" />
-      </Breadcrumb>
+      <BreadCrumbsItems>
+      <BreadLastItems text="Próximos cursos"/>
+      </BreadCrumbsItems>
       <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
         <div className=" flex gap-4 w-4/5 items-start ml-5">
           <Select

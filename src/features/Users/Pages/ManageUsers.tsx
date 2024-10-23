@@ -1,19 +1,14 @@
-import { Breadcrumb, Table } from "flowbite-react";
+import { Table } from "flowbite-react";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
-import {
-  HomeCrumb,
-  LoanCrumb,
-  LastCrumb,
-} from "../../../components/BreadCrumb";
-import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
-import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
 import NoRequest from "../../Loan/Components/NoRequest";
 import TBLUsers from "../Components/TBLUsers";
 import SearchUsers from "../Components/SearchUers";
 import { GetUsersList } from "../Services/SvUsuer";
 import { User, UsersResponse } from "../Type/UserType";
 import UseDebounce from "../../../hooks/UseDebounce";
+import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import CustomPagination from "../../../components/CustomPagination";
 
 const ManageUsers = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -51,18 +46,14 @@ const ManageUsers = () => {
   const MaxPage = Math.ceil((Users?.count ?? 0) / 5);
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <LoanCrumb />
-        <LastCrumb CurrentPage="Lista de Usuarios" />
-      </Breadcrumb>
+      <BreadCrumbManage text="Usuarios" />
       <div className="flex place-content-center mt-14">
         <div className="w-4/5">
           <SearchUsers
-          setYear={setYear}
-          setRol={setRol}
-          setCedula={setCedula}
-          setName={setName}
+            setYear={setYear}
+            setRol={setRol}
+            setCedula={setCedula}
+            setName={setName}
           />
           {Users?.count == 0 ? (
             <NoRequest text="No hay" />
@@ -86,22 +77,13 @@ const ManageUsers = () => {
                 </Table.Body>
               </Table>
 
-              <div className=" w-full flex justify-between mt-4">
-                <div>
-                  <span className=" pl-5">
-                    Mostrar{" "}
-                    <span>
-                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                    </span>{" "}
-                    Usuarios por página
-                  </span>
-                </div>
-                <PaginatationSelector
-                  totalPages={MaxPage}
-                  currentPage={currentPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
+              <CustomPagination
+                page={currentPage}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Users?.count || 0}
+              />
             </>
           )}
         </div>

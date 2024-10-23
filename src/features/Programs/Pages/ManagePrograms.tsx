@@ -1,26 +1,14 @@
 import { useEffect, useState } from "react";
 import MDCreateNewProgram from "../components/Modals/MDCreateNewProgram";
-import {
-  HomeCrumb,
-  LastCrumb,
-  ManageCrumb,
-} from "../../../components/BreadCrumb";
-import {
-  Breadcrumb,
-  Button,
-  Label,
-  Select,
-  Table,
-  TextInput,
-} from "flowbite-react";
+import { Button, Label, Select, Table, TextInput } from "flowbite-react";
 import NoRequest from "../../Loan/Components/NoRequest";
-import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
-import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
 import { useQuery } from "react-query";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { ApiProgramsResponse } from "../types/Programs";
 import ProgramsRows from "../components/ProgramsRows";
 import { GetProgramsList } from "../services/SvPrograms";
+import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import CustomPagination from "../../../components/CustomPagination";
 
 const ManagePrograms = () => {
   const [Oadd, SetOAdd] = useState<boolean>(false);
@@ -57,11 +45,7 @@ const ManagePrograms = () => {
   const MaxPage = Math.ceil((Programs?.count ?? 0) / currentLimit);
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <ManageCrumb />
-        <LastCrumb CurrentPage="Programas" />
-      </Breadcrumb>
+      <BreadCrumbManage text="Programas" />
       <div className="w-full flex items-center justify-center">
         <div className="w-4/5">
           <div className="flex items-end justify-between w-full mb-5 mt-3">
@@ -112,22 +96,13 @@ const ManagePrograms = () => {
                   ))}
                 </Table.Body>
               </Table>
-              <div className="w-full flex justify-between">
-                <div>
-                  <span className="pl-5">
-                    Mostrar{" "}
-                    <span>
-                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                    </span>{" "}
-                    Programas por página
-                  </span>
-                </div>
-                <PaginatationSelector
-                  totalPages={MaxPage}
-                  currentPage={currentPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
+              <CustomPagination
+                page={currentPage}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Programs?.count || 0}
+              />
             </>
           )}
         </div>

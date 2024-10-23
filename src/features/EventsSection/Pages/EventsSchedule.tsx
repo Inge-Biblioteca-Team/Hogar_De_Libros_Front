@@ -2,11 +2,11 @@ import { useState } from "react";
 import { GetNextEvents } from "../services/SvEvents";
 import { ApiEventsResponse } from "../types/Events";
 import { useQuery } from "react-query";
-import { Breadcrumb, Select, Timeline } from "flowbite-react";
-import { HomeCrumb, LastCrumb } from "../../../components/BreadCrumb";
+import { BreadcrumbItem, Select, Timeline } from "flowbite-react";
 import { CiCalendarDate } from "react-icons/ci";
 import { FaReadme } from "react-icons/fa6";
 import EventTimeItem from "../components/EventTimeItem";
+import { BreadLastItems } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 
 const EventsSchedule = () => {
   const [month, setMonth] = useState<string>("");
@@ -46,10 +46,9 @@ const EventsSchedule = () => {
 
   return (
     <>
-      <Breadcrumb className=" custom-breadcrumb">
-        <HomeCrumb />
-        <LastCrumb CurrentPage="Próximos Eventos" />
-      </Breadcrumb>
+      <BreadcrumbItem>
+        <BreadLastItems text="Proximos eventos" />
+      </BreadcrumbItem>
       <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
         <div className=" flex gap-4 w-4/5 items-start ml-5">
           <Select
@@ -84,7 +83,9 @@ const EventsSchedule = () => {
             horizontal
           >
             {events?.count == 0 ? (
-              <strong className=" flex w-full items-center justify-center text-2xl">No hay eventos Próximos</strong>
+              <strong className=" flex w-full items-center justify-center text-2xl">
+                No hay eventos Próximos
+              </strong>
             ) : (
               events?.data.map((event) => (
                 <EventTimeItem event={event} key={event.id} />

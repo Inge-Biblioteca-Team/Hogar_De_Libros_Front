@@ -1,17 +1,11 @@
-import { Breadcrumb, Table, TextInput } from "flowbite-react";
-import {
-  HomeCrumb,
-  LastCrumb,
-  ManageCrumb,
-} from "../../../../components/BreadCrumb";
+import { Table, TextInput } from "flowbite-react";
 import HistoryRegist from "../../Components/WorkStations/HistoryRegist";
-import PaginatationSelector from "../../../../components/Paginations/PaginatationSelector";
-import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { GetWSLoans } from "../../Services/SvComputerLoan";
 import { ApiWSResponse } from "../../Types/ComputerLoan";
 import UseDebounce from "../../../../hooks/UseDebounce";
+import CustomPagination from "../../../../components/CustomPagination";
 
 const WorkStationsLoanHistory = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -45,11 +39,6 @@ const WorkStationsLoanHistory = () => {
 
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <ManageCrumb />
-        <LastCrumb CurrentPage="Historial de uso de equipos de cómputo" />
-      </Breadcrumb>
       <div className=" w-full flex items-center justify-center mt-12">
         <div className=" w-4/5">
           <Table hoverable className=" text-center">
@@ -57,11 +46,15 @@ const WorkStationsLoanHistory = () => {
               <Table.HeadCell>
                 <span className=" flex items-center justify-center gap-2">
                   Número de Máquina
-                  <TextInput className="w-8" type="number" placeholder="#" onChange={(event)=>SetMachineNumber(event.target.value)} />
+                  <TextInput
+                    className="w-8"
+                    type="number"
+                    placeholder="#"
+                    onChange={(event) => SetMachineNumber(event.target.value)}
+                  />
                 </span>
               </Table.HeadCell>
-              <Table.HeadCell>
-                Nombre del Usuario</Table.HeadCell>
+              <Table.HeadCell>Nombre del Usuario</Table.HeadCell>
               <Table.HeadCell>Aprobado Por</Table.HeadCell>
               <Table.HeadCell>
                 <span className=" flex items-center justify-center gap-2">
@@ -80,22 +73,13 @@ const WorkStationsLoanHistory = () => {
               ))}
             </Table.Body>
           </Table>
-          <div className=" w-full flex justify-between">
-            <div>
-              <span className=" pl-5">
-                Mostrar{" "}
-                <span>
-                  <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                </span>{" "}
-                Resultados por página
-              </span>
-            </div>
-            <PaginatationSelector
-              totalPages={MaxPage}
-              currentPage={currentPage}
-              onPageChange={onPageChange}
-            />
-          </div>
+          <CustomPagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+            total={WSLoan?.count || 0}
+          />
         </div>
       </div>
     </>

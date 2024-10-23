@@ -1,89 +1,83 @@
 import api from "../../../Services/AxiosConfig";
 import { FurnitureEdit } from "../type/furniture";
 
-
-  const PostNewFurniture = async (furniture:FurnitureEdit) =>{
-    try{
-        const response = await api.post(`/Furniture`, furniture);
-        return response.data;
-    } catch (error){
-        console.error("Error to post furniture", error);
-        throw error;
-    }
+const PostNewFurniture = async (furniture: FurnitureEdit) => {
+  try {
+    const response = await api.post(`/Furniture`, furniture);
+    return response.data;
+  } catch (error) {
+    console.error("Error to post furniture", error);
+    throw error;
   }
+};
 
-  ///paginacion
-  const GetFurniturePaginated = async (
-    page: number,
-    limit: number,
-    description?: string,
-    location?: string,
-    inchargeperson?: string,
-    status?: string
-  ) => {
-    try {
-      const params: { [key: string]: string | number | undefined } = {
-        page: page,
-        limit: limit,
-      };
-  
-      if (description) params.description = description;
-      if (location) params.location = location;
-      if (inchargeperson) params.inchargeperson = inchargeperson;
-      if (status) params.Status = status;
+///paginacion
+const GetFurniturePaginated = async (
+  page: number,
+  limit: number,
+  description?: string,
+  status?: string,
+  code?: string
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {
+      page: page,
+      limit: limit,
+    };
 
-      console.log("Params enviados a la API:", params);
-  
-      const response = await api.get("/Furniture", { params });
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  };
+    if (code) params.LicenseNumber = code;
+    if (description) params.Description = description;
+    if (status) params.Status = status;
 
-  //edit
-  const PatchEditFurniture = async (
-    furniture: FurnitureEdit, 
-    ObjetiveID: string
-  ) => {
-    try {
-      const response = await api.patch(`furniture/${ObjetiveID}`, furniture); 
-      return response.data;
-    } catch (error) {
-      console.error("Error al editar mobiliario:", error); 
-      throw error;
-    }
-  };
-
-  //dar de baja 
-  
-const DownFurniture = async (Id: string, acction:string) => {
-    try {
-      const response = await api.patch(`furniture/${Id}/${acction}`);
-      return response.data;
-    } catch (error) {
-      console.error("Error to post book:", error);
-      throw error;
-    }
-  };
-  
-  ///get by id
-  const GetFurniturebyID = async (Id:string) => {
-    try {
-      const response = await api.get(`furniture/${Id}`);
-      return response.data;
-    } catch (error) {
-      console.error("Error al obtener el mobiliario:", error);
-      throw error;
-    }
-  };
-
-  export {
-    PostNewFurniture,
-    GetFurniturePaginated,
-    DownFurniture,
-    PatchEditFurniture,
-    GetFurniturebyID
+    const response = await api.get("/Furniture", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
-  
+};
+
+//edit
+const PatchEditFurniture = async (
+  furniture: FurnitureEdit,
+  ObjetiveID: string
+) => {
+  try {
+    const response = await api.patch(`furniture/${ObjetiveID}`, furniture);
+    return response.data;
+  } catch (error) {
+    console.error("Error al editar mobiliario:", error);
+    throw error;
+  }
+};
+
+//dar de baja
+
+const DownFurniture = async (Id: string, acction: string) => {
+  try {
+    const response = await api.patch(`furniture/${Id}/${acction}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error to post book:", error);
+    throw error;
+  }
+};
+
+///get by id
+const GetFurniturebyID = async (Id: string) => {
+  try {
+    const response = await api.get(`furniture/${Id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error al obtener el mobiliario:", error);
+    throw error;
+  }
+};
+
+export {
+  PostNewFurniture,
+  GetFurniturePaginated,
+  DownFurniture,
+  PatchEditFurniture,
+  GetFurniturebyID,
+};

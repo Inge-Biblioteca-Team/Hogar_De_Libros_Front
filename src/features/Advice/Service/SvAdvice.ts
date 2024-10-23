@@ -17,7 +17,7 @@ const CreateAdvice = async (data: Advice) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el avisp"
+        error.response?.data.message || "Error al crear el aviso"
       );
     } else {
       console.error("Error desconocido:", error);

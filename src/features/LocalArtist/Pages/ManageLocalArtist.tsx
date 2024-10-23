@@ -1,13 +1,5 @@
-import { Breadcrumb, Table } from "flowbite-react";
-import {
-  HomeCrumb,
-  LastCrumb,
-  LoanCrumb,
-  ManageCrumb,
-} from "../../../components/BreadCrumb";
+import {Table } from "flowbite-react";
 import NoRequest from "../../Loan/Components/NoRequest";
-import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
-import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
 import { useQuery } from "react-query";
 import { Artist, ResponseA } from "../types/LocalArtist";
 import { getLocalArtist } from "../services/SvArtist";
@@ -16,6 +8,8 @@ import TBLArtists from "../components/TBLArtists";
 import SearchArtists from "../components/SearchArtists";
 import CreateArtist from "../components/Modals/CreateArtist";
 import UseDebounce from "../../../hooks/UseDebounce";
+import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import CustomPagination from "../../../components/CustomPagination";
 
 const ManageLocalArtist = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -51,12 +45,7 @@ const ManageLocalArtist = () => {
 
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <LoanCrumb />
-        <ManageCrumb />
-        <LastCrumb CurrentPage="Lista de Artistas" />
-      </Breadcrumb>
+      <BreadCrumbManage text="Artistas locales" />
 
       <div className=" w-full flex items-center justify-center pt-12">
         <div className=" w-4/5">
@@ -87,22 +76,13 @@ const ManageLocalArtist = () => {
                   ))}
                 </Table.Body>
               </Table>
-              <div className=" w-full flex justify-between">
-                <div>
-                  <span className=" pl-5">
-                    Mostrar{" "}
-                    <span>
-                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                    </span>{" "}
-                    Artistas por página
-                  </span>
-                </div>
-                <PaginatationSelector
-                  totalPages={MaxPage}
-                  currentPage={currentPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
+              <CustomPagination
+                page={currentPage}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Artists?.count || 0}
+              />
             </>
           )}
         </div>

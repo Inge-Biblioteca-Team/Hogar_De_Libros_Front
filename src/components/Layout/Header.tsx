@@ -18,7 +18,7 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
 
 
   return (
-    <Navbar className="sticky top-0 z-50 text-white w-full bg-Body py-4">
+    <Navbar className="sticky top-0 z-50 text-white w-full bg-Body py-4 mb-3">
       <Navbar.Brand className="w-full flex items-center justify-between p-4 max-sm:w-4/5 max-sm:p-0">
         <div className="flex items-center flex-grow justify-center space-x-2">
           <FontAwesomeIcon

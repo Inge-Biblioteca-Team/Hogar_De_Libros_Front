@@ -13,15 +13,19 @@ const LocalArtistList = () => {
   );
   return (
     <section className="w-4/5 flex flex-col items-center justify-center">
-      <h2 className="text-3xl pb-8">Artistas Locales</h2>
-      <div
-        className="grid grid-cols-4 gap-5
+      {LArtists && LArtists.count > 0 && (
+        <>
+          <h2 className="text-3xl pb-8">Artistas Locales</h2>
+          <div
+            className="grid grid-cols-4 gap-5
       max-sm:flex max-sm:w-full max-sm:overflow-x-scroll max-sm:gap-2 max-sm:pb-2"
-      >
-        {LArtists?.data.map((artist: Artist, index: number) => (
-          <CardArtistL key={index} artist={artist} />
-        ))}
-      </div>
+          >
+            {LArtists?.data.map((artist: Artist, index: number) => (
+              <CardArtistL key={index} artist={artist} />
+            ))}
+          </div>
+        </>
+      )}
     </section>
   );
 };
