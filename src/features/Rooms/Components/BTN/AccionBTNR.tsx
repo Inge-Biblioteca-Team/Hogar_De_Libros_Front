@@ -4,8 +4,8 @@ import { Room } from "../../Types/Room_Interface";
 
 import { Popover } from "flowbite-react";
 import RoomStatusPopover from "../RoomStatupopover";
-import EditRoom from "../MODALS/EditRooms";
-import ViewRoom from "../MODALS/ViewRoom";
+import EditRoom from "../Modal/EditRooms";
+import ViewRoom from "../Modal/ViewRoom";
 
 const BTNAccions = ({ rooms }: { rooms: Room }) => {
   const [openS, setOpenS] = useState<boolean>(false);

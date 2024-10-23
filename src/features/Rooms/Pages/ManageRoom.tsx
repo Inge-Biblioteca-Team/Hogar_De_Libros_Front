@@ -5,7 +5,7 @@ import { RoomApiResponse } from "../Types/Room_Interface";
 import { GetRooms } from "../Services/SvRooms";
 import { Alert } from "flowbite-react";
 import RoomCards from "../Components/Cards/RoomCards";
-import CreateRooms from "../Components/MODALS/CreateRoms";
+import CreateRooms from "../Components/Modal/CreateRoms";
 import SearchRooms from "../Components/BTN/SearchRooms";
 import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 
