@@ -1,17 +1,6 @@
-import { Outlet } from "react-router-dom";
-import AdminBooksInformation from "../features/Books/Pages/AdminBooksInformation";
-import AdminCBooksInformation from "../features/Books/Pages/ChildrenBooks/AdminCBooksInformation";
-import EditCBookInformation from "../features/Books/Pages/ChildrenBooks/EditCBookInformation";
-import ManageChildrenBooks from "../features/Books/Pages/ChildrenBooks/ManageChildrenBooks";
-import NewCBook from "../features/Books/Pages/ChildrenBooks/NewCBook";
-import EditBookInformation from "../features/Books/Pages/EditBookInformation";
-import ManageBooks from "../features/Books/Pages/ManageBooks";
-import NewBook from "../features/Books/Pages/NewBook";
-import AvailableComputers from "../features/Computers/components/AvailableComputers";
+import ManageChildrenBooks from "../features/ChildrenBooks/Screens/ManageChildrenBooks";
 import ManagerComputer from "../features/Computers/Pages/ManagerComputer";
-import NewAdminLoan from "../features/Loan/Components/BooksLoans/NewAdminLoan";
 import ManageUsers from "../features/Users/Pages/ManageUsers";
-import Layout from "../Pages/Layout";
 import ManageLoansWS from "../features/Loan/Pages/WorkStations/ManageLoansWS";
 import FinishedLoans from "../features/Loan/Pages/Books/FinishedLoans";
 import InProgressLoans from "../features/Loan/Pages/Books/InProgressLoans";
@@ -24,144 +13,121 @@ import ReservationList from "../features/Loan/Pages/Rooms/ReservationList";
 import OldReservationList from "../features/Loan/Pages/Rooms/OldReservationList";
 import AprovedReservationList from "../features/Loan/Pages/Rooms/AprovedReservationList";
 import ManageRoom from "../features/Rooms/Pages/ManageRoom";
+import ManageBooks from "../features/Books/Screens/ManageBooks";
+import ManageCourses from "../features/Courses/Pages/ManageCourses";
+import ManageLocalArtist from "../features/LocalArtist/Pages/ManageLocalArtist";
+import AdviceManage from "../features/Advice/Screens/AdviceManage";
+import RoomsScheduleManage from "../features/Loan/Pages/Rooms/RoomsScheduleManage";
 
-
-const adminRoutes = [
+const AdminRoutes = [
   {
-    path: "HogarDeLibros/Gestion",
-    element: (
-        <Layout NavbarType="HogarDeLibros">
-          <Outlet />
-        </Layout>
-      ),
+    path: "Prestamos_Circulacion",
+    children: [
+      {
+        path: "Catalogo_General",
+        element: <ManageBooks />,
+      },
+      {
+        path: "Catalogo_Infantil",
+        element: <ManageChildrenBooks />,
+      },
+      {
+        path: "Prestamo_Computo",
+        element: <ManageLoansWS />,
+      },
+      {
+        path: "Prestamos_Activos",
+        element: <InProgressLoans />,
+      },
+      {
+        path: "Solicitudes_Libros",
+        element: <PendingRequest />,
+      },
+      {
+        path: "Solicitudes_Salas",
+        element: <ReservationList />,
+      },
+      {
+        path: "Reserva_Aprovadas",
+        element: <AprovedReservationList />,
+      },
+      {
+        path: "Reservar_Sala",
+        element: <RoomsScheduleManage />,
+      },
+    ],
+  },
+  {
+    path: "Avisos",
+    element: <AdviceManage />,
+  },
+  {
+    path: "Historial",
     children: [
       {
         path: "Libros",
-        children: [
-          {
-            index: true,
-            element: <ManageBooks />,
-          },
-          {
-            path: "NuevoLibro",
-            element: <NewBook />,
-          },
-          {
-            path: "Ver/:BookCode",
-            element: <AdminBooksInformation />,
-          },
-          {
-            path: "Editar/:BookCode",
-            element: <EditBookInformation />,
-          },
-          {
-            path: "Préstamos/:BookCode",
-            element: <NewAdminLoan />,
-          },
-        ],
+        element: <FinishedLoans />,
       },
       {
-        path: "LibrosI",
-        children: [
-          {
-            index: true,
-            element: <ManageChildrenBooks />,
-          },
-          {
-            path: "NuevoLibro",
-            element: <NewCBook />,
-          },
-          {
-            path: "Ver/:BookCode",
-            element: <AdminCBooksInformation />,
-          },
-          {
-            path: "Editar/:BookCode",
-            element: <EditCBookInformation />,
-          },
-        ],
+        path: "Equipo_Computo",
+        element: <WorkStationsLoanHistory />,
       },
       {
-        path: "Equipos",
-        children: [
-          {
-            index: true,
-            element: <ManagerComputer />,
-          },
-          {
-            path: "disponible",
-            element: <AvailableComputers />,
-          }
-        ],
+        path: "Salas",
+        element: <OldReservationList />,
+      },
+    ],
+  },
+  {
+    path: "Servicios",
+    children: [
+      {
+        path: "Cursos",
+        element: <ManageCourses />,
       },
       {
-        path: "Usuarios",
-        children: [
-          {
-            index: true,
-            element: <ManageUsers />,
-          },
-        ],
+        path: "Eventos",
+        element: <ManageEvents />,
+      },
+      {
+        path: "Programas",
+        element: <ManagePrograms />,
+      },
+    ],
+  },
+  {
+    path: "Gestion_Usuarios",
+    element: <ManageUsers />,
+  },
+  {
+    path: "Recursos",
+    children: [
+      {
+        path: "Artistas",
+        element: <ManageLocalArtist />,
+      },
+      {
+        path: "Equipo_Computo",
+        element: <ManagerComputer />,
       },
       {
         path: "Mobiliario",
         element: <ManageFurniture />,
       },
       {
-        path: "Eventos",
-        element: < ManageEvents />,
-      },
-      {
-        path: "Programas",
-        element: < ManagePrograms />,
-      },
-      {
         path: "Salas",
-        element: < ManageRoom />,
+        element: <ManageRoom />,
       },
       {
-        path: "Préstamos",
-        children: [
-          {
-            index: true,
-          },
-          {
-            path: "Pendientes",
-            element: <PendingRequest />,
-          },
-          {
-            path: "Finalizados",
-            element: <FinishedLoans />,
-          },
-          {
-            path: "EnProceso",
-            element: <InProgressLoans />,
-          },
-          {
-            path: "HistorialDeEquipos",
-            element: <WorkStationsLoanHistory />,
-          },
-          {
-            path: "Computadoras",
-            element: <ManageLoansWS />,
-          },
-          {
-            path: "SolicitudesDeSalas",
-            element:<ReservationList/>
-          },
-          {
-            path: "SalasReservadas",
-            element:<AprovedReservationList/>
-          },
-          {
-            path: "HistorialDePrestamos",
-            element:<OldReservationList/>
-          },
-
-        ],
+        path: "Catalogo_General",
+        element: <ManageBooks />,
+      },
+      {
+        path: "Catalogo_Infantil",
+        element: <ManageChildrenBooks />,
       },
     ],
   },
 ];
 
-export default adminRoutes;
+export default AdminRoutes;

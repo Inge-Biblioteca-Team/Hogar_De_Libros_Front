@@ -1,12 +1,6 @@
-import { Breadcrumb, Label, Table, TextInput } from "flowbite-react";
-import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
-import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
+import { Label, Table, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
-import {
-  HomeCrumb,
-  LastCrumb,
-  ManageCrumb,
-} from "../../../components/BreadCrumb";
+
 import { useQuery } from "react-query";
 import { getCourses } from "../services/SvCourses";
 import { Courses, ResponseC } from "../types/Courses";
@@ -15,6 +9,8 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import { BsPersonSquare } from "react-icons/bs";
 import CreateCourse from "../components/Crud/CreateCourse";
 import NoRequest from "../components/NoRequest";
+import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import CustomPagination from "../../../components/CustomPagination";
 
 const ManageCourses = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -51,11 +47,7 @@ const ManageCourses = () => {
 
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <ManageCrumb />
-        <LastCrumb CurrentPage="Lista de Cursos" />
-      </Breadcrumb>
+      <BreadCrumbManage text="Cursos" />
       <div className=" w-full flex items-center justify-center pt-12">
         <div className=" w-4/5">
           <div className="flex items-end justify-between mb-3">
@@ -89,22 +81,13 @@ const ManageCourses = () => {
                   ))}
                 </Table.Body>
               </Table>
-              <div className=" w-full flex justify-between">
-                <div>
-                  <span className=" pl-5">
-                    Mostrar{" "}
-                    <span>
-                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                    </span>{" "}
-                    Cursos por página
-                  </span>
-                </div>
-                <PaginatationSelector
-                  totalPages={MaxPage}
-                  currentPage={currentPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
+              <CustomPagination
+                page={currentPage}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Courses?.count || 0}
+              />
             </>
           ) : (
             <NoRequest text="No existen registros de cursos"></NoRequest>

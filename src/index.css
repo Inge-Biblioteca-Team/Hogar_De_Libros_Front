@@ -23,18 +23,21 @@ background-color: #dfe2e6;
     animation: scroll 20s linear infinite;
 }
 .custom-breadcrumb a{
-    font-size: 1.3rem !important;
-  }
-  .custom-breadcrumb span{
-    font-size: 1.3rem !important;
-  }
-  .custom-breadcrumb svg{
-    scale: 1.4 !important;
-  }
-  .custom-breadcrumb{
-    margin: 4px;
-  }
-
+  font-size: 1.3rem !important;
+}
+.custom-breadcrumb span{
+  font-size: 1.3rem !important;
+}
+.custom-breadcrumb svg{
+  scale: 1.4 !important;
+}
+.custom-breadcrumb svg:hover{
+  scale: 1.8 !important;
+}
+.custom-breadcrumb{
+cursor: pointer;
+ margin: 0 0 70px 10px;
+}
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -86,3 +89,7 @@ input[type="number"] {
   background-color: #4545aec7;
   border-radius: 50%;
  }
+
+ .custom-Select select{
+  padding: 0.81rem;
+}

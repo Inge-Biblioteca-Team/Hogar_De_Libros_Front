@@ -3,26 +3,15 @@ import { useForm } from "react-hook-form";
 import { Button, Carousel, Label, Modal, TextInput } from "flowbite-react";
 import { CreateRoom } from "../../Types/Room_Interface";
 import UseCreateRooms from "../../Hooks/UseCreateRoms";
-import AddImage from "../../Services/AddImage";
 
 const CreateRooms = () => {
   const { register, reset, handleSubmit } = useForm<CreateRoom>();
-
-  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   const [imageUrls, setImageUrls] = useState<(string | null)[]>([null]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { mutate: createRoom } = UseCreateRooms();
-
-  const openImageModal = () => {
-    setIsImageModalOpen(true);
-  };
-
-  const closeImageModal = () => {
-    setIsImageModalOpen(false);
-  };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -50,10 +39,6 @@ const CreateRooms = () => {
   };
   const removeImage = (index: number) => {
     setImageUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
-  };
-
-  const addImageUrl = (newUrl: string) => {
-    setImageUrls((prevUrls) => [...prevUrls, newUrl]);
   };
 
   return (
@@ -89,10 +74,7 @@ const CreateRooms = () => {
                       />
                     </figure>
                   ))}
-                <div
-                  onClick={() => openImageModal()}
-                  className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-200"
-                >
+                <div className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-200">
                   <p>Selecciona una imagen</p>
                 </div>
               </Carousel>
@@ -179,13 +161,6 @@ const CreateRooms = () => {
           </Modal.Footer>
         </form>
       </Modal>
-      {isImageModalOpen && (
-        <AddImage
-          showModal={isImageModalOpen}
-          onCloseModal={closeImageModal}
-          onAddImage={addImageUrl}
-        />
-      )}
     </>
   );
 };

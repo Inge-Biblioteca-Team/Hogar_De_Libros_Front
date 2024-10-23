@@ -13,10 +13,10 @@ const AccionsBTN = ({
   setOpenD: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
-    <>
+    <div className=" flex gap-4 items-center justify-center">
       <button
         type="button"
-        title="Ver Información del Curso"
+        title="Ver Información"
         className="hover:text-Body"
         onClick={() => setOpenS(true)}
       >
@@ -24,7 +24,7 @@ const AccionsBTN = ({
       </button>
       <button
         type="button"
-        title="Editar Información del Curso"
+        title="Editar Información"
         className={`${
           Status ? "" : "cursor-not-allowed"
         } hover:text-yellow-400`}
@@ -35,14 +35,14 @@ const AccionsBTN = ({
       </button>
       <button
         type="button"
-        title="Desabilitar Curso"
+        title="Desabilitar"
         className={`${Status ? "" : "cursor-not-allowed"} hover:text-red-800`}
         disabled={!Status}
         onClick={() => setOpenD(true)}
       >
         <PiTrash size={24} />
       </button>
-    </>
+    </div>
   );
 };
 

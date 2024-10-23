@@ -1,21 +1,15 @@
-import { Breadcrumb, Button, Table } from "flowbite-react";
-import {
-  HomeCrumb,
-  LastCrumb,
-  ManageCrumb,
-} from "../../../components/BreadCrumb";
+import { Button, Table } from "flowbite-react";
 import { GetFurniturePaginated } from "../services/SvFurniture";
 import { apiResponseFt } from "../type/furniture";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import UseDebounce from "../../../hooks/UseDebounce";
-import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
-import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
-import InpSearchTitle from "../../../components/Inputs/InpSearchTitle";
 import BtnSerchFur from "../Components/BTN/BtnSerchFur";
 import AdminAdvancedSearchFur from "../Components/BTN/AdminAdvancedSerchFur";
 import ModalAddNewFurniture from "../Components/Modals/ModalAddNewFurniture";
 import FurnitureRows from "../Components/FurnitureRows";
+import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import CustomPagination from "../../../components/CustomPagination";
 
 const ManageFurniture = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
@@ -70,19 +64,11 @@ const ManageFurniture = () => {
 
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <ManageCrumb />
-        <LastCrumb CurrentPage="Gestión de Mobiliario" />
-      </Breadcrumb>
+      <BreadCrumbManage text="Mobiliario" />
       <div className=" flex w-full place-content-center mt-5">
         <div className=" w-5/6 flex flex-col gap-4">
           <div className=" flex justify-between">
             <div className="flex gap-2">
-              <InpSearchTitle
-                Criterio="Descripción"
-                onSearch={setSearchDescription}
-              />
               <AdminAdvancedSearchFur see={advance} EStatus={setSearchStatus} />
               <BtnSerchFur click={viewAdvanceSearchComp} icon={advance} />
             </div>
@@ -107,23 +93,14 @@ const ManageFurniture = () => {
               ))}
             </Table.Body>
           </Table>
-          <div className=" w-full flex justify-between">
-            <div>
-              <span className=" pl-5">
-                Mostrar{" "}
-                <span>
-                  <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                </span>{" "}
-                Piezas de mobiliario por página
-              </span>
-            </div>
-            <PaginatationSelector
-              totalPages={MaxPage}
-              currentPage={currentPage}
-              onPageChange={onPageChange}
-            />
-          </div>
-          </div>
+          <CustomPagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+            total={furnitures?.count || 0}
+          />
+        </div>
       </div>
     </>
   );

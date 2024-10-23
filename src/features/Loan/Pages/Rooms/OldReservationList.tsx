@@ -1,11 +1,4 @@
-import { Breadcrumb, Label, Select, Table, TextInput } from "flowbite-react";
-import PaginatationSelector from "../../../../components/Paginations/PaginatationSelector";
-import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
-import {
-  HomeCrumb,
-  LastCrumb,
-  LoanCrumb,
-} from "../../../../components/BreadCrumb";
+import { Label, Select, Table, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
 import TblOldReservation from "../../Components/RoomsLoans/TablesHeaders/TblOldReservation";
 import { ReserveResponse } from "../../Types/RoomsReservations";
@@ -13,6 +6,7 @@ import { useQuery } from "react-query";
 import NoRequest from "../../Components/NoRequest";
 import { getReservations } from "../../Services/SVReservations";
 import OPTRooms from "../../Components/RoomsLoans/OPTRooms";
+import CustomPagination from "../../../../components/CustomPagination";
 
 const OldReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -46,11 +40,6 @@ const OldReservationList = () => {
 
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <LoanCrumb />
-        <LastCrumb CurrentPage="Historial de préstamos de salas" />
-      </Breadcrumb>
       <div className=" w-full flex items-center justify-center mt-16">
         <div className="w-4/5">
           <div className=" flex gap-3">
@@ -86,22 +75,13 @@ const OldReservationList = () => {
               >
                 {reservations && <TblOldReservation reserve={reservations} />}
               </Table>
-              <div className=" w-full flex justify-between">
-                <div>
-                  <span className=" pl-5">
-                    Mostrar{" "}
-                    <span>
-                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                    </span>{" "}
-                    Solicitudes por página
-                  </span>
-                </div>
-                <PaginatationSelector
-                  currentPage={currentPage}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                />
-              </div>
+              <CustomPagination
+                page={currentPage}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={reservations?.count || 0}
+              />
             </>
           )}
         </div>

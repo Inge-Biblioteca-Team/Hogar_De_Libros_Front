@@ -1,80 +1,32 @@
 import { Sidebar } from "flowbite-react";
+import ForAll from "./ForAll";
+import LeadingOptions from "./LeadingOptions";
+import ResoursesOptions from "./ResoursesOptions";
+import ServicesOptions from "./ServicesOptions";
+import RecordsOptions from "./RecordsOptions";
 
 const ForAdmin = () => {
   return (
     <>
       <Sidebar.ItemGroup>
-        <Sidebar.Collapse label="Gestión">
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Equipos">
-            Equipos de Cómputo
-          </Sidebar.Item>
-          <Sidebar.Collapse className=" font-bold" label="Libros">
-            <Sidebar.Item href="/HogarDeLibros/Gestion/Libros">
-              Catálogo General
-            </Sidebar.Item>
-            <Sidebar.Item href="/HogarDeLibros/Gestion/LibrosI">
-              Catálogo Infantil
-            </Sidebar.Item>
-          </Sidebar.Collapse>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Artistas">
-            Artistas Locales
-          </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Salas">Salas</Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Mobiliario">
-            Mobiliario
-          </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Programas">
-            Programas
-          </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Eventos">
-            Eventos
-          </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Cursos">
-            Cursos
-          </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Usuarios">
-            Usuarios
-          </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Gestion/Avisos">
-            Avisos Importantes
-          </Sidebar.Item>
+        <Sidebar.Collapse label="Vistas de usuario">
+          <ForAll />
         </Sidebar.Collapse>
       </Sidebar.ItemGroup>
+      <LeadingOptions />
       <Sidebar.ItemGroup>
-        <Sidebar.ItemGroup>
-          <Sidebar.Collapse label="Préstamos">
-            <Sidebar.Collapse label="Libros">
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Pendientes">
-                Solicitudes Pendientes
-              </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/EnProceso">
-                Préstamos Activos
-              </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Finalizados">
-                Historial de préstamos
-              </Sidebar.Item>
-            </Sidebar.Collapse>
-            <Sidebar.Collapse label="Equipo de Computo">
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/Computadoras">
-                Generar Préstamos
-              </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/HistorialDeEquipos">
-                Historial de usos
-              </Sidebar.Item>
-            </Sidebar.Collapse>
-            <Sidebar.Collapse label="Préstamos de salas">
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/SolicitudesDeSalas">
-                Solicitudes de Salas
-              </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/SalasReservadas">
-                Préstamos en aprobados
-              </Sidebar.Item>
-              <Sidebar.Item href="/HogarDeLibros/Gestion/Préstamos/HistorialDePrestamos">
-                Historial de Préstamos
-              </Sidebar.Item>
-            </Sidebar.Collapse>
-          </Sidebar.Collapse>
-        </Sidebar.ItemGroup>
+        <RecordsOptions />
+      </Sidebar.ItemGroup>
+      <Sidebar.ItemGroup>
+        <ResoursesOptions />
+      </Sidebar.ItemGroup>
+      <Sidebar.ItemGroup>
+        <ServicesOptions />
+      </Sidebar.ItemGroup>
+      <Sidebar.ItemGroup>
+        <Sidebar.Item href="/HogarDeLibros/Gestion_Usuarios">
+          Gestión Usuarios
+        </Sidebar.Item>
       </Sidebar.ItemGroup>
     </>
   );

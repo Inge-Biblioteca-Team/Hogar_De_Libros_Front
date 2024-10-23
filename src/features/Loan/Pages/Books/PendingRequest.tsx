@@ -1,18 +1,11 @@
-import { Breadcrumb } from "flowbite-react";
-import {
-  HomeCrumb,
-  LastCrumb,
-  LoanCrumb,
-  ManageCrumb,
-} from "../../../../components/BreadCrumb";
 import TBLLoan from "../../Components/BooksLoans/TBLLoan";
 import { useQuery } from "react-query";
 import { GetPendandRequest } from "../../Services/SvBookLoan";
 import { LoanResponse } from "../../Types/BookLoan";
 import { useEffect, useState } from "react";
-import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
-import PaginatationSelector from "../../../../components/Paginations/PaginatationSelector";
 import NoRequest from "../../Components/NoRequest";
+import CustomPagination from "../../../../components/CustomPagination";
+import { BreadCrumbsItems, BreadLastItems } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 
 const PendingRequest = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -39,34 +32,22 @@ const PendingRequest = () => {
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <ManageCrumb />
-        <LoanCrumb />
-        <LastCrumb CurrentPage="Solicitudes Pendientes" />
-      </Breadcrumb>
+      <BreadCrumbsItems>
+      <BreadLastItems text="Solicitudes de préstamos"/>
+      </BreadCrumbsItems>
       {Loan?.count == 0 ? (
         <NoRequest text={"No Hay Solicitudes Pendientes"} />
       ) : (
         <div className="flex place-content-center mt-20">
           <div className="w-4/5">
             {Loan && <TBLLoan Loan={Loan} NeedAccions />}
-            <div className=" w-full flex justify-between">
-              <div>
-                <span className=" pl-5">
-                  Mostrar{" "}
-                  <span>
-                    <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                  </span>{" "}
-                  Solicitudes por página
-                </span>
-              </div>
-              <PaginatationSelector
-                totalPages={MaxPage}
-                currentPage={currentPage}
+              <CustomPagination
+                page={currentPage}
                 onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Loan?.count || 0}
               />
-            </div>
           </div>
         </div>
       )}

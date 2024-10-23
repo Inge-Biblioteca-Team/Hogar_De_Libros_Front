@@ -3,18 +3,13 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import { useQuery } from "react-query";
 import { GetEvents } from "../services/SvEvents";
 import { apiResponseE } from "../types/Events";
-import { Breadcrumb, Table } from "flowbite-react";
-import {
-  HomeCrumb,
-  LastCrumb,
-  ManageCrumb,
-} from "../../../components/BreadCrumb";
-import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
+import { Table } from "flowbite-react";
 import NoRequest from "../../Loan/Components/NoRequest";
 import EventsRows from "../components/EventsRows";
-import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
 import SearchEvents from "../components/BTN/SerchEvents";
 import CreateEvents from "../components/Modals/CreateEvents";
+import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import CustomPagination from "../../../components/CustomPagination";
 
 const ManageEvents = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -49,11 +44,7 @@ const ManageEvents = () => {
   const MaxPage = Math.ceil((Events?.count ?? 0) / currentLimit);
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <ManageCrumb />
-        <LastCrumb CurrentPage="Eventos" />
-      </Breadcrumb>
+      <BreadCrumbManage text="Eventos" />
       <div className="w-full flex items-center justify-center">
         <div className="w-4/5">
           <div className="flex items-end justify-between w-full mb-5 mt-3">
@@ -83,22 +74,13 @@ const ManageEvents = () => {
                   ))}
                 </Table.Body>
               </Table>
-              <div className="w-full flex justify-between">
-                <div>
-                  <span className="pl-5">
-                    Mostrar{" "}
-                    <span>
-                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                    </span>{" "}
-                    Eventos por página
-                  </span>
-                </div>
-                <PaginatationSelector
-                  totalPages={MaxPage}
-                  currentPage={currentPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
+              <CustomPagination
+                page={currentPage}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Events?.count || 0}
+              />
             </>
           )}
         </div>

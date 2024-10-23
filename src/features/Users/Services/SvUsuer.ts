@@ -2,7 +2,6 @@ import axios from "axios";
 import api from "../../../Services/AxiosConfig";
 import { SingIng, User } from "../Type/UserType";
 import { jwtDecode, JwtPayload } from "jwt-decode";
-
 const GetUsersList = async (
   page: number,
   limit: number,
@@ -87,6 +86,7 @@ interface Payload extends JwtPayload {
   role: string;
 }
 
+
 const LogIn = async (Data: SingIng) => {
   try {
     const response = await api.post("auth/login", Data);
@@ -101,6 +101,7 @@ const LogIn = async (Data: SingIng) => {
         sessionStorage.setItem("cedula", sub);
         sessionStorage.setItem("email", email);
         sessionStorage.setItem("role", role);
+        return { sub , email, role };
       } catch (error) {
         console.error("Error al decodificar el token:", error);
       }
@@ -141,5 +142,5 @@ export {
   LogIn,
   GetUserInfo,
   PatchUserByAdmin,
-  UpUser
+  UpUser,
 };

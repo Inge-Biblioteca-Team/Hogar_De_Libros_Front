@@ -1,19 +1,13 @@
-import { Breadcrumb, Pagination } from "flowbite-react";
-import {
-  HomeCrumb,
-  ManageCrumb,
-  LoanCrumb,
-  LastCrumb,
-} from "../../../../components/BreadCrumb";
 import TBLLoan from "../../Components/BooksLoans/TBLLoan";
 import { useQuery } from "react-query";
 import { GetInProgressLoan } from "../../Services/SvBookLoan";
 import { LoanResponse } from "../../Types/BookLoan";
-import SltCurrentLimit from "../../../../components/Paginations/SltCurrentLimit";
 import { useEffect, useState } from "react";
 import SearchInputs from "../../Components/BooksLoans/SearchInputs";
 import NoRequest from "../../Components/NoRequest";
 import UseDebounce from "../../../../hooks/UseDebounce";
+import { BreadCrumbManage } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import CustomPagination from "../../../../components/CustomPagination";
 
 const InProgressLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -58,16 +52,10 @@ const InProgressLoans = () => {
     setSignaCode("");
   };
 
-
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <ManageCrumb />
-        <LoanCrumb />
-        <LastCrumb CurrentPage="Préstamos en progreso" />
-      </Breadcrumb>
+      <BreadCrumbManage text="Préstamos en progreso" />
       <div className="flex place-content-center mt-14 pb-3">
         <div className="w-4/5">
           <SearchInputs
@@ -83,25 +71,13 @@ const InProgressLoans = () => {
           ) : (
             <>
               {Loan && <TBLLoan Loan={Loan} NeedAccions Inprogress />}
-              <div className=" w-full flex justify-between">
-                <div>
-                  <span className=" pl-5">
-                    Mostrar{" "}
-                    <span>
-                      <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                    </span>{" "}
-                    Solicitudes por página
-                  </span>
-                </div>
-                <Pagination
-                  nextLabel="Siguiente"
-                  previousLabel="Anterior"
-                  currentPage={currentPage}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                  showIcons
-                />
-              </div>
+              <CustomPagination
+                page={currentPage}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Loan?.count || 0}
+              />
             </>
           )}
         </div>

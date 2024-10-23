@@ -1,5 +1,3 @@
-import { Breadcrumb } from "flowbite-react";
-import { HomeCrumb, LastCrumb } from "../../../../components/BreadCrumb";
 import RoomsSchedule from "../../Components/RoomsLoans/RoomsSchedule";
 import SearchCalendar from "../../Components/RoomsLoans/SearchCalendar";
 import { useState } from "react";
@@ -25,10 +23,6 @@ const RoomsScheduleManage = () => {
 
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <LastCrumb CurrentPage="Reserva y disponibilidad de salas" />
-      </Breadcrumb>
       <div className=" w-full flex items-center justify-center mt-40">
         <div className=" w-11/12 flex items-start justify-between gap-6">
           <SearchCalendar setSearchDate={setSearchDate} />

@@ -10,7 +10,7 @@ const UseCreateAdvice = () => {
     mutationFn: (data: Advice) =>
       toast.promise(CreateAdvice(data), {
         loading: "Creando...",
-        success: <span>Exito, Aviso creado correctamente</span>,
+        success: <span>Éxito, Aviso creado correctamente</span>,
         error: (error: ApiError) => (
           <span>Error al crear el aviso: {error.message}</span>
         ),

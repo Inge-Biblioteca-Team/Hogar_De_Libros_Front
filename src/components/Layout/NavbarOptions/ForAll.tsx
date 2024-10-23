@@ -18,29 +18,22 @@ const ForAll = () => {
   return (
     <>
       <Sidebar.ItemGroup>
-        <Sidebar.Item href="/" className="text-xl hover:text-blue-500">
-          Inicio
-        </Sidebar.Item>
-      </Sidebar.ItemGroup>
-      <Sidebar.ItemGroup>
         <Sidebar.Item className="" href="/HogarDeLibros">
           Catálogo Completo de libros
         </Sidebar.Item>
         <Sidebar.Collapse label="Búsqueda de libros">
-          <Sidebar.Item href="/HogarDeLibros/Busqueda/Titulo">
-            Por Título
-          </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Busqueda/Avanzada">
+          <Sidebar.Item href="/HogarDeLibros/Catalogo">Por Título</Sidebar.Item>
+          <Sidebar.Item href="/HogarDeLibros/Catalogo/Avanzado">
             Búsqueda Avanzada
           </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Busqueda/Infantiles">
+          <Sidebar.Item href="/HogarDeLibros/Catalogo/Infantil">
             Catálogo Infantil
           </Sidebar.Item>
         </Sidebar.Collapse>
-        <Sidebar.Item className="" href="/HogarDeLibros/ProximosEventos">
+        <Sidebar.Item className="" href="/HogarDeLibros/Cronograma_Eventos">
           Cronograma de eventos
         </Sidebar.Item>
-        <Sidebar.Item className="" href="/HogarDeLibros/ProximosCursos">
+        <Sidebar.Item className="" href="/HogarDeLibros/Cronograma_Cursos">
           Cronograma de cursos
         </Sidebar.Item>
         <Sidebar.Item className="" href="/HogarDeLibros">
@@ -51,13 +44,13 @@ const ForAll = () => {
         </Sidebar.Item>
         <Sidebar.Item
           className=""
-          href="/HogarDeLibros/Gestion/Equipos/disponible"
+          href="/HogarDeLibros/Gestion/Equipo_Disponible"
         >
           Disponibilidad <br />
           de Equipo de cómputo
         </Sidebar.Item>
         {(role === "admin" || role === "creator") && (
-          <Sidebar.Item className="" href="/HogarDeLibros/Salas/Disponibilidad">
+          <Sidebar.Item className="" href="/HogarDeLibros/Reserva_Salas">
             Reserva de salas
           </Sidebar.Item>
         )}

@@ -3,7 +3,6 @@ import { Button, Carousel, Label, Modal, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { Room, updateRooms } from "../../Types/Room_Interface";
 import UseUpdateRoom from "../../Hooks/UseUpdateRooms";
-import AddImage from "../../Services/AddImage";
 
 const EditRoom = ({
   open,
@@ -27,18 +26,13 @@ const EditRoom = ({
     },
   });
 
-  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageUrls, setImageUrls] = useState<(string | null)[]>([]);
 
   const { mutate: updateRoom } = UseUpdateRoom();
 
-  const openImageModal = () => {
-    setIsImageModalOpen(true);
-  };
 
-  const closeImageModal = () => {
-    setIsImageModalOpen(false);
-  };
+
+
 
   const handleModalClose = () => {
     setOpen(false);
@@ -73,9 +67,7 @@ const EditRoom = ({
     }
   }, [room.image]);
 
-  const addImageUrl = (newUrl: string) => {
-    setImageUrls((prevUrls) => [...prevUrls, newUrl]);
-  };
+ 
 
   const removeImage = (index: number) => {
     setImageUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
@@ -105,14 +97,13 @@ const EditRoom = ({
                         Eliminar
                       </Button>
                       <img
-                         className=" w-full h-64"
+                        className=" w-full h-64"
                         src={url}
                         alt={`Image ${index + 1}`}
                       />
                     </figure>
                   ))}
                 <div
-                  onClick={() => openImageModal()}
                   className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-200"
                 >
                   <p>Selecciona una imagen</p>
@@ -201,13 +192,6 @@ const EditRoom = ({
           </Modal.Footer>
         </form>
       </Modal>
-      {isImageModalOpen && (
-        <AddImage
-          showModal={isImageModalOpen}
-          onCloseModal={closeImageModal}
-          onAddImage={addImageUrl}
-        />
-      )}
     </>
   );
 };

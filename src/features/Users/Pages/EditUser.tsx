@@ -1,5 +1,4 @@
-import { Breadcrumb, Button, Card } from "flowbite-react";
-import { HomeCrumb, LastCrumb } from "../../../components/BreadCrumb";
+import { Button, Card } from "flowbite-react";
 import { useQuery } from "react-query";
 import { User } from "../Type/UserType";
 import { GetUserInfo } from "../Services/SvUsuer";
@@ -8,6 +7,10 @@ import { useState } from "react";
 import ContacE from "../Components/EditsModals/ContacE";
 import GeneralInfoE from "../Components/EditsModals/GeneralInfoE";
 import PlaceE from "../Components/EditsModals/PlaceE";
+import {
+  BreadCrumbsItems,
+  BreadLastItems,
+} from "../../../components/Breadcrumbs/BreadCrumbsItems";
 
 const EditUser = () => {
   const cedula = sessionStorage.getItem("cedula");
@@ -50,10 +53,9 @@ const EditUser = () => {
   };
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <LastCrumb CurrentPage="Editar Perfil" />
-      </Breadcrumb>
+      <BreadCrumbsItems>
+        <BreadLastItems text="Perfil" />
+      </BreadCrumbsItems>
       <div className=" w-full flex items-center justify-center">
         <div className=" w-4/5 flex flex-col gap-6 justify-center">
           <fieldset className="mt-10">
@@ -83,16 +85,21 @@ const EditUser = () => {
                     </span>
                     <span>
                       <strong className=" font-bold">
-                        Fecha de Nacimiento: </strong>
+                        Fecha de Nacimiento:{" "}
+                      </strong>
                       {BirthDate}
                     </span>
                     <span>
-                      <strong className=" font-bold">Fecha de Registro: </strong>
+                      <strong className=" font-bold">
+                        Fecha de Registro:{" "}
+                      </strong>
                       {RegDate}
                     </span>
                     <span>
-                      <strong className=" font-bold">Maximo de libros a solicitar: </strong>
-                      {User?.role && LoanMapping[User.role] || "N/A" }
+                      <strong className=" font-bold">
+                        Máximo de libros a solicitar:{" "}
+                      </strong>
+                      {(User?.role && LoanMapping[User.role]) || "N/A"}
                     </span>
                   </div>
                 </div>

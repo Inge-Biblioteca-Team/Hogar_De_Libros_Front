@@ -1,21 +1,16 @@
-import { Breadcrumb, Button, Table } from "flowbite-react";
+import { Button, Table } from "flowbite-react";
 import { useState } from "react";
 import { apiResponseCE } from "../types/Computer";
-import SltCurrentLimit from "../../../components/Paginations/SltCurrentLimit";
 import { GetComputerPaginated } from "../Services/SvComputer";
 import { useQuery } from "react-query";
 import AdminAdvancedSearchComp from "../components/AdminAvdvaceSearchComp";
 import BtnAdminAdSearchCm from "../components/BtnAdSerchCm";
 import UseDebounce from "../../../hooks/UseDebounce";
-import {
-  HomeCrumb,
-  LastCrumb,
-  ManageCrumb,
-} from "../../../components/BreadCrumb";
-import PaginatationSelector from "../../../components/Paginations/PaginatationSelector";
-import InpSearchTitle from "../../../components/Inputs/InpSearchTitle";
+
 import TblRows from "../components/TblRows";
 import NewComponent from "../components/Modals/NewComponent";
+import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import CustomPagination from "../../../components/CustomPagination";
 
 const ManagerComputer = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
@@ -24,7 +19,7 @@ const ManagerComputer = () => {
   });
   const [currentLimit, setCurrentLimit] = useState<number>(5);
   const [advance, setAdvance] = useState<boolean>(false);
-  const[sNew, setSNew] = useState<boolean>(false)
+  const [sNew, setSNew] = useState<boolean>(false);
   const [searchMNum, setSearMNum] = useState<string>("");
   const searchMNumDealy = UseDebounce(searchMNum, 1000);
   const [searchEBrand, setSearEBrand] = useState<string>("");
@@ -67,16 +62,11 @@ const ManagerComputer = () => {
 
   return (
     <>
-      <Breadcrumb className="custom-breadcrumb">
-        <HomeCrumb />
-        <ManageCrumb />
-        <LastCrumb CurrentPage="Equipo De Cómputo" />
-      </Breadcrumb>
+      <BreadCrumbManage text="Equipo de computo" />
       <div className=" flex w-full place-content-center mt-5">
         <div className=" w-5/6 flex flex-col gap-4">
           <div className=" flex justify-between">
             <div className="flex gap-2">
-              <InpSearchTitle Criterio="# Máquina" onSearch={setSearMNum} />
               <AdminAdvancedSearchComp
                 see={advance}
                 EBrand={setSearEBrand}
@@ -85,12 +75,11 @@ const ManagerComputer = () => {
               />
               <BtnAdminAdSearchCm click={viewAdvanceSerchComp} icon={advance} />
             </div>
-            <Button color={"blue"} onClick={()=>setSNew(true)}>Añadir Equipo</Button>
+            <Button color={"blue"} onClick={() => setSNew(true)}>
+              Añadir Equipo
+            </Button>
           </div>
-          <Table
-            hoverable
-            className="text-center"
-          >
+          <Table hoverable className="text-center">
             <Table.Head className=" h-16">
               <Table.HeadCell>Número de Máquina</Table.HeadCell>
               <Table.HeadCell>Categoría</Table.HeadCell>
@@ -102,27 +91,21 @@ const ManagerComputer = () => {
             <Table.Body>
               {computers?.data.map((computers) => (
                 <>
-                  <TblRows key={computers.EquipmentUniqueCode} computers={computers} />
+                  <TblRows
+                    key={computers.EquipmentUniqueCode}
+                    computers={computers}
+                  />
                 </>
               ))}
             </Table.Body>
           </Table>
-          <div className=" w-full flex justify-between">
-            <div>
-              <span className=" pl-5">
-                Mostrar{" "}
-                <span>
-                  <SltCurrentLimit setCurrentLimit={setCurrentLimit} />
-                </span>{" "}
-                Equipos por página
-              </span>
-            </div>
-            <PaginatationSelector
-              totalPages={MaxPage}
-              currentPage={currentPage}
-              onPageChange={onPageChange}
-            />
-          </div>
+          <CustomPagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+            total={computers?.count || 0}
+          />
         </div>
       </div>
       <NewComponent sNew={sNew} setSNew={setSNew} />

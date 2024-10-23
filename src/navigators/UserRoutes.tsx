@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import EditUser from "../features/Users/Pages/EditUser";
 import MyLoanHIstory from "../features/Loan/Components/UserLoans/MyLoanHIstory";
 import Layout from "../Pages/Layout";
-import NewUsaerLoan from "../features/Loan/Components/BooksLoans/NewUserLoan";
 import ChangePassword from "../features/Users/Components/ChangePassword";
 import UserEnrollmentCourses from "../features/Courses/screens/UserEnrollmentCourses";
 import RoomsReservations from "../features/Loan/Components/UserLoans/RoomsReservationsTL";
@@ -42,7 +41,6 @@ const UserRoutes = [
         children: [
           {
             path: ":BookCode",
-            element: <NewUsaerLoan />,
           },
         ],
       },

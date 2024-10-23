@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { Modal, Button, Label, TextInput, Checkbox, Dropdown, Select } from "flowbite-react";
 
 const EditUserAdmin = () => {
@@ -13,6 +13,7 @@ const EditUserAdmin = () => {
     salas: false,
     privilegiosLibros: "Medio"
   });
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const target = e.target;

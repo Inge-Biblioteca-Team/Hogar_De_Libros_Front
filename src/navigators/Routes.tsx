@@ -1,28 +1,29 @@
-import { createBrowserRouter } from "react-router-dom";
-import adminRoutes from "./AdminRoutes";
-import bookRoutes from "./BookRoutes";
-import homeRoutes from "./HomeRoutes";
-import UserRoutes from "./UserRoutes";
-import localArtistRoutes from "./LocalArtistRoutes";
-import CorusesAndEventRoutes from "./CourseAndEventRoutes";
-import coursesRoutes from "./CoursesRoutes";
-import EventRoutes from "./EventRoutes";
-import RoomRoutes from "./RoomRoutes";
-import RoomsRoutes from "./RoomsRoutes";
-import AdviceRoutes from "./AdviceRoutes";
+import { createBrowserRouter, Outlet } from "react-router-dom";
+import BasicUsersRoutes from "./BasicUsersRoutes";
+import Layout from "../Pages/Layout";
+import Landing from "../screens/Landing";
+import AuthRoutes from "./AuhtRoutes";
+import AdminRoutes from "./AdminRoutes";
 
 const Routes = createBrowserRouter([
-  ...homeRoutes,
-  ...bookRoutes,
-  ...adminRoutes,
-  ...UserRoutes,
-  ...localArtistRoutes,
-  ...CorusesAndEventRoutes,
-  ...coursesRoutes,
-  ...EventRoutes,
-  ...RoomRoutes,
-  ...RoomsRoutes,
-  ...AdviceRoutes,
+  {
+    index: true,
+    element: (
+      <Layout NavbarType="Landing">
+        <Landing />
+      </Layout>
+    ),
+  },
+  ...AuthRoutes,
+  {
+    path: "HogarDeLibros",
+    element: (
+      <Layout NavbarType="HogarDeLibros">
+        <Outlet />
+      </Layout>
+    ),
+    children: [...BasicUsersRoutes, ...AdminRoutes],
+  },
 ]);
 
 export default Routes;
