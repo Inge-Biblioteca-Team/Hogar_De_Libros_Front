@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import ModalFooters from "../../../../components/ModalFooters";
 import ModalImageLoader from "./ModalImageLoader";
 import { Book } from "../../Types/BooksTypes";
-import OpsCoditions from "../OptsConditions";
+import OpsCoditions from "../../../../components/OptsConditions";
 import OptsCateogry from "../OptsCategories";
 import UseCreateBook from "../../Hooks/UseCreateBook";
 

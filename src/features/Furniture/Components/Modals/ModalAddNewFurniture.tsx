@@ -1,10 +1,11 @@
-import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
+import { Label, Modal, Select, TextInput } from "flowbite-react";
 import ModalAddMoreActive from "../../../../components/Modals/ModalAddMoreActive";
 import ConfirmModalFurniture from "./ConfirmModalFurniture";
 import { useForm } from "react-hook-form";
 import { Dispatch, SetStateAction, useState } from "react";
 import { furniture } from "../../type/furniture";
 import useNewFurniture from "../../Hooks/useNewFurniture";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const ModalAddNewFurniture = ({
   sNewF,
@@ -19,6 +20,11 @@ const ModalAddNewFurniture = ({
     Open: setNeedMore,
     Reset: reset,
   });
+
+  const onClose = () => {
+    setSNewF(false);
+    reset();
+  };
 
   const [newFurnitureData, setNewFurnitureData] = useState<furniture | null>(
     null
@@ -42,7 +48,7 @@ const ModalAddNewFurniture = ({
 
   return (
     <>
-      <Modal show={sNewF} size="md" onClose={() => setSNewF(false)}>
+      <Modal show={sNewF} size="md" onClose={onClose}>
         <Modal.Header>Agregar Mobiliario</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
@@ -108,14 +114,7 @@ const ModalAddNewFurniture = ({
             </fieldset>
           </Modal.Body>
 
-          <Modal.Footer className="flex w-full items-center justify-center">
-            <Button color={"failure"} onClick={() => setSNewF(false)}>
-              Cancelar
-            </Button>
-            <Button color={"blue"} type="submit">
-              Confirmar
-            </Button>
-          </Modal.Footer>
+          <ModalFooters onClose={onClose} />
         </form>
       </Modal>
       {newFurnitureData && (

@@ -1,10 +1,13 @@
-import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
+import { Label, Modal, Select, TextInput } from "flowbite-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import useNewComputer from "../../Hooks/useNewComputer";
 import { Equipment } from "../../types/Computer";
 import ConfirmModal from "../ConfirmModal";
 import ModalAddMoreActive from "../../../../components/Modals/ModalAddMoreActive";
+import OPTCategoryEquipment from "../OPTCategoryEquipment";
+import OptsConditions from "../../../../components/OptsConditions";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const NewComponent = ({
   sNew,
@@ -43,10 +46,14 @@ const NewComponent = ({
   const handleCancel = () => {
     setModalOpen(false);
   };
+  const onClose = () => {
+    setSNew(false);
+    reset();
+  };
 
   return (
     <>
-      <Modal show={sNew} onClose={() => setSNew(false)}>
+      <Modal show={sNew} onClose={onClose}>
         <Modal.Header>Añadir Nuevo Componete de cómputo</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
@@ -59,13 +66,7 @@ const NewComponent = ({
                   {...register("EquipmentCategory")}
                   required
                 >
-                  <option value={""}>Selecciones la categoría</option>
-                  <option value={"CPU"}>CPU</option>
-                  <option value={"Teclado"}>Teclado</option>
-                  <option value={"Monitor"}>Monitor</option>
-                  <option value={"Mouse"}>Mouse</option>
-                  <option value={"UPS"}>UPS</option>
-                  <option value={"Otros"}>Otros</option>
+                  <OPTCategoryEquipment />
                 </Select>
               </span>
               <span>
@@ -111,12 +112,7 @@ const NewComponent = ({
                   {...register("ConditionRating")}
                   required
                 >
-                  <option value={0}>Seleccione la condición</option>
-                  <option value={5}>Óptimo</option>
-                  <option value={4}>Bueno</option>
-                  <option value={3}>Regular</option>
-                  <option value={2}>Deficiente</option>
-                  <option value={1}>Deplorable</option>
+                  <OptsConditions />
                 </Select>
               </span>
               <span>
@@ -131,14 +127,7 @@ const NewComponent = ({
             </fieldset>
           </Modal.Body>
 
-          <Modal.Footer className=" flex w-full items-center justify-center">
-            <Button color={"failure"} onClick={() => setSNew(false)}>
-              Cancelar
-            </Button>
-            <Button color={"blue"} type="submit">
-              Confirmar
-            </Button>
-          </Modal.Footer>
+          <ModalFooters onClose={onClose} />
           {newEquipmentData && (
             <ConfirmModal
               isOpen={isModalOpen}
@@ -150,7 +139,11 @@ const NewComponent = ({
           )}
         </form>
       </Modal>
-      <ModalAddMoreActive open={NeedMore} Close={setNeedMore} setSNew={setSNew} />
+      <ModalAddMoreActive
+        open={NeedMore}
+        Close={setNeedMore}
+        setSNew={setSNew}
+      />
     </>
   );
 };

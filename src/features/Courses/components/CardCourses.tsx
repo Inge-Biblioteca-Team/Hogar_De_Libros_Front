@@ -1,40 +1,53 @@
-import { Courses } from "../types/Courses";
+import { NextCourses } from "../types/Courses";
+import { format } from "@formkit/tempo";
 
-const CardCourses = ({ Courses }: { Courses: Courses }) => {
+const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
+  const courseTime = Courses.CourseTime;
+  const courseDate = Courses.Date;
+  const dateTimeString = `${courseDate}T${courseTime}`;
+  const dateTime = new Date(dateTimeString);
+
+  const time = format({
+    date: dateTime,
+    format: "h:mm A",
+    tz: "America/Costa_Rica",
+  });
+  const fullDate = format({
+    date: courseDate,
+    format: "DD MMMM YYYY",
+    tz: "America/Costa_Rica",
+  });
+
   return (
-    <figure
-      className=" rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3
-    "
-    >
+    <figure className="bg-white rounded-2xl">
       <img
-        className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-fit
+        className="h-24 w-full mb-8 object-fit rounded-t-2xl
             max-sm:h-48 max-sm:rounded-md"
         src={Courses.image}
         alt={Courses.courseType}
       />
-      <figcaption className=" text-lg break-words max-w-80 px-4 max-sm:text-sm">
-        <strong>{Courses.courseType}</strong>
-        <p>
-          <span>{Courses.instructor}</span>
-          <br />
-          <span>Lugar: {Courses.location}</span>
-          <br />
-          {Courses.capacity ? (
-            <span>Cupos:{Courses.capacity}</span>
+      <figcaption className="p-4">
+        <div className=" flex flex-col justify-between mr-3">
+          <span className=" font-bold text-black">{Courses.courseName} </span>
+          <span>
+            Impartido por <br />
+            {Courses.instructor}{" "}
+          </span>
+          <span>Comienzo: {fullDate.toUpperCase()}</span>
+          <span>Duracion: {Courses.duration} </span>
+          <span>
+            {Courses.location} {time}{" "}
+          </span>
+          <span>
+            Cupos <br />
+            {Courses.avaibleQuota}/{Courses.capacity}{" "}
+          </span>
+          {Courses.materials == "" ? (
+            "Te esperamos"
           ) : (
-            <span>Abierto a todo Publico</span>
+            <span>Necesitaras: {Courses.materials}</span>
           )}
-          <br />
-          <span>Fecha: {new Date(Courses.endDate).toLocaleDateString()}</span>
-        </p>
-        <button
-          className="bg-Bottoms text-Text text-lg rounded-lg p-1.5 mt-5 mb-5
-      hover:bg-Bottoms-dark hover:scale-105
-      max-sm:text-sm"
-          type="button"
-        >
-          Matricular -&gt;{" "}
-        </button>
+        </div>
       </figcaption>
     </figure>
   );

@@ -93,3 +93,9 @@ input[type="number"] {
  .custom-Select select{
   padding: 0.81rem;
 }
+
+
+[data-testid="carousel"] {
+height: 25rem;
+
+}

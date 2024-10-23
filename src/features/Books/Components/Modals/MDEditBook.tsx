@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import ModalFooters from "../../../../components/ModalFooters";
 import { Book } from "../../Types/BooksTypes";
-import OpsCoditions from "../OptsConditions";
+import OpsCoditions from "../../../../components/OptsConditions";
 import OptsCateogryChildren from "../OptsCategories";
 import ModalImageLoader from "./ModalImageLoader";
 import UseEditBook from "../../Hooks/UseEditBook";
