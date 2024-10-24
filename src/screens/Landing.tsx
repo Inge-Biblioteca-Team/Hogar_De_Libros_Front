@@ -17,7 +17,7 @@ const Landing = () => {
   return (
     <>
       <LandingHome />
-      <main className="flex items-center gap-20 justify-center flex-col mt-5 mb-10 max-sm:gap-10">
+      <main className="flex items-center gap-16 justify-center flex-col mt-5 mb-10 max-sm:gap-10">
         <ImportanNotices />
         <RoomList />
         <ComputerInfo />
@@ -35,4 +35,3 @@ const Landing = () => {
 };
 
 export default Landing;
-//  <FreeBooksList/>

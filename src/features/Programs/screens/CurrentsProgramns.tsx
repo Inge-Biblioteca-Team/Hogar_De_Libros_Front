@@ -1,66 +1,49 @@
-import { useState } from "react";
-
 import { useQuery } from "react-query";
 import CardProgram from "../components/CardProgram";
-import { GetPrograms } from "../services/SvPrograms";
-import { Programs } from "../types/Programs";
+import { ApiProgramsResponse, Program } from "../types/Programs";
+import { GetProgramsList } from "../services/SvPrograms";
+import { Carousel } from "flowbite-react";
 
 const CurrentPrograms = () => {
-  const {
-    data: programs = [],
-    isLoading,
-    error,
-  } = useQuery<Programs[], Error>("Programs", GetPrograms);
+  const { data: Programs } = useQuery<ApiProgramsResponse, Error>(
+    ["ProgramCatalog"],
+    () => GetProgramsList(1, 100, "", "1"),
+    {
+      staleTime: 600,
+    }
+  );
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? programs.length - 4 : prevIndex - 1
-    );
+  const chunkArray = (arr: Program[], size: number): Program[][] => {
+    const result: Program[][] = [];
+    for (let i = 0; i < arr.length; i += size) {
+      result.push(arr.slice(i, i + size));
+    }
+    return result;
   };
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === programs.length - 4 ? 0 : prevIndex + 1
-    );
-  };
-
-  if (isLoading) return <span>Loading...</span>;
-  if (error) return <span>Error: {error.message}</span>;
+  const groupedProgram = chunkArray(Programs?.data || [], 2);
 
   return (
     <section
-      className="relative w-full max-w-4xl mx-auto max-sm:w-4/5"
-      id="Programs"
+      className="flex items-center w-4/5 flex-col max-sm:m-0"
+      id="Courses"
     >
-      <h2 className="text-center font-bold text-2xl mb-6">Programas</h2>
-      <div className="flex items-center justify-between">
-        <button
-          type="button"
-          onClick={prevSlide}
-          className="bg-gray-300 rounded-full p-2 max-sm:hidden"
-        >
-          &lt;
-        </button>
-        <div className="w-full overflow-hidden max-sm:overflow-x-scroll">
-          <article
-            className="flex transition-transform duration-300"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-            {programs.map((program, index) => (
-              <CardProgram key={index} program={program} />
+      <h2 className="font-bold text-3xl">Nuestros programas</h2>
+      <Carousel
+        indicators={false}
+        pauseOnHover
+        leftControl
+        rightControl
+        style={{ height: "40rem" }}
+      >
+        {groupedProgram.map((group, groupIndex) => (
+          <div key={groupIndex} className=" flex justify-center gap-x-4">
+            {group.map((program) => (
+              <CardProgram key={"PR" + program.programsId} program={program} />
             ))}
-          </article>
-        </div>
-        <button
-          type="button"
-          onClick={nextSlide}
-          className="bg-gray-300 rounded-full p-2 max-sm:hidden"
-        >
-          &gt;
-        </button>
-      </div>
+          </div>
+        ))}
+      </Carousel>
     </section>
   );
 };

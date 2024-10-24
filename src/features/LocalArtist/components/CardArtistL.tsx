@@ -1,25 +1,62 @@
-import { Artist } from "../types/LocalArtist"
+import { Button, ButtonGroup, Card } from "flowbite-react";
+import { Artist } from "../types/LocalArtist";
+import {
+  FaLinkedin,
+  FaFacebookSquare,
+  FaInstagramSquare,
+} from "react-icons/fa";
 
-const CardArtistL = ({artist}:{artist:Artist}) => {
+const CardArtistL = ({ artist }: { artist: Artist }) => {
   return (
-    <figure className="rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3 
-    max-sm:min-w-40">
-      <img
-        className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover
-                  max-sm:h-48 max-sm:rounded-md max-sm:mb-0"
-        src={artist.Cover}
-        alt={artist.Name}
-      />
-      <figcaption className=" text-lg break-words max-w-80 px-4 h-40 text-center
-       max-sm:pt-7 max-sm:text-center max-sm:text-sm max-sm:h-32">
-        <strong>{artist.Name}</strong>
-        <p>
+    <Card className="p0">
+      <figure>
+        <img
+          className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover
+        max-sm:h-48 max-sm:rounded-md max-sm:mb-0"
+          src={artist.Cover}
+          alt={artist.Name}
+        />
+        <figcaption
+          className=" text-lg break-words max-w-80 px-4 h-40 text-center
+       max-sm:pt-7 max-sm:text-center max-sm:text-sm max-sm:h-32 flex flex-col justify-between items-center p-3"
+        >
+          <strong>{artist.Name}</strong>
           <span>{artist.ArtisProfession}</span>
-          {artist.Name?  <span className=" max-sm:hidden"> <br />Información Relevante: {artist.MoreInfo} </span>: <span></span>}
-        </p>
-      </figcaption>
-    </figure>
-  )
-}
+          {artist.MoreInfo && artist.MoreInfo}
 
-export default CardArtistL
+          <ButtonGroup>
+            {artist.FBLink && (
+              <Button
+                className="bg-transparent hover:text-gray-700"
+                color="grey"
+                href={artist.FBLink}
+              >
+                <FaFacebookSquare size={30} />
+              </Button>
+            )}
+            {artist.IGLink && (
+              <Button
+                className="bg-transparent hover:text-gray-700"
+                color="grey"
+                href={artist.IGLink}
+              >
+                <FaInstagramSquare size={30} />
+              </Button>
+            )}
+            {artist.LILink && (
+              <Button
+                className="bg-transparent hover:text-gray-700"
+                color="grey"
+                href={artist.LILink}
+              >
+                <FaLinkedin size={30} />
+              </Button>
+            )}
+          </ButtonGroup>
+        </figcaption>
+      </figure>
+    </Card>
+  );
+};
+
+export default CardArtistL;
