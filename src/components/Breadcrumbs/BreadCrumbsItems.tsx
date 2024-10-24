@@ -57,11 +57,21 @@ const ColabCrumbs = ({ text }: { text: string }) => {
 const FirendCrumbs = ({ text }: { text: string }) => {
   return (
     <BreadCrumbsItems>
-      <Breadcrumb.Item href="/amigos">Amigos de la biblioteca</Breadcrumb.Item>
+      <Breadcrumb.Item href="/Amigos">Amigos de la biblioteca</Breadcrumb.Item>
       <Breadcrumb.Item>{text}</Breadcrumb.Item>
     </BreadCrumbsItems>
   );
 };
+const DonationsCrumbs = ({ text }: { text: string }) => {
+  return (
+    <BreadCrumbsItems>
+      <Breadcrumb.Item href="/Donaciones">Donaciones</Breadcrumb.Item>
+      <Breadcrumb.Item>{text}</Breadcrumb.Item>
+    </BreadCrumbsItems>
+  );
+};
+
+
 export {
   FirendCrumbs,
   ColabCrumbs,
@@ -70,4 +80,5 @@ export {
   BreadCrumbManage,
   ColecctionCrumbs,
   ChlildrenColecctionCrumbs,
+  DonationsCrumbs
 };

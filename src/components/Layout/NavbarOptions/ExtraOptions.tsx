@@ -21,10 +21,10 @@ const ExtraOptions = () => {
         <Sidebar.Item href="/HogarDeLibros/Donaciones/Pendientes_Respuesta">
           Propuestas de donación
         </Sidebar.Item>
-        <Sidebar.Item href="/HogarDeLibros/Colaboraciones/Pendiente_Recepcion">
+        <Sidebar.Item href="/HogarDeLibros/Donaciones/Pendiente_Recepcion">
           Pendiente de recepción
         </Sidebar.Item>
-        <Sidebar.Item href="/HogarDeLibros/Colaboraciones/Historial">
+        <Sidebar.Item href="/HogarDeLibros/Donaciones/Historial">
           Historial de donaciones
         </Sidebar.Item>
       </Sidebar.Collapse>

@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import ModalFooters from "../../../../components/ModalFooters";
 import { downType } from "../../../../Types/GlobalTypes";
-import UseRefueseColab from "../../Hooks/UseRefueseColab";
+import UseCancelColab from "../../Hooks/UseCancelColab";
 
 const MDCancelActivitie = ({
   setOpen,
@@ -23,10 +23,10 @@ const MDCancelActivitie = ({
     reset();
   };
 
-  const { mutate: refuse } = UseRefueseColab();
+  const { mutate: cancel } = UseCancelColab();
 
   const onConfirm = (data: downType) => {
-    refuse(data, {
+    cancel(data, {
       onSuccess: () => {
         setOpen(false);
       },
@@ -42,7 +42,7 @@ const MDCancelActivitie = ({
           <Textarea
             rows={4}
             {...register("reason")}
-            placeholder="Escriba la razón del cancelar la actividad"
+            placeholder="Escriba la razón para cancelar la actividad"
           />
         </ModalBody>
         <ModalFooters onClose={onClose} />
