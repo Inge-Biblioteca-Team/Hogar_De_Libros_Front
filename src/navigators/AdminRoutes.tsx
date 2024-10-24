@@ -18,7 +18,9 @@ import ManageCourses from "../features/Courses/Pages/ManageCourses";
 import ManageLocalArtist from "../features/LocalArtist/Pages/ManageLocalArtist";
 import AdviceManage from "../features/Advice/Screens/AdviceManage";
 import RoomsScheduleManage from "../features/Loan/Pages/Rooms/RoomsScheduleManage";
-
+import ManageColabRequest from "../features/Collaborators/Screens/ManageColabRequest";
+import ManageAprovedColab from "../features/Collaborators/Screens/ManageAprovedColab";
+import ManageColabHistory from "../features/Collaborators/Screens/ManageColabHistory";
 const AdminRoutes = [
   {
     path: "Prestamos_Circulacion",
@@ -125,6 +127,48 @@ const AdminRoutes = [
       {
         path: "Catalogo_Infantil",
         element: <ManageChildrenBooks />,
+      },
+    ],
+  },
+  {
+    path: "Colaboraciones",
+    children: [
+      {
+        path: "Pendientes_Respuesta",
+        element: <ManageColabRequest />,
+      },
+      {
+        path: "Pendientes_Realizacion",
+        element: <ManageAprovedColab />,
+      },
+      {
+        path: "Historial",
+        element: <ManageColabHistory />,
+      },
+    ],
+  },
+  {
+    path: "Donaciones",
+    children: [
+      {
+        path: "Pendientes_Respuesta",
+      },
+      {
+        path: "Pendiente_Recepcion",
+      },
+      {
+        path: "Historial",
+      },
+    ],
+  },
+  {
+    path: "Amigos",
+    children: [
+      {
+        path: "Pendientes_Respuesta",
+      },
+      {
+        path: "Lista_Amigos",
       },
     ],
   },
