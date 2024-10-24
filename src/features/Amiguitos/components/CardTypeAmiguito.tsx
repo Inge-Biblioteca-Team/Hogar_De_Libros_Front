@@ -1,9 +1,12 @@
 import { Amigos } from "../types/InfoAmiguitos";
+import ModalButtonAM from "./ModalBotton";
 
 const CardTypeAmiguito = ({
   Amiguito,
+  
 }: {
   Amiguito: Amigos ;
+  
 }) => {
   return (
     <figure className="rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3 max-sm:p-0">
@@ -22,13 +25,8 @@ const CardTypeAmiguito = ({
           </span>
           <br />
         </p>
-        <button
-          className="bg-Bottoms text-Text text-lg rounded-lg p-1.5 mt-5 mb-5
-        hover:bg-Bottoms-dark hover:scale-105 max-sm:text-xs"
-          type="button"
-        >
-          Participar +{" "}
-        </button>
+        <ModalButtonAM />
+        
       </figcaption>
     </figure>
   );
