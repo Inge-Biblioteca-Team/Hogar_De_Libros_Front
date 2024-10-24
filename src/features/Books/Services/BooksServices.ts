@@ -104,7 +104,7 @@ const getColection = async (
       page,
       limit,
     };
-    if (title) params.title = title;
+    if (title) params.Title = title;
     if (author) params.author = author;
     if (year) params.year = year;
     if (status) params.Status = status;

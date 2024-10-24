@@ -4,6 +4,7 @@ import LeadingOptions from "./LeadingOptions";
 import ResoursesOptions from "./ResoursesOptions";
 import ServicesOptions from "./ServicesOptions";
 import RecordsOptions from "./RecordsOptions";
+import ExtraOptions from "./ExtraOptions";
 
 const ForAdmin = () => {
   return (
@@ -24,9 +25,7 @@ const ForAdmin = () => {
         <ServicesOptions />
       </Sidebar.ItemGroup>
       <Sidebar.ItemGroup>
-        <Sidebar.Item href="/HogarDeLibros/Gestion_Usuarios">
-          Gestión Usuarios
-        </Sidebar.Item>
+        <ExtraOptions/>
       </Sidebar.ItemGroup>
     </>
   );

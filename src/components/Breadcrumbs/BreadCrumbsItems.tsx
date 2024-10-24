@@ -45,7 +45,16 @@ const ChlildrenColecctionCrumbs = ({ text }: { text: string }) => {
   );
 };
 
+const ColabCrumbs = ({ text }: { text: string }) => {
+  return (
+    <BreadCrumbsItems>
+      <Breadcrumb.Item href="/Colaboraciones">Colaboraciones</Breadcrumb.Item>
+      <Breadcrumb.Item>{text}</Breadcrumb.Item>
+    </BreadCrumbsItems>
+  );
+};
 export {
+  ColabCrumbs,
   BreadCrumbsItems,
   BreadLastItems,
   BreadCrumbManage,
