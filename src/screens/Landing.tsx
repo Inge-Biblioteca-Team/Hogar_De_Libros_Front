@@ -12,6 +12,7 @@ import CurrentPrograms from "../features/Programs/screens/CurrentsProgramns";
 import ImportanNotices from "../features/Advice/Screens/ImportanNotices";
 import LandingHome from "../components/LandingHome";
 import LandingFooter from "../components/Layout/LandingFooter";
+import LatestAddBooks from "../features/Books/Screens/LatestAddBooks";
 
 const Landing = () => {
   return (
@@ -19,6 +20,7 @@ const Landing = () => {
       <LandingHome />
       <main className="flex items-center gap-16 justify-center flex-col mt-5 mb-10 max-sm:gap-10">
         <ImportanNotices />
+        <LatestAddBooks />
         <RoomList />
         <ComputerInfo />
         <UpcomingCourses />
