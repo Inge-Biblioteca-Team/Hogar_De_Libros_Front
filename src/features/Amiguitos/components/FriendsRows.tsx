@@ -1,0 +1,40 @@
+import { Table } from "flowbite-react";
+import { Friend } from "../types/FriendType";
+import AccionsBTN from "../../../components/BTNS/AccionsBTN";
+import { useState } from "react";
+import MDViewFriend from "./Modals/MDViewFriend";
+import MDDownFriend from "./Modals/MDDownFriend";
+import EditFriendInfo from "./Modals/EditFriendInfo";
+
+const FriendsRows = ({ friend }: { friend: Friend }) => {
+  const [openS, setOpenS] = useState<boolean>(false);
+  const [openE, setOpenE] = useState<boolean>(false);
+  const [openD, setOpenD] = useState<boolean>(false);
+
+  return (
+    <>
+      <Table.Row>
+        <Table.Cell>{friend.UserFullName}</Table.Cell>
+        <Table.Cell>{friend.UserCedula}</Table.Cell>
+        <Table.Cell>{friend.PrincipalCategory}</Table.Cell>
+        <Table.Cell>{friend.SubCategory}</Table.Cell>
+        <Table.Cell>{friend.UserGender}</Table.Cell>
+        <Table.Cell>{friend.UserPhone}</Table.Cell>
+        <Table.Cell>{friend.Status}</Table.Cell>
+        <Table.Cell>
+          <AccionsBTN
+            setOpenS={setOpenS}
+            setOpenE={setOpenE}
+            setOpenD={setOpenD}
+            Status={friend.Status == "Aprobado" ? true : false}
+          />
+        </Table.Cell>
+      </Table.Row>
+      <MDViewFriend open={openS} setOpen={setOpenS} friend={friend} />
+      <MDDownFriend open={openD} setOpen={setOpenD} id={friend.FriendId} />
+      <EditFriendInfo open={openE} setOpen={setOpenE} friend={friend} />
+    </>
+  );
+};
+
+export default FriendsRows;

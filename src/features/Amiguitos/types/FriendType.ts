@@ -1,8 +1,10 @@
 export type Friend = {
+  DateGenerated: string;
   FriendId: number;
   UserFullName: string;
   UserCedula: string;
-  UserBirthDate: Date;
+  UserBirthDate: string;
+  UserGender: string;
   UserAddress: string;
   UserPhone: string;
   UserEmail: string;
@@ -11,12 +13,11 @@ export type Friend = {
   SubCategory: string;
   Experience: string;
   Document: string[];
-  DateGenerated: Date;
   ExtraInfo: string;
   Reason: string;
 };
 
 export type FriendResponse = {
-    data: Friends[];
-    count: number;
-  };
+  data: Friend[];
+  count: number;
+};

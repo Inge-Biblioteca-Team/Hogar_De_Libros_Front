@@ -41,7 +41,7 @@ const ManageAprovedColab = () => {
       <main className=" flex flex-col items-center justify-center w-full gap-5">
         <section className=" flex w-4/5 gap-2">
           <div>
-            <Label value="Categoría principal" />
+            <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
               <OptMainCategory />
             </Select>

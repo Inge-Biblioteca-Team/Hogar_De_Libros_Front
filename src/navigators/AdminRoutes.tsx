@@ -21,6 +21,8 @@ import RoomsScheduleManage from "../features/Loan/Pages/Rooms/RoomsScheduleManag
 import ManageColabRequest from "../features/Collaborators/Screens/ManageColabRequest";
 import ManageAprovedColab from "../features/Collaborators/Screens/ManageAprovedColab";
 import ManageColabHistory from "../features/Collaborators/Screens/ManageColabHistory";
+import ManageFriendsRequest from "../features/Amiguitos/screens/ManageFriendsRequest";
+import ManageFriends from "../features/Amiguitos/screens/ManageFriends";
 const AdminRoutes = [
   {
     path: "Prestamos_Circulacion",
@@ -165,10 +167,12 @@ const AdminRoutes = [
     path: "Amigos",
     children: [
       {
-        path: "Pendientes_Respuesta",
+        path: "Pendiente_Respuesta",
+        element: <ManageFriendsRequest />,
       },
       {
         path: "Lista_Amigos",
+        element: <ManageFriends />,
       },
     ],
   },
