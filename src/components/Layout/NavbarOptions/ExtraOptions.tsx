@@ -29,7 +29,7 @@ const ExtraOptions = () => {
         </Sidebar.Item>
       </Sidebar.Collapse>
       <Sidebar.Collapse label="Amigos de la biblioteca">
-        <Sidebar.Item href="/HogarDeLibros/Amigos/Pediente_Respuesta">
+        <Sidebar.Item href="/HogarDeLibros/Amigos/Pendiente_Respuesta">
           Solicitudes de amigos
         </Sidebar.Item>
         <Sidebar.Item href="/HogarDeLibros/Amigos/Lista_Amigos">

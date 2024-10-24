@@ -53,7 +53,17 @@ const ColabCrumbs = ({ text }: { text: string }) => {
     </BreadCrumbsItems>
   );
 };
+
+const FirendCrumbs = ({ text }: { text: string }) => {
+  return (
+    <BreadCrumbsItems>
+      <Breadcrumb.Item href="/amigos">Amigos de la biblioteca</Breadcrumb.Item>
+      <Breadcrumb.Item>{text}</Breadcrumb.Item>
+    </BreadCrumbsItems>
+  );
+};
 export {
+  FirendCrumbs,
   ColabCrumbs,
   BreadCrumbsItems,
   BreadLastItems,
