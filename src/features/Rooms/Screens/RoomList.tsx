@@ -15,15 +15,15 @@ function RoomList() {
 
   return (
     <section
-      className="w-4/5 flex flex-col items-center justify-center"
+      className="max-w-4xl w-full flex flex-col items-center justify-center"
       id="Rooms"
     >
       {Rooms && Rooms.count > 0 && (
         <>
-          <h2 className="text-3xl pb-8">Nuestras salas</h2>
+          <h2 className="font-bold text-3xl mb-6 ">Nuestras salas</h2>
           <div className="flex w-full gap-5 items-center justify-center max-sm:gap-3 max-sm:grid max-sm:grid-cols-2">
-            {Rooms?.data.map((rooms: Room, index: number) => (
-              <RoomCard Rooms={rooms} key={index} />
+            {Rooms?.data.map((rooms: Room) => (
+              <RoomCard Rooms={rooms} key={"RO"+rooms.roomId} />
             ))}
           </div>
         </>

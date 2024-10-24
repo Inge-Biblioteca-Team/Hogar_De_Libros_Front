@@ -37,7 +37,7 @@ const EventsSchedule = () => {
   }
 
   const { data: events } = useQuery<ApiEventsResponse, Error>(
-    ["CourseCatalog", month, type],
+    ["EventCatalog", month, type],
     () => GetNextEvents(month, type),
     {
       staleTime: 600,

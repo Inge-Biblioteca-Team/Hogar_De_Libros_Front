@@ -1,30 +1,30 @@
-import { Events } from "../types/Events";
+import { Card } from "flowbite-react";
+import { formatToDMY } from "../../../components/FormatTempo";
+import { Event } from "../types/Events";
 
-const CardEvent = ({event}:{event:Events}) => {
-  const formattedDate = new Date(event.Date).toLocaleDateString();
-
+const CardEvent = ({ event }: { event: Event }) => {
   return (
-    <figure className="flex-none w-full p-4 max-sm:p-0 ">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden max-sm:h-full max-sm:mr-2">
+    <Card className="p0">
+      <figure className=" rounded-lg max-sm:h-full max-sm:mr-2">
         <img
-          src={event.Image}
-          alt={event.Title}
-          className="w-full h-72 max-sm:h-48"
+          src={event.image}
+          alt={event.title}
+          className="w-full h-64 max-sm:h-48"
         />
         <figcaption className="p-4">
-          <h3 className="text-lg font-bold mb-2 ">{event.Title}</h3>
+          <h3 className="text-lg font-bold mb-2 ">{event.title}</h3>
           <p className="text-sm text-gray-600 ">
-            <strong className="">Fecha:</strong> {formattedDate}
+            <strong className="">Fecha:</strong> {formatToDMY(event.date)}
             <br />
-            <strong>Ubicación:</strong> {event.Location}
+            <strong>Ubicación:</strong> {event.location}
             <br />
-            <strong>Detalles:</strong> {event.Details}
+            <strong>Detalles del evento:</strong> {event.details}
             <br />
-            <strong>Público objetivo:</strong> {event.TargetAudience}
+            <strong>Público objetivo:</strong> {event.objetiveAge}
           </p>
         </figcaption>
-      </div>
-    </figure>
+      </figure>
+    </Card>
   );
 };
 

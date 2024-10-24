@@ -1,19 +1,23 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 const LandingHomeCards = ({
   Icon,
   Title,
   Message,
   Path,
 }: {
-  Icon: any;
+  Icon: IconDefinition;
   Title: string;
   Message: string;
   Path: string;
 }) => {
   return (
-    <figure className="bg-Body text-white flex flex-col gap-5 items-center justify-center rounded-md
-    max-sm:justify-start max-sm:px-2 py-2 max-sm:text-sm">
+    <figure
+      className="bg-Body text-white flex flex-col gap-5 items-center justify-center rounded-md
+    max-sm:justify-start max-sm:px-2 py-2 max-sm:text-sm p-2"
+    >
       <FontAwesomeIcon
         icon={Icon}
         className="text-white h-6 w-6 cursor-default"
@@ -22,9 +26,9 @@ const LandingHomeCards = ({
         <p>
           <span>{Title}</span>
           <br />
-           <span>{Message}</span>
+          <span>{Message}</span>
         </p>
-        <a href={Path} className=" underline">
+        <a href={Path} className=" underline hover:text-gray-400">
           Más Información
         </a>
       </figcaption>

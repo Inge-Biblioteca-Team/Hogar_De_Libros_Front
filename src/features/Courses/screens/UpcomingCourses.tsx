@@ -28,12 +28,13 @@ const UpcomingCourses = () => {
       className="m-5 flex items-center w-4/5 flex-col max-sm:m-0"
       id="Courses"
     >
-      <h2 className="font-bold text-2xl mb-5">Cursos disponibles</h2>
-      <Carousel indicators={false} pauseOnHover leftControl rightControl>
+      <h2 className="font-bold text-3xl">Cursos disponibles</h2>
+      <Carousel indicators={false} pauseOnHover leftControl rightControl
+      style={{height:"30rem"}}>
         {groupedCourses.map((group, groupIndex) => (
           <div key={groupIndex} className=" flex justify-center gap-x-4">
             {group.map((course) => (
-              <CardCourses Courses={course} key={course.Id} />
+              <CardCourses Courses={course} key={"CO"+course.Id} />
             ))}
           </div>
         ))}
