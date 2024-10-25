@@ -9,6 +9,7 @@ import ColabHistoryRow from "../Components/ColabHistoryRow";
 import OptMainCategory from "../Components/OptMainCategory";
 import OptSubCategory from "../Components/OptSubCategory";
 import { ColabCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import NoResults from "../../../components/NoResults";
 
 const ManageColabHistory = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -61,18 +62,25 @@ const ManageColabHistory = () => {
           </div>
         </section>
         <section className=" w-4/5">
-          <ColabsTableBody hiid>
-            {ColaborationsList?.data.map((colab) => (
-              <ColabHistoryRow colaborator={colab} key={colab.CollaboratorId} />
-            ))}
-          </ColabsTableBody>
-          <CustomPagination
-            page={Page}
-            onPageChange={onPageChange}
-            totalPages={MaxPage}
-            setCurrentLimit={setCurrentLimit}
-            total={ColaborationsList?.count || 0}
-          />
+          {ColaborationsList && ColaborationsList.count > 0? (
+            <>
+              <ColabsTableBody hiid>
+                {ColaborationsList?.data.map((colab) => (
+                  <ColabHistoryRow
+                    colaborator={colab}
+                    key={colab.CollaboratorId}
+                  />
+                ))}
+              </ColabsTableBody>
+              <CustomPagination
+                page={Page}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={ColaborationsList?.count || 0}
+              />
+            </>
+          ):<NoResults/>}
         </section>
       </main>
     </>

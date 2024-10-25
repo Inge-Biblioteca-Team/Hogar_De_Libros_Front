@@ -24,27 +24,34 @@ const CurrentPrograms = () => {
   const groupedProgram = chunkArray(Programs?.data || [], 2);
 
   return (
-    <section
-      className="flex items-center w-4/5 flex-col max-sm:m-0"
-      id="Courses"
-    >
-      <h2 className="font-bold text-3xl">Nuestros programas</h2>
-      <Carousel
-        indicators={false}
-        pauseOnHover
-        leftControl
-        rightControl
-        style={{ height: "40rem" }}
-      >
-        {groupedProgram.map((group, groupIndex) => (
-          <div key={groupIndex} className=" flex justify-center gap-x-4">
-            {group.map((program) => (
-              <CardProgram key={"PR" + program.programsId} program={program} />
+    <>
+      {Programs && Programs?.count > 0 && (
+        <section
+          className="flex items-center w-4/5 flex-col max-sm:m-0"
+          id="Courses"
+        >
+          <h2 className="font-bold text-3xl">Nuestros programas</h2>
+          <Carousel
+            indicators={false}
+            pauseOnHover
+            leftControl
+            rightControl
+            style={{ height: "40rem" }}
+          >
+            {groupedProgram.map((group, groupIndex) => (
+              <div key={groupIndex} className=" flex justify-center gap-x-4">
+                {group.map((program) => (
+                  <CardProgram
+                    key={"PR" + program.programsId}
+                    program={program}
+                  />
+                ))}
+              </div>
             ))}
-          </div>
-        ))}
-      </Carousel>
-    </section>
+          </Carousel>
+        </section>
+      )}
+    </>
   );
 };
 

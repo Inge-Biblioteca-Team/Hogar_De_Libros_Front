@@ -19,3 +19,19 @@ export type DonationsList = {
   data: Donation[];
   count: number;
 };
+
+
+export type NewDonation = {
+  DonationId: number;
+  UserFullName: string;
+  UserCedula: string;
+  UserBirthDate: Date;
+  UserAddress: string;
+  UserPhone: string;
+  UserEmail: string;
+  Document?: File[];
+  SubCategory: string;
+  DateRecolatedDonation?: Date;
+  ResourceCondition: string;
+  ItemDescription: string;
+};

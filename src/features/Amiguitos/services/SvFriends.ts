@@ -2,6 +2,7 @@ import axios from "axios";
 import api from "../../../Services/AxiosConfig";
 import { downType } from "../../../Types/GlobalTypes";
 import { Friend } from "../types/FriendType";
+import { CreateFriends } from "../types/InfoAmiguitos";
 
 const AproveFriend = async (id: number) => {
   try {
@@ -135,5 +136,47 @@ const GetFriends = async (
   }
 };
 
+const postFriendRequest = async (data: CreateFriends) => {
+  const formData = new FormData();
 
-export { RefuseFriend, AproveFriend, GetFriends, DownFriend, EditFriend };
+  Object.entries(data).forEach(([key, value]) => {
+    if (value !== undefined) {
+      if (typeof value === "number" || value instanceof Date) {
+        formData.append(key, value.toString());
+      } else {
+        formData.append(key, value as string);
+      }
+    }
+  });
+
+  if (data.Document) {
+    data.Document.forEach((file) => {
+      formData.append("Document", file);
+    });
+  }
+
+  try {
+    const response = await api.post(`friends-library`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al crear el aviso:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al crear el aviso"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
+
+
+export { RefuseFriend, AproveFriend, GetFriends, DownFriend, EditFriend, postFriendRequest };

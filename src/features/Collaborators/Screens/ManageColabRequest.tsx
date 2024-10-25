@@ -9,6 +9,7 @@ import { ColaboratorsList } from "../Types/ColaboratorTypes";
 import OptMainCategory from "../Components/OptMainCategory";
 import OptSubCategory from "../Components/OptSubCategory";
 import { ColabCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import NoResults from "../../../components/NoResults";
 
 const ManageColabRequest = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -40,7 +41,7 @@ const ManageColabRequest = () => {
       <ColabCrumbs text="Solicitudes de colaboraciones" />
       <main className=" flex flex-col items-center justify-center w-full gap-5">
         <section className=" flex w-4/5 gap-2">
-        <div>
+          <div>
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
               <OptMainCategory />
@@ -61,18 +62,22 @@ const ManageColabRequest = () => {
           </div>
         </section>
         <section className=" w-4/5">
-          <ColabsTableBody>
-            {ColaborationsList?.data.map((colab) => (
-              <ColabsRows colaborator={colab} key={colab.CollaboratorId} />
-            ))}
-          </ColabsTableBody>
-          <CustomPagination
-            page={Page}
-            onPageChange={onPageChange}
-            totalPages={MaxPage}
-            setCurrentLimit={setCurrentLimit}
-            total={ColaborationsList?.count || 0}
-          />
+          {ColaborationsList && ColaborationsList.count > 0? (
+            <>
+              <ColabsTableBody>
+                {ColaborationsList?.data.map((colab) => (
+                  <ColabsRows colaborator={colab} key={colab.CollaboratorId} />
+                ))}
+              </ColabsTableBody>
+              <CustomPagination
+                page={Page}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={ColaborationsList?.count || 0}
+              />
+            </>
+          ): <NoResults/>}
         </section>
       </main>
     </>

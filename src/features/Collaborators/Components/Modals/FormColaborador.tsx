@@ -1,32 +1,32 @@
 import {
-  Label,
-  Modal,
-  TextInput,
-  Select,
   Button,
   Checkbox,
+  Label,
+  Modal,
+  Select,
   Textarea,
+  TextInput,
 } from "flowbite-react";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { CreateFriends } from "../../types/InfoAmiguitos";
 import { ModalOpen } from "../../../../Types/GlobalTypes";
-import toast from "react-hot-toast";
-import UseCreateFriend from "../../Hooks/UseCreateFriend";
-import OPTCategories from "../OPTCategories";
-import OPTSubCategories from "../OPTSubCategories";
+import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import OptMainCategory from "../OptMainCategory";
+import OptSubCategory from "../OptSubCategory";
 import { MdQuestionMark } from "react-icons/md";
+import toast from "react-hot-toast";
+import UseSendColaborator from "../../Hooks/UseSendColaborator";
+import { CreateNewColaborator } from "../../Types/ColaboratorTypes";
 import { TbHelpSquareRounded } from "react-icons/tb";
-import InfoAmigos from "../Popover/InfoAmigos";
+import InfoColaborador from "./InfoColaborador";
 import { formatToYMD } from "../../../../components/FormatTempo";
-import { useQuery } from "react-query";
-import { GetUserInfo } from "../../../Users/Services/SvUsuer";
-import { User } from "../../../Users/Type/UserType";
 import UseDebounce from "../../../../hooks/UseDebounce";
+import { useQuery } from "react-query";
+import { User } from "../../../Users/Type/UserType";
+import { GetUserInfo } from "../../../Users/Services/SvUsuer";
 
-const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
+const FormColaborador = ({ open, setOpen }: ModalOpen) => {
   const { reset, register, handleSubmit, trigger, setValue, watch } =
-    useForm<CreateFriends>();
+    useForm<CreateNewColaborator>();
 
   const cedula = UseDebounce(watch("UserCedula"), 1000);
 
@@ -88,9 +88,9 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
     setSecondForm(false);
   };
 
-  const { mutate: send } = UseCreateFriend();
+  const { mutate: send } = UseSendColaborator();
 
-  const onConfirm = (data: CreateFriends) => {
+  const onConfirm = (data: CreateNewColaborator) => {
     send(data, {
       onSuccess: () => {
         onClose();
@@ -99,35 +99,49 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
   };
 
   const [experience, setExperience] = useState<boolean>(false);
+  const [institutional, setInstitutional] = useState<boolean>(false);
 
   const minMax = formatToYMD(new Date());
 
   return (
     <Modal show={open} onClose={onClose} size={"5xl"}>
       <Modal.Header>
-        <div>Solicitud de amigo de la biblioteca</div>
+        Solicitud de actividad conjunta con la biblioteca
       </Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body className=" grid grid-cols-2 gap-x-5 gap-y-4 ">
           {!secondForm && (
             <>
               <div>
-                <Label value="Categoría de amigo" />
+                <Label value="Categoría de colaboración" />
                 <Select
                   {...register("PrincipalCategory", { required: true })}
                   required
                 >
-                  <OPTCategories />
+                  <OptMainCategory />
                 </Select>
               </div>
               <div>
-                <Label value="Sub categoría de amigo" />
+                <Label value="Sub categoría de colaboración" />
                 <Select
                   {...register("SubCategory", { required: true })}
                   required
                 >
-                  <OPTSubCategories />
+                  <OptSubCategory />
                 </Select>
+              </div>
+
+              <div className="">
+                <Checkbox
+                  color={"blue"}
+                  onChange={(event) => setInstitutional(event.target.checked)}
+                />
+                <Label className=" ml-2" value="Actividad institucional" />
+                <TextInput
+                  {...register("Entitycollaborator")}
+                  placeholder="Nombre de la institución"
+                  disabled={!institutional}
+                />
               </div>
 
               <div>
@@ -145,9 +159,9 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
                 <Label value=" Numero de cédula" />
                 <TextInput
                   {...register("UserCedula", { required: true })}
-                  type="number"
                   required
                   placeholder="Sin guiones"
+                  type="number"
                 />
               </div>
 
@@ -198,6 +212,10 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
                   placeholder="tuCorreo@example.com"
                 />
               </div>
+            </>
+          )}
+          {secondForm && (
+            <>
               <div>
                 <Checkbox
                   color={"blue"}
@@ -210,55 +228,67 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
                 <TextInput
                   {...register("Experience")}
                   disabled={!experience}
-                  placeholder="Ej. Cursos, títulos y demás etc..."
+                  placeholder="Ej. Maestrías, Licenciaturas, Bachillerato etc..."
                 />
               </div>
-            </>
-          )}
-          {secondForm && (
-            <>
+              <div>
+                <Label value="Fecha tentativa para la actividad" />
+                <TextInput
+                  {...register("activityDate")}
+                  type="date"
+                  required
+                  min={minMax}
+                />
+              </div>
+              <div>
+                <Label value="Descripción de la actividad" />
+                <Textarea
+                  rows={10}
+                  {...register("Description")}
+                  required
+                  placeholder="Por favor, proporcione una descripción sobre la actividad propuesta, es de suma importancia este apartado."
+                />
+              </div>
               <div className=" flex flex-col gap-3">
                 <div>
-                  <Label value="Cualquier cosa que quieras consultar puedes usar este espacio" />
-                  <Textarea
-                    rows={5}
-                    {...register("ExtraInfo")}
-                    placeholder="Recuerda que tu opinión siempre sera importante para nosotros."
-                  />
+                  <Label value="Materiales requeridos para la actividad" />
+                  <TextInput {...register("ExtraInfo")} />
                 </div>
-              </div>
-              <div className="flex flex-col custom-file-input">
-                <label
-                  htmlFor="documentUpload"
-                  className="mb-1 text-sm font-medium flex"
-                >
-                  {" "}
-                  Archivos opcionales: <MdQuestionMark color="red" size={18} />
-                </label>
-                <input
-                  id="documentUpload"
-                  type="file"
-                  accept=".pdf,.doc,.docx,.txt"
-                  multiple
-                  onChange={handleFileChange}
-                  className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <div className="grid row-span-2 overflow-y-scroll h-20 custom-bar">
-                  {uploadedFiles.map((file) => (
-                    <div
-                      key={file.name}
-                      className="flex justify-between items-center"
-                    >
-                      <span>{file.name}</span>
-                      <button
-                        type="button"
-                        onClick={() => removeFile(file)}
-                        className="text-red-500"
+
+                <div className="flex flex-col custom-file-input">
+                  <label
+                    htmlFor="documentUpload"
+                    className="mb-1 text-sm font-medium flex"
+                  >
+                    {" "}
+                    Archivos requeridos:{" "}
+                    <MdQuestionMark color="red" size={18} />
+                  </label>
+                  <input
+                    id="documentUpload"
+                    type="file"
+                    accept=".pdf,.doc,.docx,.txt"
+                    multiple
+                    onChange={handleFileChange}
+                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <div className="grid row-span-2 overflow-y-scroll h-20 custom-bar">
+                    {uploadedFiles.map((file) => (
+                      <div
+                        key={file.name}
+                        className="flex justify-between items-center"
                       >
-                        X
-                      </button>
-                    </div>
-                  ))}
+                        <span>{file.name}</span>
+                        <button
+                          type="button"
+                          onClick={() => removeFile(file)}
+                          className="text-red-500"
+                        >
+                          X
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </>
@@ -286,15 +316,15 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
               </Button>
             </>
           )}
-          <InfoAmigos>
+          <InfoColaborador>
             <button type="button" title="ayuda">
               <TbHelpSquareRounded size={30} />
             </button>
-          </InfoAmigos>
+          </InfoColaborador>
         </Modal.Footer>
       </form>
     </Modal>
   );
 };
 
-export default MainFormAmigos;
+export default FormColaborador;

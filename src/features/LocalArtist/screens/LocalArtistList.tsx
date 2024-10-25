@@ -24,27 +24,31 @@ const LocalArtistList = () => {
   const groupedArtist = chunkArray(LArtists?.data || [], 2);
 
   return (
-    <section
-      className="flex items-center w-4/5 flex-col max-sm:m-0"
-      id="Courses"
-    >
-      <h2 className="font-bold text-3xl">Artistas locales</h2>
-      <Carousel
-        indicators={false}
-        pauseOnHover
-        leftControl
-        rightControl
-        style={{ height: "32rem" }}
-      >
-        {groupedArtist.map((group, groupIndex) => (
-          <div key={groupIndex} className=" flex justify-center gap-x-4">
-            {group.map((artist) => (
-              <CardArtistL key={"Art" + artist.ID} artist={artist} />
+    <>
+      {LArtists && LArtists.count > 0 && (
+        <section
+          className="flex items-center w-4/5 flex-col max-sm:m-0"
+          id="Courses"
+        >
+          <h2 className="font-bold text-3xl">Artistas locales</h2>
+          <Carousel
+            indicators={false}
+            pauseOnHover
+            leftControl
+            rightControl
+            style={{ height: "32rem" }}
+          >
+            {groupedArtist.map((group, groupIndex) => (
+              <div key={groupIndex} className=" flex justify-center gap-x-4">
+                {group.map((artist) => (
+                  <CardArtistL key={"Art" + artist.ID} artist={artist} />
+                ))}
+              </div>
             ))}
-          </div>
-        ))}
-      </Carousel>
-    </section>
+          </Carousel>
+        </section>
+      )}
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import api from "../../../Services/AxiosConfig";
 import { downType } from "../../../Types/GlobalTypes";
+import { CreateNewColaborator } from "../Types/ColaboratorTypes";
 
 const GetColabs = async (
   page: number,
@@ -107,4 +108,46 @@ const AproveColab = async (id: number) => {
   }
 };
 
-export { GetColabs, RefueseColab, AproveColab, CancelColab };
+const postColab = async (data: CreateNewColaborator) => {
+  const formData = new FormData();
+
+  Object.entries(data).forEach(([key, value]) => {
+    if (value !== undefined) {
+      if (typeof value === "number" || value instanceof Date) {
+        formData.append(key, value.toString());
+      } else {
+        formData.append(key, value as string);
+      }
+    }
+  });
+
+  if (data.Document) {
+    data.Document.forEach((file) => {
+      formData.append("Document", file);
+    });
+  }
+
+  try {
+    const response = await api.post(`collaborator`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al crear el aviso:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al crear el aviso"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
+
+export { GetColabs, RefueseColab, AproveColab, CancelColab, postColab };

@@ -39,6 +39,25 @@ const MDSeeDonation = ({
         {donation.Reason && (
           <Label value={`Motivo de rechazo: ${donation.Reason}`} />
         )}
+        {donation.Document && donation.Document.length > 0 ? (
+          <div>
+            <Label value="Imágenes adjuntas" />
+            {donation.Document.map((image, index) => (
+              <figure className="h-20 w-32">
+                <a href={image} target="#blank">
+                  <img
+                    src={image}
+                    alt={"Imagen # " + index}
+                    key={index}
+                    className="h-20 w-32 rounded-mm"
+                  />
+                </a>
+              </figure>
+            ))}
+          </div>
+        ) : (
+          <Label value="No proporciona imágenes del articulo" />
+        )}
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
         <Button color={"blue"} onClick={onClose}>

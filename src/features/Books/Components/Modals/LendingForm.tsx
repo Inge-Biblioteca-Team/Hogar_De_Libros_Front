@@ -34,7 +34,7 @@ const LendingForm = ({
       PhoneNumber: currentUser?.poneNumber,
       address: currentUser?.addres,
       InscriptionCode: book.InscriptionCode,
-      SignaCode: book.SignatureCode,
+      SignaCode: book.signatureCode,
       Title: book.Title,
       Author: book.Author,
       bookBookCode: book.BookCode,
@@ -91,7 +91,7 @@ const LendingForm = ({
             <FloatingLabel
               variant="outlined"
               label="Código de signatura"
-              value={book.SignatureCode || "N/A"}
+              value={book.signatureCode || "N/A"}
               disabled
               readOnly
             />

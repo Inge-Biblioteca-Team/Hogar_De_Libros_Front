@@ -27,7 +27,7 @@ const MDEditChildrenBook = ({
       ShelfCategory: book.ShelfCategory || "",
       Cover: book.Cover || "",
       BookConditionRating: book.BookConditionRating || 0,
-      SignatureCode: book.SignatureCode || "",
+      signatureCode: book.signatureCode || "",
       InscriptionCode: book.InscriptionCode || "",
       Observations: book.Observations || "",
       ReserveBook: book.ReserveBook || false,
@@ -131,7 +131,7 @@ const MDEditChildrenBook = ({
                 <FloatingLabel
                   variant="outlined"
                   label="Código de signatura"
-                  {...register("SignatureCode")}
+                  {...register("signatureCode")}
                   required
                 />
               </div>
