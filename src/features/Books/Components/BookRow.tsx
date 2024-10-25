@@ -18,7 +18,7 @@ const BookRow = ({ book }: { book: Book }) => {
         <Table.Cell>{book.Author}</Table.Cell>
         <Table.Cell>{book.ISBN}</Table.Cell>
         <Table.Cell>
-          {book.SignatureCode ? book.SignatureCode : "N/A"}
+          {book.signatureCode ? book.signatureCode : "N/A"}
         </Table.Cell>
         <Table.Cell>
           {book.InscriptionCode ? book.InscriptionCode : "N/A"}{" "}
