@@ -13,11 +13,11 @@ const AproveDonation = async (id: number) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al crear el aviso:",
+        "Error al aprovar la solicitud de donación:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el aviso"
+        error.response?.data.message || "Error al aprovar la solicitud de donación"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -41,11 +41,11 @@ const DenyDonation = async (data: downType) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al crear el aviso:",
+        "Error al rechazar la solicitud de donación:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el aviso"
+        error.response?.data.message || "Error al rechazar la solicitud de donación"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -69,11 +69,11 @@ const ConfirmDonation = async (data: downType) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al crear el aviso:",
+        "Error al confirmar la recepción de la donación:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el aviso"
+        error.response?.data.message || "Error al confirmar la recepción de la donación"
       );
     } else {
       console.error("Error desconocido:", error);

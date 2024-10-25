@@ -73,7 +73,7 @@ const editEvent = async (eventId: number, eventData: updateEvent) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error editing event:", error);
+    console.error("Error al editar el evento:", error);
     throw error;
   }
 };
@@ -95,11 +95,11 @@ const uploadEventImage = async (file: File): Promise<string> => {
       );
       return response.data.filePath;
     } catch (error) {
-      console.error("Error uploading event image:", error);
-      throw new Error("Error uploading event image");
+      console.error("Error al subir la imagen:", error);
+      throw new Error("Error al subir la imagen");
     }
   }
-  throw new Error("No file provided");
+  throw new Error("No se proporcionó un archivo");
 };
 
 const GetNextEvents = async (month?: string, type?: string) => {
@@ -127,11 +127,11 @@ const cancelEvent = async (Id: number) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al deshabilitar el programa:",
+        "Error al cancelar el evento:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al deshabilitar el programa"
+        error.response?.data.message || "Error al cancelar el evento"
       );
     } else {
       console.error("Error desconocido:", error);

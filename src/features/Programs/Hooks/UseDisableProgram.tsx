@@ -13,11 +13,11 @@ const UseDisableProgram = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("ProgramCatalog");
-        toast.success("Estado Actualizado Correctamente");
+        toast.success("Exito, se deshabilitó el programa Correctamente");
       },
       onError: (error: ApiError) => {
         toast.error(
-          "Error al crear el programa para el Numero de registo " +
+          "Error al deshabilitar el programa" +
             error.message
         );
       },

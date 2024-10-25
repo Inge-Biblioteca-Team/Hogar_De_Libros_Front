@@ -39,7 +39,7 @@ const searchCovers = async (
     if (covers.length > 0) {
       return covers;
     } else {
-      throw new Error("No covers found in Open Library");
+      throw new Error("No se encontraron las caratulas en Open Library");
     }
   } catch (error) {
     console.error("Open Library error:", error);
@@ -82,11 +82,11 @@ const uploadImage = async (file: File): Promise<string> => {
       });
       return response.data.filePath;
     } catch (error) {
-      console.error("Error uploading image:", error);
-      throw new Error("Error uploading image");
+      console.error("Error al subir imagen:", error);
+      throw new Error("Error al subir imagen");
     }
   }
-  throw new Error("No file provided");
+  throw new Error("No se proporciono un archivo");
 };
 
 const getColection = async (
@@ -158,7 +158,7 @@ const DisableChildrenBook = async (data: downType) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el recurso"
+        error.response?.data.message || "Error al deshabilitar el recurso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -181,7 +181,7 @@ const EditChildrenBook = async (data: Book) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el recurso"
+        error.response?.data.message || "Error al editar el recurso"
       );
     } else {
       console.error("Error desconocido:", error);

@@ -65,7 +65,7 @@ const DeleteAdvice = async (id: number) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al editar el aviso"
+        error.response?.data.message || "Error al borrar el aviso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -110,11 +110,11 @@ const uploadAdviceImage = async (file: File): Promise<string> => {
       });
       return response.data.filePath;
     } catch (error) {
-      console.error("Error uploading image:", error);
-      throw new Error("Error uploading image");
+      console.error("Error al subir imagen:", error);
+      throw new Error("Error al subir imagen");
     }
   }
-  throw new Error("No file provided");
+  throw new Error("N}ingun archivo fue dado");
 };
 
 export {

@@ -9,7 +9,7 @@ const useEditFurniture = () => {
         PatchEditFurniture(furniture, Id), 
       {
         onSuccess: () => {
-          toast.success("Información de mueble actualizada con éxito");
+          toast.success("IExito, se editó la información del mueble correctamente");
         },
         onError: (error) => {
           console.error("Error al editar mueble:", error);

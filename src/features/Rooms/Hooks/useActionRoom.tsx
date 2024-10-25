@@ -16,7 +16,7 @@ const useActionRoom = () => {
         {
             onSuccess: () => {
                 queryClient.invalidateQueries("Rooms");
-                toast.success("Salas ha sido editado el estado con èxito!");
+                toast.success("Exito, se a editado el estado de la sala correctamente");
             },
             onError: (error: ApiError) => {
                 toast.error("Error al editar el estado de salas: " + error.message)

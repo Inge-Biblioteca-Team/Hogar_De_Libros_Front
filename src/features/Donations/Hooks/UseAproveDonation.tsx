@@ -9,9 +9,9 @@ const UseAproveDonation = () => {
       mutationFn: (id: number) =>
         toast.promise(AproveDonation(id), {
           loading: "Creando...",
-          success: <span>Éxito, Solicitud aprobada</span>,
+          success: <span>Éxito, solicitud de donación aprobada</span>,
           error: (error: ApiError) => (
-            <span>Error al aprobar solicitud: {error.message}</span>
+            <span>Error al aprobar la solicitud de donación: {error.message}</span>
           ),
         }),
       onSuccess() {

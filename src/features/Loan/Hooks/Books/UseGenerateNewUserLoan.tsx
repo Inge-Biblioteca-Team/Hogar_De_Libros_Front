@@ -11,7 +11,7 @@ const UseGenerateNewUserLoan = () => {
   return useMutation({
     mutationFn: PostNewUserLoan,
     onSuccess: () => {
-      toast.success("préstamo Generado Con Exito!");
+      toast.success("Exito, préstamo generado correctamente");
       goBack();
     },
   });

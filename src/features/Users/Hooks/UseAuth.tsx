@@ -21,7 +21,7 @@ const UseAuth = () => {
       navigate("/HogarDeLibros");
     },
     onError: () => {
-      toast.error("Inicio de sesión Erroneo");
+      toast.error("Error al iniciar sesion");
     },
   });
 };

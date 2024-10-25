@@ -11,10 +11,10 @@ const UseDownEquip = () => {
     {
       onSuccess: (data) => {
         queryClient.invalidateQueries("FurnitureCatalog");
-        console.log("Estado actualizado correctamente:", data);
+        console.log("Exito, dio de baja correctamente el mueble:", data);
       },
       onError: (error) => {
-        console.error("Error actualizando el estado:", error);
+        console.error("Error al dar de baja el mueble:", error);
       },
     }
   );

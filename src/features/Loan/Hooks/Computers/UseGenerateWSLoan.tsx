@@ -18,7 +18,7 @@ const UseGenerateWSLoan = () => {
     onSuccess: (data) => {
       console.log("New loan created successfully:", data);
       queryClient.invalidateQueries("WSStatus");
-      toast.success(`Exito: Equipo en Uso`)
+      toast.success(`Exito, equipo en uso correctamente`)
     },
     onError: (error:ApiError) => {
       if (error.response?.data?.message) {

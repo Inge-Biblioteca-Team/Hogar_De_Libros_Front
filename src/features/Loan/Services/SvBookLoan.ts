@@ -17,7 +17,7 @@ const GetPendandRequest = async (
     const response = await api.get("book-loan/pending", { params });
     return response.data;
   } catch (error) {
-    console.error("Error to get pending requests:", error);
+    console.error("Error al cargar las solicitudes pendientes:", error);
     throw error;
   }
 };
@@ -44,7 +44,7 @@ const GetInProgressLoan = async (
     const response = await api.get("book-loan/in-progress", { params });
     return response.data;
   } catch (error) {
-    console.error("Error to get pending requests:", error);
+    console.error("Error al caragar los préstamo en progreso:", error);
     throw error;
   }
 };
@@ -73,7 +73,7 @@ const GetDoneLoans = async (
     const response = await api.get("book-loan/completed", { params });
     return response.data;
   } catch (error) {
-    console.error("Error to get pending requests:", error);
+    console.error("Error al cargar los préstamos finalizados:", error);
     throw error;
   }
 };
@@ -86,7 +86,7 @@ const CancelRequest = async (LoanID: number) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error al cancelar el la solicitud de préstamo:", error);
     throw error;
   }
 };
@@ -97,7 +97,7 @@ const RefuseRequest = async (LoanID: number) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error al rechazar la solicitud de préstamo:", error);
     throw error;
   }
 };
@@ -106,7 +106,7 @@ const AproveRequest = async (LoanID: number) => {
     const response = await api.patch(`/book-loan/${LoanID}/in-process`);
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error al aprovar la solicitud de préstamo:", error);
     throw error;
   }
 };
@@ -117,7 +117,7 @@ const FinalizeLoan = async (Loan: finishLoan) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error al finalizar el préstamo:", error);
     throw error;
   }
 };
@@ -133,7 +133,7 @@ const PostNewLoan = async (Loan: newloan) => {
       await api.patch(`/book-loan/${BookLoanId}/in-process`);
     }
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error al crear la solicitud de préstamo:", error);
     throw error;
   }
 };
@@ -144,7 +144,7 @@ const PostNewUserLoan = async (Loan: newloan) => {
     response.data;
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error al crear la solicitud de préstamo:", error);
     throw error;
   }
 };
@@ -155,7 +155,7 @@ const PatchLoan = async (Loan: ChangeExpiredDate) => {
     response.data;
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error al editar el préstamo:", error);
     throw error;
   }
 };

@@ -10,7 +10,7 @@ const UseCreateBook = () => {
       mutationFn: (data: Book) =>
         toast.promise(CreateBook(data), {
           loading: "Creando...",
-          success: <span>Éxito, Recurso creado correctamente</span>,
+          success: <span>Éxito, recurso creado correctamente</span>,
           error: (error: ApiError) => (
             <span>Error al crear el recurso: {error.message}</span>
           ),

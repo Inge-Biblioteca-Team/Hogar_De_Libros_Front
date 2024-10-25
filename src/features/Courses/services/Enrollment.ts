@@ -13,11 +13,11 @@ const EnrollToCourse = async (data: Enrollment) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al crear el Curso:",
+        "Error al matricularse en el curso:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el Curso"
+        error.response?.data.message || "Error al matricularse en el curso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -34,7 +34,7 @@ const getEnrollByCourse = async (CourseId: number, page?: number) => {
     const response = await api.get("enrollments", { params });
     return response.data;
   } catch (error) {
-    console.error("Error to get courses:", error);
+    console.error("Error al cargar los cursos:", error);
     throw error;
   }
 };

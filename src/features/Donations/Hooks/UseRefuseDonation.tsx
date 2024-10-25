@@ -10,9 +10,9 @@ const UseRefuseDonation = () => {
     mutationFn: (data: downType) =>
       toast.promise(DenyDonation(data), {
         loading: "Creando...",
-        success: <span>Amigo dado de baja correctamente</span>,
+        success: <span>Exito, solicitud de donación rechazada correctamente</span>,
         error: (error: ApiError) => (
-          <span>Error al rechazar dar de baja: {error.message}</span>
+          <span>Error al rechazar la solicitud de donación: {error.message}</span>
         ),
       }),
     onSuccess() {

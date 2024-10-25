@@ -10,7 +10,7 @@ const UseCreateCourse = () => {
     mutationFn: CreateCourses,
     onSuccess: () => {
       queryClient.invalidateQueries("CourseMG");
-      toast.success("Curso añadido con éxito!");
+      toast.success("Exito, curso añadido correctamente");
     },
     onError: (error: ApiError) => {
       toast.error("Error al crear el Curso: " + error.message);

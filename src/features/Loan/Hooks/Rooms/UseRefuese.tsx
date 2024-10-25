@@ -14,7 +14,7 @@ const UseRefuese = (actions: string) => {
       onSuccess: () => {
         queryClient.invalidateQueries("reserveRequest");
         queryClient.invalidateQueries("PendingRreservations");
-        toast.success("Estado de la reservacion modificado con exito!");
+        toast.success("Exito, estado de la reservacion modificado con exito!");
       },
       onError: (error: ApiError) => {
         toast.error("Error al actualizar estado: " + error.message);

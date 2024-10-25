@@ -11,7 +11,7 @@ const PostNewRoomReservation = () => {
     onSuccess: () => {
       queryClient.invalidateQueries("QueQueReservations");
       queryClient.invalidateQueries("countReservation");
-      toast.success("Solicitud de reserva enviada con exito!");
+      toast.success("Exito, solicitud de reserva enviada correctamente");
     },
     onError: (error: ApiError) => {
       toast.error("Error al cenviar la solicitud: " + error.message);

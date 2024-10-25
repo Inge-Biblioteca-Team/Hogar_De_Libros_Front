@@ -10,9 +10,9 @@ const UseConfirmDonation = () => {
     mutationFn: (data: downType) =>
       toast.promise(DownFriend(data), {
         loading: "Creando...",
-        success: <span>Amigo dado de baja correctamente</span>,
+        success: <span>Exito, se confirmo la recolección del donativo correctamente</span>,
         error: (error: ApiError) => (
-          <span>Error al rechazar dar de baja: {error.message}</span>
+          <span>Error al confirmar la recolección del donativo: {error.message}</span>
         ),
       }),
     onSuccess() {
