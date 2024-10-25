@@ -43,6 +43,7 @@ const MDRefuse = ({
             rows={4}
             {...register("reason")}
             placeholder="Escriba la razón de rechazo de la solicitud"
+            required
           />
         </ModalBody>
         <ModalFooters onClose={onClose} />

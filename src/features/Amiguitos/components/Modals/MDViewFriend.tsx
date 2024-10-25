@@ -73,7 +73,7 @@ const MDViewFriend = ({
         )}
       </Modal.Body>
       <Modal.Footer className="flex items-center justify-center">
-        <Button color={"failure"} onClick={onClose}>
+        <Button color={"blue"} onClick={onClose}>
           Regresar
         </Button>
       </Modal.Footer>

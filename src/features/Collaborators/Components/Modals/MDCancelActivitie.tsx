@@ -37,12 +37,13 @@ const MDCancelActivitie = ({
     <Modal show={open} onClose={onClose}>
       <Modal.Header>Cancelar colaboración</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <ModalBody>
+      <ModalBody>
           <Label value="Razón de cancelación" />
           <Textarea
             rows={4}
             {...register("reason")}
             placeholder="Escriba la razón para cancelar la actividad"
+            required
           />
         </ModalBody>
         <ModalFooters onClose={onClose} />

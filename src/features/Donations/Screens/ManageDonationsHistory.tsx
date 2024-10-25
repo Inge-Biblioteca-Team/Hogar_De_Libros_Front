@@ -6,6 +6,9 @@ import OptDonMainCategories from "../Components/OptDonMainCategories";
 import { GetDonationList } from "../Service/SVDonations";
 import { DonationsList } from "../Types/DonationType";
 import { DonationsCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import RowsHistoryDonations from "../Components/RowstHistoryDonations";
+import TableDonations from "../Components/TableDonations";
+import NoResults from "../../../components/NoResults";
 
 const ManageDonationsHistory = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -33,32 +36,48 @@ const ManageDonationsHistory = () => {
 
   return (
     <>
-    <DonationsCrumbs text="Donaciones finalizadas"/>
-    <main className="flex flex-col items-center justify-center w-full gap-5">
-      <section className=" flex w-4/5 gap-2">
-        <div>
-          <Label value="Categoría del colaborador" />
-          <Select onChange={(event) => setCategory(event.target.value)}>
-            <OptDonMainCategories />
-          </Select>
-        </div>
-        <div>
-          <Label value="Fecha de colaboración" />
-          <TextInput
-            type="date"
-            onChange={(event) => setDate(event.target.value)}
+      <DonationsCrumbs text="Donaciones finalizadas" />
+      <main className="flex flex-col items-center justify-center w-full gap-5">
+        <section className=" flex w-4/5 gap-2">
+          <div>
+            <Label value="Categoría del colaborador" />
+            <Select onChange={(event) => setCategory(event.target.value)}>
+              <OptDonMainCategories />
+            </Select>
+          </div>
+          <div>
+            <Label value="Fecha de colaboración" />
+            <TextInput
+              type="date"
+              onChange={(event) => setDate(event.target.value)}
             />
-        </div>
-      </section>
-      <CustomPagination
-        page={Page}
-        onPageChange={onPageChange}
-        totalPages={MaxPage}
-        setCurrentLimit={setCurrentLimit}
-        total={Donations?.count || 0}
-        />
-    </main>
-        </>
+          </div>
+        </section>
+        <section className=" w-4/5">
+          {Donations && Donations.count > 0 ? (
+            <>
+              <TableDonations hidd>
+                {Donations?.data.map((donation) => (
+                  <RowsHistoryDonations
+                    donation={donation}
+                    key={donation.DonationID}
+                  />
+                ))}
+              </TableDonations>
+              <CustomPagination
+                page={Page}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Donations?.count || 0}
+              />
+            </>
+          ) : (
+            <NoResults />
+          )}
+        </section>
+      </main>
+    </>
   );
 };
 
