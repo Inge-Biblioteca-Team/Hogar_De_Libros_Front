@@ -47,10 +47,10 @@ const MDViewInfo = ({
         <Label value={`Propuesta: ${colaboration.Description}`} />
         {colaboration.Document && (
           <>
-            <Label value={`Documentos adjuntos: ${colaboration.Document}`} />
-            {colaboration.Document.map((doc) => (
-              <a href={doc} title="Click para abrir">
-                Doc
+            <Label value={`Documentos adjuntos.`} />
+            {colaboration.Document.map((doc, index) => (
+              <a target="#blank" href={doc} title="Click para abrir" className=" hover:text-Body">
+                Documento #{index+1}
               </a>
             ))}
           </>

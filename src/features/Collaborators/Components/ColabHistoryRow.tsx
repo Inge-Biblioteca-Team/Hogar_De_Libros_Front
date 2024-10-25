@@ -14,7 +14,7 @@ const ColabHistoryRow = ({ colaborator }: { colaborator: Colaborator }) => {
         <Table.Cell>{colaborator.UserPhone}</Table.Cell>
         <Table.Cell>{colaborator.UserEmail}</Table.Cell>
         <Table.Cell>{colaborator.PrincipalCategory}</Table.Cell>
-        <Table.Cell>{colaborator.Experience}</Table.Cell>
+        <Table.Cell>{colaborator.Experience  || "No posee"}</Table.Cell>
         <Table.Cell>{colaborator.Status}</Table.Cell>
       </Table.Row>
       <MDViewInfo open={openV} setOpen={setOpenV} colaboration={colaborator} />
