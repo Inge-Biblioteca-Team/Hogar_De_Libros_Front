@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { CreateFriends } from "../../types/InfoAmiguitos";
 import UseCreateFriend from "../../Hooks/UseCreateFriend";
+import InfoActividadAcademica from "../Popover/InfoActividadAcademica";
 
 interface MainFormProps {
   isOpen: boolean;
@@ -39,7 +40,12 @@ const FormActividadesAcademicas = ({ isOpen, onClose }: MainFormProps) => {
   return (
     <div>
       <Modal show={isOpen} onClose={onClose} size="5xl">
-        <Modal.Header>Registro de Actividades Académicas</Modal.Header>
+        <Modal.Header className="flex justify-between items-center">
+          <span>Registro de Actividades Académicas</span>
+          <div className="flex-shrink-0">
+            <InfoActividadAcademica />
+          </div>
+        </Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
             <fieldset className="grid grid-cols-2 gap-3">
@@ -100,9 +106,9 @@ const FormActividadesAcademicas = ({ isOpen, onClose }: MainFormProps) => {
                   {...register("userAddress")}
                 />
               </div>
-
             </fieldset>
-            <div>
+
+            <div  className="pt-3">
                 <Label htmlFor="categorySelect" value="Selecciona una categoría" />
                 <Select
                   id="categorySelect"

@@ -1,16 +1,15 @@
 import { useMutation, useQueryClient } from "react-query";
-import { CreateFriends } from "../types/InfoAmiguitos";
-import { PostNewFriend } from "../services/SvAmiguitos";
-import toast from "react-hot-toast";
+import { PostNewColaborator } from "../services/SvAmiguitos";
+import { Colaborator } from "../types/InfoAmiguitos";
 import { ApiError } from "../../../Types/ApiTypes";
+import toast from "react-hot-toast";
 
-  const UseCreateFriend = () => {
+const useColaborator = () => {
     const queryClient = useQueryClient();
   
     return useMutation({
-      mutationFn: (data: CreateFriends) => PostNewFriend(data),
+      mutationFn: (data: Colaborator) => PostNewColaborator(data),
       onSuccess: () => {
-        // Invalidar cualquier query relacionada con amigos (si es necesario)
         queryClient.invalidateQueries("FriendList");
         toast.success("Biblioteca de amigos creada exitosamente.");
       },
@@ -20,4 +19,4 @@ import { ApiError } from "../../../Types/ApiTypes";
     });
   };
   
-  export default UseCreateFriend;
+  export default useColaborator;

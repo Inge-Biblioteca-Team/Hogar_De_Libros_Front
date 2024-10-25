@@ -1,8 +1,10 @@
-import { Label, Modal, TextInput, Select, Button, Checkbox } from "flowbite-react"; 
+import { Label, Modal, TextInput, Select, Button } from "flowbite-react";
 import { useState } from "react";
-import UseCreateFriend from "../../Hooks/UseCreateFriend";
-import { CreateFriends } from "../../types/InfoAmiguitos";
+import { Donation } from "../../types/InfoAmiguitos";
 import { useForm } from "react-hook-form";
+import useDonation from "../../Hooks/useDonation";
+import { addDay, format } from "@formkit/tempo";
+import InfoDonation from "../Popover/InfoDonation";
 
 interface MainFormProps {
   isOpen: boolean;
@@ -12,11 +14,10 @@ interface MainFormProps {
 const FormDonaciones = ({ isOpen, onClose }: MainFormProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [uploadedImages, setUploadedImages] = useState<File[]>([]);
-  const { register, handleSubmit } = useForm<CreateFriends>();
-  const { mutate: createFriend, isLoading } = UseCreateFriend();
-  const [hasPriorKnowledge, setHasPriorKnowledge] = useState<boolean | null>(null);
+  const { register, handleSubmit } = useForm<Donation>();
+  const { mutate: createFriend, isLoading } = useDonation();
 
-  const onSubmit = (data: CreateFriends) => {
+  const onSubmit = (data: Donation) => {
     createFriend(data, {
       onSuccess: () => {
         onClose();
@@ -36,10 +37,22 @@ const FormDonaciones = ({ isOpen, onClose }: MainFormProps) => {
     setUploadedImages((prevFiles) => prevFiles.filter((f) => f !== file));
   };
 
+  const tomorrow = addDay(new Date());
+
+  const toDay = format({
+    date: tomorrow,
+    format: "YYYY-MM-DD",
+    tz: "America/Costa_Rica",
+  });
+
   return (
     <div>
       <Modal show={isOpen} onClose={onClose} size="5xl">
-        <Modal.Header>Registro de Donación</Modal.Header>
+        <Modal.Header className="flex justify-between items-center">
+          <span>Donaciones</span>
+          <InfoDonation />
+        </Modal.Header>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
             <fieldset className="grid grid-cols-2 gap-3">
@@ -49,7 +62,7 @@ const FormDonaciones = ({ isOpen, onClose }: MainFormProps) => {
                   id="userFullName"
                   placeholder="Nombre Completo"
                   required
-                  {...register("userFullName")}
+                  {...register("UserFullName")}
                 />
               </div>
               <div>
@@ -61,7 +74,7 @@ const FormDonaciones = ({ isOpen, onClose }: MainFormProps) => {
                   type="text"
                   pattern="[0-9]*"
                   required
-                  {...register("userCedula")}
+                  {...register("UserCedula")}
                 />
               </div>
               <div>
@@ -69,7 +82,7 @@ const FormDonaciones = ({ isOpen, onClose }: MainFormProps) => {
                 <TextInput
                   id="userBirthDate"
                   type="date"
-                  {...register("userBirthDate")}
+                  {...register("UserBirthDate")}
                 />
               </div>
               <div>
@@ -79,7 +92,7 @@ const FormDonaciones = ({ isOpen, onClose }: MainFormProps) => {
                   type="tel"
                   placeholder="Número de teléfono"
                   required
-                  {...register("userPhone")}
+                  {...register("UserPhone")}
                 />
               </div>
               <div>
@@ -88,7 +101,7 @@ const FormDonaciones = ({ isOpen, onClose }: MainFormProps) => {
                   id="userEmail"
                   type="email"
                   placeholder="Email"
-                  {...register("userEmail")}
+                  {...register("UserEmail")}
                 />
               </div>
               <div>
@@ -97,44 +110,41 @@ const FormDonaciones = ({ isOpen, onClose }: MainFormProps) => {
                   id="userAddress"
                   placeholder="Dirección"
                   required
-                  {...register("userAddress")}
+                  {...register("UserAddress")}
                 />
               </div>
             </fieldset>
-            <div>
-                <Label htmlFor="categorySelect" value="Selecciona una categoría" />
-                <Select
-                  id="categorySelect"
-                  {...register("principalCategory", { required: true })}
-                  onChange={(e) => {
-                    setSelectedCategory(e.target.value);
-                  }}
-                >
-                  <option value="">Seleccione una categoría</option>
-                  <option value="Libros">Libros</option>
-                  <option value="Mobiliario">Mobiliario</option>
-                </Select>
-              </div>
+            <div className="pt-3">
+              <Label htmlFor="categorySelect" value="Selecciona una categoría" />
+              <Select
+                id="categorySelect"
+                {...register("SubCategory", { required: true })}
+                onChange={(e) => {
+                  setSelectedCategory(e.target.value);
+                }}
+              >
+                <option value="">Seleccione una categoría</option>
+                <option value="Libros">Libros</option>
+                <option value="Mobiliario">Mobiliario</option>
+              </Select>
+            </div>
 
             {selectedCategory === "Libros" && (
               <div className="grid grid-cols-2 gap-6 mt-6">
-                <div className="flex items-center">
-                  <Label htmlFor="bookCondition" value="¿El libro está en buenas condiciones?" />
-                  <Checkbox
-                    id="priorKnowledgeYes"
-                    checked={hasPriorKnowledge === true}
-                    onChange={() => setHasPriorKnowledge(true)}
-                    className="ml-4"
-                  />
-                  <Label htmlFor="priorKnowledgeYes" className="ml-2">Sí</Label>
-
-                    <Checkbox
-                    id="priorKnowledgeNo"
-                    checked={hasPriorKnowledge === false}
-                    onChange={() => setHasPriorKnowledge(false)}
-                    className="ml-4"
-                  />
-                  <Label htmlFor="priorKnowledgeNo" className="ml-2">No</Label>
+                <div>
+                  <Label htmlFor="Resourcecondition" value="Proporcione información del condición del libro" />
+                  <Select
+                    id="Resourcecondition"
+                    {...register("ResourceCondition")}
+                    required
+                  >
+                    <option value="">Seleccione la condición</option>
+                    <option value="Mala">Mala</option>
+                    <option value="Deficiente">Deficiente</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Bueno">Bueno</option>
+                    <option value="Optimo">Optimo</option>
+                  </Select>
                 </div>
                 <div className="flex flex-col custom-file-input">
                   <label htmlFor="bookImages" className="mb-1 text-sm font-medium">Cargar imágenes del libro:</label>
@@ -162,7 +172,17 @@ const FormDonaciones = ({ isOpen, onClose }: MainFormProps) => {
                   <TextInput
                     id="bookExtraInfo"
                     placeholder="Proporcione información adicional"
-                    {...register("extraInfo")}
+                    {...register("ItemDescription")}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="Date" value="Fecha y hora de la entrega del libro" />
+                  <TextInput
+                    id="Date"
+                    type="date"
+                    min={toDay}
+                    required
+                    {...register("dateRecolatedDonation")}
                   />
                 </div>
               </div>
@@ -170,24 +190,20 @@ const FormDonaciones = ({ isOpen, onClose }: MainFormProps) => {
 
             {selectedCategory === "Mobiliario" && (
               <div className="grid grid-cols-2 gap-6 mt-6">
-                <div className="flex items-center">
-                  <Label htmlFor="furnitureCondition" value="¿El mobiliario está en buenas condiciones?" />
-                  <Checkbox
-                    id="priorKnowledgeYes"
-                    checked={hasPriorKnowledge === true}
-                    onChange={() => setHasPriorKnowledge(true)}
-                    className="ml-4"
-                  />
-                  <Label htmlFor="priorKnowledgeYes" className="ml-2">Sí</Label>
-
-                  <Checkbox
-                    id="priorKnowledgeNo"
-                    checked={hasPriorKnowledge === false}
-                    onChange={() => setHasPriorKnowledge(false)}
-                    className="ml-4"
-                  />
-                  <Label htmlFor="priorKnowledgeNo" className="ml-2">No</Label>
-                  
+                <div>
+                  <Label htmlFor="Resourcecondition" value="Proporcione información del condición del mobiliario" />
+                  <Select
+                    id="Resourcecondition"
+                    {...register("ResourceCondition")}
+                    required
+                  >
+                    <option value="">Seleccione la condición</option>
+                    <option value="Mala">Mala</option>
+                    <option value="Deficiente">Deficiente</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Bueno">Bueno</option>
+                    <option value="Optimo">Optimo</option>
+                  </Select>
                 </div>
                 <div className="flex flex-col custom-file-input">
                   <label htmlFor="furnitureImages" className="mb-1 text-sm font-medium">Cargar imágenes del mobiliario:</label>
@@ -215,7 +231,17 @@ const FormDonaciones = ({ isOpen, onClose }: MainFormProps) => {
                   <TextInput
                     id="furnitureExtraInfo"
                     placeholder="Proporcione información adicional"
-                    {...register("extraInfo")}
+                    {...register("ItemDescription")}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="Date" value="Fecha y hora de la entrega del mobiliario" />
+                  <TextInput
+                    id="Date"
+                    type="date"
+                    min={toDay}
+                    required
+                    {...register("dateRecolatedDonation")}
                   />
                 </div>
               </div>
