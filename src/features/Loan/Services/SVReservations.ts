@@ -41,11 +41,11 @@ const PatchEndReservation = async (data: EndReservation) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al solicitar la reserva:",
+        "Error al finalizar la reserva:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al solicitar la reserva"
+        error.response?.data.message || "Error al finalizar la reserva"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -64,7 +64,7 @@ const PatchResolveReservation = async (id: number, action: string) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al solicitar la reserva:",
+        "Error al actualizar la reserva:",
         error.response?.data || error.message
       );
       throw new Error(
@@ -91,7 +91,7 @@ const PatchCancelReservation = async (id: number) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al actualizar la reserva"
+        error.response?.data.message || "Error al cancelar la reserva"
       );
     } else {
       console.error("Error desconocido:", error);

@@ -15,7 +15,7 @@ const UseRefuseLoan = () => {
         queryClient.invalidateQueries("PRLoans");
         queryClient.invalidateQueries("RLoans");
         queryClient.invalidateQueries("DLoans");
-        toast.success("Préstamo cancelado correctamente:", data);
+        toast.success("Exito, préstamo cancelado correctamente:", data);
       },
       onError: () => {
         toast.error("Error al cancelar el préstamo.");

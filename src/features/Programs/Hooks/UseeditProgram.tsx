@@ -10,7 +10,7 @@ const UseeditProgram = () => {
     mutationFn: PatchProgram,
     onSuccess: () => {
       queryClient.invalidateQueries("ProgramCatalog");
-      toast.success("Programa editado con éxito!");
+      toast.success("Éxito, programa editado correctamente");
     },
     onError: (error: ApiError) => {
       toast.error("Error al editar el programa: " + error.message);

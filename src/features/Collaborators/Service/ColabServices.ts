@@ -44,11 +44,11 @@ const RefueseColab = async (data: downType) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al crear el aviso:",
+        "Error al rechazarla solcititud de colaboración:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el aviso"
+        error.response?.data.message || "Error al rechazarla solcititud de colaboración"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -72,11 +72,11 @@ const CancelColab = async (data: downType) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al crear el aviso:",
+        "Error al cancelar la colaboración:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el aviso"
+        error.response?.data.message || "al cancelar la colaboración"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -95,11 +95,11 @@ const AproveColab = async (id: number) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al crear el aviso:",
+        "al cancelar la colaboración",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el aviso"
+        error.response?.data.message || "al cancelar la colaboración"
       );
     } else {
       console.error("Error desconocido:", error);

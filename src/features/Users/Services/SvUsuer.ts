@@ -32,7 +32,7 @@ const GetUserData = async (NCedula: string) => {
     const response = await api.get(`user/504420813/${NCedula}`);
     return response.data;
   } catch (error) {
-    console.error("Usuario no encontrado");
+    console.error("Error usuario no encontrado");
   }
 };
 
@@ -41,7 +41,7 @@ const DownUser = async (cedula: string) => {
     const response = await api.patch(`user/change-status/${cedula}`);
     return response.data;
   } catch (error) {
-    console.error("Error to disbale:", error);
+    console.error("Error al dar de baja al usuario:", error);
     throw error;
   }
 };
@@ -50,7 +50,7 @@ const UpUser = async (cedula: string) => {
     const response = await api.patch(`user/Up-status/${cedula}`);
     return response.data;
   } catch (error) {
-    console.error("Error to disbale:", error);
+    console.error("Error al reactivar el usuario:", error);
     throw error;
   }
 };
@@ -64,7 +64,7 @@ const signIn = async (username: string, password: string) => {
     sessionStorage.setItem("Token", response.data.access_token);
   } catch (error) {
     if (error) {
-      console.error("Error to disbale:", error);
+      console.error("Error al iniciar sesión:", error);
       throw error;
     }
   }

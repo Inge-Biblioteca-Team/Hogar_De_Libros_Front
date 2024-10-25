@@ -7,11 +7,11 @@ const UseUpUser = () => {
 
     return useMutation(UpUser, {
       onSuccess: () => {
-        toast.success("Usuario habilitado.");
+        toast.success("Éxito, usuario habilitado correctamente.");
         queryClient.invalidateQueries("UsersMG");
       },
       onError: () => {
-        toast.error("Error al actualizar alhabilitar el Usuario.");
+        toast.error("Error al habilitar el Usuario.");
       },
     });
   };

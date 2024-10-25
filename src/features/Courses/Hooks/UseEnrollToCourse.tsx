@@ -10,7 +10,7 @@ const UseEnrollToCourse = () => {
       mutationFn: EnrollToCourse,
       onSuccess: () => {
         queryClient.invalidateQueries("CourseMG");
-        toast.success("Curso matriculado con éxito!");
+        toast.success("Exito, curso matriculado correctamente");
       },
       onError: (error: ApiError) => {
         toast.error("Error al matricular el Curso: " + error.message);

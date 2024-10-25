@@ -9,10 +9,10 @@ const UseReactiveSW = () => {
     onSuccess: (data) => {
       console.log("Machine reactivated successfully:", data);
       queryClient.invalidateQueries("WSStatus");
-      toast.success("Equipo nuevamente Disponible")
+      toast.success("Exito, el equipo disponible nuevamente")
     },
     onError: (error) => {
-      console.error("Error reactivating machine:", error);
+      console.error("Error al reactivar el equipo de cómputo", error);
     },
   });
 };

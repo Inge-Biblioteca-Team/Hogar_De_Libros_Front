@@ -10,7 +10,7 @@ const UseUpdateCourse = () => {
       mutationFn: editCourse,
       onSuccess: () => {
         queryClient.invalidateQueries("CourseMG");
-        toast.success("Curso editado con éxito!");
+        toast.success("Exito, curso editado correctamente");
       },
       onError: (error: ApiError) => {
         toast.error("Error al editar el curso: " + error.message);

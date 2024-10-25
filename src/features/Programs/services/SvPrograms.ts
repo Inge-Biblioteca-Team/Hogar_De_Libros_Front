@@ -42,11 +42,11 @@ const PatchProgram = async (data: Program) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al crear el programa:",
+        "Error al editar el programa:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el programa"
+        error.response?.data.message || "Error al editar el programa"
       );
     } else {
       console.error("Error desconocido:", error);
