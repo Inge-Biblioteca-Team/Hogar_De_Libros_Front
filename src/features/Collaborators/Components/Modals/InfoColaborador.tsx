@@ -1,35 +1,13 @@
 import { Popover } from 'flowbite-react';
-import { useEffect, useRef, useState } from 'react';
-import { AiOutlineQuestionCircle } from 'react-icons/ai';
+import React from 'react';
 
-const InfoColaborador = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const popoverRef = useRef<HTMLDivElement>(null);
-
-  const togglePopover = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+const InfoColaborador = ({children}:{children:React.ReactNode}) => {
 
   return (
-    <div className="relative" ref={popoverRef}>
+    <div className="relative">
       <Popover
-        className="z-10"
+        className="z-10 w-96"
         trigger="click"
-        open={isOpen}
-        onOpenChange={setIsOpen}
         content={
           <div className="p-4 bg-white border rounded shadow-md">
             <h3 className="font-semibold">Documentación Requerida</h3>
@@ -55,9 +33,7 @@ const InfoColaborador = () => {
           </div>
         }
       >
-        <button className="text-blue-600">
-          <AiOutlineQuestionCircle size={24} />
-        </button>
+        {children}
       </Popover>
     </div>
   );

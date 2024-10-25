@@ -32,7 +32,7 @@ const ManageBooks = () => {
   const [limit, setLimit] = useState<number>(5);
 
   const { data: Catalog } = useQuery<Catalog, Error>(
-    ["-colection", page, limit, title, author, year, status],
+    ["colection", page, limit, title, author, year, status],
     () => getColection(page, limit, title, author, year, status),
     {
       staleTime: 50000,
