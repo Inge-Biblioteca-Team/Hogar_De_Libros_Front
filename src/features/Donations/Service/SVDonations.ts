@@ -95,7 +95,7 @@ const GetDonationList = async (
       limit: limit,
     };
     if (category) params.PrincipalCategory = category;
-    if (date) params.DateGenerated = date;
+    if (date) params.DateRecolatedDonation = date;
     if (Status) params.Status = Status;
     const response = await api.get("/donation", { params });
     return response.data;

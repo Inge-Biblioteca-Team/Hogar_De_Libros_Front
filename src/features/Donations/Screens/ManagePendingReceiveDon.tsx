@@ -6,6 +6,9 @@ import OptDonMainCategories from "../Components/OptDonMainCategories";
 import { GetDonationList } from "../Service/SVDonations";
 import { DonationsList } from "../Types/DonationType";
 import { DonationsCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import NoResults from "../../../components/NoResults";
+import TableDonations from "../Components/TableDonations";
+import RowsPeningReceive from "../Components/RowsPeningReceive";
 
 const ManagePendingReceiveDon = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -19,7 +22,7 @@ const ManagePendingReceiveDon = () => {
 
   const { data: Donations } = useQuery<DonationsList, Error>(
     ["PendingRecolection", Page, Limit, category, date],
-    () => GetDonationList(Page, Limit, category, date, "Aprovado"),
+    () => GetDonationList(Page, Limit, category, date, "Aprobado"),
     {
       staleTime: 600,
     }
@@ -33,7 +36,7 @@ const ManagePendingReceiveDon = () => {
 
   return (
     <>
-    <DonationsCrumbs text="Donaciones pendientes de recepción"/>
+      <DonationsCrumbs text="Donaciones pendientes de recepción" />
       <main className="flex flex-col items-center justify-center w-full gap-5">
         <section className=" flex w-4/5 gap-2">
           <div>
@@ -50,13 +53,27 @@ const ManagePendingReceiveDon = () => {
             />
           </div>
         </section>
-        <CustomPagination
-          page={Page}
-          onPageChange={onPageChange}
-          totalPages={MaxPage}
-          setCurrentLimit={setCurrentLimit}
-          total={Donations?.count || 0}
-        />
+        <section className=" w-4/5">
+          {Donations && Donations.count > 0 ? (
+            <>
+              <TableDonations>
+                {Donations?.data.map((donation) => (
+                  <RowsPeningReceive donation={donation}
+                  key={donation.DonationID} />
+                ))}
+              </TableDonations>
+              <CustomPagination
+                page={Page}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Donations?.count || 0}
+              />
+            </>
+          ) : (
+            <NoResults />
+          )}
+        </section>
       </main>
     </>
   );

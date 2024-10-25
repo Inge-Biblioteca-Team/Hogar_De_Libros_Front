@@ -26,12 +26,18 @@ const MDAproveDonation = ({
   };
 
   return (
-    <Modal show={open} onClose={onClose}>
+    <Modal show={open} onClose={onClose} popup size={"md"}>
       <Modal.Header></Modal.Header>
-      <Modal.Body></Modal.Body>
-      <Modal.Footer>
-        <Button color={"red"}>Cancelar</Button>
-        <Button color={"blue"} onClick={()=>onConfirm(id)}>
+      <Modal.Body className=" flex justify-center items-center">
+        <span className=" text-center">
+          Confirmar aprobación de la donación
+        </span>{" "}
+      </Modal.Body>
+      <Modal.Footer className=" flex justify-center items-center">
+        <Button color={"red"} onClick={onClose}>
+          Cancelar
+        </Button>
+        <Button color={"blue"} onClick={() => onConfirm(id)}>
           Confirmar
         </Button>
       </Modal.Footer>

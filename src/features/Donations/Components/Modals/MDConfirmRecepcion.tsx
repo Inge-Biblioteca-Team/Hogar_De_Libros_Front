@@ -1,11 +1,11 @@
 import { Label, Modal, Textarea } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
+import { useForm } from "react-hook-form";
 import ModalFooters from "../../../../components/ModalFooters";
 import { downType } from "../../../../Types/GlobalTypes";
-import UseRefuseDonation from "../../Hooks/UseRefuseDonation";
-import { useForm } from "react-hook-form";
+import UseConfirmDonation from "../../Hooks/UseConfirmDonation";
 
-const MDDenyDonation = ({
+const MDConfirmRecepcion = ({
   open,
   setOpen,
   id,
@@ -23,10 +23,10 @@ const MDDenyDonation = ({
     defaultValues: { Id: id.toString() },
   });
 
-  const { mutate: refuse } = UseRefuseDonation();
+  const { mutate: confirm } = UseConfirmDonation();
 
   const onConfirm = (data: downType) => {
-    refuse(data, {
+    confirm(data, {
       onSuccess: () => {
         setOpen(false);
       },
@@ -34,18 +34,17 @@ const MDDenyDonation = ({
   };
 
   return (
-    <Modal show={open} onClose={onClose} popup size={"md"}>
-      <Modal.Header></Modal.Header>
+    <Modal show={open} onClose={onClose} size={"md"}>
+      <Modal.Header>Confirmar recepción</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body className=" flex flex-col gap-4">
-          <span>¿Esta seguro de rechazar la donación?</span>
+        <Modal.Body>
           <div>
-            <Label value="Razón de rechazo" />
+            <Label value="Anotaciones extras" />
             <Textarea
               rows={4}
               {...register("reason")}
               required
-              placeholder="Ej. No cumple con los requisitos de donación"
+              placeholder="Ej. Tiene algún daño no especificado previamente"
             />
           </div>
         </Modal.Body>
@@ -55,4 +54,4 @@ const MDDenyDonation = ({
   );
 };
 
-export default MDDenyDonation;
+export default MDConfirmRecepcion;

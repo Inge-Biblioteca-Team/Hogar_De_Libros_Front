@@ -58,7 +58,8 @@ const ManageRequestDonations = () => {
             <>
               <TableDonations>
                 {Donations?.data.map((donation) => (
-                  <RowsRequestDonation donation={donation} />
+                  <RowsRequestDonation donation={donation} 
+                  key={donation.DonationID} />
                 ))}
               </TableDonations>
               <CustomPagination

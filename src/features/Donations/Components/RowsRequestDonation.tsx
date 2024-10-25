@@ -5,6 +5,7 @@ import { useState } from "react";
 import MDAproveDonation from "./Modals/MDAproveDonation";
 import MDDenyDonation from "./Modals/MDDenyDonation";
 import MDSeeDonation from "./Modals/MDSeeDonation";
+import { formatToDMY } from "../../../components/FormatTempo";
 
 const RowsRequestDonation = ({ donation }: { donation: Donation }) => {
   const [openV, setOpenV] = useState<boolean>(false);
@@ -18,7 +19,7 @@ const RowsRequestDonation = ({ donation }: { donation: Donation }) => {
         <Table.Cell>{donation.UserEmail}</Table.Cell>
         <Table.Cell>{donation.UserPhone}</Table.Cell>
         <Table.Cell>{donation.SubCategory}</Table.Cell>
-        <Table.Cell>{donation.DateRecolatedDonation}</Table.Cell>
+        <Table.Cell>{formatToDMY(donation.DateRecolatedDonation)}</Table.Cell>
         <Table.Cell>{donation.Status}</Table.Cell>
         <Table.Cell>
           <RequestBTN

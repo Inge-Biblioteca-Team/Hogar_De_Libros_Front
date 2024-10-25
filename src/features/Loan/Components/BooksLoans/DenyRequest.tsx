@@ -35,7 +35,7 @@ const DenyRequest = ({
                   setShowCancel(false);
                 }}
               >
-                Regresar
+              Volver
               </Button>
               <Button color="blue" onClick={() => handleCancel()}>
                 Confirmar

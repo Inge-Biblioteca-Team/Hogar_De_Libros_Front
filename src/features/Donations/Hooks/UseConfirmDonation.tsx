@@ -2,13 +2,13 @@ import toast from "react-hot-toast";
 import { useQueryClient, useMutation } from "react-query";
 import { ApiError } from "../../../Types/ApiTypes";
 import { downType } from "../../../Types/GlobalTypes";
-import { DownFriend } from "../../Amiguitos/services/SvFriends";
+import { ConfirmDonation } from "../Service/SVDonations";
 
 const UseConfirmDonation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (data: downType) =>
-      toast.promise(DownFriend(data), {
+      toast.promise(ConfirmDonation(data), {
         loading: "Creando...",
         success: <span>Amigo dado de baja correctamente</span>,
         error: (error: ApiError) => (

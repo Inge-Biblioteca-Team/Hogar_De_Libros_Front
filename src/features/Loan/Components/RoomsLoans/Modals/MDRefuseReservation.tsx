@@ -32,8 +32,8 @@ const MDRefuseReservation = ({
         </span>
       </Modal.Body>
       <Modal.Footer className="flex items-center justify-center">
-        <Button color={"failure"} tabIndex={2} onClick={() => setOpen(false)}>
-          Regresar
+        <Button color={"red"} tabIndex={2} onClick={() => setOpen(false)}>
+          Cancelar
         </Button>
         <Button color={"blue"} onClick={onSubmit}>
           Confirmar
