@@ -3,6 +3,7 @@ import { useState } from "react";
 import UseCreateFriend from "../../Hooks/UseCreateFriend";
 import { CreateFriends } from "../../types/InfoAmiguitos";
 import { useForm } from "react-hook-form";
+import InfoAmigos from "../Popover/InfoAmigos";
 
 interface MainFormProps {
   isOpen: boolean;
@@ -93,7 +94,7 @@ const MainFormAmigos = ({ isOpen, onClose }: MainFormProps) => {
               required
             >
               <option value="">Seleccione una área de acompañamiento</option>
-              <option value="Atencion al usuario">Atención al usuario</option> 
+              <option value="Atencion al usuario">Atención al usuario</option>
               <option value="Ordenar la colección general e infantil">Ordenar la colección general e infantil</option>
               <option value="Acompañamiento y logística en las actividades">Acompañamiento y logística en las actividades</option>
               <option value="Visitas guiadas">Visitas guiadas</option>
@@ -132,7 +133,12 @@ const MainFormAmigos = ({ isOpen, onClose }: MainFormProps) => {
   return (
     <div>
       <Modal show={isOpen} onClose={onClose} size="5xl">
-        <Modal.Header>Registro de Amigo de la Biblioteca</Modal.Header>
+        <Modal.Header className="flex justify-between items-center">
+          <span>Registro de Amigo de la Biblioteca</span>
+          <div className="flex-shrink-0">
+            <InfoAmigos />
+          </div>
+        </Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
             <fieldset className="grid grid-cols-2 gap-3">
@@ -193,25 +199,26 @@ const MainFormAmigos = ({ isOpen, onClose }: MainFormProps) => {
                   {...register("userAddress")}
                 />
               </div>
-              <div>
-                <Label htmlFor="categorySelect" value="Selecciona una categoría" />
-                <Select
-                  id="categorySelect"
-                  {...register("principalCategory", { required: true })}
-                  onChange={(e) => {
-                    setSelectedCategory(e.target.value);
-                    setHasPriorKnowledge(null);
-                  }}
-                  value={selectedCategory || ""}
-                >
-                  <option value="">Seleccione una categoría</option>
-                  <option value="Talleres">Talleres</option>
-                  <option value="Acompañamiento Administrativo">Acompañamiento Administrativo</option>
-                </Select>
-              </div>
             </fieldset>
 
-            {selectedCategory && ( 
+            <div className="pt-3">
+              <Label htmlFor="categorySelect" value="Selecciona una categoría" />
+              <Select
+                id="categorySelect"
+                {...register("principalCategory", { required: true })}
+                onChange={(e) => {
+                  setSelectedCategory(e.target.value);
+                  setHasPriorKnowledge(null);
+                }}
+                value={selectedCategory || ""}
+              >
+                <option value="">Seleccione una categoría</option>
+                <option value="Talleres">Talleres</option>
+                <option value="Acompañamiento Administrativo">Acompañamiento Administrativo</option>
+              </Select>
+            </div>
+
+            {selectedCategory && (
               <div className="mt-6">
                 <div className="flex items-center">
                   <Label>¿Tiene conocimientos previos en el apartado que seleccionó?</Label>
@@ -244,7 +251,7 @@ const MainFormAmigos = ({ isOpen, onClose }: MainFormProps) => {
                     id="extraInfo"
                     placeholder="Proporcione información adicional"
                     {...register("extraInfo")}
-                    disabled={selectedCategory === "Acompañamiento Administrativo" ? false : hasPriorKnowledge === false} 
+                    disabled={selectedCategory === "Acompañamiento Administrativo" ? false : hasPriorKnowledge === false}
                   />
                 </div>
               </div>

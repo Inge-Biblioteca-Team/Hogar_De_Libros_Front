@@ -1,8 +1,10 @@
 import { Label, Modal, TextInput, Select, Button, Checkbox } from "flowbite-react";
 import { useState } from "react";
-import UseCreateFriend from "../../Hooks/UseCreateFriend";
-import { CreateFriends } from "../../types/InfoAmiguitos";
+import { Colaborator } from "../../types/InfoAmiguitos";
 import { useForm } from "react-hook-form";
+import useColaborator from "../../Hooks/useColaborator";
+import { addDay, format } from "@formkit/tempo";
+import InfoColaborador from "../Popover/InfoColaborador";
 
 interface MainFormProps {
   isOpen: boolean;
@@ -14,10 +16,10 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
   const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
   const [hasPriorKnowledge, setHasPriorKnowledge] = useState<boolean | null>(null);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const { register, handleSubmit } = useForm<CreateFriends>();
-  const { mutate: createFriend, isLoading } = UseCreateFriend();
+  const { register, handleSubmit } = useForm<Colaborator>();
+  const { mutate: createFriend, isLoading } = useColaborator();
 
-  const onSubmit = (data: CreateFriends) => {
+  const onSubmit = (data: Colaborator) => {
     createFriend(data, {
       onSuccess: () => {
         onClose();
@@ -37,6 +39,14 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
     setUploadedFiles((prevFiles) => prevFiles.filter((f) => f !== file));
   };
 
+  const tomorrow = addDay(new Date());
+
+  const toDay = format({
+    date: tomorrow,
+    format: "YYYY-MM-DD",
+    tz: "America/Costa_Rica",
+  });
+
   const renderSubCategoryOptions = () => {
     if (selectedCategory === "Charlas") {
       return (
@@ -45,7 +55,7 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
             <Label htmlFor="charlasSubCategory" value="Selecciona un tema de charla" />
             <Select
               id="charlasSubCategory"
-              {...register("subCategory")}
+              {...register("SubCategory")}
               onChange={(e) => setSelectedSubCategory(e.target.value)}
               required
             >
@@ -93,7 +103,7 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
             <Label htmlFor="capacitacionSubCategory" value="Selecciona un curso" />
             <Select
               id="capacitacionSubCategory"
-              {...register("subCategory")}
+              {...register("SubCategory")}
               onChange={(e) => setSelectedSubCategory(e.target.value)}
               required
             >
@@ -136,7 +146,7 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
             <Label htmlFor="culturaSubCategory" value="Selecciona una actividad cultural" />
             <Select
               id="culturaSubCategory"
-              {...register("subCategory")}
+              {...register("SubCategory")}
               onChange={(e) => setSelectedSubCategory(e.target.value)}
               required
             >
@@ -158,7 +168,10 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
   return (
     <div>
       <Modal show={isOpen} onClose={onClose} size="5xl">
-        <Modal.Header>Registro de Colaborador</Modal.Header>
+        <Modal.Header className="flex justify-between items-center">
+          <span>Registro de Colaboradores</span>
+          <InfoColaborador />
+        </Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
             <fieldset className="grid grid-cols-2 gap-3">
@@ -168,7 +181,7 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
                   id="userFullName"
                   placeholder="Nombre Completo"
                   required
-                  {...register("userFullName")}
+                  {...register("UserFullName")}
                 />
               </div>
               <div>
@@ -180,7 +193,7 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
                   type="text"
                   pattern="[0-9]*"
                   required
-                  {...register("userCedula")}
+                  {...register("UserCedula")}
                 />
               </div>
               <div>
@@ -188,7 +201,7 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
                 <TextInput
                   id="userBirthDate"
                   type="date"
-                  {...register("userBirthDate")}
+                  {...register("UserBirthDate")}
                 />
               </div>
               <div>
@@ -198,7 +211,7 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
                   type="tel"
                   placeholder="Número de teléfono"
                   required
-                  {...register("userPhone")}
+                  {...register("UserPhone")}
                 />
               </div>
               <div>
@@ -207,7 +220,7 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
                   id="userEmail"
                   type="email"
                   placeholder="Email"
-                  {...register("userEmail")}
+                  {...register("UserEmail")}
                 />
               </div>
               <div>
@@ -216,29 +229,29 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
                   id="userAddress"
                   placeholder="Dirección"
                   required
-                  {...register("userAddress")}
+                  {...register("UserAddress")}
                 />
               </div>
             </fieldset>
-            <div>
-                <Label htmlFor="categorySelect" value="Selecciona una categoría" />
-                <Select
-                  id="categorySelect"
-                  {...register("principalCategory", { required: true })}
-                  onChange={(e) => {
-                    setSelectedCategory(e.target.value);
-                    setHasPriorKnowledge(null);
-                  }}
-                  value={selectedCategory || ""}
-                >
-                  <option value="">Seleccione una categoría</option>
-                  <option value="Charlas">Charlas</option>
-                  <option value="Capacitación">Capacitación</option>
-                  <option value="Cultura">Cultura</option>
-                </Select>
-              </div>
+            <div className="pt-3">
+              <Label htmlFor="categorySelect" value="Selecciona una categoría" />
+              <Select
+                id="categorySelect"
+                {...register("PrincipalCategory", { required: true })}
+                onChange={(e) => {
+                  setSelectedCategory(e.target.value);
+                  setHasPriorKnowledge(null);
+                }}
+                value={selectedCategory || ""}
+              >
+                <option value="">Seleccione una categoría</option>
+                <option value="Charlas">Charlas</option>
+                <option value="Capacitación">Capacitación</option>
+                <option value="Cultura">Cultura</option>
+              </Select>
+            </div>
 
-            {selectedCategory && ( 
+            {selectedCategory && (
               <div className="mt-6">
                 <div className="flex items-center">
                   <Label>¿Tiene conocimientos previos en el apartado que seleccionó?</Label>
@@ -270,8 +283,18 @@ const FormColaborador = ({ isOpen, onClose }: MainFormProps) => {
                   <TextInput
                     id="extraInfo"
                     placeholder="Proporcione información adicional"
-                    {...register("extraInfo")}
-                    disabled={selectedCategory === "Acompañamiento Administrativo" ? false : hasPriorKnowledge === false} 
+                    {...register("ExtraInfo")}
+                    disabled={selectedCategory === "Acompañamiento Administrativo" ? false : hasPriorKnowledge === false}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="Date" value="Fecha y hora en la que desea realizar la actividad" />
+                  <TextInput
+                    id="Date"
+                    type="date"
+                    min={toDay}
+                    required
+                    {...register("activityDate")}
                   />
                 </div>
               </div>

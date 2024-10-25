@@ -1,4 +1,3 @@
-import { User } from "../../Loan/Types/BookLoan";
 
 export type Amigos = {
     Image: string;
@@ -8,23 +7,54 @@ export type Amigos = {
 }
 
 export type CreateFriends = {
- friendId: number;           
- userFullName: string;        
-  userCedula: string;
-  disability: string;          
-  userGender: "M" | "F" | "";          
-  userBirthDate: Date;             
-  userAddress: string;         
-  userPhone: string;           
-  userEmail?: string;          
-  status: string;             
-  principalCategory: string;   
-  subCategory: string;         
-  document?: string[];            
-  dateGenerated?: Date;       
-  dateRecolatedDonation?: Date; 
-  extraInfo?: string;
-  user?: User;  
-  };
-
-  
+    friendId: number;           
+    userFullName: string;        
+     userCedula: string;        
+     userBirthDate: Date;             
+     userAddress: string;         
+     userPhone: string;           
+     userEmail?: string;             
+     principalCategory: string;   
+     subCategory: string;  
+     Experience: string;       
+     document?: string[];      
+     extraInfo?: string;
+     };
+   
+     export type Colaborator = {
+       CollaboratorId: number;
+       UserFullName: string;
+       Entitycollaborator?: string;
+       UserCedula: string;
+       UserBirthDate: Date;
+       UserGender: string;
+       UserAddress: string;
+       UserPhone: string;
+       UserEmail: string;
+       Status?: string;
+       PrincipalCategory: string;
+       SubCategory: string;
+       Experience?: string;
+       Document?: string[];
+       DateGenerated: Date;
+       ExtraInfo?: string;
+       activityDate: Date;
+       Reason: string;
+       Description: string;
+     };
+   
+     export type Donation ={
+       DonationId: number;
+       UserFullName: string;
+       UserCedula: string;
+       UserBirthDate: Date;
+       UserAddress: string;
+       UserPhone: string;
+       UserEmail: string;
+       Document?: string[];
+       SubCategory: string;
+       dateRecolatedDonation?: Date; 
+       ResourceCondition: string;
+       ItemDescription: string;
+     }
+     

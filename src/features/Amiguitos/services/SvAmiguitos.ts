@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CreateFriends } from "../types/InfoAmiguitos";
+import { Colaborator, CreateFriends, Donation } from "../types/InfoAmiguitos";
 import api from "../../../Services/AxiosConfig";
 
 const GetTypesAmiguitos  = async () => {
@@ -45,9 +45,75 @@ const GetTypesAmiguitos  = async () => {
       }
     }
   };
+
+  const PostNewColaborator = async (data: Colaborator): Promise<any> => {
+    console.log("Datos a enviar:", data);
+    try {
+      
+      const addFriend = await api.post("collaborator", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      
+      
+      console.log("Respuesta de la API:", addFriend.data);
+      
+      
+      return addFriend.data;
+    } catch (error: unknown) {
+      
+      if (axios.isAxiosError(error)) {
+        console.error(
+          "Error al crear la biblioteca de amigos:",
+          error.response?.data || error.message
+        );
+        throw new Error(
+          error.response?.data.message || "Error al crear la biblioteca de amigos"
+        );
+      } else {
+        console.error("Error desconocido:", error);
+        throw new Error("Error desconocido");
+      }
+    }
+  };
+
+  const PostNewDonation = async (data: Donation): Promise<any> => {
+    console.log("Datos a enviar:", data);
+    try {
+      
+      const addFriend = await api.post("Donation", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      
+      
+      console.log("Respuesta de la API:", addFriend.data);
+      
+      
+      return addFriend.data;
+    } catch (error: unknown) {
+      
+      if (axios.isAxiosError(error)) {
+        console.error(
+          "Error al crear la biblioteca de amigos:",
+          error.response?.data || error.message
+        );
+        throw new Error(
+          error.response?.data.message || "Error al crear la biblioteca de amigos"
+        );
+      } else {
+        console.error("Error desconocido:", error);
+        throw new Error("Error desconocido");
+      }
+    }
+  };
   
  
 export {
   GetTypesAmiguitos,
   PostNewFriend,
+  PostNewColaborator,
+  PostNewDonation
 }
