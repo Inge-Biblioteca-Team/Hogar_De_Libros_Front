@@ -23,6 +23,9 @@ import ManageAprovedColab from "../features/Collaborators/Screens/ManageAprovedC
 import ManageColabHistory from "../features/Collaborators/Screens/ManageColabHistory";
 import ManageFriendsRequest from "../features/Amiguitos/screens/ManageFriendsRequest";
 import ManageFriends from "../features/Amiguitos/screens/ManageFriends";
+import ManageRequestDonations from "../features/Donations/Screens/ManageRequestDonations";
+import ManagePendingReceiveDon from "../features/Donations/Screens/ManagePendingReceiveDon";
+import ManageDonationsHistory from "../features/Donations/Screens/ManageDonationsHistory";
 const AdminRoutes = [
   {
     path: "Prestamos_Circulacion",
@@ -154,12 +157,15 @@ const AdminRoutes = [
     children: [
       {
         path: "Pendientes_Respuesta",
+        element: <ManageRequestDonations />,
       },
       {
         path: "Pendiente_Recepcion",
+        element: <ManagePendingReceiveDon />,
       },
       {
         path: "Historial",
+        element: <ManageDonationsHistory />,
       },
     ],
   },
