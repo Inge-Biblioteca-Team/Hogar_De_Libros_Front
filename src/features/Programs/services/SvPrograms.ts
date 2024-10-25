@@ -3,9 +3,8 @@ import api from "../../../Services/AxiosConfig";
 import { Program } from "../types/Programs";
 
 const GetPrograms = async () => {
-  const response = await axios.get(
-    "https://668c2a850b61b8d23b0ca034.mockapi.io/Programs"
-  );
+  const response = await api.get(
+    "programs/ALL");
   return response.data;
 };
 

@@ -38,8 +38,8 @@ const DeleteAdvice = ({
         </span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"failure"} onClick={() => setOpen(false)}>
-          Regresar
+        <Button color={"red"} onClick={() => setOpen(false)}>
+          Volver
         </Button>
         <Button color={"blue"} type="submit" onClick={() => onConfirm()}>
           Confirmar

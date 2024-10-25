@@ -41,7 +41,7 @@ const ViewAdvice = ({
           </div>
         </Modal.Body>
         <Modal.Footer className=" flex items-center justify-center">
-          <Button color={"failure"} onClick={() => setOpen(false)}>
+          <Button color={"blue"} onClick={() => setOpen(false)}>
             Regresar
           </Button>
         </Modal.Footer>

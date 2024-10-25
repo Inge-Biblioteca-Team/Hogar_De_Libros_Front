@@ -81,7 +81,7 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
             Está seguro que quiere cancelar la reserva de {reserve.name}
           </span>
           <br />
-          <span>está accion no es reversible!!</span>
+          <span>está acción no es reversible!!</span>
         </Modal.Body>
         <Modal.Footer className="flex items-center justify-center">
           <Button color={"failure"} tabIndex={2} onClick={() => setOpen(false)}>
