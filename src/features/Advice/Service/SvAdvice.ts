@@ -74,6 +74,12 @@ const DeleteAdvice = async (id: number) => {
   }
 };
 
+const GetNotice = async () => {
+  const response = await api.get(
+    "https://668c2a850b61b8d23b0ca034.mockapi.io/Notices");
+  return response.data;
+};
+
 const GetAdviceList = async (
   page: number,
   limit: number,
@@ -123,4 +129,5 @@ export {
   DeleteAdvice,
   GetAdviceList,
   uploadAdviceImage,
+  GetNotice,
 };
