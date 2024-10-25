@@ -16,7 +16,7 @@ const UseRefuseDonation = () => {
         ),
       }),
     onSuccess() {
-      queryClient.invalidateQueries("FriendList");
+      queryClient.invalidateQueries("DonationsRequest");
     },
   });
 };

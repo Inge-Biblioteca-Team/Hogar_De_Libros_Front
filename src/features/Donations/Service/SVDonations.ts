@@ -29,7 +29,7 @@ const AproveDonation = async (id: number) => {
 const DenyDonation = async (data: downType) => {
   try {
     const response = await api.patch(
-      `donation/denyFriendDonation/${data.Id}`,
+      `donation/denyDonation/${data.Id}`,
       data,
       {
         headers: {
@@ -57,7 +57,7 @@ const DenyDonation = async (data: downType) => {
 const ConfirmDonation = async (data: downType) => {
   try {
     const response = await api.patch(
-      `donation/confirmFriendDonation/${data.Id}`,
+      `donation/confirmDonation/${data.Id}`,
       data,
       {
         headers: {

@@ -15,7 +15,7 @@ const UseAproveDonation = () => {
           ),
         }),
       onSuccess() {
-        queryClient.invalidateQueries("DonationsReqList");
+        queryClient.invalidateQueries("DonationsRequest");
       },
     });
   };

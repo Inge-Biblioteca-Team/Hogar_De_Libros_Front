@@ -1,6 +1,9 @@
 const NoResults = () => {
   return (
-    <div className=" flex items-center justify-center w-full h-96 bg-white rounded-lg">
+    <div
+      className=" flex items-center justify-center w-full bg-white rounded-lg"
+      style={{ height: "30rem" }}
+    >
       <span>No hay resultados disponibles</span>
     </div>
   );

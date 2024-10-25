@@ -16,7 +16,7 @@ const UseConfirmDonation = () => {
         ),
       }),
     onSuccess() {
-      queryClient.invalidateQueries("FriendList");
+      queryClient.invalidateQueries("PendingRecolection");
     },
   });
 };

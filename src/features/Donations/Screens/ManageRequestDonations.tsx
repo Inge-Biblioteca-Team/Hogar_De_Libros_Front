@@ -6,6 +6,9 @@ import { GetDonationList } from "../Service/SVDonations";
 import { Label, Select, TextInput } from "flowbite-react";
 import OptDonMainCategories from "../Components/OptDonMainCategories";
 import { DonationsCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import TableDonations from "../Components/TableDonations";
+import RowsRequestDonation from "../Components/RowsRequestDonation";
+import NoResults from "../../../components/NoResults";
 
 const ManageRequestDonations = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -33,7 +36,7 @@ const ManageRequestDonations = () => {
 
   return (
     <>
-    <DonationsCrumbs text="Propuestas de donación"/>
+      <DonationsCrumbs text="Propuestas de donación" />
       <main className="flex flex-col items-center justify-center w-full gap-5">
         <section className=" flex w-4/5 gap-2">
           <div>
@@ -50,13 +53,26 @@ const ManageRequestDonations = () => {
             />
           </div>
         </section>
-        <CustomPagination
-          page={Page}
-          onPageChange={onPageChange}
-          totalPages={MaxPage}
-          setCurrentLimit={setCurrentLimit}
-          total={Donations?.count || 0}
-        />
+        <section className=" w-4/5">
+          {Donations && Donations.count>0 ? (
+            <>
+              <TableDonations>
+                {Donations?.data.map((donation) => (
+                  <RowsRequestDonation donation={donation} />
+                ))}
+              </TableDonations>
+              <CustomPagination
+                page={Page}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Donations?.count || 0}
+              />
+            </>
+          ) : (
+            <NoResults />
+          )}
+        </section>
       </main>
     </>
   );
