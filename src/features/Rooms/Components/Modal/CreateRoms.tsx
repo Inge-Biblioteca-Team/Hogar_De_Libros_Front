@@ -3,11 +3,13 @@ import { useForm } from "react-hook-form";
 import { Button, Carousel, Label, Modal, TextInput } from "flowbite-react";
 import { CreateRoom } from "../../Types/Room_Interface";
 import UseCreateRooms from "../../Hooks/UseCreateRoms";
+import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
+import UseUploadImage from "../../../Advice/Hooks/UseUploadImage";
 
 const CreateRooms = () => {
-  const { register, reset, handleSubmit } = useForm<CreateRoom>();
+  const { register, reset, handleSubmit, setValue } = useForm<CreateRoom>();
 
-  const [imageUrls, setImageUrls] = useState<(string | null)[]>([null]);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -16,19 +18,10 @@ const CreateRooms = () => {
   const handleModalClose = () => {
     setIsModalOpen(false);
     reset();
-    setImageUrls([null]);
+    setImageUrls([]);
   };
 
   const onSubmit = async (data: CreateRoom) => {
-    const filteredImageUrls: string[] = [];
-    for (let i = 0; i < imageUrls.length; i++) {
-      if (imageUrls[i] !== null) {
-        filteredImageUrls.push(imageUrls[i]!);
-      }
-    }
-
-    data.image = filteredImageUrls;
-
     createRoom(data, {
       onSuccess: () => {
         handleModalClose();
@@ -37,6 +30,50 @@ const CreateRooms = () => {
       onError: () => {},
     });
   };
+
+  const handleImageSelect = (url: string) => {
+    setImageUrls((prevUrls) => [...prevUrls, url]);
+    setValue("image", [...imageUrls, url]);
+  };
+
+  const { mutate: uploadImage } = UseUploadImage();
+  const [openImage, setOpenImage] = useState<boolean>(false);
+  const [localImage, setLocalImage] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadedFile = e.target.files?.[0];
+    if (uploadedFile) {
+      setFile(uploadedFile);
+      const imageURL = URL.createObjectURL(uploadedFile);
+      setLocalImage(imageURL);
+    }
+  };
+
+  const handleConfirmLocalImage = async () => {
+    if (file) {
+      uploadImage(file, {
+        onSuccess: (filePath: string) => {
+          handleImageSelect(filePath);
+          setLocalImage(null);
+          setFile(null);
+          setOpenImage(false);
+        },
+      });
+    }
+  };
+
+  const onExistImageSelect = (image: string) => {
+    setImageUrls((prevUrls) => [...prevUrls, image]);
+    setValue("image", [...imageUrls, image]);
+    setOpenImage(false);
+  };
+
+  const handleClose = () => {
+    setOpenImage(false);
+    setLocalImage("");
+  };
+
   const removeImage = (index: number) => {
     setImageUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
   };
@@ -49,37 +86,40 @@ const CreateRooms = () => {
       <Modal show={isModalOpen} onClose={handleModalClose} size={"5xl"}>
         <Modal.Header>Crear Nueva Sala</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body
-            className="grid gap-3 h-80"
-            style={{ gridTemplateColumns: "39% 59%" }}
-          >
-            <fieldset className="flex flex-col">
+          <Modal.Body>
+            <div className=" grid grid-cols-3 grid-rows-1 gap-5">
+            <fieldset className="flex flex-col w-full">
               <legend className="font-bold pb-2">Imágenes de la Sala</legend>
-              <Carousel slide={false} className="Custom-Carousel">
+              <Carousel slide={false} className="Custom-Carousel"
+              indicators={false}
+              style={{height:"15rem"}}>
                 {imageUrls
                   .filter((url) => url !== null)
                   .map((url, index) => (
                     <figure key={index}>
                       <Button
-                        className="absolute bottom-2 z-50"
+                        className="absolute bottom-2 z-50 !rounded-md"
                         color={"failure"}
                         onClick={() => removeImage(index)}
-                      >
+                        >
                         Eliminar
                       </Button>
                       <img
                         className=" w-full h-64"
                         src={url}
                         alt={`Image ${index + 1}`}
-                      />
+                        />
                     </figure>
                   ))}
-                <div className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-200">
+                <div
+                  className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-200"
+                  onClick={() => setOpenImage(true)}
+                  >
                   <p>Selecciona una imagen</p>
                 </div>
               </Carousel>
             </fieldset>
-            <div className=" grid grid-cols-2 gap-4">
+            <div className=" grid grid-cols-2 gap-4 col-span-2">
               <fieldset className=" flex flex-col justify-between">
                 <legend className="font-bold pb-2">Información General</legend>
                 <span>
@@ -90,7 +130,7 @@ const CreateRooms = () => {
                     type="text"
                     {...register("name")}
                     placeholder="Nombre de la sala"
-                  />
+                    />
                 </span>
 
                 <span>
@@ -101,7 +141,7 @@ const CreateRooms = () => {
                     required
                     {...register("roomNumber")}
                     placeholder="0"
-                  />
+                    />
                 </span>
 
                 <span>
@@ -112,7 +152,7 @@ const CreateRooms = () => {
                     required
                     {...register("area")}
                     placeholder="0"
-                  />
+                    />
                 </span>
               </fieldset>
               <fieldset className=" flex flex-col justify-between">
@@ -125,7 +165,7 @@ const CreateRooms = () => {
                     required
                     {...register("capacity")}
                     placeholder="0"
-                  />
+                    />
                 </span>
 
                 <span>
@@ -146,10 +186,11 @@ const CreateRooms = () => {
                     required
                     {...register("location")}
                     placeholder="Lugar"
-                  />
+                    />
                 </span>
               </fieldset>
             </div>
+                    </div>
           </Modal.Body>
           <Modal.Footer className="flex items-center justify-center">
             <Button color={"failure"} onClick={handleModalClose} tabIndex={2}>
@@ -161,6 +202,15 @@ const CreateRooms = () => {
           </Modal.Footer>
         </form>
       </Modal>
+      <ModalAddNewImage
+        text="de la sala"
+        open={openImage}
+        localImage={localImage}
+        handleUpload={handleImageUpload}
+        handleConfirmImage={handleConfirmLocalImage}
+        onExistImageSelect={onExistImageSelect}
+        handleClose={handleClose}
+      />
     </>
   );
 };
