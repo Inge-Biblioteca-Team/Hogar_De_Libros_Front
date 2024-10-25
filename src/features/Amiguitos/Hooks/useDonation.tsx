@@ -11,10 +11,10 @@ const useDonation = () => {
       mutationFn: (data: Donation) => PostNewDonation(data),
       onSuccess: () => {
         queryClient.invalidateQueries("FriendList");
-        toast.success("Biblioteca de amigos creada exitosamente.");
+        toast.success("Solicitud de donación creada exitosamente.");
       },
       onError: (error: ApiError) => {
-        toast.error("Error al crear la biblioteca de amigos: " + error.message);
+        toast.error("Error al crear solicitud de donación: " + error.message);
       },
     });
   };

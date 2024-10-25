@@ -10,7 +10,7 @@ const UseCreateProgram = () => {
     mutationFn: PostNewProgram,
     onSuccess: () => {
       queryClient.invalidateQueries("ProgramCatalog");
-      toast.success("Exito, Programa añadido correctamente");
+      toast.success("Exito, programa añadido correctamente");
     },
     onError: (error: ApiError) => {
       toast.error("Error al crear el programa: " + error.message);

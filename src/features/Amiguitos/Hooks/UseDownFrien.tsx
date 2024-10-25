@@ -12,7 +12,7 @@ const UseDownFrien = () => {
         loading: "Creando...",
         success: <span>Amigo dado de baja correctamente</span>,
         error: (error: ApiError) => (
-          <span>Error al rechazar dar de baja: {error.message}</span>
+          <span>Error al dar de baja al amigo: {error.message}</span>
         ),
       }),
     onSuccess() {

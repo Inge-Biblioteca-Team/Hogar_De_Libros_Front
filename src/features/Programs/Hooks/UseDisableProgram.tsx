@@ -13,7 +13,7 @@ const UseDisableProgram = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("ProgramCatalog");
-        toast.success("Exito, se deshabilitó el programa Correctamente");
+        toast.success("Exito, se deshabilitó el programa correctamente");
       },
       onError: (error: ApiError) => {
         toast.error(

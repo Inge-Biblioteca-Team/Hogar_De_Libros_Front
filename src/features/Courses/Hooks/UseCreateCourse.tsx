@@ -13,7 +13,7 @@ const UseCreateCourse = () => {
       toast.success("Exito, curso añadido correctamente");
     },
     onError: (error: ApiError) => {
-      toast.error("Error al crear el Curso: " + error.message);
+      toast.error("Error al crear el curso: " + error.message);
     },
   });
 };

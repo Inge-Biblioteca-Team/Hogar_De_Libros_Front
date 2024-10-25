@@ -11,7 +11,7 @@ const UseDownEquip = () => {
     {
       onSuccess: (data) => {
         queryClient.invalidateQueries("FurnitureCatalog");
-        console.log("Exito, dio de baja correctamente el mueble:", data);
+        console.log("Exito, se dio de baja correctamente el mueble:", data);
       },
       onError: (error) => {
         console.error("Error al dar de baja el mueble:", error);

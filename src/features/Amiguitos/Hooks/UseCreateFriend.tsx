@@ -4,20 +4,22 @@ import { PostNewFriend } from "../services/SvAmiguitos";
 import toast from "react-hot-toast";
 import { ApiError } from "../../../Types/ApiTypes";
 
-  const UseCreateFriend = () => {
-    const queryClient = useQueryClient();
-  
-    return useMutation({
-      mutationFn: (data: CreateFriends) => PostNewFriend(data),
-      onSuccess: () => {
-        // Invalidar cualquier query relacionada con amigos (si es necesario)
-        queryClient.invalidateQueries("FriendList");
-        toast.success("Biblioteca de amigos creada exitosamente.");
-      },
-      onError: (error: ApiError) => {
-        toast.error("Error al crear la biblioteca de amigos: " + error.message);
-      },
-    });
-  };
+const UseCreateFriend = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data: CreateFriends) =>
+      toast.promise(PostNewFriend(data), {
+        loading: "Creando solicitud de amigo...",
+        success: <span>Solicitud de amigo creada exitosamente.</span>,
+        error: (error: ApiError) => (
+          <span>Error al crear la solicitud de amigo: {error.message}</span>
+        ),
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries("FriendList");
+    },
+  });
+};
   
   export default UseCreateFriend;
