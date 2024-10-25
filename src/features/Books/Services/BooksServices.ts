@@ -10,6 +10,16 @@ import api from "../../../Services/AxiosConfig";
 import { Book, BookLeading } from "../Types/BooksTypes";
 import { downType } from "../../../Types/GlobalTypes";
 
+const GetBooks = async () => {
+  try {
+    const response = await api.get("books");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    throw error;
+  }
+};
+
 const searchCovers = async (
   bookName: string
 ): Promise<{ id: string; imageLink: string | undefined }[]> => {
@@ -223,4 +233,5 @@ export {
   DisableBook,
   CreateBook,
   getColection,
+  GetBooks
 };
