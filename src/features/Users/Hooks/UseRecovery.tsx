@@ -5,7 +5,7 @@ import { resetPassword } from "../Services/SVAuth";
 const UseRecovery = () => {
   return useMutation(resetPassword, {
     onSuccess: () => {
-      toast.success("Contraseña restablecida con éxito.");
+      toast.success("Éxito, Contraseña restablecida correctamente.");
     },
     onError: (error: Error) => {
       console.error(`Error: ${error.message}`);

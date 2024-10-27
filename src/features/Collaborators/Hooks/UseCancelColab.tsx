@@ -10,7 +10,7 @@ const UseCancelColab = () => {
       mutationFn: (data: downType) =>
         toast.promise(CancelColab(data), {
           loading: "Guardando...",
-          success: <span>Éxito, Rechazado correctamente</span>,
+          success: <span>Éxito, rechazado correctamente</span>,
           error: (error: ApiError) => (
             <span>Error al rechazar: {error.message}</span>
           ),

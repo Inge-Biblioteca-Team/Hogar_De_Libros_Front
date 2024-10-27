@@ -7,7 +7,7 @@ import { FinalizeLoan } from "../../Services/SvBookLoan";
     const queryClient = useQueryClient();
   return useMutation(FinalizeLoan, {
     onSuccess: () => {
-      toast.success("Préstamo finalizado con éxito.");
+      toast.success("Exito, préstamo finalizado con éxito.");
       queryClient.invalidateQueries("IPLoans");
     },
     onError: () => {

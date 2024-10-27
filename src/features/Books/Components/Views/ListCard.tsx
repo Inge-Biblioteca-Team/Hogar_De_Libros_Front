@@ -31,7 +31,7 @@ const ListCard = ({ book }: { book: Book }) => {
             <Label value={` ISBN: ${book.ISBN || "No posee"}`} />
             <Label
               value={` Código de signatura: ${
-                book.SignatureCode || "No posee"
+                book.signatureCode || "No posee"
               }`}
             />
             <Label

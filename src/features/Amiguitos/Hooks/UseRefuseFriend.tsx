@@ -10,7 +10,7 @@ const UseRefuseFriend = () => {
     mutationFn: (data: downType) =>
       toast.promise(RefuseFriend(data), {
         loading: "Creando...",
-        success: <span>Solicitud rechazada</span>,
+        success: <span>Solicitud rechazada exitosamente</span>,
         error: (error: ApiError) => (
           <span>Error al rechazar solicitud: {error.message}</span>
         ),

@@ -12,11 +12,11 @@ const UseDownEquip = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("EquipCatalog");
-        toast.success("Estado Actualizado Correctamente")
+        toast.success("Se dio de baja al equipo correctamente")
       },
       onError: (error) => {
         toast.error("Error al actualizar el estado")
-        console.error("Error actualizando el estado:", error);
+        console.error("Error al dar de baja el equipo:", error);
       },
     }
   );

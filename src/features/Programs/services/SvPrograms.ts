@@ -3,9 +3,8 @@ import api from "../../../Services/AxiosConfig";
 import { Program } from "../types/Programs";
 
 const GetPrograms = async () => {
-  const response = await axios.get(
-    "https://668c2a850b61b8d23b0ca034.mockapi.io/Programs"
-  );
+  const response = await api.get(
+    "programs/ALL");
   return response.data;
 };
 
@@ -43,11 +42,11 @@ const PatchProgram = async (data: Program) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al crear el programa:",
+        "Error al editar el programa:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el programa"
+        error.response?.data.message || "Error al editar el programa"
       );
     } else {
       console.error("Error desconocido:", error);

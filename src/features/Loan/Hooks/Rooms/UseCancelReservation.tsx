@@ -13,10 +13,10 @@ const UseCancelReservation = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("MyReservations");
-        toast.success("Estado de la reservacion modificado con exito!");
+        toast.success("Exito, reservación cancelada correctamente");
       },
       onError: (error: ApiError) => {
-        toast.error("Error al actualizar estado: " + error.message);
+        toast.error("Error al cancelar la reservación: " + error.message);
       },
     }
   );

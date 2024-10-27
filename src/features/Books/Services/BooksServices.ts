@@ -10,6 +10,16 @@ import api from "../../../Services/AxiosConfig";
 import { Book, BookLeading } from "../Types/BooksTypes";
 import { downType } from "../../../Types/GlobalTypes";
 
+const GetBooks = async () => {
+  try {
+    const response = await api.get("books");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    throw error;
+  }
+};
+
 const searchCovers = async (
   bookName: string
 ): Promise<{ id: string; imageLink: string | undefined }[]> => {
@@ -39,7 +49,7 @@ const searchCovers = async (
     if (covers.length > 0) {
       return covers;
     } else {
-      throw new Error("No covers found in Open Library");
+      throw new Error("Las caratulas no fuercon econtradas en Open Library");
     }
   } catch (error) {
     console.error("Open Library error:", error);
@@ -82,11 +92,11 @@ const uploadImage = async (file: File): Promise<string> => {
       });
       return response.data.filePath;
     } catch (error) {
-      console.error("Error uploading image:", error);
-      throw new Error("Error uploading image");
+      console.error("Error al subir imagen:", error);
+      throw new Error("Error al subir imagen");
     }
   }
-  throw new Error("No file provided");
+  throw new Error("Los archivos no fuero provisionados");
 };
 
 const getColection = async (
@@ -158,7 +168,7 @@ const DisableBook = async (data: downType) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el recurso"
+        error.response?.data.message || "Error al deshabilitar el recurso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -181,7 +191,7 @@ const EditBook = async (data: Book) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el recurso"
+        error.response?.data.message || "Error al editar el recurso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -206,7 +216,7 @@ const LeadingRequestBook = async (data: BookLeading) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el recurso"
+        error.response?.data.message || "Error al prestar el recurso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -223,4 +233,5 @@ export {
   DisableBook,
   CreateBook,
   getColection,
+  GetBooks
 };

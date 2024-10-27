@@ -58,7 +58,7 @@ const DownFurniture = async (Id: string, acction: string) => {
     const response = await api.patch(`furniture/${Id}/${acction}`);
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error al dar de baja el mobiliario:", error);
     throw error;
   }
 };

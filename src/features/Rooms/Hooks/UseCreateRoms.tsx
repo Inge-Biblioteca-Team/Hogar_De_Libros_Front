@@ -10,7 +10,7 @@ const UseCreateRooms = () => {
     mutationFn: ADDINGROOMS,
     onSuccess: () => {
       queryClient.invalidateQueries("Rooms");
-      toast.success("Sala añadida con éxito!");
+      toast.success("Éxito, sala añadida corectamente");
     },
     onError: (error: ApiError) => {
       toast.error("Error al crear la sala: " + error.message);

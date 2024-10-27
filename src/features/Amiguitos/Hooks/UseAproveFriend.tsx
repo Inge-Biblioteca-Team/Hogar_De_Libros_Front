@@ -9,7 +9,7 @@ const UseAproveFriend = () => {
       mutationFn: (id: number) =>
         toast.promise(AproveFriend(id), {
           loading: "Creando...",
-          success: <span>Éxito, Solicitud aprobada</span>,
+          success: <span>Éxito, solicitud aprobada</span>,
           error: (error: ApiError) => (
             <span>Error al aprobar solicitud: {error.message}</span>
           ),

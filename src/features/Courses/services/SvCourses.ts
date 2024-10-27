@@ -3,9 +3,7 @@ import api from "../../../Services/AxiosConfig";
 import { createCourse, updateCourse } from "../types/Courses";
 
 const getCoursesS = async () => {
-  const response = await axios.get(
-    "https://668c2a850b61b8d23b0ca034.mockapi.io/Courses"
-  );
+  const response = await api.get("courses");
   return response.data;
 };
 
@@ -85,7 +83,7 @@ const getCourses = async (page: number, limit: number, Name?: string) => {
     const response = await api.get("courses", {params});
     return response.data;
   } catch (error) {
-    console.error("Error to get courses:", error);
+    console.error("Error al cargar los cursos:", error);
     throw error;
   }
 };
@@ -95,7 +93,7 @@ const DownCourse = async (courseId: number) => {
     const response = await api.patch(`courses/${courseId}/disable`);
     return response.data;
   } catch (error) {
-    console.error("Error to disbale:", error);
+    console.error("Error no se pudo dar de baja el curso:", error);
     throw error;
   }
 };
@@ -111,11 +109,11 @@ const editCourse = async ( data: updateCourse) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al crear el Curso:",
+        "Error al editar el curso:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el Curso"
+        error.response?.data.message || "Error al editar el curso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -167,11 +165,11 @@ const uploadImage = async (file: File): Promise<string> => {
       );
       return response.data.filePath;
     } catch (error) {
-      console.error("Error uploading image:", error);
-      throw new Error("Error uploading image");
+      console.error("Error al subir la imagen:", error);
+      throw new Error("Error al subir la imagen");
     }
   }
-  throw new Error("No file provided");
+  throw new Error("No se proporiconarion archivos");
 };
 
 const GetUserData = async (NCedula: string) => {

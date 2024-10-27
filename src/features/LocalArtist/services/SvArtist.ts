@@ -37,7 +37,7 @@ const createLocalArtist = async (data: createArtist) => {
     });
     return addArtist.data;
   } catch (error) {
-    console.error("Error to post Artist:", error);
+    console.error("Error al crear el artista:", error);
   }
 };
 
@@ -50,7 +50,7 @@ const editArtist = async (id: number, data: updateArtist) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error editing artist:", error);
+    console.error("Error al editar la información del artista:", error);
     throw error;
   }
 };
@@ -60,7 +60,7 @@ const DownArtist = async (id: number) => {
     const response = await api.patch(`local-artist/${id}/Down`);
     return response.data;
   } catch (error) {
-    console.error("Error to disbale:", error);
+    console.error("Error al deshabilitar el artista:", error);
     throw error;
   }
 };
@@ -82,11 +82,11 @@ const uploadImage = async (file: File): Promise<string> => {
       );
       return response.data.filePath;
     } catch (error) {
-      console.error("Error uploading image:", error);
-      throw new Error("Error uploading image");
+      console.error("Error al subir la imagen:", error);
+      throw new Error("Error al subir la imagen");
     }
   }
-  throw new Error("No file provided");
+  throw new Error("No se proporciono una imagen");
 };
 
 export {

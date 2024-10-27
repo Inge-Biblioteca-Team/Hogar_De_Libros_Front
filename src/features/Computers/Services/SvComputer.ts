@@ -10,7 +10,7 @@ const GetComputersByCondition = async () => {
     console.log("Response data:", response.data);
     return response.data;
   } catch (error) {
-    console.error("Error fetching computers:", error);
+    console.error("Error al cargar los equipos de cómputo:", error);
     throw error;
   }
 };
@@ -25,7 +25,7 @@ const PostNewComputer = async (computer:EquipmentEdit) => {
     const response = await api.post(`/computers`, computer);
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error al crear equipo de cómputo:", error);
     throw error;
   }
 };
@@ -63,7 +63,7 @@ const GetByUniqueCode = async (UniqueCode:string) =>{
      const response = await api.get( `computers/${UniqueCode}`);
      return response.data;
    } catch (error) {
-     console.error("Error to post book:", error);
+     console.error("Error no se encontró el equipo de cómputo", error);
      throw error;
    }
  }
@@ -77,7 +77,7 @@ const PutEditEquipment = async (
     const response = await api.put(`computers/${ObjetiveID}`, Equipment);
     return response.data;
   } catch (error) {
-    console.error("Error editing equipment:", error);
+    console.error("Error al editar el equipo de cómputo:", error);
     throw error;
   }
 }
@@ -88,7 +88,7 @@ const DownEquipment = async (Code: string) => {
     const response = await api.patch(`computers/${Code}`);
     return response.data;
   } catch (error) {
-    console.error("Error to post book:", error);
+    console.error("Error al dar de baja el equipo de cómputo:", error);
     throw error;
   }
 };

@@ -13,7 +13,7 @@ const UseCancelCourse = () => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries("CourseMG");
-          toast.success("Estado Actualizado Correctamente");
+          toast.success("Estado actualizado correctamente");
         },
         onError: (error: ApiError) => {
           toast.error(

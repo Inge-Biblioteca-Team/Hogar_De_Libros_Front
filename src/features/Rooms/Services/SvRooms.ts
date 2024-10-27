@@ -32,7 +32,7 @@ const ActionRoom = async (roomId: number, action: string) => {
     const response = await api.patch(`rooms/${action}/${roomId}`);
     return response.data;
   } catch (error) {
-    console.error("Error closing room:", error);
+    console.error("Error al clausurar la sala:", error);
     throw error;
   }
 };
@@ -71,11 +71,11 @@ const EDITINGROOMS = async (data: updateRooms) => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al añadir la sala:",
+        "Error al editar la información de la sala:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al añadir la sala"
+        error.response?.data.message || "Error al editar la información de la sala"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -99,11 +99,11 @@ const uploadImages = async (files: File[]): Promise<string[]> => {
       });
       return response.data.filePaths;
     } catch (error) {
-      console.error("Error uploading images:", error);
-      throw new Error("Error uploading images");
+      console.error("Error al subir imagen:", error);
+      throw new Error("Erroral subir imagen");
     }
   }
-  throw new Error("No files provided");
+  throw new Error("No se proporcionaron archivos para subir");
 };
 
 export { GetRooms, ADDINGROOMS, EDITINGROOMS, uploadImages, ActionRoom };

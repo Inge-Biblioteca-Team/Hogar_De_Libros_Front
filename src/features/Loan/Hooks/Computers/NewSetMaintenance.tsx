@@ -9,11 +9,11 @@ const NewSetMaintenance = () => {
     mutationFn: (data: NewWSMantenance) => MantenanceWS(data),
     onSuccess: () => {
       queryClient.invalidateQueries("WSStatus");
-      toast.success("Exito: Estado del equipo cambiado a En Mantenimiento")
+      toast.success("Exito, estado del equipo cambiado a en mantenimiento")
     },
     onError: (error) => {
       console.error("Error updating maintenance:", error);
-      toast.error("Ha Ocurrido un error")
+      toast.error("Error, ocurrió un error al cambiar el estado del equipo a en mantenimiento");
     },
   });
 };

@@ -11,7 +11,7 @@ const UseExtendLoan = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("IPLoans");
-        toast.success("Fecha de expiración actualizada exitosamente.");
+        toast.success("Exito, Fecha de expiración actualizada exitosamente.");
       },
       onError: () => {
         toast.error("Error al actualizar la fecha de expiración.");

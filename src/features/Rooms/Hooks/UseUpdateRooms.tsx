@@ -10,7 +10,7 @@ const UseUpdateRoom = () => {
       mutationFn: EDITINGROOMS,
       onSuccess: () => {
         queryClient.invalidateQueries("Rooms");
-        toast.success("Sala editada con éxito!");
+        toast.success("Éxito, sala editada correctamente");
       },
       onError: (error: ApiError) => {
         toast.error("Error al editar la sala: " + error.message);

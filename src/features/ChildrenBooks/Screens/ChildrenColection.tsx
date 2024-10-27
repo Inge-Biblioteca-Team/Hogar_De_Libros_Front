@@ -8,9 +8,9 @@ import OptCategories from "../../Books/Components/OptsCategories";
 import ColectionGrid from "../../Books/Components/Views/ColectionGrid";
 import ColectionList from "../../Books/Components/Views/ColectionList";
 import { getColection } from "../Services/ChildrenServices";
-import { Catalog } from "../Types/BooksChildrensTypes";
 import { BsGrid3X3GapFill, BsListUl } from "react-icons/bs";
 import { LiaSearchengin } from "react-icons/lia";
+import { Catalog } from "../../Books/Types/BooksTypes";
 
 const ChildrenColection = () => {
   const [page, setPage] = useState<number>(() => {
