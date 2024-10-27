@@ -49,6 +49,10 @@ const NewAdvice = ({
     setImageUrl("");
   };
 
+  const handleClose =()=>{
+    setOpenImage(false)
+  }
+
   return (
     <Modal show={open} onClose={onClose}>
       <Modal.Header>Generar nuevo aviso</Modal.Header>
@@ -118,7 +122,7 @@ const NewAdvice = ({
         text="del aviso"
         Folder="Avisos"
         onSelectImage={handleImageSelect}
-        onClose={onClose}
+        onClose={handleClose}
       />
     </Modal>
   );
