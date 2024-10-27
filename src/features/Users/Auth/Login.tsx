@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Card, TextInput, Label, Modal } from "flowbite-react";
 import RecoverPasswordModal from "./RecoverPasswordModal";
 import { useForm } from "react-hook-form";
@@ -33,9 +33,9 @@ const Login = () => {
             </h2>
             <p className="text-sm text-gray-500 mb-4">
               ¿No posees una cuenta?{" "}
-              <a href="/Registro" className="text-blue-500 hover:underline">
+              <Link to="/Registro" className="text-blue-500 hover:underline">
                 Regístrate aquí.
-              </a>
+              </Link>
             </p>
 
             <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>

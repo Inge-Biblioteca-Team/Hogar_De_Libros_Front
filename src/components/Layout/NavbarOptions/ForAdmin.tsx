@@ -5,10 +5,24 @@ import ResoursesOptions from "./ResoursesOptions";
 import ServicesOptions from "./ServicesOptions";
 import RecordsOptions from "./RecordsOptions";
 import ExtraOptions from "./ExtraOptions";
+import { useContext } from "react";
+import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
 
 const ForAdmin = () => {
+  const { handleNavigation } = useContext(SidebarContext);
+
   return (
     <>
+      <>
+        <Sidebar.ItemGroup>
+          <Sidebar.Item
+            className=" cursor-pointer text-2xl"
+            onClick={() => handleNavigation("/HogarDeLibros")}
+          >
+            Inicio
+          </Sidebar.Item>
+        </Sidebar.ItemGroup>
+      </>
       <Sidebar.ItemGroup>
         <Sidebar.Collapse label="Vistas de usuario">
           <ForAll />
@@ -25,7 +39,7 @@ const ForAdmin = () => {
         <ServicesOptions />
       </Sidebar.ItemGroup>
       <Sidebar.ItemGroup>
-        <ExtraOptions/>
+        <ExtraOptions />
       </Sidebar.ItemGroup>
     </>
   );

@@ -6,7 +6,9 @@ import HomeNavbar from "./HomeNavbar";
 import { useNavigate } from "react-router-dom";
 import UserData from "../../features/Users/Components/UserData";
 import LoginAcces from "../../features/Users/Components/LoginAcces";
-
+import SidebarProvider from "../../Context/NavBarContext/NavProvider";
+import { useContext } from "react";
+import UserContext from "../../Context/UserContext/UserContext";
 
 const Header = ({ NavBarType }: { NavBarType: string }) => {
   const navi = useNavigate();
@@ -14,29 +16,38 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
     navi(`/`);
   };
 
-  const Token = sessionStorage.getItem("Token");
-
+  const { isLogged } = useContext(UserContext);
 
   return (
-    <Navbar className="sticky top-0 z-50 text-white w-full bg-Body py-4">
-      <Navbar.Brand className="w-full flex items-center justify-between p-4 max-sm:w-4/5 max-sm:p-0">
-        <div className="flex items-center flex-grow justify-center space-x-2">
-          <FontAwesomeIcon
-            onClick={Goto}
-            icon={faBookOpen}
-            className="text-white h-6 w-6 cursor-pointer"
-          />
-          <span className="text-white text-3xl font-semibold break-words max-sm:text-xl">
-            Biblioteca Pública Municipal de Nicoya
-          </span>
-        </div>
-        <div className=" fixed right-5">
-          {Token ? <UserData /> : <LoginAcces />}
-        </div>
-      </Navbar.Brand>
-      <Navbar.Toggle className="bg-white" />
-      {NavBarType === "Landing" ? <LandingNavbar /> : <HomeNavbar />}
-    </Navbar>
+    <SidebarProvider>
+      <Navbar className="sticky top-0 z-50 text-white w-full bg-Body py-4">
+        <Navbar.Brand
+          className={`w-full flex items-center justify-between p-4 ${
+            NavBarType === "Landing" ? "max-sm:p-0" : ""
+          }`}
+        >
+          <div
+            className={`flex items-center flex-grow justify-center space-x-2 max-sm:justify-between max-sm:relative`}
+          >
+            {NavBarType === "Landing" && <Navbar.Toggle className="bg-white" />}
+            <div className="flex items-center justify-center gap-3 max-sm:absolute max-sm:left-32">
+              <FontAwesomeIcon
+                onClick={Goto}
+                icon={faBookOpen}
+                className="text-white h-6 w-6 cursor-pointer"
+              />
+              <span className="text-white text-3xl font-semibold break-words max-sm:text-sm">
+                Biblioteca Pública Municipal de Nicoya
+              </span>
+            </div>
+          </div>
+          <div className=" fixed right-5">
+            {isLogged ? <UserData /> : <LoginAcces />}
+          </div>
+        </Navbar.Brand>
+        {NavBarType === "Landing" ? <LandingNavbar /> : <HomeNavbar />}
+      </Navbar>
+    </SidebarProvider>
   );
 };
 

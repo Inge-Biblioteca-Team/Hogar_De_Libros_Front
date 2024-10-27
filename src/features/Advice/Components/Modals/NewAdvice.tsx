@@ -1,5 +1,5 @@
 import { FloatingLabel, Label, Modal, Select } from "flowbite-react";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Advice } from "../../Types/Advice";
 import OptAdviceCategory from "../OptAdviceCategory";
@@ -21,18 +21,20 @@ const NewAdvice = ({
 
   const { register, reset, handleSubmit, setValue } = useForm<Advice>();
   const { mutate: createAdvice } = UseCreateAdvice();
-  const onSubmit = (data: Advice) => {
+
+  const onSubmit = useCallback((data: Advice) => {
     createAdvice(data, {
       onSuccess: () => {
         setOpen(false);
         reset();
       },
     });
-  };
-  const handleImageSelect = (url: string) => {
+  }, [createAdvice, reset, setOpen]);
+  
+  const handleImageSelect = useCallback((url: string) => {
     setImageUrl(url);
     setValue("image", url);
-  };
+  }, [setValue]);
 
   const { mutate: uploadImage } = UseUploadImage();
   const [imageUrl, setImageUrl] = useState<string>("");
@@ -40,16 +42,16 @@ const NewAdvice = ({
   const [localImage, setLocalImage] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files?.[0];
     if (uploadedFile) {
       setFile(uploadedFile);
       const imageURL = URL.createObjectURL(uploadedFile);
       setLocalImage(imageURL);
     }
-  };
+  }, []);
 
-  const handleConfirmLocalImage = async () => {
+  const handleConfirmLocalImage = useCallback(async () => {
     if (file) {
       uploadImage(file, {
         onSuccess: (filePath: string) => {
@@ -60,18 +62,18 @@ const NewAdvice = ({
         },
       });
     }
-  };
+  }, [file, handleImageSelect, uploadImage]);
 
-  const onExistImageSelect = (image: string) => {
+  const onExistImageSelect = useCallback((image: string) => {
     setImageUrl(image);
     setValue("image", image);
     setOpenImage(false);
-  };
+  }, [setValue]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setOpenImage(false);
     setLocalImage("");
-  };
+  }, []);
 
   return (
     <Modal show={open} onClose={() => setOpen(false)}>

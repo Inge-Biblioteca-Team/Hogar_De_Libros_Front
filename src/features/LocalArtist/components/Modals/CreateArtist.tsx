@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, Button, Label, TextInput } from "flowbite-react";
+import { Modal, Label, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { createLocalArtist } from "../../services/SvArtist";
 import { createArtist } from "../../types/LocalArtist";
@@ -10,6 +10,7 @@ import { AiFillTikTok } from "react-icons/ai";
 import { BsLinkedin } from "react-icons/bs";
 import AddImage from "./AddImage";
 import { useQueryClient } from "react-query";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const CreateArtist = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,15 +23,14 @@ const CreateArtist = () => {
     setValue,
   } = useForm<createArtist>();
 
-
-  const QueryCli = useQueryClient()
+  const QueryCli = useQueryClient();
 
   const onSubmit = async (data: createArtist) => {
     try {
       await createLocalArtist(data);
       toast.success("Artista añadido con éxito");
       setIsModalOpen(false);
-      QueryCli.invalidateQueries("LocalArtistMG")
+      QueryCli.invalidateQueries("LocalArtistMG");
     } catch (error) {
       console.error("Error al añadir el artista:", error);
       toast.error("Hubo un error al añadir el artista");
@@ -42,6 +42,10 @@ const CreateArtist = () => {
     setValue("Cover", url);
   };
 
+  const onClose = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <button
@@ -49,27 +53,32 @@ const CreateArtist = () => {
         onClick={() => setIsModalOpen(true)}
         className="w-40 bg-Body text-white mt-2 p-2 rounded-md hover:bg-blue-800"
       >
-        Añadir Artista
+        Añadir artista
       </button>
-      <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <Modal.Header>Añadir nuevo Artista</Modal.Header>
+      <Modal show={isModalOpen} onClose={onClose}>
+        <Modal.Header>Añadir nuevo artista</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
             <div className="w-full flex items-center justify-center">
               {imageUrl ? (
                 <img
-                onClick={()=>setIsImageModalOpen(true)}
+                  onClick={() => setIsImageModalOpen(true)}
                   src={imageUrl}
                   alt="Imagen del artista"
                   className="h-32 w-32 rounded-full"
+                  title="Editar imagen del artista"
                 />
               ) : (
-                <FaUserEdit size={120} className=" cursor-pointer"
-                onClick={()=>setIsImageModalOpen(true)} />
+                <FaUserEdit
+                  size={120}
+                  className=" cursor-pointer"
+                  title="Editar imagen del artista"
+                  onClick={() => setIsImageModalOpen(true)}
+                />
               )}
             </div>
             <fieldset className="grid grid-cols-2 gap-3">
-              <legend>Infomación Basica</legend>
+              <legend>Información básica</legend>
               <div>
                 <Label htmlFor="Name" value="Nombre" />
                 <TextInput
@@ -153,18 +162,7 @@ const CreateArtist = () => {
               />
             </div>
           </Modal.Body>
-          <Modal.Footer className=" flex items-center justify-center">
-            <Button
-              color="failure"
-              onClick={() => setIsModalOpen(false)}
-              tabIndex={2}
-            >
-              Cancelar
-            </Button>
-            <Button type="submit" color={"blue"}>
-              Guardar
-            </Button>
-          </Modal.Footer>
+          <ModalFooters onClose={onClose} />
         </form>
       </Modal>
       <AddImage

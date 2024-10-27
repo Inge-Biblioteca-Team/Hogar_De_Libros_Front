@@ -14,13 +14,13 @@ const BookRow = ({ book }: { book: Book }) => {
   return (
     <>
       <Table.Row>
-        <Table.Cell>{book.Title}</Table.Cell>
-        <Table.Cell>{book.Author}</Table.Cell>
-        <Table.Cell>{book.ISBN}</Table.Cell>
+        <Table.Cell className=" max-sm:line-clamp-1">{book.Title}</Table.Cell>
+        <Table.Cell className=" max-sm:hidden">{book.Author}</Table.Cell>
+        <Table.Cell className=" max-sm:hidden">{book.ISBN}</Table.Cell>
         <Table.Cell>
-          {book.SignatureCode ? book.SignatureCode : "N/A"}
+          {book.signatureCode ? book.signatureCode : "N/A"}
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell className=" max-sm:hidden">
           {book.InscriptionCode ? book.InscriptionCode : "N/A"}{" "}
         </Table.Cell>
         <Table.Cell>{book.Status ? "Disponible" : "Baja"}</Table.Cell>

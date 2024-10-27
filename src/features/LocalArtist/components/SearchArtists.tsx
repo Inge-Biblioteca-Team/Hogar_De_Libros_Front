@@ -23,7 +23,7 @@ const SearchArtists = ({
         />
       </div>
       <div>
-        <Label className=" text-lg">Tipo de Artista</Label>
+        <Label className=" text-lg">Tipo de artista</Label>
         <TextInput
           type="text"
           icon={FaFileSignature}

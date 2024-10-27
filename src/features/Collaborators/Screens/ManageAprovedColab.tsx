@@ -40,14 +40,14 @@ const ManageAprovedColab = () => {
     <>
       <ColabCrumbs text="Colaboraciones futuras" />
       <main className=" flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex w-4/5 gap-2">
-          <div>
+        <section className=" flex w-4/5 gap-2 max-sm:w-full max-sm:px-3">
+          <div className=" max-sm:hidden">
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
               <OptMainCategory />
             </Select>
           </div>
-          <div>
+          <div className=" max-sm:hidden">
             <Label value="Categoría secundaria" />
             <Select onChange={(event) => setSubCategory(event.target.value)}>
               <OptSubCategory />
@@ -61,10 +61,10 @@ const ManageAprovedColab = () => {
             />
           </div>
         </section>
-        <section className=" w-4/5">
-          {ColaborationsList && ColaborationsList.count > 0? (
+        <section className=" w-4/5 max-sm:w-full max-sm:px-2">
+          {ColaborationsList && ColaborationsList.count > 0 ? (
             <>
-              <ColabsTableBody>
+              <ColabsTableBody hiid>
                 {ColaborationsList?.data.map((colab) => (
                   <ColabAprovedRow
                     colaborator={colab}
@@ -80,7 +80,9 @@ const ManageAprovedColab = () => {
                 total={ColaborationsList?.count || 0}
               />
             </>
-          ):<NoResults/>}
+          ) : (
+            <NoResults />
+          )}
         </section>
       </main>
     </>

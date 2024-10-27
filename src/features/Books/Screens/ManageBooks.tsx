@@ -50,7 +50,7 @@ const ManageBooks = () => {
     <>
       <BreadCrumbManage text="Libros" />
       <main className=" flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5 flex justify-between items-end">
+        <section className="w-4/5 flex justify-between items-end max-sm:w-full max-sm:px-2">
           <div className="flex gap-3">
             <TextInput
               onChange={(event) => setSearchTitle(event.target.value)}
@@ -58,22 +58,28 @@ const ManageBooks = () => {
               placeholder="Búsqueda por titulo"
             />
             <TextInput
+              className=" max-sm:hidden"
               onChange={(event) => setSearchAuthor(event.target.value)}
               rightIcon={MdPersonSearch}
               placeholder="Búsqueda por Autor"
             />
             <TextInput
+              className=" max-sm:hidden"
               onChange={(event) => setSearchYear(event.target.value)}
               rightIcon={MdOutlineCalendarMonth}
               placeholder="Año de publicación"
               type="number"
             />
             <TextInput
+              className=" hidden"
               onChange={(event) => setSearchYear(event.target.value)}
               rightIcon={LuClipboardSignature}
               placeholder="Código de signatura"
             />
-            <Select onChange={(event) => setStatus(event.target.value)}>
+            <Select
+              className=" max-sm:hidden"
+              onChange={(event) => setStatus(event.target.value)}
+            >
               <option value="">Estado</option>
               <option value="1">Disponible</option>
               <option value="0">Baja</option>
@@ -83,7 +89,7 @@ const ManageBooks = () => {
             Añadir nuevo libro
           </Button>
         </section>
-        <section className="w-4/5">
+        <section className="w-4/5 max-sm:w-full max-sm:px-2">
           {Catalog && (
             <>
               <BookTable catalog={Catalog} />
