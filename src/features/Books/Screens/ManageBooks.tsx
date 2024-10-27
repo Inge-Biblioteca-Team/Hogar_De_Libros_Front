@@ -6,11 +6,7 @@ import { useQuery } from "react-query";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { Catalog } from "../Types/BooksTypes";
 import CustomPagination from "../../../components/CustomPagination";
-import {
-  MdTitle,
-  MdPersonSearch,
-  MdOutlineCalendarMonth,
-} from "react-icons/md";
+import { MdTitle, MdPersonSearch } from "react-icons/md";
 import BookTable from "../Components/BookTable";
 import { LuClipboardSignature } from "react-icons/lu";
 import { getColection } from "../Services/BooksServices";
@@ -19,11 +15,11 @@ const ManageBooks = () => {
   const [open, setOpen] = useState(false);
   const [searchTitle, setSearchTitle] = useState<string>("");
   const [searchAuthor, setSearchAuthor] = useState<string>("");
-  const [searchYear, setSearchYear] = useState<string>("");
+  const [searchSigna, setSearchSigna] = useState<string>("");
   const [status, setStatus] = useState<string>("");
   const title = UseDebounce(searchTitle, 3000);
   const author = UseDebounce(searchAuthor, 3000);
-  const year = UseDebounce(searchYear, 3000);
+  const signa = UseDebounce(searchSigna, 3000);
 
   const [page, setPage] = useState<number>(() => {
     const savedPage = sessionStorage.getItem("CatalogPage");
@@ -32,8 +28,8 @@ const ManageBooks = () => {
   const [limit, setLimit] = useState<number>(5);
 
   const { data: Catalog } = useQuery<Catalog, Error>(
-    ["colection", page, limit, title, author, year, status],
-    () => getColection(page, limit, title, author, year, status),
+    ["colection", page, limit, title, author, status, signa],
+    () => getColection(page, limit, title, author, "", status, signa),
     {
       staleTime: 50000,
     }
@@ -50,30 +46,35 @@ const ManageBooks = () => {
     <>
       <BreadCrumbManage text="Libros" />
       <main className=" flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5 flex justify-between items-end">
+        <section className="w-4/5 flex justify-between items-end max-sm:w-full max-sm:px-2">
           <div className="flex gap-3">
             <TextInput
-              onChange={(event) => setSearchTitle(event.target.value)}
+              onChange={(event) => (
+                setSearchTitle(event.target.value), setPage(1)
+              )}
               rightIcon={MdTitle}
               placeholder="Búsqueda por titulo"
             />
             <TextInput
-              onChange={(event) => setSearchAuthor(event.target.value)}
+              className=" max-sm:hidden"
+              onChange={(event) => (
+                setSearchAuthor(event.target.value), setPage(1)
+              )}
               rightIcon={MdPersonSearch}
               placeholder="Búsqueda por Autor"
             />
             <TextInput
-              onChange={(event) => setSearchYear(event.target.value)}
-              rightIcon={MdOutlineCalendarMonth}
-              placeholder="Año de publicación"
-              type="number"
-            />
-            <TextInput
-              onChange={(event) => setSearchYear(event.target.value)}
+              className=" max-sm:hidden"
+              onChange={(event) => (
+                setSearchSigna(event.target.value), setPage(1)
+              )}
               rightIcon={LuClipboardSignature}
               placeholder="Código de signatura"
             />
-            <Select onChange={(event) => setStatus(event.target.value)}>
+            <Select
+              className=" max-sm:hidden"
+              onChange={(event) => (setStatus(event.target.value), setPage(1))}
+            >
               <option value="">Estado</option>
               <option value="1">Disponible</option>
               <option value="0">Baja</option>
@@ -83,7 +84,7 @@ const ManageBooks = () => {
             Añadir nuevo libro
           </Button>
         </section>
-        <section className="w-4/5">
+        <section className="w-4/5 max-sm:w-full max-sm:px-2">
           {Catalog && (
             <>
               <BookTable catalog={Catalog} />

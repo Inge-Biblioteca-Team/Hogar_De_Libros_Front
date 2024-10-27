@@ -25,7 +25,7 @@ const Routes = createBrowserRouter([
     ),
     children: [
       {
-        index: true, // Ruta para el componente HomePage
+        index: true,
         element: <HomePage />,
       },
       ...BasicUsersRoutes, ...AdminRoutes

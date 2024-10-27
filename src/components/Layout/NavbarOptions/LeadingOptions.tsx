@@ -1,33 +1,69 @@
 import { Sidebar } from "flowbite-react";
+import { useContext } from "react";
+import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
 
 const LeadingOptions = () => {
+  const {handleNavigation} = useContext(SidebarContext);
+
   return (
     <>
       <Sidebar.ItemGroup>
         <Sidebar.Collapse label="Préstamos y circulación">
-          <Sidebar.Item href="/HogarDeLibros/Prestamos_Circulacion/Catalogo_General">
-            Préstamo de <br /> catálogo General
+          <Sidebar.Item
+            onClick={() =>
+              handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Catalogo_General")
+            }
+          >
+            Préstamo de <br /> catálogo general
           </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Prestamos_Circulacion/Catalogo_Infantil">
+          <Sidebar.Item
+            onClick={() =>
+              handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Catalogo_Infantil")
+            }
+          >
             Préstamo de <br />
-            catálogo Infantil
+            catálogo infantil
           </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Prestamos_Circulacion/Prestamo_Computo">
+          <Sidebar.Item
+            onClick={() =>
+              handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Prestamo_Computo")
+            }
+          >
             Préstamo de equipo <br /> de cómputo
           </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Prestamos_Circulacion/Prestamos_Activos">
+          <Sidebar.Item
+            onClick={() =>
+              handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Prestamos_Activos")
+            }
+          >
             Préstamos de libro activos
           </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Prestamos_Circulacion/Solicitudes_Libros">
-            Solicitudes de Libros
+          <Sidebar.Item
+            onClick={() =>
+              handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Solicitudes_Libros")
+            }
+          >
+            Solicitudes de libros
           </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Prestamos_Circulacion/Solicitudes_Salas">
-            Solicitudes de Salas
+          <Sidebar.Item
+            onClick={() =>
+              handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Solicitudes_Salas")
+            }
+          >
+            Solicitudes de salas
           </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Prestamos_Circulacion/Reserva_Aprovadas">
+          <Sidebar.Item
+            onClick={() =>
+              handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Reserva_Aprovadas")
+            }
+          >
             Reserva de sala aprobadas
           </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Prestamos_Circulacion/Reservar_Sala">
+          <Sidebar.Item
+            onClick={() =>
+              handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Reservar_Sala")
+            }
+          >
             Reservar sala
           </Sidebar.Item>
         </Sidebar.Collapse>

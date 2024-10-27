@@ -47,7 +47,7 @@ const ManageLocalArtist = () => {
     <>
       <BreadCrumbManage text="Artistas locales" />
 
-      <div className=" w-full flex items-center justify-center pt-12">
+      <div className=" w-full flex items-center justify-center">
         <div className=" w-4/5">
           <div className="flex items-center">
             <SearchArtists
@@ -61,7 +61,7 @@ const ManageLocalArtist = () => {
             <NoRequest text="No Existen Artistas Locales registrados" />
           ) : (
             <>
-              <Table hoverable className=" text-center">
+              <Table hoverable className=" text-center h-[30rem]">
                 <Table.Head className=" h-20 text-sm">
                   <Table.HeadCell>Nombre</Table.HeadCell>
                   <Table.HeadCell>Tipo de Artista</Table.HeadCell>

@@ -1,5 +1,4 @@
-import { Label, Modal } from "flowbite-react";
-import ModalFooters from "../../../../components/ModalFooters";
+import { Button, Label, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { Book } from "../../Types/BooksChildrensTypes";
 import { getConditionStatusText } from "../../../../components/Maps/Condition";
@@ -25,7 +24,7 @@ const ViewChildrenBook = ({
             title="Click para editar la imagen"
             className=" rounded-md"
             style={{ height: "26.5rem", width: "100%" }}
-            src={""}
+            src={book.Cover}
             alt=""
           />
         </figure>
@@ -55,7 +54,11 @@ const ViewChildrenBook = ({
           {book.ReserveBook && <Label value={"Libro de reserva"} />}
         </div>
       </Modal.Body>
-      <ModalFooters onClose={onClose} />
+      <Modal.Footer className=" flex items-center justify-center" onClick={()=>setOpen(false)}>
+        <Button color={"blue"}>
+          Regresar
+        </Button>
+      </Modal.Footer>
     </Modal>
   );
 };

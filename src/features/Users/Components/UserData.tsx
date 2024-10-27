@@ -147,7 +147,7 @@ const UserData = () => {
       <button
         title="Usuario"
         type="button"
-        className="bg-Bottoms text-white text-2xl rounded-lg px-2 hover:bg-Bottoms-dark hover:scale-105 max-sm:hidden w-12"
+        className="bg-Bottoms text-white text-2xl rounded-lg px-2 hover:bg-Bottoms-dark hover:scale-105 w-12"
       >
         <FontAwesomeIcon icon={faUserAlt} />
       </button>

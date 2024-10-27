@@ -7,33 +7,30 @@ import { useQuery } from "react-query";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { Catalog } from "../Types/BooksChildrensTypes";
 import CustomPagination from "../../../components/CustomPagination";
-import {
-  MdTitle,
-  MdPersonSearch,
-  MdOutlineCalendarMonth,
-} from "react-icons/md";
+import { MdTitle, MdPersonSearch } from "react-icons/md";
 import BookChildrenTable from "../Components/BookChildrenTable";
 import { LuClipboardSignature } from "react-icons/lu";
+import NoResults from "../../../components/NoResults";
 
 const ManageChildrenBooks = () => {
   const [open, setOpen] = useState(false);
   const [searchTitle, setSearchTitle] = useState<string>("");
   const [searchAuthor, setSearchAuthor] = useState<string>("");
-  const [searchYear, setSearchYear] = useState<string>("");
+  const [searchSigna, setSearchSigna] = useState<string>("");
   const [status, setStatus] = useState<string>("");
   const title = UseDebounce(searchTitle, 3000);
   const author = UseDebounce(searchAuthor, 3000);
-  const year = UseDebounce(searchYear, 3000);
+  const Signa = UseDebounce(searchSigna, 3000);
 
   const [page, setPage] = useState<number>(() => {
-    const savedPage = sessionStorage.getItem("CatalogPage");
+    const savedPage = sessionStorage.getItem("CCatalogPage");
     return savedPage ? Number(savedPage) : 1;
   });
   const [limit, setLimit] = useState<number>(5);
 
   const { data: Catalog } = useQuery<Catalog, Error>(
-    ["Children-colection", page, limit, title, author, year, status],
-    () => getColection(page, limit, title, author, year, status),
+    ["Children-colection", page, limit, title, author, Signa, status],
+    () => getColection(page, limit, title, author, "", status, Signa),
     {
       staleTime: 50000,
     }
@@ -41,7 +38,7 @@ const ManageChildrenBooks = () => {
 
   const onPageChange = (page: number) => {
     setPage(page);
-    sessionStorage.setItem("CatalogPage", page.toString());
+    sessionStorage.setItem("CCatalogPage", page.toString());
   };
 
   const MaxPage = Math.ceil((Catalog?.count ?? 0) / limit);
@@ -50,7 +47,7 @@ const ManageChildrenBooks = () => {
     <>
       <BreadCrumbManage text="Libros infantiles" />
       <main className=" flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5 flex justify-between items-end">
+        <section className="w-4/5 flex justify-between items-end max-sm:w-full max-sm:px-2">
           <div className="flex gap-3">
             <TextInput
               onChange={(event) => setSearchTitle(event.target.value)}
@@ -58,22 +55,21 @@ const ManageChildrenBooks = () => {
               placeholder="Búsqueda por titulo"
             />
             <TextInput
+              className=" max-sm:hidden"
               onChange={(event) => setSearchAuthor(event.target.value)}
               rightIcon={MdPersonSearch}
-              placeholder="Búsqueda por Autor"
+              placeholder="Búsqueda por autor"
             />
             <TextInput
-              onChange={(event) => setSearchYear(event.target.value)}
-              rightIcon={MdOutlineCalendarMonth}
-              placeholder="Año de publicación"
-              type="number"
-            />
-            <TextInput
-              onChange={(event) => setSearchYear(event.target.value)}
+              className=" max-sm:hidden"
+              onChange={(event) => setSearchSigna(event.target.value)}
               rightIcon={LuClipboardSignature}
               placeholder="Código de signatura"
             />
-            <Select onChange={(event) => setStatus(event.target.value)}>
+            <Select
+              className=" max-sm:hidden"
+              onChange={(event) => setStatus(event.target.value)}
+            >
               <option value="">Estado</option>
               <option value="1">Disponible</option>
               <option value="0">Baja</option>
@@ -83,8 +79,8 @@ const ManageChildrenBooks = () => {
             Añadir nuevo libro
           </Button>
         </section>
-        <section className="w-4/5">
-          {Catalog && (
+        <section className="w-4/5 max-sm:w-full max-sm:px-2">
+          {Catalog && Catalog.count > 0 ? (
             <>
               <BookChildrenTable catalog={Catalog} />
               <CustomPagination
@@ -95,6 +91,8 @@ const ManageChildrenBooks = () => {
                 total={Catalog.count}
               />
             </>
+          ) : (
+            <NoResults />
           )}
         </section>
       </main>

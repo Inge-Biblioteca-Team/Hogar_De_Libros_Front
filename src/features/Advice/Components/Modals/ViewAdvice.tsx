@@ -33,7 +33,7 @@ const ViewAdvice = ({
               <span>Fecha: {date}</span>
             </div>
             <div>
-              <span>Información Extra: {advice.extraInfo} </span>
+              <span>Información extra: {advice.extraInfo} </span>
             </div>
             <div>
               <span>Categoría del aviso: {advice.category} </span>

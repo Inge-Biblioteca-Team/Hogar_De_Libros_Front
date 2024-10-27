@@ -1,56 +1,77 @@
 import { Sidebar } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import UserContext from "../../../Context/UserContext/UserContext";
+import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
 
 const ForAll = () => {
-  const [role, setRole] = useState(sessionStorage.getItem("role"));
+  const { currentUser } = useContext(UserContext);
+  const { handleNavigation } = useContext(SidebarContext);
 
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setRole(sessionStorage.getItem("role"));
-    };
+  const role = currentUser?.role;
 
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
   return (
     <>
       <Sidebar.ItemGroup>
-        <Sidebar.Item className="" href="/HogarDeLibros">
-          Catálogo Completo de libros
+        <Sidebar.Item
+          onClick={() => handleNavigation("/HogarDeLibros")}
+        >
+          Catálogo completo de libros
         </Sidebar.Item>
         <Sidebar.Collapse label="Búsqueda de libros">
-          <Sidebar.Item href="/HogarDeLibros/Catalogo">Por Título</Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Catalogo/Avanzado">
-            Búsqueda Avanzada
+          <Sidebar.Item
+            onClick={() => handleNavigation("/HogarDeLibros/Catalogo")}
+          >
+            Por título
           </Sidebar.Item>
-          <Sidebar.Item href="/HogarDeLibros/Catalogo/Infantil">
-            Catálogo Infantil
+          <Sidebar.Item
+            onClick={() => handleNavigation("/HogarDeLibros/Catalogo/Avanzado")}
+          >
+            Búsqueda avanzada
+          </Sidebar.Item>
+          <Sidebar.Item
+            onClick={() => handleNavigation("/HogarDeLibros/Catalogo/Infantil")}
+          >
+            Catálogo infantil
           </Sidebar.Item>
         </Sidebar.Collapse>
-        <Sidebar.Item className="" href="/HogarDeLibros/Cronograma_Eventos">
+        <Sidebar.Item
+          className=""
+          onClick={() => handleNavigation("/HogarDeLibros/Cronograma_Eventos")}
+        >
           Cronograma de eventos
         </Sidebar.Item>
-        <Sidebar.Item className="" href="/HogarDeLibros/Cronograma_Cursos">
+        <Sidebar.Item
+          className=""
+          onClick={() => handleNavigation("/HogarDeLibros/Cronograma_Cursos")}
+        >
           Cronograma de cursos
         </Sidebar.Item>
-        <Sidebar.Item className="" href="/HogarDeLibros">
-          Se un amigo Más
+        <Sidebar.Item
+          className=""
+          onClick={() => handleNavigation("/HogarDeLibros")}
+        >
+          Se un amigo más
         </Sidebar.Item>
-        <Sidebar.Item className="" href="/HogarDeLibros">
+        <Sidebar.Item
+          className=""
+          onClick={() => handleNavigation("/HogarDeLibros")}
+        >
           Programas
         </Sidebar.Item>
         <Sidebar.Item
           className=""
-          href="/HogarDeLibros/Gestion/Equipo_Disponible"
+          onClick={() =>
+            handleNavigation("/HogarDeLibros/Gestion/Equipo_Disponible")
+          }
         >
           Disponibilidad <br />
-          de Equipo de cómputo
+          de equipo de cómputo
         </Sidebar.Item>
         {(role === "admin" || role === "creator") && (
-          <Sidebar.Item className="" href="/HogarDeLibros/Reserva_Salas">
+          <Sidebar.Item
+            className=""
+            onClick={() => handleNavigation("/HogarDeLibros/Reserva_Salas")}
+          >
             Reserva de salas
           </Sidebar.Item>
         )}

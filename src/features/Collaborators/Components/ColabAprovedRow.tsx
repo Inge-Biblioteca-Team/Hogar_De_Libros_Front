@@ -12,15 +12,21 @@ const ColabAprovedRow = ({ colaborator }: { colaborator: Colaborator }) => {
   return (
     <>
       <Table.Row>
-        <Table.Cell>{formatToDMY(colaborator.activityDate)} </Table.Cell>
-        <Table.Cell>{colaborator.UserFullName}</Table.Cell>
-        <Table.Cell>{colaborator.Entitycollaborator || "No aplica"}</Table.Cell>
-        <Table.Cell>{colaborator.UserPhone}</Table.Cell>
-        <Table.Cell>{colaborator.UserEmail}</Table.Cell>
-        <Table.Cell>{colaborator.PrincipalCategory}</Table.Cell>
-        <Table.Cell>{colaborator.Experience || "No posee"}</Table.Cell>
-        <Table.Cell>{colaborator.Status}</Table.Cell>
-        <Table.Cell>
+        <Table.Cell className="">
+          {formatToDMY(colaborator.activityDate)}{" "}
+        </Table.Cell>
+        <Table.Cell className="">{colaborator.UserFullName}</Table.Cell>
+        <Table.Cell className="">{colaborator.UserPhone}</Table.Cell>
+        <Table.Cell className=" max-sm:hidden">
+          {colaborator.UserEmail}
+        </Table.Cell>
+        <Table.Cell className=" max-sm:hidden">
+          {colaborator.PrincipalCategory}
+        </Table.Cell>
+        <Table.Cell className=" max-sm:hidden">
+          {colaborator.Experience || "No posee"}
+        </Table.Cell>
+        <Table.Cell className=" ">
           <div className=" flex gap-4">
             <button
               type="button"

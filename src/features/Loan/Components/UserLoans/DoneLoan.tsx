@@ -4,6 +4,7 @@ import LoanBody from "./LoanBody";
 import { Pagination, Table, TextInput } from "flowbite-react";
 import { GetDoneLoans } from "../../Services/SvBookLoan";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const DoneLoan = () => {
   const [startDate,setStartDate] = useState<string>("")
@@ -37,9 +38,9 @@ const DoneLoan = () => {
               <Table.Row>
                 <Table.Cell colSpan={6}>
                   No ha realizado Préstamos. Te invitamos a visitar nuestro{" "}
-                  <a href="/HogarDeLibros/Busqueda/Titulo">
+                  <Link to="/HogarDeLibros/Busqueda/Titulo">
                     Catalogo de libros.
-                  </a>
+                  </Link>
                 </Table.Cell>
               </Table.Row>
             ) : (

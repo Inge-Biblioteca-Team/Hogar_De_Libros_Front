@@ -30,7 +30,7 @@ const DeleteAdvice = ({
         </div>
         <span>
           {" "}
-          ¿Está seguro de que desea eliminar este aviso?. <br />
+          ¿Está seguro de que desea eliminar este aviso? <br />
         </span>
         <span>
           {" "}

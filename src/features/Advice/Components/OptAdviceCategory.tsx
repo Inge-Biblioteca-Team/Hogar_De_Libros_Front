@@ -4,7 +4,7 @@ const OptAdviceCategory = () => {
       <option value="">Seleccione la categoría del aviso</option>
       <option value="Curso">Curso</option>
       <option value="Evento">Evento</option>
-      <option value="Actividad">Actividad Extracurricular</option>
+      <option value="Actividad">Actividad extracurricular</option>
       <option value="Cierre">Cierre de la biblioteca</option>
     </>
   );

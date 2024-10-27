@@ -12,32 +12,34 @@ const RequestBTN = ({
   setOpenD: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
-    <div className=" flex gap-3">
-      <button
-        onClick={() => setOpenV(true)}
-        type="button"
-        title="Ver Solicitud"
-        className=" hover:text-Body"
-      >
-        <HiViewfinderCircle size={30} />
-      </button>
-      <button
-        onClick={() => setOpenD(true)}
-        type="button"
-        title="Rechazar solicitud"
-        className=" hover:text-red-800"
-      >
-        <GiCancel size={30} />
-      </button>
-      <button
-        onClick={() => setOpenA(true)}
-        type="button"
-        title="Aprovar solicitud"
-        className=" hover:text-green-800"
-      >
-        <FaCheckCircle size={30} />
-      </button>
-    </div>
+    <>
+      <div className=" flex gap-3 max-sm:scale-95  ">
+        <button
+          onClick={() => setOpenV(true)}
+          type="button"
+          title="Ver Solicitud"
+          className=" hover:text-Body"
+        >
+          <HiViewfinderCircle size={25} />
+        </button>
+        <button
+          onClick={() => setOpenD(true)}
+          type="button"
+          title="Rechazar solicitud"
+          className=" hover:text-red-800"
+        >
+          <GiCancel size={25} />
+        </button>
+        <button
+          onClick={() => setOpenA(true)}
+          type="button"
+          title="Aprovar solicitud"
+          className=" hover:text-green-800"
+        >
+          <FaCheckCircle size={25} />
+        </button>
+      </div>
+    </>
   );
 };
 

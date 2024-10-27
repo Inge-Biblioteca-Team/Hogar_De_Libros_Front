@@ -4,7 +4,7 @@ import { Button, Carousel, Label, Modal, TextInput } from "flowbite-react";
 import { CreateRoom } from "../../Types/Room_Interface";
 import UseCreateRooms from "../../Hooks/UseCreateRoms";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
-import UseUploadImage from "../../../Advice/Hooks/UseUploadImage";
+import UseUploadImage from "../../../../hooks/UseUploadImage";
 
 const CreateRooms = () => {
   const { register, reset, handleSubmit, setValue } = useForm<CreateRoom>();
