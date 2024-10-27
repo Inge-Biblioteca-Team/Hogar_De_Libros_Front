@@ -118,7 +118,7 @@ const NewAdvice = ({
         text="del aviso"
         Folder="Avisos"
         onSelectImage={handleImageSelect}
-        onClose={() => setOpenImage(false)}
+        onClose={onClose}
       />
     </Modal>
   );
