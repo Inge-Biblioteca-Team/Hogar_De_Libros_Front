@@ -14,7 +14,7 @@ const LeadingOptions = () => {
               handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Catalogo_General")
             }
           >
-            Préstamo de <br /> catálogo General
+            Préstamo de <br /> catálogo general
           </Sidebar.Item>
           <Sidebar.Item
             onClick={() =>
@@ -22,7 +22,7 @@ const LeadingOptions = () => {
             }
           >
             Préstamo de <br />
-            catálogo Infantil
+            catálogo infantil
           </Sidebar.Item>
           <Sidebar.Item
             onClick={() =>
@@ -43,14 +43,14 @@ const LeadingOptions = () => {
               handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Solicitudes_Libros")
             }
           >
-            Solicitudes de Libros
+            Solicitudes de libros
           </Sidebar.Item>
           <Sidebar.Item
             onClick={() =>
               handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Solicitudes_Salas")
             }
           >
-            Solicitudes de Salas
+            Solicitudes de salas
           </Sidebar.Item>
           <Sidebar.Item
             onClick={() =>

@@ -69,25 +69,6 @@ const searchCovers = async (
   }
 };
 
-const uploadImage = async (file: File): Promise<string> => {
-  if (file) {
-    const formData = new FormData();
-    formData.append("image", file);
-
-    try {
-      const response = await api.post("/files/upload/book-children", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      return response.data.filePath;
-    } catch (error) {
-      console.error("Error al subir imagen:", error);
-      throw new Error("Error al subir imagen");
-    }
-  }
-  throw new Error("No se proporciono un archivo");
-};
 
 const getColection = async (
   page: number,
@@ -192,7 +173,6 @@ const EditChildrenBook = async (data: Book) => {
 
 export {
   searchCovers,
-  uploadImage,
   EditChildrenBook,
   DisableChildrenBook,
   CreateChildrenBook,

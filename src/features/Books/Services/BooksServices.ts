@@ -115,10 +115,10 @@ const getColection = async (
       limit,
     };
     if (title) params.Title = title;
-    if (author) params.author = author;
-    if (year) params.year = year;
+    if (author) params.Author = author;
+    if (year) params.PublishedYear = year;
     if (status) params.Status = status;
-    if (Signa) params.SignatureCode = Signa;
+    if (Signa) params.signatureCode = Signa;
     if (category) params.ShelfCategory = category;
     const response = await api.get("books", { params });
     return response.data;

@@ -46,7 +46,7 @@ const MDDownBook = ({
             <span>
               {" "}
               ¿Está seguro de que desea deshabilitar este recurso de la
-              colección?. <br />
+              colección? <br />
             </span>
             <span> En caso de aceptar no podrá revertir esta acción.</span>
           </div>

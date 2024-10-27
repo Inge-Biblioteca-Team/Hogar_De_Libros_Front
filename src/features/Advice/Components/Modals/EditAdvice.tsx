@@ -3,11 +3,11 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Advice } from "../../Types/Advice";
 import OptAdviceCategory from "../OptAdviceCategory";
-import ModalButtons from "../../../../components/BTNS/ModalButtons";
 import UseEditAdvice from "../../Hooks/UseEditAdvice";
-import UseUploadImage from "../../Hooks/UseUploadImage";
+import UseUploadImage from "../../../../hooks/UseUploadImage";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
 import { formatToYMD } from "../../../../components/FormatTempo";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const EditAdvice = ({
   open,
@@ -61,14 +61,17 @@ const EditAdvice = ({
 
   const handleConfirmLocalImage = async () => {
     if (file) {
-      uploadImage(file, {
-        onSuccess: (filePath: string) => {
-          handleImageSelect(filePath);
-          setLocalImage(null);
-          setFile(null);
-          setOpenImage(false);
-        },
-      });
+      uploadImage(
+        { image: file, folder: "Avisos" },
+        {
+          onSuccess: (filePath: string) => {
+            handleImageSelect(filePath);
+            setLocalImage(null);
+            setFile(null);
+            setOpenImage(false);
+          },
+        }
+      );
     }
   };
 
@@ -81,13 +84,21 @@ const EditAdvice = ({
     setOpenImage(false);
     setLocalImage("");
   };
+
+  const onClose = () => {
+    setOpen(false);
+    setImageUrl("");
+    reset();
+  };
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal show={open} onClose={onClose}>
       <Modal.Header>Editar información del aviso</Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body className="">
           <fieldset>
-            <legend className="mb-2 font-bold">Imagen del aviso</legend>
+            <legend className="mb-2 font-bol max-sm:hiddend">
+              Imagen del aviso
+            </legend>
             <figure>
               <div className="w-full flex items-center justify-center">
                 {imageUrl ? (
@@ -95,12 +106,14 @@ const EditAdvice = ({
                     onClick={() => setOpenImage(true)}
                     src={imageUrl}
                     alt="Imagen del programa"
-                    className="h-52 w-full rounded-md cursor-pointer"
+                    className="h-52 w-full rounded-md cursor-pointer
+                     max-sm:h-32"
                   />
                 ) : (
                   <div
                     onClick={() => setOpenImage(true)}
-                    className="h-52 w-full border-dashed border-2 border-gray-300 flex items-center justify-center rounded-md cursor-pointer"
+                    className="h-52 w-full border-dashed border-2 border-gray-300 flex items-center justify-center rounded-md cursor-pointer
+                     max-sm:h-32"
                   >
                     <span>Selecciona una imagen</span>
                   </div>
@@ -108,8 +121,8 @@ const EditAdvice = ({
               </div>
             </figure>
           </fieldset>
-          <div className=" flex flex-col justify-between gap-3">
-            <fieldset className="my-2 font-bold">
+          <div className=" flex flex-col justify-between gap-3 max-sm:pt-2">
+            <fieldset className="my-2 font-bold max-sm:hidden">
               Información del aviso
             </fieldset>
             <FloatingLabel
@@ -137,9 +150,10 @@ const EditAdvice = ({
             </div>
           </div>
         </Modal.Body>
-        <ModalButtons setOpen={setOpen} />
+        <ModalFooters onClose={onClose} />
       </form>
       <ModalAddNewImage
+        Folder="Avisos"
         text="del aviso"
         open={openImage}
         handleClose={handleClose}

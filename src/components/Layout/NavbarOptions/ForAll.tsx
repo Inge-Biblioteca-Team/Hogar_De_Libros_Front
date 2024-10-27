@@ -15,23 +15,23 @@ const ForAll = () => {
         <Sidebar.Item
           onClick={() => handleNavigation("/HogarDeLibros")}
         >
-          Catálogo Completo de libros
+          Catálogo completo de libros
         </Sidebar.Item>
         <Sidebar.Collapse label="Búsqueda de libros">
           <Sidebar.Item
             onClick={() => handleNavigation("/HogarDeLibros/Catalogo")}
           >
-            Por Título
+            Por título
           </Sidebar.Item>
           <Sidebar.Item
             onClick={() => handleNavigation("/HogarDeLibros/Catalogo/Avanzado")}
           >
-            Búsqueda Avanzada
+            Búsqueda avanzada
           </Sidebar.Item>
           <Sidebar.Item
             onClick={() => handleNavigation("/HogarDeLibros/Catalogo/Infantil")}
           >
-            Catálogo Infantil
+            Catálogo infantil
           </Sidebar.Item>
         </Sidebar.Collapse>
         <Sidebar.Item
@@ -50,7 +50,7 @@ const ForAll = () => {
           className=""
           onClick={() => handleNavigation("/HogarDeLibros")}
         >
-          Se un amigo Más
+          Se un amigo más
         </Sidebar.Item>
         <Sidebar.Item
           className=""
@@ -65,7 +65,7 @@ const ForAll = () => {
           }
         >
           Disponibilidad <br />
-          de Equipo de cómputo
+          de equipo de cómputo
         </Sidebar.Item>
         {(role === "admin" || role === "creator") && (
           <Sidebar.Item

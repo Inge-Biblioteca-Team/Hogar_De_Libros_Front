@@ -21,6 +21,12 @@ const ForAdmin = () => {
           >
             Inicio
           </Sidebar.Item>
+          <Sidebar.Item
+            className=" cursor-pointer"
+            onClick={() => handleNavigation("/HogarDeLibros/Avisos")}
+          >
+            Avisos importantes
+          </Sidebar.Item>
         </Sidebar.ItemGroup>
       </>
       <Sidebar.ItemGroup>

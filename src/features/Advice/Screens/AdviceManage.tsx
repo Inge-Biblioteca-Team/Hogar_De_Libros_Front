@@ -7,7 +7,10 @@ import { useQuery } from "react-query";
 import { ApiAdvices } from "../Types/Advice";
 import { GetAdviceList } from "../Service/SvAdvice";
 import UseDebounce from "../../../hooks/UseDebounce";
-import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import {
+  BreadCrumbsItems,
+  BreadLastItems,
+} from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
 
 const AdviceManage = () => {
@@ -40,9 +43,11 @@ const AdviceManage = () => {
 
   return (
     <>
-      <BreadCrumbManage text="Avisos importantes" />
-      <main className=" flex items-center justify-center w-full flex-col gap-5 mt-8">
-        <section className="w-4/5 flex justify-between items-end">
+      <BreadCrumbsItems>
+        <BreadLastItems text="Avisos importantes" />
+      </BreadCrumbsItems>
+      <main className=" flex items-center justify-center w-full flex-col gap-5 ">
+        <section className="w-4/5 flex justify-between items-end max-sm:w-full max-sm:px-2">
           <div className=" flex gap-6">
             <div>
               <Label value="Fecha de Actividad" />
@@ -51,7 +56,7 @@ const AdviceManage = () => {
                 onChange={(e) => (setDate(e.target.value), setPage(1))}
               />
             </div>
-            <div>
+            <div className=" max-sm:hidden">
               <Label value="Categoría" />
               <Select
                 onChange={(e) => (setCategory(e.target.value), setPage(1))}
@@ -59,7 +64,7 @@ const AdviceManage = () => {
                 <OptAdviceCategory />
               </Select>
             </div>
-            <div>
+            <div className=" max-sm:hidden">
               <Label value="Motivo" />
               <TextInput
                 placeholder="Motivo del aviso"
@@ -68,11 +73,10 @@ const AdviceManage = () => {
             </div>
           </div>
           <Button color={"blue"} onClick={() => setOpen(true)}>
-            {" "}
-            Agregar Nuevo Aviso
+            Agregar nuevo aviso
           </Button>
         </section>
-        <section className=" w-4/5">
+        <section className=" w-4/5 max-sm:w-full max-sm:px-2">
           {Advices && (
             <>
               <AdviceTable advices={Advices} />

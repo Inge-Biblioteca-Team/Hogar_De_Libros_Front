@@ -9,3 +9,8 @@ export type ModalOpen ={
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
+
+export type uploadImage ={
+  image:File,
+  folder:string
+}

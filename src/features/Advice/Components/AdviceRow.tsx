@@ -7,15 +7,17 @@ const AdviceRow = ({ advice }: { advice: Advice }) => {
   const date = formatToDMY(advice.date);
   return (
     <Table.Row>
-      <Table.Cell>{advice.id_Advice} </Table.Cell>
+      <Table.Cell className=" max-sm:hidden">{advice.id_Advice} </Table.Cell>
       <Table.Cell>{advice.reason} </Table.Cell>
       <Table.Cell>{advice.category} </Table.Cell>
       <Table.Cell>{date} </Table.Cell>
-      <Table.Cell>
-        <div className=" line-clamp-2">{advice.extraInfo}</div>
+      <Table.Cell className="max-sm:hidden">
+        <div className=" line-clamp-2 ">{advice.extraInfo}</div>
       </Table.Cell>
-      <Table.Cell>{advice.status ? "Activo" : "Cancelado"} </Table.Cell>
-      <Table.Cell>
+      <Table.Cell className=" max-sm:hidden">
+        {advice.status ? "Activo" : "Cancelado"}{" "}
+      </Table.Cell>
+      <Table.Cell >
         <AdviceAccionsBTN advice={advice} />
       </Table.Cell>
     </Table.Row>

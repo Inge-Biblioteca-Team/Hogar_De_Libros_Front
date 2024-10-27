@@ -36,7 +36,7 @@ const ExtraOptions = () => {
             handleNavigation("/HogarDeLibros/Colaboraciones/Historial")
           }
         >
-          Historial de Colaboradores
+          Historial de colaboradores
         </Sidebar.Item>
       </Sidebar.Collapse>
       <Sidebar.Collapse label="Donaciones">

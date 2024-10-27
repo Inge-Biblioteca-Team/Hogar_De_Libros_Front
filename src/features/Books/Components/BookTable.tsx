@@ -7,7 +7,7 @@ const BookTable = ({ catalog }: { catalog: Catalog }) => {
   return (
     <>
       {catalog.count > 0 ? (
-        <Table className=" text-center" hoverable style={{height:"35rem"}}>
+        <Table className=" text-center min-h-[30rem] " hoverable>
           <Table.Head>
             <Table.HeadCell>Título</Table.HeadCell>
             <Table.HeadCell className=" max-sm:hidden" >Autor</Table.HeadCell>

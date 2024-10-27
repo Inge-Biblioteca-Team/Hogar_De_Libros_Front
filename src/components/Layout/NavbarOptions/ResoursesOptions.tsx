@@ -10,28 +10,28 @@ const ResoursesOptions = () => {
         <Sidebar.Item
           onClick={() => handleNavigation("/HogarDeLibros/Recursos/Artistas")}
         >
-          Artistas Locales
+          Artistas locales
         </Sidebar.Item>
         <Sidebar.Item
           onClick={() =>
             handleNavigation("/HogarDeLibros/Recursos/Equipo_Computo")
           }
         >
-          Equipos de Cómputo
+          Equipos de cómputo
         </Sidebar.Item>
         <Sidebar.Item
           onClick={() =>
             handleNavigation("/HogarDeLibros/Recursos/Catalogo_General")
           }
         >
-          Libros Generales
+          Libros generales
         </Sidebar.Item>
         <Sidebar.Item
           onClick={() =>
             handleNavigation("/HogarDeLibros/Recursos/Catalogo_Infantil")
           }
         >
-          Libros Infantiles
+          Libros infantiles
         </Sidebar.Item>
         <Sidebar.Item
           onClick={() => handleNavigation("/HogarDeLibros/Recursos/Mobiliario")}
