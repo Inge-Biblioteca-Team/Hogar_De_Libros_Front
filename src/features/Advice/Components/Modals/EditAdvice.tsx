@@ -1,10 +1,9 @@
 import { FloatingLabel, Label, Modal, Select } from "flowbite-react";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Advice } from "../../Types/Advice";
 import OptAdviceCategory from "../OptAdviceCategory";
 import UseEditAdvice from "../../Hooks/UseEditAdvice";
-import UseUploadImage from "../../../../hooks/UseUploadImage";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
 import { formatToYMD } from "../../../../components/FormatTempo";
 import ModalFooters from "../../../../components/ModalFooters";
@@ -19,7 +18,7 @@ const EditAdvice = ({
   advice: Advice;
 }) => {
   const min = formatToYMD(new Date());
-  const { register, handleSubmit, reset, setValue, watch } = useForm<Advice>({
+  const { register, handleSubmit, reset, setValue } = useForm<Advice>({
     defaultValues: {
       id_Advice: advice.id_Advice,
       date: advice.date,
@@ -39,57 +38,29 @@ const EditAdvice = ({
       },
     });
   };
-  const handleImageSelect = (url: string) => {
-    setImageUrl(url);
-    setValue("image", url);
-  };
 
-  const { mutate: uploadImage } = UseUploadImage();
-  const [imageUrl, setImageUrl] = useState<string>(watch("image") || "");
   const [openImage, setOpenImage] = useState<boolean>(false);
-  const [localImage, setLocalImage] = useState<string | null>(null);
-  const [file, setFile] = useState<File | null>(null);
+  const [imageUrl, setImageUrl] = useState<string>("");
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const uploadedFile = e.target.files?.[0];
-    if (uploadedFile) {
-      setFile(uploadedFile);
-      const imageURL = URL.createObjectURL(uploadedFile);
-      setLocalImage(imageURL);
-    }
-  };
-
-  const handleConfirmLocalImage = async () => {
-    if (file) {
-      uploadImage(
-        { image: file, folder: "Avisos" },
-        {
-          onSuccess: (filePath: string) => {
-            handleImageSelect(filePath);
-            setLocalImage(null);
-            setFile(null);
-            setOpenImage(false);
-          },
-        }
-      );
-    }
-  };
-
-  const onExistImageSelect = (image: string) => {
-    setImageUrl(image);
-    setValue("image", image);
-    setOpenImage(false);
-  };
-  const handleClose = () => {
-    setOpenImage(false);
-    setLocalImage("");
-  };
+  const handleImageSelect = useCallback(
+    (url: string) => {
+      setImageUrl(url);
+      setValue("image", url);
+      setOpenImage(false);
+    },
+    [setValue]
+  );
 
   const onClose = () => {
     setOpen(false);
-    setImageUrl("");
     reset();
+    setImageUrl("");
   };
+
+  const handleClose =()=>{
+    setOpenImage(false)
+  }
+
   return (
     <Modal show={open} onClose={onClose}>
       <Modal.Header>Editar información del aviso</Modal.Header>
@@ -153,14 +124,11 @@ const EditAdvice = ({
         <ModalFooters onClose={onClose} />
       </form>
       <ModalAddNewImage
-        Folder="Avisos"
-        text="del aviso"
         open={openImage}
-        handleClose={handleClose}
-        localImage={localImage}
-        handleUpload={handleImageUpload}
-        handleConfirmImage={handleConfirmLocalImage}
-        onExistImageSelect={onExistImageSelect}
+        text="del aviso"
+        Folder="Avisos"
+        onSelectImage={handleImageSelect}
+        onClose={handleClose}
       />
     </Modal>
   );
