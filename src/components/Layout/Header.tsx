@@ -43,7 +43,7 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
               </span>
             </div>
           </div>
-          <div className=" fixed right-5">
+          <div className=" absolute right-5 ">
             {isLogged ? <UserData /> : <LoginAcces />}
           </div>
         </Navbar.Brand>

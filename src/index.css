@@ -6,7 +6,7 @@
 
 :root {
 background-color: #dfe2e6;
-  font-family: 'Mulish', sans-serif;
+  font-family: serif;
   font-weight: 300;
 }
 
@@ -105,4 +105,11 @@ height: 25rem;
     black 10%,
     traparent
   );
+}
+
+@media (max-width: 640px) {
+  .custom-breadcrumb a,
+  .custom-breadcrumb span {
+    font-size: 0.8rem !important;
+  }
 }

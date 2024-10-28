@@ -30,7 +30,7 @@ const Colecction = () => {
 
   const { data: catalog } = useQuery<Catalog, Error>(
     ["colection", page, limit, sTitle],
-    () => getColection(page, limit, sTitle, "", "", "", "", category),
+    () => getColection(page, limit, sTitle, "", "", "1", "", category),
     {
       staleTime: 5000,
     }
@@ -45,7 +45,7 @@ const Colecction = () => {
       <main className=" flex flex-col w-full justify-center items-center gap-3">
         <section className=" w-4/5 flex justify-between">
           <div className=" flex gap-2">
-            <Select onChange={(event) => setCategory(event.target.value)}>
+            <Select className=" max-sm:hidden" onChange={(event) => setCategory(event.target.value)}>
               <OptCategories />
             </Select>
             <TextInput
@@ -54,7 +54,7 @@ const Colecction = () => {
               rightIcon={LiaSearchengin}
             />
           </div>
-          <ButtonGroup>
+          <ButtonGroup className=" max-sm:hidden">
             <Button
               color={"gray"}
               title="Lista"
@@ -64,7 +64,7 @@ const Colecction = () => {
             >
               <BsListUl size={25} />
             </Button>
-            <Button
+            <Button 
               color={"gray"}
               title="Cuadricula"
               onClick={() => {

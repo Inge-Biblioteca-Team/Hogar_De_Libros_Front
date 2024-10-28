@@ -45,7 +45,10 @@ const ChildrenColection = () => {
       <main className=" flex flex-col w-full justify-center items-center gap-3">
         <section className=" w-4/5 flex justify-between">
           <div className=" flex gap-2">
-            <Select onChange={(event) => setCategory(event.target.value)}>
+            <Select
+              className="max-sm:hidden"
+              onChange={(event) => setCategory(event.target.value)}
+            >
               <OptCategories />
             </Select>
             <TextInput
@@ -54,7 +57,7 @@ const ChildrenColection = () => {
               rightIcon={LiaSearchengin}
             />
           </div>
-          <ButtonGroup>
+          <ButtonGroup className=" max-sm:hidden">
             <Button
               color={"gray"}
               title="Lista"

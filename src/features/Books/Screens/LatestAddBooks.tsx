@@ -31,7 +31,7 @@ const LatestAddBooks = () => {
           id="MostPopularBooks"
         >
           <h2 className="font-bold text-3xl">
-            Ultimos libros añadidos a colección
+            Últimos libros añadidos a colección
           </h2>
           <Carousel
             indicators={false}
