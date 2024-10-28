@@ -5,7 +5,10 @@ import { LoanResponse } from "../../Types/BookLoan";
 import { useEffect, useState } from "react";
 import NoRequest from "../../Components/NoRequest";
 import CustomPagination from "../../../../components/CustomPagination";
-import { BreadCrumbsItems, BreadLastItems } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import {
+  BreadCrumbsItems,
+  BreadLastItems,
+} from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 
 const PendingRequest = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -33,23 +36,23 @@ const PendingRequest = () => {
   return (
     <>
       <BreadCrumbsItems>
-      <BreadLastItems text="Solicitudes de préstamos"/>
+        <BreadLastItems text="Solicitudes de préstamos" />
       </BreadCrumbsItems>
-      {Loan?.count == 0 ? (
-        <NoRequest text={"No Hay Solicitudes Pendientes"} />
-      ) : (
+      {Loan && Loan.count > 0 ? (
         <div className="flex place-content-center mt-20">
           <div className="w-4/5">
-            {Loan && <TBLLoan Loan={Loan} NeedAccions />}
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={Loan?.count || 0}
-              />
+            {Loan && Loan.count && <TBLLoan Loan={Loan} NeedAccions />}
+            <CustomPagination
+              page={currentPage}
+              onPageChange={onPageChange}
+              totalPages={MaxPage}
+              setCurrentLimit={setCurrentLimit}
+              total={Loan?.count || 0}
+            />
           </div>
         </div>
+      ) : (
+        <NoRequest text={"No Hay Solicitudes Pendientes"} />
       )}
     </>
   );

@@ -9,7 +9,7 @@ const AdviceRow = ({ advice }: { advice: Advice }) => {
     <Table.Row>
       <Table.Cell className=" max-sm:hidden">{advice.id_Advice} </Table.Cell>
       <Table.Cell>{advice.reason} </Table.Cell>
-      <Table.Cell>{advice.category} </Table.Cell>
+      <Table.Cell className=" max-sm:hidden">{advice.category} </Table.Cell>
       <Table.Cell>{date} </Table.Cell>
       <Table.Cell className="max-sm:hidden">
         <div className=" line-clamp-2 ">{advice.extraInfo}</div>
@@ -17,7 +17,7 @@ const AdviceRow = ({ advice }: { advice: Advice }) => {
       <Table.Cell className=" max-sm:hidden">
         {advice.status ? "Activo" : "Cancelado"}{" "}
       </Table.Cell>
-      <Table.Cell >
+      <Table.Cell>
         <AdviceAccionsBTN advice={advice} />
       </Table.Cell>
     </Table.Row>

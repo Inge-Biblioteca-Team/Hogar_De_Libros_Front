@@ -18,7 +18,7 @@ const EditAdvice = ({
   advice: Advice;
 }) => {
   const min = formatToYMD(new Date());
-  const { register, handleSubmit, reset, setValue } = useForm<Advice>({
+  const { register, handleSubmit, reset, setValue, watch } = useForm<Advice>({
     defaultValues: {
       id_Advice: advice.id_Advice,
       date: advice.date,
@@ -40,7 +40,7 @@ const EditAdvice = ({
   };
 
   const [openImage, setOpenImage] = useState<boolean>(false);
-  const [imageUrl, setImageUrl] = useState<string>("");
+  const [, setImageUrl] = useState<string>("");
 
   const handleImageSelect = useCallback(
     (url: string) => {
@@ -72,10 +72,10 @@ const EditAdvice = ({
             </legend>
             <figure>
               <div className="w-full flex items-center justify-center">
-                {imageUrl ? (
+                {watch("image") ? (
                   <img
                     onClick={() => setOpenImage(true)}
-                    src={imageUrl}
+                    src={watch("image")}
                     alt="Imagen del programa"
                     className="h-52 w-full rounded-md cursor-pointer
                      max-sm:h-32"
@@ -92,7 +92,7 @@ const EditAdvice = ({
               </div>
             </figure>
           </fieldset>
-          <div className=" flex flex-col justify-between gap-3 max-sm:pt-2">
+          <div className=" flex flex-col justify-between gap-3 max-sm:pt-5">
             <fieldset className="my-2 font-bold max-sm:hidden">
               Información del aviso
             </fieldset>

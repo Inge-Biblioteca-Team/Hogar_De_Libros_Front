@@ -81,6 +81,7 @@ const LogIn = async (Data: SingIng) => {
     const response = await api.post("auth/login", Data);
     sessionStorage.setItem("Token", response.data.access_token);
     const Token = response.data.access_token;
+    console.log(Token)
     if (Token) {
       try {
         const decodedToken: Payload = jwtDecode(Token);

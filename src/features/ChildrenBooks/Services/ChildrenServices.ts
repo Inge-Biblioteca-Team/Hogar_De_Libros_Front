@@ -69,7 +69,6 @@ const searchCovers = async (
   }
 };
 
-
 const getColection = async (
   page: number,
   limit: number,
@@ -85,9 +84,9 @@ const getColection = async (
       page,
       limit,
     };
-    if (title) params.title = title;
-    if (author) params.author = author;
-    if (year) params.year = year;
+    if (title) params.Title = title;
+    if (author) params.Author = author;
+    if (year) params.Year = year;
     if (status) params.Status = status;
     if (Signa) params.SignatureCode = Signa;
     if (category) params.ShelfCategory = category;

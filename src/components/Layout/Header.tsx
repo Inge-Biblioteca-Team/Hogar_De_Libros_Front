@@ -22,21 +22,23 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
     <SidebarProvider>
       <Navbar className="sticky top-0 z-50 text-white w-full bg-Body py-4">
         <Navbar.Brand
-          className={`w-full flex items-center justify-between p-4 ${
+          className={`w-full flex items-center justify-between p-4  ${
             NavBarType === "Landing" ? "max-sm:p-0" : ""
           }`}
         >
           <div
             className={`flex items-center flex-grow justify-center space-x-2 max-sm:justify-between max-sm:relative`}
           >
-            {NavBarType === "Landing" && <Navbar.Toggle className="bg-white" />}
-            <div className="flex items-center justify-center gap-3 max-sm:absolute max-sm:left-32">
+            <div className="flex items-center justify-center gap-3 max-sm:pl-14 max-sm:flex-col-reverse">
               <FontAwesomeIcon
                 onClick={Goto}
                 icon={faBookOpen}
-                className="text-white h-6 w-6 cursor-pointer"
+                className="text-white h-6 w-6 cursor-pointer max-sm:hidden"
               />
-              <span className="text-white text-3xl font-semibold break-words max-sm:text-sm">
+              <span
+                className="text-white text-3xl font-semibold break-words max-sm:text-sm"
+                onClick={Goto}
+              >
                 Biblioteca Pública Municipal de Nicoya
               </span>
             </div>

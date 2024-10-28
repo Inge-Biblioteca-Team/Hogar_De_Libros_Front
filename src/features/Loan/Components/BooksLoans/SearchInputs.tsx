@@ -28,7 +28,7 @@ const SearchInputs = ({
     <div className="w-full grid grid-cols-4 gap-2 pb-4 items-end">
       <div>
         <Label className=" text-lg" htmlFor="InitialDate">
-          Fecha de Solicitud
+          Fecha de solicitud
         </Label>
         <TextInput
           id="InitialDate"
@@ -37,7 +37,7 @@ const SearchInputs = ({
         />
       </div>
       <div>
-        <Label className=" text-lg">Fecha De Vencimiento</Label>
+        <Label className=" text-lg">Fecha de vencimiento</Label>
         <TextInput
           type="date"
           value={EndDate}
@@ -45,7 +45,7 @@ const SearchInputs = ({
         />
       </div>
       <div>
-        <Label className=" text-lg">Código De Signatura</Label>
+        <Label className=" text-lg">Código de signatura</Label>
         <TextInput
           type="text"
           icon={FaFileSignature}

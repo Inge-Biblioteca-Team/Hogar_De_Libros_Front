@@ -12,7 +12,9 @@ const AdviceTable = ({ advices }: { advices: ApiAdvices }) => {
               Numero de aviso
             </Table.HeadCell>
             <Table.HeadCell className="w-52">Motivo</Table.HeadCell>
-            <Table.HeadCell className="w-52">Categoría</Table.HeadCell>
+            <Table.HeadCell className="w-52 max-sm:hidden">
+              Categoría
+            </Table.HeadCell>
             <Table.HeadCell className="w-52">Fecha de actividad</Table.HeadCell>
             <Table.HeadCell className="w-52 max-sm:hidden">
               Información Extra
