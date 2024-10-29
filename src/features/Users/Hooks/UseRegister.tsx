@@ -2,30 +2,27 @@ import toast from "react-hot-toast";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { SignUp } from "../Services/SVAuth";
-import { AxiosError } from "axios";
+import { RegisterInfo } from "../Type/UserType";
+import { ApiError } from "../../../Types/ApiTypes";
 
-interface ErrorResponse {
-  statusCode: number;
-  message: string;
-}
+
 
 const UseRegister = () => {
   const navigate = useNavigate();
-
   return useMutation({
-    mutationFn: SignUp, 
-    onSuccess: () => {
-      toast.success("Registro Exitoso");
+    mutationFn: (data:RegisterInfo) =>
+      toast.promise(SignUp(data), {
+        loading: "Registrando...",
+        success: <span>Registro exitoso</span>,
+        error: (error: ApiError) => (
+          <span>Error durante el registro: {error.message}</span>
+        ),
+      }),
+    onSuccess() {
       navigate("/IniciarSesion");
-    },
-    onError:(error: AxiosError<ErrorResponse>) => {
-      if (error.response && error.response.data.message) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("Registro Erróneo");
-      }
     },
   });
 };
+
 
 export default UseRegister;

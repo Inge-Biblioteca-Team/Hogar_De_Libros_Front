@@ -1,14 +1,17 @@
 import { Table } from "flowbite-react";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
-import NoRequest from "../../Loan/Components/NoRequest";
 import TBLUsers from "../Components/TBLUsers";
 import SearchUsers from "../Components/SearchUers";
 import { GetUsersList } from "../Services/SvUsuer";
 import { User, UsersResponse } from "../Type/UserType";
 import UseDebounce from "../../../hooks/UseDebounce";
-import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import {
+  BreadCrumbsItems,
+  BreadLastItems,
+} from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
+import NoResults from "../../../components/NoResults";
 
 const ManageUsers = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -46,8 +49,10 @@ const ManageUsers = () => {
   const MaxPage = Math.ceil((Users?.count ?? 0) / 5);
   return (
     <>
-      <BreadCrumbManage text="Usuarios" />
-      <div className="flex place-content-center mt-14">
+      <BreadCrumbsItems>
+        <BreadLastItems text="Gestión de usuarios" />
+      </BreadCrumbsItems>
+      <div className="flex place-content-center">
         <div className="w-4/5">
           <SearchUsers
             setYear={setYear}
@@ -55,12 +60,10 @@ const ManageUsers = () => {
             setCedula={setCedula}
             setName={setName}
           />
-          {Users?.count == 0 ? (
-            <NoRequest text="No hay" />
-          ) : (
+          {Users && Users.count > 0 ?  (
             <>
-              <Table hoverable className=" text-center">
-                <Table.Head className=" h-20 text-sm">
+              <Table hoverable className=" text-center min-h-[30rem]">
+                <Table.Head>
                   <Table.HeadCell>Cédula</Table.HeadCell>
                   <Table.HeadCell>Nombre</Table.HeadCell>
                   <Table.HeadCell>Rol</Table.HeadCell>
@@ -85,6 +88,9 @@ const ManageUsers = () => {
                 total={Users?.count || 0}
               />
             </>
+          ):
+          (
+            <NoResults />
           )}
         </div>
       </div>

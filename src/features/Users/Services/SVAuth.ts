@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import api from "../../../Services/AxiosConfig";
 import { RegisterInfo } from "../Type/UserType";
 
@@ -47,27 +47,24 @@ const resetPassword = async ({
   }
 };
 
-interface ErrorResponse {
-  statusCode: number;
-  message: string;
-}
 
 const SignUp = async (UserInfo: RegisterInfo) => {
   try {
     const response = await api.post("/user", UserInfo);
     return response.status;
-  } catch (error) {
+  } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
-      const axiosError = error as AxiosError<ErrorResponse>;
-      if (axiosError.response) {
-        console.error("Error:", axiosError.response.data.message);
-      } else {
-        console.error("Error:", axiosError.message);
-      }
+      console.error(
+        "Error durante el registro:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error durante el registro"
+      );
     } else {
       console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
     }
-    throw error;
   }
 };
 

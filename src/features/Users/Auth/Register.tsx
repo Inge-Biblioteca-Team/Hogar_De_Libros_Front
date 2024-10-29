@@ -13,6 +13,8 @@ import UseRegister from "../Hooks/UseRegister";
 import { RegisterInfo } from "../Type/UserType";
 import toast from "react-hot-toast";
 import { MdOutlineError } from "react-icons/md";
+import OptProvincias from "../../../components/OptProvincias";
+import OptCanton from "../../../components/OptCanton";
 const Register = () => {
   const navigate = useNavigate();
 
@@ -55,7 +57,7 @@ const Register = () => {
                 to="/IniciarSesion"
                 className="text-blue-500 hover:underline"
               >
-                Inicia Sesión aquí.
+                Inicia sesión aquí.
               </Link>
             </p>
 
@@ -73,26 +75,37 @@ const Register = () => {
             >
               <fieldset className=" grid grid-cols-2 gap-3">
                 <div>
-                  <Label htmlFor="IDNumber" value="Número de Cédula" />{" "}
+                  <Label htmlFor="IDNumber" value="Número de cédula" />{" "}
                   <TextInput
+                    placeholder="Sin guiones"
                     id="IDNumber"
                     inputMode="numeric"
-                    type="text"
-                    pattern="[0-9]*"
+                    type="number"
+                    pattern="^\d{9}$"
                     required
                     {...register("cedula")}
                   />
                 </div>
                 <div>
                   <Label htmlFor="Name" value="Nombre" />
-                  <TextInput id="Name" required {...register("name")} />
+                  <TextInput
+                    id="Name"
+                    required
+                    {...register("name")}
+                    placeholder="Primer nombre"
+                  />
                 </div>
                 <div>
                   <Label htmlFor="LastName" value="Apellidos" />
-                  <TextInput id="LastName" required {...register("lastName")} />
+                  <TextInput
+                    id="LastName"
+                    required
+                    {...register("lastName")}
+                    placeholder="Ambos apellidos"
+                  />
                 </div>
                 <div>
-                  <Label htmlFor="BirthDate" value="Fecha de Nacimiento" />
+                  <Label htmlFor="BirthDate" value="Fecha de nacimiento" />
                   <TextInput
                     id="BirthDate"
                     type="date"
@@ -106,29 +119,37 @@ const Register = () => {
                     <option value="">Selecciona tu género</option>
                     <option value="Hombre">Hombre</option>
                     <option value="Mujer">Mujer</option>
-                    <option value="Otros">Otros</option>
                   </Select>
                 </div>
                 <div>
                   <Label htmlFor="Province" value="Provincia" />
-                  <TextInput id="Province" required {...register("province")} />
+                  <Select id="Province" {...register("province")} required>
+                    <OptProvincias />
+                  </Select>
                 </div>
               </fieldset>
-
               <fieldset className=" grid grid-cols-2 gap-3">
                 <div>
                   <Label htmlFor="District" value="Cantón" />
-                  <TextInput id="District" required {...register("district")} />
+                  <Select id="District" required {...register("district")}>
+                    <OptCanton province={watch("province")} />
+                  </Select>
                 </div>
                 <div>
                   <Label htmlFor="Address" value="Dirección" />
-                  <TextInput id="Address" required {...register("address")} />
+                  <TextInput
+                    id="Address"
+                    required
+                    {...register("address")}
+                    placeholder="Ej. 100 metros norte..."
+                  />
                 </div>
               </fieldset>
               <fieldset className=" grid grid-cols-2 gap-3">
                 <div>
                   <Label htmlFor="PhoneNumber" value="Teléfono" />
                   <TextInput
+                    placeholder="Ej. +506...."
                     id="PhoneNumber"
                     inputMode="numeric"
                     type="number"
@@ -140,6 +161,7 @@ const Register = () => {
                 <div>
                   <Label htmlFor="Email" value="Correo" />
                   <TextInput
+                    placeholder="ej@gmail.com"
                     id="Email"
                     type="email"
                     required
@@ -150,6 +172,7 @@ const Register = () => {
                 <div className="relative">
                   <Label htmlFor="Password" value="Contraseña" />
                   <TextInput
+                    placeholder="8 caracteres, sin caracteres especiales"
                     id="Password"
                     type="password"
                     required
@@ -237,9 +260,9 @@ const Register = () => {
                 />
                 <Label htmlFor="AcceptTermsAndConditions" className="ml-2">
                   Acepto los{" "}
-                  <a href="" className=" hover:text-Body">
+                  <a href="" className=" hover:text-Body text-blue-500 hover:underline">
                     {" "}
-                    Términos y Condiciones
+                    términos y condiciones
                   </a>
                 </Label>
               </div>
