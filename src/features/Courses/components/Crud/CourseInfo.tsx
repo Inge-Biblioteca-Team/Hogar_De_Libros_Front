@@ -43,7 +43,7 @@ const CourseInfo = ({
 
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
-      <Modal.Header>Información del Curso</Modal.Header>
+      <Modal.Header>Información del curso</Modal.Header>
       <Modal.Body className=" flex flex-col gap-4">
         <div>
           <figure className="w-full flex items-center justify-center">
@@ -89,15 +89,15 @@ const CourseInfo = ({
               <span>{course.currentStatus}</span>
             </span>
             <span>
-              <strong className="font-bold">Edad Objetivo:</strong>{" "}
+              <strong className="font-bold">Edad objetivo:</strong>{" "}
               <span>{AgeMapping[course.targetAge || "Todo Publico"]}</span>
             </span>
             <span>
-              <strong className="font-bold">Cupos Disponibles:</strong>{" "}
+              <strong className="font-bold">Cupos disponibles:</strong>{" "}
               <span>{course.availableQuota}</span>
             </span>
             <span>
-              <strong className="font-bold">Matricula maxima:</strong>{" "}
+              <strong className="font-bold">Limite de matricula:</strong>{" "}
               <span>{course.capacity}</span>
             </span>
             <span>

@@ -13,7 +13,7 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
     if (loggedStatus === "true" && user) {
       try {
         setIsLogged(true);
-        setCurrentUser(JSON.parse(user));
+        setCurrentUser(JSON.parse(user)||null);
       } catch (error) {
         console.error("Error al analizar el usuario:", error);
       }

@@ -13,7 +13,7 @@ const MDSeeProgram = ({
 }) => {
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
-      <Modal.Header>Información del Programa</Modal.Header>
+      <Modal.Header>Información del programa</Modal.Header>
       <Modal.Body className=" grid grid-cols-3 gap-5">
         <div>
           <figure>

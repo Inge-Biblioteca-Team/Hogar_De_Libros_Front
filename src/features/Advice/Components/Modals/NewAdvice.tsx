@@ -52,6 +52,7 @@ const NewAdvice = ({
   const handleClose =()=>{
     setOpenImage(false)
   }
+  
 
   return (
     <Modal show={open} onClose={onClose}>
