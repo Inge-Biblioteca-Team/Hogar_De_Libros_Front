@@ -4,10 +4,10 @@ import { GetInProgressLoan } from "../../Services/SvBookLoan";
 import { LoanResponse } from "../../Types/BookLoan";
 import { useEffect, useState } from "react";
 import SearchInputs from "../../Components/BooksLoans/SearchInputs";
-import NoRequest from "../../Components/NoRequest";
 import UseDebounce from "../../../../hooks/UseDebounce";
 import { BreadCrumbManage } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../../components/CustomPagination";
+import NoResults from "../../../../components/NoResults";
 
 const InProgressLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -66,9 +66,7 @@ const InProgressLoans = () => {
             setEndtDate={setEndtDate}
             setSignaCode={setSignaCode}
           />
-          {Loan?.count == 0 ? (
-            <NoRequest text="No Hay Préstamos En Progreso" />
-          ) : (
+          {Loan && Loan?.count > 0 ? (
             <>
               {Loan && <TBLLoan Loan={Loan} NeedAccions Inprogress />}
               <CustomPagination
@@ -79,6 +77,8 @@ const InProgressLoans = () => {
                 total={Loan?.count || 0}
               />
             </>
+          ) : (
+            <NoResults />
           )}
         </div>
       </div>

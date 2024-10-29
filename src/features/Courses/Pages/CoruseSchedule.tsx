@@ -1,4 +1,4 @@
-import {Select, Timeline } from "flowbite-react";
+import { Select, Timeline } from "flowbite-react";
 import CourseTimeItem from "../components/CourseTimeItem";
 import { useQuery } from "react-query";
 import { ApiCourseResponse } from "../types/Courses";
@@ -6,7 +6,10 @@ import { GetNextCourses } from "../services/SvCourses";
 import { CiCalendarDate } from "react-icons/ci";
 import { FaReadme } from "react-icons/fa6";
 import { useState } from "react";
-import { BreadCrumbsItems, BreadLastItems } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import {
+  BreadCrumbsItems,
+  BreadLastItems,
+} from "../../../components/Breadcrumbs/BreadCrumbsItems";
 const CoruseSchedule = () => {
   const [month, setMonth] = useState<string>("");
   const [type, setType] = useState<string>("");
@@ -42,11 +45,11 @@ const CoruseSchedule = () => {
     const monthIndex = (curretnMonth + i) % 12;
     monthOpt.push({ month: months[monthIndex], value: monthIndex + 1 });
   }
-  
+
   return (
     <>
       <BreadCrumbsItems>
-      <BreadLastItems text="Próximos cursos"/>
+        <BreadLastItems text="Próximos cursos" />
       </BreadCrumbsItems>
       <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
         <div className=" flex gap-4 w-4/5 items-start ml-5">
@@ -54,7 +57,7 @@ const CoruseSchedule = () => {
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
           >
-            <option value="">Mes De Elaboración</option>
+            <option value="">Mes del curso</option>
             {monthOpt.map((opt, index) => (
               <option key={index} value={opt.value}>
                 {opt.month}
@@ -65,10 +68,10 @@ const CoruseSchedule = () => {
             icon={FaReadme}
             onChange={(event) => setType(event.target.value)}
           >
-            <option value="">Tipo de Curso</option>
+            <option value="">Tipo de curso</option>
             <option value="Taller">Talleres</option>
-            <option value="Info">Informatica</option>
-            <option value="Infan">Talleres Infantiles</option>
+            <option value="Info">Informática</option>
+            <option value="Infan">Talleres infantiles</option>
           </Select>
         </div>
         <div
@@ -80,7 +83,7 @@ const CoruseSchedule = () => {
             horizontal
           >
             {Courses?.count == 0 ? (
-              <span>No hay Cursos Próximos</span>
+              <span>No hay cursos próximos a la fecha de hoy </span>
             ) : (
               Courses?.data.map((course) => (
                 <CourseTimeItem course={course} key={course.Id} />

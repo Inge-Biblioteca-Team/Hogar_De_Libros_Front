@@ -33,6 +33,7 @@ const CreateRooms = () => {
   const handleImageSelect = (url: string) => {
     setImageUrls((prevUrls) => [...prevUrls, url]);
     setValue("image", [...imageUrls, url]);
+    setOpenImage(false);
   };
 
   const [openImage, setOpenImage] = useState<boolean>(false);
@@ -51,7 +52,7 @@ const CreateRooms = () => {
         Añadir Sala
       </Button>
       <Modal show={isModalOpen} onClose={handleModalClose} size={"5xl"}>
-        <Modal.Header>Crear Nueva Sala</Modal.Header>
+        <Modal.Header>Crear nueva sala</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
             <div className=" grid grid-cols-3 grid-rows-1 gap-5">

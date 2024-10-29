@@ -29,7 +29,7 @@ const RoomCard = ({ Rooms }: { Rooms: Room }) => {
             <br />
             <span>Ubicación: {Rooms.location}</span>
             <br />
-            <span>Estado Actual: {roomStatus}</span>
+            <span>Estado actual: {roomStatus}</span>
           </p>
           <div className="my-5">
             <AccionBTNR rooms={Rooms} />

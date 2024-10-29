@@ -30,7 +30,7 @@ const LocalArtistList = () => {
           className="flex items-center w-4/5 flex-col max-sm:m-0"
           id="Courses"
         >
-          <h2 className="font-bold text-3xl">Artistas locales</h2>
+          <h2 className="font-bold text-2xl">Artistas locales</h2>
           <Carousel
             indicators={false}
             pauseOnHover

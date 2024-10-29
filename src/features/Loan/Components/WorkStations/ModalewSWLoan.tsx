@@ -1,8 +1,9 @@
-import { Button, Label, Modal, TextInput } from "flowbite-react";
+import { Label, Modal, TextInput } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { NewWSLoan } from "../../Types/ComputerLoan";
 import UseGenerateWSLoan from "../../Hooks/Computers/UseGenerateWSLoan";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const ModalewSWLoan = ({
   MNumber,
@@ -13,7 +14,7 @@ const ModalewSWLoan = ({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { register, setValue, handleSubmit } = useForm<NewWSLoan>();
+  const { register, setValue, handleSubmit, reset } = useForm<NewWSLoan>();
 
   setValue("MachineNumber", MNumber);
 
@@ -27,8 +28,13 @@ const ModalewSWLoan = ({
     });
   };
 
+  const onClose = () => {
+    setOpen(false);
+    reset();
+  };
+
   return (
-    <Modal show={open} onClose={() => setOpen(false)} className="text-center">
+    <Modal show={open} onClose={onClose} className="text-center">
       <Modal.Header>
         <h5>Nuevo préstamo de Equipo {MNumber} </h5>
       </Modal.Header>
@@ -36,31 +42,23 @@ const ModalewSWLoan = ({
         <Modal.Body>
           <Label htmlFor="UserName">Nombre de Usuario</Label>
           <TextInput
+            placeholder="Tu nombre completo"
             className=" mb-4"
             type="text"
             required
             {...register("UserName")}
           />
-          <Label htmlFor="UserName">Cedula del Administrador</Label>
+          <Label htmlFor="UserName">Numero de cédula</Label>
           <TextInput
+            placeholder="Numero de cédula sin guiones ni espacios"
             className=""
-            type="text"
+            type="number"
+            pattern="[0-9]*"
             required
             {...register("cedula")}
           />
         </Modal.Body>
-        <Modal.Footer className=" w-full flex items-center justify-center">
-          <Button
-            type="button"
-            color={"failure"}
-            onClick={() => setOpen(false)}
-          >
-            Cancelar
-          </Button>
-          <Button type="submit" color={"blue"}>
-            Confirmar
-          </Button>
-        </Modal.Footer>
+        <ModalFooters onClose={onClose} />
       </form>
     </Modal>
   );

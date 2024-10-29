@@ -1,8 +1,9 @@
-import { Modal, Button, TextInput } from "flowbite-react";
-
+import { Modal, Textarea } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import UseDownEquip from "../../Hooks/UseDownEquip";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { downType } from "../../../../Types/GlobalTypes";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const ModalDownEquip = ({
   open,
@@ -15,44 +16,45 @@ const ModalDownEquip = ({
   Serial: string;
   Code: string;
 }) => {
-  const { mutate: PatchStatus } = UseDownEquip();
-  const [reason, setReason] = useState("");
+  const { register, handleSubmit } = useForm<downType>({
+    defaultValues: { Id: Code },
+  });
 
-  const handleConfirm = () => {
-    PatchStatus(Code, {
+  const { mutate: PatchStatus } = UseDownEquip();
+
+  const handleConfirm = (data: downType) => {
+    PatchStatus(data, {
       onSuccess: () => {
         setOpen(false);
       },
     });
   };
 
+  const onClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Modal show={open} size="md" onClose={() => setOpen(false)} popup>
       <Modal.Header />
-      <Modal.Body>
-        <div className="text-center">
-          <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-          <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-            Está seguro de dar de baja al equipo {Serial}
-          </h3>
-          <TextInput
-            id="reason"
-            type="text"
-            placeholder="Escriba la razón de la baja"
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-            className="mb-4"
-          />
-          <div className="flex justify-center gap-4">
-            <Button color="failure" onClick={() => setOpen(false)}>
-              Cancelar
-            </Button>
-            <Button color="blue" onClick={() => handleConfirm()}>
-              Confimar
-            </Button>
+      <form onSubmit={handleSubmit(handleConfirm)}>
+        <Modal.Body>
+          <div className="text-center">
+            <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+            <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+              Está seguro de dar de baja al equipo {Serial}
+            </h3>
+            <Textarea
+              id="reason"
+              rows={4}
+              required
+              placeholder="Escriba la razón de la baja"
+              {...register("reason")}
+            />
           </div>
-        </div>
-      </Modal.Body>
+        </Modal.Body>
+        <ModalFooters onClose={onClose} />
+      </form>
     </Modal>
   );
 };

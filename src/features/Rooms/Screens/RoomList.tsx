@@ -22,7 +22,7 @@ function RoomList() {
         >
           {Rooms && Rooms.count > 0 && (
             <>
-              <h2 className="font-bold text-3xl mb-6 ">Nuestras salas</h2>
+              <h2 className="font-bold text-2xl mb-6 ">Nuestras salas</h2>
               <div className="flex w-full gap-5 items-center justify-center max-sm:gap-3 max-sm:grid max-sm:grid-cols-2">
                 {Rooms?.data.map((rooms: Room) => (
                   <RoomCard Rooms={rooms} key={"RO" + rooms.roomId} />

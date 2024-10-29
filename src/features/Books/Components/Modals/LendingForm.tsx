@@ -31,8 +31,8 @@ const LendingForm = ({
     defaultValues: {
       userCedula: currentUser?.cedula,
       Name: `${currentUser?.name} ${currentUser?.lastName}`,
-      PhoneNumber: currentUser?.poneNumber,
-      address: currentUser?.addres,
+      PhoneNumber: currentUser?.phoneNumber,
+      address: currentUser?.address,
       InscriptionCode: book.InscriptionCode,
       SignaCode: book.signatureCode,
       Title: book.Title,
@@ -68,21 +68,29 @@ const LendingForm = ({
               variant="outlined"
               label="Numero de cédula"
               {...register("userCedula")}
+              readOnly
+              className=" cursor-default"
             />
             <FloatingLabel
               variant="outlined"
               label="Nombre completo"
               {...register("Name")}
+              readOnly
+              className=" cursor-default"
             />
             <FloatingLabel
               variant="outlined"
               label="Numero de teléfono"
               {...register("PhoneNumber")}
+              readOnly
+              className=" cursor-default"
             />
             <FloatingLabel
               variant="outlined"
               label="Dirección"
               {...register("address")}
+              readOnly
+              className=" cursor-default"
             />
           </fieldset>
 
@@ -92,28 +100,28 @@ const LendingForm = ({
               variant="outlined"
               label="Código de signatura"
               value={book.signatureCode || "N/A"}
-              disabled
+              className=" cursor-default"
               readOnly
             />
             <FloatingLabel
               variant="outlined"
               label="Numero de inscripción"
               value={book.InscriptionCode}
-              disabled
+              className=" cursor-default"
               readOnly
             />
             <FloatingLabel
               variant="outlined"
               label="Autor"
               value={book.Author}
-              disabled
+              className=" cursor-default"
               readOnly
             />
             <FloatingLabel
               variant="outlined"
               label="Titulo"
               value={book.Title}
-              disabled
+              className=" cursor-default"
               readOnly
             />
           </fieldset>
@@ -121,6 +129,7 @@ const LendingForm = ({
           <fieldset className=" grid grid-cols-2 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del préstamo</legend>
             <FloatingLabel
+              required
               variant="outlined"
               label="Fecha de recolección"
               type="date"
@@ -128,6 +137,7 @@ const LendingForm = ({
               {...register("BookPickUpDate")}
             />
             <FloatingLabel
+              required
               variant="outlined"
               label="Fecha de vencimiento"
               type="date"
@@ -141,12 +151,12 @@ const LendingForm = ({
                 checked={isChecked}
                 onChange={handleCheckboxChange}
               />
-              <Label value=" No aplica como estudiante o profesor" />
+              <Label value=" Aplica como estudiante o profesor" />
               <FloatingLabel
                 variant="outlined"
                 label="Centro educativo o institución"
                 {...register("institution")}
-                disabled={isChecked}
+                disabled={!isChecked}
               />
             </div>
           </fieldset>

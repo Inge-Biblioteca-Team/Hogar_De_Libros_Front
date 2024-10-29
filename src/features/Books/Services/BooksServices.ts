@@ -107,7 +107,11 @@ const getColection = async (
   year?: string,
   status?: string,
   Signa?: string,
-  category?: string
+  category?: string,
+  ISBN?:string,
+  Editorial?:string
+
+  
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -120,6 +124,9 @@ const getColection = async (
     if (status) params.Status = status;
     if (Signa) params.signatureCode = Signa;
     if (category) params.ShelfCategory = category;
+    if(ISBN) params.ISBN = ISBN;
+    if(Editorial) params.Editorial = Editorial
+
     const response = await api.get("books", { params });
     return response.data;
   } catch (error) {

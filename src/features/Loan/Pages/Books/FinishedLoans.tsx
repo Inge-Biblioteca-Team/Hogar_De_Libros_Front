@@ -4,10 +4,10 @@ import { GetDoneLoans } from "../../Services/SvBookLoan";
 import { LoanResponse } from "../../Types/BookLoan";
 import { useEffect, useState } from "react";
 import FinishedLoanSearch from "../../Components/BooksLoans/FinishedLoanSearch";
-import NoRequest from "../../Components/NoRequest";
 import UseDebounce from "../../../../hooks/UseDebounce";
-import { BreadCrumbManage } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import { LoansCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../../components/CustomPagination";
+import NoResults from "../../../../components/NoResults";
 
 const FinishedLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -60,7 +60,7 @@ const FinishedLoans = () => {
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>
-      <BreadCrumbManage text="Historial de préstamos" />
+      <LoansCrumbs text="Libros" />
       <div className="flex place-content-center mt-14">
         <div className="w-4/5">
           <FinishedLoanSearch
@@ -69,17 +69,19 @@ const FinishedLoans = () => {
             setName={setName}
             setSignaCode={setSignaCode}
           />
-          {Loan?.count == 0 ? (
-            <NoRequest text="No hay Resultados" />
-          ) : (
+          {Loan && Loan?.count > 0 ? (
             <>
               {Loan && <TBLLoan Loan={Loan} />}
-              <CustomPagination        page={currentPage}
-            onPageChange={onPageChange}
-            totalPages={MaxPage}
-            setCurrentLimit={setCurrentLimit}
-            total={Loan?.count || 0}/>
+              <CustomPagination
+                page={currentPage}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Loan?.count || 0}
+              />
             </>
+          ) : (
+            <NoResults />
           )}
         </div>
       </div>

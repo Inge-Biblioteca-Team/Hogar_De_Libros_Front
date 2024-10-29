@@ -52,6 +52,7 @@ const NewAdvice = ({
   const handleClose =()=>{
     setOpenImage(false)
   }
+  
 
   return (
     <Modal show={open} onClose={onClose}>
@@ -72,7 +73,8 @@ const NewAdvice = ({
                     onClick={() => setOpenImage(true)}
                     src={imageUrl}
                     alt="Imagen del programa"
-                    className="h-52 w-full rounded-md cursor-pointer"
+                    className="h-52 w-full rounded-md cursor-pointer
+                     max-sm:h-32"
                   />
                 ) : (
                   <div

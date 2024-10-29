@@ -1,5 +1,11 @@
 import { FloatingLabel, Label, Modal, Select } from "flowbite-react";
-import { Dispatch, SetStateAction, useCallback, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useForm } from "react-hook-form";
 import { Advice } from "../../Types/Advice";
 import OptAdviceCategory from "../OptAdviceCategory";
@@ -18,7 +24,7 @@ const EditAdvice = ({
   advice: Advice;
 }) => {
   const min = formatToYMD(new Date());
-  const { register, handleSubmit, reset, setValue } = useForm<Advice>({
+  const { register, handleSubmit, reset, setValue} = useForm<Advice>({
     defaultValues: {
       id_Advice: advice.id_Advice,
       date: advice.date,
@@ -40,7 +46,12 @@ const EditAdvice = ({
   };
 
   const [openImage, setOpenImage] = useState<boolean>(false);
-  const [imageUrl, setImageUrl] = useState<string>("");
+  const [ImageUrl, setImageUrl] = useState<string>("");
+
+  useEffect(() => {
+    const initialImageUrl = advice.image;
+    setImageUrl(initialImageUrl);
+  }, [advice.image]);
 
   const handleImageSelect = useCallback(
     (url: string) => {
@@ -54,12 +65,11 @@ const EditAdvice = ({
   const onClose = () => {
     setOpen(false);
     reset();
-    setImageUrl("");
   };
 
-  const handleClose =()=>{
-    setOpenImage(false)
-  }
+  const handleClose = () => {
+    setOpenImage(false);
+  };
 
   return (
     <Modal show={open} onClose={onClose}>
@@ -72,10 +82,10 @@ const EditAdvice = ({
             </legend>
             <figure>
               <div className="w-full flex items-center justify-center">
-                {imageUrl ? (
+                {ImageUrl ? (
                   <img
                     onClick={() => setOpenImage(true)}
-                    src={imageUrl}
+                    src={ImageUrl}
                     alt="Imagen del programa"
                     className="h-52 w-full rounded-md cursor-pointer
                      max-sm:h-32"
@@ -92,7 +102,7 @@ const EditAdvice = ({
               </div>
             </figure>
           </fieldset>
-          <div className=" flex flex-col justify-between gap-3 max-sm:pt-2">
+          <div className=" flex flex-col justify-between gap-3 max-sm:pt-5">
             <fieldset className="my-2 font-bold max-sm:hidden">
               Información del aviso
             </fieldset>

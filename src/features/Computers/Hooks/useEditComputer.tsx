@@ -1,11 +1,23 @@
-import { useMutation } from "react-query";
-import { EquipmentEdit } from "../types/Computer";
+import { useMutation, useQueryClient } from "react-query";
+import { Equipment} from "../types/Computer";
 import { PutEditEquipment } from "../Services/SvComputer";
+import toast from "react-hot-toast";
+import { ApiError } from "../../../Types/ApiTypes";
 
 const useEditComputer = () => {
-  return useMutation(
-    ({ equipment, Code }: { equipment: EquipmentEdit; Code: string }) =>
-      PutEditEquipment(equipment, Code)
-  );
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Equipment) =>
+      toast.promise(PutEditEquipment(data), {
+        loading: "Creando...",
+        success: <span>Éxito, recurso editado correctamente</span>,
+        error: (error: ApiError) => (
+          <span>Error al editar el recurso: {error.message}</span>
+        ),
+      }),
+    onSuccess() {
+      queryClient.invalidateQueries("EquipCatalog");
+    },
+  });
 };
 export default useEditComputer;

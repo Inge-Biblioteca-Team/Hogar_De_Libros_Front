@@ -1,7 +1,11 @@
 import { Card, Label, Popover } from "flowbite-react";
 import { Book } from "../../Types/BooksTypes";
+import LendingForm from "../Modals/LendingForm";
+import { useState } from "react";
 
 const BookCard = ({ book }: { book: Book }) => {
+  const [open, setOpen] = useState<boolean>(false);
+
   return (
     <>
       <Popover
@@ -36,7 +40,7 @@ const BookCard = ({ book }: { book: Book }) => {
           </Card>
         }
       >
-        <figure className=" hover:scale-105">
+        <figure className=" hover:scale-105" onClick={() => setOpen(true)}>
           <img
             src={book.Cover}
             alt={book.Title}
@@ -44,6 +48,8 @@ const BookCard = ({ book }: { book: Book }) => {
           />
         </figure>
       </Popover>
+
+      <LendingForm open={open} setOpen={setOpen} book={book} />
     </>
   );
 };

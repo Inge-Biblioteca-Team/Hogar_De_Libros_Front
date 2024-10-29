@@ -69,7 +69,7 @@ const ManageFriendsRequest = () => {
             <>
               <FriendsTableBody hidd>
                 {FriendList?.data.map((friend) => (
-                  <FriendsRowsRequest friend={friend} key={friend.FriendId} />
+                  <FriendsRowsRequest friend={friend} key={'FriR'+friend.FriendId} />
                 ))}
               </FriendsTableBody>
               <CustomPagination

@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { Link} from "react-router-dom";
 
 const LandingHomeCards = ({
   Icon,
@@ -28,9 +29,9 @@ const LandingHomeCards = ({
           <br />
           <span>{Message}</span>
         </p>
-        <a href={Path} className=" underline hover:text-gray-400">
+        <Link to={Path} className=" underline hover:text-gray-400">
           Más Información
-        </a>
+        </Link>
       </figcaption>
     </figure>
   );

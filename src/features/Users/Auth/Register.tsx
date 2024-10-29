@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   TextInput,
   Button,
@@ -42,7 +42,7 @@ const Register = () => {
     return result;
   };
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800 p-8">
+    <div className="flex justify-center items-center min-h-screen bg-gray-800 p-8 max-sm:p-0 max-sm:px-2">
       <Card className="max-w-screen-lg w-full">
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/2">
@@ -51,12 +51,12 @@ const Register = () => {
             </h2>
             <p className="text-sm mb-4">
               ¿Posees una cuenta?{" "}
-              <a
-                href="/IniciarSesion"
+              <Link
+                to="/IniciarSesion"
                 className="text-blue-500 hover:underline"
               >
                 Inicia Sesión aquí.
-              </a>
+              </Link>
             </p>
 
             <form
@@ -103,11 +103,9 @@ const Register = () => {
                 <div>
                   <Label htmlFor="Gender" value="Género" />
                   <Select id="Gender" required {...register("gender")}>
-                    <option value="" disabled>
-                      Selecciona tu género
-                    </option>
-                    <option value="H">Hombre</option>
-                    <option value="M">Mujer</option>
+                    <option value="">Selecciona tu género</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
                     <option value="Otros">Otros</option>
                   </Select>
                 </div>
@@ -149,7 +147,7 @@ const Register = () => {
                   />
                 </div>
 
-                <div className="relative" >
+                <div className="relative">
                   <Label htmlFor="Password" value="Contraseña" />
                   <TextInput
                     id="Password"
@@ -172,7 +170,7 @@ const Register = () => {
                       errors.password ? "border-red-500" : "border-gray-300"
                     } rounded-lg`}
                   />
-                   {errors.password && (
+                  {errors.password && (
                     <Popover
                       trigger="hover"
                       placement="top"
@@ -183,7 +181,7 @@ const Register = () => {
                       }
                       className="z-10"
                     >
-                      <span className="absolute left-52 top-10 text-red-600 cursor-pointer">
+                      <span className="absolute left-52 top-10 text-red-600 cursor-pointer max-sm:left-32">
                         <MdOutlineError />
                       </span>
                     </Popover>
@@ -224,7 +222,7 @@ const Register = () => {
                       }
                       className="z-10"
                     >
-                      <span className="absolute left-52 top-10 text-red-600 cursor-pointer">
+                      <span className="absolute left-52 top-10 text-red-600 cursor-pointer max-sm:left-32">
                         <MdOutlineError />
                       </span>
                     </Popover>
@@ -250,7 +248,7 @@ const Register = () => {
                 <Button
                   tabIndex={2}
                   type="button"
-                  color="failure"
+                  color="red"
                   onClick={() => navigate("/HogarDeLibros")}
                 >
                   Cancelar
@@ -261,7 +259,7 @@ const Register = () => {
               </div>
             </form>
           </div>
-          <div className="md:w-1/2 p-6 flex justify-center items-center">
+          <div className="md:w-1/2 p-6 flex justify-center items-center max-sm:hidden">
             <div className="text-center">
               <h6 className="text-lg font-bold text-blue-600 mb-4">
                 Biblioteca Pública Municipal de Nicoya

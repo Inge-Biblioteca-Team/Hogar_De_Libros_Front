@@ -7,21 +7,19 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   useEffect(() => {
-    console.log("rende");
-    const loggedStatus = sessionStorage.getItem("isLogged");
-    const user = sessionStorage.getItem("currentUser");
-    console.log(loggedStatus, user);
+    const loggedStatus = localStorage.getItem("isLogged");
+    const user = localStorage.getItem("currentUser");
 
     if (loggedStatus === "true" && user) {
       try {
         setIsLogged(true);
-        setCurrentUser(JSON.parse(user));
+        setCurrentUser(JSON.parse(user)||null);
       } catch (error) {
         console.error("Error al analizar el usuario:", error);
       }
     }
   }, []);
-  
+
   const contextValue = useMemo(
     () => ({
       isLogged,

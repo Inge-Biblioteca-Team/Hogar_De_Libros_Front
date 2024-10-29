@@ -1,23 +1,24 @@
 import { useMutation, useQueryClient } from "react-query";
 import { PostNewComputer } from "../Services/SvComputer";
 import toast from "react-hot-toast";
+import { Equipment } from "../types/Computer";
+import { ApiError } from "../../../Types/ApiTypes";
 
-const useNewComputer = ({
-  Open,
-  Reset,
-}: {
-  Open: React.Dispatch<React.SetStateAction<boolean>>;
-  Reset: () => void;
-}) => {
+const useNewComputer = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: PostNewComputer,
-    onSuccess: () => {
-      toast.success("Equipo añadido con exito!");
+    mutationFn: (data: Equipment) =>
+      toast.promise(PostNewComputer(data), {
+        loading: "Creando...",
+        success: <span>Éxito, recurso creado correctamente</span>,
+        error: (error: ApiError) => (
+          <span>Error al crear el recurso: {error.message}</span>
+        ),
+      }),
+    onSuccess() {
       queryClient.invalidateQueries("EquipCatalog");
-      Open(true);
-      Reset();
     },
   });
 };
+
 export default useNewComputer;

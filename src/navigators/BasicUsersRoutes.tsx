@@ -5,6 +5,7 @@ import EventsSchedule from "../features/EventsSection/Pages/EventsSchedule";
 import CoruseSchedule from "../features/Courses/Pages/CoruseSchedule";
 import AvailableComputers from "../features/Computers/screens/AvailableComputers";
 import RoomsScheduleManage from "../features/Loan/Pages/Rooms/RoomsScheduleManage";
+import CompletCatalog from "../features/Books/Screens/CompletCatalog";
 
 const BasicUsersRoutes = [
   {
@@ -21,6 +22,10 @@ const BasicUsersRoutes = [
       {
         path: "Infantil",
         element: <ChildrenColection />,
+      },
+      {
+        path: "Completo",
+        element: <CompletCatalog />,
       },
     ],
   },

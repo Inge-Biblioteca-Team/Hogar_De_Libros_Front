@@ -1,14 +1,22 @@
 import { Courses, updateCourse } from "../../types/Courses";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import { Label, Modal, Select, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import AddImage from "../Modals/AddImage";
-import { addDay, format } from "@formkit/tempo";
+import { addDay } from "@formkit/tempo";
 import UseUpdateCourse from "../../Hooks/UseUpdateCourse";
 import { FaReadme } from "react-icons/fa6";
 import CategoryOPT from "../OPTS/CategoryOPT";
 import AgeOPT from "../OPTS/AgeOPT";
 import ProgramsOPT from "../OPTS/ProgramsOPT";
+import { formatToYMD } from "../../../../components/FormatTempo";
+import ModalFooters from "../../../../components/ModalFooters";
+import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
 
 const EditCourse = ({
   open,
@@ -19,29 +27,26 @@ const EditCourse = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   course: Courses;
 }) => {
-  const { register, handleSubmit, setValue, watch } = useForm<updateCourse>({
-    defaultValues: {
-      Id: course.courseId,
-      date: course.date,
-      courseTime: course.courseTime,
-      location: course.location,
-      instructor: course.instructor,
-      courseName: course.courseName,
-      courseType: course.courseType,
-      targetAge: course.targetAge,
-      capacity: course.capacity,
-      image: course.image,
-      duration: course.duration,
-      endDate: course.endDate,
-      programProgramsId:
-        course.programProgramsId === null ? 0 : course.programProgramsId,
-      materials: course.materials,
-    },
-  });
-  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>("");
-  const [duration, setDuration] = useState("1");
-  const [durationN, setDurationN] = useState("Días");
+  const { register, handleSubmit, setValue, watch, reset } =
+    useForm<updateCourse>({
+      defaultValues: {
+        Id: course.courseId,
+        date: course.date,
+        courseTime: course.courseTime,
+        location: course.location,
+        instructor: course.instructor,
+        courseName: course.courseName,
+        courseType: course.courseType,
+        targetAge: course.targetAge,
+        capacity: course.capacity,
+        image: course.image,
+        duration: course.duration,
+        endDate: course.endDate,
+        programProgramsId:
+          course.programProgramsId === null ? 0 : course.programProgramsId,
+        materials: course.materials,
+      },
+    });
 
   const { mutate: updateCourse } = UseUpdateCourse();
 
@@ -53,69 +58,60 @@ const EditCourse = ({
       onError: () => {},
     });
   };
-
-  const handleImageSelect = (url: string) => {
-    setImageUrl(url);
-    setValue("image", url);
-  };
-
   const tomorrow = addDay(new Date());
 
-  const minDay = format({
-    date: tomorrow,
-    format: "YYYY-MM-DD",
-    tz: "America/Costa_Rica",
-  });
+  const min = formatToYMD(tomorrow);
+
+  const minfinaly = formatToYMD(watch("date"));
+
+  const [openImage, setOpenImage] = useState<boolean>(false);
+  const [imageUrl, setImageUrl] = useState<string>("");
+
+  const handleImageSelect = useCallback(
+    (url: string) => {
+      setImageUrl(url);
+      setValue("image", url);
+      setOpenImage(false);
+    },
+    [setValue]
+  );
+
+  const onClose = () => {
+    setOpen(false);
+    reset();
+  };
+
+  const handleClose = () => {
+    setOpenImage(false);
+  };
 
   useEffect(() => {
-    if (course.image) {
-      setImageUrl(course.image);
-    }
+    const initialImageUrl = course.image;
+    setImageUrl(initialImageUrl);
   }, [course.image]);
-
-  useEffect(() => {
-    if (course.duration) {
-      const durationString = course.duration;
-      const [num, unit] = durationString.split(" ");
-      setDurationN(num);
-      setDuration(unit);
-    }
-  }, [course.duration]);
-
-  useEffect(() => {
-    setValue("duration", durationN + " " + duration);
-  }, [duration, durationN, setValue]);
-
-  const minDate2 = watch("date");
-
-  const minDay2 = format({
-    date: minDate2,
-    format: "YYYY-MM-DD",
-    tz: "America/Costa_Rica",
-  });
 
   return (
     <>
       <Modal show={open} onClose={() => setOpen(false)} size={"5xl"}>
-        <Modal.Header>Crear Nuevo Curso</Modal.Header>
+        <Modal.Header>Editar curso</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className=" grid grid-cols-3 gap-3">
             <fieldset className=" flex">
-              <legend className=" font-bold pb-3">Imagen del Curso</legend>
+              <legend className=" font-bold pb-3">Imagen del curso</legend>
               <figure className=" w-full">
                 {imageUrl ? (
                   <img
-                    onClick={() => setIsImageModalOpen(true)}
                     src={imageUrl}
                     alt="Imagen del programa"
                     className="w-full rounded-md cursor-pointer"
                     style={{ height: "100%" }}
+                    onClick={() => setOpenImage(true)}
                   />
                 ) : (
                   <div
-                    onClick={() => setIsImageModalOpen(true)}
                     className="w-full border-dashed border-2 border-gray-300 flex items-center justify-center rounded-md cursor-pointer"
                     style={{ height: "100%" }}
+                    onClick={() => setOpenImage(true)}
                   >
                     <span>Selecciona una imagen</span>
                   </div>
@@ -127,31 +123,31 @@ const EditCourse = ({
               <fieldset className="flex flex-col justify-between">
                 <legend className="font-bold pb-2">Información General</legend>
                 <span>
-                  <Label htmlFor="courseName" value="Nombre del Curso" />
+                  <Label htmlFor="courseName" value="Nombre del curso" />
                   <TextInput
                     required
                     id="courseName"
                     type="text"
                     {...register("courseName")}
-                    placeholder="Nombre del Curso"
+                    placeholder="Ej. Informática avanzada"
                   />
                 </span>
 
                 <span>
-                  <Label htmlFor="courseType" value="Categoría del Curso" />
-                  <Select id="courseType" required {...register("courseType")}>
+                  <Label htmlFor="courseType" value="Categoría del curso" />
+                  <Select {...register("courseType")} id="courseType" required>
                     <CategoryOPT />
                   </Select>
                 </span>
 
                 <span>
-                  <Label htmlFor="instructor" value="Encargado del Curso" />
+                  <Label htmlFor="instructor" value="Encargado del curso" />
                   <TextInput
                     id="instructor"
                     type="text"
                     required
                     {...register("instructor")}
-                    placeholder="Encargado del Curso"
+                    placeholder="Persona que impartirá el curso"
                   />
                 </span>
                 <span>
@@ -161,17 +157,17 @@ const EditCourse = ({
                     type="text"
                     required
                     {...register("location")}
-                    placeholder="Lugar"
+                    placeholder="Lugar donde se realizaran las sesiones"
                   />
                 </span>
                 <div>
-                  <Label htmlFor="targetAge" value="Edad Objetivo" />
+                  <Label htmlFor="targetAge" value="Edad objetivo" />
                   <Select id="targetAge" required {...register("targetAge")}>
                     <AgeOPT />
                   </Select>
                 </div>
                 <div>
-                  <Label htmlFor="program" value="Programa del Curso" />
+                  <Label htmlFor="program" value="Programa del curso" />
                   <Select
                     id="program"
                     {...register("programProgramsId")}
@@ -183,20 +179,21 @@ const EditCourse = ({
               </fieldset>
 
               <fieldset className="flex flex-col justify-between gap-2">
-                <legend className="font-bold pb-2">Fechas y Matricula</legend>
+                <legend className="font-bold pb-2">Fechas y matricula</legend>
                 <div>
                   <Label htmlFor="startDate" value="Fecha de inicio" />
                   <TextInput
                     type="date"
-                    required
                     id="startDate"
                     {...register("date")}
-                    min={minDay}
+                    min={min}
                   />
                 </div>
                 <div>
                   <Label htmlFor="courseTime" value="Hora de inicio" />
                   <TextInput
+                    min="07:00"
+                    max="20:00"
                     type="time"
                     id="courseTime"
                     {...register("courseTime", {
@@ -210,72 +207,51 @@ const EditCourse = ({
                   />
                 </div>
                 <div>
-                  <Label htmlFor="startDate" value="Fecha De Fin" />
+                  <Label htmlFor="startDate" value="Fecha de fin" />
                   <TextInput
                     type="date"
                     {...register("endDate")}
-                    min={minDay2}
+                    min={minfinaly}
                   />
                 </div>
                 <span>
-                  <Label htmlFor="duration" value="Duración del Curso" />
-                  <div className="w-full grid-cols-3 grid gap-1">
-                    <TextInput
-                      type="number"
-                      placeholder="Duración"
-                      value={durationN}
-                      onChange={(event) => setDurationN(event.target.value)}
-                    />
-                    <Select
-                      className=" col-span-2"
-                      onChange={(event) => setDuration(event.target.value)}
-                      value={duration}
-                    >
-                      <option value="Días">Días</option>
-                      <option value="Meses">Meses</option>
-                      <option value="Años">Años</option>
-                    </Select>
-                  </div>
+                  <Label htmlFor="duration" value="Duración del curso" />
+                  <TextInput
+                    type="number"
+                    placeholder="Numero de sesiones Ej. 3"
+                    {...register("duration")}
+                  />
                 </span>
                 <span>
-                  <Label htmlFor="capacity" value="Cupos Disponibles" />
+                  <Label htmlFor="capacity" value="Cupos disponibles" />
                   <TextInput
                     id="capacity"
                     type="number"
                     required
                     {...register("capacity")}
-                    placeholder="0"
+                    placeholder="capacidad máxima del curso"
                   />
-                  <div>
-                    <Label htmlFor="materials" value="Observaciones" />
-                    <TextInput
-                      id="material"
-                      {...register("materials")}
-                      placeholder="Ej. Se necesita un lapiz"
-                    />
-                  </div>
                 </span>
+                <div>
+                  <Label htmlFor="materials" value="Observaciones" />
+                  <TextInput
+                    id="material"
+                    {...register("materials")}
+                    placeholder="Ej. Se necesitan materiales....."
+                  />
+                </div>
               </fieldset>
             </div>
           </Modal.Body>
-          <Modal.Footer className="flex items-center justify-center">
-            <Button
-              color={"failure"}
-              onClick={() => setOpen(false)}
-              tabIndex={2}
-            >
-              Cancelar
-            </Button>
-            <Button color={"blue"} type="submit">
-              Guardar
-            </Button>
-          </Modal.Footer>
+          <ModalFooters onClose={onClose} />
         </form>
       </Modal>
-      <AddImage
-        showModal={isImageModalOpen}
-        onCloseModal={() => setIsImageModalOpen(false)}
-        onImageSelect={handleImageSelect}
+      <ModalAddNewImage
+        open={openImage}
+        text="del aviso"
+        Folder="Avisos"
+        onSelectImage={handleImageSelect}
+        onClose={handleClose}
       />
     </>
   );

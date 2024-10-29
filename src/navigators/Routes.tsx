@@ -4,7 +4,6 @@ import Layout from "../Pages/Layout";
 import Landing from "../screens/Landing";
 import AuthRoutes from "./AuhtRoutes";
 import AdminRoutes from "./AdminRoutes";
-import HomePage from "../Pages/HomePage";
 
 const Routes = createBrowserRouter([
   {
@@ -26,7 +25,7 @@ const Routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+       
       },
       ...BasicUsersRoutes, ...AdminRoutes
     ],

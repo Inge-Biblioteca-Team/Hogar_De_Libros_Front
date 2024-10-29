@@ -24,7 +24,7 @@ const ImportanNotices = () => {
       {Advices && Advices.count > 0 ? (
         <>
           <h2 className="text-center font-bold text-2xl mb-6">
-            Avisos Importantes
+            Avisos importantes
           </h2>
           <Carousel
             className="Custom-Carousel"

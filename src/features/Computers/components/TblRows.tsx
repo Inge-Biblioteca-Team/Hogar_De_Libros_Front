@@ -11,7 +11,7 @@ const TblRows = ({ computers }: { computers: Equipment }) => {
         <Table.Cell className="w-44 ">{computers.EquipmentBrand}</Table.Cell>
         <Table.Cell className="w-64">{computers.EquipmentSerial}</Table.Cell>
         <Table.Cell className="w-64">
-          {computers.Status ? "Activo" : "Inactivo"}
+          {computers.Status ? "Activo" : "Baja"}
         </Table.Cell>
         <Table.Cell>
           <EquipmentAccionBTNS computers={computers} />

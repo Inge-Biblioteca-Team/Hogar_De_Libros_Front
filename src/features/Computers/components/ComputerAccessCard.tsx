@@ -12,7 +12,7 @@ const ComputerAccessCard = () => {
     <Card className="max-w-sm mx-auto flex flex-col justify-between h-full">
       <div>
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
-      Equipo de Cómputo
+      Equipo de cómputo
       </h5>
       <p className="font-normal text-gray-700 dark:text-gray-400 text-justify">
       Computadoras con internet para tus proyectos.

@@ -13,7 +13,7 @@ const ForAll = () => {
     <>
       <Sidebar.ItemGroup>
         <Sidebar.Item
-          onClick={() => handleNavigation("/HogarDeLibros")}
+          onClick={() => handleNavigation("/HogarDeLibros/Catalogo/Completo")}
         >
           Catálogo completo de libros
         </Sidebar.Item>
@@ -61,7 +61,7 @@ const ForAll = () => {
         <Sidebar.Item
           className=""
           onClick={() =>
-            handleNavigation("/HogarDeLibros/Gestion/Equipo_Disponible")
+            handleNavigation("/HogarDeLibros/Equipo_Disponible")
           }
         >
           Disponibilidad <br />

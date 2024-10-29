@@ -30,8 +30,8 @@ const LatestAddBooks = () => {
           className="m-5 flex items-center w-4/5 flex-col max-sm:m-0"
           id="MostPopularBooks"
         >
-          <h2 className="font-bold text-3xl">
-            Ultimos libros añadidos a colección
+          <h2 className="font-bold text-2xl">
+            Últimos libros añadidos a colección
           </h2>
           <Carousel
             indicators={false}

@@ -1,8 +1,10 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { Button, Carousel, Label, Modal, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { Room, updateRooms } from "../../Types/Room_Interface";
 import UseUpdateRoom from "../../Hooks/UseUpdateRooms";
+import ModalFooters from "../../../../components/ModalFooters";
+import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
 
 const EditRoom = ({
   open,
@@ -13,7 +15,7 @@ const EditRoom = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   room: Room;
 }) => {
-  const { register, handleSubmit, reset } = useForm<updateRooms>({
+  const { register, handleSubmit, reset, setValue } = useForm<updateRooms>({
     defaultValues: {
       roomId: room.roomId,
       name: room.name,
@@ -26,51 +28,44 @@ const EditRoom = ({
     },
   });
 
-  const [imageUrls, setImageUrls] = useState<(string | null)[]>([]);
+  const initialImageUrls = useMemo(() => room.image || [], [room]);
+
+  const [imageUrls, setImageUrls] = useState<string[]>(initialImageUrls);
+
+  useEffect(() => {
+    setImageUrls(initialImageUrls);
+  }, [initialImageUrls]);
 
   const { mutate: updateRoom } = UseUpdateRoom();
 
-
-
-
-
-  const handleModalClose = () => {
-    setOpen(false);
-    reset();
-    setImageUrls(room.image ? [...room.image] : [null]);
-  };
-
   const onSubmit = async (data: updateRooms) => {
-    const filteredImageUrls: string[] = [];
-    for (let i = 0; i < imageUrls.length; i++) {
-      if (imageUrls[i] !== null) {
-        filteredImageUrls.push(imageUrls[i]!);
-      }
-    }
-
-    data.image = filteredImageUrls;
-
     updateRoom(data, {
       onSuccess: () => {
         handleModalClose();
-        console.log(data);
       },
       onError: () => {},
     });
   };
 
-  useEffect(() => {
-    if (room.image) {
-      setImageUrls([...room.image]);
-    } else {
-      setImageUrls([null]);
-    }
-  }, [room.image]);
+  const handleModalClose = () => {
+    setOpen(false);
+    reset();
+  };
 
- 
+  const handleImageSelect = (url: string) => {
+    setImageUrls((prevUrls) => [...prevUrls, url]);
+    setValue("image", [...imageUrls, url]);
+    setOpenImage(false);
+  };
+
+  const [openImage, setOpenImage] = useState<boolean>(false);
 
   const removeImage = (index: number) => {
     setImageUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
+  };
+
+  const onClose = () => {
+    setOpenImage(false);
   };
 
   return (
@@ -78,120 +73,127 @@ const EditRoom = ({
       <Modal show={open} onClose={handleModalClose} size={"5xl"}>
         <Modal.Header>Editar Sala</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body
-            className="grid gap-3 h-80"
-            style={{ gridTemplateColumns: "39% 59%" }}
-          >
-            <fieldset className="flex flex-col">
-              <legend className="font-bold pb-2">Imágenes de la Sala</legend>
-              <Carousel slide={false} className="Custom-Carousel">
-                {imageUrls
-                  .filter((url) => url !== null)
-                  .map((url, index) => (
-                    <figure className="" key={index}>
-                      <Button
-                        className=" absolute z-50 bottom-2"
-                        color={"failure"}
-                        onClick={() => removeImage(index)}
-                      >
-                        Eliminar
-                      </Button>
-                      <img
-                        className=" w-full h-64"
-                        src={url}
-                        alt={`Image ${index + 1}`}
-                      />
-                    </figure>
-                  ))}
-                <div
-                  className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-200"
+          <Modal.Body>
+            <div className=" grid grid-cols-3 grid-rows-1 gap-5">
+              <fieldset className="flex flex-col w-full">
+                <legend className="font-bold pb-2">Imágenes de la Sala</legend>
+                <Carousel
+                  slide={false}
+                  className="Custom-Carousel"
+                  indicators={false}
+                  style={{ height: "15rem" }}
                 >
-                  <p>Selecciona una imagen</p>
-                </div>
-              </Carousel>
-            </fieldset>
-            <div className=" grid grid-cols-2 gap-4">
-              <fieldset className=" flex flex-col justify-between">
-                <legend className="font-bold pb-2">Información General</legend>
-                <span>
-                  <Label htmlFor="name" value="Nombre de la sala" />
-                  <TextInput
-                    required
-                    id="name"
-                    type="text"
-                    {...register("name")}
-                    placeholder="Nombre de la sala"
-                  />
-                </span>
-
-                <span>
-                  <Label htmlFor="roomNumber" value="Número de Sala" />
-                  <TextInput
-                    id="roomNumber"
-                    type="number"
-                    required
-                    {...register("roomNumber")}
-                    placeholder="0"
-                  />
-                </span>
-
-                <span>
-                  <Label htmlFor="area" value="Área de Sala" />
-                  <TextInput
-                    id="area"
-                    type="number"
-                    required
-                    {...register("area")}
-                    placeholder="0"
-                  />
-                </span>
+                  {imageUrls
+                    .filter((url) => url !== null)
+                    .map((url, index) => (
+                      <figure key={index}>
+                        <Button
+                          className="absolute bottom-2 z-50 !rounded-md"
+                          color={"failure"}
+                          onClick={() => removeImage(index)}
+                        >
+                          Eliminar
+                        </Button>
+                        <img
+                          className=" w-full h-64"
+                          src={url}
+                          alt={`Image ${index + 1}`}
+                        />
+                      </figure>
+                    ))}
+                  <div
+                    className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-200"
+                    onClick={() => setOpenImage(true)}
+                  >
+                    <p>Selecciona una imagen</p>
+                  </div>
+                </Carousel>
               </fieldset>
-              <fieldset className=" flex flex-col justify-between">
-                <legend className="font-bold pb-2">Detalles de Sala</legend>
-                <span>
-                  <Label htmlFor="capacity" value="Aforo de sala" />
-                  <TextInput
-                    id="capacity"
-                    type="number"
-                    required
-                    {...register("capacity")}
-                    placeholder="0"
-                  />
-                </span>
+              <div className=" grid grid-cols-2 gap-4 col-span-2">
+                <fieldset className=" flex flex-col justify-between">
+                  <legend className="font-bold pb-2">
+                    Información General
+                  </legend>
+                  <span>
+                    <Label htmlFor="name" value="Nombre de la sala" />
+                    <TextInput
+                      required
+                      id="name"
+                      type="text"
+                      {...register("name")}
+                      placeholder="Nombre de la sala"
+                    />
+                  </span>
 
-                <span>
-                  <Label htmlFor="observations" value="Observaciones" />
-                  <TextInput
-                    id="observations"
-                    type="text"
-                    {...register("observations")}
-                    placeholder="Observaciones"
-                  />
-                </span>
+                  <span>
+                    <Label htmlFor="roomNumber" value="Número de Sala" />
+                    <TextInput
+                      id="roomNumber"
+                      type="number"
+                      required
+                      {...register("roomNumber")}
+                      placeholder="0"
+                    />
+                  </span>
 
-                <span>
-                  <Label htmlFor="location" value="Lugar de sala" />
-                  <TextInput
-                    id="location"
-                    type="text"
-                    required
-                    {...register("location")}
-                    placeholder="Lugar"
-                  />
-                </span>
-              </fieldset>
+                  <span>
+                    <Label htmlFor="area" value="Área de Sala" />
+                    <TextInput
+                      id="area"
+                      type="number"
+                      required
+                      {...register("area")}
+                      placeholder="0"
+                    />
+                  </span>
+                </fieldset>
+                <fieldset className=" flex flex-col justify-between">
+                  <legend className="font-bold pb-2">Detalles de Sala</legend>
+                  <span>
+                    <Label htmlFor="capacity" value="Aforo de sala" />
+                    <TextInput
+                      id="capacity"
+                      type="number"
+                      required
+                      {...register("capacity")}
+                      placeholder="0"
+                    />
+                  </span>
+
+                  <span>
+                    <Label htmlFor="observations" value="Observaciones" />
+                    <TextInput
+                      id="observations"
+                      type="text"
+                      {...register("observations")}
+                      placeholder="Observaciones"
+                    />
+                  </span>
+
+                  <span>
+                    <Label htmlFor="location" value="Lugar de sala" />
+                    <TextInput
+                      id="location"
+                      type="text"
+                      required
+                      {...register("location")}
+                      placeholder="Lugar"
+                    />
+                  </span>
+                </fieldset>
+              </div>
             </div>
           </Modal.Body>
-          <Modal.Footer className="flex items-center justify-center">
-            <Button color={"failure"} onClick={handleModalClose} tabIndex={2}>
-              Cancelar
-            </Button>
-            <Button color={"blue"} type="submit">
-              Guardar
-            </Button>
-          </Modal.Footer>
+          <ModalFooters onClose={handleModalClose} />
         </form>
       </Modal>
+      <ModalAddNewImage
+        open={openImage}
+        text="de la sala"
+        Folder="Salas"
+        onSelectImage={handleImageSelect}
+        onClose={onClose}
+      />
     </>
   );
 };

@@ -12,7 +12,7 @@ const TBLLoan = ({
 }) => {
   return (
     <>
-      <Table hoverable className=" text-center">
+      <Table hoverable className=" text-center min-h-[33rem] ">
         <Table.Head className=" h-20 text-sm">
           <Table.HeadCell>Fecha de solicitud</Table.HeadCell>
           <Table.HeadCell>Fecha de vencimiento</Table.HeadCell>

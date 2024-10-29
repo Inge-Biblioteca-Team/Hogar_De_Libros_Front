@@ -25,8 +25,8 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      <div className="flex flex-col md:flex-row items-center max-w-4xl w-full bg-white shadow-lg rounded-lg">
-        <div className="w-full md:w-1/2 p-8">
+      <div className="flex flex-col md:flex-row items-center max-w-4xl w-full bg-white shadow-lg rounded-lg max-sm:bg-transparent">
+        <div className="w-full md:w-1/2 p-8 max-sm:p-3">
           <Card className="max-w-lg w-full">
             <h2 className="text-2xl font-bold text-gray-700 mb-4">
               Iniciar Sesión
@@ -91,7 +91,7 @@ const Login = () => {
             )}
           </Card>
         </div>
-        <div className="w-full md:w-1/2 p-4 flex flex-col items-center">
+        <div className="w-full md:w-1/2 p-4 flex flex-col items-center max-sm:hidden">
           <h6 className="text-blue-600 text-lg font-semibold mb-2">
             Biblioteca Pública Municipal de Nicoya
           </h6>

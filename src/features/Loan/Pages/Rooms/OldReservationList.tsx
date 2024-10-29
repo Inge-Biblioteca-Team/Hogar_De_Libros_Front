@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import TblOldReservation from "../../Components/RoomsLoans/TablesHeaders/TblOldReservation";
 import { ReserveResponse } from "../../Types/RoomsReservations";
 import { useQuery } from "react-query";
-import NoRequest from "../../Components/NoRequest";
 import { getReservations } from "../../Services/SVReservations";
 import OPTRooms from "../../Components/RoomsLoans/OPTRooms";
 import CustomPagination from "../../../../components/CustomPagination";
+import { LoansCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import NoResults from "../../../../components/NoResults";
 
 const OldReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -40,11 +41,12 @@ const OldReservationList = () => {
 
   return (
     <>
-      <div className=" w-full flex items-center justify-center mt-16">
+      <LoansCrumbs text="Salas" />
+      <div className=" w-full flex items-center justify-center">
         <div className="w-4/5">
-          <div className=" flex gap-3">
+          <div className=" flex gap-3 pb-4">
             <div>
-              <Label value="Día reservado" />
+              <Label value="Fecha reservada" />
               <TextInput
                 type="date"
                 onChange={(e) => {
@@ -64,13 +66,11 @@ const OldReservationList = () => {
               </Select>
             </div>
           </div>
-          {reservations?.count == 0 ? (
-            <NoRequest text={"No existen solicitudes"} />
-          ) : (
+          {reservations && reservations?.count > 0 ? (
             <>
               <Table
                 hoverable
-                className="w-full text-center my-3 "
+                className="w-full text-center "
                 style={{ height: "55vh" }}
               >
                 {reservations && <TblOldReservation reserve={reservations} />}
@@ -83,6 +83,8 @@ const OldReservationList = () => {
                 total={reservations?.count || 0}
               />
             </>
+          ) : (
+            <NoResults />
           )}
         </div>
       </div>

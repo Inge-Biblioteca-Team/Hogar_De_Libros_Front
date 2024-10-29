@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { useMutation} from "react-query";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { LogIn } from "../Services/SvUsuer";
 import { useContext } from "react";
@@ -14,15 +14,20 @@ const UseAuth = () => {
     mutationFn: (data: SingIng) =>
       toast.promise(LogIn(data), {
         loading: "Espere por favor...",
-        success: <span>Bienvenido</span>,
+        success: (data) => {
+          const { message } = data;
+          return <span>{message}</span>;
+        },
         error: (error: ApiError) => (
           <span>Error al iniciar sesión: {error.message}</span>
         ),
       }),
     onSuccess(data) {
       if (data) {
-        const { sub, email, role } = data;
-        setCurrentUser({ cedula: sub, email, role });
+        const { user } = data;
+        localStorage.setItem("isLogged","true");
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        setCurrentUser(user);
         setIsLogged(true);
         navigate("/HogarDeLibros");
       }

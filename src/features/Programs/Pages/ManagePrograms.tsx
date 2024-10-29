@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import MDCreateNewProgram from "../components/Modals/MDCreateNewProgram";
 import { Button, Label, Select, Table, TextInput } from "flowbite-react";
-import NoRequest from "../../Loan/Components/NoRequest";
 import { useQuery } from "react-query";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { ApiProgramsResponse } from "../types/Programs";
@@ -9,6 +8,7 @@ import ProgramsRows from "../components/ProgramsRows";
 import { GetProgramsList } from "../services/SvPrograms";
 import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
+import NoResults from "../../../components/NoResults";
 
 const ManagePrograms = () => {
   const [Oadd, SetOAdd] = useState<boolean>(false);
@@ -51,7 +51,7 @@ const ManagePrograms = () => {
           <div className="flex items-end justify-between w-full mb-5 mt-3">
             <div className="flex gap-2">
               <div>
-                <Label>Nombre del Programa</Label>
+                <Label>Nombre del programa</Label>
                 <TextInput
                   placeholder="Nombre del programa"
                   onChange={(event) => setSName(event.target.value)}
@@ -67,13 +67,11 @@ const ManagePrograms = () => {
               </div>
             </div>
             <Button color={"blue"} onClick={() => SetOAdd(true)}>
-              Añadir Programa
+              Añadir programa
             </Button>
           </div>
 
-          {Programs?.count === 0 ? (
-            <NoRequest text="No Existen programas registrados" />
-          ) : (
+          {Programs && Programs?.count > 0 ? (
             <>
               <Table hoverable className="text-center">
                 <Table.Head className="h-20 text-sm">
@@ -104,6 +102,8 @@ const ManagePrograms = () => {
                 total={Programs?.count || 0}
               />
             </>
+          ) : (
+            <NoResults />
           )}
         </div>
       </div>

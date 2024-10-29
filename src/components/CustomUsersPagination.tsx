@@ -15,7 +15,7 @@ const CustomUsersPagination = ({
 }) => {
   return (
     <div className=" flex items-center justify-between py-2">
-      <div className=" flex items-center gap-4">
+      <div className=" flex items-center gap-4 max-sm:hidden">
         {totalPages > 0 ? (
           <span>
             Se han mostrado {limit * page} registros de {total}{" "}
@@ -25,6 +25,7 @@ const CustomUsersPagination = ({
         )}
       </div>
       <Pagination
+        className=" max-sm:hidden "
         currentPage={page}
         onPageChange={onPageChange}
         totalPages={totalPages}
@@ -33,6 +34,17 @@ const CustomUsersPagination = ({
         showIcons
         layout="pagination"
       />
+      <div className=" hidden w-full max-sm:flex items-center justify-center">
+        <Pagination
+          currentPage={page}
+          onPageChange={onPageChange}
+          totalPages={totalPages}
+          nextLabel="Siguiente"
+          previousLabel="Anterior"
+          showIcons
+          layout="navigation"
+        />
+      </div>
     </div>
   );
 };

@@ -3,11 +3,11 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import { useQuery } from "react-query";
 import { RoomApiResponse } from "../Types/Room_Interface";
 import { GetRooms } from "../Services/SvRooms";
-import { Alert } from "flowbite-react";
 import RoomCards from "../Components/Cards/RoomCards";
 import CreateRooms from "../Components/Modal/CreateRoms";
 import SearchRooms from "../Components/BTN/SearchRooms";
 import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import NoResults from "../../../components/NoResults";
 
 const ManageRoom = () => {
   const [Sname, setName] = useState<string>("");
@@ -48,20 +48,14 @@ const ManageRoom = () => {
             <CreateRooms />
           </div>
           <div className="w-full pt-2">
-            {rooms?.count === 0 ? (
-              <Alert
-                color="warning"
-                rounded
-                className=" mt-32 flex items-center"
-              >
-                No existen salas disponibles
-              </Alert>
-            ) : (
+            {rooms && rooms?.count > 0 ? (
               <div className="grid grid-cols-2 gap-5 my-4">
                 {rooms?.data.map((room) => (
                   <RoomCards Rooms={room} key={room.roomId} />
                 ))}
               </div>
+            ) : (
+              <NoResults />
             )}
           </div>
         </div>

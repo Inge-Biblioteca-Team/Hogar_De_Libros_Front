@@ -33,7 +33,7 @@ const ReservationForm = ({
 
   const [extra, setExtra] = useState<string>("");
   const [furniture, setFuritureRequire] = useState<string>("");
-  const internet = "Requiere conexion a Internet.";
+  const internet = "Requiere conexión a Internet.";
   const food = " Presencia de Comida dentro de la sala.";
   const [needI, setNeedI] = useState<boolean>(false);
   const [needF, setNeedF] = useState<boolean>(false);
@@ -81,7 +81,7 @@ const ReservationForm = ({
 
   return (
     <Modal show={open} onClose={() => setOpen(false)} popup>
-      <Modal.Header>Formulario: Solicitud de reservacion de sala</Modal.Header>
+      <Modal.Header>Formulario: Solicitud de reservación de sala</Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body className=" grid-rows-2 grid gap-3">
           <fieldset className="grid grid-cols-2 gap-3">
@@ -91,7 +91,7 @@ const ReservationForm = ({
             <div className=" col-span-2">
               <Label value="Responsable" />
               <TextInput
-                placeholder="Nombre de la institucion o persona responsable"
+                placeholder="Nombre de la institución o persona responsable"
                 required
                 type="text"
                 {...register("name")}
@@ -159,7 +159,7 @@ const ReservationForm = ({
               />
             </div>
             <div className={`${rol === "admin" ? "hidden" : "visible"}`}>
-              <Label value="Moviliario Requerido" />
+              <Label value="Mobiliario Requerido" />
               <Textarea
                 rows={3}
                 className="h-full"
@@ -172,7 +172,7 @@ const ReservationForm = ({
               <Textarea
                 rows={3}
                 className="h-full"
-                placeholder="Comentarios, si tienes alguna situacion o necesitas algo que no este contemplado en lo anterior puedes escibirlo aqui"
+                placeholder="Comentarios, si tienes alguna situación o necesitas algo que no este contemplado en lo anterior puedes escribirlo aquí."
                 onChange={(event) => setExtra(event.target.value)}
               />
             </div>

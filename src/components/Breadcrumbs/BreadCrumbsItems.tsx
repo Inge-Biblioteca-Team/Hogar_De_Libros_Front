@@ -90,7 +90,33 @@ const DonationsCrumbs = ({ text }: { text: string }) => {
   );
 };
 
+const LoansCrumbs = ({ text }: { text: string }) => {
+  const navi = useNavigate();
+  return (
+    <BreadCrumbsItems>
+      <Breadcrumb.Item onClick={() => navi("/HogarDeLibros/Historial")}>
+        Historial de prestamos
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>{text}</Breadcrumb.Item>
+    </BreadCrumbsItems>
+  );
+};
+
+const ServicesCrumbs = ({ text }: { text: string }) => {
+  const navi = useNavigate();
+  return (
+    <BreadCrumbsItems>
+      <Breadcrumb.Item onClick={() => navi("/HogarDeLibros/Servicios")}>
+        Servicios
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>{text}</Breadcrumb.Item>
+    </BreadCrumbsItems>
+  );
+};
+
 export {
+  ServicesCrumbs,
+  LoansCrumbs,
   FirendCrumbs,
   ColabCrumbs,
   BreadCrumbsItems,
