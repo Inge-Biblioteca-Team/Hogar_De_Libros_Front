@@ -1,12 +1,19 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useForm } from "react-hook-form";
 import { FaCalendarAlt } from "react-icons/fa";
 import { updateEvent } from "../../types/Events";
-import { Button, Label, Modal, TextInput } from "flowbite-react";
+import { Label, Modal, TextInput } from "flowbite-react";
 import { editEvent } from "../../services/SvEvents";
-import AddEventsImage from "./AddEventsImage";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
+import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const EditEvent = ({
   edit,
@@ -17,7 +24,7 @@ const EditEvent = ({
   setEdit: Dispatch<SetStateAction<boolean>>;
   event: updateEvent;
 }) => {
-  const { register, handleSubmit, setValue } = useForm<updateEvent>({
+  const { register, handleSubmit, setValue, reset } = useForm<updateEvent>({
     defaultValues: {
       Title: event.Title,
       Location: event.Location,
@@ -29,9 +36,6 @@ const EditEvent = ({
       InchargePerson: event.InchargePerson,
     },
   });
-
-  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   const UseClient = useQueryClient();
 
@@ -47,28 +51,42 @@ const EditEvent = ({
     }
   };
 
-  const handleImageSelect = (url: string) => {
-    setImageUrl(url);
-    setValue("Image", url);
-  };
+  const [openImage, setOpenImage] = useState<boolean>(false);
+  const [imageUrl, setImageUrl] = useState<string>("");
 
   useEffect(() => {
-    if (event) {
-      console.log("Event ID:", event.EventId);
-      setImageUrl(event.Image);
-    }
-  }, [event, setValue]);
+    const initialImageUrl = event.Image;
+    setImageUrl(initialImageUrl);
+  }, [event.Image]);
+
+  const handleImageSelect = useCallback(
+    (url: string) => {
+      setImageUrl(url);
+      setValue("Image", url);
+      setOpenImage(false);
+    },
+    [setValue]
+  );
+
+  const onClose = () => {
+    setEdit(false);
+    reset();
+  };
+
+  const handleClose = () => {
+    setOpenImage(false);
+  };
 
   return (
     <>
-      <Modal show={edit} onClose={() => setEdit(false)}>
+      <Modal show={edit} onClose={onClose}>
         <Modal.Header>Editar Evento</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className=" flex flex-col">
             <div className="w-full flex items-center justify-center">
               {imageUrl ? (
                 <img
-                  onClick={() => setIsImageModalOpen(true)}
+                  onClick={() => setOpenImage(true)}
                   src={imageUrl}
                   alt="Imagen del evento"
                   className="rounded-lg shadow-lg w-full h-32 object-cover"
@@ -77,14 +95,14 @@ const EditEvent = ({
                 <FaCalendarAlt
                   size={120}
                   className="cursor-pointer"
-                  onClick={() => setIsImageModalOpen(true)}
+                  onClick={() => setOpenImage(true)}
                 />
               )}
             </div>
 
             <fieldset className="grid grid-cols-2 gap-3">
               <legend className="text-center w-full p-4">
-                Información Básica
+                Información básica
               </legend>
 
               <div className="mb-4">
@@ -92,7 +110,8 @@ const EditEvent = ({
                 <TextInput
                   id="Title"
                   type="text"
-                  {...register("Title", { required: true })}
+                  {...register("Title")}
+                  required
                   placeholder="Escribe el título del evento"
                 />
               </div>
@@ -102,7 +121,8 @@ const EditEvent = ({
                 <TextInput
                   id="Location"
                   type="text"
-                  {...register("Location", { required: true })}
+                  {...register("Location")}
+                  required
                   placeholder="Escribe la ubicación del evento"
                 />
               </div>
@@ -112,7 +132,8 @@ const EditEvent = ({
                 <TextInput
                   id="Date"
                   type="date"
-                  {...register("Date", { required: true })}
+                  required
+                  {...register("Date")}
                 />
               </div>
 
@@ -121,6 +142,9 @@ const EditEvent = ({
                 <TextInput
                   type="time"
                   id="Time"
+                  required
+                  min={"07:00"}
+                  max={"20:00"}
                   {...register("Time", {
                     required: true,
                     onChange: (e) => {
@@ -143,7 +167,7 @@ const EditEvent = ({
               </div>
 
               <div className="mb-4">
-                <Label htmlFor="TargetAudience" value="Público Objetivo" />
+                <Label htmlFor="TargetAudience" value="Público objetivo" />
                 <TextInput
                   id="TargetAudience"
                   type="text"
@@ -154,7 +178,7 @@ const EditEvent = ({
             </fieldset>
             <fieldset>
               <div className="mb-4">
-                <Label htmlFor="InchargePerson" value="Persona a Cargo" />
+                <Label htmlFor="InchargePerson" value="Persona a cargo" />
                 <TextInput
                   id="InchargePerson"
                   type="text"
@@ -165,20 +189,15 @@ const EditEvent = ({
             </fieldset>
           </Modal.Body>
 
-          <Modal.Footer className="flex items-center justify-center">
-            <Button color="failure" onClick={() => setEdit(false)} tabIndex={2}>
-              Cancelar
-            </Button>
-            <Button type="submit" color={"blue"}>
-              Guardar
-            </Button>
-          </Modal.Footer>
+          <ModalFooters onClose={onClose} />
         </form>
       </Modal>
-      <AddEventsImage
-        showModal={isImageModalOpen}
-        onCloseModal={() => setIsImageModalOpen(false)}
-        onImageSelect={handleImageSelect}
+      <ModalAddNewImage
+        open={openImage}
+        text="del evento"
+        Folder="Eventos"
+        onSelectImage={handleImageSelect}
+        onClose={handleClose}
       />
     </>
   );

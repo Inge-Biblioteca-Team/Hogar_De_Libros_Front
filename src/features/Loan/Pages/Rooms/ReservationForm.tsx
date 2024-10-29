@@ -1,5 +1,4 @@
 import {
-  Button,
   Checkbox,
   Label,
   Modal,
@@ -8,11 +7,19 @@ import {
   TextInput,
 } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Reservation } from "../../Types/RoomsReservations";
 import PostNewRoomReservation from "../../Hooks/Rooms/PostNewRoomReservation";
 import OPTEvents from "../../Components/RoomsLoans/OPTEvents";
 import OPTCourses from "../../Components/RoomsLoans/OPTCourses";
+import UserContext from "../../../../Context/UserContext/UserContext";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const ReservationForm = ({
   open,
@@ -38,8 +45,10 @@ const ReservationForm = ({
   const [needI, setNeedI] = useState<boolean>(false);
   const [needF, setNeedF] = useState<boolean>(false);
 
-  const cedula = sessionStorage.getItem("cedula");
-  const rol = sessionStorage.getItem("role");
+  const { currentUser } = useContext(UserContext);
+
+  const cedula = currentUser?.cedula || 0;
+  const rol = currentUser?.role;
 
   useEffect(() => {
     if (cedula) {
@@ -48,9 +57,9 @@ const ReservationForm = ({
     setValue("roomId", Number(roomId));
     setValue("date", date);
     setValue("selectedHours", selectHours);
-    setValue('EventId', "0")
-    setValue('courseId', "0")
-  }, [cedula, roomId, date, setValue, selectHours]);
+    setValue("EventId", "0");
+    setValue("courseId", "0");
+  }, [cedula, date, roomId, selectHours, setValue]);
 
   const { mutate: createReservation } = PostNewRoomReservation();
 
@@ -69,6 +78,7 @@ const ReservationForm = ({
       observation += ` Comentarios Extra: ${extra}.`;
     }
     data.observations = observation;
+    
     createReservation(data, {
       onSuccess: () => {
         finish();
@@ -79,8 +89,13 @@ const ReservationForm = ({
     });
   };
 
+  const onClose = () => {
+    setOpen(false);
+    reset();
+  };
+
   return (
-    <Modal show={open} onClose={() => setOpen(false)} popup>
+    <Modal show={open} onClose={onClose} popup>
       <Modal.Header>Formulario: Solicitud de reservación de sala</Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body className=" grid-rows-2 grid gap-3">
@@ -125,12 +140,12 @@ const ReservationForm = ({
           >
             <legend className=" text-center font-bold">
               {rol == "admin" ? (
-                <span>Curso o Evento relacionado a la reserva</span>
+                <span>Curso o evento relacionado a la reserva</span>
               ) : (
                 <span>
                   {" "}
-                  En base a sus necesidades, Marque y rellene los siguientes
-                  campos en caso de requerirlo
+                  En base a sus necesidades, marque o rellene los siguientes
+                  campos.
                 </span>
               )}
             </legend>
@@ -159,7 +174,7 @@ const ReservationForm = ({
               />
             </div>
             <div className={`${rol === "admin" ? "hidden" : "visible"}`}>
-              <Label value="Mobiliario Requerido" />
+              <Label value="Mobiliario requerido" />
               <Textarea
                 rows={3}
                 className="h-full"
@@ -168,7 +183,7 @@ const ReservationForm = ({
               />
             </div>
             <div className={`${rol === "admin" ? "hidden" : "visible"}`}>
-              <Label value="Comentarios Extras" />
+              <Label value="Comentarios extras" />
               <Textarea
                 rows={3}
                 className="h-full"
@@ -177,27 +192,20 @@ const ReservationForm = ({
               />
             </div>
             <div className={`${rol !== "admin" ? "hidden" : "visible"}`}>
-              <Label value="Evento Realizado" />
+              <Label value="Evento realizado" />
               <Select {...register("EventId")}>
                 <OPTEvents date={date} />
               </Select>
             </div>
             <div className={`${rol !== "admin" ? "hidden" : "visible"}`}>
-              <Label value="Curso Realizado" />
+              <Label value="Curso realizado" />
               <Select {...register("courseId")}>
                 <OPTCourses date={date} />
               </Select>
             </div>
           </fieldset>
         </Modal.Body>
-        <Modal.Footer className=" flex items-center justify-center">
-          <Button color={"failure"} tabIndex={2} onClick={() => setOpen(false)}>
-            Cancelar
-          </Button>
-          <Button color={"blue"} type="submit">
-            Confirmar
-          </Button>
-        </Modal.Footer>
+        <ModalFooters onClose={onClose} />
       </form>
     </Modal>
   );
