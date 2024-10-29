@@ -42,11 +42,11 @@ const OldReservationList = () => {
   return (
     <>
       <LoansCrumbs text="Salas" />
-      <div className=" w-full flex items-center justify-center mt-16">
+      <div className=" w-full flex items-center justify-center">
         <div className="w-4/5">
           <div className=" flex gap-3 pb-4">
             <div>
-              <Label value="Día reservado" />
+              <Label value="Fecha reservada" />
               <TextInput
                 type="date"
                 onChange={(e) => {
@@ -70,7 +70,7 @@ const OldReservationList = () => {
             <>
               <Table
                 hoverable
-                className="w-full text-center my-3 "
+                className="w-full text-center "
                 style={{ height: "55vh" }}
               >
                 {reservations && <TblOldReservation reserve={reservations} />}

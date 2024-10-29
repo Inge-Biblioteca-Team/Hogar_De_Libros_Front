@@ -49,7 +49,7 @@ const SearchInputs = ({
         <TextInput
           type="text"
           icon={FaFileSignature}
-          placeholder="Código De Signaruta"
+          placeholder="Código de signatura"
           value={SignaCode}
           onChange={(event) => setSignaCode(event.target.value)}
         />

@@ -2,11 +2,14 @@ import { useState } from "react";
 import { GetNextEvents } from "../services/SvEvents";
 import { ApiEventsResponse } from "../types/Events";
 import { useQuery } from "react-query";
-import { BreadcrumbItem, Select, Timeline } from "flowbite-react";
+import { Select, Timeline } from "flowbite-react";
 import { CiCalendarDate } from "react-icons/ci";
 import { FaReadme } from "react-icons/fa6";
 import EventTimeItem from "../components/EventTimeItem";
-import { BreadLastItems } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import {
+  BreadCrumbsItems,
+  BreadLastItems,
+} from "../../../components/Breadcrumbs/BreadCrumbsItems";
 
 const EventsSchedule = () => {
   const [month, setMonth] = useState<string>("");
@@ -46,16 +49,16 @@ const EventsSchedule = () => {
 
   return (
     <>
-      <BreadcrumbItem>
-        <BreadLastItems text="Proximos eventos" />
-      </BreadcrumbItem>
+      <BreadCrumbsItems>
+        <BreadLastItems text="Próximos eventos" />
+      </BreadCrumbsItems>
       <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
         <div className=" flex gap-4 w-4/5 items-start ml-5">
           <Select
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
           >
-            <option value="">Mes Del Elaboración</option>
+            <option value="">Mes del evento</option>
             {monthOpt.map((opt, index) => (
               <option key={index} value={opt.value}>
                 {opt.month}
@@ -66,11 +69,11 @@ const EventsSchedule = () => {
             icon={FaReadme}
             onChange={(event) => setType(event.target.value)}
           >
-            <option value="">Tipo de Evento</option>
+            <option value="">Tipo de evento</option>
             <option value="Charla">Charlas</option>
             <option value="Expo">Exposición</option>
-            <option value="Juvenil">Tarde Juvenil</option>
-            <option value="Abiertos">Eventos Abiertos</option>
+            <option value="Juvenil">Tarde juvenil</option>
+            <option value="Abiertos">Eventos abiertos</option>
             <option value="Otros">Otros</option>
           </Select>
         </div>

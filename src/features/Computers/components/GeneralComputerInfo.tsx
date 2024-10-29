@@ -9,7 +9,7 @@ const GeneralComputerInfo = () => {
           alt=""
         />
         <figcaption>
-          <p className=" max-sm:text-sm">Características Del Equipo</p>
+          <p className=" max-sm:text-sm">Características del equipo</p>
           <ul className=" list-inside list-disc ml-5 max-sm:text-xs max-sm:ml-0">
             <li>Acceso a Internet</li>
             <li>Paquete Microsoft 365: Word,Excel y mas</li>

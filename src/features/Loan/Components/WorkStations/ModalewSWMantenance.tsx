@@ -1,8 +1,9 @@
-import { Button, Label, Modal, TextInput } from "flowbite-react";
+import { Label, Modal, TextInput } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { NewWSMantenance } from "../../Types/ComputerLoan";
 import NewSetMaintenance from "../../Hooks/Computers/NewSetMaintenance";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const ModalMantenance = ({
   MNumber,
@@ -13,7 +14,8 @@ const ModalMantenance = ({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { register, setValue, handleSubmit } = useForm<NewWSMantenance>();
+  const { register, setValue, handleSubmit, reset } =
+    useForm<NewWSMantenance>();
 
   setValue("machineNumber", MNumber);
 
@@ -27,23 +29,39 @@ const ModalMantenance = ({
     });
   };
 
+  const onClose = () => {
+    setOpen(false);
+    reset();
+  };
 
   return (
-    <Modal dismissible show={open} onClose={() => setOpen(false)} className="text-center" >
+    <Modal
+      dismissible
+      show={open}
+      onClose={() => setOpen(false)}
+      className="text-center"
+    >
       <Modal.Header>
         <h5>Mantenimiento de Equipo {MNumber} </h5>
       </Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
           <Label htmlFor="UserName">Realizado Por</Label>
-          <TextInput className="mb-5" type="text" required {...register("userName")} />
+          <TextInput
+            className="mb-5"
+            type="text"
+            required
+            {...register("userName")}
+          />
           <Label htmlFor="UserName">Ubicacion del equipo</Label>
-          <TextInput className="" type="text" required {...register("location")} />
+          <TextInput
+            className=""
+            type="text"
+            required
+            {...register("location")}
+          />
         </Modal.Body>
-        <Modal.Footer className=" w-full flex items-center justify-center">
-          <Button type="button" color={"failure"} onClick={() => setOpen(false)} >Cancelar</Button>
-          <Button type="submit" color={"blue"}>Confirmar</Button>
-        </Modal.Footer>
+        <ModalFooters onClose={onClose} />
       </form>
     </Modal>
   );

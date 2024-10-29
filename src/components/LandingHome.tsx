@@ -4,6 +4,7 @@ import {
   faChalkboardUser,
   faChildren,
   faBookOpen,
+  faHouseLaptop,
 } from "@fortawesome/free-solid-svg-icons";
 
 const LandingHome = () => {
@@ -20,7 +21,7 @@ const LandingHome = () => {
             Icon={faBookOpen}
             Title="Préstamos"
             Message="Explora la amplia cantidad de diversos libros y equipos de cómputo"
-            Path="/HogarDeLibros"
+            Path="/HogarDeLibros/Catalogo"
           />
           <LandingHomeCards
             Icon={faChalkboardUser}
@@ -35,7 +36,7 @@ const LandingHome = () => {
             Path="/HogarDeLibros"
           />
           <LandingHomeCards
-            Icon={faChildren}
+            Icon={faHouseLaptop}
             Title="Sistema Hogar de libros"
             Message="Únete como usuario y recibe beneficios como la reserva de libros desde de tu casa consulta de nuestro catalogo entre otros."
             Path="/HogarDeLibros"

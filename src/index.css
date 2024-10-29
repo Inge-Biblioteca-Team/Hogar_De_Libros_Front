@@ -10,6 +10,12 @@ background-color: #dfe2e6;
   font-weight: 300;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+  }
+
+  
+
 @keyframes scroll{
     0%{
         transform: translatex(0);
@@ -17,6 +23,11 @@ background-color: #dfe2e6;
     100%{
         transform: translateX(calc(-120px*5 - 0.5rem * 10));
     }
+}
+
+.dark{
+  background-color: #474b4f;
+  color: white;
 }
 
 .animate-scroll{

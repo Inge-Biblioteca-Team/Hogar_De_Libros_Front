@@ -1,10 +1,8 @@
 import { Label, Modal, Select, TextInput } from "flowbite-react";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import useNewComputer from "../../Hooks/useNewComputer";
 import { Equipment } from "../../types/Computer";
-import ConfirmModal from "../ConfirmModal";
-import ModalAddMoreActive from "../../../../components/Modals/ModalAddMoreActive";
 import OPTCategoryEquipment from "../OPTCategoryEquipment";
 import OptsConditions from "../../../../components/OptsConditions";
 import ModalFooters from "../../../../components/ModalFooters";
@@ -16,46 +14,28 @@ const NewComponent = ({
   sNew: boolean;
   setSNew: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { register, reset, handleSubmit, setValue } = useForm<Equipment>();
+  const { register, reset, handleSubmit } = useForm<Equipment>();
 
-  const [NeedMore, setNeedMore] = useState(false);
-  const { mutate: CreateEquipment } = useNewComputer({
-    Open: setNeedMore,
-    Reset: reset,
-  });
-
-  const [newEquipmentData, setNewEquipmentData] = useState<Equipment | null>(
-    null
-  );
-
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  setValue("MachineNumber", 0);
-
-  const onSubmit = (NewEquipment: Equipment) => {
-    setNewEquipmentData(NewEquipment);
-    setModalOpen(true);
-  };
-
-  const handleConfirm = (Equipment: Equipment) => {
-    CreateEquipment(Equipment);
-    reset();
-    setModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setModalOpen(false);
-  };
   const onClose = () => {
     setSNew(false);
     reset();
   };
 
+  const { mutate: createNew } = useNewComputer();
+
+  const onConfirm = (data: Equipment) => {
+    createNew(data, {
+      onSuccess: () => {
+        onClose();
+      },
+    });
+  };
+
   return (
     <>
       <Modal show={sNew} onClose={onClose}>
-        <Modal.Header>Añadir Nuevo Componete de cómputo</Modal.Header>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <Modal.Header>Añadir nuevo componente</Modal.Header>
+        <form onSubmit={handleSubmit(onConfirm)}>
           <Modal.Body>
             <fieldset className=" grid grid-cols-2 gap-7 text-center">
               <legend className=" pb-3">Información del equipo</legend>
@@ -72,6 +52,7 @@ const NewComponent = ({
               <span>
                 <Label htmlFor="EquipamentSerial" value="Serial del equipo" />
                 <TextInput
+                  placeholder="Ej. xxxx-123"
                   id="EquipamentSerial"
                   type="text"
                   sizing="md"
@@ -82,6 +63,7 @@ const NewComponent = ({
               <span>
                 <Label htmlFor="EquipamentBrand" value="Marca" />
                 <TextInput
+                  placeholder="Ej. Logitech"
                   id="EquipamentBrand"
                   type="text"
                   {...register("EquipmentBrand")}
@@ -92,19 +74,20 @@ const NewComponent = ({
               <span>
                 <Label
                   htmlFor="EquipamentMachineNumber"
-                  value="Número de Máquina"
+                  value="Número de máquina"
                 />
                 <TextInput
                   id="MachineNumber"
                   type="number"
                   sizing="md"
-                  min={0}
+                  placeholder="Ej. 12"
+                  required
                   {...register("MachineNumber")}
                 />
               </span>
             </fieldset>
             <fieldset className="grid grid-cols-2 gap-7 text-center mt-8">
-              <legend>Información Adicional</legend>
+              <legend>Información adicional</legend>
               <span>
                 <Label htmlFor="ConditionRating" value="Condición" />
                 <Select
@@ -118,6 +101,7 @@ const NewComponent = ({
               <span>
                 <Label htmlFor="Observation" value="Observaciones" />
                 <TextInput
+                  placeholder="Ej. Daños..."
                   id="Observation"
                   type="text"
                   sizing="md"
@@ -126,24 +110,9 @@ const NewComponent = ({
               </span>
             </fieldset>
           </Modal.Body>
-
           <ModalFooters onClose={onClose} />
-          {newEquipmentData && (
-            <ConfirmModal
-              isOpen={isModalOpen}
-              onConfirm={handleConfirm}
-              onCancel={handleCancel}
-              Equip={newEquipmentData}
-              Accion="Crear"
-            />
-          )}
         </form>
       </Modal>
-      <ModalAddMoreActive
-        open={NeedMore}
-        Close={setNeedMore}
-        setSNew={setSNew}
-      />
     </>
   );
 };

@@ -61,7 +61,7 @@ const ManageBooks = () => {
                 setSearchAuthor(event.target.value), setPage(1)
               )}
               rightIcon={MdPersonSearch}
-              placeholder="Búsqueda por Autor"
+              placeholder="Búsqueda por autor"
             />
             <TextInput
               className=" max-sm:hidden"

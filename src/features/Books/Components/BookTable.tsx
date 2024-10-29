@@ -19,7 +19,7 @@ const BookTable = ({ catalog }: { catalog: Catalog }) => {
           </Table.Head>
           <Table.Body className="h-96">
             {catalog.data.map((Book) => (
-              <BookChildrenRow book={Book} key={Book.BookCode} />
+              <BookChildrenRow book={Book} key={'Bo'+Book.BookCode} />
             ))}
           </Table.Body>
         </Table>

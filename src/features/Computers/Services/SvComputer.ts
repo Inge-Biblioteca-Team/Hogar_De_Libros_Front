@@ -1,9 +1,9 @@
+import axios from "axios";
 import api from "../../../Services/AxiosConfig";
-import { EquipmentEdit } from "../types/Computer";
+import { Equipment, EquipmentEdit } from "../types/Computer";
+import { downType } from "../../../Types/GlobalTypes";
 
-
-
-//Testing 
+//Testing
 const GetComputersByCondition = async () => {
   try {
     const response = await api.get("/computers?ConditionRating");
@@ -15,18 +15,25 @@ const GetComputersByCondition = async () => {
   }
 };
 
-
-
-
 //Agregar computadora
-const PostNewComputer = async (computer:EquipmentEdit) => {
+const PostNewComputer = async (computer: EquipmentEdit) => {
   try {
     console.table(computer);
     const response = await api.post(`/computers`, computer);
     return response.data;
-  } catch (error) {
-    console.error("Error al crear equipo de cómputo:", error);
-    throw error;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al registrar el equipo:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al registrar el equipo"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 //paginacion
@@ -58,34 +65,41 @@ const GetComputerPaginated = async (
 };
 //Get One
 
-const GetByUniqueCode = async (UniqueCode:string) =>{
+const GetByUniqueCode = async (UniqueCode: string) => {
   try {
-     const response = await api.get( `computers/${UniqueCode}`);
-     return response.data;
-   } catch (error) {
-     console.error("Error no se encontró el equipo de cómputo", error);
-     throw error;
-   }
- }
-
-//Put Edit info
-const PutEditEquipment = async (
-  Equipment: EquipmentEdit,
-  ObjetiveID: string
-) => {
-  try {
-    const response = await api.put(`computers/${ObjetiveID}`, Equipment);
+    const response = await api.get(`computers/${UniqueCode}`);
     return response.data;
   } catch (error) {
-    console.error("Error al editar el equipo de cómputo:", error);
+    console.error("Error no se encontró el equipo de cómputo", error);
     throw error;
   }
-}
+};
+
+//Put Edit info
+const PutEditEquipment = async (Equipment: Equipment) => {
+  try {
+    const response = await api.put(
+      `computers/${Equipment.EquipmentUniqueCode}`,
+      Equipment
+    );
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error("Error al editar:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data.message || "Error al editar el recurso"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
 //Patch disable computer
 
-const DownEquipment = async (Code: string) => {
+const DownEquipment = async (data: downType) => {
   try {
-    const response = await api.patch(`computers/${Code}`);
+    const response = await api.patch(`computers/${data.Id}`);
     return response.data;
   } catch (error) {
     console.error("Error al dar de baja el equipo de cómputo:", error);
@@ -99,5 +113,5 @@ export {
   PutEditEquipment,
   DownEquipment,
   GetByUniqueCode,
-  GetComputersByCondition
+  GetComputersByCondition,
 };

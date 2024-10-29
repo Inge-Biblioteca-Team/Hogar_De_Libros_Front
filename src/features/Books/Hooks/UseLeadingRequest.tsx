@@ -9,10 +9,10 @@ const UseLeadingRequest = () => {
   return useMutation({
     mutationFn: (data: BookLeading) =>
       toast.promise(LeadingRequestBook(data), {
-        loading: "Creando...",
-        success: <span>Éxito, recurso creado correctamente</span>,
+        loading: "Enviando...",
+        success: <span>Éxito, solicitud enviada correctamente</span>,
         error: (error: ApiError) => (
-          <span>Error al crear el recurso: {error.message}</span>
+          <span>Error enviar la solicitud: {error.message}</span>
         ),
       }),
     onSuccess() {

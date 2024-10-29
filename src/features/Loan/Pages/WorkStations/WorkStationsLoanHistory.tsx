@@ -1,4 +1,4 @@
-import { Table, TextInput } from "flowbite-react";
+import { Label, Table, TextInput } from "flowbite-react";
 import HistoryRegist from "../../Components/WorkStations/HistoryRegist";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
@@ -42,58 +42,65 @@ const WorkStationsLoanHistory = () => {
   return (
     <>
       <LoansCrumbs text="Equipo de cómputo" />
-      <div className=" w-full flex items-center justify-center">
-        <div className=" w-4/5">
-          {WSLoan && WSLoan.count > 0 ? (
-            <>
-              <Table hoverable className=" text-center">
-                <Table.Head className=" h-16 text-sm">
-                  <Table.HeadCell>
-                    <span className=" flex items-center justify-center gap-2">
-                      Número de Máquina
-                      <TextInput
-                        className="w-8"
-                        type="number"
-                        placeholder="#"
-                        onChange={(event) =>
-                          SetMachineNumber(event.target.value)
-                        }
-                      />
-                    </span>
-                  </Table.HeadCell>
-                  <Table.HeadCell>Nombre del Usuario</Table.HeadCell>
-                  <Table.HeadCell>Aprobado Por</Table.HeadCell>
-                  <Table.HeadCell>
-                    <span className=" flex items-center justify-center gap-2">
-                      <span>Fecha de inicio</span>
-                      <TextInput
-                        type="date"
-                        onChange={(event) => SetStartDate(event.target.value)}
-                      />
-                    </span>{" "}
-                  </Table.HeadCell>
-                  <Table.HeadCell>Hora de Fin</Table.HeadCell>
-                </Table.Head>
 
-                <Table.Body>
-                  {WSLoan?.data.map((loans) => (
-                    <HistoryRegist WSLoan={loans} key={loans.ComputerLoanId} />
-                  ))}
-                </Table.Body>
-              </Table>
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={WSLoan?.count || 0}
-              />
-            </>
-          ) : (
-            <NoResults />
-          )}
+      <main className=" w-full flex items-center justify-center flex-col gap-2">
+        <section className="w-4/5 flex  gap-4">
+          <div>
+            <Label value="Numero de maquina" />
+            <TextInput
+              type="number"
+              placeholder="Numero de maquina"
+              onChange={(event) => SetMachineNumber(event.target.value)}
+            />
+          </div>
+          <div>
+            <Label value="Fecha de uso" />
+            <TextInput
+              type="date"
+              onChange={(event) => SetStartDate(event.target.value)}
+            />
+          </div>
+        </section>
+
+        <div className=" w-full flex items-center justify-center">
+          <div className=" w-4/5">
+            {WSLoan && WSLoan.count > 0 ? (
+              <>
+                <Table hoverable className=" text-center">
+                  <Table.Head className=" h-16 text-sm">
+                    <Table.HeadCell>
+                      <span className=" flex items-center justify-center gap-2">
+                        Número de Máquina
+                      </span>
+                    </Table.HeadCell>
+                    <Table.HeadCell>Nombre del Usuario</Table.HeadCell>
+                    <Table.HeadCell>Fecha de uso</Table.HeadCell>
+                    <Table.HeadCell>Hora de Fin</Table.HeadCell>
+                  </Table.Head>
+
+                  <Table.Body>
+                    {WSLoan?.data.map((loans) => (
+                      <HistoryRegist
+                        WSLoan={loans}
+                        key={loans.ComputerLoanId}
+                      />
+                    ))}
+                  </Table.Body>
+                </Table>
+                <CustomPagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={WSLoan?.count || 0}
+                />
+              </>
+            ) : (
+              <NoResults />
+            )}
+          </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };

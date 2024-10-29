@@ -61,7 +61,7 @@ const ForAll = () => {
         <Sidebar.Item
           className=""
           onClick={() =>
-            handleNavigation("/HogarDeLibros/Gestion/Equipo_Disponible")
+            handleNavigation("/HogarDeLibros/Equipo_Disponible")
           }
         >
           Disponibilidad <br />

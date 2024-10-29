@@ -30,7 +30,7 @@ const UpcomingCourses = () => {
           className="m-5 flex items-center w-4/5 flex-col max-sm:m-0"
           id="Courses"
         >
-          <h2 className="font-bold text-3xl">Cursos disponibles</h2>
+          <h2 className="font-bold text-2xl">Cursos disponibles</h2>
           <Carousel
             indicators={false}
             pauseOnHover

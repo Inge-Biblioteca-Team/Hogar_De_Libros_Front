@@ -99,7 +99,7 @@ const RoomsSchedule = ({
   if (rooms.length == 0)
     return (
       <div className="w-full flex flex-col h-full justify-between text-center text-5xl mt-36">
-        De momento no existen Salas disponibles para reserva
+        De momento no existen salas disponibles para reserva
       </div>
     );
   return (

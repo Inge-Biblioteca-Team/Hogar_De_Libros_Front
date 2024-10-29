@@ -10,9 +10,9 @@ const GeneralInfo = () => {
       <GeneralComputerInfo />
       <div className="flex justify-between flex-col max-sm:text-sm max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl">
         <p>
-          <strong>Acceso a Computadoras</strong>
+          <strong>Acceso a computadoras, </strong>
           <span>
-            La biblioteca cuenta con <strong>{computerCount}</strong>{" "}
+             la biblioteca cuenta con <strong>{computerCount}</strong>{" "}
             computadoras las cuales están a disposición de los usuarios de la
             biblioteca.
             <span className=" hidden max-sm:block">

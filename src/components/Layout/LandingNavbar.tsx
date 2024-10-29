@@ -37,7 +37,7 @@ const LandingNavbar = () => {
     <div className=" w-full flex justify-center items-center max-sm:">
       <NavbarCollapse>
         <Navbar.Link className="text-white hover:!text-black " href="#Home">
-          Sobre Nosotros
+          Sobre nosotros
         </Navbar.Link>
         <Navbar.Link
           className="text-white hover:!text-black "
@@ -52,7 +52,7 @@ const LandingNavbar = () => {
           className="text-white hover:!text-black "
           href="#Computers"
         >
-          Equipo de Cómputo
+          Equipo de cómputo
         </Navbar.Link>
         <Navbar.Link className="text-white hover:!text-black " href="#Courses">
           Cursos

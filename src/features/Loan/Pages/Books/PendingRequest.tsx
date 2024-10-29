@@ -52,7 +52,7 @@ const PendingRequest = () => {
           </div>
         </div>
       ) : (
-        <NoRequest text={"No Hay Solicitudes Pendientes"} />
+        <NoRequest text={"No hay solicitudes pendientes"} />
       )}
     </>
   );

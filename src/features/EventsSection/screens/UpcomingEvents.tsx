@@ -20,7 +20,7 @@ const UpcomingEvents = () => {
           className="relative w-full max-w-4xl mx-auto max-sm:w-4/5"
           id="Events"
         >
-          <h2 className="text-center font-bold text-3xl mb-6">
+          <h2 className="text-center font-bold text-2xl mb-6">
             Próximos Eventos
           </h2>
 

@@ -1,6 +1,6 @@
 import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Popover } from "flowbite-react";
+import { Button, DarkThemeToggle, Popover } from "flowbite-react";
 import { FaUserFriends } from "react-icons/fa";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -126,11 +126,16 @@ const UserData = () => {
                 </span>
               </p>
             )}
-          <div className="flex items-center mb-4">
+          <div className="flex items-center">
             <FaUserFriends className="text-gray-800 dark:text-gray-200 mr-2" />
             <span className="text-sm text-gray-800 dark:text-gray-200">
               {isLogged ? " Amigo" : ""}
             </span>
+          </div>
+          <div className="flex items-center mb-4">
+            <div className=" text-gray-800 dark:text-gray-200">
+              Modo: <DarkThemeToggle />
+            </div>
           </div>
           <Button
             onClick={() => Navi("/IniciarSesion")}
@@ -140,7 +145,6 @@ const UserData = () => {
           >
             Cerrar Sesión
           </Button>
-          <div></div>
         </div>
       }
     >

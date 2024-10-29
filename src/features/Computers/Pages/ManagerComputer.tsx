@@ -1,4 +1,4 @@
-import { Button, Select, Table, TextInput } from "flowbite-react";
+import { Button, Label, Select, Table, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { apiResponseCE } from "../types/Computer";
 import { GetComputerPaginated } from "../Services/SvComputer";
@@ -58,27 +58,39 @@ const ManagerComputer = () => {
 
   return (
     <>
-      <BreadCrumbManage text="Equipo de computo" />
+      <BreadCrumbManage text="Equipo de cómputo" />
 
       <main className=" flex items-center justify-center w-full flex-col gap-4">
         <section className="w-4/5 flex justify-between items-end">
           <div className="flex gap-3">
-            <TextInput
-              onChange={(event) => setMNum(event.target.value)}
-              placeholder="Numero de equipo"
-            />
-            <TextInput
-              onChange={(event) => setEBrand(event.target.value)}
-              placeholder="Marca"
-            />
-            <Select onChange={(event) => setECategory(event.target.value)}>
-              <OPTCategoryEquipment />
-            </Select>
-            <Select onChange={(event) => setEStatus(event.target.value)}>
-              <option value="">Estado</option>
-              <option value="1">Activo</option>
-              <option value="0">Baja</option>
-            </Select>
+            <div>
+              <Label value="Búsqueda por numero de equipo" />
+              <TextInput
+                onChange={(event) => setMNum(event.target.value)}
+                placeholder="Numero de equipo"
+              />
+            </div>
+            <div>
+              <Label value="Marca" />
+              <TextInput
+                onChange={(event) => setEBrand(event.target.value)}
+                placeholder="Marca del componente"
+              />
+            </div>
+            <div>
+              <Label value="Categoría" />
+              <Select onChange={(event) => setECategory(event.target.value)}>
+                <OPTCategoryEquipment />
+              </Select>
+            </div>
+            <div>
+              <Label value="Estado" />
+              <Select onChange={(event) => setEStatus(event.target.value)}>
+                <option value="">Estado</option>
+                <option value="1">Activo</option>
+                <option value="0">Baja</option>
+              </Select>
+            </div>
           </div>
           <Button color={"blue"} onClick={() => setSNew(true)}>
             Añadir Equipo
@@ -102,12 +114,10 @@ const ManagerComputer = () => {
                 </Table.Head>
                 <Table.Body>
                   {computers?.data.map((computers) => (
-                    <>
-                      <TblRows
-                        key={computers.EquipmentUniqueCode}
-                        computers={computers}
-                      />
-                    </>
+                    <TblRows
+                      key={"COM" + computers.EquipmentUniqueCode}
+                      computers={computers}
+                    />
                   ))}
                 </Table.Body>
               </Table>
