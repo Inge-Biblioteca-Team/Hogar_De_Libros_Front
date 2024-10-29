@@ -36,37 +36,37 @@ const LandingNavbar = () => {
   return (
     <div className=" w-full flex justify-center items-center max-sm:">
       <NavbarCollapse>
-        <Navbar.Link className="text-white hover:!text-black " href="#Home">
+        <Navbar.Link className="text-white hover:scale-110 hover:!text-white hover:underline " href="#Home">
           Sobre nosotros
         </Navbar.Link>
         <Navbar.Link
-          className="text-white hover:!text-black "
+          className="text-white  hover:scale-110 hover:!text-white hover:underline "
           href="#MostPopularBooks"
         >
           Libros
         </Navbar.Link>
-        <Navbar.Link className="text-white hover:!text-black " href="#Rooms">
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#Rooms">
           Salas
         </Navbar.Link>
         <Navbar.Link
-          className="text-white hover:!text-black "
+          className="text-white  hover:scale-110 hover:!text-white hover:underline "
           href="#Computers"
         >
           Equipo de cómputo
         </Navbar.Link>
-        <Navbar.Link className="text-white hover:!text-black " href="#Courses">
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#Courses">
           Cursos
         </Navbar.Link>
-        <Navbar.Link className="text-white hover:!text-black " href="#Events">
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#Events">
           Eventos
         </Navbar.Link>
-        <Navbar.Link className="text-white hover:!text-black " href="#Programs">
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#Programs">
           Programas
         </Navbar.Link>
-        <Navbar.Link className="text-white hover:!text-black " href="#Friends">
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#Friends">
           Amigos de la biblioteca
         </Navbar.Link>
-        <Navbar.Link className="text-white hover:!text-black " href="#ContacUs">
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#ContacUs">
           Contáctenos
         </Navbar.Link>
       </NavbarCollapse>
