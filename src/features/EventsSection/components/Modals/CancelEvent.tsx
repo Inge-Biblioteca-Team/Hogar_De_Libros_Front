@@ -33,7 +33,7 @@ const CancelEvent = ({
           <strong className=" font-bold">{event.Title}</strong>?
         </span>
         <br />
-        <span>Está acción no es revertible!!!</span>
+        <span>Está acción no es reversible!!!</span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
         <Button color={"failure"} onClick={() => setOpen(false)}>

@@ -56,7 +56,7 @@ const Colecction = () => {
           </div>
           <ButtonGroup className=" max-sm:hidden">
             <Button
-              color={"gray"}
+              color={`${view === "List"? "blue":"gray"}`}
               title="Lista"
               onClick={() => {
                 setView("List"), setLimit(15);
@@ -65,7 +65,7 @@ const Colecction = () => {
               <BsListUl size={25} />
             </Button>
             <Button 
-              color={"gray"}
+               color={`${view !== "List"? "blue":"gray"}`}
               title="Cuadricula"
               onClick={() => {
                 setView("Grid"), setLimit(12);

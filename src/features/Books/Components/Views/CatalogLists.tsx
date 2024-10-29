@@ -40,7 +40,7 @@ const CatalogLists = ({ category }: { category: string }) => {
               pauseOnHover
               leftControl
               rightControl
-              style={{ height: "22rem" }}
+              style={{ height: "25rem" }}
             >
               {groupedBooks.map((group, groupIndex) => (
                 <div key={groupIndex} className=" flex justify-center gap-x-4">

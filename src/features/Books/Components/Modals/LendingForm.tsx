@@ -1,5 +1,5 @@
-import { Checkbox, FloatingLabel, Label, Modal } from "flowbite-react";
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { FloatingLabel, Modal } from "flowbite-react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import ModalFooters from "../../../../components/ModalFooters";
 import { formatToYMD } from "../../../../components/FormatTempo";
 import { addDay } from "@formkit/tempo";
@@ -25,7 +25,6 @@ const LendingForm = ({
   const minDate = formatToYMD(new Date());
 
   const { currentUser } = useContext(UserContext);
-  const [isChecked, setIsChecked] = useState(false);
 
   const { register, handleSubmit, watch, reset } = useForm<BookLeading>({
     defaultValues: {
@@ -43,9 +42,6 @@ const LendingForm = ({
 
   const maxDate = formatToYMD(addDay(watch("BookPickUpDate"), 5));
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
 
   const { mutate: createNew } = UseLeadingRequest();
 
@@ -65,28 +61,32 @@ const LendingForm = ({
           <fieldset className="grid grid-cols-2 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del solicitante</legend>
             <FloatingLabel
-              variant="outlined"
+              variant="filled"
               label="Numero de cédula"
               {...register("userCedula")}
               readOnly
               className=" cursor-default"
+              disabled={true}
             />
             <FloatingLabel
-              variant="outlined"
+              variant="filled"
+              disabled={true}
               label="Nombre completo"
               {...register("Name")}
               readOnly
               className=" cursor-default"
             />
             <FloatingLabel
-              variant="outlined"
+               variant="filled"
+               disabled={true}
               label="Numero de teléfono"
               {...register("PhoneNumber")}
               readOnly
               className=" cursor-default"
             />
             <FloatingLabel
-              variant="outlined"
+              variant="filled"
+              disabled={true}
               label="Dirección"
               {...register("address")}
               readOnly
@@ -97,28 +97,32 @@ const LendingForm = ({
           <fieldset className="grid grid-cols-2 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del libro</legend>
             <FloatingLabel
-              variant="outlined"
+               variant="filled"
+              disabled={true}
               label="Código de signatura"
               value={book.signatureCode || "N/A"}
               className=" cursor-default"
               readOnly
             />
             <FloatingLabel
-              variant="outlined"
+               variant="filled"
+              disabled={true}
               label="Numero de inscripción"
               value={book.InscriptionCode}
               className=" cursor-default"
               readOnly
             />
             <FloatingLabel
-              variant="outlined"
+               variant="filled"
+              disabled={true}
               label="Autor"
-              value={book.Author}
+              value={book.Author || "Desconocido"}
               className=" cursor-default"
               readOnly
             />
             <FloatingLabel
-              variant="outlined"
+               variant="filled"
+              disabled={true}
               label="Titulo"
               value={book.Title}
               className=" cursor-default"
@@ -146,17 +150,11 @@ const LendingForm = ({
               {...register("LoanExpirationDate")}
             />
             <div className=" col-span-2 space-y-1">
-              <Checkbox
-                color={"blue"}
-                checked={isChecked}
-                onChange={handleCheckboxChange}
-              />
-              <Label value=" Aplica como estudiante o profesor" />
               <FloatingLabel
                 variant="outlined"
                 label="Centro educativo o institución"
+                helperText="En caso de no pertenecer a un centro educativo favor omita el campo anterior."
                 {...register("institution")}
-                disabled={!isChecked}
               />
             </div>
           </fieldset>

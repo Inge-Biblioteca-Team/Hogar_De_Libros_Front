@@ -1,4 +1,4 @@
-import { Card, Label, Popover } from "flowbite-react";
+import { Button, Card, Label, Popover } from "flowbite-react";
 import { Book } from "../../Types/BooksTypes";
 import LendingForm from "../Modals/LendingForm";
 import { useState } from "react";
@@ -40,12 +40,21 @@ const BookCard = ({ book }: { book: Book }) => {
           </Card>
         }
       >
-        <figure className=" hover:scale-105" onClick={() => setOpen(true)}>
+        <figure>
           <img
             src={book.Cover}
             alt={book.Title}
-            className=" rounded-md h-80 w-52"
+            className=" rounded-t-2xl h-80 w-52"
           />
+          <figcaption className="w-full">
+            <Button
+              className="w-full rounded-none rounded-b-md"
+              onClick={() => setOpen(true)}
+              color={"gray"}
+            >
+              Reservar ahora
+            </Button>
+          </figcaption>
         </figure>
       </Popover>
 
