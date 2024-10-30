@@ -9,6 +9,7 @@ import { User } from "../Type/UserType";
 import { getCountReservations } from "../../Loan/Services/SVReservations";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../../Context/UserContext/UserContext";
+import UseLogOut from "../Hooks/UseLogOut";
 
 const UserData = () => {
   const Navi = useNavigate();
@@ -62,6 +63,12 @@ const UserData = () => {
     Navi("/HogarDeLibros/Perfil/MisReservaciones");
   };
 
+  const { mutate: logOut } = UseLogOut();
+
+  const onLogOut = () => {
+    logOut();
+  };
+
   return (
     <Popover
       content={
@@ -77,9 +84,7 @@ const UserData = () => {
             <div>
               <button
                 type="button"
-                onClick={() =>
-                  Navi(`/HogarDeLibros/Perfil/EditarPerfil`)
-                }
+                onClick={() => Navi(`/HogarDeLibros/Perfil/EditarPerfil`)}
                 className="rounded-lg bg-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Editar Perfil
@@ -138,7 +143,7 @@ const UserData = () => {
             </div>
           </div>
           <Button
-            onClick={() => Navi("/IniciarSesion")}
+            onClick={onLogOut}
             type="button"
             color={"gray"}
             className="w-full hover:!text-red-800 hover:!border-red-400"
