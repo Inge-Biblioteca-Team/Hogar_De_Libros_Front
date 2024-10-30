@@ -16,13 +16,13 @@ const CurrentPrograms = () => {
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? programs.length - 4 : prevIndex - 1
+    prevIndex === 0 ? programs?.length - 4 : prevIndex - 1
     );
   };
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === programs.length - 4 ? 0 : prevIndex + 1
+      prevIndex === programs?.length - 4 ? 0 : prevIndex + 1
     );
   };
 
@@ -48,9 +48,9 @@ const CurrentPrograms = () => {
             className="flex transition-transform duration-300"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {programs.map((program, index) => (
+            {/* {programs?.map((program, index) => (
               <CardProgram key={index} program={program} />
-            ))}
+            ))} */}
           </article>
         </div>
         <button

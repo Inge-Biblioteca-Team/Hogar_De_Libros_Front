@@ -9,10 +9,15 @@ type CardProgramsViewProps = {
 const CardProgramsView: React.FC<CardProgramsViewProps> = ({ Program }) => {
   return (
     <Card
-      imgAlt={Program.programName}
-      imgSrc={Program.image}
       className="hover:scale-105 transition-transform duration-300"
     >
+      <div className="w-full h-48 overflow-hidden">
+        <img
+          src={Program.image}
+          alt={Program.programName}
+          className="object-cover w-full h-full"
+        />
+      </div>
       <h5 className="text-2xl font-bold tracking-tight text-gray-900">
         {Program.programName}
       </h5>
@@ -20,7 +25,7 @@ const CardProgramsView: React.FC<CardProgramsViewProps> = ({ Program }) => {
         Instructor: {Program.description}
       </p>
       <p className="font-normal text-gray-700">
-      Estado: {Program.status ? 'Activo' : 'Inactivo'}
+        Estado: {Program.status ? 'Activo' : 'Inactivo'}
       </p>
     </Card>
   );

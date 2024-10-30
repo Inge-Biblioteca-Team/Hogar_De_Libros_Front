@@ -33,7 +33,7 @@ const HomePage = () => {
           </p>
           <FriendsCarousel />
         </section>
- 
+
         <section className="container mx-auto text-center">
           <h2 className="text-4xl font-bold mb-8">Avisos</h2>
           <p className="text-lg mb-4">
@@ -47,16 +47,20 @@ const HomePage = () => {
         <section className="conta
         iner mx-auto text-center">
           <h2 className="text-4xl font-bold mb-8">Servicios de la Biblioteca</h2>
-          <p className="text-lg mb-4">
+          <p className="text-lg mb-12">
             Navega fácilmente a través de nuestros módulos del sistema.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
-            <RoomAccessCard />
-            <BookAccessCard />
-            <ComputerAccessCard />
-            <EventAccessCard />
+          <div className="flex justify-center mb-28 px-6">
+            <div className="grid grid-cols-4 gap-6 justify-center">
+              <RoomAccessCard />
+              <BookAccessCard />
+              <ComputerAccessCard />
+              <EventAccessCard />
+            </div>
           </div>
-        </section> 
+        </section>
+
+
       </main>
       <LandingFooter />
     </>

@@ -1,6 +1,8 @@
 import { Card, Button } from 'flowbite-react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowRight } from 'react-icons/fa'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 const EventAccessCard = () => {
   const navigate = useNavigate(); 
@@ -10,8 +12,9 @@ const EventAccessCard = () => {
   };
 
   return (
-    <Card className="max-w-sm mx-auto flex flex-col justify-between h-full">
+    <Card className="hover:scale-105 transition-transform duration-300 max-w-sm mx-auto flex flex-col justify-between h-full">
        <div>
+       <FontAwesomeIcon icon={faCalendarAlt} size="2x" className="mb-2" />
         <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
         Eventos
       </h5>
@@ -19,13 +22,13 @@ const EventAccessCard = () => {
       Participa en actividades inspiradoras con la lectura.
       </p>
       </div>
-      <div className="mt-4">
+      <div className="mt-4 flex justify-center">
         <Button 
           onClick={handleRedirect} 
           color="blue" 
-          className="w-full"
+          className="w-1/2"
         >
-          Ir a Eventos <FaArrowRight className="inline ml-2" />
+          Ir a Eventos
         </Button>
       </div>
     </Card>

@@ -1,6 +1,8 @@
 import { Card, Button } from 'flowbite-react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowRight } from 'react-icons/fa'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDesktop } from '@fortawesome/free-solid-svg-icons';
+
 
 const ComputerAccessCard = () => {
   const navigate = useNavigate(); 
@@ -9,8 +11,9 @@ const ComputerAccessCard = () => {
     navigate('/HogarDeLibros/Equipos/disponible'); 
   };
   return (
-    <Card className="max-w-sm mx-auto flex flex-col justify-between h-full">
+    <Card className="hover:scale-105 transition-transform duration-300 max-w-sm mx-auto flex flex-col justify-between h-full">
       <div>
+      <FontAwesomeIcon icon={faDesktop} size="2x" className="mb-2" />
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
       Equipo de Cómputo
       </h5>
@@ -18,13 +21,13 @@ const ComputerAccessCard = () => {
       Computadoras con internet para tus proyectos.
       </p>
       </div>
-      <div className="mt-4">
+      <div className="mt-4 flex justify-center">
         <Button 
           onClick={handleRedirect} 
           color="blue" 
-          className="w-full"
+          className="w-1/2"
         >
-          Ir a Equipos <FaArrowRight className="inline ml-2" />
+          Ir a Equipos 
         </Button>
       </div>
     </Card>
