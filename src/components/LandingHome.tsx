@@ -19,26 +19,26 @@ const LandingHome = () => {
         <div className=" grid grid-cols-4 gap-4 mt-10">
           <LandingHomeCards
             Icon={faBookOpen}
-            Title="Préstamos"
-            Message="Explora la amplia cantidad de diversos libros y equipos de cómputo"
+            Title="catalogo de libros"
+            Message="Explora la amplia cantidad de diversos libros"
             Path="/HogarDeLibros/Catalogo"
           />
           <LandingHomeCards
             Icon={faChalkboardUser}
-            Title="Cursos y Eventos"
-            Message="Matricula en los diversos cursos y talleres brindados por nosotros y por los voluntariados de la biblioteca"
+            Title="Cursos y eventos"
+            Message="Matricula los diversos cursos y talleres brindados por nosotros y por los colaboradores de la biblioteca"
             Path="/HogarDeLibros"
           />
           <LandingHomeCards
             Icon={faChildren}
             Title="Amigo de la biblioteca"
-            Message="Unete a nuestro programa de voluntariado donde podras ayudar a la biblioteca de diversas maneras."
+            Message="Únete a nuestro programa de voluntariado donde podrás ayudar a la biblioteca de diversas maneras."
             Path="/HogarDeLibros"
           />
           <LandingHomeCards
             Icon={faHouseLaptop}
             Title="Sistema Hogar de libros"
-            Message="Únete como usuario y recibe beneficios como la reserva de libros desde de tu casa consulta de nuestro catalogo entre otros."
+            Message="Únete como usuario y recibe beneficios como la reserva de libros desde de tu casa, consulta de nuestro catalogo de libros entre otros."
             Path="/HogarDeLibros"
           />
         </div>

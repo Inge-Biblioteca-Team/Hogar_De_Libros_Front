@@ -49,6 +49,7 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
       setValue("UserPhone", User.phoneNumber);
       setValue("UserAddress", User.address);
       setValue("UserBirthDate", User.birthDate);
+      setValue("UserGender", User.gender);
     }
   }, [User, setValue]);
 
@@ -130,6 +131,15 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
                   <OptSubCategory />
                 </Select>
               </div>
+              <div>
+                <Label value=" Numero de cédula" />
+                <TextInput
+                  {...register("UserCedula", { required: true })}
+                  required
+                  placeholder="Sin guiones"
+                  type="number"
+                />
+              </div>
 
               <div className="">
                 <Checkbox
@@ -154,15 +164,6 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
                   <option value="Hombre">Hombre</option>
                   <option value="Mujer">Mujer</option>
                 </Select>
-              </div>
-              <div>
-                <Label value=" Numero de cédula" />
-                <TextInput
-                  {...register("UserCedula", { required: true })}
-                  required
-                  placeholder="Sin guiones"
-                  type="number"
-                />
               </div>
 
               <div>
@@ -298,7 +299,7 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
           <div></div>
           {!secondForm && (
             <>
-              <Button color={"red"} onClick={onClose}>
+              <Button color={"red"} tabIndex={2} onClick={onClose}>
                 Cancelar
               </Button>
               <Button color={"blue"} onClick={onFill}>
@@ -308,7 +309,7 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
           )}
           {secondForm && (
             <>
-              <Button color={"red"} onClick={onReturn}>
+              <Button color={"red"} tabIndex={2}  onClick={onReturn}>
                 Anterior
               </Button>
               <Button color={"blue"} type="submit">

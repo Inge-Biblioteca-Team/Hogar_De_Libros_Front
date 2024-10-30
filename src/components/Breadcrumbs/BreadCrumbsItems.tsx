@@ -114,7 +114,20 @@ const ServicesCrumbs = ({ text }: { text: string }) => {
   );
 };
 
+const ProfileCrumbs = ({ text }: { text: string }) => {
+  const navi = useNavigate();
+  return (
+    <BreadCrumbsItems>
+      <Breadcrumb.Item onClick={() => navi("/HogarDeLibros/Perfil")}>
+        Perfil
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>{text}</Breadcrumb.Item>
+    </BreadCrumbsItems>
+  );
+};
+
 export {
+  ProfileCrumbs,
   ServicesCrumbs,
   LoansCrumbs,
   FirendCrumbs,
