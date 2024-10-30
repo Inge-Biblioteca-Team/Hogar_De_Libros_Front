@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ColecctionCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import { useQuery } from "react-query";
 import { Catalog } from "../Types/BooksTypes";
-import { getColection } from "../Services/BooksServices";
+import {getUserColection } from "../Services/BooksServices";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { Label, Select, TextInput } from "flowbite-react";
 import OptCategories from "../Components/OptsCategories";
@@ -34,7 +34,7 @@ const AdvanceSearchColection = () => {
   const { data: catalog } = useQuery<Catalog, Error>(
     ["SearchColection", page, title, author, signa, category, ISBN],
     () =>
-      getColection(
+      getUserColection(
         page,
         15,
         title,

@@ -5,6 +5,9 @@ import { useQuery } from "react-query";
 import { getMyReservations } from "../../Services/SVReservations";
 
 const RoomsReservationsTL = () => {
+
+
+  
   const cedula = sessionStorage.getItem("cedula");
 
   const { data: reserves } = useQuery<responseMyReservations, Error>(
