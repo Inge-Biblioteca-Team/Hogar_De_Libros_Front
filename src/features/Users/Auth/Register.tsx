@@ -7,14 +7,19 @@ import {
   Card,
   Select,
   Popover,
+  Spinner,
 } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import UseRegister from "../Hooks/UseRegister";
-import { RegisterInfo } from "../Type/UserType";
+import { PersonData, RegisterInfo } from "../Type/UserType";
 import toast from "react-hot-toast";
 import { MdOutlineError } from "react-icons/md";
 import OptProvincias from "../../../components/OptProvincias";
 import OptCanton from "../../../components/OptCanton";
+import { useQuery } from "react-query";
+import UseDebounce from "../../../hooks/UseDebounce";
+import { getUserInformationByCedula } from "../Services/SvUsuer";
+import { useEffect } from "react";
 const Register = () => {
   const navigate = useNavigate();
 
@@ -24,6 +29,7 @@ const Register = () => {
     watch,
     formState: { errors },
     trigger,
+    setValue,
   } = useForm<RegisterInfo>({ mode: "onChange" });
 
   const password = watch("password");
@@ -43,6 +49,30 @@ const Register = () => {
 
     return result;
   };
+
+  const cedula = UseDebounce(watch("cedula"), 1000);
+
+  const { data: User, isLoading } = useQuery<PersonData>(
+    ["userInformation", cedula],
+    () =>
+      cedula
+        ? getUserInformationByCedula(cedula)
+        : Promise.reject("Cedula no encontrada"),
+    {
+      enabled: !!cedula,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      retry: 1,
+    }
+  );
+
+  useEffect(() => {
+    if (User && User.results && User.resultcount > 0) {
+      setValue("name", User.results[0].firstname || "");
+      setValue("lastName", User.results[0].lastname || "");
+    }
+  }, [User, setValue]);
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-800 p-8 max-sm:p-0 max-sm:px-2">
       <Card className="max-w-screen-lg w-full">
@@ -86,16 +116,31 @@ const Register = () => {
                     {...register("cedula")}
                   />
                 </div>
-                <div>
+                <div className=" relative">
                   <Label htmlFor="Name" value="Nombre" />
+                  {isLoading && (
+                    <Spinner
+                      color="info"
+                      size="xs"
+                      className="absolute right-2 top-10 z-40"
+                    />
+                  )}
                   <TextInput
+                    className="relative"
                     id="Name"
                     required
                     {...register("name")}
                     placeholder="Primer nombre"
                   />
                 </div>
-                <div>
+                <div className=" relative">
+                  {isLoading && (
+                    <Spinner
+                      color="info"
+                      size="xs"
+                      className="absolute right-2 top-10 z-40"
+                    />
+                  )}
                   <Label htmlFor="LastName" value="Apellidos" />
                   <TextInput
                     id="LastName"
@@ -260,7 +305,10 @@ const Register = () => {
                 />
                 <Label htmlFor="AcceptTermsAndConditions" className="ml-2">
                   Acepto los{" "}
-                  <a href="" className=" hover:text-Body text-blue-500 hover:underline">
+                  <a
+                    href=""
+                    className=" hover:text-Body text-blue-500 hover:underline"
+                  >
                     {" "}
                     términos y condiciones
                   </a>

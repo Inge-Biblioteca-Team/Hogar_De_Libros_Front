@@ -111,7 +111,19 @@ const PatchUserByAdmin = async (user: User, cedula: string) => {
   }
 };
 
+const getUserInformationByCedula = async (Ncedula: string) => {
+  try {
+    const response = await axios.get(
+      `https://apis.gometa.org/cedulas/${Ncedula}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Usuario no encontrado");
+  }
+};
+
 export {
+  getUserInformationByCedula,
   GetUsersList,
   GetUserData,
   DownUser,

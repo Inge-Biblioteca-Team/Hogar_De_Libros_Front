@@ -53,3 +53,16 @@ export type RegisterInfo = {
   acceptTermsAndConditions: boolean;
   repeatPassword: string;
 };
+
+interface PersonResult {
+  cedula: string;
+  lastname: string;
+  firstname: string;
+}
+
+export interface PersonData {
+  cedula: string;
+  nombre: string;
+  results: PersonResult[];
+  resultcount: number;
+}
