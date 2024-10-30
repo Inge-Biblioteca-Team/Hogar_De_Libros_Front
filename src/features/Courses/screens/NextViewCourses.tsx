@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { getCoursesS } from '../services/SvCourses';
-import { ResponseC, Courses } from '../types/Courses';
+import { ApiCourseResponse, NextCourses } from '../types/Courses';
 import CardViewCourses from '../components/CardViewCourses';
 
-const NextViewCourses: React.FC = () => {
+const NextViewCourses = () => {
   const {
     data: ViewCourses,
     isLoading,
     error,
-  } = useQuery<ResponseC, Error>('courses', getCoursesS);
+  } = useQuery<ApiCourseResponse, Error>('courses', getCoursesS);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -63,8 +63,8 @@ const NextViewCourses: React.FC = () => {
       </button>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {currentCourses.map((course: Courses) => (
-            <CardViewCourses key={course.courseId} course={course} />
+          {currentCourses.map((course: NextCourses) => (
+            <CardViewCourses key={course.Id} course={course} />
           ))}
         </div>
 
