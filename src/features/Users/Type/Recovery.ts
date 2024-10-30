@@ -21,3 +21,8 @@ export type loginResponse = {
   user: User;
   message: string;
 };
+
+export type recoveryRequest = {
+  email: string;
+  cedula: string;
+};
