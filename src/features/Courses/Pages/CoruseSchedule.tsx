@@ -51,7 +51,7 @@ const CoruseSchedule = () => {
       <BreadCrumbsItems>
         <BreadLastItems text="Próximos cursos" />
       </BreadCrumbsItems>
-      <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
+      <div className=" w-full flex flex-col justify-center items-center pb-3">
         <div className=" flex gap-4 w-4/5 items-start ml-5">
           <Select
             icon={CiCalendarDate}
