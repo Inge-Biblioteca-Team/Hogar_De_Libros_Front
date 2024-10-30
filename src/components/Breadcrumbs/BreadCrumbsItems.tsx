@@ -134,7 +134,21 @@ const MiddleCrumb = ({ label }: { label: string }) => {
   );
 };
 
+const LoansAndCirculationCrumbs = ({ text }: { text: string }) => {
+  const navi = useNavigate();
+  return (
+    <BreadCrumbsItems>
+      <Breadcrumb.Item onClick={() => navi("/HogarDeLibros/Prestamos_Circulacion")}>
+      Circulación y prestamos
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>{text}</Breadcrumb.Item>
+    </BreadCrumbsItems>
+  );
+};
+
+
 export {
+  LoansAndCirculationCrumbs,
   MiddleCrumb,
   ProfileCrumbs,
   ServicesCrumbs,

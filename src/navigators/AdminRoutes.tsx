@@ -32,20 +32,23 @@ import DonationMiddleScreens from "../features/Donations/Screens/DonationMiddleS
 import ColabsMiddleScreen from "../features/Collaborators/Screens/ColabsMiddleScreen";
 import ResoursesMiddlePage from "../features/Furniture/Pages/ResoursesMiddlePage";
 import EventMiddlePage from "../features/EventsSection/Pages/EventMiddlePage";
+import LoansMiddlePage from "../features/Loan/Pages/LoansMiddlePage";
+import CirculationAndLoanMiddlePage from "../features/Loan/Pages/CirculationAndLoanMiddlePage";
 const AdminRoutes = [
   {
     path: "Prestamos_Circulacion",
     children: [
       {
         index: true,
+        element:<CirculationAndLoanMiddlePage/>
       },
       {
         path: "Catalogo_General",
-        element: <ManageBooks />,
+        element: <ManageBooks loans />,
       },
       {
         path: "Catalogo_Infantil",
-        element: <ManageChildrenBooks />,
+        element: <ManageChildrenBooks loans />,
       },
       {
         path: "Prestamo_Computo",
@@ -82,6 +85,7 @@ const AdminRoutes = [
     children: [
       {
         index: true,
+        element:<LoansMiddlePage/>
       },
       {
         path: "Libros",
