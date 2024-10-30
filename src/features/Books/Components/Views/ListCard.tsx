@@ -37,7 +37,8 @@ const ListCard = ({ book }: { book: Book }) => {
                 book.ShelfCategory || "No posee"
               }`}
             />
-            <Button className="w-40" color={"blue"} size={"sm"}>
+            <Button className="w-40" color={"blue"} size={"sm"}
+            onClick={() => setOpen(true)}>
               Reserva ahora
             </Button>
           </div>

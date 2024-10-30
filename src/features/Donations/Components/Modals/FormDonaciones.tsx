@@ -217,7 +217,7 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
         </Modal.Body>
         <Modal.Footer className=" flex items-center justify-between">
           <div></div>
-          <Button color={"red"} onClick={onClose}>
+          <Button color={"red"} tabIndex={2}  onClick={onClose}>
             Cancelar
           </Button>
           <Button color={"blue"} type="submit">

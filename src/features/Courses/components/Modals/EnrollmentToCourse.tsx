@@ -1,4 +1,4 @@
-import { Button, Label, Modal, TextInput } from "flowbite-react";
+import { Label, Modal, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { Enrollment } from "../../types/Enroll";
 import UseEnrollToCourse from "../../Hooks/UseEnrollToCourse";
@@ -7,6 +7,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { User } from "../../../Users/Type/UserType";
 import { useQuery } from "react-query";
 import { GetUserData } from "../../services/SvCourses";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const EnrollmentToCourse = ({
   course,
@@ -68,7 +69,7 @@ const EnrollmentToCourse = ({
 
   return (
     <Modal show={open} onClose={handleClose}>
-      <Modal.Header>Matricula de Curso</Modal.Header>
+      <Modal.Header>Matricula de curso</Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body className=" flex flex-col gap-2">
           {course.materials == "" ? (
@@ -83,11 +84,12 @@ const EnrollmentToCourse = ({
             <div>
               <Label
                 htmlFor="Cedula"
-                value="Cédula  de la persona asistente al curso"
+                value="Cédula de la persona que asistirá a las sesiones"
               />
               <TextInput
                 id="Cedula"
-                placeholder="Cedula"
+                required
+                placeholder="Sin guiones"
                 onChange={handleCedula}
               />
             </div>
@@ -95,7 +97,8 @@ const EnrollmentToCourse = ({
               <Label htmlFor="name" value="Nombre" />
               <TextInput
                 id="name"
-                placeholder="Nombre"
+                required
+                placeholder="Nombre completo"
                 {...register("UserName")}
               />
             </div>
@@ -103,15 +106,16 @@ const EnrollmentToCourse = ({
               <Label htmlFor="direcction" value="Lugar de residencia" />
               <TextInput
                 id="direcction"
-                placeholder="Lugar"
+                placeholder="Ej. 100 metros norte de..."
                 {...register("direction")}
               />
             </div>
             <div>
               <Label htmlFor="email" value="Correo" />
               <TextInput
-                id="emai"
-                placeholder="Correo"
+                id="email"
+                required
+                placeholder="ej@gmail.com"
                 {...register("email")}
               />
             </div>
@@ -119,7 +123,8 @@ const EnrollmentToCourse = ({
               <Label htmlFor="phone" value="Teléfono" />
               <TextInput
                 id="phone"
-                placeholder="Teléfono"
+                required
+                placeholder="ej. +506..."
                 {...register("phone")}
               />
             </div>
@@ -133,14 +138,7 @@ const EnrollmentToCourse = ({
             </div>
           </div>
         </Modal.Body>
-        <Modal.Footer className=" flex items-center justify-center">
-          <Button color={"failure"} tabIndex={2} onClick={handleClose}>
-            Cancelar
-          </Button>
-          <Button color={"blue"} type="submit">
-            Confirmar
-          </Button>
-        </Modal.Footer>
+        <ModalFooters onClose={handleClose} />
       </form>
     </Modal>
   );

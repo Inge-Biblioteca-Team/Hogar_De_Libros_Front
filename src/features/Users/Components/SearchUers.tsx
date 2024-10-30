@@ -38,15 +38,15 @@ const SearchUsers = ({
         />
       </div>
       <div>
-        <Label className=" text-lg">Tipo de Usuario</Label>
+        <Label className=" text-lg">Tipo de usuario</Label>
         <Select
           icon={CgScrollV}
           onChange={(event) => setRol(event.target.value)}
         >
           <option value="">Rol del usuario</option>
-          <option value="viewer">Usuario de Sala</option>
+          <option value="viewer">Usuario de sala</option>
           <option value="creator">Colaborador</option>
-          <option value="external_user">Usuario Externo</option>
+          <option value="external_user">Usuario externo</option>
           <option value="admin">Administrador</option>
         </Select>
       </div>
@@ -56,7 +56,7 @@ const SearchUsers = ({
           onChange={(event) => setYear(event.target.value)}
           type="text"
           icon={FaFileSignature}
-          placeholder="Año de Registro"
+          placeholder="Año de registro"
         />
       </div>
     </div>

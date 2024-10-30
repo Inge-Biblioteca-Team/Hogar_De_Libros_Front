@@ -13,7 +13,7 @@ const ProgressLoan = () => {
   return (
     <>
       <div className="">
-        <h5 className=" font-bold">Pendientes de Devolución</h5>
+        <h5 className=" font-bold">Pendientes de devolución</h5>
         <Table hoverable className=" text-center">
           <Table.Head>
             <Table.HeadCell className="w-10">#De Solicitud</Table.HeadCell>
@@ -21,11 +21,11 @@ const ProgressLoan = () => {
             <Table.HeadCell className="w-9">Fecha de solicitud</Table.HeadCell>
             <Table.HeadCell className="w-80">Fecha de vencimiento</Table.HeadCell>
           </Table.Head>
-          <Table.Body className=" h-72">
+          <Table.Body className=" h-64">
             {Loan?.count === 0 ? (
                <Table.Row>
                <Table.Cell colSpan={6}>
-                 No tiene Solicitudes Pendientes de Aprobación.
+                 No tiene solicitudes pendientes de aprobación.
                </Table.Cell>
              </Table.Row>
             ) : (

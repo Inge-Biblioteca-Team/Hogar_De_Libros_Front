@@ -30,7 +30,7 @@ const LandingHomeCards = ({
           <span>{Message}</span>
         </p>
         <Link to={Path} className=" underline hover:text-gray-400">
-          Más Información
+          Ver mas
         </Link>
       </figcaption>
     </figure>

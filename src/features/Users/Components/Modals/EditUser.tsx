@@ -1,10 +1,11 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { User } from "../../Type/UserType";
-import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
+import { Label, Modal, Select, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import UseEditInfoUser from "../../Hooks/UseEditInfoUser";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const EditUser = ({
   edit,
@@ -48,8 +49,12 @@ const EditUser = ({
     );
   };
 
+  const onClose = () => {
+    setEdit(false);
+  };
+
   return (
-    <Modal show={edit} onClose={() => setEdit(false)}>
+    <Modal show={edit} onClose={onClose}>
       <Modal.Header>
         <span>Editar Información del Usuario {User.name}</span>
       </Modal.Header>
@@ -133,14 +138,7 @@ const EditUser = ({
             <div></div>
           </fieldset>
         </Modal.Body>
-        <Modal.Footer className=" flex items-center justify-center gap-9">
-          <Button color={"failure"} onClick={() => setEdit(false)}>
-            Cancelar
-          </Button>
-          <Button color={"blue"} type="submit">
-            Confirmar
-          </Button>
-        </Modal.Footer>
+        <ModalFooters onClose={onClose} />
       </form>
     </Modal>
   );
