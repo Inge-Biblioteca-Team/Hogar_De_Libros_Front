@@ -4,13 +4,13 @@ import { useQuery } from "react-query";
 import { ChlildrenColecctionCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomUsersPagination from "../../../components/CustomUsersPagination";
 import UseDebounce from "../../../hooks/UseDebounce";
-import OptCategories from "../../Books/Components/OptsCategories";
 import ColectionGrid from "../../Books/Components/Views/ColectionGrid";
 import ColectionList from "../../Books/Components/Views/ColectionList";
 import { getColection } from "../Services/ChildrenServices";
 import { BsGrid3X3GapFill, BsListUl } from "react-icons/bs";
 import { LiaSearchengin } from "react-icons/lia";
 import { Catalog } from "../../Books/Types/BooksTypes";
+import OptsCateogryChildren from "../Components/OptsCateogryChildren";
 
 const ChildrenColection = () => {
   const [page, setPage] = useState<number>(() => {
@@ -29,7 +29,7 @@ const ChildrenColection = () => {
   const sTitle = UseDebounce(title, 1000);
 
   const { data: catalog } = useQuery<Catalog, Error>(
-    ["Children-catalog", page, limit, sTitle],
+    ["Children-catalog", page, limit, sTitle, category],
     () => getColection(page, limit, sTitle, "", "", "", "", category),
     {
       staleTime: 5000,
@@ -49,7 +49,7 @@ const ChildrenColection = () => {
               className="max-sm:hidden"
               onChange={(event) => setCategory(event.target.value)}
             >
-              <OptCategories />
+              <OptsCateogryChildren />
             </Select>
             <TextInput
               onChange={(event) => setTitle(event.target.value)}

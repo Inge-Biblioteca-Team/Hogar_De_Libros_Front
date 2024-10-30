@@ -3,11 +3,18 @@ import { LoanResponse, Loans } from "../../Types/BookLoan";
 import LoanBody from "./LoanBody";
 import { Table } from "flowbite-react";
 import { GetPendandRequest } from "../../Services/SvBookLoan";
+import { useContext } from "react";
+import UserContext from "../../../../Context/UserContext/UserContext";
 
 const RequestLoan = () => {
+
+  const {currentUser} = useContext(UserContext);
+  const cedula = currentUser?.cedula || "";
+
+
   const { data: Loan } = useQuery<LoanResponse, Error>(
-    ["RLoans"],
-    () => GetPendandRequest(1, 5, "504420813"),
+    ["RLoans", cedula],
+    () => GetPendandRequest(1, 5, cedula),
     {
       staleTime: 600,
     }

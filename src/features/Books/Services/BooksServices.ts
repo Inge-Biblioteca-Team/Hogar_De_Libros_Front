@@ -110,8 +110,6 @@ const getColection = async (
   category?: string,
   ISBN?:string,
   Editorial?:string
-
-  
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -128,6 +126,40 @@ const getColection = async (
     if(Editorial) params.Editorial = Editorial
 
     const response = await api.get("books", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+const getUserColection = async (
+  page: number,
+  limit: number,
+  title?: string,
+  author?: string,
+  year?: string,
+  status?: string,
+  Signa?: string,
+  category?: string,
+  ISBN?:string,
+  Editorial?:string
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {
+      page,
+      limit,
+    };
+    if (title) params.Title = title;
+    if (author) params.Author = author;
+    if (year) params.PublishedYear = year;
+    if (status) params.Status = status;
+    if (Signa) params.signatureCode = Signa;
+    if (category) params.ShelfCategory = category;
+    if(ISBN) params.ISBN = ISBN;
+    if(Editorial) params.Editorial = Editorial
+
+    const response = await api.get("books/Colection", { params });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -233,6 +265,7 @@ const LeadingRequestBook = async (data: BookLeading) => {
 };
 
 export {
+  getUserColection,
   LeadingRequestBook,
   searchCovers,
   uploadImage,
