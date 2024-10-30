@@ -14,13 +14,13 @@ const EventsRows = ({ event }: { event: Events }) => {
   const eventDay = formatToDMY(event.Date);
   return (
     <>
-      <Table.Row key={event.EventId} className=" h-24">
-        <Table.Cell className="w-52">{event.Title}</Table.Cell>
-        <Table.Cell className="w-52">{event.Location}</Table.Cell>
-        <Table.Cell className="w-44">{event.InchargePerson}</Table.Cell>
-        <Table.Cell className="w-52">{eventDay}</Table.Cell>
-        <Table.Cell className="w-64">{event.Time}</Table.Cell>
-        <Table.Cell className="w-64">
+      <Table.Row key={event.EventId}>
+        <Table.Cell>{event.Title}</Table.Cell>
+        <Table.Cell>{event.Location}</Table.Cell>
+        <Table.Cell>{event.InchargePerson}</Table.Cell>
+        <Table.Cell>{eventDay}</Table.Cell>
+        <Table.Cell>{event.Time}</Table.Cell>
+        <Table.Cell>
           {event.Status === "P"
             ? "Próximamente"
             : event.Status === "F"

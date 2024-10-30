@@ -126,7 +126,16 @@ const ProfileCrumbs = ({ text }: { text: string }) => {
   );
 };
 
+const MiddleCrumb = ({ label }: { label: string }) => {
+  return (
+    <BreadCrumbsItems>
+      <Breadcrumb.Item>{label}</Breadcrumb.Item>
+    </BreadCrumbsItems>
+  );
+};
+
 export {
+  MiddleCrumb,
   ProfileCrumbs,
   ServicesCrumbs,
   LoansCrumbs,
