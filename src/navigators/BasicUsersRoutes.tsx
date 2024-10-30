@@ -12,6 +12,10 @@ const BasicUsersRoutes = [
     path: "Catalogo",
     children: [
       {
+        index:true,
+
+      },
+      {
         index: true,
         element: <Colecction />,
       },
