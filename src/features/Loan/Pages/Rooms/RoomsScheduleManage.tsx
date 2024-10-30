@@ -6,7 +6,7 @@ import { addDay } from "@formkit/tempo";
 import { useQuery } from "react-query";
 import { queque } from "../../Types/RoomsReservations";
 import { getQueQueReservations } from "../../Services/SVReservations";
-import { BreadCrumbsItems, BreadLastItems } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 
 const RoomsScheduleManage = () => {
   const tomorrow = addDay(new Date());
@@ -24,9 +24,7 @@ const RoomsScheduleManage = () => {
 
   return (
     <>
-    <BreadCrumbsItems>
-    <BreadLastItems text="Reserva de salas"/>
-    </BreadCrumbsItems>
+    <LoansAndCirculationCrumbs text="Reservas de salas"/>
       <div className=" w-full flex items-center justify-center mt-40">
         <div className=" w-11/12 flex items-start justify-between gap-6">
           <SearchCalendar setSearchDate={setSearchDate} />

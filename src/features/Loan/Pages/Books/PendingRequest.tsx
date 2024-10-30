@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 import NoRequest from "../../Components/NoRequest";
 import CustomPagination from "../../../../components/CustomPagination";
 import {
-  BreadCrumbsItems,
-  BreadLastItems,
+  LoansAndCirculationCrumbs,
 } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 
 const PendingRequest = () => {
@@ -35,9 +34,7 @@ const PendingRequest = () => {
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>
-      <BreadCrumbsItems>
-        <BreadLastItems text="Solicitudes de préstamos" />
-      </BreadCrumbsItems>
+       <LoansAndCirculationCrumbs text="Solicitudes de libros"/>
       {Loan && Loan.count > 0 ? (
         <div className="flex place-content-center mt-20">
           <div className="w-4/5">

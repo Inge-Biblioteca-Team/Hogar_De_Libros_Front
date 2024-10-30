@@ -6,7 +6,7 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import { ApiProgramsResponse } from "../types/Programs";
 import ProgramsRows from "../components/ProgramsRows";
 import { GetProgramsList } from "../services/SvPrograms";
-import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import { ServicesCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
 
@@ -45,7 +45,7 @@ const ManagePrograms = () => {
   const MaxPage = Math.ceil((Programs?.count ?? 0) / currentLimit);
   return (
     <>
-      <BreadCrumbManage text="Programas" />
+      <ServicesCrumbs text="Programas" />
       <div className="w-full flex items-center justify-center">
         <div className="w-4/5">
           <div className="flex items-end justify-between w-full mb-5 mt-3">
