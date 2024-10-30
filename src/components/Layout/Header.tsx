@@ -9,6 +9,7 @@ import LoginAcces from "../../features/Users/Components/LoginAcces";
 import SidebarProvider from "../../Context/NavBarContext/NavProvider";
 import { useContext } from "react";
 import UserContext from "../../Context/UserContext/UserContext";
+import Inboxpage from "../../features/Inbox/Components/Btn/Inboxpage";
 
 const Header = ({ NavBarType }: { NavBarType: string }) => {
   const navi = useNavigate();
@@ -16,7 +17,8 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
     navi(`/`);
   };
 
-  const { isLogged } = useContext(UserContext);
+  const { isLogged, currentUser } = useContext(UserContext);
+  const role = currentUser?.role || ""
 
   return (
     <SidebarProvider>
@@ -44,7 +46,14 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
             </div>
           </div>
           <div className=" absolute right-5 ">
-            {isLogged ? <UserData /> : <LoginAcces />}
+            {isLogged ? (
+              <div className=" flex gap-4">
+                {role && role =="admin" &&<Inboxpage/>}  
+                <UserData />
+              </div>
+            ) : (
+              <LoginAcces />
+            )}
           </div>
         </Navbar.Brand>
         {NavBarType === "Landing" ? <LandingNavbar /> : <HomeNavbar />}
