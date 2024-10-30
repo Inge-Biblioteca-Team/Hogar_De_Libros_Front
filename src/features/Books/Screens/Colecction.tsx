@@ -3,7 +3,7 @@ import { ColecctionCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsIte
 import OptCategories from "../Components/OptsCategories";
 import { BsGrid3X3GapFill, BsListUl } from "react-icons/bs";
 import { LiaSearchengin } from "react-icons/lia";
-import { getColection } from "../Services/BooksServices";
+import { getUserColection  } from "../Services/BooksServices";
 import { useQuery } from "react-query";
 import { Catalog } from "../Types/BooksTypes";
 import { useState } from "react";
@@ -30,7 +30,7 @@ const Colecction = () => {
 
   const { data: catalog } = useQuery<Catalog, Error>(
     ["colection", page, limit, sTitle],
-    () => getColection(page, limit, sTitle, "", "", "1", "", category),
+    () => getUserColection (page, limit, sTitle, "", "", "1", "", category),
     {
       staleTime: 5000,
     }

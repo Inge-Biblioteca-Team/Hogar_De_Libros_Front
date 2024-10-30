@@ -3,11 +3,19 @@ import { LoanResponse, Loans } from "../../Types/BookLoan";
 import { Table} from "flowbite-react";
 import LoanBody from "./LoanBody";
 import { GetInProgressLoan } from "../../Services/SvBookLoan";
+import UserContext from "../../../../Context/UserContext/UserContext";
+import { useContext } from "react";
 
 const ProgressLoan = () => {
+
+  const {currentUser} = useContext(UserContext);
+  const cedula = currentUser?.cedula || "";
+
+
+
   const { data: Loan } = useQuery<LoanResponse, Error>(
-    ["PLoans"],
-    () => GetInProgressLoan(1,5,"","","","504420813"),
+    ["PLoans", cedula],
+    () => GetInProgressLoan(1,5,"","","",cedula),
   );
   
   return (

@@ -12,6 +12,7 @@ export type User = {
   role: string;
   birthDate: Date;
   gender: string;
+  loanPolicy:number
 };
 
 export type UsersResponse = {
