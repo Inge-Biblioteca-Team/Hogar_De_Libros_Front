@@ -1,9 +1,9 @@
 import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { formatToDMY } from "../../../../components/FormatTempo"; 
-import { Nota } from "../../Types/InboxTypes";
+import {Nota} from "../../Types/InboxTypes"
 
-const ViewTrashNote = ({
+const ViewNote = ({
     isOpen,
     setIsOpen,
     note,
@@ -12,13 +12,13 @@ const ViewTrashNote = ({
     setIsOpen: Dispatch<SetStateAction<boolean>>;
     note: Nota; 
 }) => {
-    
+
     const noteDate = formatToDMY(note.date); 
 
     return (
         <Modal show={isOpen} onClose={() => setIsOpen(false)} size="md">
             <Modal.Header>
-                <strong>Tipo: {note.type} </strong>
+            <strong>Tipo: {note.type} </strong>
             </Modal.Header>
             <Modal.Body className="flex flex-col gap-2">
                 <div className="flex-col flex gap-2 text-left justify-start">
@@ -27,7 +27,7 @@ const ViewTrashNote = ({
                         <strong>Fecha:</strong> {noteDate}
                     </span>
                     <span>
-                        <strong>mensaje:</strong> {note.message}
+                       <strong>Mensaje:</strong>{note.message}
                     </span>
                 </div>
             </Modal.Body>
@@ -40,4 +40,4 @@ const ViewTrashNote = ({
     );
 };
 
-export default ViewTrashNote;
+export default ViewNote;

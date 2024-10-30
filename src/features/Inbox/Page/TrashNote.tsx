@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
-import { SidebarComponent } from "../Components/Sidebar";
 import { getTrashNotes } from "../Services/SvInbox";
-import { Table, Breadcrumb } from "flowbite-react";
-import NoResults from "../../../components/NoResults";
+import { Button, ButtonGroup, Table } from "flowbite-react";
 import TblInbox from "../Components/TblInbox";
 import { InboxResponse, Nota } from "../Types/InboxTypes";
 import { PiTrash } from "react-icons/pi";
@@ -11,10 +9,15 @@ import useDeleteMulTrash from "../Hooks/Delete/useDeleteMulTrash";
 import { GoUnread } from "react-icons/go";
 import useRecoverMulTrash from "../Hooks/RecoverfromTrash/useRecoverMulTrash";
 import { IoMdCheckboxOutline } from "react-icons/io";
+import NoMessage from "../Components/NoMessage";
 
 const TrashNote = () => {
   const queryClient = useQueryClient();
-  const { data: inboxData, isLoading, error } = useQuery<InboxResponse, Error>(
+  const {
+    data: inboxData,
+    isLoading,
+    error,
+  } = useQuery<InboxResponse, Error>(
     ["TrashNotifications"],
     () => getTrashNotes(),
     {
@@ -23,17 +26,18 @@ const TrashNote = () => {
     }
   );
 
-  const inboxMessages: Nota[] = inboxData?.data.map((item: Nota) => ({
-    id_Note: item.id_Note,
-    date: item.date,
-    message: item.message,
-    type: item.type,
-    isRead: item.isRead,
-    trash: item.trash,
-  })) || [];
+  const inboxMessages: Nota[] =
+    inboxData?.data.map((item: Nota) => ({
+      id_Note: item.id_Note,
+      date: item.date,
+      message: item.message,
+      type: item.type,
+      isRead: item.isRead,
+      trash: item.trash,
+    })) || [];
 
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [selectAll, setSelectAll] = useState(false); 
+  const [selectAll, setSelectAll] = useState(false);
   const { mutate: deleteSelected } = useDeleteMulTrash();
   const { mutate: recoverSelected } = useRecoverMulTrash();
 
@@ -49,7 +53,7 @@ const TrashNote = () => {
     if (selectAll) {
       setSelectedIds([]);
     } else {
-      setSelectedIds(inboxMessages.map(message => message.id_Note));
+      setSelectedIds(inboxMessages.map((message) => message.id_Note));
     }
     setSelectAll(!selectAll);
   };
@@ -59,8 +63,8 @@ const TrashNote = () => {
       deleteSelected(selectedIds, {
         onSuccess: () => {
           setSelectedIds([]);
-          queryClient.invalidateQueries("TrashNotifications"); 
-        }
+          queryClient.invalidateQueries("TrashNotifications");
+        },
       });
     }
   };
@@ -70,8 +74,8 @@ const TrashNote = () => {
       recoverSelected(selectedIds, {
         onSuccess: () => {
           setSelectedIds([]);
-          queryClient.invalidateQueries("TrashNotifications"); 
-        }
+          queryClient.invalidateQueries("TrashNotifications");
+        },
       });
     }
   };
@@ -80,72 +84,64 @@ const TrashNote = () => {
   if (error) return <div>Error al cargar las notas de la papelera.</div>;
 
   return (
-    <div className="flex">
-      <Breadcrumb.Item></Breadcrumb.Item>
-      <div className="flex">
-        <SidebarComponent />
-        <div className="flex-grow p-8">
-          <main className="flex flex-col w-full gap-4">
-            <section className="w-full">
-              <div className="bg-white p-4 shadow-md h-[3rem] w-[84rem] rounded-2xl flex items-center pb-4">
-                <button
-                  title={selectAll ? "Deseleccionar todos" : "Seleccionar todos"}
-                  type="button"
-                  onClick={handleSelectAll}
-                >
-                  <IoMdCheckboxOutline size={23} />
-                </button>
-                {selectedIds.length > 0 && (
-                  <>
-                    <div className="w-px h-6 bg-gray-300 mx-2" />
-                    <button
-                      title="Eliminar seleccionados"
-                      type="button"
-                      onClick={handleDeleteSelected}
-                    >
-                      <PiTrash size={24} />
-                    </button>
-                    <div className="w-px h-6 bg-gray-300 mx-2" />
-                    <button
-                      title="Recuperar seleccionados"
-                      type="button"
-                      onClick={handleRecoverSelected}
-                    >
-                      <GoUnread size={24} />
-                    </button>
-                  </>
-                )}
-              </div>
-
-              <div className="pt-4">
-              {inboxData && inboxData.count > 0 ? (
-                <div className="overflow-hidden rounded-2xl pt-4 w-[84rem]">
-                  <div className="max-h-[40rem] overflow-y-auto">
-                    <Table hoverable className="text-center">
-                      <Table.Body>
-                        {inboxMessages.map((message: Nota) => (
-                          <TblInbox 
-                            key={message.id_Note} 
-                            message={message} 
-                            onSelect={handleSelectMessage} 
-                            selected={selectedIds.includes(message.id_Note)}
-                          />
-                        ))}
-                      </Table.Body>
-                    </Table>
-                  </div>
-                </div>
-              ) : (
-                <NoResults />
-              )}
-              </div>
-            </section>
-          </main>
-        </div>
+    <>
+      <div className="bg-white p-4 flex items-center pb-4 rounded-t-xl">
+        <ButtonGroup>
+          <Button
+            size={"sm"}
+            title={selectAll ? "Desmarcar todos" : "Seleccionar todos"}
+            type="button"
+            onClick={handleSelectAll}
+            color={"grey"}
+          >
+            <IoMdCheckboxOutline size={23} />
+          </Button>
+          {selectedIds.length > 0 && (
+            <Button
+              size={"sm"}
+              color={"grey"}
+              title="Eliminar seleccionados"
+              type="button"
+              onClick={handleDeleteSelected}
+            >
+              <PiTrash size={23} />
+            </Button>
+          )}
+          {selectedIds.length > 0 && (
+            <Button
+              size={"sm"}
+              color={"grey"}
+              title="Recuperar seleccionados"
+              type="button"
+              onClick={handleRecoverSelected}
+            >
+              <GoUnread size={24} />
+            </Button>
+          )}
+        </ButtonGroup>
       </div>
-    </div>
+      {inboxData && inboxData.count > 0 ? (
+        <div className="overflow-hidden rounded-b-2xl">
+          <div className="max-h-[40rem] min-h-[40rem] bg-white overflow-y-auto ">
+            <Table hoverable className="text-center text-lg">
+              <Table.Body>
+                {inboxMessages.map((message: Nota) => (
+                  <TblInbox
+                    key={message.id_Note}
+                    message={message}
+                    onSelect={handleSelectMessage}
+                    selected={selectedIds.includes(message.id_Note)}
+                  />
+                ))}
+              </Table.Body>
+            </Table>
+          </div>
+        </div>
+      ) : (
+        <NoMessage text="recibidos" />
+      )}
+    </>
   );
 };
 
 export default TrashNote;
-

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Inboxpage = () => {
     const navigate = useNavigate()
     const goto = () =>{
-      navigate("/HogarDeLibros/Mensajería/Recibidos")
+      navigate("/HogarDeLibros/Mensajeria")
     };
 
   return (

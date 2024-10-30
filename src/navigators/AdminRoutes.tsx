@@ -26,9 +26,7 @@ import ManageFriends from "../features/Amiguitos/screens/ManageFriends";
 import ManageRequestDonations from "../features/Donations/Screens/ManageRequestDonations";
 import ManagePendingReceiveDon from "../features/Donations/Screens/ManagePendingReceiveDon";
 import ManageDonationsHistory from "../features/Donations/Screens/ManageDonationsHistory";
-import ReadNote from "../features/Inbox/Page/ReadNote";
-import PendingNote from "../features/Inbox/Page/PendingNote";
-import TrashNote from "../features/Inbox/Page/TrashNote";
+import Inbox from "../features/Inbox/Page/Inbox";
 const AdminRoutes = [
   {
     path: "Prestamos_Circulacion",
@@ -186,21 +184,8 @@ const AdminRoutes = [
     ],
   },
   {
-    path: "Mensajería",
-    children: [
-      {
-        path: "Recibidos",
-        element: <PendingNote />,
-      },
-      {
-        path: "Leídos",
-        element: <ReadNote />,
-      },
-      {
-        path: "Papelera",
-        element: <TrashNote />,
-      },
-    ],
+    path: "Mensajeria",
+    element:<Inbox/>
   },
 ];
 

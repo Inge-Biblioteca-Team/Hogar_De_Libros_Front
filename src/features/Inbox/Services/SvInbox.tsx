@@ -64,6 +64,17 @@ const markAsRead = async (id_Note: number) => {
     }
   };
 
+  const moveMultipleToRead = async (id_Note: number[]) => {
+    try {
+      const response = await api.patch('notes/read/multiple', {
+        ids: id_Note, 
+      });
+      return response.data; 
+    } catch (error) {
+      console.error('Error moving multiple notifications to read:', error);
+      throw error;
+    }
+  };
   //mover a papeleria
   const moveToTrash = async (id_Note: number) => {
     try {
@@ -160,4 +171,5 @@ export{
     recoverMultipleFromTrash,
     createNote,
     getAllNotes,
+    moveMultipleToRead
 }
