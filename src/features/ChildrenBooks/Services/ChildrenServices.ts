@@ -39,7 +39,7 @@ const searchCovers = async (
     if (covers.length > 0) {
       return covers;
     } else {
-      throw new Error("No covers found in Open Library");
+      throw new Error("No se encontraron las caratulas en Open Library");
     }
   } catch (error) {
     console.error("Open Library error:", error);
@@ -69,26 +69,6 @@ const searchCovers = async (
   }
 };
 
-const uploadImage = async (file: File): Promise<string> => {
-  if (file) {
-    const formData = new FormData();
-    formData.append("image", file);
-
-    try {
-      const response = await api.post("/files/upload/book-children", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      return response.data.filePath;
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      throw new Error("Error uploading image");
-    }
-  }
-  throw new Error("No file provided");
-};
-
 const getColection = async (
   page: number,
   limit: number,
@@ -104,9 +84,9 @@ const getColection = async (
       page,
       limit,
     };
-    if (title) params.title = title;
-    if (author) params.author = author;
-    if (year) params.year = year;
+    if (title) params.Title = title;
+    if (author) params.Author = author;
+    if (year) params.Year = year;
     if (status) params.Status = status;
     if (Signa) params.SignatureCode = Signa;
     if (category) params.ShelfCategory = category;
@@ -158,7 +138,7 @@ const DisableChildrenBook = async (data: downType) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el recurso"
+        error.response?.data.message || "Error al deshabilitar el recurso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -181,7 +161,7 @@ const EditChildrenBook = async (data: Book) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el recurso"
+        error.response?.data.message || "Error al editar el recurso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -192,7 +172,6 @@ const EditChildrenBook = async (data: Book) => {
 
 export {
   searchCovers,
-  uploadImage,
   EditChildrenBook,
   DisableChildrenBook,
   CreateChildrenBook,

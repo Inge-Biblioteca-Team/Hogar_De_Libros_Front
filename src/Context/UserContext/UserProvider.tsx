@@ -1,34 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { User } from "./UserType";
 import UserContext from "./UserContext";
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+
   useEffect(() => {
-    const loggedStatus = sessionStorage.getItem("isLogged");
-    const user = sessionStorage.getItem("currentUser");
+    const loggedStatus = localStorage.getItem("isLogged");
+    const user = localStorage.getItem("currentUser");
 
     if (loggedStatus === "true" && user) {
-      setIsLogged(true);
-      setCurrentUser(JSON.parse(user));
+      try {
+        setIsLogged(true);
+        setCurrentUser(JSON.parse(user)||null);
+      } catch (error) {
+        console.error("Error al analizar el usuario:", error);
+      }
     }
   }, []);
 
-  useEffect(() => {
-    sessionStorage.setItem("isLogged", String(isLogged));
-    if (currentUser) {
-      sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
-    } else {
-      sessionStorage.removeItem("currentUser");
-    }
-  }, [isLogged, currentUser]);
+  const contextValue = useMemo(
+    () => ({
+      isLogged,
+      setIsLogged,
+      currentUser,
+      setCurrentUser,
+    }),
+    [isLogged, currentUser]
+  );
+
   return (
-    <UserContext.Provider
-      value={{ isLogged, setIsLogged, currentUser, setCurrentUser }}
-    >
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );
 };
 

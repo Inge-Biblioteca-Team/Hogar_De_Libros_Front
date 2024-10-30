@@ -7,7 +7,7 @@ const UseDownUser = () => {
 
   return useMutation(DownUser, {
     onSuccess: () => {
-      toast.success("Usuario deshabilitado.");
+      toast.success("Éxito, usuario deshabilitado correctamente.");
       queryClient.invalidateQueries("UsersMG");
     },
     onError: () => {

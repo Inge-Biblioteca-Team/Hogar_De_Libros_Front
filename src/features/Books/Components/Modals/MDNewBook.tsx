@@ -110,7 +110,7 @@ const MDNewBook = ({
                 <FloatingLabel
                   variant="outlined"
                   label="Código de signatura"
-                  {...register("SignatureCode")}
+                  {...register("signatureCode")}
                 />
               </div>
             </fieldset>

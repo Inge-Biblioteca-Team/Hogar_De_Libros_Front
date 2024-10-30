@@ -14,7 +14,7 @@ const useNewComputer = ({
     mutationFn: PostNewFurniture,
     onSuccess: () => {
       queryClient.invalidateQueries("FurnitureCatalog");
-      toast.success("Moviliario añadido con exito!");
+      toast.success("Exito, se añadió el moviliario correctamente");
       Open(true);
       Reset();
     },

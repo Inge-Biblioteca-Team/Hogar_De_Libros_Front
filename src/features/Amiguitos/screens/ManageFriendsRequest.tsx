@@ -10,6 +10,7 @@ import CustomPagination from "../../../components/CustomPagination";
 import FriendsRowsRequest from "../components/FriendsRowsRequest";
 import OPTCategories from "../components/OPTCategories";
 import OPTSubCategories from "../components/OPTSubCategories";
+import NoResults from "../../../components/NoResults";
 
 const ManageFriendsRequest = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -64,18 +65,24 @@ const ManageFriendsRequest = () => {
           </div>
         </section>
         <section className=" w-4/5">
-          <FriendsTableBody hidd>
-            {FriendList?.data.map((friend) => (
-              <FriendsRowsRequest friend={friend} key={friend.FriendId} />
-            ))}
-          </FriendsTableBody>
-          <CustomPagination
-            page={Page}
-            onPageChange={onPageChange}
-            totalPages={MaxPage}
-            setCurrentLimit={setCurrentLimit}
-            total={FriendList?.count || 0}
-          />
+          {FriendList && FriendList.count > 0 ? (
+            <>
+              <FriendsTableBody hidd>
+                {FriendList?.data.map((friend) => (
+                  <FriendsRowsRequest friend={friend} key={'FriR'+friend.FriendId} />
+                ))}
+              </FriendsTableBody>
+              <CustomPagination
+                page={Page}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={FriendList?.count || 0}
+              />
+            </>
+          ) : (
+            <NoResults />
+          )}
         </section>
       </main>
     </>

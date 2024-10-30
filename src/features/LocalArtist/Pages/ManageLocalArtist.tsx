@@ -1,5 +1,4 @@
-import {Table } from "flowbite-react";
-import NoRequest from "../../Loan/Components/NoRequest";
+import { Table } from "flowbite-react";
 import { useQuery } from "react-query";
 import { Artist, ResponseA } from "../types/LocalArtist";
 import { getLocalArtist } from "../services/SvArtist";
@@ -10,6 +9,7 @@ import CreateArtist from "../components/Modals/CreateArtist";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
+import NoResults from "../../../components/NoResults";
 
 const ManageLocalArtist = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -47,7 +47,7 @@ const ManageLocalArtist = () => {
     <>
       <BreadCrumbManage text="Artistas locales" />
 
-      <div className=" w-full flex items-center justify-center pt-12">
+      <div className=" w-full flex items-center justify-center">
         <div className=" w-4/5">
           <div className="flex items-center">
             <SearchArtists
@@ -57,11 +57,9 @@ const ManageLocalArtist = () => {
             />
             <CreateArtist />
           </div>
-          {Artists?.data.length == 0 ? (
-            <NoRequest text="No Existen Artistas Locales registrados" />
-          ) : (
+          {Artists && Artists.count > 0 ? (
             <>
-              <Table hoverable className=" text-center">
+              <Table hoverable className=" text-center h-[30rem]">
                 <Table.Head className=" h-20 text-sm">
                   <Table.HeadCell>Nombre</Table.HeadCell>
                   <Table.HeadCell>Tipo de Artista</Table.HeadCell>
@@ -84,6 +82,8 @@ const ManageLocalArtist = () => {
                 total={Artists?.count || 0}
               />
             </>
+          ) : (
+            <NoResults />
           )}
         </div>
       </div>

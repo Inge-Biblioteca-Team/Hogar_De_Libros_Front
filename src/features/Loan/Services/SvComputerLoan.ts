@@ -9,7 +9,7 @@ const GetStatus = async () => {
     const response = await api.get(`computers/workstation/Status`);
     return response.data;
   } catch (error) {
-    console.error("Error to get Stattu:", error);
+    console.error("Error al cargar el estado de los equipos de cómputo:", error);
     throw error;
   }
 };
@@ -26,7 +26,7 @@ const GetWSLoans = async (page: number, limit: number, StartDate?: string, Machi
     });
     return response.data;
   } catch (error) {
-    console.error("Error to get requests:", error);
+    console.error("Error al cargar los equipos de cómputo prestados:", error);
     throw error;
   }
 };
@@ -37,7 +37,7 @@ const FinalizeLoan = async (NMachine: number) => {
     const response = await api.patch(`computer-loan/finish/${NMachine}`);
     return response.data;
   } catch (error) {
-    console.error("Error to get Stattu:", error);
+    console.error("Error al finalizar el préstamo del equipo de cómputo:", error);
     throw error;
   }
 };
@@ -46,7 +46,7 @@ const ReactiveWS = async (NMachine: number) => {
     const response = await api.patch(`computers/${NMachine}/reactive`);
     return response.data;
   } catch (error) {
-    console.error("Error to get Stattu:", error);
+    console.error("Error al reactivar como disponible el equipo de cómputo:", error);
     throw error;
   }
 };
@@ -59,7 +59,7 @@ const MantenanceWS = async (Data: NewWSMantenance) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error to get Stattu:", error);
+    console.error("Error al cambiar el estado a mantenimiento al equipo de cómputo:", error);
     throw error;
   }
 };
@@ -68,7 +68,7 @@ const CreateNewWSLoan = async (Data: NewWSLoan) => {
     const response = await api.post(`computer-loan`, Data);
     return response.data;
   } catch (error) {
-    console.error("Error to get Stattu:", error);
+    console.error("Error al crear el préstamo del equipo de cómputo:", error);
     throw error;
   }
 };

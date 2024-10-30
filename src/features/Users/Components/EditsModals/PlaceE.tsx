@@ -1,10 +1,13 @@
-import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
+import { Label, Modal, Select, TextInput } from "flowbite-react";
 import { User } from "../../Type/UserType";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
 import UseEditInfoUser from "../../Hooks/UseEditInfoUser";
 import { useEffect } from "react";
+import OptProvincias from "../../../../components/OptProvincias";
+import OptCanton from "../../../../components/OptCanton";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const PlaceE = ({
   open,
@@ -15,7 +18,7 @@ const PlaceE = ({
   setOpen: (open: boolean) => void;
   User: User;
 }) => {
-  const { register, setValue, handleSubmit } = useForm<User>();
+  const { register, setValue, handleSubmit, watch } = useForm<User>();
 
   useEffect(() => {
     if (User) {
@@ -44,38 +47,34 @@ const PlaceE = ({
       }
     );
   };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal show={open} onClose={onClose}>
       <Modal.Header>Editar Información De Residencia</Modal.Header>
       <form onSubmit={handleSubmit(handleConfirm)}>
         <Modal.Body>
           <div>
             <Label>Provincia</Label>
             <Select {...register("province")}>
-              <option value="">Seleccione la provincia de residencia</option>
-              <option value="Guanacaste">Guanacaste</option>
-              <option value="San Jose">San Jose</option>
+              <OptProvincias />
             </Select>
           </div>
           <div>
-            <Label>Canton</Label>
+            <Label>Cantón</Label>
             <Select {...register("district")}>
-              <option value="">Seleccione su canton de residencia</option>
-              <option value="Nicoya">Nicoya</option>
-              <option value="Moravia">Moravia</option>
+              <OptCanton province={watch("province")} />
             </Select>
           </div>
           <div>
-            <Label>Direccion</Label>
+            <Label>Dirección</Label>
             <TextInput {...register("address")} />
           </div>
         </Modal.Body>
-        <Modal.Footer className=" flex items-center justify-center">
-          <Button color={"failure"}  onClick={() => setOpen(false)} >Cancelar</Button>
-          <Button color={"blue"} type="submit">
-            Confirmar
-          </Button>
-        </Modal.Footer>
+        <ModalFooters onClose={onClose} />
       </form>
     </Modal>
   );

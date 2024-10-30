@@ -27,7 +27,7 @@ const MDEditChildrenBook = ({
       ShelfCategory: book.ShelfCategory || "",
       Cover: book.Cover || "",
       BookConditionRating: book.BookConditionRating || 0,
-      SignatureCode: book.SignatureCode || "",
+      signatureCode: book.signatureCode || "",
       InscriptionCode: book.InscriptionCode || "",
       Observations: book.Observations || "",
       ReserveBook: book.ReserveBook || false,
@@ -126,13 +126,11 @@ const MDEditChildrenBook = ({
                   variant="outlined"
                   label="ISBN"
                   {...register("ISBN")}
-                  required
                 />
                 <FloatingLabel
                   variant="outlined"
                   label="Código de signatura"
-                  {...register("SignatureCode")}
-                  required
+                  {...register("signatureCode")}
                 />
               </div>
             </fieldset>
@@ -145,13 +143,11 @@ const MDEditChildrenBook = ({
                   variant="outlined"
                   label="Código de inscripción"
                   {...register("InscriptionCode")}
-                  required
                 />
                 <FloatingLabel
                   variant="outlined"
                   label="Observaciones"
                   {...register("Observations")}
-                  required
                 />
                 <div>
                   <Label value="Estado del libro" />
@@ -167,6 +163,7 @@ const MDEditChildrenBook = ({
                   <Select
                     className="custom-Select "
                     {...register("ShelfCategory")}
+                    required
                   >
                     <OptsCateogryChildren />
                   </Select>

@@ -39,7 +39,7 @@ const LandingFooter = () => {
             <Footer.Title title="Legal" className="text-lg text-white max-sm:text-xs" />
             <Footer.LinkGroup col className=" max-sm:text-xs">
               <Footer.Link href="">Política de privacidad</Footer.Link>
-              <Footer.Link href="">Términos & Condiciones</Footer.Link>
+              <Footer.Link href="">Términos & condiciones</Footer.Link>
             </Footer.LinkGroup>
           </div>
         </div>

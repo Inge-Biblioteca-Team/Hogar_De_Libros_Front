@@ -9,7 +9,8 @@
       "default",
       {
         "ignore": [
-          "scale"
+          "scale",
+          "mask-image"
         ]
       }
     ],

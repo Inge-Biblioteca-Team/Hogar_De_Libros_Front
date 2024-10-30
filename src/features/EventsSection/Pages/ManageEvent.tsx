@@ -4,12 +4,12 @@ import { useQuery } from "react-query";
 import { GetEvents } from "../services/SvEvents";
 import { apiResponseE } from "../types/Events";
 import { Table } from "flowbite-react";
-import NoRequest from "../../Loan/Components/NoRequest";
 import EventsRows from "../components/EventsRows";
 import SearchEvents from "../components/BTN/SerchEvents";
 import CreateEvents from "../components/Modals/CreateEvents";
-import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import { ServicesCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
+import NoResults from "../../../components/NoResults";
 
 const ManageEvents = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -44,22 +44,20 @@ const ManageEvents = () => {
   const MaxPage = Math.ceil((Events?.count ?? 0) / currentLimit);
   return (
     <>
-      <BreadCrumbManage text="Eventos" />
+      <ServicesCrumbs text="Eventos" />
       <div className="w-full flex items-center justify-center">
         <div className="w-4/5">
-          <div className="flex items-end justify-between w-full mb-5 mt-3">
+          <div className="flex items-end justify-between w-full mb-4 ">
             <SearchEvents EName={setStitle} EStatus={setSStatus} />
             <div>
               <CreateEvents />
             </div>
           </div>
 
-          {Events?.count === 0 ? (
-            <NoRequest text="No Existen Eventos registrados" />
-          ) : (
+          {Events && Events?.count > 0 ? (
             <>
               <Table hoverable className="text-center">
-                <Table.Head className="h-20 text-sm">
+                <Table.Head>
                   <Table.HeadCell>Título</Table.HeadCell>
                   <Table.HeadCell>Ubicación</Table.HeadCell>
                   <Table.HeadCell>Persona a Cargo</Table.HeadCell>
@@ -68,7 +66,7 @@ const ManageEvents = () => {
                   <Table.HeadCell>Estado</Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
-                <Table.Body className=" h-96">
+                <Table.Body className=" h-[30rem]">
                   {Events?.data.map((event) => (
                     <EventsRows key={event.EventId} event={event} />
                   ))}
@@ -82,6 +80,8 @@ const ManageEvents = () => {
                 total={Events?.count || 0}
               />
             </>
+          ) : (
+            <NoResults />
           )}
         </div>
       </div>

@@ -13,7 +13,7 @@ const UseCancelEvent = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("EventCatalog");
-        toast.success("Estado Actualizado Correctamente");
+        toast.success("Exito, se canceló el evento correctamente");
       },
       onError: (error: ApiError) => {
         toast.error(error.message);

@@ -1,8 +1,8 @@
-import { Button, Modal } from "flowbite-react";
+import { Modal, Textarea } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import UseRefuese from "../../../Hooks/Rooms/UseRefuese";
 import { Reserve } from "../../../Types/RoomsReservations";
+import ModalFooters from "../../../../../components/ModalFooters";
 
 const MDRefuseReservation = ({
   open,
@@ -13,32 +13,25 @@ const MDRefuseReservation = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   reserve: Reserve;
 }) => {
-  const { mutate: responseReserve } = UseRefuese("Refuse");
+  
 
-  const onSubmit = async () => {
-    responseReserve(reserve.rommReservationId, {
-      onSuccess: () => {},
-      onError: () => {},
-    });
+  const onClose = () => {
+    setOpen(false);
   };
   return (
-    <Modal show={open} onClose={() => setOpen(false)} popup>
-      <Modal.Body className="flex items-center justify-center flex-col">
-        <div className="text-center mt-7">
-          <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-        </div>
-        <span>
-          Está seguro que quiere rechazar la reserva de {reserve.name}
-        </span>
-      </Modal.Body>
-      <Modal.Footer className="flex items-center justify-center">
-        <Button color={"failure"} tabIndex={2} onClick={() => setOpen(false)}>
-          Regresar
-        </Button>
-        <Button color={"blue"} onClick={onSubmit}>
-          Confirmar
-        </Button>{" "}
-      </Modal.Footer>
+    <Modal show={open} onClose={onClose} popup size={"md"}>
+      <form  >
+        <Modal.Body className="flex items-center justify-center flex-col text-center">
+          <div className="text-center mt-7">
+            <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+          </div>
+          <span>
+            Está seguro que quiere rechazar la reserva de {reserve.name}
+          </span>
+          <Textarea className="mt-3" rows={4} placeholder="Motivo" required />
+        </Modal.Body>
+        <ModalFooters onClose={onClose} />
+      </form>
     </Modal>
   );
 };

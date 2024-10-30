@@ -7,11 +7,11 @@ const UseDownArtist = () => {
 
   return useMutation(DownArtist, {
     onSuccess: () => {
-      toast.success("Artista deshabilitado.");
+      toast.success("Exito, artista deshabilitado correctamente.");
       queryClient.invalidateQueries("LocalArtistMG");
     },
     onError: () => {
-      toast.error("Error al actualizar al deshabilitar el Artista.");
+      toast.error("Error deshabilitar el artista.");
     },
   });
 };

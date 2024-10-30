@@ -51,8 +51,8 @@ const CancelEnrollment = ({
         </span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"failure"} onClick={() => setopen(false)}>
-          Regresar
+        <Button color={"red"} onClick={() => setopen(false)}>
+         Volver
         </Button>
         <Button color={"blue"} onClick={handleCancel}>
           Confirmar

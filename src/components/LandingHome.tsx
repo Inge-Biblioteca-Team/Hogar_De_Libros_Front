@@ -4,6 +4,7 @@ import {
   faChalkboardUser,
   faChildren,
   faBookOpen,
+  faHouseLaptop,
 } from "@fortawesome/free-solid-svg-icons";
 
 const LandingHome = () => {
@@ -13,26 +14,34 @@ const LandingHome = () => {
       className="flex w-full items-center justify-center flex-col gap-5
       "
     >
-        <LandingBanner/>
-      <div className=" flex gap-5 h-52 w-4/5 max-sm:w-full max-sm:h-auto ">
-        <LandingHomeCards
-          Icon={faBookOpen}
-          Title="Préstamos"
-          Message="Explora la ámplia cantidad de diversos libros, solicita una sala para tus activadesde e incluso equipo tecnológico"
-          Path="/HogarDeLibros"
-        />
-        <LandingHomeCards
-          Icon={faChalkboardUser}
-          Title="Cursos y Eventos"
-          Message="Matricula en los diversos cursos y talleres brindados por nosotros y por los voluntariados de la biblioteca"
+      <LandingBanner />
+      <div className=" w-4/5">
+        <div className=" grid grid-cols-4 gap-4 mt-10">
+          <LandingHomeCards
+            Icon={faBookOpen}
+            Title="catalogo de libros"
+            Message="Explora la amplia cantidad de diversos libros"
+            Path="/HogarDeLibros/Catalogo"
+          />
+          <LandingHomeCards
+            Icon={faChalkboardUser}
+            Title="Cursos y eventos"
+            Message="Matricula los diversos cursos y talleres brindados por nosotros y por los colaboradores de la biblioteca"
             Path="/HogarDeLibros"
-        />
-        <LandingHomeCards
-          Icon={faChildren}
-          Title="Amiguitos De la biblioteca"
-          Message="Unete a nuestro programa de voluntariado donde podras ayudar a la biblioteca de diversas maneras."
+          />
+          <LandingHomeCards
+            Icon={faChildren}
+            Title="Amigo de la biblioteca"
+            Message="Únete a nuestro programa de voluntariado donde podrás ayudar a la biblioteca de diversas maneras."
             Path="/HogarDeLibros"
-        />
+          />
+          <LandingHomeCards
+            Icon={faHouseLaptop}
+            Title="Sistema Hogar de libros"
+            Message="Únete como usuario y recibe beneficios como la reserva de libros desde de tu casa, consulta de nuestro catalogo de libros entre otros."
+            Path="/HogarDeLibros"
+          />
+        </div>
       </div>
     </section>
   );

@@ -16,7 +16,7 @@ const useCreateEvent = () => {
     mutationFn: PostNewEvent,
     onSuccess: () => {
       queryClient.invalidateQueries("EventCatalog");
-      toast.success("Evento creado con éxito!");
+      toast.success("Exito, se creo el evento correctamente");
     },
     onError: (error: ApiError) => {
       toast.error("Error al crear el evento: " + (error).message);

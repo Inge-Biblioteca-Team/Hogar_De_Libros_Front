@@ -3,17 +3,17 @@ import { useQuery } from "react-query";
 import { User } from "../Type/UserType";
 import { GetUserInfo } from "../Services/SvUsuer";
 import { format } from "@formkit/tempo";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ContacE from "../Components/EditsModals/ContacE";
 import GeneralInfoE from "../Components/EditsModals/GeneralInfoE";
 import PlaceE from "../Components/EditsModals/PlaceE";
-import {
-  BreadCrumbsItems,
-  BreadLastItems,
-} from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import { ProfileCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import UserContext from "../../../Context/UserContext/UserContext";
+import { getLoanPolicity } from "../../../components/Maps/LoanPolicity";
 
 const EditUser = () => {
-  const cedula = sessionStorage.getItem("cedula");
+  const { currentUser } = useContext(UserContext);
+  const cedula = currentUser?.cedula || "";
 
   const { data: User } = useQuery<User>(
     ["userInfo", cedula],
@@ -45,20 +45,12 @@ const EditUser = () => {
   const [openC, setOpneC] = useState<boolean>(false);
   const [openR, setOpneR] = useState<boolean>(false);
 
-  const LoanMapping: { [key: string]: string } = {
-    admin: "Ilimitado",
-    creator: "5 Libros por 30 días",
-    viewer: "No Apto Para Prestamos",
-    external_user: "5 Libros 30 días",
-  };
   return (
     <>
-      <BreadCrumbsItems>
-        <BreadLastItems text="Perfil" />
-      </BreadCrumbsItems>
+      <ProfileCrumbs text="Mi perfil" />
       <div className=" w-full flex items-center justify-center">
         <div className=" w-4/5 flex flex-col gap-6 justify-center">
-          <fieldset className="mt-10">
+          <fieldset>
             <legend className=" font-bold text-2xl">Información General</legend>
             <Card className=" w-full">
               <div className=" w-full flex items-end justify-between">
@@ -99,7 +91,8 @@ const EditUser = () => {
                       <strong className=" font-bold">
                         Máximo de libros a solicitar:{" "}
                       </strong>
-                      {(User?.role && LoanMapping[User.role]) || "N/A"}
+                      {(User?.loanPolicy && getLoanPolicity(User.loanPolicy)) ||
+                        "N/A"}
                     </span>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   TextInput,
   Button,
@@ -7,12 +7,21 @@ import {
   Card,
   Select,
   Popover,
+  Spinner,
 } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import UseRegister from "../Hooks/UseRegister";
-import { RegisterInfo } from "../Type/UserType";
+import { PersonData, RegisterInfo } from "../Type/UserType";
 import toast from "react-hot-toast";
 import { MdOutlineError } from "react-icons/md";
+import OptProvincias from "../../../components/OptProvincias";
+import OptCanton from "../../../components/OptCanton";
+import { useQuery } from "react-query";
+import UseDebounce from "../../../hooks/UseDebounce";
+import { getUserInformationByCedula } from "../Services/SvUsuer";
+import { useEffect } from "react";
+import cover from "../../../Assets/RegisterCover.jpg";
+
 const Register = () => {
   const navigate = useNavigate();
 
@@ -22,6 +31,7 @@ const Register = () => {
     watch,
     formState: { errors },
     trigger,
+    setValue,
   } = useForm<RegisterInfo>({ mode: "onChange" });
 
   const password = watch("password");
@@ -41,8 +51,32 @@ const Register = () => {
 
     return result;
   };
+
+  const cedula = UseDebounce(watch("cedula"), 1000);
+
+  const { data: User, isLoading } = useQuery<PersonData>(
+    ["userInformation", cedula],
+    () =>
+      cedula
+        ? getUserInformationByCedula(cedula)
+        : Promise.reject("Cedula no encontrada"),
+    {
+      enabled: !!cedula,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      retry: 1,
+    }
+  );
+
+  useEffect(() => {
+    if (User && User.results && User.resultcount > 0) {
+      setValue("name", User.results[0].firstname || "");
+      setValue("lastName", User.results[0].lastname || "");
+    }
+  }, [User, setValue]);
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800 p-8">
+    <div className="flex justify-center items-center min-h-screen bg-gray-800 p-8 max-sm:p-0 max-sm:px-2">
       <Card className="max-w-screen-lg w-full">
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/2">
@@ -51,12 +85,12 @@ const Register = () => {
             </h2>
             <p className="text-sm mb-4">
               ¿Posees una cuenta?{" "}
-              <a
-                href="/IniciarSesion"
+              <Link
+                to="/IniciarSesion"
                 className="text-blue-500 hover:underline"
               >
-                Inicia Sesión aquí.
-              </a>
+                Inicia sesión aquí.
+              </Link>
             </p>
 
             <form
@@ -73,26 +107,52 @@ const Register = () => {
             >
               <fieldset className=" grid grid-cols-2 gap-3">
                 <div>
-                  <Label htmlFor="IDNumber" value="Número de Cédula" />{" "}
+                  <Label htmlFor="IDNumber" value="Número de cédula" />{" "}
                   <TextInput
+                    placeholder="Sin guiones"
                     id="IDNumber"
                     inputMode="numeric"
-                    type="text"
-                    pattern="[0-9]*"
+                    type="number"
+                    pattern="^\d{9}$"
                     required
                     {...register("cedula")}
                   />
                 </div>
-                <div>
+                <div className=" relative">
                   <Label htmlFor="Name" value="Nombre" />
-                  <TextInput id="Name" required {...register("name")} />
+                  {isLoading && (
+                    <Spinner
+                      color="info"
+                      size="xs"
+                      className="absolute right-2 top-10 z-40"
+                    />
+                  )}
+                  <TextInput
+                    className="relative"
+                    id="Name"
+                    required
+                    {...register("name")}
+                    placeholder="Primer nombre"
+                  />
                 </div>
-                <div>
+                <div className=" relative">
+                  {isLoading && (
+                    <Spinner
+                      color="info"
+                      size="xs"
+                      className="absolute right-2 top-10 z-40"
+                    />
+                  )}
                   <Label htmlFor="LastName" value="Apellidos" />
-                  <TextInput id="LastName" required {...register("lastName")} />
+                  <TextInput
+                    id="LastName"
+                    required
+                    {...register("lastName")}
+                    placeholder="Ambos apellidos"
+                  />
                 </div>
                 <div>
-                  <Label htmlFor="BirthDate" value="Fecha de Nacimiento" />
+                  <Label htmlFor="BirthDate" value="Fecha de nacimiento" />
                   <TextInput
                     id="BirthDate"
                     type="date"
@@ -103,34 +163,40 @@ const Register = () => {
                 <div>
                   <Label htmlFor="Gender" value="Género" />
                   <Select id="Gender" required {...register("gender")}>
-                    <option value="" disabled>
-                      Selecciona tu género
-                    </option>
-                    <option value="H">Hombre</option>
-                    <option value="M">Mujer</option>
-                    <option value="Otros">Otros</option>
+                    <option value="">Selecciona tu género</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
                   </Select>
                 </div>
                 <div>
                   <Label htmlFor="Province" value="Provincia" />
-                  <TextInput id="Province" required {...register("province")} />
+                  <Select id="Province" {...register("province")} required>
+                    <OptProvincias />
+                  </Select>
                 </div>
               </fieldset>
-
               <fieldset className=" grid grid-cols-2 gap-3">
                 <div>
                   <Label htmlFor="District" value="Cantón" />
-                  <TextInput id="District" required {...register("district")} />
+                  <Select id="District" required {...register("district")}>
+                    <OptCanton province={watch("province")} />
+                  </Select>
                 </div>
                 <div>
                   <Label htmlFor="Address" value="Dirección" />
-                  <TextInput id="Address" required {...register("address")} />
+                  <TextInput
+                    id="Address"
+                    required
+                    {...register("address")}
+                    placeholder="Ej. 100 metros norte..."
+                  />
                 </div>
               </fieldset>
               <fieldset className=" grid grid-cols-2 gap-3">
                 <div>
                   <Label htmlFor="PhoneNumber" value="Teléfono" />
                   <TextInput
+                    placeholder="Ej. +506...."
                     id="PhoneNumber"
                     inputMode="numeric"
                     type="number"
@@ -142,6 +208,7 @@ const Register = () => {
                 <div>
                   <Label htmlFor="Email" value="Correo" />
                   <TextInput
+                    placeholder="ej@gmail.com"
                     id="Email"
                     type="email"
                     required
@@ -149,9 +216,10 @@ const Register = () => {
                   />
                 </div>
 
-                <div className="relative" >
+                <div className="relative">
                   <Label htmlFor="Password" value="Contraseña" />
                   <TextInput
+                    placeholder="8 caracteres, sin caracteres especiales"
                     id="Password"
                     type="password"
                     required
@@ -172,7 +240,7 @@ const Register = () => {
                       errors.password ? "border-red-500" : "border-gray-300"
                     } rounded-lg`}
                   />
-                   {errors.password && (
+                  {errors.password && (
                     <Popover
                       trigger="hover"
                       placement="top"
@@ -183,7 +251,7 @@ const Register = () => {
                       }
                       className="z-10"
                     >
-                      <span className="absolute left-52 top-10 text-red-600 cursor-pointer">
+                      <span className="absolute left-52 top-10 text-red-600 cursor-pointer max-sm:left-32">
                         <MdOutlineError />
                       </span>
                     </Popover>
@@ -224,7 +292,7 @@ const Register = () => {
                       }
                       className="z-10"
                     >
-                      <span className="absolute left-52 top-10 text-red-600 cursor-pointer">
+                      <span className="absolute left-52 top-10 text-red-600 cursor-pointer max-sm:left-32">
                         <MdOutlineError />
                       </span>
                     </Popover>
@@ -239,9 +307,12 @@ const Register = () => {
                 />
                 <Label htmlFor="AcceptTermsAndConditions" className="ml-2">
                   Acepto los{" "}
-                  <a href="" className=" hover:text-Body">
+                  <a
+                    href=""
+                    className=" hover:text-Body text-blue-500 hover:underline"
+                  >
                     {" "}
-                    Términos y Condiciones
+                    términos y condiciones
                   </a>
                 </Label>
               </div>
@@ -250,7 +321,7 @@ const Register = () => {
                 <Button
                   tabIndex={2}
                   type="button"
-                  color="failure"
+                  color="red"
                   onClick={() => navigate("/HogarDeLibros")}
                 >
                   Cancelar
@@ -261,13 +332,13 @@ const Register = () => {
               </div>
             </form>
           </div>
-          <div className="md:w-1/2 p-6 flex justify-center items-center">
+          <div className="md:w-1/2 p-6 flex justify-center items-center max-sm:hidden">
             <div className="text-center">
               <h6 className="text-lg font-bold text-blue-600 mb-4">
                 Biblioteca Pública Municipal de Nicoya
               </h6>
               <img
-                src="src/Assets/young-woman.jpg"
+                src={cover}
                 alt="Mujer leyendo"
                 className="rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
               />

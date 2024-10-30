@@ -25,7 +25,7 @@ const SeeComponent = ({
 
   return (
     <Modal show={sSee} onClose={() => setSee(false)}>
-      <Modal.Header>Información del Equipo</Modal.Header>
+      <Modal.Header>Información del equipo</Modal.Header>
       <Modal.Body className=" grid grid-cols-2 gap-x-20 gap-y-11 text-center">
         <span>
           {" "}

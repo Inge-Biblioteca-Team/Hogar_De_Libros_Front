@@ -37,8 +37,8 @@ const TblRow = ({
         <Table.Cell className="w-56">{ReqDate}</Table.Cell>
         <Table.Cell className="w-56">{ExDate}</Table.Cell>
         <Table.Cell className="w-64">{Loan.user.name}</Table.Cell>
-        <Table.Cell className="w-44 line-clamp-1 mt-3">
-          {Loan.book.Title}
+        <Table.Cell>
+          <div className="w-44 line-clamp-1 mt-3">{Loan.book.Title}</div>
         </Table.Cell>
         <Table.Cell className="w-52">{Loan.book.signatureCode} </Table.Cell>
         <Table.Cell className={`${NeedAccions ? `hidden` : ``} w-64`}>

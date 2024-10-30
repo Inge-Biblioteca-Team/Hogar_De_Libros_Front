@@ -18,29 +18,24 @@ const ImportanNotices = () => {
   );
   return (
     <section
-      className="relative w-full max-w-4xl mx-auto max-sm:w-4/5"
+      className="relative w-full max-w-4xl mx-auto max-sm:w-4/5 mt-10"
       id="Activities"
     >
       {Advices && Advices.count > 0 ? (
         <>
           <h2 className="text-center font-bold text-2xl mb-6">
-            Avisos Importantes
+            Avisos importantes
           </h2>
-          <div className="flex items-center justify-between">
-            <div className="w-full overflow-hidden max-sm:overflow-x-scroll">
-              <article className="flex transition-transform duration-300">
-                <Carousel
-                  className="Custom-Carousel"
-                  indicators={false}
-                  pauseOnHover
-                >
-                  {Advices?.data.map((advice) => (
-                    <NoticeCard advice={advice} key={advice.id_Advice} />
-                  ))}
-                </Carousel>
-              </article>
-            </div>
-          </div>
+          <Carousel
+            className="Custom-Carousel"
+            indicators={false}
+            pauseOnHover
+            style={{ height: "28rem" }}
+          >
+            {Advices?.data.map((advice) => (
+              <NoticeCard advice={advice} key={"AD"+advice.id_Advice} />
+            ))}
+          </Carousel>
         </>
       ) : (
         ""

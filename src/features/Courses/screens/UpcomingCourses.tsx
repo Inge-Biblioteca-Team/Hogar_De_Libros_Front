@@ -24,21 +24,31 @@ const UpcomingCourses = () => {
   const groupedCourses = chunkArray(Courses?.data || [], 4);
 
   return (
-    <section
-      className="m-5 flex items-center w-4/5 flex-col max-sm:m-0"
-      id="Courses"
-    >
-      <h2 className="font-bold text-2xl mb-5">Cursos disponibles</h2>
-      <Carousel indicators={false} pauseOnHover leftControl rightControl>
-        {groupedCourses.map((group, groupIndex) => (
-          <div key={groupIndex} className=" flex justify-center gap-x-4">
-            {group.map((course) => (
-              <CardCourses Courses={course} key={course.Id} />
+    <>
+      {Courses && Courses.count > 0 && (
+        <section
+          className="m-5 flex items-center w-4/5 flex-col max-sm:m-0"
+          id="Courses"
+        >
+          <h2 className="font-bold text-2xl">Cursos disponibles</h2>
+          <Carousel
+            indicators={false}
+            pauseOnHover
+            leftControl
+            rightControl
+            style={{ height: "30rem" }}
+          >
+            {groupedCourses.map((group, groupIndex) => (
+              <div key={groupIndex} className=" flex justify-center gap-x-4">
+                {group.map((course) => (
+                  <CardCourses Courses={course} key={"CO" + course.Id} />
+                ))}
+              </div>
             ))}
-          </div>
-        ))}
-      </Carousel>
-    </section>
+          </Carousel>
+        </section>
+      )}
+    </>
   );
 };
 

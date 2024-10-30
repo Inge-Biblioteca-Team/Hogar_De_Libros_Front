@@ -3,17 +3,25 @@ import { LoanResponse, Loans } from "../../Types/BookLoan";
 import { Table} from "flowbite-react";
 import LoanBody from "./LoanBody";
 import { GetInProgressLoan } from "../../Services/SvBookLoan";
+import UserContext from "../../../../Context/UserContext/UserContext";
+import { useContext } from "react";
 
 const ProgressLoan = () => {
+
+  const {currentUser} = useContext(UserContext);
+  const cedula = currentUser?.cedula || "";
+
+
+
   const { data: Loan } = useQuery<LoanResponse, Error>(
-    ["PLoans"],
-    () => GetInProgressLoan(1,5,"","","","504420813"),
+    ["PLoans", cedula],
+    () => GetInProgressLoan(1,5,"","","",cedula),
   );
   
   return (
     <>
       <div className="">
-        <h5 className=" font-bold">Pendientes de Devolución</h5>
+        <h5 className=" font-bold">Pendientes de devolución</h5>
         <Table hoverable className=" text-center">
           <Table.Head>
             <Table.HeadCell className="w-10">#De Solicitud</Table.HeadCell>
@@ -21,11 +29,11 @@ const ProgressLoan = () => {
             <Table.HeadCell className="w-9">Fecha de solicitud</Table.HeadCell>
             <Table.HeadCell className="w-80">Fecha de vencimiento</Table.HeadCell>
           </Table.Head>
-          <Table.Body className=" h-72">
+          <Table.Body className=" h-64">
             {Loan?.count === 0 ? (
                <Table.Row>
                <Table.Cell colSpan={6}>
-                 No tiene Solicitudes Pendientes de Aprobación.
+                 No tiene solicitudes pendientes de aprobación.
                </Table.Cell>
              </Table.Row>
             ) : (

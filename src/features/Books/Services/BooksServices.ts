@@ -49,7 +49,7 @@ const searchCovers = async (
     if (covers.length > 0) {
       return covers;
     } else {
-      throw new Error("No covers found in Open Library");
+      throw new Error("Las caratulas no fuercon econtradas en Open Library");
     }
   } catch (error) {
     console.error("Open Library error:", error);
@@ -92,11 +92,11 @@ const uploadImage = async (file: File): Promise<string> => {
       });
       return response.data.filePath;
     } catch (error) {
-      console.error("Error uploading image:", error);
-      throw new Error("Error uploading image");
+      console.error("Error al subir imagen:", error);
+      throw new Error("Error al subir imagen");
     }
   }
-  throw new Error("No file provided");
+  throw new Error("Los archivos no fuero provisionados");
 };
 
 const getColection = async (
@@ -107,7 +107,9 @@ const getColection = async (
   year?: string,
   status?: string,
   Signa?: string,
-  category?: string
+  category?: string,
+  ISBN?:string,
+  Editorial?:string
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -115,12 +117,49 @@ const getColection = async (
       limit,
     };
     if (title) params.Title = title;
-    if (author) params.author = author;
-    if (year) params.year = year;
+    if (author) params.Author = author;
+    if (year) params.PublishedYear = year;
     if (status) params.Status = status;
-    if (Signa) params.SignatureCode = Signa;
+    if (Signa) params.signatureCode = Signa;
     if (category) params.ShelfCategory = category;
+    if(ISBN) params.ISBN = ISBN;
+    if(Editorial) params.Editorial = Editorial
+
     const response = await api.get("books", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+const getUserColection = async (
+  page: number,
+  limit: number,
+  title?: string,
+  author?: string,
+  year?: string,
+  status?: string,
+  Signa?: string,
+  category?: string,
+  ISBN?:string,
+  Editorial?:string
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {
+      page,
+      limit,
+    };
+    if (title) params.Title = title;
+    if (author) params.Author = author;
+    if (year) params.PublishedYear = year;
+    if (status) params.Status = status;
+    if (Signa) params.signatureCode = Signa;
+    if (category) params.ShelfCategory = category;
+    if(ISBN) params.ISBN = ISBN;
+    if(Editorial) params.Editorial = Editorial
+
+    const response = await api.get("books/Colection", { params });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -168,7 +207,7 @@ const DisableBook = async (data: downType) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el recurso"
+        error.response?.data.message || "Error al deshabilitar el recurso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -191,7 +230,7 @@ const EditBook = async (data: Book) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el recurso"
+        error.response?.data.message || "Error al editar el recurso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -216,7 +255,7 @@ const LeadingRequestBook = async (data: BookLeading) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al crear el recurso"
+        error.response?.data.message || "Error al prestar el recurso"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -226,6 +265,7 @@ const LeadingRequestBook = async (data: BookLeading) => {
 };
 
 export {
+  getUserColection,
   LeadingRequestBook,
   searchCovers,
   uploadImage,

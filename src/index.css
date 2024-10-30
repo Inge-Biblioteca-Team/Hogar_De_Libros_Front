@@ -6,9 +6,15 @@
 
 :root {
 background-color: #dfe2e6;
-  font-family: 'Mulish', sans-serif;
+  font-family: serif;
   font-weight: 300;
 }
+
+body::-webkit-scrollbar {
+  display: none;
+  }
+
+  
 
 @keyframes scroll{
     0%{
@@ -17,6 +23,11 @@ background-color: #dfe2e6;
     100%{
         transform: translateX(calc(-120px*5 - 0.5rem * 10));
     }
+}
+
+.dark{
+  background-color: #474b4f;
+  color: white;
 }
 
 .animate-scroll{
@@ -36,7 +47,7 @@ background-color: #dfe2e6;
 }
 .custom-breadcrumb{
 cursor: pointer;
- margin: 0 0 70px 10px;
+ margin: 0.5rem 0 3rem 0.5rem;
 }
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -98,4 +109,18 @@ input[type="number"] {
 [data-testid="carousel"] {
 height: 25rem;
 
+}
+
+.gradiant{
+  mask-image: linear-gradient(
+    black 10%,
+    traparent
+  );
+}
+
+@media (max-width: 640px) {
+  .custom-breadcrumb a,
+  .custom-breadcrumb span {
+    font-size: 0.8rem !important;
+  }
 }

@@ -1,4 +1,4 @@
-import { Label, Table, TextInput } from "flowbite-react";
+import { Label, Select, Table, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
 
 import { useQuery } from "react-query";
@@ -8,9 +8,9 @@ import TBLCourses from "../components/TBLCourses";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { BsPersonSquare } from "react-icons/bs";
 import CreateCourse from "../components/Crud/CreateCourse";
-import NoRequest from "../components/NoRequest";
-import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import { ServicesCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
+import NoResults from "../../../components/NoResults";
 
 const ManageCourses = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -47,10 +47,10 @@ const ManageCourses = () => {
 
   return (
     <>
-      <BreadCrumbManage text="Cursos" />
-      <div className=" w-full flex items-center justify-center pt-12">
-        <div className=" w-4/5">
-          <div className="flex items-end justify-between mb-3">
+      <ServicesCrumbs text="Cursos" />
+      <main className=" w-full flex items-center justify-center flex-col gap-4">
+        <section className=" w-4/5 flex justify-between items-end">
+          <div className=" flex gap-2">
             <div>
               <Label className=" text-lg">Nombre</Label>
               <TextInput
@@ -60,9 +60,19 @@ const ManageCourses = () => {
                 onChange={(event) => SetSName(event.target.value)}
               />
             </div>
-            <CreateCourse />
+            <div>
+              <Label className=" text-lg">Estado</Label>
+              <Select>
+                <option value="">Seleccione un estado</option>
+                <option value="1">Proximos</option>
+                <option value="0">Pasados</option>
+              </Select>
+            </div>
           </div>
-          {Courses?.count && Courses.count > 0 ? (
+          <CreateCourse />
+        </section>
+        <section className="w-4/5">
+          {Courses && Courses.count > 0 ? (
             <>
               <Table hoverable className=" text-center">
                 <Table.Head className=" h-20 text-sm">
@@ -90,10 +100,10 @@ const ManageCourses = () => {
               />
             </>
           ) : (
-            <NoRequest text="No existen registros de cursos"></NoRequest>
+            <NoResults />
           )}
-        </div>
-      </div>
+        </section>
+      </main>
     </>
   );
 };

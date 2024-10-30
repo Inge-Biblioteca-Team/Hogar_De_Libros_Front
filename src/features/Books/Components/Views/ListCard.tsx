@@ -1,4 +1,4 @@
-import { Card, Label } from "flowbite-react";
+import { Button, Card, Label } from "flowbite-react";
 import { Book } from "../../Types/BooksTypes";
 import { useState } from "react";
 import LendingForm from "../Modals/LendingForm";
@@ -8,9 +8,7 @@ const ListCard = ({ book }: { book: Book }) => {
   return (
     <>
       <Card
-        onClick={() => setOpen(true)}
         className="w-full hover:scale-105"
-        title="Click para solicitar préstamo"
       >
         <div className=" flex">
           <figure>
@@ -31,7 +29,7 @@ const ListCard = ({ book }: { book: Book }) => {
             <Label value={` ISBN: ${book.ISBN || "No posee"}`} />
             <Label
               value={` Código de signatura: ${
-                book.SignatureCode || "No posee"
+                book.signatureCode || "No posee"
               }`}
             />
             <Label
@@ -39,6 +37,10 @@ const ListCard = ({ book }: { book: Book }) => {
                 book.ShelfCategory || "No posee"
               }`}
             />
+            <Button className="w-40" color={"blue"} size={"sm"}
+            onClick={() => setOpen(true)}>
+              Reserva ahora
+            </Button>
           </div>
         </div>
       </Card>

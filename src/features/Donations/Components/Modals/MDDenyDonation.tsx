@@ -1,0 +1,58 @@
+import { Label, Modal, Textarea } from "flowbite-react";
+import { Dispatch, SetStateAction } from "react";
+import ModalFooters from "../../../../components/ModalFooters";
+import { downType } from "../../../../Types/GlobalTypes";
+import UseRefuseDonation from "../../Hooks/UseRefuseDonation";
+import { useForm } from "react-hook-form";
+
+const MDDenyDonation = ({
+  open,
+  setOpen,
+  id,
+}: {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  id: number;
+}) => {
+  const onClose = () => {
+    setOpen(false);
+    reset();
+  };
+
+  const { handleSubmit, register, reset } = useForm<downType>({
+    defaultValues: { Id: id.toString() },
+  });
+
+  const { mutate: refuse } = UseRefuseDonation();
+
+  const onConfirm = (data: downType) => {
+    refuse(data, {
+      onSuccess: () => {
+        setOpen(false);
+      },
+    });
+  };
+
+  return (
+    <Modal show={open} onClose={onClose} popup size={"md"}>
+      <Modal.Header></Modal.Header>
+      <form onSubmit={handleSubmit(onConfirm)}>
+        <Modal.Body className=" flex flex-col gap-4">
+          <span>¿Esta seguro de rechazar la donación?</span>
+          <div>
+            <Label value="Razón de rechazo" />
+            <Textarea
+              rows={4}
+              {...register("reason")}
+              required
+              placeholder="Ej. No cumple con los requisitos de donación"
+            />
+          </div>
+        </Modal.Body>
+        <ModalFooters onClose={onClose} />
+      </form>
+    </Modal>
+  );
+};
+
+export default MDDenyDonation;

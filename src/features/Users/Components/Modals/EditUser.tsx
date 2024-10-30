@@ -1,10 +1,13 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { User } from "../../Type/UserType";
-import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
+import { Label, Modal, Select, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import UseEditInfoUser from "../../Hooks/UseEditInfoUser";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
+import ModalFooters from "../../../../components/ModalFooters";
+import OptCanton from "../../../../components/OptCanton";
+import OptProvincias from "../../../../components/OptProvincias";
 
 const EditUser = ({
   edit,
@@ -15,7 +18,7 @@ const EditUser = ({
   setEdit: Dispatch<SetStateAction<boolean>>;
   User: User;
 }) => {
-  const { register, setValue, handleSubmit } = useForm<User>();
+  const { register, setValue, handleSubmit, watch } = useForm<User>();
 
   useEffect(() => {
     if (User) {
@@ -25,6 +28,7 @@ const EditUser = ({
       setValue("district", User.district);
       setValue("address", User.address);
       setValue("role", User.role);
+      setValue("loanPolicy", User.loanPolicy);
     }
   }, [User, setValue]);
 
@@ -48,8 +52,12 @@ const EditUser = ({
     );
   };
 
+  const onClose = () => {
+    setEdit(false);
+  };
+
   return (
-    <Modal show={edit} onClose={() => setEdit(false)}>
+    <Modal show={edit} onClose={onClose}>
       <Modal.Header>
         <span>Editar Información del Usuario {User.name}</span>
       </Modal.Header>
@@ -93,15 +101,13 @@ const EditUser = ({
                   id="provincia"
                   {...register("province")}
                 >
-                  <option value="">Seleccione su provincia</option>
-                  <option value="GT">Guanacaste</option>
+                  <OptProvincias />
                 </Select>
               </div>
               <div>
                 <Label htmlFor="canton">Cantón</Label>
                 <Select id="canton" title="Canton" {...register("district")}>
-                  <option value="">Seleccione el cantón</option>
-                  <option value="NI">Nicoya</option>
+                  <OptCanton province={watch("province")} />
                 </Select>
               </div>
             </div>
@@ -117,30 +123,35 @@ const EditUser = ({
           </fieldset>
 
           <fieldset className="mb-4">
-            <legend className="text-lg font-semibold mb-2">
+            <legend className="text-lg font-semibold mb-2 ">
               Rol y Privilegios
             </legend>
-
-            <Label htmlFor="rol">Rol</Label>
-            <Select id="" title="Rol" {...register("role")}>
-              <option value="">Rol Del Usuario</option>
-              <option value="admin">Administrador</option>
-              <option value="creator">Asistente</option>
-              <option value="external_user">Usuario Externo</option>
-              <option value="viewer">Usuario Basico</option>
-            </Select>
-
-            <div></div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className=" ">
+                <Label htmlFor="rol">Rol</Label>
+                <Select id="" title="Rol" {...register("role")}>
+                  <option value="">Rol Del Usuario</option>
+                  <option value="admin">Administrador</option>
+                  <option value="creator">Asistente</option>
+                  <option value="reception'">Recepción</option>
+                  <option value="external_user">Usuario externo</option>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="loan">Privilegios de préstamo</Label>
+                <Select {...register("loanPolicy")}>
+                  <option value={0}>No se permite el préstamo</option>
+                  <option value={8}>Máximo 1 libro cada 8 días</option>
+                  <option value={15}>Máximo 2 libros por 15 días</option>
+                  <option value={22}>Máximo 3 libros por 22 días</option>
+                  <option value={30}>Máximo 5 libros por 30 días</option>
+                  <option value={78}>Sin limite de préstamo</option>
+                </Select>
+              </div>
+            </div>
           </fieldset>
         </Modal.Body>
-        <Modal.Footer className=" flex items-center justify-center gap-9">
-          <Button color={"failure"} onClick={() => setEdit(false)}>
-            Cancelar
-          </Button>
-          <Button color={"blue"} type="submit">
-            Confirmar
-          </Button>
-        </Modal.Footer>
+        <ModalFooters onClose={onClose} />
       </form>
     </Modal>
   );

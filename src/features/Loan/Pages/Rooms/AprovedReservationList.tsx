@@ -6,6 +6,7 @@ import { ReserveResponse } from "../../Types/RoomsReservations";
 import NoRequest from "../../Components/NoRequest";
 import { getReservations } from "../../Services/SVReservations";
 import CustomPagination from "../../../../components/CustomPagination";
+import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 
 const AprovedReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -34,6 +35,7 @@ const AprovedReservationList = () => {
 
   return (
     <>
+     <LoansAndCirculationCrumbs text="Reservas de salas aprobadas"/>
       <div className=" w-full flex items-center justify-center mt-28">
         <div className="w-4/5">
           {reservations?.count == 0 ? (

@@ -10,7 +10,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { LiaSearchengin } from "react-icons/lia";
 
 import { useQuery } from "react-query";
-import UseUploadImage from "../../../Advice/Hooks/UseUploadImage";
+import UseUploadImage from "../../../../hooks/UseUploadImage";
 import { CoverImage } from "../../Types/Types";
 import { searchCovers } from "../../Services/ChildrenServices";
 import { GetImageList } from "../../../../Services/UploadImg";
@@ -48,14 +48,17 @@ const ModalImageLoader = ({
 
   const handleConfirmLocalImage = async () => {
     if (file) {
-      uploadImage(file, {
-        onSuccess: (filePath: string) => {
-          selectImage(filePath);
-          setLocalImage(null);
-          setFile(null);
-          onClose();
-        },
-      });
+      uploadImage(
+        { image: file, folder: "LibrosInfantiles" },
+        {
+          onSuccess: (filePath: string) => {
+            selectImage(filePath);
+            setLocalImage(null);
+            setFile(null);
+            onClose();
+          },
+        }
+      );
     }
   };
 
@@ -77,7 +80,7 @@ const ModalImageLoader = ({
 
   const { data: covers } = useQuery<[], Error>(
     ["imagesList"],
-    () => GetImageList("Libros"),
+    () => GetImageList("LibrosInfantiles"),
     {
       enabled: localStorage,
       retry: 2,

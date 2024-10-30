@@ -33,7 +33,7 @@ const ViewAdvice = ({
               <span>Fecha: {date}</span>
             </div>
             <div>
-              <span>Información Extra: {advice.extraInfo} </span>
+              <span>Información extra: {advice.extraInfo} </span>
             </div>
             <div>
               <span>Categoría del aviso: {advice.category} </span>
@@ -41,7 +41,7 @@ const ViewAdvice = ({
           </div>
         </Modal.Body>
         <Modal.Footer className=" flex items-center justify-center">
-          <Button color={"failure"} onClick={() => setOpen(false)}>
+          <Button color={"blue"} onClick={() => setOpen(false)}>
             Regresar
           </Button>
         </Modal.Footer>

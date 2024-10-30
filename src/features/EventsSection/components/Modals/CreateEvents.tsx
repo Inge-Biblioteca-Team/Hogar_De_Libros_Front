@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
-import AddEventsImage from "./AddEventsImage";
 import { createEvents } from "../../types/Events";
 import useCreateEvent from "../../Hooks/useCreateEvent";
 import { addDay, format } from "@formkit/tempo";
+import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
+import ModalFooters from "../../../../components/ModalFooters";
+import OptAges from "../OptAges";
 
 const CreateEvent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
   const { register, handleSubmit, setValue, reset } = useForm<createEvents>();
 
   const { mutate: createEvent } = useCreateEvent();
@@ -29,12 +30,29 @@ const CreateEvent = () => {
     });
   };
 
-  const handleImageSelect = (url: string) => {
-    setImageUrl(url);
-    setValue("Image", url);
+  const [openImage, setOpenImage] = useState<boolean>(false);
+  const [imageUrl, setImageUrl] = useState<string>("");
+
+  const handleImageSelect = useCallback(
+    (url: string) => {
+      setImageUrl(url);
+      setValue("Image", url);
+      setOpenImage(false);
+    },
+    [setValue]
+  );
+
+  const onClose = () => {
+    setIsModalOpen(false);
+    reset();
+    setImageUrl("");
   };
 
-  const tomorrow =addDay (new Date());
+  const handleClose = () => {
+    setOpenImage(false);
+  };
+
+  const tomorrow = addDay(new Date());
 
   const toDay = format({
     date: tomorrow,
@@ -45,23 +63,23 @@ const CreateEvent = () => {
   return (
     <>
       <Button type="button" onClick={() => setIsModalOpen(true)} color={"blue"}>
-        Añadir Evento
+        Añadir evento
       </Button>
       <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <Modal.Header>Añadir nuevo Evento</Modal.Header>
+        <Modal.Header>Añadir nuevo evento</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className=" flex flex-col gap-4">
             <div className="w-full flex items-center justify-center">
               {imageUrl ? (
                 <img
-                  onClick={() => setIsImageModalOpen(true)}
+                  onClick={() => setOpenImage(true)}
                   src={imageUrl}
                   alt="Imagen del evento"
                   className="h-28 w-full rounded-md cursor-pointer"
                 />
               ) : (
                 <div
-                  onClick={() => setIsImageModalOpen(true)}
+                  onClick={() => setOpenImage(true)}
                   className="h-28 w-full border-dashed border-2 border-gray-300 flex items-center justify-center rounded-md cursor-pointer"
                 >
                   <span>Selecciona una imagen</span>
@@ -106,11 +124,7 @@ const CreateEvent = () => {
 
               <div>
                 <Label htmlFor="Category" value="Categoría" />
-                <Select
-                 required
-                   id="Category"
-                 {...register("Category")}
-                >
+                <Select required id="Category" {...register("Category")}>
                   <option value="">Categoría del evento</option>
                   <option value="Exposición">Exposición de libro</option>
                   <option value="Presentación">Presentación de libro</option>
@@ -153,49 +167,36 @@ const CreateEvent = () => {
 
             <fieldset className="grid grid-cols-2 gap-3">
               <legend className="text-center w-full">
-                Información Adicional
+                Información adicional
               </legend>
               <div>
-                <Label htmlFor="TargetAudience" value="Público Objetivo" />
-                <TextInput
-                  id="TargetAudience"
-                  type="text"
-                  {...register("TargetAudience")}
-                  placeholder="Ej. Adultos, jóvenes"
-                />
+                <Label htmlFor="TargetAudience" value="Público objetivo" />
+                <Select {...register("TargetAudience")}
+                required>
+                  <OptAges />
+                </Select>
               </div>
               <div>
-                <Label htmlFor="InchargePerson" value="Persona a Cargo" />
+                <Label htmlFor="InchargePerson" value="Persona a cargo" />
                 <TextInput
                   id="InchargePerson"
                   type="text"
+                  required
                   {...register("InchargePerson")}
                   placeholder="Nombre de la persona a cargo"
                 />
               </div>
             </fieldset>
           </Modal.Body>
-          <Modal.Footer className="flex items-center justify-center">
-            <Button
-              color="failure"
-              onClick={() => {
-                setIsModalOpen(false);
-                reset();
-              }}
-              tabIndex={2}
-            >
-              Cancelar
-            </Button>
-            <Button type="submit" color={"blue"}>
-              Guardar
-            </Button>
-          </Modal.Footer>
+          <ModalFooters onClose={onClose} />
         </form>
       </Modal>
-      <AddEventsImage
-        showModal={isImageModalOpen}
-        onCloseModal={() => setIsImageModalOpen(false)}
-        onImageSelect={handleImageSelect}
+      <ModalAddNewImage
+        open={openImage}
+        text="del evento"
+        Folder="Evento"
+        onSelectImage={handleImageSelect}
+        onClose={handleClose}
       />
     </>
   );

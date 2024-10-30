@@ -3,7 +3,7 @@ import { ColecctionCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsIte
 import OptCategories from "../Components/OptsCategories";
 import { BsGrid3X3GapFill, BsListUl } from "react-icons/bs";
 import { LiaSearchengin } from "react-icons/lia";
-import { getColection } from "../Services/BooksServices";
+import { getUserColection  } from "../Services/BooksServices";
 import { useQuery } from "react-query";
 import { Catalog } from "../Types/BooksTypes";
 import { useState } from "react";
@@ -30,7 +30,7 @@ const Colecction = () => {
 
   const { data: catalog } = useQuery<Catalog, Error>(
     ["colection", page, limit, sTitle],
-    () => getColection(page, limit, sTitle, "", "", "", "", category),
+    () => getUserColection (page, limit, sTitle, "", "", "1", "", category),
     {
       staleTime: 5000,
     }
@@ -45,7 +45,10 @@ const Colecction = () => {
       <main className=" flex flex-col w-full justify-center items-center gap-3">
         <section className=" w-4/5 flex justify-between">
           <div className=" flex gap-2">
-            <Select onChange={(event) => setCategory(event.target.value)}>
+            <Select
+              className=" max-sm:hidden"
+              onChange={(event) => setCategory(event.target.value)}
+            >
               <OptCategories />
             </Select>
             <TextInput
@@ -54,9 +57,9 @@ const Colecction = () => {
               rightIcon={LiaSearchengin}
             />
           </div>
-          <ButtonGroup>
+          <ButtonGroup className=" max-sm:hidden">
             <Button
-              color={"gray"}
+              color={`${view === "List" ? "blue" : "gray"}`}
               title="Lista"
               onClick={() => {
                 setView("List"), setLimit(15);
@@ -65,7 +68,7 @@ const Colecction = () => {
               <BsListUl size={25} />
             </Button>
             <Button
-              color={"gray"}
+              color={`${view !== "List" ? "blue" : "gray"}`}
               title="Cuadricula"
               onClick={() => {
                 setView("Grid"), setLimit(12);

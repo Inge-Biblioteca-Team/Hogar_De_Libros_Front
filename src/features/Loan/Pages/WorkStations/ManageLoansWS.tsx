@@ -4,6 +4,7 @@ import { Popover } from "flowbite-react";
 import { GetStatus } from "../../Services/SvComputerLoan";
 import { useQuery } from "react-query";
 import ButtonsAccions from "../../Components/WorkStations/ButtonsAccions";
+import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 
 type ComputerStatus = {
   Status: string;
@@ -26,6 +27,7 @@ const ManageLoansWS = () => {
 
   return (
     <>
+      <LoansAndCirculationCrumbs text="Equipo de cómputo"/>
       <div className=" w-full flex items-center justify-center mt-12">
         <div className="grid grid-cols-4 gap-26 w-4/5">
           {computers?.map((computer) => (
@@ -33,11 +35,7 @@ const ManageLoansWS = () => {
               key={computer.MachineNumber}
               className="flex flex-col-reverse items-center p-2 "
             >
-              <Popover
-                content={
-                 <ButtonsAccions computer={computer}/>
-                }
-              >
+              <Popover content={<ButtonsAccions computer={computer} />}>
                 <div className={`text-6xl ${conditionColors[computer.Status]}`}>
                   <FontAwesomeIcon icon={faDesktop} />
                 </div>

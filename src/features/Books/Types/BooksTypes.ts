@@ -7,7 +7,7 @@ export type Book = {
   ShelfCategory: string;
   Cover: string;
   BookConditionRating: number;
-  SignatureCode: string;
+  signatureCode: string;
   InscriptionCode: string;
   Observations: string;
   ReserveBook: boolean;

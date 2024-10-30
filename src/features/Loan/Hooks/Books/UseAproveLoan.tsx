@@ -13,7 +13,7 @@ const UseAproveLoan = () => {
     {
       onSuccess: (data) => {
         queryClient.invalidateQueries("PRLoans");
-        toast.success("Préstamo Aprobado", data);
+        toast.success("Exito, se aprobó el préstamo correctamente:", data);
       },
       onError: () => {
         toast.error("Error al aprovar el préstamo.");

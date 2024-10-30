@@ -10,7 +10,7 @@ const ContacInfo = () => {
           nosotros.
         </span>{" "}
         <br />
-        <span  className=" max-sm:hidden">Tambien puedes contactanos via</span>
+        <span  className=" max-sm:hidden">También puedes contactarnos via</span>
         <br />
         <strong>Teléfono: </strong>
         <span>+506 2685-4213</span> <br />
@@ -30,7 +30,7 @@ const ContacInfo = () => {
         </a>
         <span> De Lunes a Viernes de 12:00 pm a 7:00 pm.</span>
         <br />
-        <strong className=" hidden max-sm:block">Tambien Puedes llenar el formulario adjunto y nos contactaremos pronto.</strong>
+        <strong className=" hidden max-sm:block">También Puedes llenar el formulario adjunto y nos contactaremos pronto.</strong>
       </p>
     </aside>
   );

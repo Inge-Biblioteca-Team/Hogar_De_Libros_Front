@@ -10,7 +10,7 @@ const UseEditAdvice = () => {
     mutationFn: (data: Advice) =>
       toast.promise(PatchAdvice(data), {
         loading: "Editando...",
-        success: <span>Exito, Aviso editado correctamente</span>,
+        success: <span>Exito, aviso editado correctamente</span>,
         error: (error: ApiError) => (
           <span>Error al editar el aviso: {error.message}</span>
         ),

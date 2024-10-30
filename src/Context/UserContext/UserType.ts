@@ -5,11 +5,11 @@ export type User = {
   email?: string;
   name?: string;
   lastName?: string;
-  poneNumber?: string;
+  phoneNumber?: string;
   province?: string;
   district?: string;
   gender?: string;
-  addres?: string;
+  address?: string;
   birthDate?: string;
   role?: string;
 };

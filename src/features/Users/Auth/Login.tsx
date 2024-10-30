@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Card, TextInput, Label, Modal } from "flowbite-react";
 import RecoverPasswordModal from "./RecoverPasswordModal";
 import { useForm } from "react-hook-form";
 import { SingIng } from "../Type/UserType";
 import UseAuth from "../Hooks/UseAuth";
+import cover from "../../../Assets/LoginCover.png"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,17 +26,17 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      <div className="flex flex-col md:flex-row items-center max-w-4xl w-full bg-white shadow-lg rounded-lg">
-        <div className="w-full md:w-1/2 p-8">
+      <div className="flex flex-col md:flex-row items-center max-w-4xl w-full bg-white shadow-lg rounded-lg max-sm:bg-transparent">
+        <div className="w-full md:w-1/2 p-8 max-sm:p-3">
           <Card className="max-w-lg w-full">
             <h2 className="text-2xl font-bold text-gray-700 mb-4">
               Iniciar Sesión
             </h2>
             <p className="text-sm text-gray-500 mb-4">
               ¿No posees una cuenta?{" "}
-              <a href="/Registro" className="text-blue-500 hover:underline">
+              <Link to="/Registro" className="text-blue-500 hover:underline">
                 Regístrate aquí.
-              </a>
+              </Link>
             </p>
 
             <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
@@ -91,12 +92,12 @@ const Login = () => {
             )}
           </Card>
         </div>
-        <div className="w-full md:w-1/2 p-4 flex flex-col items-center">
+        <div className="w-full md:w-1/2 p-4 flex flex-col items-center max-sm:hidden">
           <h6 className="text-blue-600 text-lg font-semibold mb-2">
             Biblioteca Pública Municipal de Nicoya
           </h6>
           <img
-            src="src/Assets/image copy.png"
+            src={cover}
             alt="Mujer leyendo"
             className="rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
           />

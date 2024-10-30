@@ -37,7 +37,7 @@ const ViewChildrenBook = ({
           />
           <Label value={`ISBN: ${book.ISBN || "No Posee"}`} />
           <Label
-            value={`Código de signatura: ${book.SignatureCode || "No Posee"}`}
+            value={`Código de signatura: ${book.signatureCode || "No Posee"}`}
           />
           <Label
             value={`Código de inscripción: ${

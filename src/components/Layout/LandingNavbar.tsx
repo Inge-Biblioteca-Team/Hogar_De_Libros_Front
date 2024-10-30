@@ -34,55 +34,43 @@ const LandingNavbar = () => {
   }, []);
 
   return (
-      <div className=" w-full flex justify-center items-center max-sm:">
-        <NavbarCollapse>
-          <Navbar.Link className="text-white hover:!text-black " href="#Home">
-            Sobre Nosotros
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#MostPopularBooks"
-          >
-            Libros
-          </Navbar.Link>
-          <Navbar.Link className="text-white hover:!text-black " href="#Rooms">
-            Salas
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#Computers"
-          >
-            Equipo de Cómputo
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#Courses"
-          >
-            Cursos
-          </Navbar.Link>
-          <Navbar.Link className="text-white hover:!text-black " href="#Events">
-            Eventos
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#Programs"
-          >
-            Programas
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#Friends"
-          >
-            Amiguitos de La biblioteca
-          </Navbar.Link>
-          <Navbar.Link
-            className="text-white hover:!text-black "
-            href="#ContacUs"
-          >
-            Contáctanos
-          </Navbar.Link>
-        </NavbarCollapse>
-      </div>
+    <div className=" w-full flex justify-center items-center max-sm:">
+      <NavbarCollapse>
+        <Navbar.Link className="text-white hover:scale-110 hover:!text-white hover:underline " href="#Home">
+          Sobre nosotros
+        </Navbar.Link>
+        <Navbar.Link
+          className="text-white  hover:scale-110 hover:!text-white hover:underline "
+          href="#MostPopularBooks"
+        >
+          Libros
+        </Navbar.Link>
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#Rooms">
+          Salas
+        </Navbar.Link>
+        <Navbar.Link
+          className="text-white  hover:scale-110 hover:!text-white hover:underline "
+          href="#Computers"
+        >
+          Equipo de cómputo
+        </Navbar.Link>
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#Courses">
+          Cursos
+        </Navbar.Link>
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#Events">
+          Eventos
+        </Navbar.Link>
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#Programs">
+          Programas
+        </Navbar.Link>
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#Friends">
+          Amigos de la biblioteca
+        </Navbar.Link>
+        <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#ContacUs">
+          Contáctenos
+        </Navbar.Link>
+      </NavbarCollapse>
+    </div>
   );
 };
 

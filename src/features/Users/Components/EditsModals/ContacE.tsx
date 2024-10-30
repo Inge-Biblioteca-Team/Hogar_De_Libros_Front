@@ -1,10 +1,11 @@
-import { Button, Label, Modal, TextInput } from "flowbite-react";
+import { Label, Modal, TextInput } from "flowbite-react";
 import { User } from "../../Type/UserType";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
 import UseEditInfoUser from "../../Hooks/UseEditInfoUser";
 import { useEffect } from "react";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const ContacE = ({
   open,
@@ -44,8 +45,12 @@ const ContacE = ({
     );
   };
 
+  const onClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal show={open} onClose={onClose}>
       <Modal.Header>Editar Información De Contacto</Modal.Header>
       <form onSubmit={handleSubmit(handleConfirm)}>
         <Modal.Body>
@@ -58,14 +63,7 @@ const ContacE = ({
             <TextInput {...register("email")} />
           </div>
         </Modal.Body>
-        <Modal.Footer className=" flex items-center justify-center">
-          <Button color={"failure"} onClick={() => setOpen(false)}>
-            Cancelar
-          </Button>
-          <Button color={"blue"} type="submit">
-            Confirmar
-          </Button>
-        </Modal.Footer>
+        <ModalFooters onClose={onClose}/>
       </form>
     </Modal>
   );

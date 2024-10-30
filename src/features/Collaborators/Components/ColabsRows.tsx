@@ -17,13 +17,17 @@ const ColabsRows = ({ colaborator }: { colaborator: Colaborator }) => {
       <Table.Row>
         <Table.Cell>{formatToDMY(colaborator.activityDate)} </Table.Cell>
         <Table.Cell>{colaborator.UserFullName}</Table.Cell>
-        <Table.Cell>{colaborator.Entitycollaborator || "No aplica"}</Table.Cell>
         <Table.Cell>{colaborator.UserPhone}</Table.Cell>
-        <Table.Cell>{colaborator.UserEmail}</Table.Cell>
-        <Table.Cell>{colaborator.PrincipalCategory}</Table.Cell>
-        <Table.Cell>{colaborator.Experience}</Table.Cell>
-        <Table.Cell>{colaborator.Status}</Table.Cell>
-        <Table.Cell>
+        <Table.Cell className=" max-sm:hidden">
+          {colaborator.UserEmail}
+        </Table.Cell>
+        <Table.Cell className=" max-sm:hidden">
+          {colaborator.PrincipalCategory}
+        </Table.Cell>
+        <Table.Cell className=" max-sm:hidden">
+          {colaborator.SubCategory}
+        </Table.Cell>
+        <Table.Cell className=" max-sm:w-12">
           <RequestBTN
             setOpenV={setOpenV}
             setOpenA={setOpenA}

@@ -10,7 +10,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { LiaSearchengin } from "react-icons/lia";
 
 import { useQuery } from "react-query";
-import UseUploadImage from "../../../Advice/Hooks/UseUploadImage";
+import UseUploadImage from "../../../../hooks/UseUploadImage";
 import { CoverImage } from "../../Types/Types";
 import { searchCovers } from "../../Services/BooksServices";
 import { GetImageList } from "../../../../Services/UploadImg";
@@ -48,14 +48,17 @@ const ModalImageLoader = ({
 
   const handleConfirmLocalImage = async () => {
     if (file) {
-      uploadImage(file, {
-        onSuccess: (filePath: string) => {
-          selectImage(filePath);
-          setLocalImage(null);
-          setFile(null);
-          onClose();
-        },
-      });
+      uploadImage(
+        { image: file, folder: "Libros" },
+        {
+          onSuccess: (filePath: string) => {
+            selectImage(filePath);
+            setLocalImage(null);
+            setFile(null);
+            onClose();
+          },
+        }
+      );
     }
   };
 

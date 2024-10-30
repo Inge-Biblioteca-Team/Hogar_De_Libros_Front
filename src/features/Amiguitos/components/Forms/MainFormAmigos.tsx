@@ -1,35 +1,72 @@
-import { Label, Modal, TextInput, Select, Button, Checkbox } from "flowbite-react";
-import { useState } from "react";
-import UseCreateFriend from "../../Hooks/UseCreateFriend";
-import { CreateFriends } from "../../types/InfoAmiguitos";
+import {
+  Label,
+  Modal,
+  TextInput,
+  Select,
+  Button,
+  Checkbox,
+  Textarea,
+} from "flowbite-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { CreateFriends } from "../../types/InfoAmiguitos";
+import { ModalOpen } from "../../../../Types/GlobalTypes";
+import toast from "react-hot-toast";
+import UseCreateFriend from "../../Hooks/UseCreateFriend";
+import OPTCategories from "../OPTCategories";
+import OPTSubCategories from "../OPTSubCategories";
+import { MdQuestionMark } from "react-icons/md";
+import { TbHelpSquareRounded } from "react-icons/tb";
+import InfoAmigos from "../Popover/InfoAmigos";
+import { formatToYMD } from "../../../../components/FormatTempo";
+import { useQuery } from "react-query";
+import { GetUserInfo } from "../../../Users/Services/SvUsuer";
+import { User } from "../../../Users/Type/UserType";
+import UseDebounce from "../../../../hooks/UseDebounce";
 
-interface MainFormProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
+  const { reset, register, handleSubmit, trigger, setValue, watch } =
+    useForm<CreateFriends>();
 
-const MainFormAmigos = ({ isOpen, onClose }: MainFormProps) => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
-  const [hasPriorKnowledge, setHasPriorKnowledge] = useState<boolean | null>(null);
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const { register, handleSubmit } = useForm<CreateFriends>();
-  const { mutate: createFriend, isLoading } = UseCreateFriend();
+  const cedula = UseDebounce(watch("UserCedula"), 1000);
 
-  const onSubmit = (data: CreateFriends) => {
-    createFriend(data, {
-      onSuccess: () => {
-        onClose();
-      },
-      onError: (error) => console.error("Error al crear amigo", error),
-    });
+  const { data: User } = useQuery<User>(
+    ["userFill", cedula],
+    () =>
+      cedula ? GetUserInfo(cedula) : Promise.reject("Cedula no encontrada"),
+    {
+      enabled: !!cedula,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      retry: 1,
+    }
+  );
+
+  useEffect(() => {
+    if (User) {
+      setValue("UserFullName", `${User.name} ${User.lastName}`);
+      setValue("UserEmail", User.email);
+      setValue("UserPhone", User.phoneNumber);
+      setValue("UserAddress", User.address);
+      setValue("UserBirthDate", User.birthDate);
+      setValue("UserGender", User.gender);
+    }
+  }, [User, setValue]);
+
+  const onClose = () => {
+    setOpen(false);
+    reset();
+    setSecondForm(false);
+    setUploadedFiles([]);
   };
+
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const filesArray = Array.from(event.target.files);
       setUploadedFiles((prevFiles) => [...prevFiles, ...filesArray]);
+      setValue("Document", [...uploadedFiles, ...filesArray]);
     }
   };
 
@@ -37,235 +74,226 @@ const MainFormAmigos = ({ isOpen, onClose }: MainFormProps) => {
     setUploadedFiles((prevFiles) => prevFiles.filter((f) => f !== file));
   };
 
-  const renderSubCategoryOptions = () => {
-    if (selectedCategory === "Talleres") {
-      return (
-        <>
-          <div>
-            <Label htmlFor="workshopSubCategory" value="Selecciona un taller" />
-            <Select
-              id="workshopSubCategory"
-              {...register("subCategory")}
-              onChange={(e) => setSelectedSubCategory(e.target.value)}
-              required
-            >
-              <option value="">Seleccione un taller</option>
-              <option value="Lectura y Escritura">Lectura y Escritura</option>
-              <option value="Emprendedurismo">Emprendedurismo</option>
-              <option value="Hora del Cuento para Niños">Hora del Cuento para Niños</option>
-              <option value="Manualidades">Manualidades</option>
-            </Select>
-          </div>
-          <div className="flex flex-col custom-file-input">
-            <label htmlFor="documentUpload" className="mb-1 text-sm font-medium">Cargar documentos:</label>
-            <input
-              id="documentUpload"
-              type="file"
-              accept=".pdf,.doc,.docx,.txt"
-              multiple
-              onChange={handleFileChange}
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <div className="grid row-span-2">
-              {uploadedFiles.map((file) => (
-                <div key={file.name} className="flex justify-between items-center">
-                  <span>{file.name}</span>
-                  <button type="button" onClick={() => removeFile(file)} className="text-red-500">
-                    X
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </>
-      );
-    }
+  const [secondForm, setSecondForm] = useState<boolean>(false);
 
-    if (selectedCategory === "Acompañamiento Administrativo") {
-      return (
-        <>
-          <div>
-            <Label htmlFor="acompannamientoSubCategory" value="Seleccione una área de acompañamiento" />
-            <Select
-              id="donationSubCategory"
-              {...register("subCategory")}
-              onChange={(e) => setSelectedSubCategory(e.target.value)}
-              required
-            >
-              <option value="">Seleccione una área de acompañamiento</option>
-              <option value="Atencion al usuario">Atención al usuario</option> 
-              <option value="Ordenar la colección general e infantil">Ordenar la colección general e infantil</option>
-              <option value="Acompañamiento y logística en las actividades">Acompañamiento y logística en las actividades</option>
-              <option value="Visitas guiadas">Visitas guiadas</option>
-              <option value="Acompañamiento de puertas abiertas">Acompañamiento de puertas abiertas</option>
-              <option value="Actualización del contenido de la página web de la Biblioteca">Actualización del contenido de la página web de la Biblioteca</option>
-            </Select>
-          </div>
-          <div className="flex flex-col custom-file-input">
-            <label htmlFor="donationImages" className="mb-1 text-sm font-medium">Cargar imágenes:</label>
-            <input
-              id="donationImages"
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={handleFileChange}
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <div className="mt-2">
-              {uploadedFiles.map((file) => (
-                <div key={file.name} className="flex justify-between items-center">
-                  <span>{file.name}</span>
-                  <button type="button" onClick={() => removeFile(file)} className="text-red-500">
-                    X
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </>
-      );
+  const onFill = async () => {
+    const isValid = await trigger();
+    if (isValid) {
+      setSecondForm(true);
+    } else {
+      toast.error("Favor completar todos los campos.");
     }
-
-    return null;
   };
 
+  const onReturn = () => {
+    setSecondForm(false);
+  };
+
+  const { mutate: send } = UseCreateFriend();
+
+  const onConfirm = (data: CreateFriends) => {
+    send(data, {
+      onSuccess: () => {
+        onClose();
+      },
+    });
+  };
+
+  const [experience, setExperience] = useState<boolean>(false);
+
+  const minMax = formatToYMD(new Date());
+
   return (
-    <div>
-      <Modal show={isOpen} onClose={onClose} size="5xl">
-        <Modal.Header>Registro de Amigo de la Biblioteca</Modal.Header>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body>
-            <fieldset className="grid grid-cols-2 gap-3">
+    <Modal show={open} onClose={onClose} size={"5xl"}>
+      <Modal.Header>
+        <div>Solicitud de amigo de la biblioteca</div>
+      </Modal.Header>
+      <form onSubmit={handleSubmit(onConfirm)}>
+        <Modal.Body className=" grid grid-cols-2 gap-x-5 gap-y-4 ">
+          {!secondForm && (
+            <>
               <div>
-                <Label htmlFor="userFullName" value="Nombre Completo" />
-                <TextInput
-                  id="userFullName"
-                  placeholder="Nombre Completo"
-                  required
-                  {...register("userFullName")}
-                />
-              </div>
-              <div>
-                <Label htmlFor="userCedula" value="Número de Cédula" />
-                <TextInput
-                  id="userCedula"
-                  placeholder="Número de cédula"
-                  inputMode="numeric"
-                  type="text"
-                  pattern="[0-9]*"
-                  required
-                  {...register("userCedula")}
-                />
-              </div>
-              <div>
-                <Label htmlFor="userBirthDate" value="Fecha de Nacimiento" />
-                <TextInput
-                  id="userBirthDate"
-                  type="date"
-                  {...register("userBirthDate")}
-                />
-              </div>
-              <div>
-                <Label htmlFor="userPhone" value="Número de teléfono" />
-                <TextInput
-                  id="userPhone"
-                  type="tel"
-                  placeholder="Número de teléfono"
-                  required
-                  {...register("userPhone")}
-                />
-              </div>
-              <div>
-                <Label htmlFor="userEmail" value="Email" />
-                <TextInput
-                  id="userEmail"
-                  type="email"
-                  placeholder="Email"
-                  {...register("userEmail")}
-                />
-              </div>
-              <div>
-                <Label htmlFor="userAddress" value="Dirección" />
-                <TextInput
-                  id="userAddress"
-                  placeholder="Dirección"
-                  required
-                  {...register("userAddress")}
-                />
-              </div>
-              <div>
-                <Label htmlFor="categorySelect" value="Selecciona una categoría" />
+                <Label value="Categoría de amigo" />
                 <Select
-                  id="categorySelect"
-                  {...register("principalCategory", { required: true })}
-                  onChange={(e) => {
-                    setSelectedCategory(e.target.value);
-                    setHasPriorKnowledge(null);
-                  }}
-                  value={selectedCategory || ""}
+                  {...register("PrincipalCategory", { required: true })}
+                  required
                 >
-                  <option value="">Seleccione una categoría</option>
-                  <option value="Talleres">Talleres</option>
-                  <option value="Acompañamiento Administrativo">Acompañamiento Administrativo</option>
+                  <OPTCategories />
                 </Select>
               </div>
-            </fieldset>
+              <div>
+                <Label value="Sub categoría de amigo" />
+                <Select
+                  {...register("SubCategory", { required: true })}
+                  required
+                >
+                  <OPTSubCategories />
+                </Select>
+              </div>
+              <div>
+                <Label value=" Numero de cédula" />
+                <TextInput
+                  {...register("UserCedula", { required: true })}
+                  type="number"
+                  required
+                  placeholder="Sin guiones"
+                />
+              </div>
+              <div>
+                <Label value="Género" />
+                <Select
+                  {...register("UserGender", { required: true })}
+                  required
+                >
+                  <option value="">Seleccione el genero</option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Mujer">Mujer</option>
+                </Select>
+              </div>
 
-            {selectedCategory && ( 
-              <div className="mt-6">
-                <div className="flex items-center">
-                  <Label>¿Tiene conocimientos previos en el apartado que seleccionó?</Label>
-                  <Checkbox
-                    id="priorKnowledgeYes"
-                    checked={hasPriorKnowledge === true}
-                    onChange={() => setHasPriorKnowledge(true)}
-                    className="ml-4"
-                  />
-                  <Label htmlFor="priorKnowledgeYes" className="ml-2">Sí</Label>
+              <div>
+                <Label value="Nombre completo" />
+                <TextInput
+                  {...register("UserFullName", { required: true })}
+                  required
+                  placeholder="Nombre y apellidos"
+                />
+              </div>
 
-                  <Checkbox
-                    id="priorKnowledgeNo"
-                    checked={hasPriorKnowledge === false}
-                    onChange={() => setHasPriorKnowledge(false)}
-                    className="ml-4"
+              <div>
+                <Label value="Fecha de nacimiento" />
+                <TextInput
+                  {...register("UserBirthDate", { required: true })}
+                  type="date"
+                  required
+                  max={minMax}
+                />
+              </div>
+
+              <div>
+                <Label value="Dirección de residencia" />
+                <TextInput
+                  {...register("UserAddress", { required: true })}
+                  required
+                  placeholder="Dirección exacta de residencia"
+                />
+              </div>
+
+              <div>
+                <Label value="Teléfono" />
+                <TextInput
+                  {...register("UserPhone", { required: true })}
+                  type="number"
+                  required
+                  placeholder="Numero de teléfono"
+                />
+              </div>
+
+              <div>
+                <Label value="Correo electronico" />
+                <TextInput
+                  {...register("UserEmail", { required: true })}
+                  type="email"
+                  required
+                  placeholder="tuCorreo@example.com"
+                />
+              </div>
+              <div>
+                <Checkbox
+                  color={"blue"}
+                  onChange={(event) => setExperience(event.target.checked)}
+                />
+                <Label
+                  className="ml-2"
+                  value="Experiencia previa en el area seleccionada"
+                />
+                <TextInput
+                  {...register("Experience")}
+                  disabled={!experience}
+                  placeholder="Ej. Cursos, títulos y demás etc..."
+                />
+              </div>
+            </>
+          )}
+          {secondForm && (
+            <>
+              <div className=" flex flex-col gap-3">
+                <div>
+                  <Label value="Cualquier cosa que quieras consultar puedes usar este espacio" />
+                  <Textarea
+                    rows={5}
+                    {...register("ExtraInfo")}
+                    placeholder="Recuerda que tu opinión siempre sera importante para nosotros."
                   />
-                  <Label htmlFor="priorKnowledgeNo" className="ml-2">No</Label>
                 </div>
               </div>
-            )}
-
-            {selectedCategory && (
-              <div className="grid grid-cols-2 gap-6 mt-6">
-                {renderSubCategoryOptions()}
-
-                <div className="col-span-1 row-span-2">
-                  <Label htmlFor="extraInfo" value="Información Adicional" />
-                  <TextInput
-                    id="extraInfo"
-                    placeholder="Proporcione información adicional"
-                    {...register("extraInfo")}
-                    disabled={selectedCategory === "Acompañamiento Administrativo" ? false : hasPriorKnowledge === false} 
-                  />
+              <div className="flex flex-col custom-file-input">
+                <label
+                  htmlFor="documentUpload"
+                  className="mb-1 text-sm font-medium flex"
+                >
+                  {" "}
+                  Archivos opcionales: <MdQuestionMark color="red" size={18} />
+                </label>
+                <input
+                  id="documentUpload"
+                  type="file"
+                  accept=".pdf,.doc,.docx,.txt"
+                  multiple
+                  onChange={handleFileChange}
+                  className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <div className="grid row-span-2 overflow-y-scroll h-20 custom-bar">
+                  {uploadedFiles.map((file) => (
+                    <div
+                      key={file.name}
+                      className="flex justify-between items-center"
+                    >
+                      <span>{file.name}</span>
+                      <button
+                        type="button"
+                        onClick={() => removeFile(file)}
+                        className="text-red-500"
+                      >
+                        X
+                      </button>
+                    </div>
+                  ))}
                 </div>
               </div>
-            )}
-          </Modal.Body>
-
-          <Modal.Footer className="flex w-full items-center justify-center">
-            <Button color="failure" onClick={onClose}>
-              Cancelar
-            </Button>
-            <Button
-              color="blue"
-              onClick={handleSubmit(onSubmit)}
-              disabled={isLoading}
-            >
-              {isLoading ? "Guardando..." : "Guardar"}
-            </Button>
-          </Modal.Footer>
-        </form>
-      </Modal>
-    </div>
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer className=" flex items-center justify-between">
+          <div></div>
+          {!secondForm && (
+            <>
+              <Button color={"red"} tabIndex={2}  onClick={onClose}>
+                Cancelar
+              </Button>
+              <Button color={"blue"} onClick={onFill}>
+                Continuar
+              </Button>
+            </>
+          )}
+          {secondForm && (
+            <>
+              <Button color={"red"} tabIndex={2}  onClick={onReturn}>
+                Anterior
+              </Button>
+              <Button color={"blue"} type="submit">
+                Confirmar
+              </Button>
+            </>
+          )}
+          <InfoAmigos>
+            <button type="button" title="ayuda">
+              <TbHelpSquareRounded size={30} />
+            </button>
+          </InfoAmigos>
+        </Modal.Footer>
+      </form>
+    </Modal>
   );
 };
 

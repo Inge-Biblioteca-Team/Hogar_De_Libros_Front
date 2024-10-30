@@ -1,24 +1,23 @@
 import { Drawer, Sidebar } from "flowbite-react";
-import { useState } from "react";
+import { useContext } from "react";
 import { FaBookReader } from "react-icons/fa";
 
 import ForAdmin from "./NavbarOptions/ForAdmin";
 import ForAll from "./NavbarOptions/ForAll";
+import UserContext from "../../Context/UserContext/UserContext";
+import SidebarContext from "../../Context/NavBarContext/NavbarContext";
 
 const HomeNavbar = () => {
-  const [visible, setVisible] = useState(false);
+  const { visible, handleClose, showSidebar } = useContext(SidebarContext);
 
-  const showSidebar = () => {
-    setVisible(!visible);
-  };
+  const { currentUser } = useContext(UserContext);
 
-  const handleClose = () => setVisible(false);
 
-  const rol = sessionStorage.getItem("role");
+  const rol = currentUser?.role;
 
   return (
     <>
-      <button type="button" className=" absolute left-4" onClick={showSidebar}>
+      <button type="button" className="absolute left-4" onClick={showSidebar}>
         {" "}
         <img
           className="invert dark:invert-0
@@ -39,11 +38,6 @@ const HomeNavbar = () => {
         <Drawer.Items>
           <Sidebar className="[&>div]:bg-transparent [&>div]:p-0 w-full">
             <Sidebar.Items className=" w-72">
-              <Sidebar.ItemGroup>
-                <Sidebar.Item href="/" className="text-xl hover:text-blue-500">
-                  Inicio
-                </Sidebar.Item>
-              </Sidebar.ItemGroup>
               {rol !== "admin" ? <ForAll /> : ""}
               {rol === "admin" ? <ForAdmin /> : ""}
             </Sidebar.Items>

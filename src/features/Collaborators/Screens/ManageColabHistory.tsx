@@ -9,6 +9,7 @@ import ColabHistoryRow from "../Components/ColabHistoryRow";
 import OptMainCategory from "../Components/OptMainCategory";
 import OptSubCategory from "../Components/OptSubCategory";
 import { ColabCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import NoResults from "../../../components/NoResults";
 
 const ManageColabHistory = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -39,20 +40,20 @@ const ManageColabHistory = () => {
     <>
       <ColabCrumbs text="Historial de colaboraciones" />
       <main className=" flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex w-4/5 gap-2">
+        <section className=" flex w-4/5 gap-2 max-sm:w-full max-sm:px-2">
           <div>
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
               <OptMainCategory />
             </Select>
           </div>
-          <div>
+          <div className=" max-sm:hidden">
             <Label value="Sub categoría" />
             <Select onChange={(event) => setSubCategory(event.target.value)}>
               <OptSubCategory />
             </Select>
           </div>
-          <div>
+          <div className=" max-sm:hidden">
             <Label value="Fecha de colaboración" />
             <TextInput
               type="date"
@@ -60,19 +61,28 @@ const ManageColabHistory = () => {
             />
           </div>
         </section>
-        <section className=" w-4/5">
-          <ColabsTableBody hiid>
-            {ColaborationsList?.data.map((colab) => (
-              <ColabHistoryRow colaborator={colab} key={colab.CollaboratorId} />
-            ))}
-          </ColabsTableBody>
-          <CustomPagination
-            page={Page}
-            onPageChange={onPageChange}
-            totalPages={MaxPage}
-            setCurrentLimit={setCurrentLimit}
-            total={ColaborationsList?.count || 0}
-          />
+        <section className="w-4/5 max-sm:w-full max-sm:px-2">
+          {ColaborationsList && ColaborationsList.count > 0 ? (
+            <>
+              <ColabsTableBody>
+                {ColaborationsList?.data.map((colab) => (
+                  <ColabHistoryRow
+                    colaborator={colab}
+                    key={colab.CollaboratorId}
+                  />
+                ))}
+              </ColabsTableBody>
+              <CustomPagination
+                page={Page}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={ColaborationsList?.count || 0}
+              />
+            </>
+          ) : (
+            <NoResults />
+          )}
         </section>
       </main>
     </>

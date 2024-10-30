@@ -10,6 +10,7 @@ import { GetFriends } from "../services/SvFriends";
 import { FriendResponse } from "../types/FriendType";
 import OPTCategories from "../components/OPTCategories";
 import OPTSubCategories from "../components/OPTSubCategories";
+import NoResults from "../../../components/NoResults";
 
 const ManageFriends = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -45,18 +46,14 @@ const ManageFriends = () => {
         <section className=" flex w-4/5 gap-2">
           <div>
             <Label value="Categoría principal" />
-            <Select
-              onChange={(event) => setCategory(event.target.value)}
-            >
-              <OPTCategories/>
+            <Select onChange={(event) => setCategory(event.target.value)}>
+              <OPTCategories />
             </Select>
           </div>
           <div>
             <Label value="Sub categoría" />
-            <Select
-              onChange={(event) => setSubCategory(event.target.value)}
-            >
-              <OPTSubCategories/>
+            <Select onChange={(event) => setSubCategory(event.target.value)}>
+              <OPTSubCategories />
             </Select>
           </div>
           <div>
@@ -68,18 +65,24 @@ const ManageFriends = () => {
           </div>
         </section>
         <section className=" w-4/5">
-          <FriendsTableBody>
-            {FriendList?.data.map((friend) => (
-              <FriendsRows friend={friend} key={friend.FriendId} />
-            ))}
-          </FriendsTableBody>
-          <CustomPagination
-            page={Page}
-            onPageChange={onPageChange}
-            totalPages={MaxPage}
-            setCurrentLimit={setCurrentLimit}
-            total={FriendList?.count || 0}
-          />
+          {FriendList && FriendList.count > 0 ? (
+            <>
+              <FriendsTableBody>
+                {FriendList?.data.map((friend) => (
+                  <FriendsRows friend={friend} key={'Fri'+friend.FriendId} />
+                ))}
+              </FriendsTableBody>
+              <CustomPagination
+                page={Page}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={FriendList?.count || 0}
+              />
+            </>
+          ) : (
+            <NoResults />
+          )}
         </section>
       </main>
     </>

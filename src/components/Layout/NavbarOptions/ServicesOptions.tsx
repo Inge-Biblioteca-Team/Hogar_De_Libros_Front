@@ -1,16 +1,25 @@
 import { Sidebar } from "flowbite-react";
+import { useContext } from "react";
+import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
 
 const ServicesOptions = () => {
+  const { handleNavigation } = useContext(SidebarContext);
   return (
     <>
       <Sidebar.Collapse label="Servicios">
-        <Sidebar.Item href="/HogarDeLibros/Servicios/Cursos">
+        <Sidebar.Item
+          onClick={() => handleNavigation("/HogarDeLibros/Servicios/Cursos")}
+        >
           Cursos
         </Sidebar.Item>
-        <Sidebar.Item href="/HogarDeLibros/Servicios/Eventos">
+        <Sidebar.Item
+          onClick={() => handleNavigation("/HogarDeLibros/Servicios/Eventos")}
+        >
           Eventos
         </Sidebar.Item>
-        <Sidebar.Item href="/HogarDeLibros/Servicios/Programas">
+        <Sidebar.Item
+          onClick={() => handleNavigation("/HogarDeLibros/Servicios/Programas")}
+        >
           Programas
         </Sidebar.Item>
       </Sidebar.Collapse>

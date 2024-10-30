@@ -10,7 +10,7 @@ const UseDownChildrenBook = () => {
     mutationFn: (data: downType) =>
       toast.promise(DisableChildrenBook(data), {
         loading: "Creando...",
-        success: <span>Éxito, Recurso dado de baja correctamente</span>,
+        success: <span>Éxito, recurso dado de baja correctamente</span>,
         error: (error: ApiError) => (
           <span>Error al dar de baja el recurso: {error.message}</span>
         ),

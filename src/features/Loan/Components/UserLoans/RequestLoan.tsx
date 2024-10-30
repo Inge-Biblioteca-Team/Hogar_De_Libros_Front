@@ -3,11 +3,18 @@ import { LoanResponse, Loans } from "../../Types/BookLoan";
 import LoanBody from "./LoanBody";
 import { Table } from "flowbite-react";
 import { GetPendandRequest } from "../../Services/SvBookLoan";
+import { useContext } from "react";
+import UserContext from "../../../../Context/UserContext/UserContext";
 
 const RequestLoan = () => {
+
+  const {currentUser} = useContext(UserContext);
+  const cedula = currentUser?.cedula || "";
+
+
   const { data: Loan } = useQuery<LoanResponse, Error>(
-    ["RLoans"],
-    () => GetPendandRequest(1, 5, "504420813"),
+    ["RLoans", cedula],
+    () => GetPendandRequest(1, 5, cedula),
     {
       staleTime: 600,
     }
@@ -24,11 +31,11 @@ const RequestLoan = () => {
             <Table.HeadCell className="w-9">Fecha de solicitud</Table.HeadCell>
             <Table.HeadCell className="w-80">Fecha de vencimiento</Table.HeadCell>
           </Table.Head>
-          <Table.Body className=" h-72">
+          <Table.Body className=" h-64">
             {Loan?.count === 0 ? (
                <Table.Row>
                <Table.Cell colSpan={6}>
-                 No tiene Solicitudes Pendientes de Devolución.
+                 No tiene solicitudes pendientes de devolución.
                </Table.Cell>
              </Table.Row>
             ) : (

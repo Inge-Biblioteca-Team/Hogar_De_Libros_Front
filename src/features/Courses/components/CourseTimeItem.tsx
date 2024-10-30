@@ -35,7 +35,7 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
         <Timeline.Point icon={CiCalendarDate} className="custom" />
         <Timeline.Content>
           <Timeline.Time>{CourseDate}</Timeline.Time>
-          <Timeline.Title className=" h-14 line-clamp-1">
+          <Timeline.Title className=" line-clamp-1">
             {course.courseType}
           </Timeline.Title>
           <Timeline.Body>
@@ -51,24 +51,18 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
                 <span className=" font-bold text-black">
                   {course.courseName}{" "}
                 </span>
-                <span>
-                  Impartido por <br />
-                  {course.instructor}{" "}
-                </span>
                 <span>Comienzo: {fullDate.toUpperCase()}</span>
-                <span>Duracion: {course.duration} </span>
+                <span>Numero de sesiones: {course.duration} </span>
                 <span>
                   {course.location} {time}{" "}
                 </span>
                 <span>
-                  Cupos <br />
+                  Instructor: {course.instructor}{" "}
+                </span>
+                <span>
+                  Cupos: 
                   {course.avaibleQuota}/{course.capacity}{" "}
                 </span>
-                {course.materials == "" ? (
-                  "Te esperamos"
-                ) : (
-                  <span>Necesitaras: {course.materials}</span>
-                )}
               </div>
               <div className=" flex justify-center items-center mb-2">
                 <Button color={"blue"} onClick={() => setopen(true)}>

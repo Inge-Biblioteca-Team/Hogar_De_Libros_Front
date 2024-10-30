@@ -36,34 +36,34 @@ const MDLoanInfo = ({
             <h3>Está Seguro de cancelar la solicitud de préstamo</h3>
             <div className="flex justify-center gap-4 mt-10">
               <Button
-                color="blue"
+                color="red"
                 onClick={() => {
                   setShowCancel(false)
                 }}
               >
-                Regresar
+                Volver
               </Button>
-              <Button color="failure" onClick={() => handleCancel()}>
-                Cancelar
+              <Button color="blue" onClick={() => handleCancel()}>
+                Confirmar
               </Button>
             </div>
           </div>
         </Modal.Body>
       </Modal>
       <Modal show={showChange} onClose={() => setShowChange(false)}>
-        <Modal.Header>Extencion de fecha de devolución</Modal.Header>
+        <Modal.Header>Extension de fecha de devolución</Modal.Header>
         <Modal.Body>
           <div className="">
             <label htmlFor="NewDate">Ingrese la fecha de devolución</label>
             <TextInput id="NewDate" type="date" />
             <div className="flex justify-center gap-4 mt-10">
               <Button
-                color="failure"
+                color="red"
                 onClick={() => {
                   setShowChange(false)
                 }}
               >
-                Regresar
+                Cancelar
               </Button>
               <Button color="blue">Enviar</Button>
             </div>
