@@ -20,6 +20,8 @@ import { useQuery } from "react-query";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { getUserInformationByCedula } from "../Services/SvUsuer";
 import { useEffect } from "react";
+import cover from "../../../Assets/RegisterCover.jpg";
+
 const Register = () => {
   const navigate = useNavigate();
 
@@ -336,7 +338,7 @@ const Register = () => {
                 Biblioteca Pública Municipal de Nicoya
               </h6>
               <img
-                src="src/Assets/young-woman.jpg"
+                src={cover}
                 alt="Mujer leyendo"
                 className="rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
               />

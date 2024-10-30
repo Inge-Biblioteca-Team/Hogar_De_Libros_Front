@@ -5,6 +5,7 @@ import RecoverPasswordModal from "./RecoverPasswordModal";
 import { useForm } from "react-hook-form";
 import { SingIng } from "../Type/UserType";
 import UseAuth from "../Hooks/UseAuth";
+import cover from "../../../Assets/LoginCover.png"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -96,7 +97,7 @@ const Login = () => {
             Biblioteca Pública Municipal de Nicoya
           </h6>
           <img
-            src="src/Assets/image copy.png"
+            src={cover}
             alt="Mujer leyendo"
             className="rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
           />
