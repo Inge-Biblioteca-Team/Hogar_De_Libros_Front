@@ -27,21 +27,28 @@ import ManageRequestDonations from "../features/Donations/Screens/ManageRequestD
 import ManagePendingReceiveDon from "../features/Donations/Screens/ManagePendingReceiveDon";
 import ManageDonationsHistory from "../features/Donations/Screens/ManageDonationsHistory";
 import Inbox from "../features/Inbox/Page/Inbox";
+import FriendMiddleScreen from "../features/Amiguitos/screens/FriendMiddleScreen";
+import DonationMiddleScreens from "../features/Donations/Screens/DonationMiddleScreens";
+import ColabsMiddleScreen from "../features/Collaborators/Screens/ColabsMiddleScreen";
+import ResoursesMiddlePage from "../features/Furniture/Pages/ResoursesMiddlePage";
+import EventMiddlePage from "../features/EventsSection/Pages/EventMiddlePage";
+import LoansMiddlePage from "../features/Loan/Pages/LoansMiddlePage";
+import CirculationAndLoanMiddlePage from "../features/Loan/Pages/CirculationAndLoanMiddlePage";
 const AdminRoutes = [
   {
     path: "Prestamos_Circulacion",
     children: [
       {
-        index:true,
-
+        index: true,
+        element:<CirculationAndLoanMiddlePage/>
       },
       {
         path: "Catalogo_General",
-        element: <ManageBooks />,
+        element: <ManageBooks loans />,
       },
       {
         path: "Catalogo_Infantil",
-        element: <ManageChildrenBooks />,
+        element: <ManageChildrenBooks loans />,
       },
       {
         path: "Prestamo_Computo",
@@ -77,8 +84,8 @@ const AdminRoutes = [
     path: "Historial",
     children: [
       {
-        index:true,
-
+        index: true,
+        element:<LoansMiddlePage/>
       },
       {
         path: "Libros",
@@ -98,8 +105,8 @@ const AdminRoutes = [
     path: "Servicios",
     children: [
       {
-        index:true,
-
+        index: true,
+        element:<EventMiddlePage />
       },
       {
         path: "Cursos",
@@ -123,8 +130,8 @@ const AdminRoutes = [
     path: "Recursos",
     children: [
       {
-        index:true,
-
+        index: true,
+        element: <ResoursesMiddlePage />,
       },
       {
         path: "Artistas",
@@ -156,8 +163,8 @@ const AdminRoutes = [
     path: "Colaboraciones",
     children: [
       {
-        index:true,
-
+        index: true,
+        element: <ColabsMiddleScreen />,
       },
       {
         path: "Pendientes_Respuesta",
@@ -177,8 +184,8 @@ const AdminRoutes = [
     path: "Donaciones",
     children: [
       {
-        index:true,
-
+        index: true,
+        element: <DonationMiddleScreens />,
       },
       {
         path: "Pendientes_Respuesta",
@@ -198,8 +205,8 @@ const AdminRoutes = [
     path: "Amigos",
     children: [
       {
-        index:true,
-
+        index: true,
+        element: <FriendMiddleScreen />,
       },
       {
         path: "Pendiente_Respuesta",
@@ -213,7 +220,7 @@ const AdminRoutes = [
   },
   {
     path: "Mensajeria",
-    element:<Inbox/>
+    element: <Inbox />,
   },
 ];
 

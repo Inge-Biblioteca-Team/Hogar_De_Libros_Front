@@ -6,7 +6,7 @@ import NoRequest from "../../Components/NoRequest";
 import { getReservations } from "../../Services/SVReservations";
 import TblRowsReservation from "../../Components/RoomsLoans/TablesHeaders/TblRowsReservation";
 import CustomPagination from "../../../../components/CustomPagination";
-import { LoansCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 
 const ReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -35,7 +35,7 @@ const ReservationList = () => {
   const MaxPage = Math.ceil((reservations?.count ?? 0) / currentLimit);
   return (
     <>
-    <LoansCrumbs text="Solicitudes de salas"/>
+    <LoansAndCirculationCrumbs text="Solicitudes de salas"/>
       <div className=" w-full flex items-center justify-center mt-16">
         <div className="w-4/5">
           {reservations?.count == 0 ? (

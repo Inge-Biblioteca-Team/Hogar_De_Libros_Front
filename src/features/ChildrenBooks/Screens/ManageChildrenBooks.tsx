@@ -1,5 +1,5 @@
 import { Button, Select, TextInput } from "flowbite-react";
-import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import { BreadCrumbManage, LoansAndCirculationCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import { useState } from "react";
 import MDNewBook from "../Components/Modals/MDNewBook";
 import { getColection } from "../Services/ChildrenServices";
@@ -12,7 +12,7 @@ import BookChildrenTable from "../Components/BookChildrenTable";
 import { LuClipboardSignature } from "react-icons/lu";
 import NoResults from "../../../components/NoResults";
 
-const ManageChildrenBooks = () => {
+const ManageChildrenBooks = ({loans}:{loans?:boolean}) => {
   const [open, setOpen] = useState(false);
   const [searchTitle, setSearchTitle] = useState<string>("");
   const [searchAuthor, setSearchAuthor] = useState<string>("");
@@ -45,7 +45,11 @@ const ManageChildrenBooks = () => {
 
   return (
     <>
-      <BreadCrumbManage text="Libros infantiles" />
+      {loans ? (
+        <LoansAndCirculationCrumbs text="Libros infantiles" />
+      ) : (
+        <BreadCrumbManage text="Libros infantiles" />
+      )}
       <main className=" flex items-center justify-center w-full flex-col gap-4">
         <section className="w-4/5 flex justify-between items-end max-sm:w-full max-sm:px-2">
           <div className="flex gap-3">
