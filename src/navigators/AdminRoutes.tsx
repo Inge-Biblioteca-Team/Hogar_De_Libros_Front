@@ -32,6 +32,10 @@ const AdminRoutes = [
     path: "Prestamos_Circulacion",
     children: [
       {
+        index:true,
+
+      },
+      {
         path: "Catalogo_General",
         element: <ManageBooks />,
       },
@@ -73,6 +77,10 @@ const AdminRoutes = [
     path: "Historial",
     children: [
       {
+        index:true,
+
+      },
+      {
         path: "Libros",
         element: <FinishedLoans />,
       },
@@ -89,6 +97,10 @@ const AdminRoutes = [
   {
     path: "Servicios",
     children: [
+      {
+        index:true,
+
+      },
       {
         path: "Cursos",
         element: <ManageCourses />,
@@ -110,6 +122,10 @@ const AdminRoutes = [
   {
     path: "Recursos",
     children: [
+      {
+        index:true,
+
+      },
       {
         path: "Artistas",
         element: <ManageLocalArtist />,
@@ -140,6 +156,10 @@ const AdminRoutes = [
     path: "Colaboraciones",
     children: [
       {
+        index:true,
+
+      },
+      {
         path: "Pendientes_Respuesta",
         element: <ManageColabRequest />,
       },
@@ -157,6 +177,10 @@ const AdminRoutes = [
     path: "Donaciones",
     children: [
       {
+        index:true,
+
+      },
+      {
         path: "Pendientes_Respuesta",
         element: <ManageRequestDonations />,
       },
@@ -173,6 +197,10 @@ const AdminRoutes = [
   {
     path: "Amigos",
     children: [
+      {
+        index:true,
+
+      },
       {
         path: "Pendiente_Respuesta",
         element: <ManageFriendsRequest />,
