@@ -51,8 +51,9 @@ const LandingNavbar = () => {
         <Navbar.Link
           className="text-white  hover:scale-110 hover:!text-white hover:underline "
           href="#Computers"
+          id="computerRef"
         >
-          Equipo de cómputo
+          Equipos de cómputo
         </Navbar.Link>
         <Navbar.Link className="text-white  hover:scale-110 hover:!text-white hover:underline " href="#Courses">
           Cursos

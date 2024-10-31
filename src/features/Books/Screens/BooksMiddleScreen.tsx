@@ -23,7 +23,7 @@ const BooksMiddleScreen = () => {
           </Card>
           <Card
             className="h-96 w-80 transition-transform hover:scale-105"
-            onClick={() => navi("/HogarDeLibros/Catalogo/Completo")}
+            onClick={() => navi("/HogarDeLibros/Catalogo/Catalogo_Completo")}
           >
             <h3>Búsquedas por titulo y categoría</h3>
             <p>
@@ -52,7 +52,7 @@ const BooksMiddleScreen = () => {
           </Card>
           <Card
             className="h-96 w-80 transition-transform hover:scale-105"
-            onClick={() => navi("/HogarDeLibros/Catalogo/Catalogo_Completo")}
+            onClick={() => navi("/HogarDeLibros/Catalogo/Completo")}
           >
             <h3>Catalogo general</h3>
             <p>

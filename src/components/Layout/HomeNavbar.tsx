@@ -17,7 +17,7 @@ const HomeNavbar = () => {
 
   return (
     <>
-      <button type="button" className="absolute left-4" onClick={showSidebar}>
+      <button type="button" className="absolute left-4" onClick={showSidebar} id="hamburger" >
         {" "}
         <img
           className="invert dark:invert-0

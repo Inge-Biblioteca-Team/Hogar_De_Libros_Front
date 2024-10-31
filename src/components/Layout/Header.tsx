@@ -45,7 +45,7 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
               </span>
             </div>
           </div>
-          <div className=" absolute right-5 ">
+          <div className=" absolute right-5 top-12 ">
             {isLogged ? (
               <div className=" flex gap-4">
                 {role && role =="admin" &&<Inboxpage/>}  

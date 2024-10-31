@@ -28,7 +28,7 @@ const CurrentPrograms = () => {
       {Programs && Programs?.count > 0 && (
         <section
           className="flex items-center w-4/5 flex-col max-sm:m-0"
-          id="Courses"
+          id="Programs"
         >
           <h2 className="font-bold text-2xl">Nuestros programas</h2>
           <Carousel
