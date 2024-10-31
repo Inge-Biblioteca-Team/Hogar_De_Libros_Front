@@ -75,8 +75,7 @@ const DeleteAdvice = async (id: number) => {
 };
 
 const GetNotice = async () => {
-  const response = await api.get(
-    "https://668c2a850b61b8d23b0ca034.mockapi.io/Notices");
+  const response = await api.get("advices");
   return response.data;
 };
 

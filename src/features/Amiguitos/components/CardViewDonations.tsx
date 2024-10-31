@@ -29,7 +29,7 @@ const CardViewDonations = () => {
                 Participa en nuestras actividades y realiza tus donaciones junto a otros amiguitos.
             </p>
             <div className="flex justify-center mt-4">
-                <Button className="w-36 hover:scale-105 transition-transform duration-300" onClick={handleButtonClick}>
+                <Button color={'blue'} className="w-36 hover:scale-105 transition-transform duration-300" onClick={handleButtonClick}>
                     ¡Ir al Formulario!
                 </Button>
             </div>

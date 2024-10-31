@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CardViewFriends from '../components/CardViewFriends';
 import CardViewCollaborators from '../components/CardViewCollaborators';
 import CardViewDonations from '../components/CardViewDonations';
@@ -20,6 +20,16 @@ const FriendsCarousel = () => {
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === totalCards - 1 ? 0 : prevIndex + 1));
   };
+
+  // Agregar efecto para transición automática cada 4 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000); // 4000 milisegundos = 4 segundos
+
+    // Limpiar el intervalo al desmontar el componente
+    return () => clearInterval(interval);
+  }, [currentIndex]);
 
   return (
     <div className="relative flex items-center justify-center">

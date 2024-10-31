@@ -1,3 +1,4 @@
+
 import LandingFooter from "../components/Layout/LandingFooter";
 import NoticeView from "../features/Advice/Screens/NoticeView";
 import FriendsCarousel from "../features/Amiguitos/screens/FriendsCarousel";
@@ -34,7 +35,7 @@ const HomePage = () => {
           <FriendsCarousel />
         </section>
 
-        <section className="container mx-auto text-center">
+        <section className="container mx-auto text-center px-4">
           <h2 className="text-4xl font-bold mb-8">Avisos</h2>
           <p className="text-lg mb-4">
             Nuestros avisos más relevantes para mantenerte actualizado

@@ -8,7 +8,7 @@ const BookAccessCard = () => {
   const navigate = useNavigate(); 
 
     const handleRedirect = () => {
-      navigate('/HogarDeLibros/BookCards'); 
+      navigate('/HogarDeLibros/Catalogo'); 
     };
 
   return (
