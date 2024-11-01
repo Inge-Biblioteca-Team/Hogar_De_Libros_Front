@@ -45,7 +45,7 @@ const ButtonsAccions = ({ computer }: { computer: ComputerStatus }) => {
         {computer.Status === "En Uso" && (
           <Button color="gray" onClick={() => handleFinalizeLoan()}>
             <HiCloudDownload className="mr-3 h-4 w-4" />
-            Disponible
+            Finalizar uso
           </Button>
         )}
 

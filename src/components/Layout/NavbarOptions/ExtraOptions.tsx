@@ -10,7 +10,7 @@ const ExtraOptions = () => {
       <Sidebar.Item
         onClick={() => handleNavigation("/HogarDeLibros/Gestion_Usuarios")}
       >
-        Gestión Usuarios
+        Gestión de usuarios
       </Sidebar.Item>
       <Sidebar.Collapse label="Colaboradores">
         <Sidebar.Item

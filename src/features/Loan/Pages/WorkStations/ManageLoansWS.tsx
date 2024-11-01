@@ -36,7 +36,7 @@ const ManageLoansWS = () => {
               className="flex flex-col-reverse items-center p-2 "
             >
               <Popover content={<ButtonsAccions computer={computer} />}>
-                <div className={`text-6xl ${conditionColors[computer.Status]}`}>
+                <div title={"PC"+computer.MachineNumber} className={`text-6xl ${conditionColors[computer.Status]}`}>
                   <FontAwesomeIcon icon={faDesktop} />
                 </div>
               </Popover>

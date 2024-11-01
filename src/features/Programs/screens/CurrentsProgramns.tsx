@@ -21,7 +21,7 @@ const CurrentPrograms = () => {
     return result;
   };
 
-  const groupedProgram = chunkArray(Programs?.data || [], 2);
+  const groupedProgram = chunkArray(Programs?.data || [], 4);
 
   return (
     <>

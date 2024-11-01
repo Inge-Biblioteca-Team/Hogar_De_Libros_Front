@@ -40,7 +40,7 @@ const ModalewSWLoan = ({
       </Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
-          <Label htmlFor="UserName">Nombre de Usuario</Label>
+          <Label htmlFor="UserName">Nombre</Label>
           <TextInput
             placeholder="Tu nombre completo"
             className=" mb-4"
