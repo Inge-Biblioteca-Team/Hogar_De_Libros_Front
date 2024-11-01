@@ -19,7 +19,7 @@ const ForAll = () => {
         </Sidebar.Item>
         <Sidebar.Collapse label="Búsqueda de libros">
           <Sidebar.Item
-            onClick={() => handleNavigation("/HogarDeLibros/Catalogo")}
+            onClick={() => handleNavigation("/HogarDeLibros/Catalogo/Catalogo_Completo")}
           >
             Por título
           </Sidebar.Item>

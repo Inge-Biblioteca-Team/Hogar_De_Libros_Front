@@ -1,7 +1,7 @@
 const OptSubCategory = () => {
   return (
     <>
-      <option value="">Seleccione una categoría secundaria </option>
+      <option value="">Seleccione una categoría secundaria</option>
       <option value="Cuentacuentos para adultos mayores">
         Cuentacuentos para adultos mayores
       </option>

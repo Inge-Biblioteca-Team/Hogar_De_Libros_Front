@@ -102,6 +102,28 @@ const GetAdviceList = async (
     throw error;
   }
 };
+const GetAdvice = async (
+  page: number,
+  limit: number,
+  reason?: string,
+  category?: string,
+  date?: string
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {
+      page,
+      limit,
+    };
+    if (date) params.date = date;
+    if (reason) params.reason = reason;
+    if (category) params.category = category;
+    const response = await api.get("advices/List", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
 const uploadAdviceImage = async (file: File): Promise<string> => {
   if (file) {
@@ -130,4 +152,5 @@ export {
   GetAdviceList,
   uploadAdviceImage,
   GetNotice,
+  GetAdvice
 };

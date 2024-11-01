@@ -37,7 +37,7 @@ const CardTypeAmiguito = () => {
           </p>
 
           <Button color={"blue"} onClick={() => setIsOpenD(true)}>
-            Participar
+            Donar
           </Button>
         </figcaption>
       </figure>
@@ -67,7 +67,7 @@ const CardTypeAmiguito = () => {
             <br />
           </p>
           <Button color={"blue"} onClick={() => setIsOpenA(true)}>
-            Participar
+            Únete ahora
           </Button>
         </figcaption>
       </figure>

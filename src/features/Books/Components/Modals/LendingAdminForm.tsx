@@ -1,14 +1,17 @@
 import { FloatingLabel, Modal } from "flowbite-react";
-import { Dispatch, SetStateAction, useContext } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import ModalFooters from "../../../../components/ModalFooters";
 import { formatToYMD } from "../../../../components/FormatTempo";
 import { addDay } from "@formkit/tempo";
 import { Book, BookLeading } from "../../Types/BooksTypes";
 import { useForm } from "react-hook-form";
-import UserContext from "../../../../Context/UserContext/UserContext";
 import UseLeadingRequest from "../../Hooks/UseLeadingRequest";
+import { useQuery } from "react-query";
+import { PersonData } from "../../../Users/Type/UserType";
+import UseDebounce from "../../../../hooks/UseDebounce";
+import { getUserInformationByCedula } from "../../../Users/Services/SvUsuer";
 
-const LendingForm = ({
+const LendingAdminForm = ({
   open,
   setOpen,
   book,
@@ -24,24 +27,18 @@ const LendingForm = ({
 
   const minDate = formatToYMD(new Date());
 
-  const { currentUser } = useContext(UserContext);
-
-  const { register, handleSubmit, watch, reset } = useForm<BookLeading>({
-    defaultValues: {
-      userCedula: currentUser?.cedula,
-      Name: `${currentUser?.name} ${currentUser?.lastName}`,
-      PhoneNumber: currentUser?.phoneNumber,
-      address: currentUser?.address,
-      InscriptionCode: book.InscriptionCode,
-      SignaCode: book.signatureCode,
-      Title: book.Title,
-      Author: book.Author,
-      bookBookCode: book.BookCode,
-    },
-  });
+  const { register, handleSubmit, watch, reset, setValue } =
+    useForm<BookLeading>({
+      defaultValues: {
+        InscriptionCode: book.InscriptionCode,
+        SignaCode: book.signatureCode,
+        Title: book.Title,
+        Author: book.Author,
+        bookBookCode: book.BookCode,
+      },
+    });
 
   const maxDate = formatToYMD(addDay(watch("BookPickUpDate"), 5));
-
 
   const { mutate: createNew } = UseLeadingRequest();
 
@@ -53,51 +50,40 @@ const LendingForm = ({
     });
   };
 
+  const cedula = UseDebounce(watch("userCedula"), 1000);
+
+  const { data: User } = useQuery<PersonData>(
+    ["userInformation", cedula],
+    () =>
+      cedula
+        ? getUserInformationByCedula(cedula)
+        : Promise.reject("Cedula no encontrada"),
+    {
+      enabled: !!cedula,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      retry: 1,
+    }
+  );
+
+  useEffect(() => {
+    if (User && User.results && User.resultcount > 0) {
+      setValue(
+        "Name",
+        User.results[0].firstname + " " + User.results[0].lastname || ""
+      );
+    }
+  }, [User, setValue]);
+
   return (
     <Modal show={open} onClose={onClose}>
       <Modal.Header>Solicitud de préstamo</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body className=" flex flex-col gap-3">
           <fieldset className="grid grid-cols-2 gap-x-3 gap-y-1">
-            <legend className="mb-1">Información del solicitante</legend>
-            <FloatingLabel
-              variant="filled"
-              label="Numero de cédula"
-              {...register("userCedula")}
-              readOnly
-              className=" cursor-default"
-              disabled={true}
-            />
-            <FloatingLabel
-              variant="filled"
-              disabled={true}
-              label="Nombre completo"
-              {...register("Name")}
-              readOnly
-              className=" cursor-default"
-            />
-            <FloatingLabel
-               variant="filled"
-               disabled={true}
-              label="Numero de teléfono"
-              {...register("PhoneNumber")}
-              readOnly
-              className=" cursor-default"
-            />
-            <FloatingLabel
-              variant="filled"
-              disabled={true}
-              label="Dirección"
-              {...register("address")}
-              readOnly
-              className=" cursor-default"
-            />
-          </fieldset>
-
-          <fieldset className="grid grid-cols-2 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del libro</legend>
             <FloatingLabel
-               variant="filled"
+              variant="filled"
               disabled={true}
               label="Código de signatura"
               value={book.signatureCode || "N/A"}
@@ -105,7 +91,7 @@ const LendingForm = ({
               readOnly
             />
             <FloatingLabel
-               variant="filled"
+              variant="filled"
               disabled={true}
               label="Numero de inscripción"
               value={book.InscriptionCode}
@@ -113,7 +99,7 @@ const LendingForm = ({
               readOnly
             />
             <FloatingLabel
-               variant="filled"
+              variant="filled"
               disabled={true}
               label="Autor"
               value={book.Author || "Desconocido"}
@@ -121,7 +107,7 @@ const LendingForm = ({
               readOnly
             />
             <FloatingLabel
-               variant="filled"
+              variant="filled"
               disabled={true}
               label="Titulo"
               value={book.Title}
@@ -129,7 +115,34 @@ const LendingForm = ({
               readOnly
             />
           </fieldset>
-
+          <fieldset className="grid grid-cols-2 gap-x-3 gap-y-1">
+            <legend className="mb-1">Información del solicitante</legend>
+            <FloatingLabel
+              variant="outlined"
+              label="Numero de cédula"
+              {...register("userCedula")}
+              className=" cursor-default"
+              type="number"
+            />
+            <FloatingLabel
+              variant="outlined"
+              label="Nombre completo"
+              {...register("Name")}
+              className=" cursor-default"
+            />
+            <FloatingLabel
+              variant="outlined"
+              label="Numero de teléfono"
+              {...register("PhoneNumber")}
+              className=" cursor-default"
+            />
+            <FloatingLabel
+              variant="outlined"
+              label="Dirección"
+              {...register("address")}
+              className=" cursor-default"
+            />
+          </fieldset>
           <fieldset className=" grid grid-cols-2 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del préstamo</legend>
             <FloatingLabel
@@ -155,7 +168,6 @@ const LendingForm = ({
               <FloatingLabel
                 variant="outlined"
                 label="Centro educativo o institución"
-                helperText="En caso de no pertenecer a un centro educativo favor omita el campo anterior."
                 {...register("institution")}
               />
             </div>
@@ -167,4 +179,4 @@ const LendingForm = ({
   );
 };
 
-export default LendingForm;
+export default LendingAdminForm;

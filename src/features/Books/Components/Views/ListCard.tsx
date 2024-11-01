@@ -15,10 +15,10 @@ const ListCard = ({ book }: { book: Book }) => {
             <img
               src={book.Cover}
               alt=""
-              className="h-40 w-40 rounded-lg shadow-lg"
+              className="h-52 w-40 rounded-lg shadow-lg"
             />
           </figure>
-          <div className=" flex flex-col justify-between ml-4">
+          <div className=" flex flex-col justify-between ml-4 gap-2">
             <Label value={` Titulo: ${book.Title}`} />
             <Label value={` Autor: ${book.Author}`} />
             <Label

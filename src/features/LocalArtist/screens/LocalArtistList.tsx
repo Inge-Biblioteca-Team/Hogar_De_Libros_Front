@@ -21,7 +21,7 @@ const LocalArtistList = () => {
     return result;
   };
 
-  const groupedArtist = chunkArray(LArtists?.data || [], 2);
+  const groupedArtist = chunkArray(LArtists?.data || [], 5);
 
   return (
     <>
