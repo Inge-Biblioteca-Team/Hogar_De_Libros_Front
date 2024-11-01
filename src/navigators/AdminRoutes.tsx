@@ -34,17 +34,24 @@ import ResoursesMiddlePage from "../features/Furniture/Pages/ResoursesMiddlePage
 import EventMiddlePage from "../features/EventsSection/Pages/EventMiddlePage";
 import LoansMiddlePage from "../features/Loan/Pages/LoansMiddlePage";
 import CirculationAndLoanMiddlePage from "../features/Loan/Pages/CirculationAndLoanMiddlePage";
+import RoleBasedRoute from "./RolBaseRouter";
+import { Outlet } from "react-router-dom";
 const AdminRoutes = [
   {
     path: "Prestamos_Circulacion",
+    element:(
+      <RoleBasedRoute roles={['admin', 'asistente', 'recepcion']} >
+        <Outlet />
+      </RoleBasedRoute>
+    ),
     children: [
       {
         index: true,
-        element:<CirculationAndLoanMiddlePage/>
+        element: <CirculationAndLoanMiddlePage />,
       },
       {
         path: "Catalogo_General",
-        element: <ManageBooks loans />,
+        element:<ManageBooks loans />,
       },
       {
         path: "Catalogo_Infantil",
