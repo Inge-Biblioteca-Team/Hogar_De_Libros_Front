@@ -5,6 +5,7 @@ import Landing from "../screens/Landing";
 import AuthRoutes from "./AuhtRoutes";
 import AdminRoutes from "./AdminRoutes";
 import UserRoutes from "./UserRoutes";
+import HomePage from "../Pages/HomePage";
 
 const Routes = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const Routes = createBrowserRouter([
     children: [
       {
         index: true,
-       
+       element:<HomePage/>
       },
       ...BasicUsersRoutes, ...AdminRoutes,...UserRoutes
     ],

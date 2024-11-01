@@ -23,7 +23,7 @@ const CardViewFriends = () => {
                 />
             </div>
             <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                ¡Únete a Nuestra Comunidad de Voluntariado!
+                ¡Únete a nuestra comunidad de voluntariado!
             </h5>
             <p className="font-normal text-gray-700 dark:text-gray-400">
                 Participa en nuestras actividades y comparte tu amor por los libros con otros amiguitos.
