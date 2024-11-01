@@ -3,8 +3,7 @@ import api from "../../../Services/AxiosConfig";
 import { Program } from "../types/Programs";
 
 const GetPrograms = async () => {
-  const response = await api.get(
-    "programs/ALL");
+  const response = await api.get("programs/ALL");
   return response.data;
 };
 
@@ -102,7 +101,7 @@ const DisableProgram = async (Id: string) => {
   }
 };
 
-const GetProgramsCourses = async (id:string) => {
+const GetProgramsCourses = async (id: string) => {
   try {
     const response = await api.get(`programs/${id}/courses`);
     return response.data;
@@ -112,4 +111,30 @@ const GetProgramsCourses = async (id:string) => {
   }
 };
 
-export { GetPrograms, PostNewProgram, GetProgramsList, PatchProgram, DisableProgram,GetProgramsCourses };
+const GetProgramsActivitiesList = async (
+  programName?: string,
+  month?: string
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {};
+
+    if (programName) params.programID = programName;
+    if (month) params.month = month;
+
+    const response = await api.get("programs/Program/Activities", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export {
+  GetPrograms,
+  PostNewProgram,
+  GetProgramsList,
+  PatchProgram,
+  DisableProgram,
+  GetProgramsCourses,
+  GetProgramsActivitiesList,
+};

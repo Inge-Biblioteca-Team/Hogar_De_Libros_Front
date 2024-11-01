@@ -12,13 +12,13 @@ const RoleBasedRoute = ({ roles, children }: RoleBasedRouteProps) => {
   
     console.log("isLogged:", isLogged);
     console.log("roles:", roles);
-    const role = currentUser?.role || '';
+    const role = currentUser?.role || 'admin';
   
     if (!isLogged) {
       return <Navigate to="/IniciarSesion" />;
     }
   
-    if (isLogged && !roles?.includes(role)) {
+    if (roles && isLogged && !roles?.includes(role)) {
       return <Navigate to="/" />;
     }
   

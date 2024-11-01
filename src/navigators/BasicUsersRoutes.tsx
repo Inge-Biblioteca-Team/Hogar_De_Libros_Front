@@ -7,6 +7,7 @@ import AvailableComputers from "../features/Computers/screens/AvailableComputers
 import RoomsScheduleManage from "../features/Loan/Pages/Rooms/RoomsScheduleManage";
 import CompletCatalog from "../features/Books/Screens/CompletCatalog";
 import BooksMiddleScreen from "../features/Books/Screens/BooksMiddleScreen";
+import ProgramActivities from "../features/Programs/screens/ProgramActivities";
 
 const BasicUsersRoutes = [
   {
@@ -41,6 +42,10 @@ const BasicUsersRoutes = [
   {
     path: "Cronograma_Cursos",
     element: <CoruseSchedule />,
+  },
+  {
+    path: "Cronograma_Actividades",
+    element: <ProgramActivities />,
   },
   {
     path: "Equipo_Disponible",

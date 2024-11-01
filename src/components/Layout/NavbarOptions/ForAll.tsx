@@ -19,7 +19,9 @@ const ForAll = () => {
         </Sidebar.Item>
         <Sidebar.Collapse label="Búsqueda de libros">
           <Sidebar.Item
-            onClick={() => handleNavigation("/HogarDeLibros/Catalogo/Catalogo_Completo")}
+            onClick={() =>
+              handleNavigation("/HogarDeLibros/Catalogo/Catalogo_Completo")
+            }
           >
             Por título
           </Sidebar.Item>
@@ -54,15 +56,15 @@ const ForAll = () => {
         </Sidebar.Item>
         <Sidebar.Item
           className=""
-          onClick={() => handleNavigation("/HogarDeLibros")}
+          onClick={() =>
+            handleNavigation("/HogarDeLibros/Cronograma_Actividades")
+          }
         >
-          Programas
+          Actividades de programas
         </Sidebar.Item>
         <Sidebar.Item
           className=""
-          onClick={() =>
-            handleNavigation("/HogarDeLibros/Equipo_Disponible")
-          }
+          onClick={() => handleNavigation("/HogarDeLibros/Equipo_Disponible")}
         >
           Disponibilidad <br />
           de equipo de cómputo
