@@ -89,4 +89,26 @@ const LogOut = async () => {
   }
 };
 
-export { RecoveryPassword, SignUp, resetPassword, LogOut };
+const getProfile = async () => {
+  try {
+    const response = await api.get("auth/Profile");
+    const user = response.data.user;
+    const message = response.data.message;
+    return { user, message };
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al iniciar sesión:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al iniciar sesión"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
+
+export { RecoveryPassword, SignUp, resetPassword, LogOut, getProfile };
