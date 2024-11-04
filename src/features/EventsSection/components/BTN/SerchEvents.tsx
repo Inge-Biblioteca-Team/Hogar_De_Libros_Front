@@ -21,9 +21,11 @@ const SearchEvents = ({
         <Label className="text-lg">Estado</Label>
         <Select onChange={(event) => EStatus(event.target.value)}>
           <option value="">Seleccione un estado</option>
-          <option value="F">Finalizado</option>
-          <option value="E">Ejecución</option>
-          <option value="P">Próximamente</option>
+          <option value="Pendiente de ejecución">
+            Pendientes de ejecución
+          </option>
+          <option value="Cancelado">Cancelados</option>
+          <option value="Finalizado">Finalizados</option>
         </Select>
       </div>
     </div>

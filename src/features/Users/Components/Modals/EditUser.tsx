@@ -3,11 +3,10 @@ import { User } from "../../Type/UserType";
 import { Label, Modal, Select, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import UseEditInfoUser from "../../Hooks/UseEditInfoUser";
-import toast from "react-hot-toast";
-import { useQueryClient } from "react-query";
 import ModalFooters from "../../../../components/ModalFooters";
 import OptCanton from "../../../../components/OptCanton";
 import OptProvincias from "../../../../components/OptProvincias";
+import OptRole from "../OptRole";
 
 const EditUser = ({
   edit,
@@ -29,27 +28,18 @@ const EditUser = ({
       setValue("address", User.address);
       setValue("role", User.role);
       setValue("loanPolicy", User.loanPolicy);
+      setValue("cedula", User.cedula);
     }
   }, [User, setValue]);
 
   const { mutate: patchUser } = UseEditInfoUser();
 
-  const useClient = useQueryClient();
-
   const handleConfirm = (data: User) => {
-    patchUser(
-      { user: data, cedula: User.cedula },
-      {
-        onSuccess: () => {
-          setEdit(false);
-          toast.success("Editado correctamente");
-          useClient.invalidateQueries("UsersMG");
-        },
-        onError: () => {
-          toast.error("Error al editar");
-        },
-      }
-    );
+    patchUser(data, {
+      onSuccess: () => {
+        setEdit(false);
+      },
+    });
   };
 
   const onClose = () => {
@@ -59,7 +49,7 @@ const EditUser = ({
   return (
     <Modal show={edit} onClose={onClose}>
       <Modal.Header>
-        <span>Editar Información del Usuario {User.name}</span>
+        <span>Editar información del usuario {User.name}</span>
       </Modal.Header>
       <form onSubmit={handleSubmit(handleConfirm)}>
         <Modal.Body>
@@ -130,11 +120,7 @@ const EditUser = ({
               <div className=" ">
                 <Label htmlFor="rol">Rol</Label>
                 <Select id="" title="Rol" {...register("role")}>
-                  <option value="">Rol Del Usuario</option>
-                  <option value="admin">Administrador</option>
-                  <option value="creator">Asistente</option>
-                  <option value="reception'">Recepción</option>
-                  <option value="external_user">Usuario externo</option>
+                  <OptRole />
                 </Select>
               </div>
               <div>

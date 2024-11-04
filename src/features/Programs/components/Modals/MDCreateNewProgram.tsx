@@ -22,7 +22,7 @@ const MDCreateNewProgram = ({
       onSuccess: () => {
         reset();
         setImageUrl("");
-        setOpen(false)
+        setOpen(false);
       },
       onError: () => {},
     });
@@ -93,7 +93,6 @@ const MDCreateNewProgram = ({
                   rows={4}
                   required
                 />
-                <TextInput className="hidden" {...register("image")} />
               </div>
             </div>
           </Modal.Body>

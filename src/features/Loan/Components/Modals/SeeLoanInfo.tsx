@@ -55,7 +55,7 @@ const SeeLoanInfo = ({
         </div>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"failure"} onClick={() => setSee(false)}>
+        <Button color={"red"} onClick={() => setSee(false)}>
           {" "}
           Cerrar{" "}
         </Button>

@@ -10,9 +10,9 @@ const useNewComputer = () => {
     mutationFn: (data: Equipment) =>
       toast.promise(PostNewComputer(data), {
         loading: "Creando...",
-        success: <span>Éxito, recurso creado correctamente</span>,
+        success: <span>Éxito, componente creado correctamente</span>,
         error: (error: ApiError) => (
-          <span>Error al crear el recurso: {error.message}</span>
+          <span>Error al crear el componente: {error.message}</span>
         ),
       }),
     onSuccess() {

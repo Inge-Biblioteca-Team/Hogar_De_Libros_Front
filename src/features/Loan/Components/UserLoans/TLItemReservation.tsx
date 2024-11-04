@@ -84,7 +84,7 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
           <span>está acción no es reversible!!</span>
         </Modal.Body>
         <Modal.Footer className="flex items-center justify-center">
-          <Button color={"failure"} tabIndex={2} onClick={() => setOpen(false)}>
+          <Button color={"red"} tabIndex={2} onClick={() => setOpen(false)}>
             Regresar
           </Button>
           <Button color={"blue"} onClick={handleCancel}>

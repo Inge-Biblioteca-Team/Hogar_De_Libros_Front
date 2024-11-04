@@ -69,7 +69,7 @@ const ModalAddNewImage = ({
               className="rounded shadow-md w-full h-60"
             />
             <div className=" flex justify-between mt-4">
-              <Button color="failure" onClick={onClose}>
+              <Button color="red" onClick={onClose}>
                 Cancelar
               </Button>
               <Button color="blue" onClick={handleConfirmImage}>

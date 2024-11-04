@@ -84,7 +84,7 @@ const ProgramActivities = () => {
           >
             {Activities && Activities?.count > 0 ? (
               Activities?.data.map((activitie) => (
-                <ActivitieTimeItem activitie={activitie} key={activitie.id} />
+                <ActivitieTimeItem activitie={activitie} key={activitie.activitieID} />
               ))
             ) : (
               <strong className=" flex w-full items-center justify-center text-2xl">

@@ -36,7 +36,7 @@ const MDChangeProgramStatus = ({
         <span>Está acción no es reversible!!!</span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"failure"} onClick={() => setOpen(false)}>
+        <Button color={"red"} onClick={() => setOpen(false)}>
           Cancelar
         </Button>
         <Button color={"blue"} onClick={handleConfirm}>

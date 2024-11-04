@@ -1,8 +1,6 @@
 import { Label, Modal, TextInput } from "flowbite-react";
 import { User } from "../../Type/UserType";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { useQueryClient } from "react-query";
 import UseEditInfoUser from "../../Hooks/UseEditInfoUser";
 import { useEffect } from "react";
 import ModalFooters from "../../../../components/ModalFooters";
@@ -20,6 +18,7 @@ const ContacE = ({
 
   useEffect(() => {
     if (User) {
+      setValue("cedula", User.cedula);
       setValue("email", User.email);
       setValue("phoneNumber", User.phoneNumber);
     }
@@ -27,20 +26,13 @@ const ContacE = ({
 
   const { mutate: patchUser } = UseEditInfoUser();
 
-  const useClient = useQueryClient();
 
   const handleConfirm = (data: User) => {
-    patchUser(
-      { user: data, cedula: User.cedula },
+    patchUser(data,
       {
         onSuccess: () => {
           setOpen(false);
-          toast.success("Editado correctamente");
-          useClient.invalidateQueries("userInfo");
-        },
-        onError: () => {
-          toast.error("Error al editar");
-        },
+        }
       }
     );
   };

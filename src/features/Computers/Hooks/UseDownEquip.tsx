@@ -10,9 +10,9 @@ const UseDownEquip = () => {
     mutationFn: (data: downType) =>
       toast.promise(DownEquipment(data), {
         loading: "Editando...",
-        success: <span>Éxito, recurso editado correctamente</span>,
+        success: <span>Éxito, componente editado correctamente</span>,
         error: (error: ApiError) => (
-          <span>Error al editar el recurso: {error.message}</span>
+          <span>Error al editar el componente: {error.message}</span>
         ),
       }),
     onSuccess() {

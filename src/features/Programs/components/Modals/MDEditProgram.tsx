@@ -110,7 +110,6 @@ const MDEditProgram = ({
                   rows={4}
                   required
                 />
-                <TextInput className="hidden" {...register("image")} />
               </div>
             </div>
           </Modal.Body>

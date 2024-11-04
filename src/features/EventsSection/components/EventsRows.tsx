@@ -21,11 +21,7 @@ const EventsRows = ({ event }: { event: Events }) => {
         <Table.Cell>{eventDay}</Table.Cell>
         <Table.Cell>{event.Time}</Table.Cell>
         <Table.Cell>
-          {event.Status === "P"
-            ? "Próximamente"
-            : event.Status === "F"
-            ? "Finalizado"
-            : "En Ejecución"}
+          {event.Status}
         </Table.Cell>
         <Table.Cell>
           <EventBTNAccions

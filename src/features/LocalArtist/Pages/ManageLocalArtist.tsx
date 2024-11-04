@@ -30,14 +30,19 @@ const ManageLocalArtist = () => {
     sessionStorage.setItem("ArtistPages", currentPage.toString());
   }, [currentPage]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [SName, SType, Status]);
+
   const Name = UseDebounce(SName, 100);
   const Type = UseDebounce(SType, 100);
 
   const { data: Artists } = useQuery<ResponseA, Error>(
-    ["LocalArtistMG", currentPage, currentLimit, Name, Type, Status],
+    ["Artist", currentPage, currentLimit, Name, Type, Status],
     () => getLocalArtist(currentPage, currentLimit, Name, Type, Status),
     {
-      staleTime: 600,
+      staleTime: 2000,
+      retry: 2,
     }
   );
 

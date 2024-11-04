@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import api from "../../../Services/AxiosConfig";
-import { createCourse, updateCourse } from "../types/Courses";
+import { Courses } from "../types/Courses";
 
 const getCoursesS = async () => {
   const response = await api.get("courses");
@@ -55,10 +55,10 @@ interface ErrorResponse {
   statusCode: number;
 }
 
-const CancelEroll = async (courseID: number, userCedula: string) => {
+const CancelEroll = async (data:{courseID: number, userCedula: string}) => {
   try {
     const response = await api.patch(
-      `enrollments/cancel?courseId=${courseID}&userCedula=${userCedula}`
+      `enrollments/cancel?courseId=${data.courseID}&userCedula=${data.userCedula}`
     );
     return response.data;
   } catch (error) {
@@ -72,15 +72,20 @@ const CancelEroll = async (courseID: number, userCedula: string) => {
   }
 };
 
-
-const getCourses = async (page: number, limit: number, Name?: string) => {
+const getCourses = async (
+  page: number,
+  limit: number,
+  Name?: string,
+  Status?: string
+) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
       page,
       limit,
     };
     if (Name) params.courseName = Name;
-    const response = await api.get("courses", {params});
+    if (Status) params.status = Status;
+    const response = await api.get("courses", { params });
     return response.data;
   } catch (error) {
     console.error("Error al cargar los cursos:", error);
@@ -98,13 +103,9 @@ const DownCourse = async (courseId: number) => {
   }
 };
 
-const editCourse = async ( data: updateCourse) => {
+const editCourse = async (data: Courses) => {
   try {
-    const response = await api.patch(`/courses/${data.Id}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await api.patch(`/courses/${data.courseId}`, data);
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -122,14 +123,10 @@ const editCourse = async ( data: updateCourse) => {
   }
 };
 
-const CreateCourses = async (data: createCourse) => {
-  console.table(data)
+const CreateCourses = async (data: Courses) => {
+  console.table(data);
   try {
-    const addCourse = await api.post("courses", data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const addCourse = await api.post("courses", data);
     return addCourse.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -148,41 +145,17 @@ const CreateCourses = async (data: createCourse) => {
 };
 
 
-const uploadImage = async (file: File): Promise<string> => {
-  if (file) {
-    const formData = new FormData();
-    formData.append("image", file);
-
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/files/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      return response.data.filePath;
-    } catch (error) {
-      console.error("Error al subir la imagen:", error);
-      throw new Error("Error al subir la imagen");
-    }
-  }
-  throw new Error("No se proporiconarion archivos");
-};
-
 const GetUserData = async (NCedula: string) => {
   try {
-    const response = await api.get(`http://localhost:3000/user/${NCedula}`,);
+    const response = await api.get(`user/${NCedula}`);
     return response.data;
   } catch (error) {
-    console.error("Usuario no encontrado");
+    console.log("Usuario no encontrado");
   }
 };
 
- const GetProgramsIntoCourses = async () => {
-  const response = await api.get('programs/Actived');
+const GetProgramsIntoCourses = async () => {
+  const response = await api.get("programs/Actived");
   return response.data;
 };
 
@@ -192,10 +165,9 @@ export {
   GetNextCourses,
   GetUserEnrollment,
   CancelEroll,
-  uploadImage,
   editCourse,
   DownCourse,
   getCoursesS,
   GetProgramsIntoCourses,
-  GetUserData
+  GetUserData,
 };

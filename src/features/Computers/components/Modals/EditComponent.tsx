@@ -25,7 +25,7 @@ const EditComponent = ({
       Observation: component.Observation,
       ConditionRating: component.ConditionRating,
       MachineNumber: component.MachineNumber,
-      EquipmentUniqueCode:component.EquipmentUniqueCode
+      EquipmentUniqueCode: component.EquipmentUniqueCode,
     },
   });
 
@@ -33,7 +33,6 @@ const EditComponent = ({
     setSEdit(false);
   };
 
-  
   const { mutate: Edit } = useEditComputer();
 
   const onConfirm = (data: Equipment) => {
@@ -115,6 +114,7 @@ const EditComponent = ({
                   type="text"
                   sizing="md"
                   {...register("Observation")}
+                  placeholder="Ej. Daños..."
                 />
               </span>
             </fieldset>

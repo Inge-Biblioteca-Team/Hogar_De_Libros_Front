@@ -27,15 +27,6 @@ const GetUsersList = async (
   }
 };
 
-const GetUserData = async (NCedula: string) => {
-  try {
-    const response = await api.get(`user/504420813/${NCedula}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error usuario no encontrado");
-  }
-};
-
 const DownUser = async (cedula: string) => {
   try {
     const response = await api.patch(`user/change-status/${cedula}`);
@@ -52,21 +43,6 @@ const UpUser = async (cedula: string) => {
   } catch (error) {
     console.error("Error al reactivar el usuario:", error);
     throw error;
-  }
-};
-
-const signIn = async (username: string, password: string) => {
-  try {
-    const response = await api.post("auth/login", {
-      username: username,
-      password: password,
-    });
-    sessionStorage.setItem("Token", response.data.access_token);
-  } catch (error) {
-    if (error) {
-      console.error("Error al iniciar sesión:", error);
-      throw error;
-    }
   }
 };
 
@@ -97,17 +73,27 @@ const GetUserInfo = async (NCedula: string) => {
     const response = await api.get(`user/${NCedula}`);
     return response.data;
   } catch (error) {
-    console.error("Usuario no encontrado");
+    console.log("Usuario no encontrado");
   }
 };
 
-const PatchUserByAdmin = async (user: User, cedula: string) => {
+const PatchUserByAdmin = async (user: User) => {
   try {
-    const response = await api.patch(`user/update/${cedula}`, user);
+    const response = await api.patch(`user/update/${user.cedula}`, user);
     return response.data;
-  } catch (error) {
-    console.error;
-    throw error;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al editar usuario:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al editar usuario"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 
@@ -118,16 +104,14 @@ const getUserInformationByCedula = async (Ncedula: string) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Usuario no encontrado");
+    console.log("Usuario no encontrado");
   }
 };
 
 export {
   getUserInformationByCedula,
   GetUsersList,
-  GetUserData,
   DownUser,
-  signIn,
   LogIn,
   GetUserInfo,
   PatchUserByAdmin,

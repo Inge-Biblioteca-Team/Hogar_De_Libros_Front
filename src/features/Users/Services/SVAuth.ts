@@ -1,7 +1,7 @@
 import axios from "axios";
 import api from "../../../Services/AxiosConfig";
 import { RegisterInfo } from "../Type/UserType";
-import { recoveryRequest } from "../Type/Recovery";
+import { recovery, recoveryRequest } from "../Type/Recovery";
 
 const RecoveryPassword = async (data: recoveryRequest) => {
   try {
@@ -23,22 +23,14 @@ const RecoveryPassword = async (data: recoveryRequest) => {
   }
 };
 
-const resetPassword = async ({
-  token,
-  newPassword,
-  cedula,
-}: {
-  token: string;
-  newPassword: string;
-  cedula: string;
-}) => {
+const resetPassword = async (data: recovery) => {
   try {
     const response = await api.patch(
       "user/update-password",
-      { cedula, newPassword },
+      { cedula: data.cedula, newPassword: data.newPassword },
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${data.token}`,
         },
       }
     );
@@ -89,4 +81,26 @@ const LogOut = async () => {
   }
 };
 
-export { RecoveryPassword, SignUp, resetPassword, LogOut };
+const getProfile = async () => {
+  try {
+    const response = await api.get("auth/Profile");
+    const user = response.data.user;
+    const message = response.data.message;
+    return { user, message };
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al iniciar sesión:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al iniciar sesión"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
+
+export { RecoveryPassword, SignUp, resetPassword, LogOut, getProfile };

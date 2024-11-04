@@ -55,7 +55,7 @@ const FinishLoanBook = ({
             className="mb-4"
           />
           <div className="flex justify-center gap-4">
-            <Button color="failure" onClick={() => setOpen(false)}>
+            <Button color="red" onClick={() => setOpen(false)}>
               Cancelar
             </Button>
             <Button color="blue" onClick={handleConfirm}>

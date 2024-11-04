@@ -35,14 +35,13 @@ export type Course = {
 };
 
 export type Activitie = {
-  id: number;
-  category: string;
+  activitieID: string;
+  programName: string;
+  activitieName: string;
+  activityType: string;
   description: string;
-  date: string;
-  targetAge: number;
-  instructor: string;
+  activitiDate: Date;
   image: string;
-  programName: number;
 };
 
 export type ActivitieList = {

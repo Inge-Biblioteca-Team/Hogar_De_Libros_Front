@@ -27,17 +27,25 @@ const GetRooms = async (
   }
 };
 
-const ActionRoom = async (roomId: number, action: string) => {
+const ActionRoom = async (roomId: string, action: string) => {
   try {
     const response = await api.patch(`rooms/${action}/${roomId}`);
     return response.data;
-  } catch (error) {
-    console.error("Error al clausurar la sala:", error);
-    throw error;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al editar el estado de la sala:",
+        error.response?.data || error.message
+      );
+      throw new Error(error.response?.data.message || "Error al editar el estado de la sala");
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 
-const ADDINGROOMS = async (data: CreateRoom) => {
+const PostNewRoom = async (data: CreateRoom) => {
   console.table(data);
   try {
     const addRoom = await api.post("rooms", data, {
@@ -60,7 +68,7 @@ const ADDINGROOMS = async (data: CreateRoom) => {
   }
 };
 
-const EDITINGROOMS = async (data: updateRooms) => {
+const UpdateRoom = async (data: updateRooms) => {
   try {
     const response = await api.patch(`/rooms/${data.roomId}`, data, {
       headers: {
@@ -84,26 +92,5 @@ const EDITINGROOMS = async (data: updateRooms) => {
   }
 };
 
-const uploadImages = async (files: File[]): Promise<string[]> => {
-  if (files.length > 0) {
-    const formData = new FormData();
-    files.forEach((file) => {
-      formData.append("image", file);
-    });
 
-    try {
-      const response = await api.post("/files/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      return response.data.filePaths;
-    } catch (error) {
-      console.error("Error al subir imagen:", error);
-      throw new Error("Erroral subir imagen");
-    }
-  }
-  throw new Error("No se proporcionaron archivos para subir");
-};
-
-export { GetRooms, ADDINGROOMS, EDITINGROOMS, uploadImages, ActionRoom };
+export { GetRooms, PostNewRoom, UpdateRoom, ActionRoom };

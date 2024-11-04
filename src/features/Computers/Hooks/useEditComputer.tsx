@@ -10,9 +10,9 @@ const useEditComputer = () => {
     mutationFn: (data: Equipment) =>
       toast.promise(PutEditEquipment(data), {
         loading: "Creando...",
-        success: <span>Éxito, recurso editado correctamente</span>,
+        success: <span>Éxito, componente editado correctamente</span>,
         error: (error: ApiError) => (
-          <span>Error al editar el recurso: {error.message}</span>
+          <span>Error al editar el componente: {error.message}</span>
         ),
       }),
     onSuccess() {
