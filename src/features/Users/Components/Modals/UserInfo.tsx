@@ -15,7 +15,7 @@ const UserInfo = ({
   return (
     <Modal show={see} onClose={() => setSee(false)}>
       <Modal.Header>
-        <span>Información del Usuario</span>
+        <span>Información del usuario</span>
       </Modal.Header>
       <Modal.Body className="">
         <figure className=" w-full flex items-center justify-center flex-col">
@@ -45,14 +45,12 @@ const UserInfo = ({
           <span>
             <strong className=" font-bold">Teléfono:</strong> {User.phoneNumber}
           </span>
-          <span className=" font-bold">
-            {getLoanPolicity(User.loanPolicy) || "N/A"}
-          </span>
+          <span className=" font-bold">{getLoanPolicity(User.loanPolicy) || "N/A"}</span>
         </span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
         <Button color={"blue"} onClick={() => setSee(false)}>
-          Cerrar
+          Regresar
         </Button>
       </Modal.Footer>
     </Modal>

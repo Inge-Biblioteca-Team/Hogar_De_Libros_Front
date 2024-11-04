@@ -1,33 +1,27 @@
 import { useCallback, useState } from "react";
-import { Modal, Label, TextInput } from "flowbite-react";
+import { Modal, Label, TextInput, Select } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import { createLocalArtist } from "../../services/SvArtist";
-import { createArtist } from "../../types/LocalArtist";
-import toast from "react-hot-toast";
+import { Artist} from "../../types/LocalArtist";
 import { FaFacebookSquare, FaUserEdit } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import { AiFillTikTok } from "react-icons/ai";
 import { BsLinkedin } from "react-icons/bs";
-import { useQueryClient } from "react-query";
 import ModalFooters from "../../../../components/ModalFooters";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
+import UseCreateArtist from "../../Hooks/UseCreateArtist";
 
 const CreateArtist = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { register, handleSubmit, setValue, reset } = useForm<createArtist>();
+  const { register, handleSubmit, setValue, reset } = useForm<Artist>();
 
-  const QueryCli = useQueryClient();
+  const { mutate: create } = UseCreateArtist();
 
-  const onSubmit = async (data: createArtist) => {
-    try {
-      await createLocalArtist(data);
-      toast.success("Artista añadido con éxito");
-      setIsModalOpen(false);
-      QueryCli.invalidateQueries("LocalArtistMG");
-    } catch (error) {
-      console.error("Error al añadir el artista:", error);
-      toast.error("Hubo un error al añadir el artista");
-    }
+  const onSubmit = async (data: Artist) => {
+    create(data, {
+      onSuccess: () => {
+        onClose();
+      },
+    });
   };
 
   const [openImage, setOpenImage] = useState<boolean>(false);
@@ -101,17 +95,23 @@ const CreateArtist = () => {
                   htmlFor="ArtisProfession"
                   value="Profesión del Artista"
                 />
-                <TextInput
-                  id="ArtisProfession"
-                  type="text"
+                <Select
                   required
+                  id="ArtisProfession"
                   {...register("ArtisProfession")}
-                  placeholder="Escribe la Profesión del Artista"
-                />
+                >
+                  <option value="">Seleccione el tipo de artista</option>
+                  <option value="Músico">Músico</option>
+                  <option value="Pintor">Pintor</option>
+                  <option value="Escritor">Escritor</option>
+                  <option value="Actor">Actor</option>
+                  <option value="Escultor">Escultor</option>
+                  <option value="Fotógrafo">Fotógrafo</option>
+                </Select>
               </div>
             </fieldset>
             <fieldset className=" grid-cols-2 grid gap-2">
-              <legend>Redes Sociales</legend>
+              <legend>Redes sociales</legend>
               <div className="mb-4">
                 <Label htmlFor="FBLink" value="Facebook link" />
                 <TextInput

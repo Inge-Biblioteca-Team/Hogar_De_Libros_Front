@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Carousel, Label, Modal, TextInput } from "flowbite-react";
-import { CreateRoom } from "../../Types/Room_Interface";
+import { Room } from "../../Types/Room_Interface";
 import UseCreateRooms from "../../Hooks/UseCreateRoms";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
+import ModalFooters from "../../../../components/ModalFooters";
 
 const CreateRooms = () => {
-  const { register, reset, handleSubmit, setValue } = useForm<CreateRoom>();
+  const { register, reset, handleSubmit, setValue } = useForm<Room>();
 
   const [imageUrls, setImageUrls] = useState<string[]>([]);
 
@@ -20,13 +21,11 @@ const CreateRooms = () => {
     setImageUrls([]);
   };
 
-  const onSubmit = async (data: CreateRoom) => {
+  const onSubmit = async (data: Room) => {
     createRoom(data, {
       onSuccess: () => {
         handleModalClose();
-        console.log(data);
       },
-      onError: () => {},
     });
   };
 
@@ -49,7 +48,7 @@ const CreateRooms = () => {
   return (
     <>
       <Button onClick={() => setIsModalOpen(true)} color="blue">
-        Añadir Sala
+        Añadir sala
       </Button>
       <Modal show={isModalOpen} onClose={handleModalClose} size={"5xl"}>
         <Modal.Header>Crear nueva sala</Modal.Header>
@@ -57,7 +56,7 @@ const CreateRooms = () => {
           <Modal.Body>
             <div className=" grid grid-cols-3 grid-rows-1 gap-5">
               <fieldset className="flex flex-col w-full">
-                <legend className="font-bold pb-2">Imágenes de la Sala</legend>
+                <legend className="font-bold pb-2">Imágenes de la sala</legend>
                 <Carousel
                   slide={false}
                   className="Custom-Carousel"
@@ -70,7 +69,7 @@ const CreateRooms = () => {
                       <figure key={index}>
                         <Button
                           className="absolute bottom-2 z-50 !rounded-md"
-                          color={"failure"}
+                          color={"red"}
                           onClick={() => removeImage(index)}
                         >
                           Eliminar
@@ -93,7 +92,7 @@ const CreateRooms = () => {
               <div className=" grid grid-cols-2 gap-4 col-span-2">
                 <fieldset className=" flex flex-col justify-between">
                   <legend className="font-bold pb-2">
-                    Información General
+                    Información general
                   </legend>
                   <span>
                     <Label htmlFor="name" value="Nombre de la sala" />
@@ -107,7 +106,7 @@ const CreateRooms = () => {
                   </span>
 
                   <span>
-                    <Label htmlFor="roomNumber" value="Número de Sala" />
+                    <Label htmlFor="roomNumber" value="Número de sala" />
                     <TextInput
                       id="roomNumber"
                       type="number"
@@ -129,7 +128,7 @@ const CreateRooms = () => {
                   </span>
                 </fieldset>
                 <fieldset className=" flex flex-col justify-between">
-                  <legend className="font-bold pb-2">Detalles de Sala</legend>
+                  <legend className="font-bold pb-2">Detalles de sala</legend>
                   <span>
                     <Label htmlFor="capacity" value="Aforo de sala" />
                     <TextInput
@@ -165,14 +164,7 @@ const CreateRooms = () => {
               </div>
             </div>
           </Modal.Body>
-          <Modal.Footer className="flex items-center justify-center">
-            <Button color={"failure"} onClick={handleModalClose} tabIndex={2}>
-              Cancelar
-            </Button>
-            <Button color={"blue"} type="submit">
-              Guardar
-            </Button>
-          </Modal.Footer>
+          <ModalFooters onClose={handleModalClose} />
         </form>
       </Modal>
       <ModalAddNewImage

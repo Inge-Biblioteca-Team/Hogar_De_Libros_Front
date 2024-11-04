@@ -36,7 +36,7 @@ const CourseInfo = ({
     1: "Todo publico",
     3: "Niños 0-3 Años",
     11: "Niños +3 Años",
-    24: "Jovenes",
+    24: "Jóvenes",
     59: "Adultos",
     60: "Adultos Mayores",
   };
@@ -49,7 +49,7 @@ const CourseInfo = ({
           <figure className="w-full flex items-center justify-center">
             <img
               className="w-full h-64 rounded-lg shadow-mdr"
-              src={course.image || "src/Assets/course.jpg"}
+              src={course.image}
               alt={course.courseType}
             />
           </figure>

@@ -19,9 +19,9 @@ const ManageFurniture = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
 
   const [searchCode, setSearchCode] = useState<string>("");
-  const code = UseDebounce(searchCode, 1000);
+  const code = UseDebounce(searchCode, 2000);
   const [searchDescription, setSearchDescription] = useState<string>("");
-  const searchDescriptionDelay = UseDebounce(searchDescription, 1000);
+  const searchDescriptionDelay = UseDebounce(searchDescription, 2000);
   const [searchStatus, setSearchStatus] = useState<string>("");
 
   const onPageChange = (page: number) => {
@@ -38,6 +38,7 @@ const ManageFurniture = () => {
       currentLimit,
       searchDescriptionDelay,
       searchStatus,
+      code
     ],
     () =>
       GetFurniturePaginated(
@@ -75,7 +76,7 @@ const ManageFurniture = () => {
             </Select>
           </div>
           <Button color={"blue"} onClick={() => setSNew(true)}>
-            Añadir Mobiliario
+            Añadir mobiliario
           </Button>
         </section>
         <section className="w-4/5">

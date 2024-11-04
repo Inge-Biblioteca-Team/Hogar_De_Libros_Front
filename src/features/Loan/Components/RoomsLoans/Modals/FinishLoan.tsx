@@ -99,7 +99,7 @@ const FinishLoan = ({
       </Modal.Body>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Footer className=" items-center justify-center flex">
-          <Button tabIndex={2} onClick={() => setOpen(false)} color={"failure"}>
+          <Button tabIndex={2} onClick={() => setOpen(false)} color={"red"}>
             Cancelar
           </Button>
           <Button type="submit" color={"blue"}>

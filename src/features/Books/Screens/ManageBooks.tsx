@@ -68,6 +68,7 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
                 setSearchAuthor(event.target.value), setPage(1)
               )}
               rightIcon={MdPersonSearch}
+              id="Autor"
               placeholder="Búsqueda por autor"
             />
             <TextInput

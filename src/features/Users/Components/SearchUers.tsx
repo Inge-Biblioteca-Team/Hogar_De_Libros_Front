@@ -3,6 +3,7 @@ import { FaFileSignature } from "react-icons/fa6";
 import { FaIdBadge } from "react-icons/fa";
 import { BsPersonSquare } from "react-icons/bs";
 import { CgScrollV } from "react-icons/cg";
+import OptRole from "./OptRole";
 const SearchUsers = ({
   setYear,
   setRol,
@@ -43,11 +44,7 @@ const SearchUsers = ({
           icon={CgScrollV}
           onChange={(event) => setRol(event.target.value)}
         >
-          <option value="">Rol del usuario</option>
-          <option value="viewer">Usuario de sala</option>
-          <option value="creator">Colaborador</option>
-          <option value="external_user">Usuario externo</option>
-          <option value="admin">Administrador</option>
+          <OptRole/>
         </Select>
       </div>
       <div>

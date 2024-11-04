@@ -1,7 +1,7 @@
 import { Button, Label, Select, TextInput, Modal } from "flowbite-react";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { createCourse } from "../../types/Courses";
+import { Courses } from "../../types/Courses";
 import { FaReadme } from "react-icons/fa6";
 import UseCreateCourse from "../../Hooks/UseCreateCourse";
 import { addDay } from "@formkit/tempo";
@@ -13,14 +13,13 @@ import ModalFooters from "../../../../components/ModalFooters";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
 
 const CreateCourse = () => {
-  const { register, reset, handleSubmit, watch, setValue } =
-    useForm<createCourse>();
+  const { register, reset, handleSubmit, watch, setValue } = useForm<Courses>();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { mutate: createCourse } = UseCreateCourse();
 
-  const onSubmit = async (data: createCourse) => {
+  const onSubmit = async (data: Courses) => {
     createCourse(data, {
       onSuccess: () => {
         setIsModalOpen(false);
@@ -34,24 +33,19 @@ const CreateCourse = () => {
 
   const min = formatToYMD(tomorrow);
 
-  const minfinaly = formatToYMD(watch("date"));
+  const minfinaly = formatToYMD(watch("date") || new Date());
 
   const [openImage, setOpenImage] = useState<boolean>(false);
-  const [imageUrl, setImageUrl] = useState<string>("");
+  const image = watch("image");
 
-  const handleImageSelect = useCallback(
-    (url: string) => {
-      setImageUrl(url);
-      setValue("image", url);
-      setOpenImage(false);
-    },
-    [setValue]
-  );
+  const handleImageSelect = (url: string) => {
+    setValue("image", url);
+    setOpenImage(false);
+  };
 
   const onClose = () => {
     setIsModalOpen(false);
     reset();
-    setImageUrl("");
   };
 
   const handleClose = () => {
@@ -61,22 +55,18 @@ const CreateCourse = () => {
   return (
     <>
       <Button onClick={() => setIsModalOpen(true)} color="blue">
-        Añadir Curso
+        Añadir curso
       </Button>
-      <Modal
-        show={isModalOpen}
-        onClose={onClose}
-        size={"5xl"}
-      >
+      <Modal show={isModalOpen} onClose={onClose} size={"5xl"}>
         <Modal.Header>Crear nuevo curso</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className=" grid grid-cols-3 gap-3">
             <fieldset className=" flex">
               <legend className=" font-bold pb-3">Imagen del curso</legend>
               <figure className=" w-full">
-                {imageUrl ? (
+                {image ? (
                   <img
-                    src={imageUrl}
+                    src={image}
                     alt="Imagen del programa"
                     className="w-full rounded-md cursor-pointer"
                     style={{ height: "100%" }}
@@ -91,7 +81,6 @@ const CreateCourse = () => {
                     <span>Selecciona una imagen</span>
                   </div>
                 )}
-                <TextInput className=" hidden" {...register("image")} />
               </figure>
             </fieldset>
             <div className=" col-span-2 grid grid-cols-2 gap-3">

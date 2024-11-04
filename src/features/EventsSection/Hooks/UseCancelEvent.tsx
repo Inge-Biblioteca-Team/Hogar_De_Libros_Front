@@ -5,21 +5,19 @@ import { ApiError } from "../../../Types/ApiTypes";
 
 const UseCancelEvent = () => {
   const queryClient = useQueryClient();
-  return useMutation(
-    async (Id: number) => {
-      const data = await cancelEvent(Id);
-      return data;
+  return useMutation({
+    mutationFn: (id: number) =>
+      toast.promise(cancelEvent(id), {
+        loading: "Cancelando...",
+        success: <span>Éxito, evento cancelado correctamente</span>,
+        error: (error: ApiError) => (
+          <span>Error al cancelar el evento: {error.message}</span>
+        ),
+      }),
+    onSuccess() {
+      queryClient.invalidateQueries("EventCatalog");
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("EventCatalog");
-        toast.success("Exito, se canceló el evento correctamente");
-      },
-      onError: (error: ApiError) => {
-        toast.error(error.message);
-      },
-    }
-  );
+  });
 };
 
 export default UseCancelEvent;

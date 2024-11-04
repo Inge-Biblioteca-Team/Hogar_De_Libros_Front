@@ -263,6 +263,7 @@ const Register = () => {
                     value="Repita la Contraseña"
                   />
                   <TextInput
+                  placeholder="Repetir contraseña"
                     id="repeatPassword"
                     type="password"
                     className={`border ${

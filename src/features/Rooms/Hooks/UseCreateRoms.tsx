@@ -1,19 +1,23 @@
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";
 import { ApiError } from "../../../Types/ApiTypes";
-import { ADDINGROOMS } from "../Services/SvRooms";
+import { Room } from "../Types/Room_Interface";
+import { PostNewRoom } from "../Services/SvRooms";
 
 const UseCreateRooms = () => {
   const queryClient = useQueryClient();
-
   return useMutation({
-    mutationFn: ADDINGROOMS,
-    onSuccess: () => {
+    mutationFn: (data: Room) =>
+      toast.promise(PostNewRoom(data), {
+        loading: "Creando...",
+        success: <span>Éxito, sala registrada correctamente</span>,
+        error: (error: ApiError) => (
+          <span>Error al crear el recurso: {error.message}</span>
+        ),
+      }),
+    onSuccess() {
       queryClient.invalidateQueries("Rooms");
-      toast.success("Éxito, sala añadida corectamente");
-    },
-    onError: (error: ApiError) => {
-      toast.error("Error al crear la sala: " + error.message);
+      queryClient.invalidateQueries("QueQueReservations");
     },
   });
 };

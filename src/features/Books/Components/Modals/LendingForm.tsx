@@ -134,6 +134,7 @@ const LendingForm = ({
             <legend className="mb-1">Información del préstamo</legend>
             <FloatingLabel
               required
+              id="BookPickUpDate"
               variant="outlined"
               label="Fecha de recolección"
               type="date"
@@ -147,6 +148,7 @@ const LendingForm = ({
               type="date"
               min={watch("BookPickUpDate")}
               max={maxDate}
+              id="LoanExpirationDate"
               {...register("LoanExpirationDate")}
             />
             <div className=" col-span-2 space-y-1">

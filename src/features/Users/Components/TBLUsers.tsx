@@ -1,12 +1,13 @@
 import { Table } from "flowbite-react";
 import BTNAccions from "./BTNAccions";
 import { User } from "../Type/UserType";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import UserInfo from "./Modals/UserInfo";
 import EditUser from "./Modals/EditUser";
 import DisableUser from "./Modals/DisableUser";
-import { format } from "@formkit/tempo";
 import ReactiveUser from "./Modals/ReactiveUser";
+import { formatToDMY } from "../../../components/FormatTempo";
+import UserContext from "../../../Context/UserContext/UserContext";
 
 const TBLUsers = ({ user }: { user: User }) => {
   const [see, setSee] = useState<boolean>(false);
@@ -14,18 +15,15 @@ const TBLUsers = ({ user }: { user: User }) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [reactive, setREACTIVE] = useState<boolean>(false);
 
-  const roleMapping: { [key: string]: string } = {
-    admin: "Administrador",
-    creator: "Ayudante",
-    viewer: "Usuario de sala",
-    external_user: "Usuario Externo",
-  };
+  const { currentUser } = useContext(UserContext);
 
-  const RegDate = format({
-    date: user.registerDate,
-    format: "DD/MM/YYYY",
-    tz: "America/Costa_Rica",
-  });
+  const roleMapping: { [key: string]: string } = {
+    external_user: "Usuario externo",
+    reception: "Recepción(OPAC)",
+    asistente: "Interno",
+    admin: "Administrador",
+    institucional: "Institucional",
+  };
 
   return (
     <>
@@ -39,18 +37,24 @@ const TBLUsers = ({ user }: { user: User }) => {
         </Table.Cell>
         <Table.Cell className="w-56">{user.province} </Table.Cell>
         <Table.Cell className="w-56">{user.phoneNumber} </Table.Cell>
-        <Table.Cell className="w-56">{RegDate}</Table.Cell>
+        <Table.Cell className="w-56">
+          {formatToDMY(user.registerDate)}
+        </Table.Cell>
         <Table.Cell className="w-56">
           {user.status ? "Activo" : "Inactivo"}{" "}
         </Table.Cell>
         <Table.Cell className="w-52">
-          <BTNAccions
-            setREACTIVE={setREACTIVE}
-            setSee={setSee}
-            setDow={setDow}
-            setEdit={setEdit}
-            UserStatus={user.status}
-          />
+          {user.cedula == currentUser?.cedula ? (
+            <span></span>
+          ) : (
+            <BTNAccions
+              setREACTIVE={setREACTIVE}
+              setSee={setSee}
+              setDow={setDow}
+              setEdit={setEdit}
+              UserStatus={user.status}
+            />
+          )}
         </Table.Cell>
       </Table.Row>
       <UserInfo see={see} setSee={setSee} User={user} />

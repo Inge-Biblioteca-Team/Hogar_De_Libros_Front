@@ -10,9 +10,9 @@ const UseDownBook = () => {
     mutationFn: (data: downType) =>
       toast.promise(DisableBook(data), {
         loading: "Editando...",
-        success: <span>Éxito, recurso dado de baja correctamente</span>,
+        success: <span>Éxito, libro dado de baja correctamente</span>,
         error: (error: ApiError) => (
-          <span>Error al dar de baja el recurso: {error.message}</span>
+          <span>Error al dar de baja el libro: {error.message}</span>
         ),
       }),
     onSuccess() {

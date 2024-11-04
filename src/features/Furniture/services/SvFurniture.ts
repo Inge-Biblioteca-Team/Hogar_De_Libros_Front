@@ -1,13 +1,25 @@
+import axios from "axios";
 import api from "../../../Services/AxiosConfig";
-import { FurnitureEdit } from "../type/furniture";
+import { downType } from "../../../Types/GlobalTypes";
+import { furniture, FurnitureEdit } from "../type/furniture";
 
 const PostNewFurniture = async (furniture: FurnitureEdit) => {
   try {
     const response = await api.post(`/Furniture`, furniture);
     return response.data;
-  } catch (error) {
-    console.error("Error to post furniture", error);
-    throw error;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al crear el mobiliario:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al crear el mobiliario"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 
@@ -38,28 +50,45 @@ const GetFurniturePaginated = async (
 };
 
 //edit
-const PatchEditFurniture = async (
-  furniture: FurnitureEdit,
-  ObjetiveID: string
-) => {
+const PatchEditFurniture = async (furniture: furniture) => {
   try {
-    const response = await api.patch(`furniture/${ObjetiveID}`, furniture);
+    const response = await api.patch(`furniture/${furniture.Id}`, furniture);
     return response.data;
-  } catch (error) {
-    console.error("Error al editar mobiliario:", error);
-    throw error;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al editar el mobiliario:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al editar el mobiliario"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 
 //dar de baja
 
-const DownFurniture = async (Id: string, acction: string) => {
+const DownFurniture = async (data: downType) => {
   try {
-    const response = await api.patch(`furniture/${Id}/${acction}`);
+    const response = await api.patch(`furniture/${data.Id}/${data.reason}`);
     return response.data;
-  } catch (error) {
-    console.error("Error al dar de baja el mobiliario:", error);
-    throw error;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al editar el mobiliario:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al editar el mobiliario"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 

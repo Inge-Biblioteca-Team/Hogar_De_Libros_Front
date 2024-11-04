@@ -16,22 +16,5 @@ export type ResponseA = {
   count: number
 }
 
-export type createArtist = {
-  Name: string;
-  ArtisProfession: string;
-  Cover: string; 
-  MoreInfo: string;
-  FBLink: string;
-  IGLink: string;
-  LILink: string;
-}
 
-export type updateArtist = {
-  Name: string;
-  ArtisProfession: string;
-  Cover: string; 
-  MoreInfo: string;
-  FBLink: string;
-  IGLink: string;
-  LILink: string;
-}
+

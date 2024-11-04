@@ -24,7 +24,7 @@ const EditAdvice = ({
   advice: Advice;
 }) => {
   const min = formatToYMD(new Date());
-  const { register, handleSubmit, reset, setValue} = useForm<Advice>({
+  const { register, handleSubmit, reset, setValue } = useForm<Advice>({
     defaultValues: {
       id_Advice: advice.id_Advice,
       date: advice.date,
@@ -40,7 +40,6 @@ const EditAdvice = ({
     editAdvice(data, {
       onSuccess: () => {
         setOpen(false);
-        reset();
       },
     });
   };

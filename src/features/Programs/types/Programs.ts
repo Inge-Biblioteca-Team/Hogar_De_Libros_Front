@@ -32,4 +32,19 @@ export type Course = {
   duration: string;
   endDate: string;
   programProgramsId: number;
-}
+};
+
+export type Activitie = {
+  activitieID: string;
+  programName: string;
+  activitieName: string;
+  activityType: string;
+  description: string;
+  activitiDate: Date;
+  image: string;
+};
+
+export type ActivitieList = {
+  data: Activitie[];
+  count: number;
+};

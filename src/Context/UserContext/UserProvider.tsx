@@ -1,24 +1,25 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { User } from "./UserType";
 import UserContext from "./UserContext";
+import UseGetProfile from "../../features/Users/Hooks/UseGetProfile";
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isLogged, setIsLogged] = useState<boolean>(false);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [isLogged, setIsLogged] = useState<boolean>(() => {
+    return localStorage.getItem("isLogged") === "true";
+  });
+  const [currentUser, setCurrentUser] = useState<User | null>(() => {
+    const user = localStorage.getItem("currentUser");
+    return user ? JSON.parse(user) : null;
+  });
+
+  const getProfile = UseGetProfile();
 
   useEffect(() => {
-    const loggedStatus = localStorage.getItem("isLogged");
-    const user = localStorage.getItem("currentUser");
-
-    if (loggedStatus === "true" && user) {
-      try {
-        setIsLogged(true);
-        setCurrentUser(JSON.parse(user)||null);
-      } catch (error) {
-        console.error("Error al analizar el usuario:", error);
-      }
+    if (isLogged) {
+      getProfile.mutate();
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLogged]);
 
   const contextValue = useMemo(
     () => ({

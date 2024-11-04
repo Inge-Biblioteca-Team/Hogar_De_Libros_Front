@@ -1,23 +1,24 @@
 import { useMutation, useQueryClient } from "react-query";
 import { DownFurniture } from "../services/SvFurniture";
+import { downType } from "../../../Types/GlobalTypes";
+import { ApiError } from "../../../Types/ApiTypes";
+import toast from "react-hot-toast";
 
-const UseDownEquip = () => {
+const UseDownFurniture = () => {
   const queryClient = useQueryClient();
-  return useMutation(
-    async ({ Id, acction }: { Id: string; acction: string }) => {
-      const data = await DownFurniture(Id, acction); 
-      return data;
+  return useMutation({
+    mutationFn: (data: downType) =>
+      toast.promise(DownFurniture(data), {
+        loading: "Editando...",
+        success: <span>Éxito, mobiliario editado correctamente</span>,
+        error: (error: ApiError) => (
+          <span>Error al editar el mobiliario: {error.message}</span>
+        ),
+      }),
+    onSuccess() {
+      queryClient.invalidateQueries("FurnitureCatalog");
     },
-    {
-      onSuccess: (data) => {
-        queryClient.invalidateQueries("FurnitureCatalog");
-        console.log("Exito, se dio de baja correctamente el mueble:", data);
-      },
-      onError: (error) => {
-        console.error("Error al dar de baja el mueble:", error);
-      },
-    }
-  );
+  });
 };
 
-export default UseDownEquip;
+export default UseDownFurniture;

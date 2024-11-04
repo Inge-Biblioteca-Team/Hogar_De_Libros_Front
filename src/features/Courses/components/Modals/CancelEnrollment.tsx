@@ -2,6 +2,8 @@ import { Button, Modal } from "flowbite-react";
 import { format } from "@formkit/tempo";
 import UseCancelEnrollment from "../../Hooks/UseCancelEnrollment";
 import { NextCourses } from "../../types/Courses";
+import { useContext } from "react";
+import UserContext from "../../../../Context/UserContext/UserContext";
 
 const CancelEnrollment = ({
   course,
@@ -12,8 +14,9 @@ const CancelEnrollment = ({
   open: boolean;
   setopen: (open: boolean) => void;
 }) => {
+  const { currentUser } = useContext(UserContext);
+
   const courseDate = course.Date;
-  const Cedula = sessionStorage.getItem("cedula");
   const fullDate = format({
     date: courseDate,
     format: "DD MMMM YYYY",
@@ -23,16 +26,12 @@ const CancelEnrollment = ({
   const { mutate } = UseCancelEnrollment();
 
   const handleCancel = () => {
-    if (Cedula) {
-      mutate(
-        { courseId: course.Id, userCedula: Cedula },
-        {
-          onSuccess: () => {
-            setopen(false);
-          },
-        }
-      );
-    }
+    mutate(
+      { courseID: course.Id, userCedula: currentUser?.cedula || "" },
+      {
+        onSuccess: () => {},
+      }
+    );
   };
 
   return (
@@ -52,7 +51,7 @@ const CancelEnrollment = ({
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
         <Button color={"red"} onClick={() => setopen(false)}>
-         Volver
+          Volver
         </Button>
         <Button color={"blue"} onClick={handleCancel}>
           Confirmar

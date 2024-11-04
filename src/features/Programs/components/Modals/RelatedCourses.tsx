@@ -1,24 +1,11 @@
 import { Button, Modal } from "flowbite-react";
 import { useQuery } from "react-query";
-import { GetProgramsCourses } from "../../services/SvPrograms";
-import { Course } from "../../types/Programs";
-import CourseCard from "../CourseCard";
+import { ActivitieList } from "../../types/Programs";
 import { Dispatch, SetStateAction } from "react";
+import { GetProgramsRelated } from "../../services/SvPrograms";
+import ActivitiesRelated from "../ActivitiesRelated";
 
-interface data {
-  message: string;
-  error: string;
-  statusCode: number;
-}
-interface response {
-  data: data;
-}
-interface QueryError {
-  response: response;
-  message: string;
-}
-
-const RelatedCourses = ({
+const RelatedActivitiesList = ({
   open,
   setOpen,
   id,
@@ -29,9 +16,9 @@ const RelatedCourses = ({
   id: string;
   programName: string;
 }) => {
-  const { data: courses, error } = useQuery<Course[], QueryError>(
-    ["ProgramCourses", id],
-    () => GetProgramsCourses(id),
+  const { data: ActivitiesList } = useQuery<ActivitieList>(
+    ["ProgramActivitiesList", id],
+    () => GetProgramsRelated(id),
     {
       staleTime: 6000,
       enabled: !!id,
@@ -39,18 +26,23 @@ const RelatedCourses = ({
     }
   );
 
-  const errorMessage =
-    error?.response?.data?.message || error?.message || "Error desconocido";
-
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
-      <Modal.Header>Actividades relacionadas al programa {programName}</Modal.Header>
-      <Modal.Body className=" flex flex-col gap-4">
-        {error && <span className="text-red-500">{errorMessage}</span>}
-        {courses?.map((course) => (
-          <CourseCard key={course.courseId} course={course} />
-        ))}
-      </Modal.Body>
+      <Modal.Header>
+        Actividades relacionadas al programa {programName}
+      </Modal.Header>
+      {ActivitiesList && ActivitiesList.count > 0 ? (
+        <Modal.Body className=" flex flex-col gap-4">
+          {ActivitiesList.data.map((Activitie) => (
+            <ActivitiesRelated
+              key={Activitie.activitieID}
+              activities={Activitie}
+            />
+          ))}
+        </Modal.Body>
+      ) : (
+        <span className="m-4">No existen actividades relacionadas al programa</span>
+      )}
       <Modal.Footer className=" flex items-center justify-center">
         <Button color={"blue"} onClick={() => setOpen(false)}>
           Regresar
@@ -60,4 +52,4 @@ const RelatedCourses = ({
   );
 };
 
-export default RelatedCourses;
+export default RelatedActivitiesList;

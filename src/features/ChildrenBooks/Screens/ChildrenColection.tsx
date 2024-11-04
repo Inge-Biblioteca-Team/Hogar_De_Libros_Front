@@ -1,5 +1,5 @@
 import { Select, TextInput, ButtonGroup, Button } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { ChlildrenColecctionCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomUsersPagination from "../../../components/CustomUsersPagination";
@@ -38,6 +38,10 @@ const ChildrenColection = () => {
   const [view, setView] = useState<string>("List");
 
   const MaxPage = Math.ceil((catalog?.count ?? 0) / limit);
+
+  useEffect(() => {
+    setPage(1);
+  }, [sTitle, category]);
 
   return (
     <>

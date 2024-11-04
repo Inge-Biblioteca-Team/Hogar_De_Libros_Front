@@ -1,5 +1,4 @@
 import { Label, Select, TextInput } from "flowbite-react";
-import { FaFileSignature } from "react-icons/fa6";
 import { BsPersonSquare } from "react-icons/bs";
 
 const SearchArtists = ({
@@ -24,12 +23,19 @@ const SearchArtists = ({
       </div>
       <div>
         <Label className=" text-lg">Tipo de artista</Label>
-        <TextInput
-          type="text"
-          icon={FaFileSignature}
-          placeholder="Tipo"
+        <Select
+          required
+          id="ArtisProfession"
           onChange={(event) => SType(event.target.value)}
-        />
+        >
+          <option value="">Seleccione el tipo de artista</option>
+          <option value="Músico">Músico</option>
+          <option value="Pintor">Pintor</option>
+          <option value="Escritor">Escritor</option>
+          <option value="Actor">Actor</option>
+          <option value="Escultor">Escultor</option>
+          <option value="Fotógrafo">Fotógrafo</option>
+        </Select>
       </div>
       <div>
         <Label className=" text-lg">Estado</Label>

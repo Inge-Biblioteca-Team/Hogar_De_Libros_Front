@@ -1,6 +1,9 @@
 import { Button, Select, TextInput } from "flowbite-react";
-import { BreadCrumbManage, LoansAndCirculationCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
-import { useState } from "react";
+import {
+  BreadCrumbManage,
+  LoansAndCirculationCrumbs,
+} from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import { useEffect, useState } from "react";
 import MDNewBook from "../Components/Modals/MDNewBook";
 import { getColection } from "../Services/ChildrenServices";
 import { useQuery } from "react-query";
@@ -12,15 +15,15 @@ import BookChildrenTable from "../Components/BookChildrenTable";
 import { LuClipboardSignature } from "react-icons/lu";
 import NoResults from "../../../components/NoResults";
 
-const ManageChildrenBooks = ({loans}:{loans?:boolean}) => {
+const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
   const [open, setOpen] = useState(false);
   const [searchTitle, setSearchTitle] = useState<string>("");
   const [searchAuthor, setSearchAuthor] = useState<string>("");
   const [searchSigna, setSearchSigna] = useState<string>("");
   const [status, setStatus] = useState<string>("");
-  const title = UseDebounce(searchTitle, 3000);
-  const author = UseDebounce(searchAuthor, 3000);
-  const Signa = UseDebounce(searchSigna, 3000);
+  const title = UseDebounce(searchTitle, 2000);
+  const author = UseDebounce(searchAuthor, 2000);
+  const Signa = UseDebounce(searchSigna, 2000);
 
   const [page, setPage] = useState<number>(() => {
     const savedPage = sessionStorage.getItem("CCatalogPage");
@@ -40,6 +43,10 @@ const ManageChildrenBooks = ({loans}:{loans?:boolean}) => {
     setPage(page);
     sessionStorage.setItem("CCatalogPage", page.toString());
   };
+
+  useEffect(() => {
+    setPage(1);
+  }, [title, author, Signa, status]);
 
   const MaxPage = Math.ceil((Catalog?.count ?? 0) / limit);
 

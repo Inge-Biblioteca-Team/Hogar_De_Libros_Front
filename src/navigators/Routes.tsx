@@ -5,6 +5,8 @@ import Landing from "../screens/Landing";
 import AuthRoutes from "./AuhtRoutes";
 import AdminRoutes from "./AdminRoutes";
 import UserRoutes from "./UserRoutes";
+import HomePage from "../Pages/HomePage";
+import RoleBasedRoute from "./RolBaseRouter";
 
 const Routes = createBrowserRouter([
   {
@@ -15,20 +17,23 @@ const Routes = createBrowserRouter([
       </Layout>
     ),
   },
+  
   ...AuthRoutes,
   {
     path: "HogarDeLibros",
     element: (
-      <Layout NavbarType="HogarDeLibros">
-        <Outlet />
-      </Layout>
+      <RoleBasedRoute>
+        <Layout NavbarType="HogarDeLibros">
+            <Outlet />
+          </Layout>
+      </RoleBasedRoute>
     ),
     children: [
-      {
-        index: true,
-       
-      },
-      ...BasicUsersRoutes, ...AdminRoutes,...UserRoutes
+        {
+          index: true,
+         element:<HomePage/>
+        },
+        ...BasicUsersRoutes, ...AdminRoutes,...UserRoutes
     ],
   },
 ]);
