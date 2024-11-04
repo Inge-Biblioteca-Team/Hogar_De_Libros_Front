@@ -39,6 +39,9 @@ const WorkStationsLoanHistory = () => {
   );
   const MaxPage = Math.ceil((WSLoan?.count ?? 0) / 5);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [StartDate, MachineNumberDelay]);
   return (
     <>
       <LoansCrumbs text="Equipo de cómputo" />

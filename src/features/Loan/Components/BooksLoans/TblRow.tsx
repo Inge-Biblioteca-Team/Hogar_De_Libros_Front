@@ -30,13 +30,10 @@ const TblRow = ({
   const [see, setSee] = useState<boolean>(false);
   return (
     <>
-      <Table.Row
-        className=" h-20"
-        onClick={!NeedAccions ? () => setSee(true) : undefined}
-      >
-        <Table.Cell className="w-56">{ReqDate}</Table.Cell>
-        <Table.Cell className="w-56">{ExDate}</Table.Cell>
-        <Table.Cell className="w-64">{Loan.user.name}</Table.Cell>
+      <Table.Row onClick={!NeedAccions ? () => setSee(true) : undefined}>
+        <Table.Cell>{ReqDate}</Table.Cell>
+        <Table.Cell>{ExDate}</Table.Cell>
+        <Table.Cell>{Loan.user.name}</Table.Cell>
         <Table.Cell>
           <div className="w-44 line-clamp-1 mt-3">{Loan.book.Title}</div>
         </Table.Cell>

@@ -33,6 +33,8 @@ const AprovedReservationList = () => {
   );
   const MaxPage = Math.ceil((reservations?.count ?? 0) / currentLimit);
 
+
+
   return (
     <>
      <LoansAndCirculationCrumbs text="Reservas de salas aprobadas"/>

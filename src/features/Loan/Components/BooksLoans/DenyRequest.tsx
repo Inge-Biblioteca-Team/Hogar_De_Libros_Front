@@ -1,8 +1,9 @@
-import { Modal, Button } from "flowbite-react";
-import { Dispatch, SetStateAction} from "react";
+import { Modal, Button, Textarea } from "flowbite-react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { Loans } from "../../Types/BookLoan";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import UseRefuseLoan from "../../Hooks/Books/UseRefuseLoan";
+import UserContext from "../../../../Context/UserContext/UserContext";
 
 const DenyRequest = ({
   Loan,
@@ -15,19 +16,46 @@ const DenyRequest = ({
 }) => {
   const { mutate: refuse } = UseRefuseLoan();
 
-  const handleCancel = () => {
-    refuse(Loan.BookLoanId);
-    setShowCancel(false)
+  const onCancel = () => {
+    setShowCancel(false);
+  };
+
+  const [observations, setObservations] = useState<string>("");
+
+  const { currentUser } = useContext(UserContext);
+
+  const onConfirm = () => {
+    refuse(
+      {
+        LoanID: Loan.BookLoanId,
+        person: currentUser?.name || "",
+        Observations: observations,
+      },
+      {
+        onSuccess: () => onCancel(),
+      }
+    );
   };
 
   return (
     <>
-      <Modal show={showCancel} popup onClose={() => setShowCancel(false)}>
+      <Modal
+        show={showCancel}
+        popup
+        onClose={() => setShowCancel(false)}
+        size={"sm"}
+      >
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-            <h3>Está Seguro de cancelar la solicitud de préstamo</h3>
+            <h3>Está Seguro de rechazar la solicitud de préstamo</h3>
+            <Textarea
+              required
+              rows={3}
+              placeholder="Escriba el motivo de rechazo."
+              onChange={(event) => setObservations(event.target.value)}
+            />
             <div className="flex justify-center gap-4 mt-10">
               <Button
                 color="red"
@@ -35,9 +63,9 @@ const DenyRequest = ({
                   setShowCancel(false);
                 }}
               >
-              Volver
+                Volver
               </Button>
-              <Button color="blue" onClick={() => handleCancel()}>
+              <Button color="blue" onClick={onConfirm}>
                 Confirmar
               </Button>
             </div>

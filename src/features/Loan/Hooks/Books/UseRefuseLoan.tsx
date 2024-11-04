@@ -1,27 +1,26 @@
 import { useMutation, useQueryClient } from "react-query";
-import {RefuseRequest } from "../../Services/SvBookLoan";
 import toast from "react-hot-toast";
+import { finishLoan } from "../../Types/BookLoan";
+import { ApiError } from "../../../../Types/ApiTypes";
+import { RefuseRequest } from "../../Services/SvBookLoan";
 
 const UseRefuseLoan = () => {
   const queryClient = useQueryClient();
-
-  return useMutation(
-    async (bookLoanId: number) => {
-      const data = await RefuseRequest(bookLoanId);
-      return data;
+  return useMutation({
+    mutationFn: (data: finishLoan) =>
+      toast.promise(RefuseRequest(data), {
+        loading: "Espere por favor...",
+        success: <span>Éxito, préstamo rechazado correctamente</span>,
+        error: (error: ApiError) => (
+          <span>Error al rechazar el préstamo. {error.message}</span>
+        ),
+      }),
+    onSuccess() {
+      queryClient.invalidateQueries("PRLoans");
+      queryClient.invalidateQueries("RLoans");
+      queryClient.invalidateQueries("DLoans");
     },
-    {
-      onSuccess: (data) => {
-        queryClient.invalidateQueries("PRLoans");
-        queryClient.invalidateQueries("RLoans");
-        queryClient.invalidateQueries("DLoans");
-        toast.success("Exito, préstamo cancelado correctamente:", data);
-      },
-      onError: () => {
-        toast.error("Error al cancelar el préstamo.");
-      },
-    }
-  );
+  });
 };
 
 export default UseRefuseLoan;

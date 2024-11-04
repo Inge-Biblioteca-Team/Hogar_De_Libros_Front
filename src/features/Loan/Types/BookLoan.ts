@@ -1,11 +1,9 @@
-
-
 export type LoanResponse = {
   data: Loans[];
   count: number;
 };
 
-export type Loans= {
+export type Loans = {
   Status: string;
   BookLoanId: number;
   LoanRequestDate: Date;
@@ -14,10 +12,10 @@ export type Loans= {
   Observations: string;
   user: User;
   book: Book;
-  Name:string;
-  Mail:string;
-  PhoneNumber:string;
-  Cedula:string;
+  Name: string;
+  Mail: string;
+  PhoneNumber: string;
+  Cedula: string;
 };
 
 export type Book = {
@@ -33,10 +31,11 @@ export type User = {
   lastName: string;
 };
 
-export type finishLoan={
-  Observation:string;
-  BookLoanId:number
-}
+export type finishLoan = {
+  LoanID: number;
+  person: string;
+  Observations: string;
+};
 
 export type newloan = {
   LoanRequestDate: string;
@@ -48,12 +47,12 @@ export type newloan = {
   SignaCode: string;
   Title: string;
   Author: string;
-  Name:string;
-  Mail:string;
-  PhoneNumber:string
+  Name: string;
+  Mail: string;
+  PhoneNumber: string;
 };
 
 export type ChangeExpiredDate = {
-  BookLoanId:number;
+  BookLoanId: number;
   LoanExpirationDate: string;
-}
+};
