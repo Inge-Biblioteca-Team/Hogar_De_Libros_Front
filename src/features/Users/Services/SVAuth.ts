@@ -1,7 +1,7 @@
 import axios from "axios";
 import api from "../../../Services/AxiosConfig";
 import { RegisterInfo } from "../Type/UserType";
-import { recoveryRequest } from "../Type/Recovery";
+import { recovery, recoveryRequest } from "../Type/Recovery";
 
 const RecoveryPassword = async (data: recoveryRequest) => {
   try {
@@ -23,22 +23,14 @@ const RecoveryPassword = async (data: recoveryRequest) => {
   }
 };
 
-const resetPassword = async ({
-  token,
-  newPassword,
-  cedula,
-}: {
-  token: string;
-  newPassword: string;
-  cedula: string;
-}) => {
+const resetPassword = async (data: recovery) => {
   try {
     const response = await api.patch(
       "user/update-password",
-      { cedula, newPassword },
+      { cedula: data.cedula, newPassword: data.newPassword },
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${data.token}`,
         },
       }
     );

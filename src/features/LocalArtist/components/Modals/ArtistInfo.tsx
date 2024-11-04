@@ -73,7 +73,7 @@ const ArtistInfo = ({
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
         <Button color={"blue"} onClick={() => setSee(false)}>
-          Cerrar
+          Regresar
         </Button>
       </Modal.Footer>
     </Modal>

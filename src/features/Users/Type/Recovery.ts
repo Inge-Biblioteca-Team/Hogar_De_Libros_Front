@@ -1,5 +1,7 @@
 export type recovery = {
-  password: string;
+  token:string;
+  cedula:string
+  newPassword: string;
   repeatPasword: string;
 };
 

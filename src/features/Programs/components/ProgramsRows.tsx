@@ -1,8 +1,8 @@
 import { Table } from "flowbite-react";
 import { Program } from "../types/Programs";
 import BTNProgramsAct from "./BTNProgramsAct";
-import RelatedCourses from "./Modals/RelatedCourses";
 import { useState } from "react";
+import RelatedActivitiesList from "./Modals/RelatedCourses";
 
 const ProgramsRows = ({ program }: { program: Program }) => {
   const [open, setOpen] = useState<boolean>(false);
@@ -32,7 +32,7 @@ const ProgramsRows = ({ program }: { program: Program }) => {
         </Table.Cell>
       </Table.Row>
       {program && (
-        <RelatedCourses open={open} setOpen={setOpen} id={id}
+        <RelatedActivitiesList open={open} setOpen={setOpen} id={id}
         programName={program.programName} />
       )}
     </>

@@ -10,9 +10,9 @@ const UseEditBook = () => {
       mutationFn: (data: Book) =>
         toast.promise(EditBook(data), {
           loading: "Editando...",
-          success: <span>Éxito, recurso editado correctamente</span>,
+          success: <span>Éxito, libro editado correctamente</span>,
           error: (error: ApiError) => (
-            <span>Error al editar el recurso: {error.message}</span>
+            <span>Error al editar el libro: {error.message}</span>
           ),
         }),
       onSuccess() {

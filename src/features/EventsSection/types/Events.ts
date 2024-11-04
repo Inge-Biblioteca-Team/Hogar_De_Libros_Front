@@ -19,34 +19,6 @@ export type apiResponseE ={
   count:number
 }
 
-export type createEvents ={
-  Location: string;
-  Title: string;
-  Details: string;
-  Category: string;
-  Date: string;
-  Time: string;
-  Image: string;
-  TargetAudience: string;
-  Status: string;
-  InchargePerson: string;
-}
-
-export type updateEvent ={
-  EventId: number;
-  Location: string;
-  Title: string;
-  Details: string;
-  Category: string;
-  Date: string;
-  Time: string;
-  Image: string;
-  TargetAudience: string;
-  Status: string;
-  InchargePerson: string;
-}
-
-
 
 export type Event = {
   id: string;

@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const UseGetProfile = () => {
   const { setCurrentUser, setIsLogged } = useContext(UserContext);
-  return useMutation(getProfile, {
+  return useMutation( getProfile, {
     onSuccess(data) {
       if (data) {
         const { user } = data;

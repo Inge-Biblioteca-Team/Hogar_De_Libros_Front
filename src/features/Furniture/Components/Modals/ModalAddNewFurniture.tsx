@@ -1,11 +1,10 @@
 import { Label, Modal, Select, TextInput } from "flowbite-react";
-import ModalAddMoreActive from "../../../../components/Modals/ModalAddMoreActive";
-import ConfirmModalFurniture from "./ConfirmModalFurniture";
 import { useForm } from "react-hook-form";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { furniture } from "../../type/furniture";
-import useNewFurniture from "../../Hooks/useNewFurniture";
 import ModalFooters from "../../../../components/ModalFooters";
+import useNewFurniture from "../../Hooks/useNewFurniture";
+import OptInChangePersons from "../OptInChangePersons";
 
 const ModalAddNewFurniture = ({
   sNewF,
@@ -15,41 +14,27 @@ const ModalAddNewFurniture = ({
   setSNewF: Dispatch<SetStateAction<boolean>>;
 }) => {
   const { register, reset, handleSubmit } = useForm<furniture>();
-  const [NeedMore, setNeedMore] = useState(false);
-  const { mutate: CreateFurniture } = useNewFurniture({
-    Open: setNeedMore,
-    Reset: reset,
-  });
 
   const onClose = () => {
     setSNewF(false);
     reset();
   };
 
-  const [newFurnitureData, setNewFurnitureData] = useState<furniture | null>(
-    null
-  );
-  const [isModalOpen, setModalOpen] = useState(false);
+  const { mutate: create } = useNewFurniture();
 
-  const onSubmit = (NewFurniture: furniture) => {
-    setNewFurnitureData(NewFurniture);
-    setModalOpen(true);
-  };
-
-  const handleConfirm = (furniture: furniture) => {
-    CreateFurniture(furniture);
-    reset();
-    setModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setModalOpen(false);
+  const onSubmit = async (data: furniture) => {
+    create(data, {
+      onSuccess: () => {
+        setSNewF(false);
+        reset();
+      },
+    });
   };
 
   return (
     <>
       <Modal show={sNewF} size="md" onClose={onClose}>
-        <Modal.Header>Agregar Mobiliario</Modal.Header>
+        <Modal.Header>Agregar mobiliario</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
             <fieldset className="grid grid-cols-2 gap-7 text-center">
@@ -62,6 +47,7 @@ const ModalAddNewFurniture = ({
                   sizing="md"
                   {...register("LicenseNumber")}
                   required
+                  placeholder="Ej. x222"
                 />
               </span>
               <span>
@@ -72,6 +58,7 @@ const ModalAddNewFurniture = ({
                   sizing="md"
                   {...register("Description")}
                   required
+                  placeholder="Ej. Silla"
                 />
               </span>
               <span>
@@ -82,17 +69,18 @@ const ModalAddNewFurniture = ({
                   sizing="md"
                   {...register("Location")}
                   required
+                  placeholder="Ej. Biblioteca.."
                 />
               </span>
               <span>
-                <Label htmlFor="InChargePerson" value="Persona a Cargo" />
-                <TextInput
+                <Label htmlFor="InChargePerson" value="Persona a cargo" />
+                <Select
                   id="InChargePerson"
-                  type="text"
-                  sizing="md"
                   {...register("InChargePerson")}
                   required
-                />
+                >
+                  <OptInChangePersons />
+                </Select>
               </span>
             </fieldset>
             <fieldset className="grid grid-cols-1 gap-7 text-center mt-6">
@@ -113,24 +101,9 @@ const ModalAddNewFurniture = ({
               </span>
             </fieldset>
           </Modal.Body>
-
           <ModalFooters onClose={onClose} />
         </form>
       </Modal>
-      {newFurnitureData && (
-        <ConfirmModalFurniture
-          isOpen={isModalOpen}
-          onConfirm={() => handleConfirm(newFurnitureData)}
-          onCancel={handleCancel}
-          FurnitureItem={newFurnitureData}
-          Accion="Crear"
-        />
-      )}
-      <ModalAddMoreActive
-        open={NeedMore}
-        Close={setNeedMore}
-        setSNew={setSNewF}
-      />
     </>
   );
 };

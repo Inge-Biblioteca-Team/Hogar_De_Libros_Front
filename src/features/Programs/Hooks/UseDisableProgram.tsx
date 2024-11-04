@@ -5,24 +5,19 @@ import { DisableProgram } from "../services/SvPrograms";
 
 const UseDisableProgram = () => {
   const queryClient = useQueryClient();
-  return useMutation(
-    async (Id: string) => {
-      const data = await DisableProgram(Id);
-      return data;
+  return useMutation({
+    mutationFn: (id: string) =>
+      toast.promise(DisableProgram(id), {
+        loading: "Deshabilitando...",
+        success: <span>Éxito, se deshabilitó el programa correctamente</span>,
+        error: (error: ApiError) => (
+          <span>Error al deshabilitar el programa: {error.message}</span>
+        ),
+      }),
+    onSuccess() {
+      queryClient.invalidateQueries("ProgramCatalog");
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("ProgramCatalog");
-        toast.success("Exito, se deshabilitó el programa correctamente");
-      },
-      onError: (error: ApiError) => {
-        toast.error(
-          "Error al deshabilitar el programa" +
-            error.message
-        );
-      },
-    }
-  );
+  });
 };
 
 export default UseDisableProgram;

@@ -53,8 +53,7 @@ const MDEditChildrenBook = ({
   const onConfirm = (data: Book) => {
     editResource(data, {
       onSuccess: () => {
-        onClose();
-        reset()
+        setOpen(false);
       },
     });
   };
@@ -121,6 +120,7 @@ const MDEditChildrenBook = ({
                   label="Año de publicación"
                   {...register("PublishedYear")}
                   type="number"
+                  required
                 />
                 <FloatingLabel
                   variant="outlined"

@@ -9,11 +9,7 @@ const GetPrograms = async () => {
 
 const PostNewProgram = async (data: Program) => {
   try {
-    const response = await api.post("programs", data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await api.post("programs", data);
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -32,11 +28,7 @@ const PostNewProgram = async (data: Program) => {
 };
 const PatchProgram = async (data: Program) => {
   try {
-    const response = await api.patch(`programs/${data.programsId}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await api.patch(`programs/${data.programsId}`, data);
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -79,11 +71,7 @@ const GetProgramsList = async (
 
 const DisableProgram = async (Id: string) => {
   try {
-    const response = await api.patch(`programs/${Id}/disable`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await api.patch(`programs/${Id}/disable`);
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -101,9 +89,9 @@ const DisableProgram = async (Id: string) => {
   }
 };
 
-const GetProgramsCourses = async (id: string) => {
+const GetProgramsRelated = async (id: string) => {
   try {
-    const response = await api.get(`programs/${id}/courses`);
+    const response = await api.get(`programs/Program/${id}/Related`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -135,6 +123,6 @@ export {
   GetProgramsList,
   PatchProgram,
   DisableProgram,
-  GetProgramsCourses,
+  GetProgramsRelated,
   GetProgramsActivitiesList,
 };

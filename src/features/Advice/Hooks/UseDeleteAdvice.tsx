@@ -9,7 +9,7 @@ const UseDeleteAdvice = () => {
     mutationFn: (id: number) =>
       toast.promise(DeleteAdvice(id), {
         loading: "Eliminando...",
-        success: <span>Exito, aviso eliminado correctamente</span>,
+        success: <span>Éxito, aviso eliminado correctamente</span>,
         error: (error: ApiError) => (
           <span>Error al eliminar el aviso: {error.message}</span>
         ),

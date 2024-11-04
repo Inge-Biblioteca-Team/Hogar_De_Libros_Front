@@ -48,7 +48,7 @@ const LoanRenuve = ({
               />
               <div className="flex justify-center gap-4 mt-10">
                 <Button
-                  color="failure"
+                  color="red"
                   onClick={() => {
                     setShowChange(false);
                   }}

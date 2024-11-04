@@ -4,25 +4,20 @@ import { ApiError } from "../../../Types/ApiTypes";
 import { DownCourse } from "../services/SvCourses";
 
 const UseCancelCourse = () => {
-    const queryClient = useQueryClient();
-    return useMutation(
-      async (Id: number) => {
-        const data = await DownCourse(Id);
-        return data;
-      },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries("CourseMG");
-          toast.success("Estado actualizado correctamente");
-        },
-        onError: (error: ApiError) => {
-          toast.error(
-            "Error al crear el programa para el Numero de registo " +
-              error.message
-          );
-        },
-      }
-    );
-  };
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) =>
+      toast.promise(DownCourse(id), {
+        loading: "Cancelando...",
+        success: <span>Éxito, curso cancelado correctamente</span>,
+        error: (error: ApiError) => (
+          <span>Error al cancelar el recurso: {error.message}</span>
+        ),
+      }),
+    onSuccess() {
+      queryClient.invalidateQueries("CourseMG");
+    },
+  });
+};
 
 export default UseCancelCourse

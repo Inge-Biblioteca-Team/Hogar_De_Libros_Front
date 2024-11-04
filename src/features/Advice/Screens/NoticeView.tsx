@@ -1,68 +1,43 @@
-import { useQuery } from 'react-query';
-import { useState } from 'react';
-import { Notice } from '../Types/Advice';
-import { GetNotice } from '../Service/SvAdvice';
-import CardNoticeView from '../Components/CardNoticeView';
+import { useQuery } from "react-query";
+import { ApiAdvices } from "../Types/Advice";
+import { GetAdviceList } from "../Service/SvAdvice";
+import { formatToYMD } from "../../../components/FormatTempo";
+import { Carousel } from "flowbite-react";
+import NoticeCard from "../Components/NoticeCard";
 
 const NoticeView = () => {
-  const {
-    data: NoticesView = [],
-    isLoading,
-    error,
-  } = useQuery<Notice[], Error>('Notices', GetNotice);
+  const date = new Date();
+  const searchDate = formatToYMD(date);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-    
-      const prevSlide = () => {
-        setCurrentIndex((prevIndex) =>
-          prevIndex === 0 ? NoticesView.length - 1 : prevIndex - 1
-        );
-      };
-    
-      const nextSlide = () => {
-        setCurrentIndex((prevIndex) =>
-          prevIndex === NoticesView.length - 1 ? 0 : prevIndex + 1
-        );
-      };
-
-  if (isLoading) return <p>Cargando noticias...</p>;
-  if (error) return <p>Error al cargar las noticias: {error.message}</p>;
-
+  const { data: Advices } = useQuery<ApiAdvices, Error>(
+    ["AdvicesList"],
+    () => GetAdviceList(1, 15, "", "", searchDate),
+    {
+      staleTime: 600,
+    }
+  );
   return (
-    <div className="flex justify-center">
-      {/* <div className="grid grid-cols-3 gap-10"> */}
-      {NoticesView.length > 1 && (
-          <button
-            type="button"
-            onClick={prevSlide}
-            className="bg-gray-300 rounded-full p-2 max-sm:hidden"
+    <section
+      className="relative w-full max-w-4xl mx-auto max-sm:w-4/5 mt-10"
+      id="Activities"
+    >
+      {Advices && Advices.count > 0 ? (
+        <>
+          <Carousel
+            className="Custom-Carousel"
+            indicators={false}
+            pauseOnHover
+            style={{ height: "28rem" }}
           >
-            &lt;
-          </button>
-        )}
-      <div className="w-full overflow-hidden max-sm:overflow-x-scroll">
-      <article
-            className="flex transition-transform duration-300"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-        {NoticesView?.map((notice, index) => (
-          <CardNoticeView key={index} notice={notice} />
-        ))}
-        </article>
-        </div>
-        {NoticesView.length > 1 && (
-          <button
-            type="button"
-            onClick={nextSlide}
-            className="bg-gray-300 rounded-full p-2 max-sm:hidden"
-          >
-            &gt;
-          </button>
-        )}
-      {/* </div> */}
-    </div>
-
+            {Advices?.data.map((advice) => (
+              <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />
+            ))}
+          </Carousel>
+        </>
+      ) : (
+        ""
+      )}
+    </section>
   );
 };
-
 export default NoticeView;

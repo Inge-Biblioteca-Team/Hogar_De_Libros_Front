@@ -19,6 +19,7 @@ const ManageCourses = () => {
     return savedPage ? Number(savedPage) : 1;
   });
   const [SName, SetSName] = useState<string>("");
+  const [Status, SetStatus] = useState<string>("");
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
@@ -32,8 +33,8 @@ const ManageCourses = () => {
   const Name = UseDebounce(SName, 600);
 
   const { data: Courses } = useQuery<ResponseC, Error>(
-    ["CourseMG", currentPage, currentLimit, Name],
-    () => getCourses(currentPage, currentLimit, Name),
+    ["CourseMG", currentPage, currentLimit, Name, Status],
+    () => getCourses(currentPage, currentLimit, Name, Status),
     {
       staleTime: 600,
     }
@@ -62,7 +63,7 @@ const ManageCourses = () => {
             </div>
             <div>
               <Label className=" text-lg">Estado</Label>
-              <Select>
+              <Select onChange={(event)=>SetStatus(event.target.value)} >
                 <option value="">Seleccione un estado</option>
                 <option value="1">Proximos</option>
                 <option value="0">Pasados</option>

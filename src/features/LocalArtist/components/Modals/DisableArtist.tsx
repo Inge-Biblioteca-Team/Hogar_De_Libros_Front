@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Button, Modal} from "flowbite-react";
+import { Button, Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Artist } from "../../types/LocalArtist";
 import UseDownArtist from "../../Hooks/UseDownArtist";
@@ -32,7 +32,7 @@ const DisableArtist = ({
             {Artist.Name}
           </p>
           <div className="flex justify-center gap-4">
-            <Button color="failure" onClick={() => setDow(false)}  >
+            <Button color="red" onClick={() => setDow(false)}>
               Cancelar
             </Button>
             <Button color="blue" onClick={() => handleDisbale()}>
