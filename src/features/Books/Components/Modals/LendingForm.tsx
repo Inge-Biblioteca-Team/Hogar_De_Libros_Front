@@ -29,9 +29,9 @@ const LendingForm = ({
   const { register, handleSubmit, watch, reset } = useForm<BookLeading>({
     defaultValues: {
       userCedula: currentUser?.cedula,
-      Name: `${currentUser?.name} ${currentUser?.lastName}`,
-      PhoneNumber: currentUser?.phoneNumber,
-      address: currentUser?.address,
+      userName: `${currentUser?.name} ${currentUser?.lastName}`,
+      userPhone: currentUser?.phoneNumber,
+      userAddress: currentUser?.address,
       InscriptionCode: book.InscriptionCode,
       SignaCode: book.signatureCode,
       Title: book.Title,
@@ -40,9 +40,9 @@ const LendingForm = ({
     },
   });
 
-  const maxDate = formatToYMD(addDay(watch("BookPickUpDate"), 5));
-
-
+  const maxDate = formatToYMD(
+    addDay(watch("BookPickUpDate"), currentUser?.loanPolicity)
+  );
   const { mutate: createNew } = UseLeadingRequest();
 
   const onConfirm = (data: BookLeading) => {
@@ -72,15 +72,15 @@ const LendingForm = ({
               variant="filled"
               disabled={true}
               label="Nombre completo"
-              {...register("Name")}
+              {...register("userName")}
               readOnly
               className=" cursor-default"
             />
             <FloatingLabel
-               variant="filled"
-               disabled={true}
+              variant="filled"
+              disabled={true}
               label="Numero de teléfono"
-              {...register("PhoneNumber")}
+              {...register("userPhone")}
               readOnly
               className=" cursor-default"
             />
@@ -88,7 +88,7 @@ const LendingForm = ({
               variant="filled"
               disabled={true}
               label="Dirección"
-              {...register("address")}
+              {...register("userAddress")}
               readOnly
               className=" cursor-default"
             />
@@ -97,7 +97,7 @@ const LendingForm = ({
           <fieldset className="grid grid-cols-2 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del libro</legend>
             <FloatingLabel
-               variant="filled"
+              variant="filled"
               disabled={true}
               label="Código de signatura"
               value={book.signatureCode || "N/A"}
@@ -105,7 +105,7 @@ const LendingForm = ({
               readOnly
             />
             <FloatingLabel
-               variant="filled"
+              variant="filled"
               disabled={true}
               label="Numero de inscripción"
               value={book.InscriptionCode}
@@ -113,7 +113,7 @@ const LendingForm = ({
               readOnly
             />
             <FloatingLabel
-               variant="filled"
+              variant="filled"
               disabled={true}
               label="Autor"
               value={book.Author || "Desconocido"}
@@ -121,7 +121,7 @@ const LendingForm = ({
               readOnly
             />
             <FloatingLabel
-               variant="filled"
+              variant="filled"
               disabled={true}
               label="Titulo"
               value={book.Title}

@@ -6,7 +6,7 @@ import { NewWSLoan, NewWSMantenance } from "../Types/ComputerLoan";
 //Gets
 const GetStatus = async () => {
   try {
-    const response = await api.get(`computers/workstation/Status`);
+    const response = await api.get(`work-stations/workstation/Status`);
     return response.data;
   } catch (error) {
     console.error("Error al cargar el estado de los equipos de cómputo:", error);

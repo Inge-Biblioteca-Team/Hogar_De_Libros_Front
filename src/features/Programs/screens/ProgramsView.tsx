@@ -6,9 +6,7 @@ import CardProgramsView from '../components/CardProgramsView';
 
 const ProgramsView: React.FC = () => {
   const {
-    data: ProgramView,
-    isLoading,
-    error,
+    data: ProgramView
   } = useQuery<ApiProgramsResponse, Error>('ProgramCatalog', GetPrograms);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,11 +22,8 @@ const ProgramsView: React.FC = () => {
     setCurrentIndex((prevIndex) => (prevIndex === totalPages - 1 ? 0 : prevIndex + 1));
   };
 
-  if (isLoading) return <p className="text-center">Cargando programas...</p>;
-  if (error) return <p className="text-center text-red-500">Error al cargar los programas: {error.message}</p>;
-  if (totalPrograms === 0) return <p className="text-center">No hay programas disponibles actualmente.</p>;
-
-  const start = currentIndex * programsPerPage;
+ 
+ const start = currentIndex * programsPerPage;
   const end = start + programsPerPage;
   const currentPrograms = ProgramView?.data?.slice(start, end) || [];
 
@@ -36,7 +31,7 @@ const ProgramsView: React.FC = () => {
     <section className="container mx-auto text-center py-8">
       <h2 className="text-4xl font-bold mb-4">Programas</h2>
       <p className="text-lg mb-8">
-        Navega fácilmente a través de nuestros módulos del sistema.
+       Conoce nuestros programas y mantente cerca de la biblioteca.
       </p>
       <div className="flex items-center justify-center">
         <button

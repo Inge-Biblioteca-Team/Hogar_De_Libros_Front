@@ -39,7 +39,7 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
             {course.courseType}
           </Timeline.Title>
           <Timeline.Body>
-            <Card className="p0">
+            <Card className="p0 ">
               <figure className=" w-full rounded-xl">
                 <img
                   className=" w-full rounded-t-lg h-28"

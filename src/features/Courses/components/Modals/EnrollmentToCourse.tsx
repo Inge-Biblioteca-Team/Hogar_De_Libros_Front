@@ -49,8 +49,9 @@ const EnrollmentToCourse = ({
       setValue("direction", User.address);
       setValue("phone", User.phoneNumber);
       setValue("email", User.email);
+      setValue("courseId", course.Id);
     }
-  }, [User, setValue]);
+  }, [User, course.Id, setValue]);
 
   const handleClose = () => {
     setOpen(false);

@@ -1,5 +1,6 @@
 import { ChangeExpiredDate, finishLoan, newloan } from "../Types/BookLoan";
 import api from "../../../Services/AxiosConfig";
+import axios from "axios";
 
 
 //Gets
@@ -44,7 +45,7 @@ const GetInProgressLoan = async (
     const response = await api.get("book-loan/in-progress", { params });
     return response.data;
   } catch (error) {
-    console.error("Error al caragar los préstamo en progreso:", error);
+    console.error("Error al cargar los préstamo en progreso:", error);
     throw error;
   }
 };
@@ -79,15 +80,23 @@ const GetDoneLoans = async (
 };
 
 //Path Status
-const CancelRequest = async (LoanID: number) => {
+const CancelRequest = async (data:{LoanID:number, person:string, Observations?:"Cancelado por el usuario"}) => {
   try {
-    const response = await api.patch(`/book-loan/${LoanID}/finalize`, {
-      Observations: "Cancelado por el Usuario",
-    });
+    const response = await api.patch(`/book-loan/finalize`, data);
     return response.data;
-  } catch (error) {
-    console.error("Error al cancelar el la solicitud de préstamo:", error);
-    throw error;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al cancelar la solicitud:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al cancelar la solicitud"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 const RefuseRequest = async (LoanID: number) => {
@@ -96,9 +105,19 @@ const RefuseRequest = async (LoanID: number) => {
       Observations: "Cancelado por administrador",
     });
     return response.data;
-  } catch (error) {
-    console.error("Error al rechazar la solicitud de préstamo:", error);
-    throw error;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al rechazar:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al rechazar el recurso"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 const AproveRequest = async (LoanID: number) => {
@@ -110,6 +129,7 @@ const AproveRequest = async (LoanID: number) => {
     throw error;
   }
 };
+
 const FinalizeLoan = async (Loan: finishLoan) => {
   try {
     const response = await api.patch(`/book-loan/${Loan.BookLoanId}/finalize`, {

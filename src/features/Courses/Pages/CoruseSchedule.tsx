@@ -76,7 +76,7 @@ const CoruseSchedule = () => {
         </div>
         <div
           className=" w-4/5 overflow-x-scroll pt-7 px-8 custom-bar"
-          style={{ height: "42rem" }}
+          style={{ height: "40rem" }}
         >
           <Timeline
             className="custom-timeline border-blue-900 h-full "

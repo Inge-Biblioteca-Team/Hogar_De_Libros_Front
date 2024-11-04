@@ -1,5 +1,5 @@
 import { Button, Modal, TextInput } from "flowbite-react";
-import { Dispatch, SetStateAction} from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Loans } from "../../../Types/BookLoan";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import UseCancelLoan from "../../../Hooks/Books/UseCancelLoan";
@@ -9,21 +9,19 @@ const MDLoanInfo = ({
   showCancel,
   setShowCancel,
   showChange,
-  setShowChange
+  setShowChange,
 }: {
   Loan: Loans;
   showCancel: boolean;
   setShowCancel: Dispatch<SetStateAction<boolean>>;
   showChange: boolean;
   setShowChange: Dispatch<SetStateAction<boolean>>;
-
-
 }) => {
   const { mutate: cancelLoan } = UseCancelLoan();
 
   const handleCancel = () => {
-    cancelLoan(Loan.BookLoanId);
-    setShowCancel(false)
+    cancelLoan({ LoanID: Loan.BookLoanId, person: Loan.Cedula });
+    setShowCancel(false);
   };
 
   return (
@@ -38,7 +36,7 @@ const MDLoanInfo = ({
               <Button
                 color="red"
                 onClick={() => {
-                  setShowCancel(false)
+                  setShowCancel(false);
                 }}
               >
                 Volver
@@ -60,7 +58,7 @@ const MDLoanInfo = ({
               <Button
                 color="red"
                 onClick={() => {
-                  setShowChange(false)
+                  setShowChange(false);
                 }}
               >
                 Cancelar

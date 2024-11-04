@@ -66,7 +66,7 @@ const WorkStationsLoanHistory = () => {
           <div className=" w-4/5">
             {WSLoan && WSLoan.count > 0 ? (
               <>
-                <Table hoverable className=" text-center">
+                <Table hoverable className=" text-center h-[30rem]">
                   <Table.Head className=" h-16 text-sm">
                     <Table.HeadCell>
                       <span className=" flex items-center justify-center gap-2">

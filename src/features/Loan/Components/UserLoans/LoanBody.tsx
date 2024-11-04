@@ -43,9 +43,6 @@ const LoanBody = ({
                 Solicitar Extencion de préstamo
               </Button>
             )}
-            {Loan.Status == "Finalizado" && (
-              <Button color={"blue"}>Solicitar Denuevo</Button>
-            )}
           </div>
         }
       >
