@@ -17,7 +17,7 @@ const UseGetProfile = () => {
       }
     },
     onError() {
-      toast("Su sesíon a expirado.");
+      toast("Su sesión a expirado.");
       localStorage.setItem("isLogged", "false");
       localStorage.setItem("currentUser", "");
     },

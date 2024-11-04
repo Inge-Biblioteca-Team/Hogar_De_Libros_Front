@@ -19,7 +19,7 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
       getProfile.mutate();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLogged]);
+  }, []);
 
   const contextValue = useMemo(
     () => ({
