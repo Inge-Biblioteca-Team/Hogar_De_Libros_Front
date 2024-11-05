@@ -18,6 +18,15 @@ export const formatToYMD = (date: Date | string): string => {
   });
 };
 
+export const formatToFullDate = (date: Date | string): string => {
+  return format({
+    date: date,
+    format: "dddd D MMMM, YYYY",
+    tz: Tz,
+  });
+};
+
+
 /*
 const time = format({
   date: dateTime,
