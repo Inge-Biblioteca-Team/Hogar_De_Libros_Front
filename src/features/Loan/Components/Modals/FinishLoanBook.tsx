@@ -1,7 +1,8 @@
 import { Modal, TextInput, Button } from "flowbite-react";
-import { useState } from "react";
-import useFinalizeLoan from "../../Hooks/Books/useFinishLoandBook";
+import { useContext, useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import UseFinishLoan from "../../Hooks/Books/UseFinishLoan";
+import UserContext from "../../../../Context/UserContext/UserContext";
 
 const FinishLoanBook = ({
   open,
@@ -16,14 +17,17 @@ const FinishLoanBook = ({
   UserCedula: string;
   BookTitle: string;
 }) => {
-  const { mutate: PatchStatus } = useFinalizeLoan(); 
+  const { mutate: PatchStatus } = UseFinishLoan();
   const [reason, setReason] = useState<string>("");
+
+  const { currentUser } = useContext(UserContext);
 
   const handleConfirm = () => {
     PatchStatus(
       {
-        BookLoanId,
-        Observation: reason,
+        LoanID: BookLoanId,
+        person: currentUser?.name || "",
+        Observations: reason,
       },
       {
         onSuccess: () => {
@@ -55,7 +59,7 @@ const FinishLoanBook = ({
             className="mb-4"
           />
           <div className="flex justify-center gap-4">
-            <Button color="failure" onClick={() => setOpen(false)}>
+            <Button color="red" onClick={() => setOpen(false)}>
               Cancelar
             </Button>
             <Button color="blue" onClick={handleConfirm}>
@@ -69,6 +73,3 @@ const FinishLoanBook = ({
 };
 
 export default FinishLoanBook;
-
-
-

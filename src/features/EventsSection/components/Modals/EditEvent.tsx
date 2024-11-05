@@ -7,13 +7,12 @@ import {
 } from "react";
 import { useForm } from "react-hook-form";
 import { FaCalendarAlt } from "react-icons/fa";
-import { updateEvent } from "../../types/Events";
-import { Label, Modal, TextInput } from "flowbite-react";
-import { editEvent } from "../../services/SvEvents";
-import toast from "react-hot-toast";
-import { useQueryClient } from "react-query";
+import { Label, Modal, Select, TextInput } from "flowbite-react";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
 import ModalFooters from "../../../../components/ModalFooters";
+import OPTEventType from "../OPTEventType";
+import { Events } from "../../types/Events";
+import UseEditEvent from "../../Hooks/UseEditEvent";
 
 const EditEvent = ({
   edit,
@@ -22,9 +21,9 @@ const EditEvent = ({
 }: {
   edit: boolean;
   setEdit: Dispatch<SetStateAction<boolean>>;
-  event: updateEvent;
+  event: Events;
 }) => {
-  const { register, handleSubmit, setValue, reset } = useForm<updateEvent>({
+  const { register, handleSubmit, setValue, reset } = useForm<Events>({
     defaultValues: {
       Title: event.Title,
       Location: event.Location,
@@ -34,22 +33,9 @@ const EditEvent = ({
       Image: event.Image,
       TargetAudience: event.TargetAudience,
       InchargePerson: event.InchargePerson,
+      EventId: event.EventId,
     },
   });
-
-  const UseClient = useQueryClient();
-
-  const onSubmit = async (data: updateEvent) => {
-    try {
-      console.log("EventId:", event.EventId);
-      await editEvent(event.EventId, data);
-      toast.success("Evento editado con éxito");
-      setEdit(false);
-      UseClient.invalidateQueries("EventCatalog");
-    } catch (error) {
-      console.error("Error al actualizar evento:", error);
-    }
-  };
 
   const [openImage, setOpenImage] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>("");
@@ -75,6 +61,16 @@ const EditEvent = ({
 
   const handleClose = () => {
     setOpenImage(false);
+  };
+
+  const { mutate: update } = UseEditEvent();
+
+  const onSubmit = async (data: Events) => {
+    update(data, {
+      onSuccess: () => {
+        setEdit(false);
+      },
+    });
   };
 
   return (
@@ -158,12 +154,9 @@ const EditEvent = ({
 
               <div className="mb-4">
                 <Label htmlFor="Category" value="Categoría" />
-                <TextInput
-                  id="Category"
-                  type="text"
-                  {...register("Category", { required: true })}
-                  placeholder="Escribe la categoría del evento"
-                />
+                <Select {...register("Category")} required>
+                  <OPTEventType />
+                </Select>
               </div>
 
               <div className="mb-4">
@@ -188,14 +181,13 @@ const EditEvent = ({
               </div>
             </fieldset>
           </Modal.Body>
-
           <ModalFooters onClose={onClose} />
         </form>
       </Modal>
       <ModalAddNewImage
         open={openImage}
         text="del evento"
-        Folder="Eventos"
+        Folder="Evento"
         onSelectImage={handleImageSelect}
         onClose={handleClose}
       />

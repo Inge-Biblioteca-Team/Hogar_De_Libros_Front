@@ -9,11 +9,13 @@ const Inboxpage = () => {
 
   return (
     <button 
+      className="relative"
       onClick={goto}
       title="Mensajes recibidos"
       type="button"  
     >
       <HiInbox size={35} /> 
+      
     </button>
   );
 };

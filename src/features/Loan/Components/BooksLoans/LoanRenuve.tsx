@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 import { ChangeExpiredDate, Loans } from "../../Types/BookLoan";
 import UseExtendLoan from "../../Hooks/Books/UseExtendLoan";
 import { useForm } from "react-hook-form";
+import { formatToYMD } from "../../../../components/FormatTempo";
 
 const LoanRenuve = ({
   Loan,
@@ -19,9 +20,8 @@ const LoanRenuve = ({
 
   useEffect(() => {
     if (Loan) {
-      const now = new Date();
       setValue("BookLoanId", Loan.BookLoanId);
-      setValue("LoanExpirationDate", now.toLocaleDateString("sv-SE"));
+      setValue("LoanExpirationDate", formatToYMD(Loan.LoanExpirationDate));
     }
   }, [Loan, setValue]);
 
@@ -35,7 +35,7 @@ const LoanRenuve = ({
 
   return (
     <>
-      <Modal show={showChange} onClose={() => setShowChange(false)}>
+      <Modal show={showChange} onClose={() => setShowChange(false)} size={"md"}>
         <Modal.Header>Extension de fecha de devolución</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
@@ -48,7 +48,7 @@ const LoanRenuve = ({
               />
               <div className="flex justify-center gap-4 mt-10">
                 <Button
-                  color="failure"
+                  color="red"
                   onClick={() => {
                     setShowChange(false);
                   }}

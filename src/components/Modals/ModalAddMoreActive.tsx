@@ -35,7 +35,7 @@ const ModalAddMoreActive = ({
               Desea añadir otro activo ?
             </h3>
             <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={handleNoClick}>
+              <Button color="red" onClick={handleNoClick}>
                 No, Regresar.
               </Button>
               <Button

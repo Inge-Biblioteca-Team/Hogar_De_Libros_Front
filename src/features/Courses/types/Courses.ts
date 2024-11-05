@@ -1,32 +1,3 @@
-export type createCourse = {
-  date: Date;
-  courseTime: string;
-  location: string;
-  instructor: string;
-  courseName: string;
-  courseType: string;
-  targetAge: number;
-  capacity: number;
-  Status: boolean;
-  image: string;
-  duration: string;
-  endDate: Date;
-  programProgramsId?: string;
-  materials:string;
-};
-
-export type Course = {
-  CourseType: string;
-  Quota: string;
-  Image: string;
-  Name: string;
-  date: string;
-  Location: string;
-  OjetiveAge: string;
-  MaxQuota: string;
-  id: number;
-};
-
 export type Courses = {
   courseId: number;
   date: Date;
@@ -41,33 +12,16 @@ export type Courses = {
   image: string;
   duration: string;
   endDate: Date;
-  programProgramsId: number;
+  programProgramsId: string;
   programsName: number;
-  availableQuota:number;
-  currentStatus:string;
-  materials:string;
+  availableQuota: number;
+  currentStatus: string;
+  materials: string;
 };
 
 export type ResponseC = {
   data: Courses[];
   count: number;
-};
-
-export type updateCourse = {
-  Id:number;
-  courseName: string;
-  date: Date;
-  courseTime: string;
-  location: string;
-  instructor: string;
-  courseType: string;
-  targetAge: number;
-  capacity: number;
-  image: string;
-  duration: string;
-  endDate: Date;
-  programProgramsId: number;
-  materials:string;
 };
 
 export type NextCourses = {
@@ -85,7 +39,7 @@ export type NextCourses = {
   objetiveAge: number;
   status: string;
   duration: string;
-  materials:string;
+  materials: string;
 };
 export type ApiCourseResponse = {
   data: NextCourses[];
@@ -95,4 +49,4 @@ export type ApiCourseResponse = {
 export type program = {
   programName: string;
   programsId: number;
-}
+};

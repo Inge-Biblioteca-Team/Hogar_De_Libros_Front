@@ -1,9 +1,13 @@
 import { Label, Modal, TextInput } from "flowbite-react";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { NewWSLoan } from "../../Types/ComputerLoan";
 import UseGenerateWSLoan from "../../Hooks/Computers/UseGenerateWSLoan";
 import ModalFooters from "../../../../components/ModalFooters";
+import { useQuery } from "react-query";
+import { PersonData } from "../../../Users/Type/UserType";
+import UseDebounce from "../../../../hooks/UseDebounce";
+import { getUserInformationByCedula } from "../../../Users/Services/SvUsuer";
 
 const ModalewSWLoan = ({
   MNumber,
@@ -14,7 +18,8 @@ const ModalewSWLoan = ({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { register, setValue, handleSubmit, reset } = useForm<NewWSLoan>();
+  const { register, setValue, handleSubmit, reset, watch } =
+    useForm<NewWSLoan>();
 
   setValue("MachineNumber", MNumber);
 
@@ -33,30 +38,55 @@ const ModalewSWLoan = ({
     reset();
   };
 
+  const cedula = UseDebounce(watch("cedula"), 1000);
+
+  const { data: User } = useQuery<PersonData>(
+    ["userInformation", cedula],
+    () =>
+      cedula
+        ? getUserInformationByCedula(cedula)
+        : Promise.reject("Cedula no encontrada"),
+    {
+      enabled: !!cedula,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      retry: 1,
+    }
+  );
+
+  useEffect(() => {
+    if (User) {
+     setValue("UserName", User.nombre)
+    }
+  }, [User, setValue]);
+
   return (
-    <Modal show={open} onClose={onClose} className="text-center">
+    <Modal show={open} onClose={onClose} size={"md"}>
       <Modal.Header>
-        <h5>Nuevo préstamo de Equipo {MNumber} </h5>
+        <h5>Nuevo préstamo de equipo {MNumber} </h5>
       </Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Body>
-          <Label htmlFor="UserName">Nombre de Usuario</Label>
-          <TextInput
-            placeholder="Tu nombre completo"
-            className=" mb-4"
-            type="text"
-            required
-            {...register("UserName")}
-          />
-          <Label htmlFor="UserName">Numero de cédula</Label>
-          <TextInput
-            placeholder="Numero de cédula sin guiones ni espacios"
-            className=""
-            type="number"
-            pattern="[0-9]*"
-            required
-            {...register("cedula")}
-          />
+        <Modal.Body className=" flex flex-col gap-5">
+          <div>
+            <Label htmlFor="UserName">Numero de cédula</Label>
+            <TextInput
+              placeholder="Numero de cédula sin guiones ni espacios"
+              className=""
+              type="number"
+              pattern="[0-9]*"
+              required
+              {...register("cedula")}
+            />
+          </div>
+          <div>
+            <Label htmlFor="UserName">Nombre</Label>
+            <TextInput
+              placeholder="Tu nombre completo"
+              type="text"
+              required
+              {...register("UserName")}
+            />
+          </div>
         </Modal.Body>
         <ModalFooters onClose={onClose} />
       </form>

@@ -9,7 +9,7 @@ const ModalButtons = ({
   return (
     <>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"failure"} onClick={() => setOpen(false)}>
+        <Button color={"red"} onClick={() => setOpen(false)}>
           Regresar
         </Button>
         <Button color={"blue"} type="submit">

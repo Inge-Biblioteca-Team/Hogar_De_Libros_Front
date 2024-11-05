@@ -1,5 +1,5 @@
 import { Label, Modal, TextInput } from "flowbite-react";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { NewWSMantenance } from "../../Types/ComputerLoan";
 import NewSetMaintenance from "../../Hooks/Computers/NewSetMaintenance";
@@ -14,24 +14,37 @@ const ModalMantenance = ({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { register, setValue, handleSubmit, reset } =
-    useForm<NewWSMantenance>();
+  const {handleSubmit} = useForm<NewWSMantenance>();
 
-  setValue("machineNumber", MNumber);
+ 
 
   const { mutate } = NewSetMaintenance();
 
-  const onSubmit = (data: NewWSMantenance) => {
-    mutate(data, {
-      onSuccess: () => {
-        setOpen(false);
+  const [inChange, setInCharge] = useState("");
+  const [Location, setLocacion] = useState("");
+
+  const onSubmit = () => {
+    const combinedData = `Realizado por: ${inChange}; En: ${Location}`;
+    mutate(
+      {
+        MachineNumber: MNumber,
+        location: combinedData,
+        status: "Mantenimiento",
       },
-    });
+      {
+        onSuccess: () => {
+          setOpen(false);
+          setLocacion("")
+          setInCharge("")
+        },
+      }
+    );
   };
 
   const onClose = () => {
     setOpen(false);
-    reset();
+    setLocacion("")
+    setInCharge("")
   };
 
   return (
@@ -42,23 +55,27 @@ const ModalMantenance = ({
       className="text-center"
     >
       <Modal.Header>
-        <h5>Mantenimiento de Equipo {MNumber} </h5>
+        <h5>Mantenimiento de equipo {MNumber} </h5>
       </Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
-          <Label htmlFor="UserName">Realizado Por</Label>
+          <Label htmlFor="UserName">Realizado por</Label>
           <TextInput
             className="mb-5"
             type="text"
             required
-            {...register("userName")}
+            onChange={(event) => {
+              setInCharge(event.target.value);
+            }}
           />
           <Label htmlFor="UserName">Ubicacion del equipo</Label>
           <TextInput
             className=""
             type="text"
             required
-            {...register("location")}
+            onChange={(event) => {
+              setLocacion(event.target.value);
+            }}
           />
         </Modal.Body>
         <ModalFooters onClose={onClose} />

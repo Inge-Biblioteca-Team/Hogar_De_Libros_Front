@@ -1,6 +1,6 @@
 import axios from "axios";
 import api from "../../../Services/AxiosConfig";
-import { createArtist, updateArtist } from "../types/LocalArtist";
+import { Artist } from "../types/LocalArtist";
 
 const getLocalArtist = async (
   page: number,
@@ -26,32 +26,43 @@ const getLocalArtist = async (
   }
 };
 
-const createLocalArtist = async (data: createArtist) => {
+const createLocalArtist = async (data: Artist) => {
   try {
-    const addArtist = await api.post("local-artist", data, {
-      headers: {
-        "Content-Type": "application/json",
-        //just for testing queries with auth. It worked
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1MDQzNzAxNzMiLCJlbWFpbCI6InNlcnJhbm9yb3NhbGVzOUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjcxMzQ1NzAsImV4cCI6MTcyNzEzODE3MH0.P6rumVObIXFaWhZi-mVIA12gKsXZV4MAAVQblBKeouw"
-      },
-    });
-    return addArtist.data;
-  } catch (error) {
-    console.error("Error al crear el artista:", error);
+    const addArtist = await api.post("local-artist", data);
+    return addArtist.status;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al crear el artista:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al procesar la solicitud"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 
-const editArtist = async (id: number, data: updateArtist) => {
+const editArtist = async (data: Artist) => {
   try {
-    const response = await api.patch(`local-artist/${id}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await api.patch(`local-artist/${data.ID}`, data);
     return response.data;
-  } catch (error) {
-    console.error("Error al editar la información del artista:", error);
-    throw error;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al editar el artista:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al procesar la solicitud"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 
@@ -59,40 +70,25 @@ const DownArtist = async (id: number) => {
   try {
     const response = await api.patch(`local-artist/${id}/Down`);
     return response.data;
-  } catch (error) {
-    console.error("Error al deshabilitar el artista:", error);
-    throw error;
-  }
-};
-
-const uploadImage = async (file: File): Promise<string> => {
-  if (file) {
-    const formData = new FormData();
-    formData.append("image", file);
-
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/files/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al editar el artista:",
+        error.response?.data || error.message
       );
-      return response.data.filePath;
-    } catch (error) {
-      console.error("Error al subir la imagen:", error);
-      throw new Error("Error al subir la imagen");
+      throw new Error(
+        error.response?.data.message || "Error al procesar la solicitud"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
     }
   }
-  throw new Error("No se proporciono una imagen");
 };
 
 export {
   getLocalArtist,
   DownArtist,
   createLocalArtist,
-  editArtist,
-  uploadImage,
+  editArtist
 };

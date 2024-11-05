@@ -62,7 +62,7 @@ const SeeComponent = ({
       </Modal.Body>
       <Modal.Footer className=" flex place-content-center">
         <Button color={"blue"} onClick={() => setSee(false)}>
-          Cerrar
+          Regresar
         </Button>
       </Modal.Footer>
     </Modal>

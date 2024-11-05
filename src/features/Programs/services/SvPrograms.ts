@@ -3,18 +3,13 @@ import api from "../../../Services/AxiosConfig";
 import { Program } from "../types/Programs";
 
 const GetPrograms = async () => {
-  const response = await api.get(
-    "programs/ALL");
+  const response = await api.get("programs/ALL");
   return response.data;
 };
 
 const PostNewProgram = async (data: Program) => {
   try {
-    const response = await api.post("programs", data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await api.post("programs", data);
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -33,11 +28,7 @@ const PostNewProgram = async (data: Program) => {
 };
 const PatchProgram = async (data: Program) => {
   try {
-    const response = await api.patch(`programs/${data.programsId}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await api.patch(`programs/${data.programsId}`, data);
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -80,11 +71,7 @@ const GetProgramsList = async (
 
 const DisableProgram = async (Id: string) => {
   try {
-    const response = await api.patch(`programs/${Id}/disable`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await api.patch(`programs/${Id}/disable`);
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
@@ -102,9 +89,9 @@ const DisableProgram = async (Id: string) => {
   }
 };
 
-const GetProgramsCourses = async (id:string) => {
+const GetProgramsRelated = async (id: string) => {
   try {
-    const response = await api.get(`programs/${id}/courses`);
+    const response = await api.get(`programs/Program/${id}/Related`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -112,4 +99,30 @@ const GetProgramsCourses = async (id:string) => {
   }
 };
 
-export { GetPrograms, PostNewProgram, GetProgramsList, PatchProgram, DisableProgram,GetProgramsCourses };
+const GetProgramsActivitiesList = async (
+  programName?: string,
+  month?: string
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {};
+
+    if (programName) params.programID = programName;
+    if (month) params.month = month;
+
+    const response = await api.get("programs/Program/Activities", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export {
+  GetPrograms,
+  PostNewProgram,
+  GetProgramsList,
+  PatchProgram,
+  DisableProgram,
+  GetProgramsRelated,
+  GetProgramsActivitiesList,
+};

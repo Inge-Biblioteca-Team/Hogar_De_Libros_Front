@@ -1,13 +1,13 @@
 import { Carousel } from "flowbite-react";
 import { useQuery } from "react-query";
-import { getColection } from "../../Services/BooksServices";
+import { getUserColection } from "../../Services/BooksServices";
 import { Catalog, Book } from "../../Types/BooksTypes";
 import BookCard from "./BookCard";
 
 const CatalogLists = ({ category }: { category: string }) => {
   const { data: catalog } = useQuery<Catalog, Error>(
     ["colection", category],
-    () => getColection(1, 15, "", "", "", "1", "", category),
+    () => getUserColection(1, 15, "", "", "", "1", "", category),
     {
       staleTime: 100000,
       retry: 1,

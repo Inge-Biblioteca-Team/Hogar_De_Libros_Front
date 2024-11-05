@@ -46,22 +46,19 @@ const InProgressLoans = () => {
     }
   );
 
-  const clearSearch = () => {
-    setStartDate("");
-    setEndtDate("");
-    setSignaCode("");
-  };
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [StartDate, EndDate, sSignaCode]);
 
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>
        <LoansAndCirculationCrumbs text="Préstamos en progreso" />
-      <div className="flex place-content-center mt-14 pb-3">
+      <div className="flex place-content-center pb-3">
         <div className="w-4/5">
           <SearchInputs
             SignaCode={SignaCode}
             EndDate={EndDate}
-            clearSearch={clearSearch}
             setStartDate={setStartDate}
             setEndtDate={setEndtDate}
             setSignaCode={setSignaCode}

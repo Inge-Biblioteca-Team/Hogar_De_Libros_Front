@@ -1,25 +1,16 @@
-import { Button, Popover } from "flowbite-react";
 import { GiConfirmed } from "react-icons/gi";
 import { MdCancel } from "react-icons/md";
 import { PiEyeFill } from "react-icons/pi";
 import { useState } from "react";
 import MDSeeReservation from "./Modals/MDSeeReservation";
 import { Reserve } from "../../Types/RoomsReservations";
-import UseRefuese from "../../Hooks/Rooms/UseRefuese";
 import MDRefuseReservation from "./Modals/MDRefuseReservation";
+import AproveReservation from "./Modals/AproveReservation";
 
 const BTNRequest = ({ reserve }: { reserve: Reserve }) => {
-  const { mutate: responseReserve } = UseRefuese("Aprove");
-
-  const onSubmit = async (id:number) => {
-    responseReserve(id, {
-      onSuccess: () => {},
-      onError: () => {},
-    });
-  };
-
   const [openS, setOpenS] = useState<boolean>(false);
   const [openD, setOpenD] = useState<boolean>(false);
+  const [openA, setOpenA] = useState<boolean>(false);
   return (
     <>
       <div className=" flex justify-center gap-x-12">
@@ -38,21 +29,22 @@ const BTNRequest = ({ reserve }: { reserve: Reserve }) => {
         >
           <MdCancel size={25} />
         </button>
-        <Popover content={<Button color={"blue"}
-        onClick={() => {
-          onSubmit(reserve.rommReservationId);
-        }}>Confirmar</Button>}>
-          <button
-            type="button"
-            title="Aprobar préstamo"
-            className="hover:text-green-600"
-          >
-            <GiConfirmed size={25} />
-          </button>
-        </Popover>
+        <button
+          onClick={() => setOpenA(true)}
+          type="button"
+          title="Aprobar préstamo"
+          className="hover:text-green-600"
+        >
+          <GiConfirmed size={25} />
+        </button>
       </div>
       <MDRefuseReservation open={openD} setOpen={setOpenD} reserve={reserve} />
       <MDSeeReservation open={openS} setOpen={setOpenS} reserve={reserve} />
+      <AproveReservation
+        open={openA}
+        setOpen={setOpenA}
+        ID={reserve.rommReservationId}
+      />
     </>
   );
 };

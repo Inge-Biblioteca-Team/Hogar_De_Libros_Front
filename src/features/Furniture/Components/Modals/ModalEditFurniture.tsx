@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { furniture } from "../../type/furniture";
 import { useForm } from "react-hook-form";
-import { useQueryClient } from "react-query";
-import useEditFurniture from "../../Hooks/useEditFuniture";
-import toast from "react-hot-toast";
 import { FloatingLabel, Label, Modal, Select } from "flowbite-react";
-import ConfirmModalFurniture from "./ConfirmModalFurniture";
 import OptsConditions from "../../../../components/OptsConditions";
 import ModalFooters from "../../../../components/ModalFooters";
+import useEditFurniture from "../../Hooks/useEditFuniture";
+import OptInChangePersons from "../OptInChangePersons";
 
 const ModalEditFurniture = ({
   sEdit,
@@ -18,15 +16,11 @@ const ModalEditFurniture = ({
   setEdit: (open: boolean) => void;
   furniture: furniture;
 }) => {
-  const queryClient = useQueryClient();
-  const [NewData, setNewData] = useState<furniture | null>(null);
-  const [isModalOpen, setModalOpen] = useState(false);
-
   const { register, handleSubmit, setValue, reset } = useForm<furniture>();
-  const { mutate: editFurniture } = useEditFurniture();
 
   useEffect(() => {
     if (furniture) {
+      setValue("Id", furniture.Id);
       setValue("LicenseNumber", furniture.LicenseNumber);
       setValue("Description", furniture.Description);
       setValue("Location", furniture.Location);
@@ -36,43 +30,26 @@ const ModalEditFurniture = ({
     }
   }, [furniture, setValue]);
 
-  const onSubmit = (formData: furniture) => {
-    setNewData(formData);
-    setModalOpen(true);
-  };
-
-  const handleConfirm = () => {
-    if (furniture?.Id && NewData) {
-      editFurniture(
-        { furniture: NewData, Id: furniture.Id.toString() },
-        {
-          onSuccess: () => {
-            setEdit(false);
-            queryClient.invalidateQueries("FurnitureCatalog");
-          },
-          onError: () => {
-            toast.error("Error al editar mobiliario");
-          },
-        }
-      );
-    }
-    setModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setModalOpen(false);
-  };
-
   const onClose = () => {
     setEdit(false);
-    reset()
+    reset();
+  };
+
+  const { mutate: update } = useEditFurniture();
+
+  const onSubmit = async (data: furniture) => {
+    update(data, {
+      onSuccess: () => {
+        setEdit(false);
+      },
+    });
   };
 
   return (
     <>
       <Modal show={sEdit} size="md" onClose={onClose}>
         <Modal.Header>
-          Editar Mobiliario {furniture.LicenseNumber}{" "}
+          Editar mobiliario {furniture.LicenseNumber}{" "}
         </Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="flex flex-col gap-6">
@@ -92,8 +69,7 @@ const ModalEditFurniture = ({
               <span>
                 <Label htmlFor="ConditionRating" value="Persona a cargo" />
                 <Select {...register("InChargePerson")}>
-                  <option value="">Persona responsable</option>
-                  <option value="Dian">Dian</option>
+                  <OptInChangePersons />
                 </Select>
               </span>
               <div>
@@ -113,15 +89,6 @@ const ModalEditFurniture = ({
           <ModalFooters onClose={onClose} />
         </form>
       </Modal>
-      {NewData && (
-        <ConfirmModalFurniture
-          Accion="Editar"
-          isOpen={isModalOpen}
-          onConfirm={handleConfirm}
-          onCancel={handleCancel}
-          FurnitureItem={NewData}
-        />
-      )}
     </>
   );
 };

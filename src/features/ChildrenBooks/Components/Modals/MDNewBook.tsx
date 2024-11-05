@@ -100,6 +100,7 @@ const MDNewBook = ({
                   variant="outlined"
                   label="Año de publicación"
                   {...register("PublishedYear")}
+                  required
                   type="number"
                 />
                 <FloatingLabel
@@ -144,6 +145,7 @@ const MDNewBook = ({
                   <Select
                     className="custom-Select "
                     {...register("ShelfCategory")}
+                    required
                   >
                     <OptsCateogryChildren />
                   </Select>

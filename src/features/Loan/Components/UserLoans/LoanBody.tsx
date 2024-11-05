@@ -34,7 +34,7 @@ const LoanBody = ({
           <div className=" flex items-center justify-center flex-col m-2">
             <h5>Solicitud #{Loan.BookLoanId} </h5>
             {Loan.Status == "Pendiente" && (
-              <Button color={"failure"} onClick={() => setShowCancel(true)}>
+              <Button color={"red"} onClick={() => setShowCancel(true)}>
                 Cancelar Solicitud
               </Button>
             )}
@@ -42,9 +42,6 @@ const LoanBody = ({
               <Button color={"blue"} onClick={() => setShowChange(true)}>
                 Solicitar Extencion de préstamo
               </Button>
-            )}
-            {Loan.Status == "Finalizado" && (
-              <Button color={"blue"}>Solicitar Denuevo</Button>
             )}
           </div>
         }

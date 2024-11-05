@@ -253,7 +253,8 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
               <div className=" flex flex-col gap-3">
                 <div>
                   <Label value="Materiales requeridos para la actividad" />
-                  <TextInput {...register("ExtraInfo")} />
+                  <TextInput {...register("ExtraInfo")} 
+                  placeholder="En caso de requerir materiales"/>
                 </div>
 
                 <div className="flex flex-col custom-file-input">

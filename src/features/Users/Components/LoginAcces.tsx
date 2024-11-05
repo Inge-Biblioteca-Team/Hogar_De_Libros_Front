@@ -1,15 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import icon from "./../../../Assets/LoginIcon.png"
-
+import { Button } from "flowbite-react";
+import { CiLogin } from "react-icons/ci";
 const LoginAcces = () => {
   const Navi = useNavigate();
   return (
     <>
-      <button type="button" title="Iniciar Sesión">
-        {""}
-        <img src={icon} alt="Iniciar Session" width={40} onClick={()=>Navi("/IniciarSesion")}
-        className="invert" />
-      </button>
+      <Button className=" transition-transform hover:scale-105 " onClick={() => Navi("/IniciarSesion")} color={"gray"}>
+        Iniciar sesión<CiLogin size={22} />
+      </Button>
     </>
   );
 };

@@ -74,11 +74,6 @@ const DeleteAdvice = async (id: number) => {
   }
 };
 
-const GetNotice = async () => {
-  const response = await api.get("advices");
-  return response.data;
-};
-
 const GetAdviceList = async (
   page: number,
   limit: number,
@@ -95,6 +90,28 @@ const GetAdviceList = async (
     if (reason) params.reason = reason;
     if (category) params.category = category;
     const response = await api.get("advices", { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+const GetAdvice = async (
+  page: number,
+  limit: number,
+  reason?: string,
+  category?: string,
+  date?: string
+) => {
+  try {
+    const params: { [key: string]: string | number | undefined } = {
+      page,
+      limit,
+    };
+    if (date) params.date = date;
+    if (reason) params.reason = reason;
+    if (category) params.category = category;
+    const response = await api.get("advices/List", { params });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -128,5 +145,5 @@ export {
   DeleteAdvice,
   GetAdviceList,
   uploadAdviceImage,
-  GetNotice,
+  GetAdvice
 };

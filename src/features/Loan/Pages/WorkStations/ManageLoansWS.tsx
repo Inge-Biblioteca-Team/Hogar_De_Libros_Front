@@ -27,7 +27,7 @@ const ManageLoansWS = () => {
 
   return (
     <>
-      <LoansAndCirculationCrumbs text="Equipo de cómputo"/>
+      <LoansAndCirculationCrumbs text="Equipo de cómputo" />
       <div className=" w-full flex items-center justify-center mt-12">
         <div className="grid grid-cols-4 gap-26 w-4/5">
           {computers?.map((computer) => (
@@ -36,7 +36,10 @@ const ManageLoansWS = () => {
               className="flex flex-col-reverse items-center p-2 "
             >
               <Popover content={<ButtonsAccions computer={computer} />}>
-                <div className={`text-6xl ${conditionColors[computer.Status]}`}>
+                <div
+                  title={"PC" + computer.MachineNumber}
+                  className={`text-6xl ${conditionColors[computer.Status]}`}
+                >
                   <FontAwesomeIcon icon={faDesktop} />
                 </div>
               </Popover>
@@ -55,11 +58,11 @@ const ManageLoansWS = () => {
         </div>
         <div className="flex items-center">
           <span className="text-yellow-500 text-2xl">●</span>
-          <span className="ml-2">En Mantenimiento</span>
+          <span className="ml-2">En mantenimiento</span>
         </div>
         <div className="flex items-center">
           <span className="text-red-500 text-2xl">●</span>
-          <span className="ml-2">En Uso</span>
+          <span className="ml-2">En uso</span>
         </div>
       </div>
     </>

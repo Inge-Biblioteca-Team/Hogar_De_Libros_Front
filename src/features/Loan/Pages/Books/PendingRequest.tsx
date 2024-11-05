@@ -31,6 +31,7 @@ const PendingRequest = () => {
       staleTime: 600,
     }
   );
+
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>

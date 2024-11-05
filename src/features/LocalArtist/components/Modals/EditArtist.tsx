@@ -1,14 +1,14 @@
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
-import { Label, Modal, TextInput } from "flowbite-react";
-import { Artist, updateArtist } from "../../types/LocalArtist";
+import { Label, Modal, Select, TextInput } from "flowbite-react";
+import { Artist } from "../../types/LocalArtist";
 import { useForm } from "react-hook-form";
-import { editArtist } from "../../services/SvArtist";
 import { FaFacebookSquare, FaUserEdit } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import { AiFillTikTok } from "react-icons/ai";
 import { BsLinkedin } from "react-icons/bs";
 import ModalFooters from "../../../../components/ModalFooters";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
+import UseEditArtist from "../../Hooks/UseEditArtist";
 const EditArtist = ({
   edit,
   setEdit,
@@ -18,28 +18,18 @@ const EditArtist = ({
   setEdit: Dispatch<SetStateAction<boolean>>;
   Artist: Artist;
 }) => {
-  const { register, handleSubmit, setValue, reset, watch } =
-    useForm<updateArtist>({
-      defaultValues: {
-        Name: Artist.Name,
-        ArtisProfession: Artist.ArtisProfession,
-        MoreInfo: Artist.MoreInfo,
-        Cover: Artist.Cover,
-        FBLink: Artist.FBLink,
-        IGLink: Artist.IGLink,
-        LILink: Artist.LILink,
-      },
-    });
-
-  const onSubmit = async (data: updateArtist) => {
-    try {
-      await editArtist(Artist.ID, data);
-      alert("Artista editado con éxito");
-      setEdit(false);
-    } catch (error) {
-      console.error("Error updating artist:", error);
-    }
-  };
+  const { register, handleSubmit, setValue, reset, watch } = useForm<Artist>({
+    defaultValues: {
+      ID: Artist.ID,
+      Name: Artist.Name,
+      ArtisProfession: Artist.ArtisProfession,
+      MoreInfo: Artist.MoreInfo,
+      Cover: Artist.Cover,
+      FBLink: Artist.FBLink,
+      IGLink: Artist.IGLink,
+      LILink: Artist.LILink,
+    },
+  });
 
   const [openImage, setOpenImage] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>(watch("Cover"));
@@ -56,11 +46,20 @@ const EditArtist = ({
   const onClose = () => {
     setEdit(false);
     reset();
-    setImageUrl("");
   };
 
   const handleClose = () => {
     setOpenImage(false);
+  };
+
+  const { mutate: editArtist } = UseEditArtist();
+
+  const onSubmit = async (data: Artist) => {
+    editArtist(data, {
+      onSuccess: () => {
+        setEdit(false);
+      },
+    });
   };
 
   return (
@@ -102,12 +101,19 @@ const EditArtist = ({
                   htmlFor="ArtisProfession"
                   value="Profesión del artista"
                 />
-                <TextInput
+                <Select
+                  required
                   id="ArtisProfession"
-                  type="text"
-                  {...register("ArtisProfession", { required: true })}
-                  placeholder="Escribe la profesión del artista"
-                />
+                  {...register("ArtisProfession")}
+                >
+                  <option value="">Seleccione el tipo de artista</option>
+                  <option value="Músico">Músico</option>
+                  <option value="Pintor">Pintor</option>
+                  <option value="Escritor">Escritor</option>
+                  <option value="Actor">Actor</option>
+                  <option value="Escultor">Escultor</option>
+                  <option value="Fotógrafo">Fotógrafo</option>
+                </Select>
               </div>
             </fieldset>
             <fieldset className=" grid-cols-2 grid gap-2">

@@ -1,4 +1,4 @@
-import { Courses, updateCourse } from "../../types/Courses";
+import { Courses } from "../../types/Courses";
 import {
   Dispatch,
   SetStateAction,
@@ -27,30 +27,28 @@ const EditCourse = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   course: Courses;
 }) => {
-  const { register, handleSubmit, setValue, watch, reset } =
-    useForm<updateCourse>({
-      defaultValues: {
-        Id: course.courseId,
-        date: course.date,
-        courseTime: course.courseTime,
-        location: course.location,
-        instructor: course.instructor,
-        courseName: course.courseName,
-        courseType: course.courseType,
-        targetAge: course.targetAge,
-        capacity: course.capacity,
-        image: course.image,
-        duration: course.duration,
-        endDate: course.endDate,
-        programProgramsId:
-          course.programProgramsId === null ? 0 : course.programProgramsId,
-        materials: course.materials,
-      },
-    });
+  const { register, handleSubmit, setValue, watch, reset } = useForm<Courses>({
+    defaultValues: {
+      courseId: course.courseId,
+      date: course.date,
+      courseTime: course.courseTime,
+      location: course.location,
+      instructor: course.instructor,
+      courseName: course.courseName,
+      courseType: course.courseType,
+      targetAge: course.targetAge,
+      capacity: course.capacity,
+      image: course.image,
+      duration: course.duration,
+      endDate: course.endDate,
+      programProgramsId: course.programProgramsId || "",
+      materials: course.materials,
+    },
+  });
 
   const { mutate: updateCourse } = UseUpdateCourse();
 
-  const onSubmit = async (data: updateCourse) => {
+  const onSubmit = async (data: Courses) => {
     updateCourse(data, {
       onSuccess: () => {
         setOpen(false);
@@ -116,7 +114,6 @@ const EditCourse = ({
                     <span>Selecciona una imagen</span>
                   </div>
                 )}
-                <TextInput className=" hidden" {...register("image")} />
               </figure>
             </fieldset>
             <div className=" col-span-2 grid grid-cols-2 gap-3">

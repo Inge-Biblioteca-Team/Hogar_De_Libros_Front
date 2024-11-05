@@ -1,5 +1,4 @@
 import { Sidebar } from "flowbite-react";
-import ForAll from "./ForAll";
 import LeadingOptions from "./LeadingOptions";
 import ResoursesOptions from "./ResoursesOptions";
 import ServicesOptions from "./ServicesOptions";
@@ -29,11 +28,6 @@ const ForAdmin = () => {
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </>
-      <Sidebar.ItemGroup>
-        <Sidebar.Collapse label="Vistas de usuario">
-          <ForAll />
-        </Sidebar.Collapse>
-      </Sidebar.ItemGroup>
       <LeadingOptions />
       <Sidebar.ItemGroup>
         <RecordsOptions />

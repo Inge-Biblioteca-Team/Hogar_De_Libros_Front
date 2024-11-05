@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { recovery } from "../Type/Recovery";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MdOutlineError } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 
 interface Payload extends JwtPayload {
@@ -17,18 +17,17 @@ interface Payload extends JwtPayload {
 const ChangePassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [token, setToken] = useState<string | null>(null);
-  const [cedula, setCedula] = useState<string>("");
 
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
     trigger,
   } = useForm<recovery>({ mode: "onChange" });
 
-  const password = watch("password");
+  const password = watch("newPassword");
 
   const { mutate: change } = UseRecovery();
 
@@ -39,32 +38,16 @@ const ChangePassword = () => {
       try {
         const decodedToken: Payload = jwtDecode<Payload>(tokenFromUrl);
         const Tcedula = decodedToken.id;
-        setCedula(Tcedula);
-        setToken(tokenFromUrl);
+        setValue("token", tokenFromUrl);
+        setValue("cedula", Tcedula);
       } catch (error) {
         console.error("Error al decodificar el token", error);
       }
     }
-  }, [cedula, location, token]);
+  }, [location, setValue]);
 
   const onSubmit = (data: recovery) => {
-    if (token) {
-      change(
-        { token: token, newPassword: data.password, cedula: cedula },
-        {
-          onSuccess: () => {
-            navigate("/IniciarSesion", { replace: true });
-          },
-          onError: () => {
-            toast.error("Error al restablecer la contraseña.");
-          },
-        }
-      );
-    } else {
-      toast.error(
-        "Token no encontrado. No se puede restablecer la contraseña."
-      );
-    }
+    change(data);
   };
 
   const handleValidationErrors = async () => {
@@ -97,7 +80,7 @@ const ChangePassword = () => {
                 placeholder="Nueva Contraseña"
                 type="password"
                 required
-                {...register("password", {
+                {...register("newPassword", {
                   required: "La contraseña es obligatoria",
                   minLength: {
                     value: 8,
@@ -110,16 +93,16 @@ const ChangePassword = () => {
                   },
                 })}
                 className={`border ${
-                  errors.password ? "border-red-500" : "border-gray-300"
+                  errors.newPassword ? "border-red-500" : "border-gray-300"
                 } rounded-lg`}
               />
-              {errors.password && (
+              {errors.newPassword && (
                 <Popover
                   trigger="hover"
                   placement="top"
                   content={
                     <div className="bg-slate-50 text-red-600 p-1 text-sm">
-                      {errors.password.message}
+                      {errors.newPassword.message}
                     </div>
                   }
                   className="z-50"
@@ -170,7 +153,7 @@ const ChangePassword = () => {
           </Modal.Body>
           <Modal.Footer className=" flex items-center justify-center">
             <Button
-              color={"failure"}
+              color={"red"}
               onClick={() => navigate("/IniciarSesion", { replace: true })}
             >
               Cancelar

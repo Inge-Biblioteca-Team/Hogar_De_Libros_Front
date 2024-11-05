@@ -22,7 +22,6 @@ const DisableUser = ({
 
   return (
     <Modal show={dow} onClose={() => setDow(false)}>
-      <Modal.Header />
       <Modal.Body>
         <div className="text-center">
           <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
@@ -39,7 +38,7 @@ const DisableUser = ({
             className="mb-4"
           />
           <div className="flex justify-center gap-4">
-            <Button color="failure" onClick={() => setDow(false)}>
+            <Button color="red" onClick={() => setDow(false)}>
               Cancelar
             </Button>
             <Button color="blue" onClick={() => handleDisbale()}>

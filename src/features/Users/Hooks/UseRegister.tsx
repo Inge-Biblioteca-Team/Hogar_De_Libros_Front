@@ -5,12 +5,10 @@ import { SignUp } from "../Services/SVAuth";
 import { RegisterInfo } from "../Type/UserType";
 import { ApiError } from "../../../Types/ApiTypes";
 
-
-
 const UseRegister = () => {
   const navigate = useNavigate();
   return useMutation({
-    mutationFn: (data:RegisterInfo) =>
+    mutationFn: (data: RegisterInfo) =>
       toast.promise(SignUp(data), {
         loading: "Registrando...",
         success: <span>Registro exitoso</span>,
@@ -23,6 +21,5 @@ const UseRegister = () => {
     },
   });
 };
-
 
 export default UseRegister;

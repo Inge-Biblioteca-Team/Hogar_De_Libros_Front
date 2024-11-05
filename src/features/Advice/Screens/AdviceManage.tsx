@@ -5,7 +5,7 @@ import NewAdvice from "../Components/Modals/NewAdvice";
 import OptAdviceCategory from "../Components/OptAdviceCategory";
 import { useQuery } from "react-query";
 import { ApiAdvices } from "../Types/Advice";
-import { GetAdviceList } from "../Service/SvAdvice";
+import { GetAdvice } from "../Service/SvAdvice";
 import UseDebounce from "../../../hooks/UseDebounce";
 import {
   BreadCrumbsItems,
@@ -29,7 +29,7 @@ const AdviceManage = () => {
 
   const { data: Advices } = useQuery<ApiAdvices, Error>(
     ["AdvicesList", page, limit, category, date, reasonS],
-    () => GetAdviceList(page, limit, reasonS, category, date),
+    () => GetAdvice(page, limit, reasonS, category, date),
     {
       staleTime: 600,
     }
@@ -50,7 +50,7 @@ const AdviceManage = () => {
         <section className="w-4/5 flex justify-between items-end max-sm:w-full max-sm:px-2">
           <div className=" flex gap-6">
             <div>
-              <Label value="Fecha de Actividad" />
+              <Label value="Fecha de actividad" />
               <TextInput
                 type="date"
                 onChange={(e) => (setDate(e.target.value), setPage(1))}

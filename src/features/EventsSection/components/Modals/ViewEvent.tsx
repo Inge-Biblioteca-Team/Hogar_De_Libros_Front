@@ -1,8 +1,8 @@
 import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
-import { updateEvent } from "../../types/Events";
 import { FaCalendarAlt } from "react-icons/fa"; 
 import { formatToDMY } from "../../../../components/FormatTempo";
+import { Events } from "../../types/Events";
 
 const ViewEvent = ({
     see,
@@ -11,7 +11,7 @@ const ViewEvent = ({
   }: {
     see: boolean;
     setSee: Dispatch<SetStateAction<boolean>>;
-    event: updateEvent; 
+    event: Events; 
   }) => {
 
     const eventDay = formatToDMY(event.Date);
@@ -60,7 +60,7 @@ const ViewEvent = ({
         </Modal.Body>
         <Modal.Footer className="flex items-center justify-center">
           <Button color={"blue"} onClick={() => setSee(false)}>
-            Cerrar
+            Regresar
           </Button>
         </Modal.Footer>
       </Modal>

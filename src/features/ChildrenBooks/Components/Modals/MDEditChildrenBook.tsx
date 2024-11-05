@@ -121,18 +121,17 @@ const MDEditChildrenBook = ({
                   label="Año de publicación"
                   {...register("PublishedYear")}
                   type="number"
+                  required
                 />
                 <FloatingLabel
                   variant="outlined"
                   label="ISBN"
                   {...register("ISBN")}
-                  required
                 />
                 <FloatingLabel
                   variant="outlined"
                   label="Código de signatura"
                   {...register("SignatureCode")}
-                  required
                 />
               </div>
             </fieldset>
@@ -145,13 +144,11 @@ const MDEditChildrenBook = ({
                   variant="outlined"
                   label="Código de inscripción"
                   {...register("InscriptionCode")}
-                  required
                 />
                 <FloatingLabel
                   variant="outlined"
                   label="Observaciones"
                   {...register("Observations")}
-                  required
                 />
                 <div>
                   <Label value="Estado del libro" />
@@ -167,6 +164,7 @@ const MDEditChildrenBook = ({
                   <Select
                     className="custom-Select "
                     {...register("ShelfCategory")}
+                    required
                   >
                     <OptsCateogryChildren />
                   </Select>

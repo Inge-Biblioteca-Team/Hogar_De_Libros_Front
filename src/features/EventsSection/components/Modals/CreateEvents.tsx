@@ -1,21 +1,22 @@
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
-import { createEvents } from "../../types/Events";
 import useCreateEvent from "../../Hooks/useCreateEvent";
 import { addDay, format } from "@formkit/tempo";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
 import ModalFooters from "../../../../components/ModalFooters";
 import OptAges from "../OptAges";
+import OPTEventType from "../OPTEventType";
+import { Events } from "../../types/Events";
 
 const CreateEvent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { register, handleSubmit, setValue, reset } = useForm<createEvents>();
+  const { register, handleSubmit, setValue, reset } = useForm<Events>();
 
   const { mutate: createEvent } = useCreateEvent();
 
-  const onSubmit = async (data: createEvents) => {
+  const onSubmit = async (data: Events) => {
     if (imageUrl) {
       data.Image = imageUrl;
     }
@@ -125,18 +126,13 @@ const CreateEvent = () => {
               <div>
                 <Label htmlFor="Category" value="Categoría" />
                 <Select required id="Category" {...register("Category")}>
-                  <option value="">Categoría del evento</option>
-                  <option value="Exposición">Exposición de libro</option>
-                  <option value="Presentación">Presentación de libro</option>
-                  <option value="cultural">Artistico cultural</option>
-                  <option value="Tertulias">Tertulias</option>
-                  <option value="Inducción">Inducción</option>
+                  <OPTEventType />
                 </Select>
               </div>
             </fieldset>
 
             <fieldset className="grid grid-cols-2 gap-3 ">
-              <legend className="text-center w-full p-2">Fecha y Hora</legend>
+              <legend className="text-center w-full p-2">Fecha y hora</legend>
               <div>
                 <Label htmlFor="Date" value="Fecha" />
                 <TextInput
@@ -161,6 +157,8 @@ const CreateEvent = () => {
                       e.target.value = timeWithSeconds;
                     },
                   })}
+                  min="07:00"
+                  max="20:00"
                 />
               </div>
             </fieldset>
@@ -171,8 +169,7 @@ const CreateEvent = () => {
               </legend>
               <div>
                 <Label htmlFor="TargetAudience" value="Público objetivo" />
-                <Select {...register("TargetAudience")}
-                required>
+                <Select {...register("TargetAudience")} required>
                   <OptAges />
                 </Select>
               </div>

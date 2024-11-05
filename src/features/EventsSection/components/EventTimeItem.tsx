@@ -34,7 +34,7 @@ const EventTimeItem = ({ event }: { event: Event }) => {
             {event.eventType}
           </Timeline.Title>
           <Timeline.Body>
-            <Card className="p0 hover:scale-105">
+            <Card className="p0 hover:scale-105 transition-transform">
               <figure className=" w-full rounded-xl">
                 <img
                   className=" w-full rounded-t-lg h-40"
@@ -42,7 +42,7 @@ const EventTimeItem = ({ event }: { event: Event }) => {
                   alt=""
                 />
               </figure>
-              <div className=" flex flex-col ml-6 gap-2 h-80 mr-6 ">
+              <div className=" flex flex-col ml-6 gap-2 h-72 mr-6 ">
                 <span className=" font-bold text-black">
                   {event.title}{" "}
                 </span>

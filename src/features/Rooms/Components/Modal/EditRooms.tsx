@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { Button, Carousel, Label, Modal, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import { Room, updateRooms } from "../../Types/Room_Interface";
+import { Room} from "../../Types/Room_Interface";
 import UseUpdateRoom from "../../Hooks/UseUpdateRooms";
 import ModalFooters from "../../../../components/ModalFooters";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
@@ -15,7 +15,7 @@ const EditRoom = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   room: Room;
 }) => {
-  const { register, handleSubmit, reset, setValue } = useForm<updateRooms>({
+  const { register, handleSubmit, reset, setValue } = useForm<Room>({
     defaultValues: {
       roomId: room.roomId,
       name: room.name,
@@ -38,7 +38,7 @@ const EditRoom = ({
 
   const { mutate: updateRoom } = UseUpdateRoom();
 
-  const onSubmit = async (data: updateRooms) => {
+  const onSubmit = async (data: Room) => {
     updateRoom(data, {
       onSuccess: () => {
         handleModalClose();
@@ -89,7 +89,7 @@ const EditRoom = ({
                       <figure key={index}>
                         <Button
                           className="absolute bottom-2 z-50 !rounded-md"
-                          color={"failure"}
+                          color={"red"}
                           onClick={() => removeImage(index)}
                         >
                           Eliminar

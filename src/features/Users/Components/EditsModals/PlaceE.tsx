@@ -1,8 +1,6 @@
 import { Label, Modal, Select, TextInput } from "flowbite-react";
 import { User } from "../../Type/UserType";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { useQueryClient } from "react-query";
 import UseEditInfoUser from "../../Hooks/UseEditInfoUser";
 import { useEffect } from "react";
 import OptProvincias from "../../../../components/OptProvincias";
@@ -22,6 +20,7 @@ const PlaceE = ({
 
   useEffect(() => {
     if (User) {
+      setValue("cedula", User.cedula);
       setValue("province", User.province);
       setValue("district", User.district);
       setValue("address", User.address);
@@ -30,19 +29,11 @@ const PlaceE = ({
 
   const { mutate: patchUser } = UseEditInfoUser();
 
-  const useClient = useQueryClient();
-
   const handleConfirm = (data: User) => {
-    patchUser(
-      { user: data, cedula: User.cedula },
+    patchUser(data,
       {
         onSuccess: () => {
           setOpen(false);
-          toast.success("Editado correctamente");
-          useClient.invalidateQueries("userInfo");
-        },
-        onError: () => {
-          toast.error("Error al editar");
         },
       }
     );
