@@ -29,7 +29,8 @@ const CardViewFriends = () => {
                 Participa en nuestras actividades y comparte tu amor por los libros con otros amiguitos.
             </p>
             <div className="flex justify-center mt-4">
-                <Button className="w-36 hover:scale-105 transition-transform duration-300" onClick={handleButtonClick}>
+                <Button className="w-36 hover:scale-105 transition-transform duration-300" onClick={handleButtonClick}
+                color={'blue'}>
                     ¡Ir al Formulario!
                 </Button>
             </div>

@@ -5,12 +5,19 @@ export type downType = {
   Id: string;
 };
 
-export type ModalOpen ={
+export type ModalOpen = {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-}
+};
 
-export type uploadImage ={
-  image:File,
-  folder:string
-}
+export type uploadImage = {
+  image: File;
+  folder: string;
+};
+
+export type BiblioStats = {
+  month: string;
+  eventsCount: number;
+  coursesCount: number;
+  loansCount: number;
+};
