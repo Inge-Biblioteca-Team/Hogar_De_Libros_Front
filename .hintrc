@@ -20,6 +20,12 @@
         "select-name": "off"
       }
     ],
-    "typescript-config/strict": "off"
+    "typescript-config/strict": "off",
+    "axe/structure": [
+      "default",
+      {
+        "listitem": "off"
+      }
+    ]
   }
 }

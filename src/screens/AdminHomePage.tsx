@@ -1,9 +1,14 @@
-import { Breadcrumb } from "flowbite-react";
+import { Breadcrumb, Card } from "flowbite-react";
 import { IoIosHome } from "react-icons/io";
 import { formatToFullDate } from "../components/FormatTempo";
 import CounterCard from "../components/CounterCard";
 import { Link } from "react-router-dom";
+import { GiBookshelf } from "react-icons/gi";
 import LoanStadisticts from "../components/LoanStadisticts";
+import { BsFillInfoSquareFill } from "react-icons/bs";
+import { GrServices } from "react-icons/gr";
+import { FaDatabase } from "react-icons/fa6";
+import RedirectCard from "../components/RedirectCard";
 const AdminHomePage = () => {
   return (
     <>
@@ -16,7 +21,7 @@ const AdminHomePage = () => {
           {formatToFullDate(new Date())}{" "}
         </span>
       </div>
-      <main className=" w-full flex flex-col items-center ">
+      <main className=" w-full flex flex-col items-center gap-3 ">
         <section className=" grid grid-cols-6 w-11/12 gap-8">
           <div className="col-span-4">
             <LoanStadisticts />
@@ -153,7 +158,61 @@ const AdminHomePage = () => {
             />
           </div>
         </section>
-        <section></section>
+        <section className=" flex w-11/12 justify-start gap-6">
+          <RedirectCard
+            text="Recursos"
+            Path="Recursos"
+            icon={<FaDatabase />}
+            List={
+              <>
+                <li>Artistas locales</li>
+                <li>Equipo de computo</li>
+                <li>Libros generales</li>
+                <li>Libros infantiles</li>
+                <li>Mobiliario</li>
+                <li>Salas</li>
+              </>
+            }
+          />
+          <RedirectCard
+            text="Servicios"
+            Path="Servicios"
+            icon={<GrServices />}
+            List={
+              <>
+                <li>Cursos</li>
+                <li>Eventos</li>
+                <li>Programas</li>
+              </>
+            }
+          />
+          <RedirectCard
+            text="Colecciones"
+            Path="Catalogo"
+            icon={<GiBookshelf />}
+            List={
+              <>
+                <li>Catalogo infantil</li>
+                <li>Catalogo General</li>
+              </>
+            }
+          />
+          <RedirectCard
+            text="Avisos importantes"
+            Path="Avisos"
+            icon={<BsFillInfoSquareFill />}
+            List={
+              <>
+                <li>Crear avisos</li>
+                <li>Recordar próximas actividades</li>
+                <li>Editar avisos</li>
+              </>
+            }
+          />
+          <Card className=" w-[32%] ml-2">
+            <div className=" text-center">Próximamente</div>
+          </Card>
+        </section>
       </main>
     </>
   );
