@@ -8,10 +8,17 @@ import RoomsScheduleManage from "../features/Loan/Pages/Rooms/RoomsScheduleManag
 import CompletCatalog from "../features/Books/Screens/CompletCatalog";
 import BooksMiddleScreen from "../features/Books/Screens/BooksMiddleScreen";
 import ProgramActivities from "../features/Programs/screens/ProgramActivities";
+import RoleBasedRoute from "./RolBaseRouter";
+import { Outlet } from "react-router-dom";
 
 const BasicUsersRoutes = [
   {
     path: "Catalogo",
+    element:(
+      <RoleBasedRoute >
+        <Outlet/>
+      </RoleBasedRoute>
+    ),
     children: [
       {
         index: true,
@@ -37,23 +44,43 @@ const BasicUsersRoutes = [
   },
   {
     path: "Cronograma_Eventos",
-    element: <EventsSchedule />,
+    element: (
+      <RoleBasedRoute >
+        <EventsSchedule />,
+      </RoleBasedRoute>
+      ),
   },
   {
     path: "Cronograma_Cursos",
-    element: <CoruseSchedule />,
+     element: (
+      <RoleBasedRoute >
+       <CoruseSchedule />,
+      </RoleBasedRoute>
+      ), 
   },
   {
     path: "Cronograma_Actividades",
-    element: <ProgramActivities />,
+    element: (
+      <RoleBasedRoute >
+       <ProgramActivities />,
+      </RoleBasedRoute>
+      ),  
   },
   {
     path: "Equipo_Disponible",
-    element: <AvailableComputers />,
+    element: (
+      <RoleBasedRoute >
+       <AvailableComputers />,
+      </RoleBasedRoute>
+      ),  
   },
   {
     path: "Reserva_Salas",
-    element: <RoomsScheduleManage />,
+    element:  (
+      <RoleBasedRoute roles={['institucional']}>
+       <RoomsScheduleManage />,
+      </RoleBasedRoute>
+      ),  
   },
 ];
 
