@@ -4,41 +4,36 @@ import { MdCancel } from "react-icons/md";
 import { PiEyeFill } from "react-icons/pi";
 import DenyRequest from "./DenyRequest";
 import { Loans } from "../../Types/BookLoan";
-import UseAproveLoan from "../../Hooks/Books/UseAproveLoan";
-import { Button, Popover } from "flowbite-react";
 import SeeLoanInfo from "../Modals/SeeLoanInfo";
-const BTNResolveLoan = ({Loan}:{Loan:Loans}) => {
-  const [showD,setShowD] = useState<boolean>(false)
+import MDApproveLoan from "./MDApproveLoan";
+const BTNResolveLoan = ({ Loan }: { Loan: Loans }) => {
+  const [showD, setShowD] = useState<boolean>(false);
 
-  const { mutate: aprove } = UseAproveLoan();
-
-  const handleAprove = () => {
-    aprove(Loan.BookLoanId);
-  };
-
-  const [see, setSee] = useState<boolean>(false)
+  const [see, setSee] = useState<boolean>(false);
+  const [openA, setOpenA] = useState<boolean>(false);
 
   return (
     <>
       <div className=" flex justify-center gap-x-12">
-        <button type="button" onClick={()=>setSee(true)}>
-         {""} <PiEyeFill size={30}  />
+        <button type="button" onClick={() => setSee(true)}>
+          {""} <PiEyeFill size={30} />
         </button>
-        <button type="button" title="Rechazar préstamo" onClick={()=>setShowD(true)}>
-          <MdCancel size={30}  />
-        </button>
-        <Popover
-        content={
-          <Button onClick={()=>handleAprove()} color={"blue"} >Confirmar</Button>
-        }
+        <button
+          type="button"
+          title="Rechazar préstamo"
+          onClick={() => setShowD(true)}
         >
-        <button type="button" title="Aprobar préstamo"  >
-          <GiConfirmed size={30}  />
+          <MdCancel size={30} />
         </button>
-        </Popover>
+        <button type="button" title="Aprobar préstamo"
+        onClick={()=>setOpenA(true)}>
+          <GiConfirmed size={30} />
+        </button>
       </div>
       <DenyRequest Loan={Loan} showCancel={showD} setShowCancel={setShowD} />
       <SeeLoanInfo Loan={Loan} see={see} setSee={setSee} />
+      <SeeLoanInfo Loan={Loan} see={see} setSee={setSee} />
+      <MDApproveLoan open={openA} setOpen={setOpenA} LoanID={Loan.BookLoanId} />
     </>
   );
 };

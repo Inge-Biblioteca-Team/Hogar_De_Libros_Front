@@ -53,9 +53,9 @@ const PatchEndReservation = async (data: EndReservation) => {
     }
   }
 };
-const PatchResolveReservation = async (id: number, action: string) => {
+const PatchResolveReservation = async (data: {id:number, acction:string}) => {
   try {
-    const response = await api.patch(`room-reservation/${action}/${id}`, {
+    const response = await api.patch(`room-reservation/${data.acction}/${data.id}`, {
       headers: {
         "Content-Type": "application/json",
       },

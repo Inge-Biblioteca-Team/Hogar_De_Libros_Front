@@ -17,6 +17,7 @@ const UseEditInfoUser = () => {
       }),
     onSuccess() {
       queryClient.invalidateQueries("UsersMG");
+      queryClient.invalidateQueries("userInfo");
     },
   });
 };

@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import api from "../../../Services/AxiosConfig";
 import { Courses } from "../types/Courses";
 
@@ -49,11 +49,6 @@ const GetUserEnrollment = async (
   }
 };
 
-interface ErrorResponse {
-  message: string;
-  error: string;
-  statusCode: number;
-}
 
 const CancelEroll = async (data:{courseID: number, userCedula: string}) => {
   try {
@@ -61,14 +56,19 @@ const CancelEroll = async (data:{courseID: number, userCedula: string}) => {
       `enrollments/cancel?courseId=${data.courseID}&userCedula=${data.userCedula}`
     );
     return response.data;
-  } catch (error) {
+  } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
-      const axiosError = error as AxiosError<ErrorResponse>;
-      if (axiosError.response) {
-        throw new Error(axiosError.response.data.message);
-      }
+      console.error(
+        "Error al cancelar matricula:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al cancelar matricula"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
     }
-    throw new Error("Error desconocido al cancelar la matrícula");
   }
 };
 

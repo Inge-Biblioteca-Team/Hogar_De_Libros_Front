@@ -37,6 +37,10 @@ const OldReservationList = () => {
     }
   );
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [date, SroomN]);
+
   const MaxPage = Math.ceil((reservations?.count ?? 0) / currentLimit);
 
   return (
