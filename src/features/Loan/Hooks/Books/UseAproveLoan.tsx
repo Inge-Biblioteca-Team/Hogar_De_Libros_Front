@@ -1,25 +1,23 @@
 import { useMutation, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import { AproveRequest } from "../../Services/SvBookLoan";
+import { finishLoan } from "../../Types/BookLoan";
+import { ApiError } from "../../../../Types/ApiTypes";
 
 const UseAproveLoan = () => {
   const queryClient = useQueryClient();
-
-  return useMutation(
-    async (bookLoanId: number) => {
-      const data = await AproveRequest(bookLoanId);
-      return data;
+  return useMutation({
+    mutationFn: (data: finishLoan) =>
+      toast.promise(AproveRequest(data), {
+        loading: "Espere por favor...",
+        success: <span>Éxito, se aprobó el préstamo correctamente:</span>,
+        error: (error: ApiError) => (
+          <span>Error al aprobar el prestamo: {error.message}</span>
+        ),
+      }),
+    onSuccess() {
+      queryClient.invalidateQueries("PRLoans");
     },
-    {
-      onSuccess: (data) => {
-        queryClient.invalidateQueries("PRLoans");
-        toast.success("Exito, se aprobó el préstamo correctamente:", data);
-      },
-      onError: () => {
-        toast.error("Error al aprovar el préstamo.");
-      },
-    }
-  );
+  });
 };
-
 export default UseAproveLoan;

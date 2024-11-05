@@ -22,9 +22,9 @@ export type Catalog = {
 
 export type BookLeading = {
   userCedula: string;
-  Name: string;
-  PhoneNumber: string;
-  address: string;
+  userName: string;
+  userPhone: string;
+  userAddress: string;
 
   InscriptionCode: string;
   SignaCode: string;

@@ -69,7 +69,7 @@ const LendingAdminForm = ({
   useEffect(() => {
     if (User && User.results && User.resultcount > 0) {
       setValue(
-        "Name",
+        "userName",
         User.results[0].firstname + " " + User.results[0].lastname || ""
       );
     }
@@ -127,19 +127,19 @@ const LendingAdminForm = ({
             <FloatingLabel
               variant="outlined"
               label="Nombre completo"
-              {...register("Name")}
+              {...register("userName")}
               className=" cursor-default"
             />
             <FloatingLabel
               variant="outlined"
               label="Numero de teléfono"
-              {...register("PhoneNumber")}
+              {...register("userPhone")}
               className=" cursor-default"
             />
             <FloatingLabel
               variant="outlined"
               label="Dirección"
-              {...register("address")}
+              {...register("userAddress")}
               className=" cursor-default"
             />
           </fieldset>

@@ -3,24 +3,24 @@ import { PatchResolveReservation } from "../../Services/SVReservations";
 import toast from "react-hot-toast";
 import { ApiError } from "../../../../Types/ApiTypes";
 
-const UseRefuese = (actions: string) => {
+const UseRefuese = () => {
+
   const queryClient = useQueryClient();
-  return useMutation(
-    async (Id: number) => {
-      const data = await PatchResolveReservation(Id, actions);
-      return data;
+  return useMutation({
+    mutationFn: (data: {id:number, acction:string}) =>
+      toast.promise(PatchResolveReservation(data), {
+        loading: "Por favor espere...",
+        success: <span>Éxito, estado de la reservación modificado con éxito!</span>,
+        error: (error: ApiError) => (
+          <span>Error al actualizar estado: {error.message}</span>
+        ),
+      }),
+    onSuccess() {
+      queryClient.invalidateQueries("reserveRequest");
+      queryClient.invalidateQueries("PendingRreservations");
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("reserveRequest");
-        queryClient.invalidateQueries("PendingRreservations");
-        toast.success("Exito, estado de la reservacion modificado con exito!");
-      },
-      onError: (error: ApiError) => {
-        toast.error("Error al actualizar estado: " + error.message);
-      },
-    }
-  );
+  });
 };
+
 
 export default UseRefuese;

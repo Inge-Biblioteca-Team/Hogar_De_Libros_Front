@@ -5,7 +5,7 @@ import { Card, Timeline } from "flowbite-react";
 const ActivitieTimeItem = ({ activitie }: { activitie: Activitie }) => {
   return (
     <>
-      <Timeline.Item className=" !w-72 min-w-72">
+      <Timeline.Item className=" !w-72 min-w-72 ">
         <Timeline.Point className="custom" />
         <Timeline.Content>
           <Timeline.Time>{formatToDMY(activitie.activitiDate)}</Timeline.Time>
@@ -13,7 +13,7 @@ const ActivitieTimeItem = ({ activitie }: { activitie: Activitie }) => {
             {activitie.programName}
           </Timeline.Title>
           <Timeline.Body>
-            <Card className="p0 hover:scale-105">
+            <Card className="p0 hover:scale-105 transition-transform">
               <figure className=" w-full rounded-xl">
                 <img
                   className=" w-full rounded-t-lg h-40"

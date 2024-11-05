@@ -45,10 +45,6 @@ const ModalInfo = ({
             </span>
             <span>
               {" "}
-              <strong>Aprobado Por:</strong> {WS.AdminName}
-            </span>
-            <span>
-              {" "}
               <strong>Fecha y Hora del uso:</strong> {LoanDate}
             </span>
             <span>

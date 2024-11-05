@@ -16,7 +16,7 @@ const UseEnrollToCourse = () => {
         ),
       }),
     onSuccess() {
-      queryClient.invalidateQueries("Children-colection");
+      queryClient.invalidateQueries("CourseCatalog");
     },
   });
 };

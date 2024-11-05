@@ -1,8 +1,8 @@
-import { Modal, Textarea } from "flowbite-react";
+import { Button, Modal, Textarea } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Reserve } from "../../../Types/RoomsReservations";
-import ModalFooters from "../../../../../components/ModalFooters";
+import UseRefuese from "../../../Hooks/Rooms/UseRefuese";
 
 const MDRefuseReservation = ({
   open,
@@ -13,14 +13,23 @@ const MDRefuseReservation = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   reserve: Reserve;
 }) => {
-  
+  const { mutate: refuse } = UseRefuese();
+
+  const onConfirm = () => {
+    refuse(
+      { acction: "Refuse", id: reserve.rommReservationId },
+      {
+        onSuccess: () => setOpen(false),
+      }
+    );
+  };
 
   const onClose = () => {
     setOpen(false);
   };
   return (
     <Modal show={open} onClose={onClose} popup size={"md"}>
-      <form  >
+      <form>
         <Modal.Body className="flex items-center justify-center flex-col text-center">
           <div className="text-center mt-7">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
@@ -30,7 +39,14 @@ const MDRefuseReservation = ({
           </span>
           <Textarea className="mt-3" rows={4} placeholder="Motivo" required />
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <Modal.Footer className=" flex items-center justify-center">
+          <Button color={"red"} onClick={onClose} tabIndex={2}>
+            Cancelar
+          </Button>
+          <Button color={"blue"} onClick={onConfirm}>
+            Confirmar
+          </Button>
+        </Modal.Footer>
       </form>
     </Modal>
   );

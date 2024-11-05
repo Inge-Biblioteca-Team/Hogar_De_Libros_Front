@@ -57,6 +57,11 @@ const FinishedLoans = () => {
       staleTime: 600,
     }
   );
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [StartDate, EndDate, SName, sSignaCode]);
+
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>

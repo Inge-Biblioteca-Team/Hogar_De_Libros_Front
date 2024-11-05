@@ -2,7 +2,7 @@ export type WSLoan = {
   ComputerLoanId: number;
   workStation: number;
   UserName: string;
-  AdminName: number;
+  cedula:string,
   LoanStartDate: Date;
   LoanExpireDate: Date;
   Status: string;
@@ -19,7 +19,7 @@ export type NewWSLoan = {
   UserName: string;
 };
 export type NewWSMantenance = {
-  machineNumber: number;
+  MachineNumber: number;
   location: string;
-  userName: string;
+  status: "Mantenimiento";
 };

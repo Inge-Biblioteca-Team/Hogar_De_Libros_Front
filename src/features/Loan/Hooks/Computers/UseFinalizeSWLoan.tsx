@@ -8,7 +8,7 @@ const UseFinalizeSWLoan = () => {
     mutationFn: FinalizeLoan,
     onSuccess: () => {
       queryClient.invalidateQueries("WSStatus");
-      toast.success("Exito, el equipo está nuevamente disponible")
+      toast.success("Éxito, el equipo está nuevamente disponible")
     },
     onError: (error: Error) => {
       console.error("Error al finalizar el préstamo:", error);

@@ -29,7 +29,8 @@ const HomePage = () => {
         <section className="container mx-auto text-center py-8">
           <h2 className="text-4xl font-bold mb-8">Acceso a Amiguitos</h2>
           <p className="text-lg mb-4">
-            Únete a nuestra comunidad y comparte con otros amantes de los libros.
+            Únete a nuestra comunidad y comparte con otros amantes de los
+            libros.
           </p>
           <FriendsCarousel />
         </section>
@@ -37,16 +38,19 @@ const HomePage = () => {
         <section className="container mx-auto text-center">
           <h2 className="text-4xl font-bold mb-8">Avisos</h2>
           <p className="text-lg mb-4">
-            Nuestros avisos más relevantes para mantenerte actualizado
+            Nuestros avisos más relevantes para mantenerte siempre al dia de nuestras actividades.
           </p>
           <div className="flex justify-center">
             <NoticeView />
           </div>
         </section>
 
-        <section className="conta
-        iner mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8">Servicios de la Biblioteca</h2>
+        <section
+          className="container mx-auto text-center"
+        >
+          <h2 className="text-4xl font-bold mb-8">
+            Servicios de la Biblioteca
+          </h2>
           <p className="text-lg mb-12">
             Navega fácilmente a través de nuestros módulos del sistema.
           </p>
@@ -59,8 +63,6 @@ const HomePage = () => {
             </div>
           </div>
         </section>
-
-
       </main>
       <LandingFooter />
     </>

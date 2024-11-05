@@ -1,19 +1,19 @@
 import { ChangeExpiredDate, finishLoan, newloan } from "../Types/BookLoan";
 import api from "../../../Services/AxiosConfig";
-
+import axios from "axios";
 
 //Gets
 const GetPendandRequest = async (
   page: number,
   limit: number,
-  Cedula?:string,
+  Cedula?: string
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
       page,
       limit,
     };
-    if (Cedula) params.cedula = Cedula
+    if (Cedula) params.cedula = Cedula;
     const response = await api.get("book-loan/pending", { params });
     return response.data;
   } catch (error) {
@@ -28,7 +28,7 @@ const GetInProgressLoan = async (
   StartDate?: string,
   ExpirationDate?: string,
   SignaCode?: string,
-  Cedula?:string,
+  Cedula?: string
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -37,14 +37,14 @@ const GetInProgressLoan = async (
     };
 
     if (StartDate) params.StartDate = StartDate;
-    if (ExpirationDate) params.LoanExpirationDate = ExpirationDate
-    if (SignaCode) params.signatureCode = SignaCode
-    if (Cedula) params.cedula = Cedula
-    
+    if (ExpirationDate) params.LoanExpirationDate = ExpirationDate;
+    if (SignaCode) params.signatureCode = SignaCode;
+    if (Cedula) params.cedula = Cedula;
+
     const response = await api.get("book-loan/in-progress", { params });
     return response.data;
   } catch (error) {
-    console.error("Error al caragar los préstamo en progreso:", error);
+    console.error("Error al cargar los préstamo en progreso:", error);
     throw error;
   }
 };
@@ -54,8 +54,8 @@ const GetDoneLoans = async (
   limit: number,
   StartDate?: string,
   EndDate?: string,
-  Cedula?:string,
-  name?:string,
+  Cedula?: string,
+  name?: string,
   SignaCode?: string
 ) => {
   try {
@@ -65,10 +65,10 @@ const GetDoneLoans = async (
     };
 
     if (StartDate && StartDate) params.StartDate = StartDate;
-    if (EndDate && StartDate) params.EndDate = EndDate
-    if (SignaCode) params.signatureCode = SignaCode
-    if (Cedula) params.cedula = Cedula
-    if (name) params.name = name
+    if (EndDate && StartDate) params.EndDate = EndDate;
+    if (SignaCode) params.signatureCode = SignaCode;
+    if (Cedula) params.cedula = Cedula;
+    if (name) params.name = name;
 
     const response = await api.get("book-loan/completed", { params });
     return response.data;
@@ -79,42 +79,57 @@ const GetDoneLoans = async (
 };
 
 //Path Status
-const CancelRequest = async (LoanID: number) => {
+const CancelRequest = async (data:finishLoan) => {
   try {
-    const response = await api.patch(`/book-loan/${LoanID}/finalize`, {
-      Observations: "Cancelado por el Usuario",
-    });
+    const response = await api.patch(`/book-loan/cancel`, data);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al cancelar la solicitud:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al cancelar la solicitud"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
+const RefuseRequest = async (Loan: finishLoan) => {
+  try {
+    const response = await api.patch(`/book-loan/Refute`, Loan);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al rechazar:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al rechazar el recurso"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
+const AproveRequest = async (Loan: finishLoan) => {
+  try {
+    const response = await api.patch(`/book-loan/Approve`, Loan);
     return response.data;
   } catch (error) {
-    console.error("Error al cancelar el la solicitud de préstamo:", error);
+    console.error("Error al aprobar la solicitud de préstamo:", error);
     throw error;
   }
 };
-const RefuseRequest = async (LoanID: number) => {
-  try {
-    const response = await api.patch(`/book-loan/${LoanID}/finalize`, {
-      Observations: "Cancelado por administrador",
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error al rechazar la solicitud de préstamo:", error);
-    throw error;
-  }
-};
-const AproveRequest = async (LoanID: number) => {
-  try {
-    const response = await api.patch(`/book-loan/${LoanID}/in-process`);
-    return response.data;
-  } catch (error) {
-    console.error("Error al aprovar la solicitud de préstamo:", error);
-    throw error;
-  }
-};
+
 const FinalizeLoan = async (Loan: finishLoan) => {
   try {
-    const response = await api.patch(`/book-loan/${Loan.BookLoanId}/finalize`, {
-      Observations: Loan.Observation,
-    });
+    const response = await api.patch(`/book-loan/finalize`, Loan);
     return response.data;
   } catch (error) {
     console.error("Error al finalizar el préstamo:", error);
@@ -159,7 +174,6 @@ const PatchLoan = async (Loan: ChangeExpiredDate) => {
     throw error;
   }
 };
-
 
 export {
   GetPendandRequest,
