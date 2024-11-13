@@ -149,7 +149,6 @@ const CreateArtist = () => {
                   icon={AiFillTikTok}
                   id="LILink"
                   type="url"
-                  {...register("LILink")}
                   placeholder="https://TikTok.com"
                 />
               </div>
