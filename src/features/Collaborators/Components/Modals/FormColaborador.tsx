@@ -110,7 +110,7 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
         Solicitud de actividad conjunta con la biblioteca
       </Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body className=" grid grid-cols-2 gap-x-5 gap-y-4 ">
+        <Modal.Body className=" grid sm:grid-cols-1 bg-white lg:grid-cols-2 gap-x-5 gap-y-4 ">
           {!secondForm && (
             <>
               <div>
@@ -296,7 +296,7 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
             </>
           )}
         </Modal.Body>
-        <Modal.Footer className=" flex items-center justify-between">
+        <Modal.Footer className=" flex bg-white items-center justify-between">
           <div></div>
           {!secondForm && (
             <>

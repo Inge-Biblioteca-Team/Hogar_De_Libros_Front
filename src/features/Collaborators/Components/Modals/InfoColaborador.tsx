@@ -6,10 +6,10 @@ const InfoColaborador = ({children}:{children:React.ReactNode}) => {
   return (
     <div className="relative">
       <Popover
-        className="z-10 w-96"
+        className="z-10 w-80 lg:w-96"
         trigger="click"
         content={
-          <div className="p-4 bg-white border rounded shadow-md">
+          <div className="p-4 bg-white border rounded shadow-md h-auto ">
             <h3 className="font-semibold">Documentación Requerida</h3>
             <p className="mb-2">
               Para exponer sus conocimientos sobre el tema o para realizar el curso seleccionado, se requiere la siguiente documentación:
