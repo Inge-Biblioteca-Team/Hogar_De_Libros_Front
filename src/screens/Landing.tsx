@@ -17,7 +17,7 @@ import LatestAddBooks from "../features/Books/Screens/LatestAddBooks";
 const Landing = () => {
   return (
     <>
-      <LandingHome />
+      <LandingHome/>
       <main className="flex items-center gap-16 justify-center flex-col mt-5 mb-10 max-sm:gap-10">
         <ImportanNotices />
         <LatestAddBooks />

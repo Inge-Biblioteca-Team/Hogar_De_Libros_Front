@@ -11,7 +11,7 @@ const RoomCard = ({ Rooms }: { Rooms: Room }) => {
           src={Rooms.image[0]}
           alt={Rooms.name}
         />
-        <figcaption className="m-3 text-lg break-words max-sm:text-sm max-sm:h-40 max-sm:flex max-sm:flex-col max-sm:justify-end">
+        <figcaption className="m-3 lg:text-lg break-words max-sm:text-sm max-sm:h-40 max-sm:flex max-sm:flex-col max-sm:justify-end">
           <strong>{Rooms.name}</strong>
           <p>
             <span>Área: {Rooms.area}m²</span>

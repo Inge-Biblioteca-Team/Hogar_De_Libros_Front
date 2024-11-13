@@ -17,7 +17,7 @@ const LandingHomeCards = ({
   return (
     <figure
       className="bg-Body text-white flex flex-col gap-5 items-center justify-center rounded-md
-    max-sm:justify-start max-sm:px-2 py-2 max-sm:text-sm p-2"
+     max-sm:justify-start max-sm:px-2  max-sm:text-sm p-4"
     >
       <FontAwesomeIcon
         icon={Icon}
