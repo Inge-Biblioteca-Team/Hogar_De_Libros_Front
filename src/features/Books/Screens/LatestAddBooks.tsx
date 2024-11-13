@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 const LatestAddBooks = () => {
   const { data: catalog } = useQuery<Catalog, Error>(
     ["colection"],
-    () => getUserColection(1, 15, "", "", "", "", "1", ""),
+    () => getUserColection (1, 20, "", "", "", "1", "", ""),
     {
       staleTime: 5000,
     }
