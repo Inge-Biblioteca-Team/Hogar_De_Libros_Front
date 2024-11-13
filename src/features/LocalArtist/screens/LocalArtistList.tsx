@@ -21,7 +21,8 @@ const LocalArtistList = () => {
     return result;
   };
 
-  const groupedArtist = chunkArray(LArtists?.data || [], 5);
+  const isSmallScreen = window.innerWidth <= 640;
+  const groupedArtist = chunkArray(LArtists?.data || [],isSmallScreen ? 1: 5);
 
   return (
     <>

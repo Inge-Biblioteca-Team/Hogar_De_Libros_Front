@@ -11,58 +11,49 @@ const CardTypeAmiguito = () => {
 
   return (
     <>
-      <figure className="rounded-md bg-white w-full shadow-lg flex flex-col justify-center items-center pb-3 max-sm:p-0">
+     <figure className="rounded-md bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
-          className="h-64 w-80 mb-2 border-t border-transparent rounded-t-md object-cover
-                  max-sm:h-48 max-sm:rounded-md"
+          className="h-40 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={
             "https://i0.wp.com/asociaciones.org/wp-content/uploads/2024/03/donacion-web.jpg"
           }
           alt={"Donaciones"}
         />
         <figcaption
-          className=" text-lg break-words max-w-80 px-4 h-80
-      max-sm:h-32 max-sm:justify-end flex flex-col items-baseline justify-between"
+          className="text-lg break-words max-w-80 px-4 h-full flex flex-col items-center justify-between"
         >
-          <strong className="max-sm:text-sm max-sm:min-w-20">
+          <strong className="mb-1 lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
             {"Donaciones"}
           </strong>
-          <p className=" max-sm:hidden">
+          <p className="max-sm:text-xs mb-2 max-sm:block lg:max-sm:hidden text-center">
             <span>
-              {
-                "¿Tienes libros que ya no utilizas? Podes dónalos a la biblioteca para que otra persona pueda compartir tu pasión por la lectura. Mas información aquí abajo."
-              }
+              {"¿Tienes libros que ya no utilizas? Puedes donarlos a la biblioteca para que otra persona pueda compartir tu pasión por la lectura. Más información aquí abajo."}
             </span>
             <br />
           </p>
-
           <Button color={"blue"} onClick={() => setIsOpenD(true)}>
             Donar
           </Button>
         </figcaption>
       </figure>
-      <figure className=" bg-white rounded-md w-full shadow-lg flex flex-col justify-center items-center pb-3 max-sm:p-0">
+
+      <figure className="rounded-md bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
-          className="h-64 w-80 mb-2 border-t border-transparent rounded-t-md object-cover
-                  max-sm:h-48 max-sm:rounded-md"
+          className="h-40 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={
             "https://universoabierto.org/wp-content/uploads/2019/05/7464d163b1c27c4d75f62ea6c6c0982e.jpg?w=625"
           }
           alt={"Amigos de la biblioteca"}
         />
         <figcaption
-          className=" text-lg break-words max-w-80 px-4 h-80
-      max-sm:h-32 max-sm:justify-end flex flex-col items-baseline justify-between"
+          className="text-lg break-words max-w-80 px-4 h-full flex flex-col items-center justify-between"
         >
-          <strong className="max-sm:text-sm max-sm:min-w-20">
+          <strong className="mb-1 lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
             {"Amigos de la biblioteca"}
           </strong>
-          <p className=" max-sm:hidden">
+          <p className="max-sm:text-xs mb-2 max-sm:block lg:max-sm:hidden text-center">
             <span>
-              Un programa de voluntariado dedicado a apoyar las actividades y
-              servicios de nuestra biblioteca local. Nuestra misión es promover
-              la lectura recreativa y la cultura a través de la participación
-              comunitaria y el apoyo voluntario.
+              {"Un programa de voluntariado dedicado a apoyar las actividades y servicios de nuestra biblioteca local. Nuestra misión es promover la lectura recreativa y la cultura a través de la participación comunitaria y el apoyo voluntario."}
             </span>
             <br />
           </p>
@@ -71,27 +62,24 @@ const CardTypeAmiguito = () => {
           </Button>
         </figcaption>
       </figure>
-      <figure className="rounded-md bg-white w-full shadow-lg flex flex-col justify-center items-center pb-3 max-sm:p-0">
+
+      <figure className="rounded-md bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
-          className="h-64 w-80 mb-2 border-t border-transparent rounded-t-md object-cover
-                  max-sm:h-48 max-sm:rounded-md"
+          className="h-40 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={
             "https://www.comunidadbaratz.com/wp-content/uploads/2022/02/Agenda-de-actividades-en-AbsysNet.jpg"
           }
           alt={"Colaboraciones"}
         />
         <figcaption
-          className=" text-lg break-words max-w-80 px-4 h-80
-      max-sm:h-32 max-sm:justify-end flex flex-col items-baseline justify-between"
+          className="text-lg break-words max-w-80 px-4 h-full flex flex-col items-center justify-between"
         >
-          <strong className="max-sm:text-sm max-sm:min-w-20">
+          <strong className="mb-1 lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
             {"Colaboraciones"}
           </strong>
-          <p className=" max-sm:hidden">
+          <p className="max-sm:text-xs mb-2 max-sm:block lg:max-sm:hidden text-center">
             <span>
-              {
-                "¿Tienes alguna actividad en mente pero no sabes cómo ponerla en marcha? Puedes comunicarte con nosotros para realizar una propuesta. Será un gusto colaborar contigo. También recibimos pasantes y estudiantes que necesitan horas de trabajo comunal."
-              }
+              {"¿Tienes alguna actividad en mente pero no sabes cómo ponerla en marcha? Puedes comunicarte con nosotros para realizar una propuesta. Será un gusto colaborar contigo. También recibimos pasantes y estudiantes que necesitan horas de trabajo comunal."}
             </span>
             <br />
           </p>
@@ -100,7 +88,7 @@ const CardTypeAmiguito = () => {
           </Button>
         </figcaption>
       </figure>
-
+      
       <FormColaborador open={isOpenC} setOpen={setIsOpenC} />
       <MainFormAmigos open={isOpenA} setOpen={setIsOpenA} />
       <FormDonaciones open={isOpenD} setOpen={setIsOpenD} />

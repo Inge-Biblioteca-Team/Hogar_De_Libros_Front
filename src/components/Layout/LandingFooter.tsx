@@ -3,20 +3,20 @@ import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
 const LandingFooter = () => {
   return (
     <Footer className=" bottom-0 z-50 w-full bg-Body-dark text-white rounded-none flex flex-col p-3">
-      <div className=" flex justify-between w-full">
+      <div className=" flex flex-col lg:flex-row justify-between w-full">
         <div className=" flex flex-col">
           <Footer.Title
-            className="text-lg text-white max-sm:text-xs"
+            className="text-lg text-white max-sm:text-sm"
             title="Biblioteca Pública Municipal De Nicoya"
           />
           <Footer.Title className="text-lg text-white max-sm:text-sm" title="Dirección" />
           <Footer.LinkGroup>
-            <Footer.Link href="" className=" max-sm:text-xs">
+            <Footer.Link href="" className=" mb-10 lg:mb-0 max-sm:text-xs ">
               50 Norte del Liceo de Nicoya, frente a piscinas ANDE
             </Footer.Link>
           </Footer.LinkGroup>
         </div>
-        <div className=" flex max-sm:gap-1">
+        <div className=" flex max-lg:gap-1 max-sm:gap-8">
           <div>
             <Footer.Title title="Contactos" className="text-lg text-white max-sm:text-xs" />
             <Footer.LinkGroup col className=" max-sm:text-xs">
