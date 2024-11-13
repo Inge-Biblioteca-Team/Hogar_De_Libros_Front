@@ -5,7 +5,7 @@ import NoticeCard from "../Components/NoticeCard";
 import { Carousel } from "flowbite-react";
 import { formatToYMD } from "../../../components/FormatTempo";
 
-const ImportanNotices = () => {
+const ImportanNotices = ({ home }: { home?: boolean }) => {
   const date = new Date();
   const searchDate = formatToYMD(date);
 
@@ -26,6 +26,11 @@ const ImportanNotices = () => {
           <h2 className="text-center font-bold text-2xl mb-6">
             Avisos importantes
           </h2>
+          {home && (
+            <h4 className="text-center text-md mb-6">
+              Mantente informado de nuestros eventos, cursos y demás.
+            </h4>
+          )}
           <Carousel
             className="Custom-Carousel"
             indicators={false}
@@ -33,7 +38,7 @@ const ImportanNotices = () => {
             style={{ height: "28rem" }}
           >
             {Advices?.data.map((advice) => (
-              <NoticeCard advice={advice} key={"AD"+advice.id_Advice} />
+              <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />
             ))}
           </Carousel>
         </>

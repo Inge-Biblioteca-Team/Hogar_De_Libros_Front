@@ -17,18 +17,14 @@ const HomeNavbar = () => {
 
   return (
     <>
-      <button
-        type="button"
-        className="absolute left-4"
-        onClick={showSidebar}
-        id="hamburger"
-      >
-        {" "}
+      <button type="button" onClick={showSidebar} id="hamburger">
+        {""}
         <img
           className="invert dark:invert-0
             dark:hover:invert
             hover:scale-110 
-            hover:invert-0"
+            hover:invert-0
+            max-sm:h-10 max-sm:w-10"
           width={35}
           src="https://cdn-icons-png.flaticon.com/128/561/561184.png"
           alt=""
@@ -64,6 +60,7 @@ const HomeNavbar = () => {
             )}
           </Sidebar>
         </Drawer.Items>
+        
       </Drawer>
     </>
   );

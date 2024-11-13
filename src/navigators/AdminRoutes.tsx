@@ -267,7 +267,7 @@ const AdminRoutes = [
     path: "Mensajeria",
     element: (
       <RoleBasedRoute roles={['admin']} >
-        <Inbox />,
+        <Inbox />
       </RoleBasedRoute>
     ), 
   },
