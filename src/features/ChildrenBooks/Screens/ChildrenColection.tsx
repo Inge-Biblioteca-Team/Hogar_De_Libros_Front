@@ -47,41 +47,39 @@ const ChildrenColection = () => {
     <>
       <ChlildrenColecctionCrumbs text="Búsqueda por título" />
       <main className=" flex flex-col w-full justify-center items-center gap-3">
-        <section className=" w-4/5 flex justify-between">
-          <div className=" flex gap-2">
-            <Select
-              className="max-sm:hidden"
-              onChange={(event) => setCategory(event.target.value)}
-            >
-              <OptsCateogryChildren />
-            </Select>
-            <TextInput
-              onChange={(event) => setTitle(event.target.value)}
-              placeholder="Búsqueda por título"
-              rightIcon={LiaSearchengin}
-            />
-          </div>
-          <ButtonGroup className=" max-sm:hidden">
-            <Button
-              color={"gray"}
-              title="Lista"
-              onClick={() => {
-                setView("List"), setLimit(15);
-              }}
-            >
-              <BsListUl size={25} />
-            </Button>
-            <Button
-              color={"gray"}
-              title="Cuadricula"
-              onClick={() => {
-                setView("Grid"), setLimit(12);
-              }}
-            >
-              <BsGrid3X3GapFill size={25} />
-            </Button>
-          </ButtonGroup>
-        </section>
+      <section className="w-5/6 lg:w-4/5 lg:flex lg:justify-between">
+
+<div className="flex flex-col gap-2 lg:flex-row">
+  <Select onChange={(event) => setCategory(event.target.value)}>
+    <OptsCateogryChildren />
+  </Select>
+  <TextInput
+    onChange={(event) => setTitle(event.target.value)}
+    placeholder="Búsqueda por título"
+    rightIcon={LiaSearchengin}
+  />
+</div>
+<ButtonGroup className="flex justify-end lg:pt-0 pt-2 gap-2">
+  <Button
+    color={`${view === "List" ? "blue" : "gray"}`}
+    title="Lista"
+    onClick={() => {
+      setView("List"), setLimit(15);
+    }}
+  >
+    <BsListUl size={25} />
+  </Button>
+  <Button
+    color={`${view !== "List" ? "blue" : "gray"}`}
+    title="Cuadricula"
+    onClick={() => {
+      setView("Grid"), setLimit(12);
+    }}
+  >
+    <BsGrid3X3GapFill size={25} />
+  </Button>
+</ButtonGroup>
+</section>
         {catalog?.count && catalog.count > 0 ? (
           <section className="w-4/5">
             {view == "List" && <ColectionList colection={catalog} />}

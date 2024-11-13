@@ -8,20 +8,20 @@ const ListCard = ({ book }: { book: Book }) => {
   return (
     <>
       <Card
-        className="w-full hover:scale-105"
+        className="w-full h-full hover:scale-105"
       >
-        <div className=" flex">
+        <div className="grid  grid-cols-2 lg:flex">
           <figure>
             <img
               src={book.Cover}
               alt=""
-              className="h-52 w-40 rounded-lg shadow-lg"
+              className=" h-full lg:h-52 w-40 rounded-lg shadow-lg"
             />
           </figure>
           <div className=" flex flex-col justify-between ml-4 gap-2">
-            <Label value={` Titulo: ${book.Title}`} />
-            <Label value={` Autor: ${book.Author}`} />
-            <Label
+            <Label className="line-clamp-4" value={` Titulo: ${book.Title}`} />
+            <Label className="line-clamp-4" value={` Autor: ${book.Author}`} />
+            <Label 
               value={` Año de publicación: ${
                 book.PublishedYear || "Desconocido"
               }`}
@@ -37,7 +37,7 @@ const ListCard = ({ book }: { book: Book }) => {
                 book.ShelfCategory || "No posee"
               }`}
             />
-            <Button className="w-40" color={"blue"} size={"sm"}
+            <Button className="w-32 lg:w-40" color={"blue"} size={"sm"}
             onClick={() => setOpen(true)}>
               Reserva ahora
             </Button>

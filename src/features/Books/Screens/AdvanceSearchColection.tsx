@@ -7,6 +7,8 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import { Label, Select, TextInput } from "flowbite-react";
 import OptCategories from "../Components/OptsCategories";
 import ColectionList from "../Components/Views/ColectionList";
+import { Pagination } from "flowbite-react";
+import ListCard from "../Components/Views/ListCard";
 
 const AdvanceSearchColection = () => {
   const [page, setPage] = useState<number>(() => {
@@ -57,7 +59,7 @@ const AdvanceSearchColection = () => {
     <>
       <ColecctionCrumbs text="Búsqueda Avanzada" />
 
-      <section className=" fixed left-3 flex  flex-col gap-7 top-[22%] w-96 ">
+      <section className=" lg:fixed left-3 lg:flex  lg:flex-col gap-7 top-[22%] p-4 lg:p-0 w-full lg:w-96 ">
         <span className=" text-center font-bold ">
           Criterios de búsqueda avanzada
         </span>
@@ -109,11 +111,38 @@ const AdvanceSearchColection = () => {
           <span> Por favor complete al menos un criterios de búsqueda </span>
         )}
       </section>
-      <section className=" absolute top-[22%] right-40 h-[75vh] w-[120vh] overflow-y-scroll custom-bar px-10 py-10">
+      <section className="lg:absolute top-[22%] lg:right-40 h-full lg:h-[75vh] w-full lg:w-[120vh] overflow-y-scroll custom-bar px-4 py-10">
         {catalog && catalog.count > 0 ? (
-          <ColectionList colection={catalog} onPageChange={onPageChange} totalPages={MaxPage} currentPage={page} />
+          <>
+            <div className="hidden lg:block">
+              <ColectionList
+                colection={catalog}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                currentPage={page}
+              />
+            </div>
+
+            <div className="block lg:hidden">
+              <div className="flex flex-col gap-3">
+                {catalog.data.map((book) => (
+                  <ListCard key={'BK' + book.BookCode} book={book} />
+                ))}
+              </div>
+                <div className="flex justify-center">
+              <Pagination
+                layout="navigation"
+                currentPage={page}
+                totalPages={MaxPage}
+                onPageChange={onPageChange}
+              />
+              </div>
+            </div>
+          </>
         ) : (
-          <div className=" flex items-center justify-center h-96 font-bold text-2xl">Lo sentimos, no existen libros</div>
+          <div className="flex items-center justify-center h-96 font-bold text-2xl">
+            Lo sentimos, no existen libros
+          </div>
         )}
       </section>
     </>
