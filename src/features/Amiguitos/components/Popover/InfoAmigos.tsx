@@ -7,7 +7,7 @@ const InfoAmigos = ({children}:{children:React.ReactNode}) => {
   return (
     <div className="relative">
       <Popover
-        className="z-10 w-96"
+        className="z-10 w-80 lg:w-96"
         trigger="click"
         
         content={
