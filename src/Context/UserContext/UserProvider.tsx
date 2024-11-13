@@ -15,9 +15,11 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const getProfile = UseGetProfile();
 
   useEffect(() => {
-    if (isLogged) {
-      getProfile.mutate();
-    }
+    setTimeout(() => {
+      if (isLogged) {
+        getProfile.mutate();
+      }
+    }, 2000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
