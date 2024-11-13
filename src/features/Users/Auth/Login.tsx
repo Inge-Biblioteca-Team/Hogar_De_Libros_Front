@@ -69,7 +69,7 @@ const Login = () => {
               <div className="flex justify-between items-center mt-4">
                 <Button
                   color="light"
-                  onClick={() => navigate("/HogarDeLibros")}
+                  onClick={() => navigate("/")}
                 >
                   Regresar
                 </Button>
