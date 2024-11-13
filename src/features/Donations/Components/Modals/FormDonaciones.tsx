@@ -80,7 +80,7 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
         <div>Propuesta de donación</div>
       </Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body className=" grid grid-cols-2 gap-x-5 gap-y-4 ">
+        <Modal.Body className=" grid grid-cols-1 bg-white lg:grid-cols-2 gap-x-5 gap-y-4 ">
           <>
             <div>
               <Label value="Tipo de articulo a donar" />
@@ -215,7 +215,7 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
             )}
           </>
         </Modal.Body>
-        <Modal.Footer className=" flex items-center justify-between">
+        <Modal.Footer className=" flex bg-white items-center justify-between">
           <div></div>
           <Button color={"red"} tabIndex={2}  onClick={onClose}>
             Cancelar
