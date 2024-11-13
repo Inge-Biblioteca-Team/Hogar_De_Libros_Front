@@ -1,3 +1,4 @@
+
 //import FreeBooksList from "../features/Books/screens/FreeBooksList"
 import ComputerInfo from "../features/Computers/screens/ComputerInfo";
 import RoomList from "../features/Rooms/Screens/RoomList";
@@ -12,18 +13,11 @@ import ImportanNotices from "../features/Advice/Screens/ImportanNotices";
 import LandingHome from "../components/LandingHome";
 import LandingFooter from "../components/Layout/LandingFooter";
 import LatestAddBooks from "../features/Books/Screens/LatestAddBooks";
-import UseGetProfile from "../features/Users/Hooks/UseGetProfile";
-import { useEffect } from "react";
 
 const Landing = () => {
-  const getProfile = UseGetProfile();
-  useEffect(() => {
-    getProfile.mutate();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   return (
     <>
-      <LandingHome />
+      <LandingHome/>
       <main className="flex items-center gap-16 justify-center flex-col mt-5 mb-10 max-sm:gap-10">
         <ImportanNotices />
         <LatestAddBooks />

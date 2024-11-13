@@ -1,6 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { User } from "./UserType";
 import UserContext from "./UserContext";
+import UseGetProfile from "../../features/Users/Hooks/UseGetProfile";
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLogged, setIsLogged] = useState<boolean>(() => {
@@ -10,6 +11,15 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const user = localStorage.getItem("currentUser");
     return user ? JSON.parse(user) : null;
   });
+
+  const getProfile = UseGetProfile();
+
+  useEffect(() => {
+    if (isLogged) {
+      getProfile.mutate();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const contextValue = useMemo(
     () => ({
