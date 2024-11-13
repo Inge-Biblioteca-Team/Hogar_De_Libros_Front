@@ -6,20 +6,20 @@ import toast from "react-hot-toast";
 
 const UseGetProfile = () => {
   const { setCurrentUser, setIsLogged } = useContext(UserContext);
-  return useMutation( getProfile, {
+  return useMutation(getProfile, {
     onSuccess(data) {
       if (data) {
         const { user } = data;
-        localStorage.setItem("isLogged", "true");
-        localStorage.setItem("currentUser", JSON.stringify(user));
         setCurrentUser(user);
         setIsLogged(true);
+        localStorage.setItem("isLogged", "true");
+        localStorage.setItem("currentUser", JSON.stringify(user));
       }
     },
     onError() {
-      toast("Su sesíon a expirado.");
-      localStorage.setItem("isLogged", "false");
-      localStorage.setItem("currentUser", "");
+      toast("Su sesión a expirado.");
+      localStorage.removeItem("isLogged");
+      localStorage.removeItem("currentUser");
     },
   });
 };
