@@ -40,7 +40,7 @@ const AdminRoutes = [
   {
     path: "Prestamos_Circulacion",
     element:(
-      <RoleBasedRoute roles={['admin', 'asistente', 'recepcion']} >
+      <RoleBasedRoute roles={['admin', 'asistente']} >
         <Outlet />
       </RoleBasedRoute>
     ),
@@ -85,10 +85,19 @@ const AdminRoutes = [
   },
   {
     path: "Avisos",
-    element: <AdviceManage />,
+    element: (
+      <RoleBasedRoute roles={['admin']} >
+        <AdviceManage />,
+      </RoleBasedRoute>
+    ), 
   },
   {
     path: "Historial",
+    element:(
+      <RoleBasedRoute roles={['admin', 'asistente']} >
+        <Outlet />
+      </RoleBasedRoute>
+    ),
     children: [
       {
         index: true,
@@ -110,6 +119,11 @@ const AdminRoutes = [
   },
   {
     path: "Servicios",
+    element:(
+      <RoleBasedRoute roles={['admin', 'asistente']} >
+        <Outlet />
+      </RoleBasedRoute>
+    ),
     children: [
       {
         index: true,
@@ -131,10 +145,19 @@ const AdminRoutes = [
   },
   {
     path: "Gestion_Usuarios",
-    element: <ManageUsers />,
+    element: (
+      <RoleBasedRoute roles={['admin']} >
+        <ManageUsers />,
+      </RoleBasedRoute>
+    ), 
   },
   {
     path: "Recursos",
+    element:(
+      <RoleBasedRoute roles={['admin', 'asistente']} >
+        <Outlet />
+      </RoleBasedRoute>
+    ),
     children: [
       {
         index: true,
@@ -168,6 +191,11 @@ const AdminRoutes = [
   },
   {
     path: "Colaboraciones",
+    element:(
+      <RoleBasedRoute roles={['admin', 'asistente']} >
+        <Outlet />
+      </RoleBasedRoute>
+    ),
     children: [
       {
         index: true,
@@ -189,6 +217,11 @@ const AdminRoutes = [
   },
   {
     path: "Donaciones",
+    element:(
+      <RoleBasedRoute roles={['admin', 'asistente']} >
+        <Outlet />
+      </RoleBasedRoute>
+    ),
     children: [
       {
         index: true,
@@ -210,6 +243,11 @@ const AdminRoutes = [
   },
   {
     path: "Amigos",
+    element:(
+      <RoleBasedRoute roles={['admin', 'asistente']} >
+        <Outlet />
+      </RoleBasedRoute>
+    ),
     children: [
       {
         index: true,
@@ -227,7 +265,11 @@ const AdminRoutes = [
   },
   {
     path: "Mensajeria",
-    element: <Inbox />,
+    element: (
+      <RoleBasedRoute roles={['admin']} >
+        <Inbox />,
+      </RoleBasedRoute>
+    ), 
   },
 ];
 
