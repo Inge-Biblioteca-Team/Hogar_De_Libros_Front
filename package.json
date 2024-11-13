@@ -8,8 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "cy:open": "cypress open",
-    "start": "node server.js"
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -24,7 +23,6 @@
     "axios": "^1.7.4",
     "browser-image-compression": "^2.0.2",
     "date-fns": "^3.6.0",
-    "express": "^4.21.1",
     "flowbite-react": "^0.10.1",
     "jspdf": "^2.5.2",
     "jwt-decode": "^4.0.0",
