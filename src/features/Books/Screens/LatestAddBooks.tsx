@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { getColection } from "../Services/BooksServices";
+import { getUserColection } from "../Services/BooksServices";
 import { Book, Catalog } from "../Types/BooksTypes";
 import { Carousel } from "flowbite-react";
 import BookCard from "../Components/Views/BookCard";
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 const LatestAddBooks = () => {
   const { data: catalog } = useQuery<Catalog, Error>(
     ["colection"],
-    () => getColection(1, 15, "", "", "", "1", "", ""),
+    () => getUserColection (1, 20, "", "", "", "1", "", ""),
     {
       staleTime: 5000,
     }

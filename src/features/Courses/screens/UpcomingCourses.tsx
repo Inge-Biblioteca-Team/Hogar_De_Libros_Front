@@ -4,7 +4,7 @@ import { GetNextCourses } from "../services/SvCourses";
 import { ApiCourseResponse, NextCourses } from "../types/Courses";
 import CardCourses from "../components/CardCourses";
 
-const UpcomingCourses = () => {
+const UpcomingCourses = ({ home }: { home?: boolean }) => {
   const { data: Courses } = useQuery<ApiCourseResponse, Error>(
     ["CourseCatalog"],
     () => GetNextCourses(0, 0),
@@ -32,6 +32,9 @@ const UpcomingCourses = () => {
           id="Courses"
         >
           <h2 className="font-bold text-2xl">Cursos disponibles</h2>
+          {home&&
+          <h4 className=" text-center text-md mb-2">Ven a pasar un tiempo especial junto a nosotros. Al mismo tiempo que aprendes cosas nuevas.</h4>
+          }
           <Carousel
             indicators={false}
             pauseOnHover

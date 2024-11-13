@@ -1,53 +1,50 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
-
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 :root {
-background-color: #dfe2e6;
+  background-color: #dfe2e6;
   font-family: serif;
 }
 
 body::-webkit-scrollbar {
   display: none;
-  }
-
-  
-
-@keyframes scroll{
-    0%{
-        transform: translatex(0);
-    }
-    100%{
-        transform: translateX(calc(-120px*5 - 0.5rem * 10));
-    }
 }
 
-.dark{
+@keyframes scroll {
+  0% {
+    transform: translatex(0);
+  }
+  100% {
+    transform: translateX(calc(-120px * 5 - 0.5rem * 10));
+  }
+}
+
+.dark {
   background-color: #474b4f;
   color: white;
 }
 
-.animate-scroll{
-    animation: scroll 20s linear infinite;
+.animate-scroll {
+  animation: scroll 20s linear infinite;
 }
-.custom-breadcrumb a{
+.custom-breadcrumb a {
   font-size: 1.3rem !important;
 }
-.custom-breadcrumb span{
+.custom-breadcrumb span {
   color: #10173d;
   font-size: 1.3rem !important;
 }
-.custom-breadcrumb svg{
+.custom-breadcrumb svg {
   scale: 1.4 !important;
 }
-.custom-breadcrumb svg:hover{
+.custom-breadcrumb svg:hover {
   scale: 1.8 !important;
 }
-.custom-breadcrumb{
-cursor: pointer;
- margin: 0.5rem 0 3rem 0.5rem;
+.custom-breadcrumb {
+  cursor: pointer;
+  margin: 0.5rem 0 3rem 0.5rem;
 }
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -60,16 +57,14 @@ input[type="number"] {
   appearance: none;
 }
 
-
 .custom-file-input input[type="file"]::file-selector-button {
-  background-color: #1a53d9; 
- 
+  background-color: #1a53d9;
 }
 
-.custom div{
+.custom div {
   background-color: #4ba0e6;
 }
-.custom span{
+.custom span {
   background-color: #ffffff;
 }
 
@@ -77,45 +72,38 @@ input[type="number"] {
   display: none;
 }
 
-.p0 div{
+.p0 div {
   padding: 0;
 }
 
 .custom-DatePicker .bg-cyan-700 {
- background: #1e439fdc;
- 
+  background: #1e439fdc;
 }
 
-.Custom-Carousel span{
- background-color: #323232c7;
+.Custom-Carousel span {
+  background-color: #323232c7;
 }
 
-.Custom-Carousel button{
+.Custom-Carousel button {
   background-color: #212121c7;
   border-radius: 50%;
- }
+}
 
-
- .Custom-Carousel button:hover{
+.Custom-Carousel button:hover {
   background-color: #4545aec7;
   border-radius: 50%;
- }
+}
 
- .custom-Select select{
+.custom-Select select {
   padding: 0.81rem;
 }
 
-
 [data-testid="carousel"] {
-height: 25rem;
-
+  height: 25rem;
 }
 
-.gradiant{
-  mask-image: linear-gradient(
-    black 10%,
-    traparent
-  );
+.gradiant {
+  mask-image: linear-gradient(black 10%, traparent);
 }
 
 @media (max-width: 640px) {
@@ -123,4 +111,8 @@ height: 25rem;
   .custom-breadcrumb span {
     font-size: 0.8rem !important;
   }
+}
+
+.custom-toogle {
+  background-color: #ffffff;
 }

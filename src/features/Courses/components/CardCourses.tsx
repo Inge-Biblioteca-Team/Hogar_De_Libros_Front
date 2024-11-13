@@ -1,4 +1,4 @@
-import { Card } from "flowbite-react";
+import { Button, Card } from "flowbite-react";
 import { NextCourses } from "../types/Courses";
 import { format } from "@formkit/tempo";
 
@@ -49,6 +49,9 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
             ) : (
               <span>Necesitaras: {Courses.materials}</span>
             )}
+            <Button color={"blue"}>
+              Matricula ahora
+            </Button>
           </div>
         </figcaption>
       </figure>
