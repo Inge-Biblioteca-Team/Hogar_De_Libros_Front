@@ -57,8 +57,8 @@ const LendingForm = ({
     <Modal show={open} onClose={onClose}>
       <Modal.Header>Solicitud de préstamo</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body className=" flex flex-col gap-3">
-          <fieldset className="grid grid-cols-2 gap-x-3 gap-y-1">
+        <Modal.Body className=" flex bg-white flex-col gap-3">
+          <fieldset className="grid lg:grid-cols-2 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del solicitante</legend>
             <FloatingLabel
               variant="filled"
@@ -161,7 +161,7 @@ const LendingForm = ({
             </div>
           </fieldset>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose}  />
       </form>
     </Modal>
   );

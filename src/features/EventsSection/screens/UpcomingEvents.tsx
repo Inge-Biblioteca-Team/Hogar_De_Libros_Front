@@ -4,7 +4,7 @@ import { ApiEventsResponse } from "../types/Events";
 import { GetNextEvents } from "../services/SvEvents";
 import { Carousel } from "flowbite-react";
 
-const UpcomingEvents = () => {
+const UpcomingEvents = ({ home }: { home?: boolean }) => {
   const { data: events } = useQuery<ApiEventsResponse, Error>(
     ["EventCatalog"],
     () => GetNextEvents(),
@@ -23,7 +23,12 @@ const UpcomingEvents = () => {
           <h2 className="text-center font-bold text-2xl mb-6">
             Próximos eventos
           </h2>
-
+          {home && (
+            <h4>
+              Asi como cursos también tenemos diversos eventos, vean a
+              acompañarnos, estos son nuestros próximos eventos.
+            </h4>
+          )}
           <article>
             <Carousel
               className="Custom-Carousel"

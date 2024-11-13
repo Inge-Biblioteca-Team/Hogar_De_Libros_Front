@@ -4,7 +4,7 @@ import { ApiProgramsResponse, Program } from "../types/Programs";
 import { GetProgramsList } from "../services/SvPrograms";
 import { Carousel } from "flowbite-react";
 
-const CurrentPrograms = () => {
+const CurrentPrograms = ({ home }: { home?: boolean }) => {
   const { data: Programs } = useQuery<ApiProgramsResponse, Error>(
     ["ProgramCatalog"],
     () => GetProgramsList(1, 100, "", "1"),
@@ -20,8 +20,11 @@ const CurrentPrograms = () => {
     }
     return result;
   };
-  const isSmallScreen = window.innerWidth <= 640
-  const groupedProgram = chunkArray(Programs?.data || [], isSmallScreen ? 1:4);
+  const isSmallScreen = window.innerWidth <= 640;
+  const groupedProgram = chunkArray(
+    Programs?.data || [],
+    isSmallScreen ? 1 : 4
+  );
 
   return (
     <>
@@ -31,6 +34,12 @@ const CurrentPrograms = () => {
           id="Programs"
         >
           <h2 className="font-bold text-2xl">Nuestros programas</h2>
+          {home && (
+            <h3 className=" text-center text-md">
+              La biblioteca cuenta con diversos programas los cuales tienen
+              actividades para todas las edades aquí te mostramos cuales son.
+            </h3>
+          )}
           <Carousel
             indicators={false}
             pauseOnHover
