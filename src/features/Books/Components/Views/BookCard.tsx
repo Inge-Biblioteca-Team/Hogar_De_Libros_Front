@@ -1,11 +1,13 @@
 import { Button, Card, Label, Popover } from "flowbite-react";
 import { Book } from "../../Types/BooksTypes";
 import LendingForm from "../Modals/LendingForm";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "../../../../Context/UserContext/UserContext";
 
 const BookCard = ({ book }: { book: Book }) => {
   const [open, setOpen] = useState<boolean>(false);
 
+  const { isLogged } = useContext(UserContext);
   return (
     <>
       <Popover
@@ -47,13 +49,15 @@ const BookCard = ({ book }: { book: Book }) => {
             className=" rounded-t-2xl h-80 w-52"
           />
           <figcaption className="w-full">
-            <Button
-              className="w-full rounded-none rounded-b-md"
-              onClick={() => setOpen(true)}
-              color={"gray"}
-            >
-              Reservar ahora
-            </Button>
+            {isLogged && (
+              <Button
+                className="w-full rounded-none rounded-b-md"
+                onClick={() => setOpen(true)}
+                color={"gray"}
+              >
+                Reservar ahora
+              </Button>
+            )}
           </figcaption>
         </figure>
       </Popover>
