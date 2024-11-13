@@ -22,7 +22,8 @@ const CatalogLists = ({ category }: { category: string }) => {
     return result;
   };
 
-  const groupedBooks = chunkArray(catalog?.data || [], 5);
+  const IsSmallScren = window.innerWidth < 640;
+  const groupedBooks = chunkArray(catalog?.data || [],IsSmallScren ?2:5);
 
   return (
     <>
