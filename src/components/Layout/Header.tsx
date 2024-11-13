@@ -18,44 +18,39 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
   };
 
   const { isLogged, currentUser } = useContext(UserContext);
-  const role = currentUser?.role || ""
+  const role = currentUser?.role || "";
 
   return (
     <SidebarProvider>
-      <Navbar className="sticky top-0 z-50 text-white w-full bg-Body py-4">
-        <Navbar.Brand
-          className={`w-full flex items-center justify-between p-4  ${
-            NavBarType === "Landing" ? "max-sm:p-0" : ""
-          }`}
-        >
-          <div
-            className={`flex items-center flex-grow justify-center space-x-2 max-sm:justify-between max-sm:relative`}
-          >
-            <div className="flex items-center justify-center gap-3 max-sm:pl-14 max-sm:flex-col-reverse">
-              <FontAwesomeIcon
-                onClick={Goto}
-                icon={faBookOpen}
-                className="text-white h-6 w-6 cursor-pointer max-sm:hidden"
-              />
-              <span
-                className="text-white text-3xl font-semibold break-words max-sm:text-sm"
-                onClick={Goto}
-              >
-                Biblioteca Pública Municipal de Nicoya
-              </span>
+      <Navbar className="sticky top-0 z-50 text-white w-full bg-Body py-4 max-sm:py-2">
+        {/* Contenedor principal para centrar en el medio */}
+        <div className="flex flex-col items-center w-full">
+          {/* Sección centrada para el icono del libro y el título */}
+          <div className="flex items-center justify-center gap-3 cursor-pointer" onClick={Goto}>
+            <FontAwesomeIcon
+              icon={faBookOpen}
+              className="text-white h-6 w-6 max-sm:h-5 max-sm:w-5"
+            />
+            <span className="text-white text-2xl font-semibold break-words max-sm:text-base max-sm:leading-tight text-center">
+              Biblioteca Pública Municipal de Nicoya
+            </span>
+          </div>
+
+          <div className="flex justify-end w-full mt-2 max-sm:justify-end">
+            <div className="flex items-center gap-4 max-sm:gap-2">
+              {isLogged ? (
+                <>
+                  {role === "admin" && <Inboxpage />}
+                  <UserData />
+                </>
+              ) : (
+                <LoginAcces />
+              )}
             </div>
           </div>
-          <div className=" absolute right-5 top-12 ">
-            {isLogged ? (
-              <div className=" flex gap-4">
-                {role && role =="admin" &&<Inboxpage/>}  
-                <UserData />
-              </div>
-            ) : (
-              <LoginAcces />
-            )}
-          </div>
-        </Navbar.Brand>
+        </div>
+
+     
         {NavBarType === "Landing" ? <LandingNavbar /> : <HomeNavbar />}
       </Navbar>
     </SidebarProvider>

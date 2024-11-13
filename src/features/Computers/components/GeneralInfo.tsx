@@ -6,9 +6,11 @@ const GeneralInfo = () => {
   const computerCount = 20; //Se cambia por un conteo de los equipos inventariados, con un estado activo
 
   return (
-    <div className=" grid grid-cols-3  max-w-4xl gap-6">
+    <div className=" lg:grid lg:grid-cols-3 lg:max-w-4xl lg:gap-6
+    flex flex-col ">
       <GeneralComputerInfo />
-      <div className="flex justify-between flex-col max-sm:text-sm max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl">
+      <div className="flex lg:justify-between flex-col max-sm:text-sm lg:max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl
+       m-2 lg:m-0">
         <p>
           <strong>Acceso a computadoras, </strong>
           <span>
@@ -30,7 +32,7 @@ const GeneralInfo = () => {
             <strong>disponibilidad en tiempo real.</strong>
           </span>
         </p>
-        <div>
+        <div className="m-4 lg:m-0">
           <Link to={"/HogarDeLibros/Equipo_Disponible"}>
             <Button color={"blue"}>Ver mas información</Button>
           </Link>

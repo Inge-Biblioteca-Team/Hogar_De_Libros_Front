@@ -20,14 +20,14 @@ const CurrentPrograms = () => {
     }
     return result;
   };
-
-  const groupedProgram = chunkArray(Programs?.data || [], 4);
+  const isSmallScreen = window.innerWidth <= 640
+  const groupedProgram = chunkArray(Programs?.data || [], isSmallScreen ? 1:4);
 
   return (
     <>
       {Programs && Programs?.count > 0 && (
         <section
-          className="flex items-center w-4/5 flex-col max-sm:m-0"
+          className="flex items-center w-4/5 flex-col max-sm:m-0 "
           id="Programs"
         >
           <h2 className="font-bold text-2xl">Nuestros programas</h2>

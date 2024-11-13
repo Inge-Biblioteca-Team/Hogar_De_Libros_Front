@@ -21,7 +21,8 @@ const UpcomingCourses = () => {
     return result;
   };
 
-  const groupedCourses = chunkArray(Courses?.data || [], 4);
+  const isSmallScreen = window.innerWidth <= 640; // max-sm en Tailwind
+  const groupedCourses = chunkArray(Courses?.data || [], isSmallScreen ? 1 : 4);
 
   return (
     <>
