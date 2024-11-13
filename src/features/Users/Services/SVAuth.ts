@@ -83,7 +83,7 @@ const LogOut = async () => {
 
 const getProfile = async () => {
   try {
-    const response = await api.get("auth/Profile");
+    const response = await api.post("auth/Profile");
     const user = response.data.user;
     const message = response.data.message;
     return { user, message };
