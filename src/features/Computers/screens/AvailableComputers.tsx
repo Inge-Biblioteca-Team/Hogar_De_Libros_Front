@@ -29,9 +29,9 @@ const AvailableComputers = () => {
       <BreadLastItems text="Disponibilidad de equipos de cómputo" />
       
       </BreadCrumbsItems>
-      <div className=" flex items-center justify-center mt-10">
-        <Card className="ml-4">
-          <p className="w-96">
+      <div className=" flex  flex-col lg:flex-row items-center justify-center mt-10">
+        <Card className="m-4 lg:text-md tex">
+          <p className="lg:w-96 w-full">
             La biblioteca ofrece el servicio de préstamo de equipos de cómputo.
             Si necesita utilizar uno, puede acudir al área correspondiente
             dentro de la biblioteca. <br />
@@ -76,8 +76,8 @@ const AvailableComputers = () => {
             </ul>
           </p>
         </Card>
-        <div className="w-full">
-          <div className="grid grid-cols-4 grid-rows-5 w-4/5 gap-y-6">
+        <div className="w-full ">
+          <div className="grid lg:grid-cols-4 grid-cols-3 mr-10 ml-10 lg:ml-0 lg:mr-0 gap-x-4 grid-rows-5 w-4/5 gap-y-6">
             {computers?.map((computer) => (
               <div
                 key={computer.MachineNumber}
