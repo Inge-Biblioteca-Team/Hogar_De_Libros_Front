@@ -31,8 +31,8 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
 
   return (
     <>
-      <Timeline.Item className=" !w-72 min-w-72">
-        <Timeline.Point icon={CiCalendarDate} className="custom" />
+      <Timeline.Item className=" !w-72 min-w-72 max-sm:pb-2">
+        <Timeline.Point icon={CiCalendarDate} className="custom max-sm:pb-1" />
         <Timeline.Content>
           <Timeline.Time>{CourseDate}</Timeline.Time>
           <Timeline.Title className=" line-clamp-1">

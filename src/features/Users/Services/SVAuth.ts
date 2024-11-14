@@ -83,9 +83,8 @@ const LogOut = async () => {
 
 const getProfile = async () => {
   try {
-    const response = await api.get("auth/Profile");
-    const user = response.data.user;
-    const message = response.data.message;
+    const { data } = await api.post("auth/Profile");
+    const { user, message } = data;
     return { user, message };
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {

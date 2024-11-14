@@ -1,15 +1,24 @@
+import { format } from "@formkit/tempo";
 import { formatToDMY } from "../../../components/FormatTempo";
 import { Activitie } from "../types/Programs";
 import { Card, Timeline } from "flowbite-react";
+import { CiCalendarDate } from "react-icons/ci";
 
 const ActivitieTimeItem = ({ activitie }: { activitie: Activitie }) => {
+
+
+  const ActivitieDate = format({
+    date: activitie.activitiDate,
+    format: "MMMM YYYY",
+    tz: "America/Costa_Rica",
+  });
   return (
     <>
-      <Timeline.Item className=" !w-72 min-w-72 ">
-        <Timeline.Point className="custom" />
+      <Timeline.Item className=" !w-72 min-w-72 max-sm:pb-2">
+        <Timeline.Point icon={CiCalendarDate} className="custom max-sm:pb-1" />
         <Timeline.Content>
-          <Timeline.Time>{formatToDMY(activitie.activitiDate)}</Timeline.Time>
-          <Timeline.Title className=" h-14 line-clamp-1">
+          <Timeline.Time>{ActivitieDate}</Timeline.Time>
+          <Timeline.Title className="h-14 line-clamp-1">
             {activitie.programName}
           </Timeline.Title>
           <Timeline.Body>

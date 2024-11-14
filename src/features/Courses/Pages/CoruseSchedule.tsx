@@ -52,7 +52,7 @@ const CoruseSchedule = () => {
         <BreadLastItems text="Próximos cursos" />
       </BreadCrumbsItems>
       <div className=" w-full flex flex-col justify-center items-center pb-3">
-        <div className=" flex gap-4 w-4/5 items-start ml-5">
+        <div className=" flex gap-4 w-4/5 items-start ml-5 max-sm:w-11/12 max-sm:gap-2 max-sm:ml-2">
           <Select
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
@@ -69,9 +69,12 @@ const CoruseSchedule = () => {
             onChange={(event) => setType(event.target.value)}
           >
             <option value="">Tipo de curso</option>
-            <option value="Taller">Talleres</option>
-            <option value="Info">Informática</option>
-            <option value="Infan">Talleres infantiles</option>
+            <option value="Curso">Curso</option>
+            <option value="Taller">Taller</option>
+            <option value="Capacitación">Capacitación</option>
+            <option value="Cómputo">Cómputo</option>
+            <option value="Curso Articulado">Curso Articulado</option>
+            <option value="Manualidades">Manualidades</option>
           </Select>
         </div>
         <div
