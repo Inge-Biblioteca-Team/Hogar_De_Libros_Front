@@ -54,8 +54,9 @@ const ProgramActivities = () => {
         <BreadLastItems text="Próximas actividades" />
       </BreadCrumbsItems>
       <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
-        <div className=" flex gap-4 w-4/5 items-start ml-5">
+        <div className=" flex gap-4 w-4/5 items-start ml-5 max-sm:w-11/12 max-sm:ml-0">
           <Select
+            className=" max-sm:w-full"
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
           >
@@ -70,7 +71,7 @@ const ProgramActivities = () => {
             icon={FaReadme}
             onChange={(event) => setProgram(event.target.value)}
           >
-            <option value="">Seleccione el programa</option>
+            <option value="">Programa</option>
             <ProgramsOPT />
           </Select>
         </div>
@@ -84,7 +85,10 @@ const ProgramActivities = () => {
           >
             {Activities && Activities?.count > 0 ? (
               Activities?.data.map((activitie) => (
-                <ActivitieTimeItem activitie={activitie} key={activitie.activitieID} />
+                <ActivitieTimeItem
+                  activitie={activitie}
+                  key={activitie.activitieID}
+                />
               ))
             ) : (
               <strong className=" flex w-full items-center justify-center text-2xl">

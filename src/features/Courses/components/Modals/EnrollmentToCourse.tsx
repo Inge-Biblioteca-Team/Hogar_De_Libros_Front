@@ -81,7 +81,7 @@ const EnrollmentToCourse = ({
               siguiente: {course.materials}{" "}
             </span>
           )}
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-2 max-sm:flex max-sm:flex-col">
             <div>
               <Label
                 htmlFor="Cedula"

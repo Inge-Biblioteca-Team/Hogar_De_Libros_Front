@@ -53,7 +53,7 @@ const EventsSchedule = () => {
         <BreadLastItems text="Próximos eventos" />
       </BreadCrumbsItems>
       <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
-        <div className=" flex gap-4 w-4/5 items-start ml-5">
+        <div className=" flex gap-4 w-4/5 items-start ml-5 max-sm:w-11/12 max-sm:ml-0">
           <Select
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
@@ -70,11 +70,11 @@ const EventsSchedule = () => {
             onChange={(event) => setType(event.target.value)}
           >
             <option value="">Tipo de evento</option>
-            <option value="Charla">Charlas</option>
-            <option value="Expo">Exposición</option>
-            <option value="Juvenil">Tarde juvenil</option>
-            <option value="Abiertos">Eventos abiertos</option>
-            <option value="Otros">Otros</option>
+            <option value="Exposición">Exposición de libro</option>
+            <option value="Presentación">Presentación de libro</option>
+            <option value="cultural">Artístico cultural</option>
+            <option value="Tertulias">Tertulias</option>
+            <option value="Inducción">Inducción</option>
           </Select>
         </div>
         <div
@@ -82,7 +82,7 @@ const EventsSchedule = () => {
           style={{ height: "40rem" }}
         >
           <Timeline
-            className="custom-timeline border-blue-900 h-full "
+            className="custom-timeline border-blue-900 h-full"
             horizontal
           >
             {events?.count == 0 ? (
