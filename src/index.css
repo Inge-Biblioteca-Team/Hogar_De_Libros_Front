@@ -68,6 +68,7 @@ input[type="number"] {
   background-color: #ffffff;
 }
 
+
 .custom-bar::-webkit-scrollbar {
   display: none;
 }
@@ -110,6 +111,12 @@ input[type="number"] {
   .custom-breadcrumb a,
   .custom-breadcrumb span {
     font-size: 0.8rem !important;
+  }
+  .custom span {
+    background-color: #ffffff;
+  }
+  .custom div {
+    background-color: #21425e;
   }
 }
 

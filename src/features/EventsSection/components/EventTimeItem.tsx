@@ -2,6 +2,7 @@ import { format } from "@formkit/tempo";
 import { Timeline, Card } from "flowbite-react";
 import { Event } from "../types/Events";
 
+import { CiCalendarDate } from "react-icons/ci";
 const EventTimeItem = ({ event }: { event: Event }) => {
   const eventTime = event.eventTime;
   const eventDate = event.date;
@@ -26,8 +27,8 @@ const EventTimeItem = ({ event }: { event: Event }) => {
 
   return (
     <>
-      <Timeline.Item className=" !w-72 min-w-72">
-        <Timeline.Point className="custom" />
+      <Timeline.Item className=" !w-72 min-w-72 max-sm:pb-2">
+        <Timeline.Point  icon={CiCalendarDate} className="custom max-sm:pb-1" />
         <Timeline.Content>
           <Timeline.Time>{CourseDate}</Timeline.Time>
           <Timeline.Title className=" h-14 line-clamp-1">
