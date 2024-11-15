@@ -14,6 +14,7 @@ import { MdTitle, MdPersonSearch } from "react-icons/md";
 import BookChildrenTable from "../Components/BookChildrenTable";
 import { LuClipboardSignature } from "react-icons/lu";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
   const [open, setOpen] = useState(false);
@@ -57,30 +58,25 @@ const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
       ) : (
         <BreadCrumbManage text="Libros infantiles" />
       )}
-      <main className=" flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5 flex justify-between items-end max-sm:w-full max-sm:px-2">
-          <div className="flex gap-3">
+      <main className=" overflow-x-hidden flex items-center justify-center w-full flex-col gap-4">
+        <section className="w-4/5 sm:items-center flex lg:flex-row flex-col justify-between lg:items-end max-sm:w-full max-sm:px-2 gap-4 lg:gap-0">
+          <div className="flex lg:flex-row flex-col gap-3">
             <TextInput
               onChange={(event) => setSearchTitle(event.target.value)}
               rightIcon={MdTitle}
               placeholder="Búsqueda por titulo"
             />
             <TextInput
-              className=" max-sm:hidden"
               onChange={(event) => setSearchAuthor(event.target.value)}
               rightIcon={MdPersonSearch}
               placeholder="Búsqueda por autor"
             />
             <TextInput
-              className=" max-sm:hidden"
               onChange={(event) => setSearchSigna(event.target.value)}
               rightIcon={LuClipboardSignature}
               placeholder="Código de signatura"
             />
-            <Select
-              className=" max-sm:hidden"
-              onChange={(event) => setStatus(event.target.value)}
-            >
+            <Select onChange={(event) => setStatus(event.target.value)}>
               <option value="">Estado</option>
               <option value="1">Disponible</option>
               <option value="0">Baja</option>
@@ -94,13 +90,24 @@ const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
           {Catalog && Catalog.count > 0 ? (
             <>
               <BookChildrenTable catalog={Catalog} />
-              <CustomPagination
-                page={page}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setLimit}
-                total={Catalog.count}
-              />
+              <div className="block max-sm:hidden">
+                <CustomPagination
+                  page={page}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setLimit}
+                  total={Catalog.count}
+                />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={page}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />
