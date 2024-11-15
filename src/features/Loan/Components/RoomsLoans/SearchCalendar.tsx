@@ -15,8 +15,8 @@ const SearchCalendar = ({
     }
   };
   return (
-    <div>
-      <div className=" font-bold text-center text-lg">Fecha a consultar</div>
+    <div className="px-4 sm:px-6 md:px-8">
+      <div className="font-bold text-center text-lg">Fecha a consultar</div>
       <Datepicker
         onSelectedDateChanged={handleChange}
         className="custom-DatePicker"
