@@ -54,16 +54,16 @@ const CreateCourse = () => {
 
   return (
     <>
-      <Button onClick={() => setIsModalOpen(true)} color="blue">
+      <Button className="max-sm:w-full" onClick={() => setIsModalOpen(true)} color="blue">
         Añadir curso
       </Button>
       <Modal show={isModalOpen} onClose={onClose} size={"5xl"}>
         <Modal.Header>Crear nuevo curso</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className=" grid grid-cols-3 gap-3">
-            <fieldset className=" flex">
+          <Modal.Body className=" bg-white grid max-sm:grid-cols-1 grid-cols-3 gap-3">
+            <fieldset className=" flex ">
               <legend className=" font-bold pb-3">Imagen del curso</legend>
-              <figure className=" w-full">
+              <figure className=" w-full max-sm:h-96">
                 {image ? (
                   <img
                     src={image}
@@ -83,9 +83,9 @@ const CreateCourse = () => {
                 )}
               </figure>
             </fieldset>
-            <div className=" col-span-2 grid grid-cols-2 gap-3">
-              <fieldset className="flex flex-col justify-between">
-                <legend className="font-bold pb-2">Información General</legend>
+            <div className=" col-span-2 max-sm:grid-cols-1 grid grid-cols-2 gap-3">
+              <fieldset className="flex flex-col justify-between ">
+                <legend className="whitespace-nowrap max-sm:pt-2 max-sm:text-center font-bold pb-2">Información General</legend>
                 <span>
                   <Label htmlFor="courseName" value="Nombre del curso" />
                   <TextInput
@@ -143,7 +143,7 @@ const CreateCourse = () => {
               </fieldset>
 
               <fieldset className="flex flex-col justify-between gap-2">
-                <legend className="font-bold pb-2">Fechas y matricula</legend>
+                <legend className="font-bold max-sm:text-center max-sm:pt-2 pb-2">Fechas y matricula</legend>
                 <div>
                   <Label htmlFor="startDate" value="Fecha de inicio" />
                   <TextInput

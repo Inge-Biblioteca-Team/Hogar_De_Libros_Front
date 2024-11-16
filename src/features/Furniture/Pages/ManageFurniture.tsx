@@ -10,6 +10,7 @@ import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsIte
 import CustomPagination from "../../../components/CustomPagination";
 import OPTState from "../Components/OPTState";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageFurniture = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
@@ -38,7 +39,7 @@ const ManageFurniture = () => {
       currentLimit,
       searchDescriptionDelay,
       searchStatus,
-      code
+      code,
     ],
     () =>
       GetFurniturePaginated(
@@ -58,28 +59,32 @@ const ManageFurniture = () => {
   return (
     <>
       <BreadCrumbManage text="Mobiliario" />
-      <main className=" flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5 flex justify-between items-end">
-          <div className="flex gap-3">
+      <main className="overflow-x-hidden flex items-center justify-center w-full flex-col gap-4">
+        <section className="w-4/5  max-sm:flex-col max-sm:gap-4 max-sm:items-center flex justify-between items-end">
+          <div className="flex max-sm:w-full max-sm:flex-col gap-3">
             <TextInput
               placeholder="Búsqueda por placa"
-              className="w-52"
+              className="w-52 max-sm:w-full"
               onChange={(event) => setSearchCode(event.target.value)}
             />
             <TextInput
               placeholder="Búsqueda por descripción"
-              className="w-52"
+              className="w-52 max-sm:w-full"
               onChange={(event) => setSearchDescription(event.target.value)}
             />
             <Select onChange={(event) => setSearchStatus(event.target.value)}>
               <OPTState />
             </Select>
           </div>
-          <Button color={"blue"} onClick={() => setSNew(true)}>
+          <Button
+            className="max-sm:w-full"
+            color={"blue"}
+            onClick={() => setSNew(true)}
+          >
             Añadir mobiliario
           </Button>
         </section>
-        <section className="w-4/5">
+        <section className="w-4/5 max-sm:w-full max-sm:p-2">
           {furnitures && furnitures.count > 0 ? (
             <>
               <Table
@@ -88,15 +93,23 @@ const ManageFurniture = () => {
                 style={{ height: "30rem" }}
               >
                 <Table.Head className=" h-16">
-                  <Table.HeadCell className=" w-44">
+                  <Table.HeadCell className="  w-44">
                     Número de placa
                   </Table.HeadCell>
                   <Table.HeadCell className=" w-44">Descripción</Table.HeadCell>
-                  <Table.HeadCell className=" w-44">Ubicación</Table.HeadCell>
-                  <Table.HeadCell className=" w-44">Responsable</Table.HeadCell>
-                  <Table.HeadCell className=" w-44">Condición</Table.HeadCell>
-                  <Table.HeadCell className=" w-44">Estado</Table.HeadCell>
-                  <Table.HeadCell></Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden  w-44">
+                    Ubicación
+                  </Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden  w-44">
+                    Responsable
+                  </Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden  w-44">
+                    Condición
+                  </Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden  w-44">
+                    Estado
+                  </Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden "></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
                   {furnitures?.data.map((furniture) => (
@@ -104,13 +117,24 @@ const ManageFurniture = () => {
                   ))}
                 </Table.Body>
               </Table>
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={furnitures?.count || 0}
-              />
+              <div className="block max-sm:hidden">
+                <CustomPagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={furnitures?.count || 0}
+                />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={currentPage}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />
