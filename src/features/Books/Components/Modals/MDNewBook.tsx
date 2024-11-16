@@ -45,11 +45,11 @@ const MDNewBook = ({
       <Modal.Header>Añadir libro a la colección</Modal.Header>
 
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body className=" grid grid-cols-3 gap-4">
+        <Modal.Body className=" grid bg-white  grid-cols-1 lg:grid-cols-3 gap-4">
           <fieldset>
             <legend className="mb-2  text-center">Imagen del libro</legend>
             <div>
-              <figure>
+              <figure className="w-full lg:h-full">
                 {image ? (
                   <img
                     title="Click para editar la imagen"
@@ -121,6 +121,7 @@ const MDNewBook = ({
               </legend>
               <div className=" grid grid-cols-2 gap-4">
                 <FloatingLabel
+                  className="whitespace-nowrap"
                   variant="outlined"
                   label="Código de inscripción"
                   {...register("InscriptionCode")}

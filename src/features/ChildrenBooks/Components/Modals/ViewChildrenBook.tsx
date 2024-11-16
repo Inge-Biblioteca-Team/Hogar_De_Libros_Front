@@ -18,7 +18,7 @@ const ViewChildrenBook = ({
   return (
     <Modal onClose={onClose} show={open}>
       <Modal.Header>Información del Libro</Modal.Header>
-      <Modal.Body className=" grid grid-cols-3 gap-4">
+      <Modal.Body className=" grid grid-cols-1 lg:grid-cols-3 gap-4">
         <figure>
           <img
             title="Click para editar la imagen"
