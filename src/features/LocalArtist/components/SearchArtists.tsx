@@ -11,8 +11,8 @@ const SearchArtists = ({
   Status: (Type: string) => void;
 }) => {
   return (
-    <div className="w-full max-sm:grid-cols-1 grid grid-cols-5 gap-2 pb-4">
-      <div className="max-sm:w-full">
+    <div className="w-full max-sm:w-full max-sm:grid-cols-1 grid grid-cols-5 gap-2 pb-4">
+      <div>
         <Label className=" text-lg">Nombre</Label>
         <TextInput
           type="text"
