@@ -70,7 +70,7 @@ const ManageLocalArtist = () => {
           {Artists && Artists.count > 0 ? (
             <>
               <Table hoverable className="text-center h-[30rem] max-sm:text-sm max-sm:-translate-x-8 transition-transform duration-300">
-                <Table.Head className="h-20 text-sm">
+                <Table.Head className="h-20 text-sm bg-white">
                   <Table.HeadCell>Nombre</Table.HeadCell>
                   <Table.HeadCell className="max-sm:hidden">Tipo de Artista</Table.HeadCell>
                   <Table.HeadCell className="max-sm:hidden">Información Relevante</Table.HeadCell>
