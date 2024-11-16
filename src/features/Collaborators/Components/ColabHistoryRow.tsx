@@ -10,7 +10,7 @@ const ColabHistoryRow = ({ colaborator }: { colaborator: Colaborator }) => {
       <Table.Row onClick={() => setOpenV(true)}>
         <Table.Cell>{formatToDMY(colaborator.activityDate)} </Table.Cell>
         <Table.Cell>{colaborator.UserFullName}</Table.Cell>
-        <Table.Cell>{colaborator.UserPhone}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{colaborator.UserPhone}</Table.Cell>
         <Table.Cell className=" max-sm:hidden">
           {colaborator.UserEmail}
         </Table.Cell>
