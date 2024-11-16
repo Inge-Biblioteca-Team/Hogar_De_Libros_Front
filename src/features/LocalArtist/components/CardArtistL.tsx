@@ -1,30 +1,30 @@
 import { Button, ButtonGroup, Card } from "flowbite-react";
 import { Artist } from "../types/LocalArtist";
-import {
-  FaLinkedin,
-  FaFacebookSquare,
-  FaInstagramSquare,
-} from "react-icons/fa";
+import { FaLinkedin, FaFacebookSquare, FaInstagramSquare } from "react-icons/fa";
 
 const CardArtistL = ({ artist }: { artist: Artist }) => {
   return (
-    <Card className="p0">
+    <Card className="p-0">
       <figure>
         <img
           className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover
-        max-sm:h-48 max-sm:rounded-md max-sm:mb-0"
+          max-sm:h-48 max-sm:rounded-md max-sm:mb-0"
           src={artist.Cover}
           alt={artist.Name}
         />
         <figcaption
-          className=" text-lg break-words max-w-80 px-4 h-40 text-center
-       max-sm:pt-7 max-sm:text-center max-sm:text-sm max-sm:h-32 flex flex-col justify-between items-center p-3"
+          className="text-lg break-words max-w-80 px-4 h-40 text-center
+          max-sm:pt-7 max-sm:text-center max-sm:text-sm max-sm:h-auto flex flex-col justify-between items-center p-3
+          max-sm:flex-wrap max-sm:overflow-hidden max-sm:gap-2"
         >
-          <strong>{artist.Name}</strong>
-          <span>{artist.ArtisProfession}</span>
-          {artist.MoreInfo && artist.MoreInfo}
-
-          <ButtonGroup>
+          <strong className="truncate">{artist.Name}</strong>
+          <span className="text-gray-600 text-sm truncate">{artist.ArtisProfession}</span>
+          {artist.MoreInfo && (
+            <p className="text-gray-500 text-sm max-sm:truncate max-sm:overflow-hidden max-sm:text-ellipsis max-sm:w-full">
+              {artist.MoreInfo}
+            </p>
+          )}
+          <ButtonGroup className="mt-4 max-sm:mt-2">
             {artist.FBLink && (
               <Button
                 className="bg-transparent hover:text-gray-700"

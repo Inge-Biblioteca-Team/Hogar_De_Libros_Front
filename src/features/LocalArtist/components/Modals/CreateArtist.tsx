@@ -51,7 +51,7 @@ const CreateArtist = () => {
       <button
         type="button"
         onClick={() => setIsModalOpen(true)}
-        className="w-40 bg-Body text-white mt-2 p-2 rounded-md hover:bg-blue-800"
+        className="w-full sm:w-40 bg-Body text-white mt-2 p-2 rounded-md hover:bg-blue-800"
       >
         Añadir artista
       </button>

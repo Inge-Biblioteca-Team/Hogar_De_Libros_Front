@@ -54,22 +54,26 @@ const ManageLocalArtist = () => {
 
       <div className=" w-full flex items-center justify-center">
         <div className=" w-4/5">
-          <div className="flex items-center">
+          <div className="flex items-center max-sm:flex-col">
+          <div className="w-full sm:w-auto">
             <SearchArtists
               Status={SetStatus}
               SName={SetSName}
               SType={SetSType}
             />
-            <CreateArtist />
+          </div>
+            <div className="w-full sm:w-auto flex justify-end max-sm:pb-8">
+              <CreateArtist />
+            </div>
           </div>
           {Artists && Artists.count > 0 ? (
             <>
-              <Table hoverable className=" text-center h-[30rem]">
+              <Table hoverable className=" text-center h-[30rem] max-sm:text-sm">
                 <Table.Head className=" h-20 text-sm">
                   <Table.HeadCell>Nombre</Table.HeadCell>
-                  <Table.HeadCell>Tipo de Artista</Table.HeadCell>
-                  <Table.HeadCell>Información Relevante</Table.HeadCell>
-                  <Table.HeadCell>Redes Sociales</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Tipo de Artista</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Información Relevante</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Redes Sociales</Table.HeadCell>
                   <Table.HeadCell>Estado</Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>

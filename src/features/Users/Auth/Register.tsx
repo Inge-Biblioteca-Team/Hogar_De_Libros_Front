@@ -19,8 +19,9 @@ import OptCanton from "../../../components/OptCanton";
 import { useQuery } from "react-query";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { getUserInformationByCedula } from "../Services/SvUsuer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import cover from "../../../Assets/RegisterCover.jpg";
+import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -50,6 +51,11 @@ const Register = () => {
     }
 
     return result;
+  };
+
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const cedula = UseDebounce(watch("cedula"), 1000);
@@ -282,6 +288,20 @@ const Register = () => {
                       },
                     })}
                   />
+                  <button
+                  type="button"
+                  className=" absolute right-4 top-4"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? (
+                    <IoEyeOffSharp
+                      size={20}
+                      className=" hover:text-stone-500"
+                    />
+                  ) : (
+                    <IoEyeSharp size={20} className=" hover:text-stone-500" />
+                  )}
+                </button>
                   {errors.repeatPassword && (
                     <Popover
                       trigger="hover"

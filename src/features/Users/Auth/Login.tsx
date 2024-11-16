@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { SingIng } from "../Type/UserType";
 import UseAuth from "../Hooks/UseAuth";
 import cover from "../../../Assets/LoginCover.png"
+import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,6 +20,11 @@ const Login = () => {
   const { register, handleSubmit } = useForm<SingIng>();
 
   const { mutate: LogIn } = UseAuth();
+
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const onSubmit = (data: SingIng) => {
     LogIn(data);
@@ -51,15 +57,26 @@ const Login = () => {
                 />
               </div>
 
-              <div>
+              <div className=" relative">
                 <Label htmlFor="password" value="Contraseña" />
                 <TextInput
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="********"
                   required
                   {...register("password")}
                 />
+                <button
+                type="button"
+                className=" absolute right-4 top-4"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? (
+                  <IoEyeOffSharp size={20} className=" hover:text-stone-500" />
+                ) : (
+                  <IoEyeSharp size={20} className=" hover:text-stone-500" />
+                )}
+              </button>
               </div>
 
               <Button type="submit" gradientMonochrome="info" fullSized>
