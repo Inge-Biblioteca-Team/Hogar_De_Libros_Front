@@ -271,7 +271,7 @@ const Register = () => {
                   <TextInput
                   placeholder="Repetir contraseña"
                     id="repeatPassword"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     className={`border ${
                       errors.repeatPassword
                         ? "border-red-500"
