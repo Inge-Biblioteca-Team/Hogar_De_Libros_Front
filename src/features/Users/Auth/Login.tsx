@@ -68,7 +68,7 @@ const Login = () => {
                 />
                 <button
                 type="button"
-                className=" absolute right-4 top-4"
+                className=" absolute right-4 top-9"
                 onClick={togglePasswordVisibility}
               >
                 {showPassword ? (
