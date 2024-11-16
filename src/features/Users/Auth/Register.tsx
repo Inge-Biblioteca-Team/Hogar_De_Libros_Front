@@ -227,7 +227,7 @@ const Register = () => {
                   <TextInput
                     placeholder="8 caracteres, sin caracteres especiales"
                     id="Password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     required
                     {...register("password", {
                       required: "La contraseña es obligatoria",

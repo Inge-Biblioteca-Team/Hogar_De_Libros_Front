@@ -11,7 +11,7 @@ const SearchArtists = ({
   Status: (Type: string) => void;
 }) => {
   return (
-    <div className="w-full grid grid-cols-5 gap-2 pb-4">
+    <div className="w-full max-sm:grid-cols-1 grid grid-cols-5 gap-2 pb-4">
       <div className="max-sm:w-full">
         <Label className=" text-lg">Nombre</Label>
         <TextInput
@@ -21,7 +21,7 @@ const SearchArtists = ({
           onChange={(event) => SName(event.target.value)}
         />
       </div>
-      <div className="hidden sm:block">
+      <div>
         <Label className=" text-lg">Tipo de artista</Label>
         <Select
           required
@@ -37,7 +37,7 @@ const SearchArtists = ({
           <option value="Fotógrafo">Fotógrafo</option>
         </Select>
       </div>
-      <div className="hidden sm:block">
+      <div>
         <Label className=" text-lg">Estado</Label>
         <Select onChange={(event) => Status(event.target.value)}>
           <option value="">Seleccione un estado</option>

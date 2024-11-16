@@ -10,6 +10,7 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageLocalArtist = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -52,10 +53,10 @@ const ManageLocalArtist = () => {
     <>
       <BreadCrumbManage text="Artistas locales" />
 
-      <div className=" w-full flex items-center justify-center">
+      <div className="overflow-x-hidden w-full flex items-center justify-center">
         <div className=" w-4/5">
           <div className="flex items-center max-sm:flex-col">
-          <div className="w-full sm:w-auto">
+          <div className="w-full sm:w-auto flex justify-end max-sm:pb-8">
             <SearchArtists
               Status={SetStatus}
               SName={SetSName}
@@ -83,6 +84,7 @@ const ManageLocalArtist = () => {
                   ))}
                 </Table.Body>
               </Table>
+              <div className="block max-sm:hidden">
               <CustomPagination
                 page={currentPage}
                 onPageChange={onPageChange}
@@ -90,6 +92,15 @@ const ManageLocalArtist = () => {
                 setCurrentLimit={setCurrentLimit}
                 total={Artists?.count || 0}
               />
+              </div>
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={currentPage}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />
