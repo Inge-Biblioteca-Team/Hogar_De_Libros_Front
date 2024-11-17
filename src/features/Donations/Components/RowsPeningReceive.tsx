@@ -7,6 +7,7 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { HiViewfinderCircle } from "react-icons/hi2";
 import { formatToDMY } from "../../../components/FormatTempo";
 
+
 const RowsPeningReceive = ({ donation }: { donation: Donation }) => {
   const [openV, setOpenV] = useState<boolean>(false);
   const [openC, setOpenC] = useState<boolean>(false);
@@ -15,11 +16,11 @@ const RowsPeningReceive = ({ donation }: { donation: Donation }) => {
       <Table.Row>
         <Table.Cell>{donation.UserFullName}</Table.Cell>
         <Table.Cell>{donation.UserCedula}</Table.Cell>
-        <Table.Cell>{donation.UserEmail}</Table.Cell>
-        <Table.Cell>{donation.UserPhone}</Table.Cell>
-        <Table.Cell>{donation.SubCategory}</Table.Cell>
-        <Table.Cell>{formatToDMY(donation.DateRecolatedDonation)}</Table.Cell>
-        <Table.Cell>{donation.Status}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{donation.UserEmail}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{donation.UserPhone}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{donation.SubCategory}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{formatToDMY(donation.DateRecolatedDonation)}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{donation.Status}</Table.Cell>
         <Table.Cell>
           <div className=" flex gap-4 justify-center items-center">
             <button
