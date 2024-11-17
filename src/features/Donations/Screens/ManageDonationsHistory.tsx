@@ -38,7 +38,7 @@ const ManageDonationsHistory = () => {
   return (
     <>
       <DonationsCrumbs text="Donaciones finalizadas" />
-      <main className="flex flex-col items-center justify-center w-full gap-5">
+      <main className="overflow-x-hidden flex flex-col items-center justify-center w-full gap-5">
         <section className=" max-sm:flex-col flex w-4/5 gap-2">
           <div>
             <Label value="Categoría del colaborador" />
