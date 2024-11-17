@@ -54,7 +54,7 @@ const ManageUsers = () => {
         <BreadLastItems text="Gestión de usuarios" />
       </BreadCrumbsItems>
       <div className="overflow-x-hidden flex place-content-center">
-        <div className="w-4/5 ">
+        <div className="w-4/5 flex flex-col items-center justify-center pt-1">
           <div className="w-full sm:w-full flex justify-center max-sm:pb-8">
           <SearchUsers
             setYear={setYear}
