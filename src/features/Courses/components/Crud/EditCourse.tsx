@@ -93,7 +93,7 @@ const EditCourse = ({
       <Modal show={open} onClose={() => setOpen(false)} size={"5xl"}>
         <Modal.Header>Editar curso</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className=" grid grid-cols-3 gap-3">
+          <Modal.Body className=" bg-white grid max-sm:grid-cols-1 grid-cols-3 gap-3">
             <fieldset className=" flex">
               <legend className=" font-bold pb-3">Imagen del curso</legend>
               <figure className=" w-full">
@@ -111,14 +111,14 @@ const EditCourse = ({
                     style={{ height: "100%" }}
                     onClick={() => setOpenImage(true)}
                   >
-                    <span>Selecciona una imagen</span>
+                    <span >Selecciona una imagen</span>
                   </div>
                 )}
               </figure>
             </fieldset>
-            <div className=" col-span-2 grid grid-cols-2 gap-3">
+            <div className=" col-span-2 grid max-sm:grid-cols-1 grid-cols-2 gap-3">
               <fieldset className="flex flex-col justify-between">
-                <legend className="font-bold pb-2">Información General</legend>
+                <legend className="whitespace-nowrap font-bold max-sm:text-center pb-2">Información General</legend>
                 <span>
                   <Label htmlFor="courseName" value="Nombre del curso" />
                   <TextInput
@@ -176,7 +176,7 @@ const EditCourse = ({
               </fieldset>
 
               <fieldset className="flex flex-col justify-between gap-2">
-                <legend className="font-bold pb-2">Fechas y matricula</legend>
+                <legend className="font-bold max-sm:text-center max-sm:pt-2 pb-2">Fechas y matricula</legend>
                 <div>
                   <Label htmlFor="startDate" value="Fecha de inicio" />
                   <TextInput

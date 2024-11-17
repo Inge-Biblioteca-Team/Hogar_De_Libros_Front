@@ -16,13 +16,19 @@ const FurnitureRows = ({ furniture }: { furniture: furniture }) => {
       <Table.Row key={furniture.Id} className=" h-24">
         <Table.Cell className="w-52">{furniture.LicenseNumber}</Table.Cell>
         <Table.Cell className="w-52">{furniture.Description}</Table.Cell>
-        <Table.Cell className="w-52">{furniture.Location}</Table.Cell>
-        <Table.Cell className="w-44">{furniture.InChargePerson}</Table.Cell>
-        <Table.Cell className="w-64">
+        <Table.Cell className="max-sm:hidden w-52">
+          {furniture.Location}
+        </Table.Cell>
+        <Table.Cell className=" max-sm:hidden w-44">
+          {furniture.InChargePerson}
+        </Table.Cell>
+        <Table.Cell className="max-sm:hidden w-64">
           {getConditionStatusText(furniture.ConditionRating)}
         </Table.Cell>
-        <Table.Cell className="w-64">{furniture.Status}</Table.Cell>
-        <Table.Cell>
+        <Table.Cell className="max-sm:hidden w-64">
+          {furniture.Status}
+        </Table.Cell>
+        <Table.Cell >
           <AccionsBTN
             Status={furniture.Status !== "Baja" ? true : false}
             setOpenS={setOpenV}

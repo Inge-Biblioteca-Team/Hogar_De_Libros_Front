@@ -65,7 +65,7 @@ const MDEditChildrenBook = ({
       <Modal.Header>Añadir libro a la colección</Modal.Header>
 
       <form onSubmit={handleSubmit(onConfirm)} >
-        <Modal.Body className=" grid grid-cols-3 gap-4">
+        <Modal.Body className=" grid grid-cols-1 lg:grid-cols-3 bg-white gap-4">
           <fieldset>
             <legend className="mb-2  text-center">Imagen del recurso</legend>
             <div>
@@ -141,6 +141,7 @@ const MDEditChildrenBook = ({
               </legend>
               <div className=" grid grid-cols-2 gap-4">
                 <FloatingLabel
+                className="whitespace-nowrap"
                   variant="outlined"
                   label="Código de inscripción"
                   {...register("InscriptionCode")}

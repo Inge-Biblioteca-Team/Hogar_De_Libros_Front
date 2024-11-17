@@ -13,6 +13,7 @@ import { MdTitle, MdPersonSearch } from "react-icons/md";
 import BookTable from "../Components/BookTable";
 import { LuClipboardSignature } from "react-icons/lu";
 import { getColection } from "../Services/BooksServices";
+import { Pagination } from "flowbite-react";
 
 const ManageBooks = ({ loans }: { loans?: boolean }) => {
   const [open, setOpen] = useState(false);
@@ -52,9 +53,9 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
       ) : (
         <BreadCrumbManage text="Libros" />
       )}
-      <main className=" flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5 flex justify-between items-end max-sm:w-full max-sm:px-2">
-          <div className="flex gap-3">
+      <main className="overflow-x-hidden flex items-center justify-center w-full flex-col gap-4">
+        <section className="w-4/5 sm:items-center flex lg:flex-row flex-col justify-between lg:items-end max-sm:w-full max-sm:px-2 gap-4 lg:gap-0">
+          <div className="flex lg:flex-row flex-col gap-3">
             <TextInput
               onChange={(event) => (
                 setSearchTitle(event.target.value), setPage(1)
@@ -63,7 +64,7 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
               placeholder="Búsqueda por titulo"
             />
             <TextInput
-              className=" max-sm:hidden"
+              
               onChange={(event) => (
                 setSearchAuthor(event.target.value), setPage(1)
               )}
@@ -72,7 +73,7 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
               placeholder="Búsqueda por autor"
             />
             <TextInput
-              className=" max-sm:hidden"
+              
               onChange={(event) => (
                 setSearchSigna(event.target.value), setPage(1)
               )}
@@ -80,7 +81,7 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
               placeholder="Código de signatura"
             />
             <Select
-              className=" max-sm:hidden"
+              
               onChange={(event) => (setStatus(event.target.value), setPage(1))}
             >
               <option value="">Estado</option>
@@ -95,7 +96,10 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
         <section className="w-4/5 max-sm:w-full max-sm:px-2">
           {Catalog && (
             <>
+            <div className=" ">
               <BookTable catalog={Catalog} />
+              </div>
+              <div className="block max-sm:hidden">
               <CustomPagination
                 page={page}
                 onPageChange={onPageChange}
@@ -103,6 +107,16 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
                 setCurrentLimit={setLimit}
                 total={Catalog.count}
               />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+              <Pagination
+                layout="navigation"
+                currentPage={page}
+                totalPages={MaxPage}
+                onPageChange={onPageChange}
+              />
+              </div>
             </>
           )}
         </section>

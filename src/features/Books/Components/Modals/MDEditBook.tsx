@@ -58,13 +58,12 @@ const MDEditChildrenBook = ({
     });
   };
 
-
   return (
     <Modal show={open} onClose={onClose} size={"5xl"}>
-      <Modal.Header>Añadir libro a la colección</Modal.Header>
+      <Modal.Header>Modificar libro en la colección</Modal.Header>
 
-      <form onSubmit={handleSubmit(onConfirm)} >
-        <Modal.Body className=" grid grid-cols-3 gap-4">
+      <form onSubmit={handleSubmit(onConfirm)}>
+        <Modal.Body className=" grid grid-cols-1 bg-white lg:grid-cols-3 gap-4">
           <fieldset>
             <legend className="mb-2  text-center">Imagen del recurso</legend>
             <div>
@@ -140,6 +139,7 @@ const MDEditChildrenBook = ({
               </legend>
               <div className=" grid grid-cols-2 gap-4">
                 <FloatingLabel
+                  className="whitespace-nowrap"
                   variant="outlined"
                   label="Código de inscripción"
                   {...register("InscriptionCode")}

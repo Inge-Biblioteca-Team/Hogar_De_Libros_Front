@@ -23,7 +23,7 @@ const ViewChildrenBook = ({
     <>
       <Modal onClose={onClose} show={open}>
         <Modal.Header>Información del Libro</Modal.Header>
-        <Modal.Body className=" grid grid-cols-3 gap-4">
+        <Modal.Body className=" grid grid-cols-1 lg:grid-cols-3 gap-4">
           <figure>
             <img
               title="Click para editar la imagen"
@@ -33,7 +33,7 @@ const ViewChildrenBook = ({
               alt=""
             />
           </figure>
-          <div className=" flex flex-col justify-between col-span-2">
+          <div className=" flex flex-col lg:justify-between col-span-2">
             <Label value={`Titulo: ${book.Title}`} />
             <Label value={`Autor: ${book.Author}`} />
             <Label value={`Editorial: ${book.Editorial || "No Posee"}`} />

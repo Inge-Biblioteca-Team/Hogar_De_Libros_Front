@@ -16,11 +16,11 @@ const FriendsRowsRequest = ({ friend }: { friend: Friend }) => {
       <Table.Row>
         <Table.Cell>{friend.UserFullName}</Table.Cell>
         <Table.Cell>{friend.UserCedula}</Table.Cell>
-        <Table.Cell>{friend.PrincipalCategory}</Table.Cell>
-        <Table.Cell>{friend.SubCategory}</Table.Cell>
-        <Table.Cell>{friend.UserGender}</Table.Cell>
-        <Table.Cell>{friend.UserPhone}</Table.Cell>
-        <Table.Cell>
+        <Table.Cell className="max-sm:hidden">{friend.PrincipalCategory}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{friend.SubCategory}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{friend.UserGender}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{friend.UserPhone}</Table.Cell>
+        <Table.Cell >
           <RequestBTN
             setOpenV={setOpenV}
             setOpenA={setOpenA}

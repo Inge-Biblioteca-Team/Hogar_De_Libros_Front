@@ -39,7 +39,7 @@ const ManageRoom = () => {
       <BreadCrumbManage text="Salas" />
       <section className="flex flex-col justify-center items-center">
         <div className="w-4/5 flex flex-col items-center justify-center pt-1">
-          <div className="w-full flex justify-between items-end">
+          <div className="w-full max-sm:gap-4 max-sm:flex-col flex max-sm:items-center lg:justify-between items-end">
             <SearchRooms
               RName={setName}
               RStatus={setSStatus}
@@ -49,7 +49,7 @@ const ManageRoom = () => {
           </div>
           <div className="w-full pt-2">
             {rooms && rooms?.count > 0 ? (
-              <div className="grid grid-cols-2 gap-5 my-4">
+              <div className="grid max-sm:grid-cols-1 grid-cols-2 gap-5 my-4">
                 {rooms?.data.map((room) => (
                   <RoomCards Rooms={room} key={room.roomId} />
                 ))}

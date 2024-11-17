@@ -11,6 +11,7 @@ import CreateCourse from "../components/Crud/CreateCourse";
 import { ServicesCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageCourses = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -49,9 +50,9 @@ const ManageCourses = () => {
   return (
     <>
       <ServicesCrumbs text="Cursos" />
-      <main className=" w-full flex items-center justify-center flex-col gap-4">
-        <section className=" w-4/5 flex justify-between items-end">
-          <div className=" flex gap-2">
+      <main className=" overflow-x-hidden w-full flex items-center justify-center flex-col gap-4">
+        <section className=" w-4/5  max-sm:gap-4 max-sm:place-items-center max-sm:flex-col flex justify-between items-end">
+          <div className=" flex max-sm:w-full max-sm:flex-col gap-2">
             <div>
               <Label className=" text-lg">Nombre</Label>
               <TextInput
@@ -63,7 +64,7 @@ const ManageCourses = () => {
             </div>
             <div>
               <Label className=" text-lg">Estado</Label>
-              <Select onChange={(event)=>SetStatus(event.target.value)} >
+              <Select onChange={(event) => SetStatus(event.target.value)}>
                 <option value="">Seleccione un estado</option>
                 <option value="1">Proximos</option>
                 <option value="0">Pasados</option>
@@ -72,19 +73,19 @@ const ManageCourses = () => {
           </div>
           <CreateCourse />
         </section>
-        <section className="w-4/5">
+        <section className="w-4/5 max-sm:w-full max-sm:p-4">
           {Courses && Courses.count > 0 ? (
             <>
               <Table hoverable className=" text-center">
                 <Table.Head className=" h-20 text-sm">
                   <Table.HeadCell>Nombre</Table.HeadCell>
-                  <Table.HeadCell>Encargado</Table.HeadCell>
-                  <Table.HeadCell>Fecha</Table.HeadCell>
-                  <Table.HeadCell>Hora</Table.HeadCell>
-                  <Table.HeadCell>Cupos Disponibles</Table.HeadCell>
-                  <Table.HeadCell>Matricula</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Encargado</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Fecha</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Hora</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Cupos Disponibles</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Matricula</Table.HeadCell>
                   <Table.HeadCell>Estado</Table.HeadCell>
-                  <Table.HeadCell></Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="h-96">
                   {Courses?.data.map((course: Courses) => (
@@ -92,13 +93,24 @@ const ManageCourses = () => {
                   ))}
                 </Table.Body>
               </Table>
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={Courses?.count || 0}
-              />
+              <div className="block max-sm:hidden">
+                <CustomPagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={Courses?.count || 0}
+                />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={currentPage}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />

@@ -21,3 +21,25 @@ export type BiblioStats = {
   coursesCount: number;
   loansCount: number;
 };
+
+export type Counts = {
+  EventosExitosos: number;
+  CursosExitosos: number;
+  PrestamosExitosos: number;
+  EquiposExitosos: number;
+};
+
+export type ActivesCounts = {
+  Eventos: number;
+  Cursos: number;
+  Prestamos: number;
+  Libros: number;
+  Equipos: number;
+  Amigos: number;
+  Usuarios: number;
+};
+
+export type weekItems = {
+  title: string;
+  date: string;
+};

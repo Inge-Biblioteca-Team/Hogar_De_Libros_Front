@@ -3,32 +3,47 @@ import { IoIosHome } from "react-icons/io";
 import { formatToFullDate } from "../components/FormatTempo";
 import CounterCard from "../components/CounterCard";
 import { Link } from "react-router-dom";
-import { GiBookshelf } from "react-icons/gi";
+import { ActivesCounts, Counts } from "../Types/GlobalTypes";
+import { useQuery } from "react-query";
+import { GetActivitiesCounts, GetGeneralCounts } from "../Services/Stats";
+import Calendar from "../components/Calendar";
 import LoanStadisticts from "../components/LoanStadisticts";
-import { BsFillInfoSquareFill } from "react-icons/bs";
-import { GrServices } from "react-icons/gr";
-import { FaDatabase } from "react-icons/fa6";
-import RedirectCard from "../components/RedirectCard";
+
 const AdminHomePage = () => {
+  const { data: Activitiescounts } = useQuery<Counts>(
+    ["ActivitiesCounts"],
+    () => GetActivitiesCounts(),
+    {
+      staleTime: 600,
+    }
+  );
+  const { data: GeneralCounts } = useQuery<ActivesCounts>(
+    ["GeneralCounts"],
+    () => GetGeneralCounts(),
+    {
+      staleTime: 600,
+    }
+  );
+
   return (
     <>
       <div className=" flex justify-between">
         <Breadcrumb className="custom-breadcrumb">
           <Breadcrumb.Item icon={IoIosHome}>Inicio</Breadcrumb.Item>
         </Breadcrumb>
-        <span className=" text-xl mr-4 mt-2 text-gray-600">
+        <span className=" text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
           {" "}
           {formatToFullDate(new Date())}{" "}
         </span>
       </div>
-      <main className=" w-full flex flex-col items-center gap-3 ">
-        <section className=" grid grid-cols-6 w-11/12 gap-8">
-          <div className="col-span-4">
+      <main className=" w-full flex flex-col items-center gap-3">
+        <section className=" grid grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
+          <div className="col-span-4 max-sm:hidden">
             <LoanStadisticts />
           </div>
-          <div className=" flex flex-col gap-6">
+          <div className="grid grid-cols-2 gap-6 col-span-2 ">
             <CounterCard
-              counter={0}
+              counter={GeneralCounts?.Libros || 0}
               text="Libros en colección"
               children={
                 <div className="p-3 flex flex-col gap-3">
@@ -48,8 +63,8 @@ const AdminHomePage = () => {
               }
             />
             <CounterCard
-              counter={0}
-              text="Solicitudes de préstamos"
+              counter={Activitiescounts?.PrestamosExitosos || 0}
+              text="Préstamos de libro"
               children={
                 <div className="p-3 flex flex-col gap-3">
                   <Link
@@ -74,8 +89,8 @@ const AdminHomePage = () => {
               }
             />
             <CounterCard
-              counter={0}
-              text="Solicitudes de préstamos"
+              counter={GeneralCounts?.Usuarios || 0}
+              text="Usuarios registrados"
               children={
                 <div className="p-3 flex flex-col gap-3">
                   <Link
@@ -87,11 +102,10 @@ const AdminHomePage = () => {
                 </div>
               }
             />
-          </div>
-          <div className="flex flex-col gap-6">
+
             <CounterCard
-              counter={0}
-              text="Amigos de la biblioteca"
+              counter={GeneralCounts?.Amigos || 0}
+              text="Amigos"
               children={
                 <div className="p-3 flex flex-col gap-3">
                   <Link
@@ -110,8 +124,8 @@ const AdminHomePage = () => {
               }
             />
             <CounterCard
-              counter={0}
-              text="Prestamos de equipos"
+              counter={Activitiescounts?.EquiposExitosos || 0}
+              text="Préstamo de equipo"
               children={
                 <div className="p-3 flex flex-col gap-3">
                   <Link
@@ -131,8 +145,13 @@ const AdminHomePage = () => {
             />
 
             <CounterCard
-              counter={0}
-              text="Actividades realizadas"
+              counter={
+                (Activitiescounts &&
+                  Activitiescounts?.CursosExitosos +
+                    Activitiescounts?.EventosExitosos) ||
+                0
+              }
+              text="Actividades"
               children={
                 <div className="p-3 flex flex-col gap-3">
                   <Link
@@ -159,58 +178,8 @@ const AdminHomePage = () => {
           </div>
         </section>
         <section className=" flex w-11/12 justify-start gap-6">
-          <RedirectCard
-            text="Recursos"
-            Path="Recursos"
-            icon={<FaDatabase />}
-            List={
-              <>
-                <li>Artistas locales</li>
-                <li>Equipo de computo</li>
-                <li>Libros generales</li>
-                <li>Libros infantiles</li>
-                <li>Mobiliario</li>
-                <li>Salas</li>
-              </>
-            }
-          />
-          <RedirectCard
-            text="Servicios"
-            Path="Servicios"
-            icon={<GrServices />}
-            List={
-              <>
-                <li>Cursos</li>
-                <li>Eventos</li>
-                <li>Programas</li>
-              </>
-            }
-          />
-          <RedirectCard
-            text="Colecciones"
-            Path="Catalogo"
-            icon={<GiBookshelf />}
-            List={
-              <>
-                <li>Catalogo infantil</li>
-                <li>Catalogo General</li>
-              </>
-            }
-          />
-          <RedirectCard
-            text="Avisos importantes"
-            Path="Avisos"
-            icon={<BsFillInfoSquareFill />}
-            List={
-              <>
-                <li>Crear avisos</li>
-                <li>Recordar próximas actividades</li>
-                <li>Editar avisos</li>
-              </>
-            }
-          />
-          <Card className=" w-[32%] ml-2">
-            <div className=" text-center">Próximamente</div>
+          <Card className=" w-full h-[32vh] p0 rounded-sm">
+            <Calendar />
           </Card>
         </section>
       </main>

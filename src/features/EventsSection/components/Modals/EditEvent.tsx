@@ -78,7 +78,7 @@ const EditEvent = ({
       <Modal show={edit} onClose={onClose}>
         <Modal.Header>Editar Evento</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className=" flex flex-col">
+          <Modal.Body className="bg-white flex flex-col">
             <div className="w-full flex items-center justify-center">
               {imageUrl ? (
                 <img
