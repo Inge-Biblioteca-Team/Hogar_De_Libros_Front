@@ -11,6 +11,7 @@ import { FriendResponse } from "../types/FriendType";
 import OPTCategories from "../components/OPTCategories";
 import OPTSubCategories from "../components/OPTSubCategories";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageFriends = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -42,8 +43,8 @@ const ManageFriends = () => {
   return (
     <>
       <FirendCrumbs text="Lista de amigos" />
-      <main className=" flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex w-4/5 gap-2">
+      <main className="overflow-x-hidden flex flex-col items-center justify-center w-full gap-5">
+        <section className="max-sm:w-full max-sm:p-2 flex max-sm:flex-col w-4/5 gap-2">
           <div>
             <Label value="Categoría principal" />
             <Select onChange={(event) => setCategory(event.target.value)}>
@@ -64,14 +65,15 @@ const ManageFriends = () => {
             />
           </div>
         </section>
-        <section className=" w-4/5">
+        <section className="max-sm:w-full max-sm:p-2 w-4/5">
           {FriendList && FriendList.count > 0 ? (
             <>
               <FriendsTableBody>
                 {FriendList?.data.map((friend) => (
-                  <FriendsRows friend={friend} key={'Fri'+friend.FriendId} />
+                  <FriendsRows friend={friend} key={"Fri" + friend.FriendId} />
                 ))}
               </FriendsTableBody>
+              <div className="block max-sm:hidden">
               <CustomPagination
                 page={Page}
                 onPageChange={onPageChange}
@@ -79,6 +81,16 @@ const ManageFriends = () => {
                 setCurrentLimit={setCurrentLimit}
                 total={FriendList?.count || 0}
               />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={Page}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />

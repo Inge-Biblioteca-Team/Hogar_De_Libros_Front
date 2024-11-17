@@ -16,7 +16,7 @@ const ColabAprovedRow = ({ colaborator }: { colaborator: Colaborator }) => {
           {formatToDMY(colaborator.activityDate)}{" "}
         </Table.Cell>
         <Table.Cell className="">{colaborator.UserFullName}</Table.Cell>
-        <Table.Cell className="">{colaborator.UserPhone}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{colaborator.UserPhone}</Table.Cell>
         <Table.Cell className=" max-sm:hidden">
           {colaborator.UserEmail}
         </Table.Cell>

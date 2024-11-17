@@ -19,8 +19,9 @@ import OptCanton from "../../../components/OptCanton";
 import { useQuery } from "react-query";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { getUserInformationByCedula } from "../Services/SvUsuer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import cover from "../../../Assets/RegisterCover.jpg";
+import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -50,6 +51,11 @@ const Register = () => {
     }
 
     return result;
+  };
+
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const cedula = UseDebounce(watch("cedula"), 1000);
@@ -221,7 +227,7 @@ const Register = () => {
                   <TextInput
                     placeholder="8 caracteres, sin caracteres especiales"
                     id="Password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     required
                     {...register("password", {
                       required: "La contraseña es obligatoria",
@@ -265,7 +271,7 @@ const Register = () => {
                   <TextInput
                   placeholder="Repetir contraseña"
                     id="repeatPassword"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     className={`border ${
                       errors.repeatPassword
                         ? "border-red-500"
@@ -282,6 +288,20 @@ const Register = () => {
                       },
                     })}
                   />
+                  <button
+                  type="button"
+                  className=" absolute right-4 top-9"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? (
+                    <IoEyeOffSharp
+                      size={20}
+                      className=" hover:text-stone-500"
+                    />
+                  ) : (
+                    <IoEyeSharp size={20} className=" hover:text-stone-500" />
+                  )}
+                </button>
                   {errors.repeatPassword && (
                     <Popover
                       trigger="hover"

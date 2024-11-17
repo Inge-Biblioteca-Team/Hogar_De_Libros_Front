@@ -11,6 +11,7 @@ import FriendsRowsRequest from "../components/FriendsRowsRequest";
 import OPTCategories from "../components/OPTCategories";
 import OPTSubCategories from "../components/OPTSubCategories";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageFriendsRequest = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -42,8 +43,8 @@ const ManageFriendsRequest = () => {
   return (
     <>
       <FirendCrumbs text="Solicitudes pendientes de respuesta" />
-      <main className=" flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex w-4/5 gap-2">
+      <main className="overflow-x-hidden flex flex-col items-center justify-center w-full gap-5">
+        <section className=" max-sm:w-full max-sm:p-2 flex max-sm:flex-col w-4/5 gap-2">
           <div>
             <Label value="Categoría principal" />
             <Select onChange={(event) => setCategory(event.target.value)}>
@@ -64,14 +65,18 @@ const ManageFriendsRequest = () => {
             />
           </div>
         </section>
-        <section className=" w-4/5">
+        <section className="max-sm:w-full max-sm:p-2 w-4/5">
           {FriendList && FriendList.count > 0 ? (
             <>
               <FriendsTableBody hidd>
                 {FriendList?.data.map((friend) => (
-                  <FriendsRowsRequest friend={friend} key={'FriR'+friend.FriendId} />
+                  <FriendsRowsRequest
+                    friend={friend}
+                    key={"FriR" + friend.FriendId}
+                  />
                 ))}
               </FriendsTableBody>
+              <div className="block max-sm:hidden">
               <CustomPagination
                 page={Page}
                 onPageChange={onPageChange}
@@ -79,6 +84,16 @@ const ManageFriendsRequest = () => {
                 setCurrentLimit={setCurrentLimit}
                 total={FriendList?.count || 0}
               />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={Page}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />

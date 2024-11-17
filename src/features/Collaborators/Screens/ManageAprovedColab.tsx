@@ -10,6 +10,7 @@ import OptSubCategory from "../Components/OptSubCategory";
 import OptMainCategory from "../Components/OptMainCategory";
 import { ColabCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageAprovedColab = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -40,14 +41,14 @@ const ManageAprovedColab = () => {
     <>
       <ColabCrumbs text="Colaboraciones futuras" />
       <main className=" flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex w-4/5 gap-2 max-sm:w-full max-sm:px-3">
-          <div className=" max-sm:hidden">
+        <section className=" flex max-sm:flex-col w-4/5 gap-2 max-sm:w-full max-sm:px-3">
+          <div className=" ">
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
               <OptMainCategory />
             </Select>
           </div>
-          <div className=" max-sm:hidden">
+          <div className=" ">
             <Label value="Categoría secundaria" />
             <Select onChange={(event) => setSubCategory(event.target.value)}>
               <OptSubCategory />
@@ -72,6 +73,7 @@ const ManageAprovedColab = () => {
                   />
                 ))}
               </ColabsTableBody>
+              <div className="block max-sm:hidden">
               <CustomPagination
                 page={Page}
                 onPageChange={onPageChange}
@@ -79,6 +81,16 @@ const ManageAprovedColab = () => {
                 setCurrentLimit={setCurrentLimit}
                 total={ColaborationsList?.count || 0}
               />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={Page}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />
