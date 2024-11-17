@@ -44,7 +44,7 @@ const ManageFriendsRequest = () => {
     <>
       <FirendCrumbs text="Solicitudes pendientes de respuesta" />
       <main className="overflow-x-hidden flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex max-sm:flex-col w-4/5 gap-2">
+        <section className=" max-sm:w-full max-sm:p-2 flex max-sm:flex-col w-4/5 gap-2">
           <div>
             <Label value="Categoría principal" />
             <Select onChange={(event) => setCategory(event.target.value)}>

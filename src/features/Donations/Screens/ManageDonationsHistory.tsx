@@ -39,7 +39,7 @@ const ManageDonationsHistory = () => {
     <>
       <DonationsCrumbs text="Donaciones finalizadas" />
       <main className="overflow-x-hidden flex flex-col items-center justify-center w-full gap-5">
-        <section className=" max-sm:flex-col flex w-4/5 gap-2">
+        <section className="max-sm:w-full max-sm:p-2 max-sm:flex-col flex w-4/5 gap-2">
           <div>
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
