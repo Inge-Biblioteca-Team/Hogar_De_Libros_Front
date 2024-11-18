@@ -47,13 +47,13 @@ const EditUser = ({
   };
 
   return (
-    <Modal show={edit} onClose={onClose}>
+    <Modal show={edit} onClose={onClose} className=" bg-white">
       <Modal.Header>
         <span>Editar información del usuario {User.name}</span>
       </Modal.Header>
       <form onSubmit={handleSubmit(handleConfirm)}>
         <Modal.Body className=" bg-white">
-          <fieldset className="mb-4">
+          <fieldset className="mb-4  bg-white">
             <legend className="text-lg font-semibold mb-2">
               Información de contacto
             </legend>
@@ -79,7 +79,7 @@ const EditUser = ({
             </div>
           </fieldset>
 
-          <fieldset className="mb-4">
+          <fieldset className="mb-4  bg-white">
             <legend className="text-lg font-semibold mb-2">
               Información de residencia
             </legend>
@@ -112,11 +112,11 @@ const EditUser = ({
             </div>
           </fieldset>
 
-          <fieldset className="mb-4">
+          <fieldset className="mb-4 bg-white">
             <legend className="text-lg font-semibold mb-2 ">
               Rol y Privilegios
             </legend>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4">
               <div className=" ">
                 <Label htmlFor="rol">Rol</Label>
                 <Select id="" title="Rol" {...register("role")}>
