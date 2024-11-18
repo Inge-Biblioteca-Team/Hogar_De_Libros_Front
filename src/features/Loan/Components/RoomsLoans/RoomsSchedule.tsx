@@ -26,7 +26,7 @@ const RoomsSchedule = ({
     roomId: room.roomId,
   }));
 
-  const hours: number[] = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+  const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 
   const HourMapping: { [key: number]: string } = {
     8: "8 AM",
@@ -41,7 +41,7 @@ const RoomsSchedule = ({
     17: "5 PM",
   };
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [selectedRoom, setSelectedRoom] = useState<{
     roomId: number;
     roomNumber: string;
@@ -58,7 +58,6 @@ const RoomsSchedule = ({
       occupiedHours[roomNumber].push(parseInt(hour));
     });
   });
-
 
   const toggleHourSelection = (
     room: { roomId: number; roomNumber: string },
@@ -97,34 +96,38 @@ const RoomsSchedule = ({
     setSelectedHours([]);
   };
 
-  if (rooms.length === 0)
+  if (rooms.length == 0)
     return (
       <div className="w-full flex flex-col h-full justify-between text-center text-5xl mt-36">
         De momento no existen salas disponibles para reserva
       </div>
     );
-
   return (
-    <div className="w-full flex flex-col h-full justify-between px-4 sm:px-6 md:px-8">
-      <div className="font-bold text-center text-lg mb-3">
+    <div className="w-full flex flex-col h-full justify-between">
+      <div className="font-bold text-center text-lg">
         Disponibilidad de salas
       </div>
-      <div className="w-full overflow-x-auto">
-        <Table className="w-full table-auto text-center">
-          <Table.Head>
-            <Table.HeadCell>NÚMERO DE SALA</Table.HeadCell>
-            {hours.map((hour) => (
-              <Table.HeadCell key={hour}>{HourMapping[hour]}</Table.HeadCell>
-            ))}
-          </Table.Head>
-          <Table.Body>
-            {rooms.map((room) => (
+      <Table className="text-center h-80 mt-2">
+        <Table.Head>
+          <Table.HeadCell className="w-10">Número de sala</Table.HeadCell>
+          {hours.map((hour) => (
+            <Table.HeadCell key={hour}>
+              <div>{HourMapping[hour]}</div>
+            </Table.HeadCell>
+          ))}
+        </Table.Head>
+        <Table.Body>
+          {rooms.map((room) => {
+            const roomSelectedHours =
+              selectedRoom?.roomNumber === room.roomNumber ? selectedHours : [];
+            return (
               <Table.Row key={room.roomNumber}>
-                <Table.Cell className="font-semibold">{room.roomNumber}</Table.Cell>
+                <Table.Cell onClick={() => setSelectedRoom(room)}>
+                  {room.roomNumber}
+                </Table.Cell>
                 {hours.map((hour) => {
-                  const isOccupied = occupiedHours[room.roomNumber]?.includes(hour);
-                  const roomSelectedHours =
-                    selectedRoom?.roomNumber === room.roomNumber ? selectedHours : [];
+                  const isOccupied =
+                    occupiedHours[room.roomNumber]?.includes(hour);
 
                   return (
                     <Table.Cell
@@ -132,33 +135,34 @@ const RoomsSchedule = ({
                       onClick={() => {
                         if (!isOccupied) toggleHourSelection(room, hour);
                       }}
-                      className={`p-2 border cursor-pointer ${roomSelectedHours.includes(hour)
-                          ? "bg-blue-500 text-white"
+                      className={`m-1 p-2 border ${
+                        roomSelectedHours.includes(hour)
+                          ? "bg-blue-500"
                           : isOccupied
-                            ? "bg-gray-300"
-                            : "bg-white"
-                        }`}
+                          ? "bg-gray-300"
+                          : "bg-white cursor-pointer"
+                      }`}
                       style={{ pointerEvents: isOccupied ? "none" : "auto" }}
-                    />
+                    >
+                      {" "}
+                    </Table.Cell>
                   );
                 })}
               </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
-      </div>
+            );
+          })}
+        </Table.Body>
+      </Table>
 
-      <div className="mt-4 flex justify-center">
+      <div className="mt-4">
         <Button
           onClick={handleConfirmSelection}
-          color="blue"
-          disabled={roomss.length === 0}
+          color={"blue"}
+          disabled={roomss.length == 0}
         >
           Llenar formulario de solicitud
         </Button>
       </div>
-
-
       {selectedRoom && (
         <ReservationForm
           date={date}
