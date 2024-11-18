@@ -54,7 +54,7 @@ const CourseInfo = ({
             />
           </figure>
         </div>
-        <div className="flex justify-between h-fit">
+        <div className="flex max-sm:flex-col justify-between h-fit">
           <div className=" flex flex-col gap-3">
             <span>
               <strong className="font-bold">Nombre:</strong>{" "}

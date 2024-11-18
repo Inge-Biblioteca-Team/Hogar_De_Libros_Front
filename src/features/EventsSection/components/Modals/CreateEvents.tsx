@@ -63,13 +63,13 @@ const CreateEvent = () => {
 
   return (
     <>
-      <Button type="button" onClick={() => setIsModalOpen(true)} color={"blue"}>
+      <Button className="max-sm:w-80" type="button" onClick={() => setIsModalOpen(true)} color={"blue"}>
         Añadir evento
       </Button>
       <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <Modal.Header>Añadir nuevo evento</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className=" flex flex-col gap-4">
+          <Modal.Body className="bg-white flex flex-col gap-4">
             <div className="w-full flex items-center justify-center">
               {imageUrl ? (
                 <img

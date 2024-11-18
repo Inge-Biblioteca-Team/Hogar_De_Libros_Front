@@ -12,13 +12,13 @@ const TBLArtists = ({ artist }: { artist: Artist }) => {
   const [edit, setEdit] = useState<boolean>(false);
   return (
     <>
-      <Table.Row className=" h-20" key={artist.ID}>
+      <Table.Row className=" h-20 bg-white" key={artist.ID}>
         <Table.Cell className="w-56">{artist.Name}</Table.Cell>
-        <Table.Cell className="w-56">{artist.ArtisProfession} </Table.Cell>
-        <Table.Cell className="w-56">
+        <Table.Cell className="w-56 max-sm:hidden">{artist.ArtisProfession} </Table.Cell>
+        <Table.Cell className="w-56 max-sm:hidden">
           <div className="line-clamp-2">{artist.MoreInfo}</div>
         </Table.Cell>
-        <Table.Cell className="w-56">
+        <Table.Cell className="w-56 max-sm:hidden">
           <div>
             <a href={artist.FBLink}>FB</a> / <a href={artist.IGLink}>IG</a> /{" "}
             <a href={artist.LILink}>LI</a>

@@ -10,6 +10,7 @@ import CreateEvents from "../components/Modals/CreateEvents";
 import { ServicesCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageEvents = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -45,9 +46,9 @@ const ManageEvents = () => {
   return (
     <>
       <ServicesCrumbs text="Eventos" />
-      <div className="w-full flex items-center justify-center">
-        <div className="w-4/5">
-          <div className="flex items-end justify-between w-full mb-4 ">
+      <div className="overflow-x-hidden w-full  flex items-center justify-center">
+        <div className="w-4/5 max-sm:w-full max-sm:p-4 ">
+          <div className="flex max-sm:gap-4 max-sm:items-center max-sm:flex-col items-end justify-between w-full mb-4 ">
             <SearchEvents EName={setStitle} EStatus={setSStatus} />
             <div>
               <CreateEvents />
@@ -59,12 +60,20 @@ const ManageEvents = () => {
               <Table hoverable className="text-center">
                 <Table.Head>
                   <Table.HeadCell>Título</Table.HeadCell>
-                  <Table.HeadCell>Ubicación</Table.HeadCell>
-                  <Table.HeadCell>Persona a Cargo</Table.HeadCell>
-                  <Table.HeadCell>Fecha</Table.HeadCell>
-                  <Table.HeadCell>Hora</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">
+                    Ubicación
+                  </Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">
+                    Persona a Cargo
+                  </Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">
+                    Fecha
+                  </Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">
+                    Hora
+                  </Table.HeadCell>
                   <Table.HeadCell>Estado</Table.HeadCell>
-                  <Table.HeadCell></Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className=" h-[30rem]">
                   {Events?.data.map((event) => (
@@ -72,13 +81,24 @@ const ManageEvents = () => {
                   ))}
                 </Table.Body>
               </Table>
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={Events?.count || 0}
-              />
+              <div className="block max-sm:hidden">
+                <CustomPagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={Events?.count || 0}
+                />
+              </div>
+
+              <div className="sm:hidden max-sm:pt-2  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={currentPage}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />

@@ -9,6 +9,7 @@ import { GetProgramsList } from "../services/SvPrograms";
 import { ServicesCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManagePrograms = () => {
   const [Oadd, SetOAdd] = useState<boolean>(false);
@@ -46,10 +47,10 @@ const ManagePrograms = () => {
   return (
     <>
       <ServicesCrumbs text="Programas" />
-      <div className="w-full flex items-center justify-center">
-        <div className="w-4/5">
-          <div className="flex items-end justify-between w-full mb-5 mt-3">
-            <div className="flex gap-2">
+      <div className="overflow-x-hidden w-full flex items-center justify-center">
+        <div className="w-4/5 max-sm:w-full max-sm:p-2">
+          <div className="flex  max-sm:flex-col max-sm:items-center items-end justify-between w-full mb-5 mt-3">
+            <div className="flex max-sm:w-full max-sm:flex-col  gap-2">
               <div>
                 <Label>Nombre del programa</Label>
                 <TextInput
@@ -66,7 +67,11 @@ const ManagePrograms = () => {
                 </Select>
               </div>
             </div>
-            <Button color={"blue"} onClick={() => SetOAdd(true)}>
+            <Button
+              className="max-sm:mt-4 max-sm:w-full "
+              color={"blue"}
+              onClick={() => SetOAdd(true)}
+            >
               Añadir programa
             </Button>
           </div>
@@ -75,18 +80,18 @@ const ManagePrograms = () => {
             <>
               <Table hoverable className="text-center">
                 <Table.Head className="h-20 text-sm">
-                  <Table.HeadCell className=" w-20">
+                  <Table.HeadCell className="max-sm:hidden w-20">
                     Numero de Registro
                   </Table.HeadCell>
-                  <Table.HeadCell className=" w-20">
+                  <Table.HeadCell className="max-sm:p-2 w-20">
                     Nombre del Programa
                   </Table.HeadCell>
-                  <Table.HeadCell className=" w-20">Descripción</Table.HeadCell>
-                  <Table.HeadCell className=" w-20">
+                  <Table.HeadCell className="max-sm:hidden w-20">Descripción</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden w-20">
                     Información Relacionada
                   </Table.HeadCell>
                   <Table.HeadCell className=" w-20">Estado</Table.HeadCell>
-                  <Table.HeadCell className=" w-20"></Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden w-20"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="h-96">
                   {Programs?.data.map((Program) => (
@@ -94,6 +99,7 @@ const ManagePrograms = () => {
                   ))}
                 </Table.Body>
               </Table>
+              <div className="block max-sm:hidden">
               <CustomPagination
                 page={currentPage}
                 onPageChange={onPageChange}
@@ -101,6 +107,16 @@ const ManagePrograms = () => {
                 setCurrentLimit={setCurrentLimit}
                 total={Programs?.count || 0}
               />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={currentPage}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />

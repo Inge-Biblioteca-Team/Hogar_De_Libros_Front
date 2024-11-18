@@ -21,7 +21,7 @@ const BookChildrenRow = ({ book }: { book: Book }) => {
           <div className=" line-clamp-2">{book.Author}</div>
         </Table.Cell>
         <Table.Cell className=" max-sm:hidden">{book.ISBN}</Table.Cell>
-        <Table.Cell>
+        <Table.Cell className=" max-sm:hidden">
           {book.SignatureCode ? book.SignatureCode : "N/A"}
         </Table.Cell>
         <Table.Cell className=" max-sm:hidden">
