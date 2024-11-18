@@ -31,19 +31,19 @@ const TblRow = ({
   return (
     <>
       <Table.Row onClick={!NeedAccions ? () => setSee(true) : undefined}>
-        <Table.Cell>{ReqDate}</Table.Cell>
-        <Table.Cell>{ExDate}</Table.Cell>
-        <Table.Cell>{Loan.user.name}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{ReqDate}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">{ExDate}</Table.Cell>
+        <Table.Cell className="max-sm:w-16">{Loan.user.name}</Table.Cell>
         <Table.Cell>
-          <div className="w-44 line-clamp-1 mt-3">{Loan.book.Title}</div>
+          <div className="w-44 line-clamp-1 mt-3 max-sm:w-16 ">{Loan.book.Title}</div>
         </Table.Cell>
-        <Table.Cell className="w-52">{Loan.book.signatureCode} </Table.Cell>
-        <Table.Cell className={`${NeedAccions ? `hidden` : ``} w-64`}>
+        <Table.Cell className="w-52 max-sm:hidden">{Loan.book.signatureCode} </Table.Cell>
+        <Table.Cell className={`${NeedAccions ? `hidden` : ``} max-sm:hidden  w-64 `}>
           Adrian Aguilar
         </Table.Cell>
-        <Table.Cell className={`${NeedAccions ? `` : `hidden`}`}>
+        <Table.Cell  className={`${NeedAccions ? `` : `hidden`} `}>
           {Inprogress ? (
-            <BTNInprogresLoan Loan={Loan} />
+            <BTNInprogresLoan  Loan={Loan} />
           ) : (
             <BTNResolveLoan Loan={Loan} />
           )}

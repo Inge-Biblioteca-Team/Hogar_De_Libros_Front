@@ -14,20 +14,20 @@ const BTNResolveLoan = ({ Loan }: { Loan: Loans }) => {
 
   return (
     <>
-      <div className=" flex justify-center gap-x-12">
-        <button type="button" onClick={() => setSee(true)}>
-          {""} <PiEyeFill size={30} />
+      <div className=" flex justify-center max-sm:pl-8 max-sm:w-10 max-sm:gap-x-1 gap-x-12">
+        <button className="" type="button" onClick={() => setSee(true)}>
+          {""} <PiEyeFill className="max-sm:size-8" size={30} />
         </button>
         <button
           type="button"
           title="Rechazar préstamo"
           onClick={() => setShowD(true)}
         >
-          <MdCancel size={30} />
+          <MdCancel className="max-sm:size-8" size={30} />
         </button>
         <button type="button" title="Aprobar préstamo"
         onClick={()=>setOpenA(true)}>
-          <GiConfirmed size={30} />
+          <GiConfirmed className="max-sm:size-8" size={30} />
         </button>
       </div>
       <DenyRequest Loan={Loan} showCancel={showD} setShowCancel={setShowD} />
