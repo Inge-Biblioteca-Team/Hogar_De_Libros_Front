@@ -52,7 +52,7 @@ const EditUser = ({
         <span>Editar información del usuario {User.name}</span>
       </Modal.Header>
       <form onSubmit={handleSubmit(handleConfirm)}>
-        <Modal.Body>
+        <Modal.Body className=" bg-white">
           <fieldset className="mb-4">
             <legend className="text-lg font-semibold mb-2">
               Información de contacto
