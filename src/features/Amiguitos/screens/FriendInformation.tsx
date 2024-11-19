@@ -6,7 +6,7 @@ import { useState } from "react";
 import MainFormAmigos from "../components/Forms/MainFormAmigos";
 import FormDonaciones from "../../Donations/Components/Modals/FormDonaciones";
 import ImageDonation from "../../../Assets/Donaciones.webp";
-import ImageFriend from"../../../Assets/Amigos.png";
+import ImageFriend from "../../../Assets/Amigos.png";
 
 const FriendInformation = () => {
   const [OpenD, setOpenD] = useState<boolean>(false);

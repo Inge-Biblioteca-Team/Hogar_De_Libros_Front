@@ -2,7 +2,7 @@ import { Modal, Button } from "flowbite-react";
 import { SetStateAction, Dispatch } from "react";
 import { Friend } from "../../types/FriendType";
 import { formatToDMY } from "../../../../components/FormatTempo";
-
+import { IoDocumentAttach } from "react-icons/io5";
 const MDViewFriend = ({
   open,
   setOpen,
@@ -63,11 +63,19 @@ const MDViewFriend = ({
             <strong>Motivo de rechazo:</strong> {friend.Reason}
           </span>
         )}
-        {friend.Document.length>0 && (
+        {friend.Document.length > 0 && (
           <span className=" flex flex-col">
             <strong>Documentos adjuntos:</strong>
-            {friend.Document.map((doc) => (
-              <span>{doc}</span>
+            {friend.Document.map((doc, index) => (
+              <a
+                target="#blank"
+                href={doc}
+                title="Click para abrir"
+                className=" hover:text-Body"
+              >
+                <IoDocumentAttach size={27} />
+                <span>#{index + 1}</span>
+              </a>
             ))}
           </span>
         )}
