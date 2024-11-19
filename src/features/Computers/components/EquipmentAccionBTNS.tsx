@@ -10,7 +10,7 @@ const EquipmentAccionBTNS = ({ computers }: { computers: Equipment }) => {
   const [openEdit, setOpenEdit] = useState(false);
   const [openSee, setOpenSee] = useState(false);
   return (
-    <div className=" flex gap-7 w-full items-end justify-end mr-9 ">
+    <div className="flex gap-2 lg:gap-4 items-center justify-center">
       <button
         title="ver información"
         type="button"
@@ -61,5 +61,3 @@ const EquipmentAccionBTNS = ({ computers }: { computers: Equipment }) => {
 };
 
 export default EquipmentAccionBTNS;
-
-
