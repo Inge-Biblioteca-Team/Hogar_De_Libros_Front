@@ -1,20 +1,13 @@
-import { Button, Sidebar } from "flowbite-react";
+import { Sidebar } from "flowbite-react";
 import { useContext } from "react";
 import UserContext from "../../../Context/UserContext/UserContext";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
-import { FaPowerOff } from "react-icons/fa";
-import UseLogOut from "../../../features/Users/Hooks/UseLogOut";
 const ForAll = () => {
   const { currentUser } = useContext(UserContext);
   const { handleNavigation } = useContext(SidebarContext);
 
   const role = currentUser?.role;
 
-  const { mutate: logOut } = UseLogOut();
-
-  const onLogOut = () => {
-    logOut();
-  };
 
   return (
     <>
