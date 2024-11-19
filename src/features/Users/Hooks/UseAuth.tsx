@@ -6,10 +6,10 @@ import { useContext } from "react";
 import UserContext from "../../../Context/UserContext/UserContext";
 import { SingIng } from "../Type/UserType";
 import { ApiError } from "../../../Types/ApiTypes";
-
 const UseAuth = () => {
   const navigate = useNavigate();
   const { setCurrentUser, setIsLogged } = useContext(UserContext);
+
   return useMutation({
     mutationFn: (data: SingIng) =>
       toast.promise(LogIn(data), {
@@ -25,7 +25,7 @@ const UseAuth = () => {
     onSuccess(data) {
       if (data) {
         const { user } = data;
-        localStorage.setItem("isLogged","true");
+        localStorage.setItem("isLogged", "true");
         localStorage.setItem("currentUser", JSON.stringify(user));
         setCurrentUser(user);
         setIsLogged(true);
