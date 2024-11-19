@@ -46,8 +46,8 @@ const LoanBody = ({
           </div>
         }
       >
-        <Table.Row className="cursor-pointer" key={Loan.BookLoanId}>
-          <Table.Cell>{Loan.BookLoanId}</Table.Cell>
+        <Table.Row className="cursor-pointer  bg-white" key={Loan.BookLoanId}>
+          <Table.Cell className="max-sm:hidden">{Loan.BookLoanId}</Table.Cell>
           <Table.Cell>
             <div className=" line-clamp-1">{Loan.book.Title}</div>
           </Table.Cell>

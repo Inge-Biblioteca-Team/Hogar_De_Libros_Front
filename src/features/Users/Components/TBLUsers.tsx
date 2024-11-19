@@ -27,20 +27,20 @@ const TBLUsers = ({ user }: { user: User }) => {
 
   return (
     <>
-      <Table.Row className=" h-20" key={user.cedula}>
+      <Table.Row className="h-20  bg-white" key={user.cedula}>
         <Table.Cell className="w-56">{user.cedula} </Table.Cell>
         <Table.Cell className="w-56">
           {user.name} {user.lastName}{" "}
         </Table.Cell>
-        <Table.Cell className="w-56">
+        <Table.Cell className="w-56 max-sm:hidden">
           {roleMapping[user.role] || "Usuario de Sala"}{" "}
         </Table.Cell>
-        <Table.Cell className="w-56">{user.province} </Table.Cell>
-        <Table.Cell className="w-56">{user.phoneNumber} </Table.Cell>
-        <Table.Cell className="w-56">
+        <Table.Cell className="w-56 max-sm:hidden">{user.province} </Table.Cell>
+        <Table.Cell className="w-56 max-sm:hidden">{user.phoneNumber} </Table.Cell>
+        <Table.Cell className="w-56 max-sm:hidden">
           {formatToDMY(user.registerDate)}
         </Table.Cell>
-        <Table.Cell className="w-56">
+        <Table.Cell className="w-56 max-sm:hidden">
           {user.status ? "Activo" : "Inactivo"}{" "}
         </Table.Cell>
         <Table.Cell className="w-52">

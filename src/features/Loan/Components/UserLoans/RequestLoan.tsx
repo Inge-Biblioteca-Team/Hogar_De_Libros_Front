@@ -24,9 +24,9 @@ const RequestLoan = () => {
     <>
       <div className="">
         <h5 className=" font-bold">Solicitudes Pendientes de Aprobación</h5>
-        <Table hoverable className="text-center">
+        <Table hoverable className="text-center  bg-white">
           <Table.Head>
-            <Table.HeadCell className="w-10">#De Solicitud</Table.HeadCell>
+            <Table.HeadCell className="w-10 max-sm:hidden">#De Solicitud</Table.HeadCell>
             <Table.HeadCell className="w-40">Título</Table.HeadCell>
             <Table.HeadCell className="w-9">Fecha de solicitud</Table.HeadCell>
             <Table.HeadCell className="w-80">Fecha de vencimiento</Table.HeadCell>

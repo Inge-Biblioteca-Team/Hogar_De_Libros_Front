@@ -14,18 +14,18 @@ const TBLLoan = ({
     <>
       <Table hoverable className=" text-center min-h-[30rem] ">
         <Table.Head>
-          <Table.HeadCell>Fecha de solicitud</Table.HeadCell>
-          <Table.HeadCell>Fecha de vencimiento</Table.HeadCell>
-          <Table.HeadCell>Nombre del Solicitante</Table.HeadCell>
-          <Table.HeadCell>Título del libro</Table.HeadCell>
-          <Table.HeadCell>Código de signatura</Table.HeadCell>
+          <Table.HeadCell className="max-sm:hidden">Fecha de solicitud</Table.HeadCell>
+          <Table.HeadCell className="max-sm:hidden">Fecha de vencimiento</Table.HeadCell>
+          <Table.HeadCell className="max-sm:w-20">Nombre del Solicitante</Table.HeadCell>
+          <Table.HeadCell className="max-sm:w-20">Título del libro</Table.HeadCell>
+          <Table.HeadCell className="max-sm:hidden">Código de signatura</Table.HeadCell>
           <Table.HeadCell
-            className={`${NeedAccions ? `hidden` : ``} rounded-r-xl`}
+            className={`${NeedAccions ? `hidden` : ``}  max-sm:hidden rounded-r-xl`}
           >
             Aprobado Por
           </Table.HeadCell>
           <Table.HeadCell
-            className={`${NeedAccions ? `` : `hidden`}`}
+            className={`${NeedAccions ? `` : `hidden`}  max-sm:hidden`}
           ></Table.HeadCell>
         </Table.Head>
         <Table.Body>
