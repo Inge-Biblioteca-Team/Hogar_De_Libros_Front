@@ -12,7 +12,6 @@ const UserInfo = ({
   setSee: Dispatch<SetStateAction<boolean>>;
   User: User;
 }) => {
-
   return (
     <Modal show={see} onClose={() => setSee(false)}>
       <Modal.Header>
