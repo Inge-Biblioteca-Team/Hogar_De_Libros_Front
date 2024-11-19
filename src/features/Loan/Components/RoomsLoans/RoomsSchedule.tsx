@@ -107,7 +107,7 @@ const RoomsSchedule = ({
       <div className="font-bold text-center text-lg">
         Disponibilidad de salas
       </div>
-      <Table className="text-center h-80 mt-2">
+      <Table className="text-center h-80 mt-2 max-sm:hidden">
         <Table.Head>
           <Table.HeadCell className="w-10">Número de sala</Table.HeadCell>
           {hours.map((hour) => (
@@ -154,7 +154,56 @@ const RoomsSchedule = ({
         </Table.Body>
       </Table>
 
-      <div className="mt-4">
+      <Table className="text-center mt-2 hidden max-sm:block">
+        <Table.Head>
+          <Table.HeadCell>Hora</Table.HeadCell>
+          {rooms.map((room) => (
+            <Table.HeadCell
+              key={room.roomNumber}
+              className="cursor-pointer"
+              onClick={() => setSelectedRoom(room)}
+            >
+              Sala {room.roomNumber}
+            </Table.HeadCell>
+          ))}
+        </Table.Head>
+        <Table.Body>
+          {hours.map((hour) => (
+            <Table.Row key={hour}>
+              <Table.Cell>{HourMapping[hour]}</Table.Cell>
+              {rooms.map((room) => {
+                const isOccupied =
+                  occupiedHours[room.roomNumber]?.includes(hour);
+                const roomSelectedHours =
+                  selectedRoom?.roomNumber === room.roomNumber
+                    ? selectedHours
+                    : [];
+
+                return (
+                  <Table.Cell
+                    key={`${room.roomNumber}-${hour}`}
+                    onClick={() => {
+                      if (!isOccupied) toggleHourSelection(room, hour);
+                    }}
+                    className={`border ${
+                      roomSelectedHours.includes(hour)
+                        ? "bg-blue-500"
+                        : isOccupied
+                        ? "bg-gray-300"
+                        : "bg-white cursor-pointer"
+                    }`}
+                    style={{ pointerEvents: isOccupied ? "none" : "auto" }}
+                  >
+                    {" "}
+                  </Table.Cell>
+                );
+              })}
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+
+      <div className="mt-4 max-sm:w-full max-sm:flex max-sm:justify-center">
         <Button
           onClick={handleConfirmSelection}
           color={"blue"}
