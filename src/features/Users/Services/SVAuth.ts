@@ -80,7 +80,6 @@ const LogOut = async () => {
     }
   }
 };
-
 const getProfile = async () => {
   try {
     const { data } = await api.post("auth/Profile");
@@ -89,11 +88,11 @@ const getProfile = async () => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error al iniciar sesión:",
+        "Error al obtener el perfil:",
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al iniciar sesión"
+        error.response?.data.message || "Error al obtener el perfil"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -101,5 +100,6 @@ const getProfile = async () => {
     }
   }
 };
+
 
 export { RecoveryPassword, SignUp, resetPassword, LogOut, getProfile };

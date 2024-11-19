@@ -1,6 +1,7 @@
 import axios from "axios";
 import api from "../../../Services/AxiosConfig";
 import { SingIng, User } from "../Type/UserType";
+import { isIOS } from "../../../utils/utils";
 const GetUsersList = async (
   page: number,
   limit: number,
@@ -49,8 +50,12 @@ const UpUser = async (cedula: string) => {
 const LogIn = async (Data: SingIng) => {
   try {
     const response = await api.post("auth/login", Data);
-    const user = response.data.user;
-    const message = response.data.message;
+    const { user, message } = response.data;
+
+    if (isIOS() && response.data.accessToken) {
+      localStorage.setItem("accessToken", response.data.accessToken);
+    }
+
     return { user, message };
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
