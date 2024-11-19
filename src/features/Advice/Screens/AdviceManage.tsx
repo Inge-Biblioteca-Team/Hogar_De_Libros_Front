@@ -12,6 +12,7 @@ import {
   BreadLastItems,
 } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
+import { Pagination } from "flowbite-react";
 
 const AdviceManage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -46,9 +47,9 @@ const AdviceManage = () => {
       <BreadCrumbsItems>
         <BreadLastItems text="Avisos importantes" />
       </BreadCrumbsItems>
-      <main className=" flex items-center justify-center w-full flex-col gap-5 ">
-        <section className="w-4/5 flex justify-between items-end max-sm:w-full max-sm:px-2">
-          <div className=" flex gap-6">
+      <main className=" max-sm:overflow-x-hidden flex items-center justify-center w-full flex-col gap-5 ">
+        <section className="w-4/5 flex max-sm:flex-col max-sm:gap-4 max-sm:items-center justify-between items-end max-sm:w-full max-sm:px-2">
+          <div className=" flex max-sm:w-full max-sm:flex-col gap-6">
             <div>
               <Label value="Fecha de actividad" />
               <TextInput
@@ -56,7 +57,7 @@ const AdviceManage = () => {
                 onChange={(e) => (setDate(e.target.value), setPage(1))}
               />
             </div>
-            <div className=" max-sm:hidden">
+            <div className=" ">
               <Label value="Categoría" />
               <Select
                 onChange={(e) => (setCategory(e.target.value), setPage(1))}
@@ -64,7 +65,7 @@ const AdviceManage = () => {
                 <OptAdviceCategory />
               </Select>
             </div>
-            <div className=" max-sm:hidden">
+            <div className=" ">
               <Label value="Motivo" />
               <TextInput
                 placeholder="Motivo del aviso"
@@ -72,7 +73,11 @@ const AdviceManage = () => {
               />
             </div>
           </div>
-          <Button color={"blue"} onClick={() => setOpen(true)}>
+          <Button
+            className="max-sm:w-full"
+            color={"blue"}
+            onClick={() => setOpen(true)}
+          >
             Agregar nuevo aviso
           </Button>
         </section>
@@ -80,13 +85,24 @@ const AdviceManage = () => {
           {Advices && (
             <>
               <AdviceTable advices={Advices} />
-              <CustomPagination
-                page={page}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setLimit}
-                total={Advices.count}
-              />
+              <div className="block max-sm:hidden">
+                <CustomPagination
+                  page={page}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setLimit}
+                  total={Advices.count}
+                />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={page}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           )}
         </section>
