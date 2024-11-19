@@ -24,7 +24,7 @@ const SearchInputs = ({
 
   return (
     <>
-      <div className="w-full grid grid-cols-4 gap-2 pb-4 items-end">
+      <div className="w-full grid max-sm:grid-cols-1 grid-cols-4 gap-2 pb-4 items-end">
         <div>
           <Label htmlFor="InitialDate">
             Fecha de solicitud

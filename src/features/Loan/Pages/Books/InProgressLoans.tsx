@@ -8,6 +8,7 @@ import UseDebounce from "../../../../hooks/UseDebounce";
 import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../../components/CustomPagination";
 import NoResults from "../../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const InProgressLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -53,9 +54,9 @@ const InProgressLoans = () => {
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>
-       <LoansAndCirculationCrumbs text="Préstamos en progreso" />
-      <div className="flex place-content-center pb-3">
-        <div className="w-4/5">
+      <LoansAndCirculationCrumbs text="Préstamos en progreso" />
+      <div className="max-sm:overflow-x-hidden flex  place-content-center pb-3">
+        <div className="w-4/5 max-sm:w-full max-sm:p-2">
           <SearchInputs
             SignaCode={SignaCode}
             EndDate={EndDate}
@@ -66,13 +67,24 @@ const InProgressLoans = () => {
           {Loan && Loan?.count > 0 ? (
             <>
               {Loan && <TBLLoan Loan={Loan} NeedAccions Inprogress />}
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={Loan?.count || 0}
-              />
+              <div className="block max-sm:hidden">
+                <CustomPagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={Loan?.count || 0}
+                />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={currentPage}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />
