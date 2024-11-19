@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { Colaborator } from "../../Types/ColaboratorTypes";
 import { formatToDMY } from "../../../../components/FormatTempo";
-
+import { IoDocumentAttach } from "react-icons/io5";
 const MDViewInfo = ({
   setOpen,
   open,
@@ -49,8 +49,14 @@ const MDViewInfo = ({
           <>
             <Label value={`Documentos adjuntos.`} />
             {colaboration.Document.map((doc, index) => (
-              <a target="#blank" href={doc} title="Click para abrir" className=" hover:text-Body">
-                Documento #{index+1}
+              <a
+                target="#blank"
+                href={doc}
+                title="Click para abrir"
+                className=" hover:text-Body"
+              >
+                <IoDocumentAttach size={27} />
+                <span>#{index + 1}</span>
               </a>
             ))}
           </>
