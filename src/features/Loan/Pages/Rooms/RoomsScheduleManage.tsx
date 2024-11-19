@@ -25,8 +25,8 @@ const RoomsScheduleManage = () => {
   return (
     <>
     <LoansAndCirculationCrumbs text="Reservas de salas"/>
-      <div className=" w-full flex items-center justify-center mt-40">
-        <div className=" w-11/12 flex items-start justify-between gap-6">
+      <div className=" w-full flex items-center justify-center mt-40 max-sm:mt-0">
+        <div className=" w-11/12 flex items-start justify-between gap-6 max-sm:flex-col">
           <SearchCalendar setSearchDate={setSearchDate} />
           <RoomsSchedule date={SearchDate} reservations={reservations} />
         </div>

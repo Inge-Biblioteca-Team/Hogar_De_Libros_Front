@@ -10,7 +10,6 @@ const ForAll = () => {
 
   const role = currentUser?.role;
 
-  
   const { mutate: logOut } = UseLogOut();
 
   const onLogOut = () => {
@@ -64,7 +63,9 @@ const ForAll = () => {
         </Sidebar.Item>
         <Sidebar.Item
           className=""
-          onClick={() => handleNavigation("/HogarDeLibros")}
+          onClick={() =>
+            handleNavigation("/HogarDeLibros/AmigosYColaboradores")
+          }
         >
           Se un amigo más
         </Sidebar.Item>
