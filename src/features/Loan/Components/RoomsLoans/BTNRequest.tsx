@@ -13,7 +13,7 @@ const BTNRequest = ({ reserve }: { reserve: Reserve }) => {
   const [openA, setOpenA] = useState<boolean>(false);
   return (
     <>
-      <div className=" flex justify-center gap-x-12">
+      <div className=" flex justify-center  max-sm:w-10 max-sm:gap-x-1  gap-x-12">
         <button
           type="button"
           className=" hover:text-Body"

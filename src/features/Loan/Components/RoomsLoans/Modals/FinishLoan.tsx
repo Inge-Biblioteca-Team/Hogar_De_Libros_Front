@@ -60,7 +60,7 @@ const FinishLoan = ({
       <Modal.Header>
         <h3>Finalización de Prestamo</h3>
       </Modal.Header>
-      <Modal.Body className=" grid grid-cols-2 gap-3">
+      <Modal.Body className=" grid  grid-cols-2 gap-3">
         <div>
           <Checkbox onChange={(event) => setCheck1(event.target.checked)} />
           <Label

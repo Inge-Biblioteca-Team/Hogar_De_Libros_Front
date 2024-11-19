@@ -4,7 +4,7 @@ import { FaLinkedin, FaFacebookSquare, FaInstagramSquare } from "react-icons/fa"
 
 const CardArtistL = ({ artist }: { artist: Artist }) => {
   return (
-    <Card className="p-0">
+    <Card className=" max-sm:w-full">
       <figure>
         <img
           className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover
@@ -13,14 +13,14 @@ const CardArtistL = ({ artist }: { artist: Artist }) => {
           alt={artist.Name}
         />
         <figcaption
-          className="text-lg break-words max-w-80 px-4 h-40 text-center
+          className="text-lg break-words max-w-80 px-4  text-center
           max-sm:pt-7 max-sm:text-center max-sm:text-sm max-sm:h-auto flex flex-col justify-between items-center p-3
           max-sm:flex-wrap max-sm:overflow-hidden max-sm:gap-2"
         >
-          <strong className="truncate">{artist.Name}</strong>
-          <span className="text-gray-600 text-sm truncate">{artist.ArtisProfession}</span>
+          <strong className="">{artist.Name}</strong>
+          <span className="text-gray-600 text-sm ">{artist.ArtisProfession}</span>
           {artist.MoreInfo && (
-            <p className="text-gray-500 text-sm max-sm:truncate max-sm:overflow-hidden max-sm:text-ellipsis max-sm:w-full">
+            <p className="text-gray-500  text-sm line-clamp-3 lg:line-clamp-2 max-sm:overflow-hidden max-sm:text-ellipsis max-sm:w-full">
               {artist.MoreInfo}
             </p>
           )}
