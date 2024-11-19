@@ -98,14 +98,6 @@ const ForAll = () => {
             Reserva de salas
           </Sidebar.Item>
         )}
-        <Sidebar.Item className="w-full max-sm:block hidden">
-          <div className="flex items-center w-7/12 justify-between fixed bottom-2 gap-5">
-            <span>{currentUser?.name}</span>
-            <Button onClick={onLogOut} color={"red"}>
-              <FaPowerOff />
-            </Button>
-          </div>
-        </Sidebar.Item>
       </Sidebar.ItemGroup>
     </>
   );
