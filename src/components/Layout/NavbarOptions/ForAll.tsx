@@ -26,6 +26,12 @@ const ForAll = () => {
           Inicio
         </Sidebar.Item>
         <Sidebar.Item
+          className="cursor-pointer"
+          onClick={() => handleNavigation("/HogarDeLibros/Perfil")}
+        >
+          Mi perfil
+        </Sidebar.Item>
+        <Sidebar.Item
           onClick={() => handleNavigation("/HogarDeLibros/Catalogo/Completo")}
         >
           Catálogo completo de libros
