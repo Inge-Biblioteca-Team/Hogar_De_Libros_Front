@@ -31,7 +31,7 @@ const SeeLoanInfo = ({
         <span>Información del préstamo</span>
       </Modal.Header>
       <Modal.Body>
-        <div className="flex flex-col gap-4 text-lg">
+        <div className="flex flex-col gap-4 max-sm:text-sm text-lg">
           <span className=" flex flex-col">
             <strong>Información del Usuario</strong>
             <span>Nombre: {Loan.user.name}</span>

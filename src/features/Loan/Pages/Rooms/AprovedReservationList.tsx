@@ -7,6 +7,7 @@ import NoRequest from "../../Components/NoRequest";
 import { getReservations } from "../../Services/SVReservations";
 import CustomPagination from "../../../../components/CustomPagination";
 import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import { Pagination } from "flowbite-react";
 
 const AprovedReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -33,13 +34,11 @@ const AprovedReservationList = () => {
   );
   const MaxPage = Math.ceil((reservations?.count ?? 0) / currentLimit);
 
-
-
   return (
     <>
-     <LoansAndCirculationCrumbs text="Reservas de salas aprobadas"/>
-      <div className=" w-full flex items-center justify-center mt-28">
-        <div className="w-4/5">
+      <LoansAndCirculationCrumbs text="Reservas de salas aprobadas" />
+      <div className="max-sm:overflow-x-hidden w-full flex items-center justify-center mt-28">
+        <div className="w-4/5 max-sm:w-full max-sm:p-2">
           {reservations?.count == 0 ? (
             <NoRequest text={"No existen solicitudes aprobadas"} />
           ) : (
@@ -53,13 +52,24 @@ const AprovedReservationList = () => {
                   <TBLAprovReservations reserve={reservations} />
                 )}
               </Table>
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={reservations?.count || 0}
-              />
+              <div className="block max-sm:hidden">
+                <CustomPagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={reservations?.count || 0}
+                />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={currentPage}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           )}
         </div>

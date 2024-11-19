@@ -1,21 +1,13 @@
-import { Button, Sidebar } from "flowbite-react";
+import { Sidebar } from "flowbite-react";
 import { useContext } from "react";
 import UserContext from "../../../Context/UserContext/UserContext";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
-import { FaPowerOff } from "react-icons/fa";
-import UseLogOut from "../../../features/Users/Hooks/UseLogOut";
 const ForAll = () => {
   const { currentUser } = useContext(UserContext);
   const { handleNavigation } = useContext(SidebarContext);
 
   const role = currentUser?.role;
 
-  
-  const { mutate: logOut } = UseLogOut();
-
-  const onLogOut = () => {
-    logOut();
-  };
 
   return (
     <>
@@ -25,6 +17,12 @@ const ForAll = () => {
           onClick={() => handleNavigation("/HogarDeLibros")}
         >
           Inicio
+        </Sidebar.Item>
+        <Sidebar.Item
+          className="cursor-pointer"
+          onClick={() => handleNavigation("/HogarDeLibros/Perfil")}
+        >
+          Mi perfil
         </Sidebar.Item>
         <Sidebar.Item
           onClick={() => handleNavigation("/HogarDeLibros/Catalogo/Completo")}
@@ -64,7 +62,9 @@ const ForAll = () => {
         </Sidebar.Item>
         <Sidebar.Item
           className=""
-          onClick={() => handleNavigation("/HogarDeLibros")}
+          onClick={() =>
+            handleNavigation("/HogarDeLibros/AmigosYColaboradores")
+          }
         >
           Se un amigo más
         </Sidebar.Item>
@@ -91,14 +91,6 @@ const ForAll = () => {
             Reserva de salas
           </Sidebar.Item>
         )}
-        <Sidebar.Item className="w-full max-sm:block hidden">
-          <div className="flex items-center w-7/12 justify-between fixed bottom-2 gap-5">
-            <span>{currentUser?.name}</span>
-            <Button onClick={onLogOut} color={"red"}>
-              <FaPowerOff />
-            </Button>
-          </div>
-        </Sidebar.Item>
       </Sidebar.ItemGroup>
     </>
   );

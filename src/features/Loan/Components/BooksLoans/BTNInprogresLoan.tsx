@@ -12,23 +12,23 @@ const BTNInprogresLoan = ({ Loan }: { Loan: Loans }) => {
 
   return (
     <>
-      <div className=" flex justify-center gap-x-12">
+      <div className=" flex justify-center max-sm:pl-8 max-sm:w-10 max-sm:gap-x-1 gap-x-12">
         <button type="button" onClick={() => setSee(true)}>
-          {""} <PiEyeFill size={30} />
+          {""} <PiEyeFill className="max-sm:size-6" size={30} />
         </button>
         <button
           type="button"
           title="Renovar préstamo"
           onClick={() => setShowR(true)}
         >
-          <MdOutlineUpdate size={30} />
+          <MdOutlineUpdate className="max-sm:size-6" size={30} />
         </button>
         <button
           type="button"
           title="Finalizar préstamo"
           onClick={() => setShowF(true)}
         >
-          <PiCalendarXLight size={30} />
+          <PiCalendarXLight className="max-sm:size-6" size={30} />
         </button>
       </div>
       <LoanRenuve Loan={Loan} showChange={showR} setShowChange={setShowR} />
