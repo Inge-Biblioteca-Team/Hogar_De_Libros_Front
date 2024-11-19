@@ -24,11 +24,12 @@ const CarEnrolment = ({ course }: { course: NextCourses }) => {
   });
   return (
     <>
-      <Card className=" hover:scale-105" onClick={() => setopen(true)}>
-        <div className=" flex gap-4">
+      <Card className=" hover:scale-105 max-sm:w-full" onClick={() => setopen(true)}>
+        <div className=" flex gap-4 max-sm:flex-col max-sm:items-start max-sm:gap-4">
           <figure className="rounded-xl">
             <img
-              className=" w-52 rounded-t-lg h-40 rounded-2xl shadow-xl"
+              className=" w-52 rounded-t-lg h-40 rounded-2xl shadow-xlh-56 max-sm:w-full mb-8 border-t border-transparent max-sm:rounded-t-md object-cover
+        max-sm:h-32"
               src={course.image}
               alt=""
             />
