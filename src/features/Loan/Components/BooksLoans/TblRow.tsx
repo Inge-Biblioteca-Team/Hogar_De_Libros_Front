@@ -35,7 +35,7 @@ const TblRow = ({
         <Table.Cell className="max-sm:hidden">{ExDate}</Table.Cell>
         <Table.Cell className="max-sm:w-16">{Loan.user.name}</Table.Cell>
         <Table.Cell>
-          <div className="w-44 line-clamp-1 mt-3 max-sm:w-16 ">{Loan.book.Title}</div>
+          <div className="w-44 line-clamp-1 mt-3 max-sm:w-20 ">{Loan.book.Title}</div>
         </Table.Cell>
         <Table.Cell className="w-52 max-sm:hidden">{Loan.book.signatureCode} </Table.Cell>
         <Table.Cell className={`${NeedAccions ? `hidden` : ``} max-sm:hidden  w-64 `}>
