@@ -26,7 +26,7 @@ const CardViewFriends = () => {
                 ¡Únete a nuestra comunidad de voluntariado!
             </h5>
             <p className="font-normal text-gray-700 dark:text-gray-400">
-                Participa en nuestras actividades y comparte tu amor por los libros con otros amiguitos.
+                Participa en nuestras actividades y comparte tu amor por los libros con otras personas.
             </p>
             <div className="flex justify-center mt-4">
                 <Button className="w-36 hover:scale-105 transition-transform duration-300" onClick={handleButtonClick}
