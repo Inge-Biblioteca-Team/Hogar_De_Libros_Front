@@ -20,20 +20,20 @@ const AprovRows = ({ reservation }: { reservation: Reserve }) => {
       <React.Fragment key={`${reservation.rommReservationId}`}>
         <Table.Row className="h-20">
           <Table.Cell>{reservation.name} </Table.Cell>
-          <Table.Cell>{requestDay} </Table.Cell>
+          <Table.Cell className="max-sm:hidden">{requestDay} </Table.Cell>
           <Table.Cell>{reserveDay} </Table.Cell>
-          <Table.Cell>
+          <Table.Cell className="max-sm:hidden">
             {HourMapping[start]} / {HourMapping[end]}
           </Table.Cell>
-          <Table.Cell>{reservation.reason} </Table.Cell>
+          <Table.Cell className="max-sm:hidden" >{reservation.reason} </Table.Cell>
           <Table.Cell>
-            <div className=" flex justify-center gap-x-12">
+            <div className=" flex justify-center max-sm:gap-6 gap-x-12">
               <button
                 type="button"
                 className=" hover:text-Body"
                 onClick={() => setOpenS(true)}
               >
-                {""} <PiEyeFill size={28} />
+                {""} <PiEyeFill className="size-6" size={28} />
               </button>
               <button
                 type="button"
@@ -41,12 +41,12 @@ const AprovRows = ({ reservation }: { reservation: Reserve }) => {
                 className="hover:text-red-600"
                 onClick={() => setOpenF(true)}
               >
-                <FaRegCalendarXmark size={25} />
+                <FaRegCalendarXmark  className="size-6" size={25} />
               </button>
             </div>
           </Table.Cell>
         </Table.Row>
-        <MDSeeReservation
+        <MDSeeReservation 
           open={openS}
           setOpen={setOpenS}
           reserve={reservation}
