@@ -1,7 +1,7 @@
 import { Drawer, Sidebar, ToggleSwitch } from "flowbite-react";
 import { useContext, useState } from "react";
 import { FaBookReader } from "react-icons/fa";
-
+import { FaUser } from "react-icons/fa";
 import ForAdmin from "./NavbarOptions/ForAdmin";
 import ForAll from "./NavbarOptions/ForAll";
 import UserContext from "../../Context/UserContext/UserContext";
@@ -35,7 +35,16 @@ const HomeNavbar = () => {
         onClose={handleClose}
         className=" opacity-90 w-fit"
       >
-        <Drawer.Header title={"Menú de Navegación"} titleIcon={FaBookReader} />
+        <Drawer.Header
+          title={"Menú de Navegación"}
+          titleIcon={FaBookReader}
+          className=" max-sm:hidden"
+        />
+        <Drawer.Header
+          title={`${currentUser?.name} ${currentUser?.lastName}`}
+          titleIcon={FaUser}
+          className="hidden max-sm:block cursor-pointer"
+        />
         {rol == "admin" && (
           <div className=" flex ml-5 mb-2 gap-3">
             <span className=" text-black">Modo de usuario</span>
@@ -60,7 +69,6 @@ const HomeNavbar = () => {
             )}
           </Sidebar>
         </Drawer.Items>
-        
       </Drawer>
     </>
   );

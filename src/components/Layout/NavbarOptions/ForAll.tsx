@@ -2,12 +2,19 @@ import { Sidebar } from "flowbite-react";
 import { useContext } from "react";
 import UserContext from "../../../Context/UserContext/UserContext";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
+import toast from "react-hot-toast";
 const ForAll = () => {
   const { currentUser } = useContext(UserContext);
   const { handleNavigation } = useContext(SidebarContext);
 
   const role = currentUser?.role;
 
+  const closeSession = () => {
+    localStorage.removeItem("isLogged");
+    localStorage.removeItem("currentUser");
+    handleNavigation("/");
+    toast.success("Éxito al cerrar sesión")
+  };
 
   return (
     <>
@@ -17,12 +24,6 @@ const ForAll = () => {
           onClick={() => handleNavigation("/HogarDeLibros")}
         >
           Inicio
-        </Sidebar.Item>
-        <Sidebar.Item
-          className="cursor-pointer"
-          onClick={() => handleNavigation("/HogarDeLibros/Perfil")}
-        >
-          Mi perfil
         </Sidebar.Item>
         <Sidebar.Item
           onClick={() => handleNavigation("/HogarDeLibros/Catalogo/Completo")}
@@ -91,6 +92,10 @@ const ForAll = () => {
             Reserva de salas
           </Sidebar.Item>
         )}
+        <Sidebar.Item className="cursor-pointer bg-red-500 text-white text-center hidden max-sm:block"
+         onClick={()=>closeSession()} >
+          Cerrar sesión
+        </Sidebar.Item>
       </Sidebar.ItemGroup>
     </>
   );
