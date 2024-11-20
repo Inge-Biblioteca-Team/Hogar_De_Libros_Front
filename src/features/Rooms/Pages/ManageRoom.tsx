@@ -38,8 +38,8 @@ const ManageRoom = () => {
     <>
       <BreadCrumbManage text="Salas" />
       <section className="flex flex-col justify-center items-center">
-        <div className="w-4/5 flex flex-col items-center justify-center pt-1">
-          <div className="w-full max-sm:gap-4 max-sm:flex-col flex max-sm:items-center lg:justify-between items-end">
+        <div className="w-4/5 max-sm:w-full max-sm:p-2 flex flex-col items-center justify-center pt-1">
+          <div className="w-full  max-sm:gap-4 max-sm:flex-col flex max-sm:items-center lg:justify-between items-end">
             <SearchRooms
               RName={setName}
               RStatus={setSStatus}

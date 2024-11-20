@@ -13,7 +13,7 @@ const RequestBTN = ({
 }) => {
   return (
     <>
-      <div className=" flex gap-3 max-sm:scale-95  ">
+      <div className=" flex max-sm:gap-1 gap-3 max-sm:scale-95  ">
         <button
           onClick={() => setOpenV(true)}
           type="button"

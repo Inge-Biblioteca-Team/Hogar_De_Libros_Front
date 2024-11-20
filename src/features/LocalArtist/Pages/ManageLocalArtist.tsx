@@ -53,7 +53,7 @@ const ManageLocalArtist = () => {
     <>
       <BreadCrumbManage text="Artistas locales" />
 
-      <div className="overflow-x-hidden w-full flex items-center justify-center">
+      <div className=" w-full flex items-center justify-center">
         <div className=" w-4/5 max-sm:p-2 max-sm:w-full">
           <div className="flex sm:w-full items-center max-sm:flex-col ">
           <div className="w-full sm:w-full flex justify-center max-sm:pb-8">

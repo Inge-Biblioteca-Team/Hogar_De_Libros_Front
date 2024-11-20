@@ -13,7 +13,7 @@ const EventBTNAccions = ({
 
     return (
       <>
-        <div className="w-full flex gap-3 items-center justify-center text-3xl">
+        <div className="w-full flex max-sm:gap-2 gap-3 items-center justify-center text-3xl">
           <button
             type="button"
             title="Ver Información del Evento"

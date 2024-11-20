@@ -53,7 +53,7 @@ const ManageUsers = () => {
       <BreadCrumbsItems>
         <BreadLastItems text="Gestión de usuarios" />
       </BreadCrumbsItems>
-      <div className="overflow-x-hidden flex place-content-center">
+      <div className=" flex place-content-center">
         <div className="w-4/5 flex flex-col items-center justify-center pt-1 max-sm:w-full max-sm:p-2 gap-2">
           <div className="max-sm:w-full sm:w-full flex justify-center max-sm:pb-8">
           <SearchUsers
@@ -82,7 +82,7 @@ const ManageUsers = () => {
                   ))}
                 </Table.Body>
               </Table>
-              <div className="block max-sm:hidden">
+              <div className="block w-full max-sm:hidden">
               <CustomPagination
                 page={currentPage}
                 onPageChange={onPageChange}

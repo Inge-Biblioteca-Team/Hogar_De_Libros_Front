@@ -63,7 +63,7 @@ const CreateEvent = () => {
 
   return (
     <>
-      <Button className="max-sm:w-80" type="button" onClick={() => setIsModalOpen(true)} color={"blue"}>
+      <Button className="max-sm:w-full " type="button" onClick={() => setIsModalOpen(true)} color={"blue"}>
         Añadir evento
       </Button>
       <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>

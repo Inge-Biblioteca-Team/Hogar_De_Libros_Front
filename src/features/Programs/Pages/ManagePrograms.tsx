@@ -47,7 +47,7 @@ const ManagePrograms = () => {
   return (
     <>
       <ServicesCrumbs text="Programas" />
-      <div className="overflow-x-hidden w-full flex items-center justify-center">
+      <div className="w-full flex items-center justify-center">
         <div className="w-4/5 max-sm:w-full max-sm:p-2">
           <div className="flex  max-sm:flex-col max-sm:items-center items-end justify-between w-full mb-5 mt-3">
             <div className="flex max-sm:w-full max-sm:flex-col  gap-2">
