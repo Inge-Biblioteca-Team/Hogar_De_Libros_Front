@@ -12,7 +12,7 @@ const AdviceAccionsBTN = ({ advice }: { advice: Advice }) => {
 
   return (
     <>
-      <div className="flex max-sm:gap-2 gap-7">
+      <div className="flex max-sm:gap-0 gap-7">
         <button
           title="Ver Información Completa"
           type="button"
