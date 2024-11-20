@@ -84,7 +84,7 @@ const ExtraOptions = () => {
         </Sidebar.Item>
       </Sidebar.Collapse>
       <Sidebar.Item className="cursor-pointer bg-red-500 text-white text-center hidden max-sm:block"
-         onClick={()=>closeSession} >
+         onClick={()=>closeSession()} >
           Cerrar sesión
         </Sidebar.Item>
     </>

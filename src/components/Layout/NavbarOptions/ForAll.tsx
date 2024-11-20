@@ -93,7 +93,7 @@ const ForAll = () => {
           </Sidebar.Item>
         )}
         <Sidebar.Item className="cursor-pointer bg-red-500 text-white text-center hidden max-sm:block"
-         onClick={()=>closeSession} >
+         onClick={()=>closeSession()} >
           Cerrar sesión
         </Sidebar.Item>
       </Sidebar.ItemGroup>
