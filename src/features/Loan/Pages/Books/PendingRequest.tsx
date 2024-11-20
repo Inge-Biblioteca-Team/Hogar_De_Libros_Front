@@ -36,7 +36,7 @@ const PendingRequest = () => {
     <>
       <LoansAndCirculationCrumbs text="Solicitudes de libros" />
       {Loan && Loan.count > 0 ? (
-        <div className="overflow-x-hidden flex place-content-center mt-20">
+        <div className=" flex place-content-center mt-20">
           <div className="w-4/5 max-sm:w-full max-sm:p-2">
             {Loan && Loan.count && <TBLLoan Loan={Loan} NeedAccions />}
             <div className="block max-sm:hidden">

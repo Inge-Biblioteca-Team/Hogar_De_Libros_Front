@@ -27,7 +27,7 @@ const AprovRows = ({ reservation }: { reservation: Reserve }) => {
           </Table.Cell>
           <Table.Cell className="max-sm:hidden" >{reservation.reason} </Table.Cell>
           <Table.Cell>
-            <div className=" flex justify-center max-sm:gap-6 gap-x-12">
+            <div className=" flex justify-center max-sm:gap-4 gap-x-12">
               <button
                 type="button"
                 className=" hover:text-Body"

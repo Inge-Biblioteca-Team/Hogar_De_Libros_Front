@@ -11,7 +11,7 @@ const BTNProgramsAct = ({ program }: { program: Program }) => {
   const [openD, setOpenD] = useState<boolean>(false);
 
   return (
-    <div className=" flex gap-5 items-center justify-center">
+    <div className=" flex max-sm:gap-4 gap-5 items-center justify-center">
       <button
         title="ver información"
         type="button"

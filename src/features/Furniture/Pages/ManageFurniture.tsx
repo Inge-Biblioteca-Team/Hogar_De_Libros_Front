@@ -59,9 +59,9 @@ const ManageFurniture = () => {
   return (
     <>
       <BreadCrumbManage text="Mobiliario" />
-      <main className="overflow-x-hidden flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5  max-sm:flex-col max-sm:gap-4 max-sm:items-center flex justify-between items-end">
-          <div className="flex max-sm:w-full max-sm:flex-col gap-3">
+      <main className="flex items-center justify-center w-full flex-col gap-4">
+        <section className="w-4/5 max-sm:p-2 max-sm:w-full max-sm:flex-col max-sm:gap-4 max-sm:items-center flex justify-between items-end">
+          <div className="flex max-sm:w-full max-sm:flex-col gap-3 ">
             <TextInput
               placeholder="Búsqueda por placa"
               className="w-52 max-sm:w-full"

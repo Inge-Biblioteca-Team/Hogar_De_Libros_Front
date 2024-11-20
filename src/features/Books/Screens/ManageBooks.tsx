@@ -53,7 +53,7 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
       ) : (
         <BreadCrumbManage text="Libros" />
       )}
-      <main className="overflow-x-hidden flex items-center justify-center w-full flex-col gap-4">
+      <main className=" flex items-center justify-center w-full flex-col gap-4">
         <section className="w-4/5 sm:items-center flex lg:flex-row flex-col justify-between lg:items-end max-sm:w-full max-sm:px-2 gap-4 lg:gap-0">
           <div className="flex lg:flex-row flex-col gap-3">
             <TextInput

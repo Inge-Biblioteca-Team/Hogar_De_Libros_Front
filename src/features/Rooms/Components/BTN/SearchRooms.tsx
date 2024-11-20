@@ -20,8 +20,8 @@ const SearchRooms = ({
     }
   );
   return (
-    <div className={`flex max-sm:flex-col lg:flex-row items-center gap-2`}>
-      <div className="max-sm:w-80">
+    <div className={`flex max-sm:w-full max-sm:flex-col lg:flex-row items-center gap-2`}>
+      <div className="max-sm:w-full">
         <Label className="text-lg ">Nombre de la Sala</Label>
         <TextInput
           type="text"

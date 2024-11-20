@@ -16,7 +16,7 @@ const BTNAccions = ({
 }) => {
   return (
     <>
-      <div className=" w-full flex gap-3 items-center justify-center text-2xl">
+      <div className=" w-full flex gap-3 max-sm:gap-1 items-center justify-center text-2xl">
         <button
           type="button"
           title="Ver Información de Usuario"
