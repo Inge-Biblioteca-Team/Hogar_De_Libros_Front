@@ -38,7 +38,7 @@ const ManageRequestDonations = () => {
   return (
     <>
       <DonationsCrumbs text="Propuestas de donación" />
-      <main className="overflow-x-hidden flex flex-col items-center justify-center w-full gap-5">
+      <main className=" flex flex-col items-center justify-center w-full gap-5">
         <section className=" flex max-sm:w-full max-sm:p-2 max-sm:flex-col w-4/5 gap-2">
           <div>
             <Label value="Categoría del colaborador" />

@@ -14,7 +14,7 @@ const AccionsBTN = ({
 }) => {
   return (
     <>
-      <div className=" flex gap-2 lg:gap-4 items-center justify-center  ">
+      <div className=" flex max-sm:gap-2 lg:gap-4 items-center justify-center  ">
         <button
           type="button"
           title="Ver Información"

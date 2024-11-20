@@ -40,7 +40,7 @@ const ManageColabRequest = () => {
   return (
     <>
       <ColabCrumbs text="Solicitudes de colaboraciones" />
-      <main className=" overflow-x-hidden flex flex-col items-center justify-center w-full gap-5">
+      <main className=" flex flex-col items-center justify-center w-full gap-5">
         <section className=" flex max-sm:flex-col w-4/5 gap-2 max-sm:w-full max-sm:px-2">
           <div className=" ">
             <Label value="Categoría del colaborador" />

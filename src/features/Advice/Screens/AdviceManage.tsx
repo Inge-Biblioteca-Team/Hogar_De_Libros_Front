@@ -47,8 +47,8 @@ const AdviceManage = () => {
       <BreadCrumbsItems>
         <BreadLastItems text="Avisos importantes" />
       </BreadCrumbsItems>
-      <main className=" max-sm:overflow-x-hidden flex items-center justify-center w-full flex-col gap-5 ">
-        <section className="w-4/5 flex max-sm:flex-col max-sm:gap-4 max-sm:items-center justify-between items-end max-sm:w-full max-sm:px-2">
+      <main className="flex items-center justify-center w-full flex-col gap-5 ">
+        <section className=" w-4/5 flex max-sm:flex-col max-sm:gap-4 max-sm:items-center justify-between items-end max-sm:w-full max-sm:px-2">
           <div className=" flex max-sm:w-full max-sm:flex-col gap-6">
             <div>
               <Label value="Fecha de actividad" />
