@@ -12,7 +12,7 @@ const BTNAccions = ({ Course }: { Course: Courses }) => {
 
   return (
     <>
-      <div className=" w-full flex gap-3 items-center justify-center text-3xl">
+      <div className=" w-full flex max-sm:gap-1 gap-3 items-center justify-center text-3xl">
         {Course && (
           <AccionsBTN
             Status={Course.Status}
