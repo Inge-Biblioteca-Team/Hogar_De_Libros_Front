@@ -1,9 +1,16 @@
 import { Sidebar } from "flowbite-react";
 import { useContext } from "react";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
+import toast from "react-hot-toast";
 
 const ExtraOptions = () => {
   const { handleNavigation } = useContext(SidebarContext);
+  const closeSession = () => {
+    localStorage.removeItem("isLogged");
+    localStorage.removeItem("currentUser");
+    handleNavigation("/");
+    toast.success("Éxito al cerrar sesión")
+  };
 
   return (
     <>
@@ -76,6 +83,10 @@ const ExtraOptions = () => {
           Lista de amigos
         </Sidebar.Item>
       </Sidebar.Collapse>
+      <Sidebar.Item className="cursor-pointer bg-red-500 text-white text-center hidden max-sm:block"
+         onClick={()=>closeSession} >
+          Cerrar sesión
+        </Sidebar.Item>
     </>
   );
 };
