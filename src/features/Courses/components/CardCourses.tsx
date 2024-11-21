@@ -24,6 +24,7 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
   const [open, setopen] = useState<boolean>(false);
 
   return (
+    <>
     <Card className="p0">
       <figure>
         <img
@@ -36,8 +37,7 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
           <div className=" flex flex-col justify-between mr-3">
             <span className=" font-bold text-black">{Courses.courseName} </span>
             <span>
-              Impartido por <br />
-              {Courses.instructor}{" "}
+              Impartido por: {Courses.instructor}{" "}
             </span>
             <span>Comienzo: {fullDate.toUpperCase()}</span>
             <span>Duracion: {Courses.duration} </span>
@@ -45,24 +45,24 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
               {Courses.location} {time}{" "}
             </span>
             <span>
-              Cupos <br />
-              {Courses.avaibleQuota}/{Courses.capacity}{" "}
+              Cupos: {Courses.avaibleQuota}/{Courses.capacity}{" "}
             </span>
             {Courses.materials == "" ? (
               "Te esperamos"
             ) : (
               <span>Necesitaras: {Courses.materials}</span>
             )}
-          </div>
-          <div className=" flex justify-center items-center mb-2">
-                <Button color={"blue"} onClick={() => setopen(true)}>
+            <div className=" flex justify-center items-center mt-3">
+              <Button color={"blue"} onClick={() => setopen(true)}>
                 Matricula ahora
-                </Button>
+              </Button>
             </div>
+          </div>
         </figcaption>
       </figure>
-      <EnrollmentToCourse course={Courses} open={open} setOpen={setopen} />
     </Card>
+    <EnrollmentToCourse course={Courses} open={open} setOpen={setopen} />
+    </>
   );
 };
 export default CardCourses;
