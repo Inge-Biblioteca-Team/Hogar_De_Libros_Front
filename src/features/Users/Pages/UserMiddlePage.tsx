@@ -8,10 +8,10 @@ const UserMiddlePage = () => {
   return (
     <>
       <MiddleCrumb label="Perfil" />
-      <main className=" w-full flex items-center justify-center">
-        <section className=" flex gap-5 w-4/5 items-center justify-center mt-32">
+      <main className=" w-full flex items-center justify-center ">
+        <section className=" grid grid-cols-4 gap-5 w-4/5 mt-32 max-sm:mt-3 max-sm:grid-cols-2">
           <Card
-            className="h-96 w-80 transition-transform hover:scale-105"
+            className="h-96 w-80 max-sm:w-full transition-transform hover:scale-105 "
             onClick={() => navi("/HogarDeLibros/Perfil/MisPréstamos")}
           >
             <h3>Mis prestamos</h3>
@@ -21,7 +21,7 @@ const UserMiddlePage = () => {
             <Label value={`Máximo de prestamos permitidos: `} />
           </Card>
           <Card
-            className="h-96 w-80 transition-transform hover:scale-105"
+            className="h-96 w-80 max-sm:w-full transition-transform hover:scale-105"
             onClick={() => navi("/HogarDeLibros/Perfil/EditarPerfil")}
           >
             <h3>Mi perfil</h3>
@@ -33,7 +33,7 @@ const UserMiddlePage = () => {
             <Label value={`Dirección: `} />
           </Card>
           <Card
-            className="h-96 w-80 transition-transform hover:scale-105"
+            className="h-96 w-80 max-sm:w-full transition-transform hover:scale-105"
             onClick={() => navi("/HogarDeLibros/Perfil/CursosMatriculados")}
           >
             <h3>Cursos matriculados</h3>
@@ -44,7 +44,7 @@ const UserMiddlePage = () => {
             <Label value={`Total de cursos matriculados: `} />
           </Card>
           <Card
-            className="h-96 w-80 transition-transform hover:scale-105"
+            className="h-96 w-80 max-sm:w-full transition-transform hover:scale-105"
             onClick={() => navi("/HogarDeLibros/Perfil/MisReservaciones")}
           >
             <h3>Reserva de salas</h3>

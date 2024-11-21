@@ -27,9 +27,9 @@ const DoneLoan = () => {
     <>
       <div className="">
         <h5 className=" font-bold">Ultimos préstamos </h5>
-        <Table hoverable className=" text-center">
+        <Table hoverable className=" text-center  bg-white">
           <Table.Head>
-            <Table.HeadCell>#De Solicitud</Table.HeadCell>
+            <Table.HeadCell className="max-sm:hidden">#De Solicitud</Table.HeadCell>
             <Table.HeadCell>Título</Table.HeadCell>
             <Table.HeadCell className="flex items-center justify-center gap-2">
               Fecha de solicitud{" "}

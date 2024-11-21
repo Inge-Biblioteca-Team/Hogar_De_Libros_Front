@@ -13,12 +13,12 @@ const FriendsTableBody = ({
       <Table.Head>
         <Table.HeadCell>Nombre completo</Table.HeadCell>
         <Table.HeadCell>Cédula</Table.HeadCell>
-        <Table.HeadCell>Categoría principal</Table.HeadCell>
-        <Table.HeadCell>Sub categoría</Table.HeadCell>
-        <Table.HeadCell>Genero</Table.HeadCell>
-        <Table.HeadCell>Teléfono</Table.HeadCell>
-        {!hidd && <Table.HeadCell>Estado</Table.HeadCell>}
-        <Table.HeadCell></Table.HeadCell>
+        <Table.HeadCell className="max-sm:hidden">Categoría principal</Table.HeadCell>
+        <Table.HeadCell className="max-sm:hidden">Sub categoría</Table.HeadCell>
+        <Table.HeadCell className="max-sm:hidden">Genero</Table.HeadCell>
+        <Table.HeadCell className="max-sm:hidden">Teléfono</Table.HeadCell>
+        {!hidd && <Table.HeadCell className="max-sm:hidden">Estado</Table.HeadCell>}
+        <Table.HeadCell className="max-sm:hidden"></Table.HeadCell>
       </Table.Head>
       <Table.Body>{children}</Table.Body>
     </Table>

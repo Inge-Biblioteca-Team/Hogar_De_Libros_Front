@@ -1,4 +1,4 @@
-import { Button, Label, Select, Table, TextInput } from "flowbite-react";
+import { Button, Label, Pagination, Select, Table, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { apiResponseCE } from "../types/Computer";
 import { GetComputerPaginated } from "../Services/SvComputer";
@@ -59,10 +59,9 @@ const ManagerComputer = () => {
   return (
     <>
       <BreadCrumbManage text="Equipo de cómputo" />
-
       <main className=" flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5 flex justify-between items-end">
-          <div className="flex gap-3">
+        <section className="w-4/5 sm:items-center flex lg:flex-row flex-col justify-between lg:items-end max-sm:w-full max-sm:px-2 gap-4 lg:gap-0">
+          <div className="flex lg:flex-row flex-col gap-3">
             <div>
               <Label value="Búsqueda por numero de equipo" />
               <TextInput
@@ -96,7 +95,7 @@ const ManagerComputer = () => {
             Añadir Equipo
           </Button>
         </section>
-        <section className="w-4/5">
+        <section className="w-4/5 max-sm:w-full max-sm:px-2">
           {computers && computers.count > 0 ? (
             <>
               <Table
@@ -106,11 +105,11 @@ const ManagerComputer = () => {
               >
                 <Table.Head className=" h-16">
                   <Table.HeadCell>Número de Máquina</Table.HeadCell>
-                  <Table.HeadCell>Categoría</Table.HeadCell>
-                  <Table.HeadCell>Marca</Table.HeadCell>
-                  <Table.HeadCell>Serial</Table.HeadCell>
+                  <Table.HeadCell className=" max-sm:hidden" >Categoría</Table.HeadCell>
+                  <Table.HeadCell className=" max-sm:hidden" >Marca</Table.HeadCell>
+                  <Table.HeadCell className=" max-sm:hidden" >Serial</Table.HeadCell>
                   <Table.HeadCell>Estado</Table.HeadCell>
-                  <Table.HeadCell></Table.HeadCell>
+                  <Table.HeadCell className=" max-sm:hidden" ></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
                   {computers?.data.map((computers) => (
@@ -121,6 +120,7 @@ const ManagerComputer = () => {
                   ))}
                 </Table.Body>
               </Table>
+              <div className="block max-sm:hidden">
               <CustomPagination
                 page={currentPage}
                 onPageChange={onPageChange}
@@ -128,6 +128,16 @@ const ManagerComputer = () => {
                 setCurrentLimit={setCurrentLimit}
                 total={computers?.count || 0}
               />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+              <Pagination
+                layout="navigation"
+                currentPage={currentPage}
+                totalPages={MaxPage}
+                onPageChange={onPageChange}
+              />
+              </div>
             </>
           ) : (
             <NoResults />

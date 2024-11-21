@@ -36,13 +36,6 @@ const Register = () => {
   } = useForm<RegisterInfo>({ mode: "onChange" });
 
   const password = watch("password");
-
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
   const { mutate: signUp } = UseRegister();
 
   const onSubmit = (data: RegisterInfo) => {
@@ -57,6 +50,11 @@ const Register = () => {
     }
 
     return result;
+  };
+
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const cedula = UseDebounce(watch("cedula"), 1000);

@@ -14,7 +14,7 @@ const MDSeeProgram = ({
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
       <Modal.Header>Información del programa</Modal.Header>
-      <Modal.Body className=" grid grid-cols-3 gap-5">
+      <Modal.Body className=" grid max-sm:grid-cols-1 grid-cols-3 gap-5">
         <div>
           <figure>
             <img

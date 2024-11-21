@@ -49,11 +49,11 @@ const EditUser = () => {
     <>
       <ProfileCrumbs text="Mi perfil" />
       <div className=" w-full flex items-center justify-center">
-        <div className=" w-4/5 flex flex-col gap-6 justify-center">
+        <div className=" w-4/5 flex flex-col gap-6 justify-center ">
           <fieldset>
             <legend className=" font-bold text-2xl">Información General</legend>
             <Card className=" w-full">
-              <div className=" w-full flex items-end justify-between">
+              <div className=" w-full flex items-end justify-between max-sm:flex-col max-sm:items-start max-sm:gap-4">
                 <div className=" flex items-center gap-5">
                   <figure>
                     <img
@@ -96,7 +96,7 @@ const EditUser = () => {
                     </span>
                   </div>
                 </div>
-                <div className="">
+                <div>
                   <Button color={"blue"} onClick={() => setOpneI(true)}>
                     Editar Información
                   </Button>
@@ -109,7 +109,7 @@ const EditUser = () => {
               Información de contacto
             </legend>
             <Card>
-              <div className=" flex items-end justify-between">
+              <div className=" flex items-end justify-between max-sm:flex-col max-sm:items-start max-sm:gap-4">
                 <div>
                   <div>
                     <strong className=" font-bold">Teléfono: </strong>
@@ -134,7 +134,7 @@ const EditUser = () => {
               Información de residencia
             </legend>
             <Card>
-              <div className=" flex items-end justify-between">
+              <div className=" flex items-end justify-between max-sm:flex-col max-sm:items-start max-sm:gap-4">
                 <div>
                   <div>
                     <strong className=" font-bold">Provincia: </strong>

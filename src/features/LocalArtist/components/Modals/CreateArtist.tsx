@@ -51,14 +51,14 @@ const CreateArtist = () => {
       <button
         type="button"
         onClick={() => setIsModalOpen(true)}
-        className="w-40 bg-Body text-white mt-2 p-2 rounded-md hover:bg-blue-800"
+        className="w-full sm:w-40 bg-Body text-white mt-2 p-2 rounded-md hover:bg-blue-800"
       >
         Añadir artista
       </button>
       <Modal show={isModalOpen} onClose={onClose}>
-        <Modal.Header>Añadir nuevo artista</Modal.Header>
+        <Modal.Header className="bg-white">Añadir nuevo artista</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body>
+          <Modal.Body className="bg-white">
             <div className="w-full flex items-center justify-center">
               {imageUrl ? (
                 <img
@@ -77,7 +77,7 @@ const CreateArtist = () => {
                 />
               )}
             </div>
-            <fieldset className="grid grid-cols-2 gap-3">
+            <fieldset className="max-sm:grid-cols-1 grid grid-cols-2 gap-3">
               <legend>Información básica</legend>
               <div>
                 <Label htmlFor="Name" value="Nombre" />
@@ -110,7 +110,7 @@ const CreateArtist = () => {
                 </Select>
               </div>
             </fieldset>
-            <fieldset className=" grid-cols-2 grid gap-2">
+            <fieldset className="max-sm:grid-cols-1 grid-cols-2 grid gap-2">
               <legend>Redes sociales</legend>
               <div className="mb-4">
                 <Label htmlFor="FBLink" value="Facebook link" />

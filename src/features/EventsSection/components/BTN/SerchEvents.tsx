@@ -8,8 +8,8 @@ const SearchEvents = ({
   EStatus: (ES: string) => void;
 }) => {
   return (
-    <div className={`flex max-sm:flex-col items-center gap-2`}>
-      <div className="max-sm:w-80">
+    <div className={`flex max-sm:w-full max-sm:flex-col items-center gap-2`}>
+      <div className="max-sm:w-full">
         <Label className="text-lg">Título del evento</Label>
         <TextInput
           type="text"
@@ -17,7 +17,7 @@ const SearchEvents = ({
           onChange={(event) => EName(event.target.value)}
         />
       </div>
-      <div className="max-sm:w-80">
+      <div className="max-sm:w-full">
         <Label className="text-lg">Estado</Label>
         <Select onChange={(event) => EStatus(event.target.value)}>
           <option value="">Seleccione un estado</option>

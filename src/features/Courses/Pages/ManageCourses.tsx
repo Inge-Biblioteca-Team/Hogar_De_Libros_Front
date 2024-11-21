@@ -50,8 +50,8 @@ const ManageCourses = () => {
   return (
     <>
       <ServicesCrumbs text="Cursos" />
-      <main className=" overflow-x-hidden w-full flex items-center justify-center flex-col gap-4">
-        <section className=" w-4/5  max-sm:gap-4 max-sm:place-items-center max-sm:flex-col flex justify-between items-end">
+      <main className="w-full flex items-center justify-center flex-col gap-4">
+        <section className=" w-4/5 max-sm:w-full max-sm:p-2 max-sm:gap-4 max-sm:place-items-center max-sm:flex-col flex justify-between items-end">
           <div className=" flex max-sm:w-full max-sm:flex-col gap-2">
             <div>
               <Label className=" text-lg">Nombre</Label>
@@ -73,7 +73,7 @@ const ManageCourses = () => {
           </div>
           <CreateCourse />
         </section>
-        <section className="w-4/5 max-sm:w-full max-sm:p-4">
+        <section className="w-4/5 max-sm:w-full max-sm:p-2">
           {Courses && Courses.count > 0 ? (
             <>
               <Table hoverable className=" text-center">

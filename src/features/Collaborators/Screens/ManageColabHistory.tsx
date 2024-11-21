@@ -10,6 +10,7 @@ import OptMainCategory from "../Components/OptMainCategory";
 import OptSubCategory from "../Components/OptSubCategory";
 import { ColabCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageColabHistory = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -39,21 +40,21 @@ const ManageColabHistory = () => {
   return (
     <>
       <ColabCrumbs text="Historial de colaboraciones" />
-      <main className=" flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex w-4/5 gap-2 max-sm:w-full max-sm:px-2">
+      <main className="  flex flex-col items-center justify-center w-full gap-5">
+        <section className=" flex max-sm:flex-col w-4/5 gap-2 max-sm:w-full max-sm:px-2">
           <div>
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
               <OptMainCategory />
             </Select>
           </div>
-          <div className=" max-sm:hidden">
+          <div className=" ">
             <Label value="Sub categoría" />
             <Select onChange={(event) => setSubCategory(event.target.value)}>
               <OptSubCategory />
             </Select>
           </div>
-          <div className=" max-sm:hidden">
+          <div className=" ">
             <Label value="Fecha de colaboración" />
             <TextInput
               type="date"
@@ -72,13 +73,24 @@ const ManageColabHistory = () => {
                   />
                 ))}
               </ColabsTableBody>
-              <CustomPagination
-                page={Page}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={ColaborationsList?.count || 0}
-              />
+              <div className="block max-sm:hidden">
+                <CustomPagination
+                  page={Page}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={ColaborationsList?.count || 0}
+                />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={Page}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />

@@ -22,7 +22,7 @@ const AdviceTable = ({ advices }: { advices: ApiAdvices }) => {
             <Table.HeadCell className="w-52 max-sm:hidden">
               Estado
             </Table.HeadCell>
-            <Table.HeadCell className="w-52"></Table.HeadCell>
+            <Table.HeadCell className="w-52 max-sm:hidden"></Table.HeadCell>
           </Table.Head>
           <Table.Body>
             {advices.data.map((advice) => (

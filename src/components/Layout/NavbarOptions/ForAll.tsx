@@ -1,20 +1,19 @@
-import { Button, Sidebar } from "flowbite-react";
+import { Sidebar } from "flowbite-react";
 import { useContext } from "react";
 import UserContext from "../../../Context/UserContext/UserContext";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
-import { FaPowerOff } from "react-icons/fa";
-import UseLogOut from "../../../features/Users/Hooks/UseLogOut";
+import toast from "react-hot-toast";
 const ForAll = () => {
   const { currentUser } = useContext(UserContext);
   const { handleNavigation } = useContext(SidebarContext);
 
   const role = currentUser?.role;
 
-  
-  const { mutate: logOut } = UseLogOut();
-
-  const onLogOut = () => {
-    logOut();
+  const closeSession = () => {
+    localStorage.removeItem("isLogged");
+    localStorage.removeItem("currentUser");
+    handleNavigation("/");
+    toast.success("Éxito al cerrar sesión")
   };
 
   return (
@@ -64,7 +63,9 @@ const ForAll = () => {
         </Sidebar.Item>
         <Sidebar.Item
           className=""
-          onClick={() => handleNavigation("/HogarDeLibros")}
+          onClick={() =>
+            handleNavigation("/HogarDeLibros/AmigosYColaboradores")
+          }
         >
           Se un amigo más
         </Sidebar.Item>
@@ -91,13 +92,9 @@ const ForAll = () => {
             Reserva de salas
           </Sidebar.Item>
         )}
-        <Sidebar.Item className="w-full max-sm:block hidden">
-          <div className="flex items-center w-7/12 justify-between fixed bottom-2 gap-5">
-            <span>{currentUser?.name}</span>
-            <Button onClick={onLogOut} color={"red"}>
-              <FaPowerOff />
-            </Button>
-          </div>
+        <Sidebar.Item className="cursor-pointer bg-red-500 text-white text-center hidden max-sm:block"
+         onClick={()=>closeSession()} >
+          Cerrar sesión
         </Sidebar.Item>
       </Sidebar.ItemGroup>
     </>

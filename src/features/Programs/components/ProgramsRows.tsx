@@ -10,14 +10,14 @@ const ProgramsRows = ({ program }: { program: Program }) => {
   return (
     <>
       <Table.Row className="h-20">
-        <Table.Cell>{program.programsId} </Table.Cell>
+        <Table.Cell className="max-sm:hidden">{program.programsId} </Table.Cell>
         <Table.Cell>{program.programName} </Table.Cell>
-        <Table.Cell>
+        <Table.Cell className="max-sm:hidden ">
           <div>
-            <span className=" line-clamp-1">{program.description}</span>
+            <span className="line-clamp-1">{program.description}</span>
           </div>
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell className="max-sm:hidden">
           <span
             className=" hover:text-Body cursor-pointer pon"
             onClick={() => (setOpen(true),(setId(program.programsId)))}

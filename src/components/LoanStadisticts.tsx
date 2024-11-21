@@ -23,25 +23,34 @@ const LoanStadisticts = () => {
   );
 
   const formattedStats = Array.isArray(stats)
-  ? stats
-      .map((stat) => {
-        const date = new Date(`${stat.month}`);
-        const monthInSpanish = new Intl.DateTimeFormat("es-ES", {
-          month: "long",
-          year: "numeric",
-        }).format(date);
+    ? stats
+        .map((stat) => {
+          const monthValue = stat.month;
 
-        return {
-          ...stat,
-          month: monthInSpanish.charAt(0).toUpperCase() + monthInSpanish.slice(1),
-        };
-      })
-      .reverse()
-  : [];
+          let date;
+          if (monthValue && !isNaN(new Date(monthValue).getTime())) {
+            date = new Date(monthValue);
+          } else {
+            console.error("Fecha inválida: ", monthValue);
+            return stat;
+          }
 
+          const monthInSpanish = new Intl.DateTimeFormat("es-ES", {
+            month: "long",
+            year: "numeric",
+          }).format(date);
+
+          return {
+            ...stat,
+            month:
+              monthInSpanish.charAt(0).toUpperCase() + monthInSpanish.slice(1),
+          };
+        })
+        .reverse()
+    : [];
   return (
     <>
-      {!isLoading? (
+      {!isLoading ? (
         <ResponsiveContainer
           width="100%"
           height={400}

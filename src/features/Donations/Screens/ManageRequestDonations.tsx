@@ -9,6 +9,7 @@ import { DonationsCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItem
 import TableDonations from "../Components/TableDonations";
 import RowsRequestDonation from "../Components/RowsRequestDonation";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageRequestDonations = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -37,8 +38,8 @@ const ManageRequestDonations = () => {
   return (
     <>
       <DonationsCrumbs text="Propuestas de donación" />
-      <main className="flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex w-4/5 gap-2">
+      <main className=" flex flex-col items-center justify-center w-full gap-5">
+        <section className=" flex max-sm:w-full max-sm:p-2 max-sm:flex-col w-4/5 gap-2">
           <div>
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
@@ -53,22 +54,36 @@ const ManageRequestDonations = () => {
             />
           </div>
         </section>
-        <section className=" w-4/5">
-          {Donations && Donations.count>0 ? (
+        <section className=" max-sm:w-full max-sm:p-2 w-4/5">
+          {Donations && Donations.count > 0 ? (
             <>
               <TableDonations>
                 {Donations?.data.map((donation) => (
-                  <RowsRequestDonation donation={donation} 
-                  key={donation.DonationID} />
+                  <RowsRequestDonation
+                    donation={donation}
+                    key={donation.DonationID}
+                  />
                 ))}
               </TableDonations>
-              <CustomPagination
-                page={Page}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={Donations?.count || 0}
-              />
+
+              <div className="block max-sm:hidden">
+                <CustomPagination
+                  page={Page}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={Donations?.count || 0}
+                />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={Page}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />

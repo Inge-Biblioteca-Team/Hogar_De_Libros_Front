@@ -22,11 +22,9 @@ const Login = () => {
   const { mutate: LogIn } = UseAuth();
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
 
   const onSubmit = (data: SingIng) => {
     LogIn(data);

@@ -46,13 +46,13 @@ const ManageEvents = () => {
   return (
     <>
       <ServicesCrumbs text="Eventos" />
-      <div className="overflow-x-hidden w-full  flex items-center justify-center">
-        <div className="w-4/5 max-sm:w-full max-sm:p-4 ">
+      <div className="w-full  flex items-center justify-center">
+        <div className="w-4/5 max-sm:w-full max-sm:p-2 ">
           <div className="flex max-sm:gap-4 max-sm:items-center max-sm:flex-col items-end justify-between w-full mb-4 ">
             <SearchEvents EName={setStitle} EStatus={setSStatus} />
-            <div>
+           
               <CreateEvents />
-            </div>
+            
           </div>
 
           {Events && Events?.count > 0 ? (

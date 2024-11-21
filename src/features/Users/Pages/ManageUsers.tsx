@@ -12,6 +12,7 @@ import {
 } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageUsers = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -52,25 +53,27 @@ const ManageUsers = () => {
       <BreadCrumbsItems>
         <BreadLastItems text="Gestión de usuarios" />
       </BreadCrumbsItems>
-      <div className="flex place-content-center">
-        <div className="w-4/5">
+      <div className=" flex place-content-center">
+        <div className="w-4/5 flex flex-col items-center justify-center pt-1 max-sm:w-full max-sm:p-2 gap-2">
+          <div className="max-sm:w-full sm:w-full flex justify-center max-sm:pb-8">
           <SearchUsers
             setYear={setYear}
             setRol={setRol}
             setCedula={setCedula}
             setName={setName}
           />
+          </div>
           {Users && Users.count > 0 ?  (
             <>
-              <Table hoverable className=" text-center min-h-[30rem]">
-                <Table.Head>
+              <Table hoverable className=" text-center min-h-[30rem] max-sm:text-sm max-sm:justify-center">
+                <Table.Head className=" bg-white">
                   <Table.HeadCell>Cédula</Table.HeadCell>
                   <Table.HeadCell>Nombre</Table.HeadCell>
-                  <Table.HeadCell>Rol</Table.HeadCell>
-                  <Table.HeadCell>Provincia</Table.HeadCell>
-                  <Table.HeadCell>Teléfono</Table.HeadCell>
-                  <Table.HeadCell>Fecha de registro</Table.HeadCell>
-                  <Table.HeadCell>Estado</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Rol</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Provincia</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Teléfono</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Fecha de registro</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Estado</Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
@@ -79,7 +82,7 @@ const ManageUsers = () => {
                   ))}
                 </Table.Body>
               </Table>
-
+              <div className="block w-full max-sm:hidden">
               <CustomPagination
                 page={currentPage}
                 onPageChange={onPageChange}
@@ -87,6 +90,15 @@ const ManageUsers = () => {
                 setCurrentLimit={setCurrentLimit}
                 total={Users?.count || 0}
               />
+              </div>
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={currentPage}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ):
           (

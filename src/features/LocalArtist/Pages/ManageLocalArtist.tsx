@@ -10,6 +10,7 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageLocalArtist = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -53,23 +54,27 @@ const ManageLocalArtist = () => {
       <BreadCrumbManage text="Artistas locales" />
 
       <div className=" w-full flex items-center justify-center">
-        <div className=" w-4/5">
-          <div className="flex items-center">
+        <div className=" w-4/5 max-sm:p-2 max-sm:w-full">
+          <div className="flex sm:w-full items-center max-sm:flex-col ">
+          <div className="w-full sm:w-full flex justify-center max-sm:pb-8">
             <SearchArtists
               Status={SetStatus}
               SName={SetSName}
               SType={SetSType}
             />
-            <CreateArtist />
+          </div>
+            <div className="w-full sm:w-full flex justify-end max-sm:pb-8">
+              <CreateArtist />
+            </div>
           </div>
           {Artists && Artists.count > 0 ? (
             <>
-              <Table hoverable className=" text-center h-[30rem]">
-                <Table.Head className=" h-20 text-sm">
+              <Table hoverable className="text-center h-[30rem] max-sm:text-sm max-sm:justify-center">
+                <Table.Head className="h-20 text-sm bg-white">
                   <Table.HeadCell>Nombre</Table.HeadCell>
-                  <Table.HeadCell>Tipo de Artista</Table.HeadCell>
-                  <Table.HeadCell>Información Relevante</Table.HeadCell>
-                  <Table.HeadCell>Redes Sociales</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Tipo de Artista</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Información Relevante</Table.HeadCell>
+                  <Table.HeadCell className="max-sm:hidden">Redes Sociales</Table.HeadCell>
                   <Table.HeadCell>Estado</Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
@@ -79,6 +84,7 @@ const ManageLocalArtist = () => {
                   ))}
                 </Table.Body>
               </Table>
+              <div className="block max-sm:hidden">
               <CustomPagination
                 page={currentPage}
                 onPageChange={onPageChange}
@@ -86,6 +92,15 @@ const ManageLocalArtist = () => {
                 setCurrentLimit={setCurrentLimit}
                 total={Artists?.count || 0}
               />
+              </div>
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={currentPage}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />

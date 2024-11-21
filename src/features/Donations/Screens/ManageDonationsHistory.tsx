@@ -9,6 +9,7 @@ import { DonationsCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItem
 import RowsHistoryDonations from "../Components/RowstHistoryDonations";
 import TableDonations from "../Components/TableDonations";
 import NoResults from "../../../components/NoResults";
+import { Pagination } from "flowbite-react";
 
 const ManageDonationsHistory = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -38,7 +39,7 @@ const ManageDonationsHistory = () => {
     <>
       <DonationsCrumbs text="Donaciones finalizadas" />
       <main className="flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex w-4/5 gap-2">
+        <section className="max-sm:w-full max-sm:p-2 max-sm:flex-col flex w-4/5 gap-2">
           <div>
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
@@ -53,7 +54,7 @@ const ManageDonationsHistory = () => {
             />
           </div>
         </section>
-        <section className=" w-4/5">
+        <section className=" max-sm:w-full max-sm:p-2 w-4/5">
           {Donations && Donations.count > 0 ? (
             <>
               <TableDonations hidd>
@@ -64,6 +65,7 @@ const ManageDonationsHistory = () => {
                   />
                 ))}
               </TableDonations>
+              <div className="block max-sm:hidden">
               <CustomPagination
                 page={Page}
                 onPageChange={onPageChange}
@@ -71,6 +73,16 @@ const ManageDonationsHistory = () => {
                 setCurrentLimit={setCurrentLimit}
                 total={Donations?.count || 0}
               />
+              </div>
+
+              <div className="sm:hidden  flex justify-center ">
+                <Pagination
+                  layout="navigation"
+                  currentPage={Page}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
+              </div>
             </>
           ) : (
             <NoResults />

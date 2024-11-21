@@ -5,9 +5,8 @@ import { LoanResponse } from "../../Types/BookLoan";
 import { useEffect, useState } from "react";
 import NoRequest from "../../Components/NoRequest";
 import CustomPagination from "../../../../components/CustomPagination";
-import {
-  LoansAndCirculationCrumbs,
-} from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import { Pagination } from "flowbite-react";
 
 const PendingRequest = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -35,18 +34,29 @@ const PendingRequest = () => {
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
     <>
-       <LoansAndCirculationCrumbs text="Solicitudes de libros"/>
+      <LoansAndCirculationCrumbs text="Solicitudes de libros" />
       {Loan && Loan.count > 0 ? (
-        <div className="flex place-content-center mt-20">
-          <div className="w-4/5">
+        <div className=" flex place-content-center mt-20">
+          <div className="w-4/5 max-sm:w-full max-sm:p-2">
             {Loan && Loan.count && <TBLLoan Loan={Loan} NeedAccions />}
-            <CustomPagination
-              page={currentPage}
-              onPageChange={onPageChange}
-              totalPages={MaxPage}
-              setCurrentLimit={setCurrentLimit}
-              total={Loan?.count || 0}
-            />
+            <div className="block max-sm:hidden">
+              <CustomPagination
+                page={currentPage}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Loan?.count || 0}
+              />
+            </div>
+
+            <div className="sm:hidden  flex justify-center ">
+              <Pagination
+                layout="navigation"
+                currentPage={currentPage}
+                totalPages={MaxPage}
+                onPageChange={onPageChange}
+              />
+            </div>
           </div>
         </div>
       ) : (
