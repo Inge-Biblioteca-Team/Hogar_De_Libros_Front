@@ -28,7 +28,7 @@ const ContacInfo = () => {
         <a target="blank" href="https://maps.app.goo.gl/4Gjmf7esqqua8cxB9">
           Frente a las piscinas de ANDE, Nicoya, Costa Rica 59.
         </a>
-        <span> De Lunes a Viernes de 12:00 pm a 7:00 pm.</span>
+        <span> De Lunes a Viernes de 8:00 am a 4:00 pm.</span>
         <br />
         <strong className=" hidden max-sm:block">También Puedes llenar el formulario adjunto y nos contactaremos pronto.</strong>
       </p>
