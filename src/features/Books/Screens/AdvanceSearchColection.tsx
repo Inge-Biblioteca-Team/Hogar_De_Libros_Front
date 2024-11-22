@@ -59,7 +59,7 @@ const AdvanceSearchColection = () => {
     <>
       <ColecctionCrumbs text="Búsqueda Avanzada" />
 
-      <section className=" lg:fixed left-3 lg:flex  lg:flex-col gap-7 top-[22%] p-4 lg:p-0 w-full lg:w-96 ">
+      <section className=" lg:fixed left-3 lg:flex lg:flex-col gap-7 top-[22%] p-4 lg:p-0 w-full lg:w-96 ">
         <span className=" text-center font-bold ">
           Criterios de búsqueda avanzada
         </span>
@@ -94,7 +94,7 @@ const AdvanceSearchColection = () => {
         <div>
           <Label value="Editorial" />
           <TextInput
-            placeholder="Ej. ClubdeLibros"
+            placeholder="Ej. Club de Libros"
             onChange={(event) => setSearchEditorial(event.target.value)}
           />
         </div>
@@ -111,7 +111,8 @@ const AdvanceSearchColection = () => {
           <span> Por favor complete al menos un criterios de búsqueda </span>
         )}
       </section>
-      <section className="lg:absolute top-[22%] lg:right-40 h-full lg:h-[75vh] w-full lg:w-[120vh] overflow-y-scroll custom-bar px-4 py-10">
+      <section className="lg:absolute top-[20%] left-[28%] lg:right-40 h-full lg:h-[75vh] w-full lg:w-[120vh] overflow-y-scroll custom-bar px-4 py-10
+      ">
         {catalog && catalog.count > 0 ? (
           <>
             <div className="hidden lg:block">

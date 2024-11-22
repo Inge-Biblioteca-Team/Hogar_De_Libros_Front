@@ -7,7 +7,7 @@ import CardViewCourses from "../components/CardViewCourses";
 const NextViewCourses = () => {
   const { data: ViewCourses } = useQuery<ApiCourseResponse, Error>(
     ["CourseCatalog"],
-    () => GetNextCourses(0, 0),
+    () => GetNextCourses(0, 0,"11"),
     {
       staleTime: 600,
     }

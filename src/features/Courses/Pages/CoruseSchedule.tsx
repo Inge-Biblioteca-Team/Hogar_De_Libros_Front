@@ -14,9 +14,11 @@ const CoruseSchedule = () => {
   const [month, setMonth] = useState<string>("");
   const [type, setType] = useState<string>("");
 
+  const currentDate = new Date();
+  const curretnMonth = currentDate.getMonth();
   const { data: Courses } = useQuery<ApiCourseResponse, Error>(
     ["CourseCatalog", month, type],
-    () => GetNextCourses(0, 0, month, type),
+    () => GetNextCourses(0, 0, month || "11", type),
     {
       staleTime: 600,
     }
@@ -37,8 +39,6 @@ const CoruseSchedule = () => {
     "Diciembre",
   ];
 
-  const currentDate = new Date();
-  const curretnMonth = currentDate.getMonth();
 
   const monthOpt = [];
   for (let i = 0; i < 3; i++) {
@@ -57,7 +57,7 @@ const CoruseSchedule = () => {
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
           >
-            <option value="">Mes del curso</option>
+       
             {monthOpt.map((opt, index) => (
               <option key={index} value={opt.value}>
                 {opt.month}
