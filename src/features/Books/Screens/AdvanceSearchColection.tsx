@@ -116,7 +116,7 @@ const AdvanceSearchColection = () => {
         {catalog && catalog.count > 0 ? (
           <>
             <div className="hidden lg:block">
-              <ColectionList
+              <ColectionList inf={false}
                 colection={catalog}
                 onPageChange={onPageChange}
                 totalPages={MaxPage}
@@ -127,7 +127,7 @@ const AdvanceSearchColection = () => {
             <div className="block lg:hidden">
               <div className="flex flex-col gap-3">
                 {catalog.data.map((book) => (
-                  <ListCard key={'BK' + book.BookCode} book={book} />
+                  <ListCard key={'BK' + book.BookCode} book={book} inf={false} />
                 ))}
               </div>
                 <div className="flex justify-center">

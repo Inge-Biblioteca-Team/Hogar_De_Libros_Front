@@ -7,17 +7,19 @@ const ColectionList = ({
   currentPage,
   onPageChange,
   totalPages,
+  inf
 }: {
   colection: Catalog;
   currentPage?: number;
   onPageChange?: (page: number) => void;
   totalPages?: number;
+  inf:boolean
 }) => {
   return (
     <>
       <div className=" flex flex-col w-full gap-3">
         {colection.data.map((book) => (
-          <ListCard key={'BK'+book.BookCode} book={book} />
+          <ListCard key={'BK'+book.BookCode} book={book} inf={inf}/>
         ))}
       </div>
       {currentPage && onPageChange && totalPages && (

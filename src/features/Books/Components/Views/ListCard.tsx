@@ -2,14 +2,13 @@ import { Button, Card, Label } from "flowbite-react";
 import { Book } from "../../Types/BooksTypes";
 import { useState } from "react";
 import LendingForm from "../Modals/LendingForm";
+import SorryModal from "../Modals/SorryModal";
 
-const ListCard = ({ book }: { book: Book }) => {
+const ListCard = ({ book, inf }: { book: Book; inf: boolean }) => {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <>
-      <Card
-        className="w-full h-full hover:scale-105"
-      >
+      <Card className="w-full h-full hover:scale-105">
         <div className="grid  grid-cols-2 lg:flex">
           <figure>
             <img
@@ -21,7 +20,7 @@ const ListCard = ({ book }: { book: Book }) => {
           <div className=" flex flex-col justify-between ml-4 gap-2">
             <Label className="line-clamp-4" value={` Titulo: ${book.Title}`} />
             <Label className="line-clamp-4" value={` Autor: ${book.Author}`} />
-            <Label 
+            <Label
               value={` Año de publicación: ${
                 book.PublishedYear || "Desconocido"
               }`}
@@ -37,14 +36,22 @@ const ListCard = ({ book }: { book: Book }) => {
                 book.ShelfCategory || "No posee"
               }`}
             />
-            <Button className="w-32 lg:w-40" color={"blue"} size={"sm"}
-            onClick={() => setOpen(true)}>
+            <Button
+              className="w-32 lg:w-40"
+              color={"blue"}
+              size={"sm"}
+              onClick={() => setOpen(true)}
+            >
               Reserva ahora
             </Button>
           </div>
         </div>
       </Card>
-      <LendingForm open={open} setOpen={setOpen} book={book} />
+      {inf ? (
+        <SorryModal open={open} setOpen={setOpen} />
+      ) : (
+        <LendingForm open={open} setOpen={setOpen} book={book} />
+      )}
     </>
   );
 };
