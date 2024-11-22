@@ -7,7 +7,7 @@ import CardCourses from "../components/CardCourses";
 const UpcomingCourses = ({ home }: { home?: boolean }) => {
   const { data: Courses } = useQuery<ApiCourseResponse, Error>(
     ["CourseCatalog"],
-    () => GetNextCourses(0, 0),
+    () => GetNextCourses(0, 0,"11"),
     {
       staleTime: 600,
     }
