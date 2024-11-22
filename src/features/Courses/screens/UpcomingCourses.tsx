@@ -7,7 +7,7 @@ import CardCourses from "../components/CardCourses";
 const UpcomingCourses = ({ home }: { home?: boolean }) => {
   const { data: Courses } = useQuery<ApiCourseResponse, Error>(
     ["CourseCatalog"],
-    () => GetNextCourses(0, 0,"11"),
+    () => GetNextCourses(0, 0, "11"),
     {
       staleTime: 600,
     }
@@ -32,9 +32,12 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
           id="Courses"
         >
           <h2 className="font-bold text-2xl">Cursos disponibles</h2>
-          {home&&
-          <h4 className=" text-center text-md mb-2">Ven a pasar un tiempo especial junto a nosotros. Al mismo tiempo que aprendes cosas nuevas.</h4>
-          }
+          {home && (
+            <h4 className=" text-center text-md mb-2">
+              Ven a pasar un tiempo especial junto a nosotros. Al mismo tiempo
+              que aprendes cosas nuevas.
+            </h4>
+          )}
           <Carousel
             indicators={false}
             pauseOnHover
@@ -43,7 +46,10 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
             style={{ height: "30rem" }}
           >
             {groupedCourses.map((group, groupIndex) => (
-              <div key={groupIndex} className=" flex justify-center max-sm:gap-20 gap-x-4">
+              <div
+                key={groupIndex}
+                className=" flex justify-center max-sm:gap-20 gap-x-4"
+              >
                 {group.map((course) => (
                   <CardCourses Courses={course} key={"CO" + course.Id} />
                 ))}
