@@ -48,7 +48,7 @@ const EventTimeItem = ({ event }: { event: Event }) => {
                   {event.title}{" "}
                 </span>
                 <span>{event.details} </span>
-                <span>Fecha del evento: {fullDate.toUpperCase()}</span>
+                <span>Fecha: {fullDate.toUpperCase()}</span>
                 <span>
                   {event.location} {time}{" "}
                 </span>
