@@ -28,7 +28,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
     <>
       {Courses && Courses.count > 0 && (
         <section
-          className="m-5 flex items-center w-4/5 flex-col max-sm:m-0"
+          className="flex items-center max-sm:pr-4 max-sm:pl-4  max-sm:w-full  w-4/5 flex-col "
           id="Courses"
         >
           <h2 className="font-bold text-2xl">Cursos disponibles</h2>
@@ -43,7 +43,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
             style={{ height: "30rem" }}
           >
             {groupedCourses.map((group, groupIndex) => (
-              <div key={groupIndex} className=" flex justify-center gap-x-4">
+              <div key={groupIndex} className=" flex justify-center max-sm:gap-20 gap-x-4">
                 {group.map((course) => (
                   <CardCourses Courses={course} key={"CO" + course.Id} />
                 ))}
