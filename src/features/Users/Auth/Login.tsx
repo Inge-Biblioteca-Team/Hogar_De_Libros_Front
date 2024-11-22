@@ -57,7 +57,7 @@ const Login = () => {
                 />
               </div>
 
-              <div className=" relative">
+              <div className="relative">
                 <Label htmlFor="password" value="Contraseña" />
                 <TextInput
                   id="password"

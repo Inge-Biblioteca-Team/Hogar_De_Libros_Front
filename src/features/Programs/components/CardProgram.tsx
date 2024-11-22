@@ -1,4 +1,4 @@
-import { Button, Card } from "flowbite-react";
+import { Card } from "flowbite-react";
 import { Program } from "../types/Programs";
 
 const CardProgram = ({ program }: { program: Program }) => {
@@ -21,9 +21,6 @@ const CardProgram = ({ program }: { program: Program }) => {
               Descripción del programa: {program.description}
             </span>
           </p>
-          <div className="flex justify-center mt-4">
-          <Button color={"blue"}>Mas información</Button>
-          </div>
         </figcaption>
       </figure>
     </Card>

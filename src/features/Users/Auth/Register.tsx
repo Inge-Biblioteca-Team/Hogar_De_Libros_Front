@@ -36,7 +36,6 @@ const Register = () => {
   } = useForm<RegisterInfo>({ mode: "onChange" });
 
   const password = watch("password");
-
   const { mutate: signUp } = UseRegister();
 
   const onSubmit = (data: RegisterInfo) => {
@@ -227,7 +226,7 @@ const Register = () => {
                   <TextInput
                     placeholder="8 caracteres, sin caracteres especiales"
                     id="Password"
-                    type={showPassword ? "text" : "password"}
+                    type= {showPassword ? "text" : "password"}
                     required
                     {...register("password", {
                       required: "La contraseña es obligatoria",
