@@ -3,6 +3,7 @@ import CardProgram from "../components/CardProgram";
 import { ApiProgramsResponse, Program } from "../types/Programs";
 import { GetProgramsList } from "../services/SvPrograms";
 import { Carousel } from "flowbite-react";
+import { useEffect, useState } from "react";
 
 const CurrentPrograms = ({ home }: { home?: boolean }) => {
   const { data: Programs } = useQuery<ApiProgramsResponse, Error>(
@@ -13,6 +14,25 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
     }
   );
 
+  const [itemsPerGroup, setItemsPerGroup] = useState(4);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerGroup(1); 
+      } else if (window.innerWidth >= 640 && window.innerWidth < 1024) {
+        setItemsPerGroup(2); 
+      } else {
+        setItemsPerGroup(4); 
+      }
+    };
+
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize); 
+  }, []);
+
   const chunkArray = (arr: Program[], size: number): Program[][] => {
     const result: Program[][] = [];
     for (let i = 0; i < arr.length; i += size) {
@@ -20,12 +40,8 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
     }
     return result;
   };
-  const isSmallScreen = window.innerWidth <= 640;
-  const groupedProgram = chunkArray(
-    Programs?.data || [],
-    isSmallScreen ? 1 : 4
-  );
 
+  const groupedProgram = chunkArray(Programs?.data || [], itemsPerGroup);
   return (
     <>
       {Programs && Programs?.count > 0 && (

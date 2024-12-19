@@ -43,7 +43,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
             style={{ height: "30rem" }}
           >
             {groupedCourses.map((group, groupIndex) => (
-              <div key={groupIndex} className=" flex justify-center gap-x-4">
+              <div key={groupIndex} className=" flex justify-center  gap-x-4">
                 {group.map((course) => (
                   <CardCourses Courses={course} key={"CO" + course.Id} />
                 ))}

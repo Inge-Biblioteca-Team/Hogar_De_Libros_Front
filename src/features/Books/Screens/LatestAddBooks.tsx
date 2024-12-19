@@ -17,7 +17,13 @@ const LatestAddBooks = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setItemsPerGroup(window.innerWidth < 640 ? 2 : 5); 
+      if (window.innerWidth < 640) {
+        setItemsPerGroup(2); 
+      } else if (window.innerWidth >= 640 && window.innerWidth < 1024) {
+        setItemsPerGroup(3); 
+      } else {
+        setItemsPerGroup(5);
+      }
     };
 
     handleResize(); 

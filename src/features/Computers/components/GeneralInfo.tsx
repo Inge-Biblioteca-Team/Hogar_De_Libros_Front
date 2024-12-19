@@ -9,8 +9,8 @@ const GeneralInfo = () => {
     <div className=" lg:grid lg:grid-cols-3 lg:max-w-4xl lg:gap-6
     flex flex-col ">
       <GeneralComputerInfo />
-      <div className="flex lg:justify-between flex-col max-sm:text-sm lg:max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl
-       m-2 lg:m-0">
+      <div className="flex lg:justify-between flex-col max-sm:text-sm md:items-center lg:max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl
+       m-2 lg:m-0 md:p-2">
         <p>
           <strong>Acceso a computadoras, </strong>
           <span>
@@ -32,9 +32,9 @@ const GeneralInfo = () => {
             <strong>disponibilidad en tiempo real.</strong>
           </span>
         </p>
-        <div className="m-4 lg:m-0">
+        <div className="m-4  lg:m-0">
           <Link to={"/HogarDeLibros/Equipo_Disponible"}>
-            <Button color={"blue"}>Ver mas información</Button>
+            <Button className="md:w-52 " color={"blue"}>Ver mas información</Button>
           </Link>
         </div>
       </div>
