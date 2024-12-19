@@ -8,7 +8,7 @@ const AdviceTable = ({ advices }: { advices: ApiAdvices }) => {
       {advices.count > 0 ? (
         <Table className=" text-center min-h-[30rem] " hoverable>
           <Table.Head>
-            <Table.HeadCell className="w-52 max-sm:hidden">
+            <Table.HeadCell className="w-52 md:hidden max-sm:hidden">
               Numero de aviso
             </Table.HeadCell>
             <Table.HeadCell className="w-52">Motivo</Table.HeadCell>
@@ -16,13 +16,13 @@ const AdviceTable = ({ advices }: { advices: ApiAdvices }) => {
               Categoría
             </Table.HeadCell>
             <Table.HeadCell className="w-52">Fecha de actividad</Table.HeadCell>
-            <Table.HeadCell className="w-52 max-sm:hidden">
+            <Table.HeadCell className="w-52 md:hidden max-sm:hidden">
               Información Extra
             </Table.HeadCell>
             <Table.HeadCell className="w-52 max-sm:hidden">
               Estado
             </Table.HeadCell>
-            <Table.HeadCell className="w-52 max-sm:hidden"></Table.HeadCell>
+            <Table.HeadCell className="w-52 md:hidden max-sm:hidden"></Table.HeadCell>
           </Table.Head>
           <Table.Body>
             {advices.data.map((advice) => (
