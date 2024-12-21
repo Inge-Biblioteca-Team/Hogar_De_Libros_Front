@@ -17,10 +17,10 @@ const ColabHistoryRow = ({ colaborator }: { colaborator: Colaborator }) => {
         <Table.Cell className=" max-sm:hidden">
           {colaborator.PrincipalCategory}
         </Table.Cell>
-        <Table.Cell className="md:hidden  max-sm:hidden">
+        <Table.Cell className="  max-sm:hidden">
           {colaborator.SubCategory}
         </Table.Cell>
-        <Table.Cell className="">{colaborator.Status}</Table.Cell>
+        <Table.Cell className="md:hidden">{colaborator.Status}</Table.Cell>
       </Table.Row>
       <MDViewInfo open={openV} setOpen={setOpenV} colaboration={colaborator} />
     </>

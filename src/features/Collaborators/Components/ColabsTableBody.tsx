@@ -18,10 +18,10 @@ const ColabsTableBody = ({
         <Table.HeadCell className=" max-sm:hidden ">
           Categoría de colaboración
         </Table.HeadCell>
-        <Table.HeadCell className="md:hidden  max-sm:hidden ">
+        <Table.HeadCell className=" max-sm:hidden ">
           Sub categoría
         </Table.HeadCell>
-        <Table.HeadCell className=""> {!hiid ? "Estado" : ""}</Table.HeadCell>
+        <Table.HeadCell className="md:hidden"> {!hiid ? "Estado" : ""}</Table.HeadCell>
       </Table.Head>
       <Table.Body>{children}</Table.Body>
     </Table>

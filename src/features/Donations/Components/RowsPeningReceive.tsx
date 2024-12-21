@@ -16,11 +16,11 @@ const RowsPeningReceive = ({ donation }: { donation: Donation }) => {
       <Table.Row>
         <Table.Cell>{donation.UserFullName}</Table.Cell>
         <Table.Cell>{donation.UserCedula}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">{donation.UserEmail}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">{donation.UserPhone}</Table.Cell>
+        <Table.Cell className="md:hidden max-sm:hidden">{donation.UserEmail}</Table.Cell>
+        <Table.Cell className="md:hidden  max-sm:hidden">{donation.UserPhone}</Table.Cell>
         <Table.Cell className="max-sm:hidden">{donation.SubCategory}</Table.Cell>
         <Table.Cell className="max-sm:hidden">{formatToDMY(donation.DateRecolatedDonation)}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">{donation.Status}</Table.Cell>
+        <Table.Cell className="md:hidden max-sm:hidden">{donation.Status}</Table.Cell>
         <Table.Cell>
           <div className=" flex gap-4 justify-center items-center">
             <button
