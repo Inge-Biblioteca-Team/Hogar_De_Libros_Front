@@ -43,7 +43,7 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
             <FontAwesomeIcon
              onClick={Goto}
               icon={faBookOpen}
-              className="text-white h-10 w-10 max-sm:hidden cursor-pointer"
+              className="text-white h-10 w-10 md:hidden max-sm:hidden cursor-pointer"
             />
             <span
              onClick={Goto}

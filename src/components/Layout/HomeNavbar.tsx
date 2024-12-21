@@ -33,7 +33,7 @@ const HomeNavbar = () => {
       <Drawer
         open={visible}
         onClose={handleClose}
-        className=" opacity-90 w-fit"
+        className="  opacity-90 w-fit"
       >
         <Drawer.Header
           title={"Menú de Navegación"}
