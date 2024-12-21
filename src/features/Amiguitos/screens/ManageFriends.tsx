@@ -44,7 +44,7 @@ const ManageFriends = () => {
     <>
       <FirendCrumbs text="Lista de amigos" />
       <main className="flex flex-col items-center justify-center w-full gap-5">
-        <section className="max-sm:w-full max-sm:p-2 flex max-sm:flex-col w-4/5 gap-2">
+        <section className="max-sm:w-full md:w-full md:pr-4 md:pl-4  max-sm:p-2 flex max-sm:flex-col w-4/5 gap-2">
           <div>
             <Label value="Categoría principal" />
             <Select onChange={(event) => setCategory(event.target.value)}>
@@ -65,7 +65,7 @@ const ManageFriends = () => {
             />
           </div>
         </section>
-        <section className="max-sm:w-full max-sm:p-2 w-4/5">
+        <section className="max-sm:w-full md:w-full md:pr-4 md:pl-4  max-sm:p-2 w-4/5">
           {FriendList && FriendList.count > 0 ? (
             <>
               <FriendsTableBody>
