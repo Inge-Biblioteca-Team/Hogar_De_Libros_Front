@@ -35,9 +35,9 @@ const TBLUsers = ({ user }: { user: User }) => {
         <Table.Cell className="w-56 max-sm:hidden">
           {roleMapping[user.role] || "Usuario de Sala"}{" "}
         </Table.Cell>
-        <Table.Cell className="w-56 max-sm:hidden">{user.province} </Table.Cell>
-        <Table.Cell className="w-56 max-sm:hidden">{user.phoneNumber} </Table.Cell>
-        <Table.Cell className="w-56 max-sm:hidden">
+        <Table.Cell className="w-56 md:hidden max-sm:hidden">{user.province} </Table.Cell>
+        <Table.Cell className="w-56 md:hidden max-sm:hidden">{user.phoneNumber} </Table.Cell>
+        <Table.Cell className="w-56 md:hidden max-sm:hidden">
           {formatToDMY(user.registerDate)}
         </Table.Cell>
         <Table.Cell className="w-56 max-sm:hidden">
