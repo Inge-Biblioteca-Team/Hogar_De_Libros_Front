@@ -20,8 +20,8 @@ const SearchRooms = ({
     }
   );
   return (
-    <div className={`flex max-sm:w-full max-sm:flex-col lg:flex-row items-center gap-2`}>
-      <div className="max-sm:w-full">
+    <div className={`flex max-sm:w-full md:flex-col md:w-full max-sm:flex-col lg:flex-row items-center gap-2`}>
+      <div className="max-sm:w-full md:w-full">
         <Label className="text-lg ">Nombre de la Sala</Label>
         <TextInput
           type="text"
@@ -29,7 +29,7 @@ const SearchRooms = ({
           onChange={(room) => RName(room.target.value)}
         />
       </div>
-      <div className="max-sm:w-full">
+      <div className="max-sm:w-full md:w-full">
         <Label className="text-lg">Estado</Label>
         <Select onChange={(room) => RStatus(room.target.value)}>
           <option value="">Seleccione un estado</option>
@@ -38,7 +38,7 @@ const SearchRooms = ({
           <option value="C">Clausurado</option>
         </Select>
       </div>
-      <div className="max-sm:w-full">
+      <div className="max-sm:w-full md:w-full">
         <Label className="text-lg">Número de Sala</Label>
         <Select onChange={(room) => RNumber(room.target.value)}>
           <option value="">Seleccione número de sala</option>

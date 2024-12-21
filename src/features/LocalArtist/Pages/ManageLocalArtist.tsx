@@ -54,8 +54,8 @@ const ManageLocalArtist = () => {
       <BreadCrumbManage text="Artistas locales" />
 
       <div className=" w-full flex items-center justify-center">
-        <div className=" w-4/5 max-sm:p-2 max-sm:w-full">
-          <div className="flex sm:w-full items-center max-sm:flex-col ">
+        <div className=" w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:p-2 max-sm:w-full">
+          <div className="flex md:flex-col sm:w-full items-center max-sm:flex-col ">
           <div className="w-full sm:w-full flex justify-center max-sm:pb-8">
             <SearchArtists
               Status={SetStatus}
@@ -63,7 +63,7 @@ const ManageLocalArtist = () => {
               SType={SetSType}
             />
           </div>
-            <div className="w-full sm:w-full flex justify-end max-sm:pb-8">
+            <div className="w-full sm:w-full md:pb-6 flex justify-end max-sm:pb-8">
               <CreateArtist />
             </div>
           </div>

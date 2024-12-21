@@ -16,10 +16,10 @@ const FurnitureRows = ({ furniture }: { furniture: furniture }) => {
       <Table.Row key={furniture.Id} className=" h-24">
         <Table.Cell className="w-52">{furniture.LicenseNumber}</Table.Cell>
         <Table.Cell className="w-52">{furniture.Description}</Table.Cell>
-        <Table.Cell className="max-sm:hidden w-52">
+        <Table.Cell className="md:hidden max-sm:hidden w-52">
           {furniture.Location}
         </Table.Cell>
-        <Table.Cell className=" max-sm:hidden w-44">
+        <Table.Cell className="md:hidden max-sm:hidden w-44">
           {furniture.InChargePerson}
         </Table.Cell>
         <Table.Cell className="max-sm:hidden w-64">

@@ -47,7 +47,7 @@ const CreateRooms = () => {
 
   return (
     <>
-      <Button className="max-sm:w-full" onClick={() => setIsModalOpen(true)} color="blue">
+      <Button className="max-sm:w-full md:w-full" onClick={() => setIsModalOpen(true)} color="blue">
         Añadir sala
       </Button>
 

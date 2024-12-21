@@ -74,8 +74,8 @@ const EditRoom = ({
         <Modal.Header>Editar Sala</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="bg-white">
-            <div className=" grid max-sm:grid-cols-1 grid-cols-3 grid-rows-1 lg:gap-5">
-              <fieldset className="flex flex-col w-full">
+            <div className=" grid  md:gap-4 max-sm:grid-cols-1 grid-cols-3 grid-rows-1 lg:gap-5">
+              <fieldset className="flexflex-col w-full">
                 <legend className="font-bold pb-2">Imágenes de la Sala</legend>
                 <Carousel
                   slide={false}
