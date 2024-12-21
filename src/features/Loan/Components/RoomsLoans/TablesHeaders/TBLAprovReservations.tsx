@@ -11,9 +11,9 @@ const TBLAprovReservations = ({ reserve }: { reserve: ReserveResponse }) => {
         <Table.HeadCell>Solicitante</Table.HeadCell>
         <Table.HeadCell className="max-sm:hidden">Fecha de Solicitud</Table.HeadCell>
         <Table.HeadCell>Fecha reservada</Table.HeadCell>
-        <Table.HeadCell className="max-sm:hidden">Hora de inicio / Fin</Table.HeadCell>
+        <Table.HeadCell className="md:hidden max-sm:hidden">Hora de inicio / Fin</Table.HeadCell>
         <Table.HeadCell className="max-sm:hidden">Actividad</Table.HeadCell>
-        <Table.HeadCell className="max-sm:hidden"></Table.HeadCell>
+        <Table.HeadCell className="md:hidden max-sm:hidden"></Table.HeadCell>
       </Table.Head>
       <Table.Body>
         {reserve.data.map((reservation) => (

@@ -67,7 +67,7 @@ const FinishedLoans = () => {
     <>
       <LoansCrumbs text="Libros" />
       <div className="flex place-content-center mt-14">
-        <div className="w-4/5">
+        <div className="w-4/5 md:w-full md:pr-4 md:pl-4">
           <FinishedLoanSearch
             setStartDate={setStartDate}
             setEndtDate={setEndtDate}

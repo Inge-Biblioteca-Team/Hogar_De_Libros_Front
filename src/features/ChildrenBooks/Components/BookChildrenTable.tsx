@@ -12,10 +12,10 @@ const BookChildrenTable = ({ catalog }: { catalog: Catalog }) => {
             <Table.HeadCell>Título</Table.HeadCell>
             <Table.HeadCell className=" max-sm:hidden">Autor</Table.HeadCell>
             <Table.HeadCell className=" max-sm:hidden">ISBN</Table.HeadCell>
-            <Table.HeadCell className=" max-sm:hidden">Código De Signatura</Table.HeadCell>
-            <Table.HeadCell className=" max-sm:hidden">Código de inscripción</Table.HeadCell>
+            <Table.HeadCell className=" md:hidden max-sm:hidden">Código De Signatura</Table.HeadCell>
+            <Table.HeadCell className="md:hidden max-sm:hidden">Código de inscripción</Table.HeadCell>
             <Table.HeadCell>Estado</Table.HeadCell>
-            <Table.HeadCell className=" max-sm:hidden"></Table.HeadCell>
+            <Table.HeadCell className="md:hidden max-sm:hidden"></Table.HeadCell>
           </Table.Head>
           <Table.Body className="h-96">
             {catalog.data.map((Book) => (
