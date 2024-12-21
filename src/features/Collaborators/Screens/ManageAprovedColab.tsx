@@ -41,7 +41,7 @@ const ManageAprovedColab = () => {
     <>
       <ColabCrumbs text="Colaboraciones futuras" />
       <main className=" flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex max-sm:flex-col w-4/5 gap-2 max-sm:w-full max-sm:px-3">
+        <section className=" flex md:flex-col md:w-full md:pr-4 md:pl-4 max-sm:flex-col w-4/5 gap-2 max-sm:w-full max-sm:px-3">
           <div className=" ">
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
@@ -62,7 +62,7 @@ const ManageAprovedColab = () => {
             />
           </div>
         </section>
-        <section className=" w-4/5 max-sm:w-full max-sm:px-2">
+        <section className=" w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:px-2">
           {ColaborationsList && ColaborationsList.count > 0 ? (
             <>
               <ColabsTableBody hiid>

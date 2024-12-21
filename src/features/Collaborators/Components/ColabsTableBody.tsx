@@ -12,13 +12,13 @@ const ColabsTableBody = ({
     <Table hoverable className=" text-center max-sm:h-96 h-[30rem] ">
       <Table.Head className="">
         <Table.HeadCell className="max-sm:p-2">Fecha de colaboración</Table.HeadCell>
-        <Table.HeadCell className="max-sm:p-2">Nombre del colaborador</Table.HeadCell>
-        <Table.HeadCell className=" max-sm:hidden ">Teléfono</Table.HeadCell>
-        <Table.HeadCell className=" max-sm:hidden ">Correo</Table.HeadCell>
+        <Table.HeadCell className=" max-sm:p-2">Nombre del colaborador</Table.HeadCell>
+        <Table.HeadCell className=" md:hidden max-sm:hidden ">Teléfono</Table.HeadCell>
+        <Table.HeadCell className=" md:hidden max-sm:hidden ">Correo</Table.HeadCell>
         <Table.HeadCell className=" max-sm:hidden ">
           Categoría de colaboración
         </Table.HeadCell>
-        <Table.HeadCell className=" max-sm:hidden ">
+        <Table.HeadCell className="md:hidden  max-sm:hidden ">
           Sub categoría
         </Table.HeadCell>
         <Table.HeadCell className=""> {!hiid ? "Estado" : ""}</Table.HeadCell>
