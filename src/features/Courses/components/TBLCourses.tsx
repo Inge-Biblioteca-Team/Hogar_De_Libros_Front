@@ -38,12 +38,12 @@ const TBLCourses = ({ course }: { course: Courses }) => {
         <Table.Cell>{course.courseName}</Table.Cell>
         <Table.Cell className="max-sm:hidden">{course.instructor} </Table.Cell>
         <Table.Cell className="max-sm:hidden">{date}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">{courseTime}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">
+        <Table.Cell className="md:hidden max-sm:hidden">{courseTime}</Table.Cell>
+        <Table.Cell className="md:hidden max-sm:hidden">
           {course.availableQuota} / {course.capacity}
         </Table.Cell>
         <Table.Cell
-          className="hover:text-Body cursor-pointer max-sm:hidden"
+          className="hover:text-Body cursor-pointer md:hidden max-sm:hidden"
           onClick={handleOpen}
         >
           Lista de Matricula
