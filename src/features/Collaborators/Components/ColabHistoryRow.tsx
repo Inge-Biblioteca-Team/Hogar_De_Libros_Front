@@ -10,8 +10,8 @@ const ColabHistoryRow = ({ colaborator }: { colaborator: Colaborator }) => {
       <Table.Row onClick={() => setOpenV(true)}>
         <Table.Cell>{formatToDMY(colaborator.activityDate)} </Table.Cell>
         <Table.Cell>{colaborator.UserFullName}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden">{colaborator.UserPhone}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden">
+        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell" >{colaborator.UserPhone}</Table.Cell>
+        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
           {colaborator.UserEmail}
         </Table.Cell>
         <Table.Cell className=" max-sm:hidden">
@@ -20,7 +20,7 @@ const ColabHistoryRow = ({ colaborator }: { colaborator: Colaborator }) => {
         <Table.Cell className="  max-sm:hidden">
           {colaborator.SubCategory}
         </Table.Cell>
-        <Table.Cell className="md:hidden">{colaborator.Status}</Table.Cell>
+        <Table.Cell className="md:hidden lg:table-cell">{colaborator.Status}</Table.Cell>
       </Table.Row>
       <MDViewInfo open={openV} setOpen={setOpenV} colaboration={colaborator} />
     </>

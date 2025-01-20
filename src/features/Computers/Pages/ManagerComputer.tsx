@@ -91,8 +91,8 @@ const ManagerComputer = () => {
               </Select>
             </div>
           </div>
-          <Button className="md:w-full" color={"blue"} onClick={() => setSNew(true)}>
-            Añadir Equipo
+          <Button className="md:w-full lg:w-auto" color={"blue"} onClick={() => setSNew(true)}>
+            Añadir equipo
           </Button>
         </section>
         <section className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:px-2">

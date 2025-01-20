@@ -13,12 +13,12 @@ const TableDonations = ({
       <Table.Head>
         <Table.HeadCell>Nombre del donador</Table.HeadCell>
         <Table.HeadCell>Cedula</Table.HeadCell>
-        <Table.HeadCell className="md:hidden max-sm:hidden">Correo</Table.HeadCell>
-        <Table.HeadCell className="md:hidden max-sm:hidden">Teléfono</Table.HeadCell>
+        <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell">Correo</Table.HeadCell>
+        <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell">Teléfono</Table.HeadCell>
         <Table.HeadCell className="max-sm:hidden">Categoría de donación</Table.HeadCell>
         <Table.HeadCell className="max-sm:hidden">Fecha de entrega</Table.HeadCell>
-        {!hidd && <Table.HeadCell className="md:hidden  max-sm:hidden">Estado</Table.HeadCell>}
-        <Table.HeadCell className="md:hidden max-sm:hidden"></Table.HeadCell>
+        {!hidd && <Table.HeadCell className="md:hidden  max-sm:hidden lg:table-cell">Estado</Table.HeadCell>}
+        <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell"></Table.HeadCell>
       </Table.Head>
       <Table.Body>{children}</Table.Body>
     </Table>

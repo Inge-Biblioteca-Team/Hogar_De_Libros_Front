@@ -89,7 +89,7 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
               <option value="0">Baja</option>
             </Select>
           </div>
-          <Button className="md:w-full" color={"blue"} onClick={() => setOpen(true)}>
+          <Button className="md:w-full lg:w-auto" color={"blue"} onClick={() => setOpen(true)}>
             Añadir nuevo libro
           </Button>
         </section>

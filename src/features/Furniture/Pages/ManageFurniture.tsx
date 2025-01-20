@@ -60,16 +60,16 @@ const ManageFurniture = () => {
     <>
       <BreadCrumbManage text="Mobiliario" />
       <main className="flex m items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5 md:w-full  md:pl-4 md:pr-4 md:flex-col max-sm:p-2 max-sm:w-full max-sm:flex-col max-sm:gap-4 md:items-center max-sm:items-center flex justify-between items-end">
-          <div className="flex md:w-full mb-4 md:flex-col max-sm:w-full max-sm:flex-col gap-3 ">
+        <section className="w-4/5 md:w-full lg:flex-row  md:pl-4 md:pr-4 md:flex-col max-sm:p-2 max-sm:w-full max-sm:flex-col max-sm:gap-4 md:items-center max-sm:items-center flex justify-between items-end">
+          <div className="flex  md:w-full mb-4 md:flex-col lg:flex-row max-sm:w-full max-sm:flex-col gap-3 ">
             <TextInput
               placeholder="Búsqueda por placa"
-              className="w-52 md:w-full max-sm:w-full"
+              className="w-52 md:w-full lg:w-auto max-sm:w-full"
               onChange={(event) => setSearchCode(event.target.value)}
             />
             <TextInput
               placeholder="Búsqueda por descripción"
-              className="w-52 md:w-full max-sm:w-full"
+              className="w-52 md:w-full lg:w-auto max-sm:w-full"
               onChange={(event) => setSearchDescription(event.target.value)}
             />
             <Select onChange={(event) => setSearchStatus(event.target.value)}>
@@ -77,7 +77,7 @@ const ManageFurniture = () => {
             </Select>
           </div>
           <Button
-            className="md:w-full max-sm:w-full"
+            className="md:w-full lg:w-auto max-sm:w-full"
             color={"blue"}
             onClick={() => setSNew(true)}
           >

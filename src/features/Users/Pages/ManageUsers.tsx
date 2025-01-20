@@ -70,9 +70,9 @@ const ManageUsers = () => {
                   <Table.HeadCell>Cédula</Table.HeadCell>
                   <Table.HeadCell>Nombre</Table.HeadCell>
                   <Table.HeadCell className="max-sm:hidden">Rol</Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden">Provincia</Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden">Teléfono</Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden">Fecha de registro</Table.HeadCell>
+                  <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell">Provincia</Table.HeadCell>
+                  <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell">Teléfono</Table.HeadCell>
+                  <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell">Fecha de registro</Table.HeadCell>
                   <Table.HeadCell className="max-sm:hidden">Estado</Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>

@@ -13,15 +13,15 @@ const ColabsTableBody = ({
       <Table.Head className="">
         <Table.HeadCell className="max-sm:p-2">Fecha de colaboración</Table.HeadCell>
         <Table.HeadCell className=" max-sm:p-2">Nombre del colaborador</Table.HeadCell>
-        <Table.HeadCell className=" md:hidden max-sm:hidden ">Teléfono</Table.HeadCell>
-        <Table.HeadCell className=" md:hidden max-sm:hidden ">Correo</Table.HeadCell>
+        <Table.HeadCell className=" md:hidden max-sm:hidden lg:table-cell ">Teléfono</Table.HeadCell>
+        <Table.HeadCell className=" md:hidden max-sm:hidden lg:table-cell ">Correo</Table.HeadCell>
         <Table.HeadCell className=" max-sm:hidden ">
           Categoría de colaboración
         </Table.HeadCell>
         <Table.HeadCell className=" max-sm:hidden ">
           Sub categoría
         </Table.HeadCell>
-        <Table.HeadCell className="md:hidden"> {!hiid ? "Estado" : ""}</Table.HeadCell>
+        <Table.HeadCell className="md:hidde lg:table-cell"> {!hiid ? "Estado" : ""}</Table.HeadCell>
       </Table.Head>
       <Table.Body>{children}</Table.Body>
     </Table>

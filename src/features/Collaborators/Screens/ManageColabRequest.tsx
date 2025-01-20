@@ -41,7 +41,7 @@ const ManageColabRequest = () => {
     <>
       <ColabCrumbs text="Solicitudes de colaboraciones" />
       <main className=" flex flex-col  items-center justify-center w-full gap-5">
-        <section className=" flex md:flex-col md:w-full md:pl-4 md:pr-4   max-sm:flex-col w-4/5 gap-2 max-sm:w-full max-sm:px-2">
+        <section className=" flex lg:flex-row md:flex-col md:w-full md:pl-4 md:pr-4   max-sm:flex-col w-4/5 gap-2 max-sm:w-full max-sm:px-2">
           <div className=" ">
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>

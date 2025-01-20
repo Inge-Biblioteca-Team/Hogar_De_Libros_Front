@@ -18,8 +18,8 @@ const FriendsRowsRequest = ({ friend }: { friend: Friend }) => {
         <Table.Cell>{friend.UserCedula}</Table.Cell>
         <Table.Cell className="max-sm:hidden">{friend.PrincipalCategory}</Table.Cell>
         <Table.Cell className="max-sm:hidden">{friend.SubCategory}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden">{friend.UserGender}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden">{friend.UserPhone}</Table.Cell>
+        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">{friend.UserGender}</Table.Cell>
+        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">{friend.UserPhone}</Table.Cell>
         <Table.Cell >
           <RequestBTN
             setOpenV={setOpenV}

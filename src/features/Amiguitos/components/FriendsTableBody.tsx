@@ -15,9 +15,9 @@ const FriendsTableBody = ({
         <Table.HeadCell>Cédula</Table.HeadCell>
         <Table.HeadCell className="max-sm:hidden">Categoría principal</Table.HeadCell>
         <Table.HeadCell className="max-sm:hidden">Sub categoría</Table.HeadCell>
-        <Table.HeadCell className="md:hidden max-sm:hidden">Genero</Table.HeadCell>
-        <Table.HeadCell className="md:hidden max-sm:hidden">Teléfono</Table.HeadCell>
-        {!hidd && <Table.HeadCell className="md:hidden max-sm:hidden">Estado</Table.HeadCell>}
+        <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell">Genero</Table.HeadCell>
+        <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell">Teléfono</Table.HeadCell>
+        {!hidd && <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell">Estado</Table.HeadCell>}
         <Table.HeadCell className="max-sm:hidden"></Table.HeadCell>
       </Table.Head>
       <Table.Body>{children}</Table.Body>

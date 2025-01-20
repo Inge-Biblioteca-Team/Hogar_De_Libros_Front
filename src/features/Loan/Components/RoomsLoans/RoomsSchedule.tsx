@@ -103,11 +103,11 @@ const RoomsSchedule = ({
       </div>
     );
   return (
-    <div className="w-full  flex flex-col h-full justify-between">
+    <div className="w-full flex flex-col h-full justify-between">
       <div className="font-bold text-center text-lg">
         Disponibilidad de salas
       </div>
-      <Table className="text-center h-80 mt-2 md:hidden max-sm:hidden">
+      <Table className="text-center h-80 mt-2 hidden lg:table">
         <Table.Head>
           <Table.HeadCell className="w-10">Número de sala</Table.HeadCell>
           {hours.map((hour) => (
@@ -154,7 +154,7 @@ const RoomsSchedule = ({
         </Table.Body>
       </Table>
 
-      <Table className="text-center mt-2 hidden md:block max-sm:block">
+      <Table className="text-center mt-2 lg:hidden xl:hidden 2xl:hidden ">
         <Table.Head>
           <Table.HeadCell>Hora</Table.HeadCell>
           {rooms.map((room) => (

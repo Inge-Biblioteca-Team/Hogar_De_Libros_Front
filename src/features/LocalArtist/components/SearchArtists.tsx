@@ -11,7 +11,7 @@ const SearchArtists = ({
   Status: (Type: string) => void;
 }) => {
   return (
-    <div className="w-full md:grid-cols-1 max-sm:w-full max-sm:grid-cols-1 grid grid-cols-5 gap-2 pb-4">
+    <div className="w-full lg:grid-cols-3 md:grid-cols-1 max-sm:w-full max-sm:grid-cols-1 grid grid-cols-5 gap-2 pb-4">
       <div>
         <Label className=" text-lg">Nombre</Label>
         <TextInput

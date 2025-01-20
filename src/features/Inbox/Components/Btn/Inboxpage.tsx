@@ -15,7 +15,7 @@ const Inboxpage = () => {
       type="button"  
     >
       <HiInbox
-      className=" md:hidden max-sm:w-5 max-sm:h-5 sm:w-8 sm:h-8" 
+      className=" md:hidden lg:table-cell max-sm:w-5 max-sm:h-5 sm:w-8 sm:h-8" 
        size={35} /> 
       
     </button>
