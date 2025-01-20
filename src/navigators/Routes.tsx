@@ -7,6 +7,7 @@ import AdminRoutes from "./AdminRoutes";
 import UserRoutes from "./UserRoutes";
 import RoleBasedRoute from "./RolBaseRouter";
 import HomePage from "../Pages/HomePage";
+import OPACRoutes from "./OPACRoutes";
 
 const Routes = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const Routes = createBrowserRouter([
   },
 
   ...AuthRoutes,
+  ...OPACRoutes,
   {
     path: "HogarDeLibros",
     element: (
@@ -35,7 +37,7 @@ const Routes = createBrowserRouter([
       },
       ...BasicUsersRoutes,
       ...AdminRoutes,
-      ...UserRoutes,
+      ...UserRoutes
     ],
   },
 ]);

@@ -9,6 +9,7 @@ import SidebarProvider from "../../Context/NavBarContext/NavProvider";
 import { useContext } from "react";
 import UserContext from "../../Context/UserContext/UserContext";
 import Inboxpage from "../../features/Inbox/Components/Btn/Inboxpage";
+import OPACNavBar from "../../features/OPAC/Components/OPACNavBar";
 
 const Header = ({ NavBarType }: { NavBarType: string }) => {
   const navi = useNavigate();
@@ -16,7 +17,7 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
     navi(`/`);
   };
 
-  const {currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   const role = currentUser?.role || "";
 
   return (
@@ -27,26 +28,23 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
       >
         <div
           className={` w-full ${
-            NavBarType == "Landing"
+            NavBarType !== "HogarDeLibros"
               ? "flex flex-col gap-4"
               : " flex justify-between items-center max-sm:gap-4 max-sm:pb-2"
           }`}
         >
-          {NavBarType !== "Landing" && <HomeNavbar />}
-          <div
-            className={`w-full flex items-center justify-center gap-3`}
-           
-          >
+          {NavBarType === "HogarDeLibros" && <HomeNavbar />}
+          <div className={`w-full flex items-center justify-center gap-3`}>
             {NavBarType == "Landing" && (
               <Navbar.Toggle className="custom-toogle" />
             )}
             <FontAwesomeIcon
-             onClick={Goto}
+              onClick={Goto}
               icon={faBookOpen}
               className="text-white h-10 w-10 max-sm:hidden cursor-pointer"
             />
             <span
-             onClick={Goto}
+              onClick={Goto}
               className="text-white text-4xl font-semibold break-words text-center
              max-sm:text-xl max-sm:text-left cursor-pointer"
             >
@@ -54,8 +52,9 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
             </span>
           </div>
           <div>{NavBarType === "Landing" && <LandingNavbar />}</div>
+          <div>{NavBarType === "OPAC" && <OPACNavBar />} </div>
           <div className=" flex justify-center items-center max-sm:hidden">
-            {NavBarType !== "Landing" && (
+            {NavBarType === "HogarDeLibros" && (
               <>
                 {role === "admin" && <Inboxpage />}
                 <UserData />
