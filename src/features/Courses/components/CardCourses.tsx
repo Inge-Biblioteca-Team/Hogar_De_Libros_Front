@@ -1,6 +1,8 @@
 import { Button, Card } from "flowbite-react";
 import { NextCourses } from "../types/Courses";
 import { format } from "@formkit/tempo";
+import { useState } from "react";
+import EnrollmentToCourse from "./Modals/EnrollmentToCourse";
 
 const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
   const courseTime = Courses.CourseTime;
@@ -19,8 +21,11 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
     tz: "America/Costa_Rica",
   });
 
+  const [open, setopen] = useState<boolean>(false);
+
   return (
-    <Card className="">
+    <>
+    <Card className="p0">
       <figure>
         <img
           className="h-40 w-full object-fill rounded-t-lg
@@ -32,8 +37,7 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
           <div className=" flex flex-col justify-between mr-3">
             <span className=" font-bold text-black">{Courses.courseName} </span>
             <span>
-              Impartido por <br />
-              {Courses.instructor}{" "}
+              Impartido por: {Courses.instructor}{" "}
             </span>
             <span>Comienzo: {fullDate.toUpperCase()}</span>
             <span>Duracion: {Courses.duration} </span>
@@ -41,21 +45,24 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
               {Courses.location} {time}{" "}
             </span>
             <span>
-              Cupos <br />
-              {Courses.avaibleQuota}/{Courses.capacity}{" "}
+              Cupos: {Courses.avaibleQuota}/{Courses.capacity}{" "}
             </span>
             {Courses.materials == "" ? (
               "Te esperamos"
             ) : (
               <span>Necesitaras: {Courses.materials}</span>
             )}
-            <Button color={"blue"}>
-              Matricula ahora
-            </Button>
+            <div className=" flex justify-center items-center mt-3">
+              <Button color={"blue"} onClick={() => setopen(true)}>
+                Matricula ahora
+              </Button>
+            </div>
           </div>
         </figcaption>
       </figure>
     </Card>
+    <EnrollmentToCourse course={Courses} open={open} setOpen={setopen} />
+    </>
   );
 };
 export default CardCourses;

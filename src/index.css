@@ -123,3 +123,16 @@ input[type="number"] {
 .custom-toogle {
   background-color: #ffffff;
 }
+
+.custom-Sidebar div{
+  background-color: transparent;
+}
+.custom-Sidebar :hover a{
+  background-color: transparent;
+}
+.custom-Group :hover a {
+  scale: 115%;
+  cursor: pointer;
+}
+
+
