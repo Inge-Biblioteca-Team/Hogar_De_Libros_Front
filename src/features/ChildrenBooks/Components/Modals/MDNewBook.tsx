@@ -30,7 +30,7 @@ const MDNewBook = ({
     setOpenImageM(false);
   };
 
-  const { mutate: createNew } = UseCreateChildrenBook();
+  const { mutate: createNew, isLoading } = UseCreateChildrenBook();
 
   const onConfirm = (data: Book) => {
     createNew(data, {
@@ -159,7 +159,7 @@ const MDNewBook = ({
             </fieldset>
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
         <ModalImageLoader
           setOpen={setOpenImageM}
           open={openImageM}

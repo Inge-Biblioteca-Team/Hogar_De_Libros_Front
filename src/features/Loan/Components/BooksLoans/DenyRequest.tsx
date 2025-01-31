@@ -1,4 +1,4 @@
-import { Modal, Button, Textarea } from "flowbite-react";
+import { Modal, Button, Textarea, Spinner } from "flowbite-react";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { Loans } from "../../Types/BookLoan";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
@@ -14,7 +14,7 @@ const DenyRequest = ({
   showCancel: boolean;
   setShowCancel: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { mutate: refuse } = UseRefuseLoan();
+  const { mutate: refuse, isLoading } = UseRefuseLoan();
 
   const onCancel = () => {
     setShowCancel(false);
@@ -62,11 +62,16 @@ const DenyRequest = ({
                 onClick={() => {
                   setShowCancel(false);
                 }}
+                disabled={isLoading}
               >
                 Volver
               </Button>
-              <Button color="blue" onClick={onConfirm}>
-                Confirmar
+              <Button color="blue" onClick={onConfirm} disabled={isLoading}>
+              {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
               </Button>
             </div>
           </div>

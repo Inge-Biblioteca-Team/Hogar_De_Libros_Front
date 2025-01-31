@@ -52,7 +52,7 @@ const EditArtist = ({
     setOpenImage(false);
   };
 
-  const { mutate: editArtist } = UseEditArtist();
+  const { mutate: editArtist, isLoading } = UseEditArtist();
 
   const onSubmit = async (data: Artist) => {
     editArtist(data, {
@@ -170,7 +170,7 @@ const EditArtist = ({
               />
             </div>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading}/>
         </form>
       </Modal>
       <ModalAddNewImage

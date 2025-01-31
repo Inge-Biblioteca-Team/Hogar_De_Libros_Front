@@ -26,7 +26,7 @@ const MDDownFriend = ({
     },
   });
 
-  const { mutate: rejectFriend } = UseDownFrien();
+  const { mutate: rejectFriend, isLoading } = UseDownFrien();
 
   const handleConfirm = (data: downType) => {
     rejectFriend(data, {
@@ -53,7 +53,7 @@ const MDDownFriend = ({
             required
           />
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

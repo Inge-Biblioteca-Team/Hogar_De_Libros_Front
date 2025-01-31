@@ -1,4 +1,4 @@
-import { Modal, TextInput, Button } from "flowbite-react";
+import { Modal, TextInput, Button, Spinner } from "flowbite-react";
 import { useContext, useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import UseFinishLoan from "../../Hooks/Books/UseFinishLoan";
@@ -17,7 +17,7 @@ const FinishLoanBook = ({
   UserCedula: string;
   BookTitle: string;
 }) => {
-  const { mutate: PatchStatus } = UseFinishLoan();
+  const { mutate: PatchStatus, isLoading } = UseFinishLoan();
   const [reason, setReason] = useState<string>("");
 
   const { currentUser } = useContext(UserContext);
@@ -59,11 +59,15 @@ const FinishLoanBook = ({
             className="mb-4"
           />
           <div className="flex justify-center gap-4">
-            <Button color="red" onClick={() => setOpen(false)}>
+            <Button color="red" onClick={() => setOpen(false)} disabled={isLoading}>
               Cancelar
             </Button>
-            <Button color="blue" onClick={handleConfirm}>
-              Confirmar
+            <Button color="blue" onClick={handleConfirm} disabled={isLoading}>
+            {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
             </Button>
           </div>
         </div>

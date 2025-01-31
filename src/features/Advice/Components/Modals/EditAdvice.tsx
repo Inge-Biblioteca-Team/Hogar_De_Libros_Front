@@ -34,7 +34,7 @@ const EditAdvice = ({
       reason: advice.reason,
     },
   });
-  const { mutate: editAdvice } = UseEditAdvice();
+  const { mutate: editAdvice, isLoading } = UseEditAdvice();
 
   const onSubmit = (data: Advice) => {
     editAdvice(data, {
@@ -130,7 +130,7 @@ const EditAdvice = ({
             </div>
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
       <ModalAddNewImage
         open={openImage}

@@ -13,7 +13,7 @@ const CreateRooms = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { mutate: createRoom } = UseCreateRooms();
+  const { mutate: createRoom, isLoading } = UseCreateRooms();
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -165,7 +165,7 @@ const CreateRooms = () => {
               </div>
             </div>
           </Modal.Body>
-          <ModalFooters onClose={handleModalClose} />
+          <ModalFooters onClose={handleModalClose} isLoading={isLoading}/>
         </form>
       </Modal>
       <ModalAddNewImage

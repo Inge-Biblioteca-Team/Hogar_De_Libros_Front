@@ -31,7 +31,7 @@ const MDEditProgram = ({
     },
   });
 
-  const { mutate: EditProgram } = UseeditProgram();
+  const { mutate: EditProgram, isLoading } = UseeditProgram();
 
   const onSubmit = async (data: Program) => {
     EditProgram(data, {
@@ -113,7 +113,7 @@ const MDEditProgram = ({
               </div>
             </div>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading} />
         </form>
       </Modal>
       <ModalAddNewImage

@@ -1,4 +1,4 @@
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Spinner } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import UseRefuese from "../../../Hooks/Rooms/UseRefuese";
 
@@ -15,7 +15,7 @@ const AproveReservation = ({
     setOpen(false);
   };
 
-  const { mutate: refuse } = UseRefuese();
+  const { mutate: refuse, isLoading } = UseRefuese();
 
   const onConfirm = () => {
     refuse(
@@ -33,11 +33,15 @@ const AproveReservation = ({
           <div className="text-center">
             <h3>Está Seguro de aprobar la solicitud de préstamo</h3>
             <div className="flex justify-center gap-4 mt-10">
-              <Button color="red" onClick={onCancel}>
+              <Button color="red" onClick={onCancel} disabled={isLoading}>
                 Volver
               </Button>
-              <Button color="blue" onClick={onConfirm}>
-                Confirmar
+              <Button color="blue" onClick={onConfirm} disabled={isLoading}>
+              {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
               </Button>
             </div>
           </div>

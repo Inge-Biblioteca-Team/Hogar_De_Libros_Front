@@ -1,4 +1,4 @@
-import { Label, Modal, TextInput, Select, Button } from "flowbite-react";
+import { Label, Modal, TextInput, Select, Button, Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { NewDonation } from "../../Types/DonationType";
@@ -62,7 +62,7 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
     setUploadedFiles((prevFiles) => prevFiles.filter((f) => f !== file));
   };
 
-  const { mutate: send } = UseCreateDonation();
+  const { mutate: send, isLoading } = UseCreateDonation();
 
   const onConfirm = (data: NewDonation) => {
     send(data, {
@@ -217,11 +217,15 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
         </Modal.Body>
         <Modal.Footer className=" flex bg-white items-center justify-between">
           <div></div>
-          <Button color={"red"} tabIndex={2}  onClick={onClose}>
+          <Button color={"red"} tabIndex={2}  onClick={onClose} disabled={isLoading}>
             Cancelar
           </Button>
-          <Button color={"blue"} type="submit">
-            Confirmar
+          <Button color={"blue"} type="submit" disabled={isLoading}>
+          {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
           </Button>
           <InfoDonation>
             <button type="button" title="ayuda">

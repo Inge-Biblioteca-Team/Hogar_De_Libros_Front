@@ -48,7 +48,7 @@ const MDEditChildrenBook = ({
     setOpenImageM(false);
   };
 
-  const { mutate: editResource } = UseEditChildrenBook();
+  const { mutate: editResource, isLoading } = UseEditChildrenBook();
 
   const onConfirm = (data: Book) => {
     editResource(data, {
@@ -178,7 +178,7 @@ const MDEditChildrenBook = ({
             </fieldset>
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
         <ModalImageLoader
           setOpen={setOpenImageM}
           open={openImageM}

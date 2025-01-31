@@ -20,7 +20,7 @@ const ModalAddNewFurniture = ({
     reset();
   };
 
-  const { mutate: create } = useNewFurniture();
+  const { mutate: create, isLoading } = useNewFurniture();
 
   const onSubmit = async (data: furniture) => {
     create(data, {
@@ -101,7 +101,7 @@ const ModalAddNewFurniture = ({
               </span>
             </fieldset>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading} />
         </form>
       </Modal>
     </>
