@@ -35,7 +35,7 @@ const ModalEditFurniture = ({
     reset();
   };
 
-  const { mutate: update } = useEditFurniture();
+  const { mutate: update, isLoading } = useEditFurniture();
 
   const onSubmit = async (data: furniture) => {
     update(data, {
@@ -86,7 +86,7 @@ const ModalEditFurniture = ({
 
             <span className=" mt-2"></span>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading} />
         </form>
       </Modal>
     </>

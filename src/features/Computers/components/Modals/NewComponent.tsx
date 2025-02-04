@@ -21,7 +21,7 @@ const NewComponent = ({
     reset();
   };
 
-  const { mutate: createNew } = useNewComputer();
+  const { mutate: createNew, isLoading } = useNewComputer();
 
   const onConfirm = (data: Equipment) => {
     createNew(data, {
@@ -110,7 +110,7 @@ const NewComponent = ({
               </span>
             </fieldset>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading}/>
         </form>
       </Modal>
     </>

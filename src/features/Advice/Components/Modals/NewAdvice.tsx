@@ -18,7 +18,7 @@ const NewAdvice = ({
   const min = formatToYMD(new Date());
 
   const { register, reset, handleSubmit, setValue } = useForm<Advice>();
-  const { mutate: createAdvice } = UseCreateAdvice();
+  const { mutate: createAdvice, isLoading } = UseCreateAdvice();
 
   const onSubmit = useCallback(
     (data: Advice) => {
@@ -117,7 +117,7 @@ const NewAdvice = ({
             </div>
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
       <ModalAddNewImage
         open={openImage}

@@ -23,7 +23,7 @@ const MDConfirmRecepcion = ({
     defaultValues: { Id: id.toString() },
   });
 
-  const { mutate: confirm } = UseConfirmDonation();
+  const { mutate: confirm, isLoading } = UseConfirmDonation();
 
   const onConfirm = (data: downType) => {
     confirm(data, {
@@ -48,7 +48,7 @@ const MDConfirmRecepcion = ({
             />
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

@@ -1,4 +1,4 @@
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Spinner } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { Program } from "../../types/Programs";
 import UseDisableProgram from "../../Hooks/UseDisableProgram";
@@ -13,7 +13,7 @@ const MDChangeProgramStatus = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   program: Program;
 }) => {
-  const { mutate: PatchStatus } = UseDisableProgram();
+  const { mutate: PatchStatus, isLoading } = UseDisableProgram();
   const handleConfirm = () => {
     PatchStatus(program.programsId, {
       onSuccess: () => {
@@ -36,11 +36,15 @@ const MDChangeProgramStatus = ({
         <span>Está acción no es reversible!!!</span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"red"} onClick={() => setOpen(false)}>
+        <Button color={"red"} onClick={() => setOpen(false)} disabled={isLoading}>
           Cancelar
         </Button>
-        <Button color={"blue"} onClick={handleConfirm}>
-          Confirmar
+        <Button color={"blue"} onClick={handleConfirm} disabled={isLoading}>
+        {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
         </Button>
       </Modal.Footer>
     </Modal>

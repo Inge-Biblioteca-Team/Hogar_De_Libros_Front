@@ -32,7 +32,7 @@ const EditUser = ({
     }
   }, [User, setValue]);
 
-  const { mutate: patchUser } = UseEditInfoUser();
+  const { mutate: patchUser, isLoading } = UseEditInfoUser();
 
   const handleConfirm = (data: User) => {
     patchUser(data, {
@@ -137,7 +137,7 @@ const EditUser = ({
             </div>
           </fieldset>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

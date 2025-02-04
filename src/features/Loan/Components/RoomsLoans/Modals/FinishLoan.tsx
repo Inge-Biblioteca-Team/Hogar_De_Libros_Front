@@ -1,4 +1,4 @@
-import { Button, Checkbox, Label, Modal, Textarea } from "flowbite-react";
+import { Button, Checkbox, Label, Modal, Spinner, Textarea } from "flowbite-react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import PatchFinishObservation from "../../../Hooks/Rooms/PatchFinishObservation";
@@ -21,7 +21,7 @@ const FinishLoan = ({
 
   const { setValue, reset, handleSubmit } = useForm<EndReservation>();
 
-  const { mutate: endReserve } = PatchFinishObservation();
+  const { mutate: endReserve, isLoading } = PatchFinishObservation();
   useEffect(() => {
     if (reserve) {
       setValue("rommReservationId", reserve.rommReservationId);
@@ -99,11 +99,15 @@ const FinishLoan = ({
       </Modal.Body>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Footer className=" items-center justify-center flex">
-          <Button tabIndex={2} onClick={() => setOpen(false)} color={"red"}>
+          <Button tabIndex={2} onClick={() => setOpen(false)} color={"red"} disabled={isLoading}>
             Cancelar
           </Button>
-          <Button type="submit" color={"blue"}>
-            Guardar
+          <Button type="submit" color={"blue"} disabled={isLoading}>
+          {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Guardar"
+        )}
           </Button>
         </Modal.Footer>
       </form>

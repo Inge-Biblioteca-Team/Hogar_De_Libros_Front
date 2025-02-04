@@ -63,7 +63,7 @@ const EditEvent = ({
     setOpenImage(false);
   };
 
-  const { mutate: update } = UseEditEvent();
+  const { mutate: update, isLoading } = UseEditEvent();
 
   const onSubmit = async (data: Events) => {
     update(data, {
@@ -181,7 +181,7 @@ const EditEvent = ({
               </div>
             </fieldset>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading} />
         </form>
       </Modal>
       <ModalAddNewImage

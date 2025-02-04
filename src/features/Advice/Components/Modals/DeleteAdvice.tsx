@@ -1,4 +1,4 @@
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Spinner } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import UseDeleteAdvice from "../../Hooks/UseDeleteAdvice";
@@ -12,7 +12,7 @@ const DeleteAdvice = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   id: number;
 }) => {
-  const { mutate: deleteAdvice } = UseDeleteAdvice();
+  const { mutate: deleteAdvice, isLoading } = UseDeleteAdvice();
 
   const onConfirm = () => {
     deleteAdvice(id, {
@@ -38,11 +38,15 @@ const DeleteAdvice = ({
         </span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"red"} onClick={() => setOpen(false)}>
+        <Button color={"red"} onClick={() => setOpen(false)} disabled={isLoading}>
           Volver
         </Button>
-        <Button color={"blue"} type="submit" onClick={() => onConfirm()}>
-          Confirmar
+        <Button color={"blue"} type="submit" onClick={() => onConfirm()} disabled={isLoading}>
+        {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
         </Button>
       </Modal.Footer>
     </Modal>

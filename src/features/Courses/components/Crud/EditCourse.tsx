@@ -46,7 +46,7 @@ const EditCourse = ({
     },
   });
 
-  const { mutate: updateCourse } = UseUpdateCourse();
+  const { mutate: updateCourse, isLoading } = UseUpdateCourse();
 
   const onSubmit = async (data: Courses) => {
     updateCourse(data, {
@@ -240,7 +240,7 @@ const EditCourse = ({
               </fieldset>
             </div>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading}/>
         </form>
       </Modal>
       <ModalAddNewImage

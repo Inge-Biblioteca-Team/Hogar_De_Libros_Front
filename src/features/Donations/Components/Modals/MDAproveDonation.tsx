@@ -1,4 +1,4 @@
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Spinner } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import UseAproveDonation from "../../Hooks/UseAproveDonation";
 
@@ -15,7 +15,7 @@ const MDAproveDonation = ({
     setOpen(false);
   };
 
-  const { mutate: aprove } = UseAproveDonation();
+  const { mutate: aprove, isLoading } = UseAproveDonation();
 
   const onConfirm = (id: number) => {
     aprove(id, {
@@ -34,11 +34,15 @@ const MDAproveDonation = ({
         </span>{" "}
       </Modal.Body>
       <Modal.Footer className=" flex justify-center items-center">
-        <Button color={"red"} onClick={onClose}>
+        <Button color={"red"} onClick={onClose} disabled={isLoading}>
           Cancelar
         </Button>
-        <Button color={"blue"} onClick={() => onConfirm(id)}>
-          Confirmar
+        <Button color={"blue"} onClick={() => onConfirm(id)} disabled={isLoading}>
+        {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
         </Button>
       </Modal.Footer>
     </Modal>

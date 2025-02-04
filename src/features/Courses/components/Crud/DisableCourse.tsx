@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Spinner } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Courses } from "../../types/Courses";
 import UseCancelCourse from "../../Hooks/UseCancelCourse";
@@ -14,7 +14,7 @@ const DisableCourse = ({
   Course: Courses;
 }) => {
 
-  const { mutate: PatchStatus } = UseCancelCourse();
+  const { mutate: PatchStatus, isLoading } = UseCancelCourse();
   const handleDisbale = () => {
     PatchStatus(Course.courseId, {
       onSuccess: () => {
@@ -35,11 +35,15 @@ const DisableCourse = ({
             {Course.courseName}
           </p>
           <div className="flex justify-center gap-4">
-            <Button color="red" onClick={() => setDow(false)}>
+            <Button color="red" onClick={() => setDow(false)} disabled={isLoading}>
               Cancelar
             </Button>
-            <Button color="blue" onClick={() => handleDisbale()}>
-              Confirmar
+            <Button color="blue" onClick={() => handleDisbale()} disabled={isLoading}>
+            {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
             </Button>
           </div>
         </div>

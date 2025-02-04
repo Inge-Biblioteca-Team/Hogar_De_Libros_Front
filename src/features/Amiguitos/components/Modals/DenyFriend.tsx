@@ -26,7 +26,7 @@ const DenyFriend = ({
     },
   });
 
-  const { mutate: rejectFriend } = UseRefuseFriend();
+  const { mutate: rejectFriend, isLoading } = UseRefuseFriend();
 
   const handleConfirm = (data: downType) => {
     rejectFriend(data, {
@@ -52,7 +52,7 @@ const DenyFriend = ({
           placeholder="Motivo de rechazo"
           required />
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

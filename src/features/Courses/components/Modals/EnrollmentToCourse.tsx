@@ -35,7 +35,7 @@ const EnrollmentToCourse = ({
 
   const { register, handleSubmit, setValue, reset } = useForm<Enrollment>();
 
-  const { mutate: EnrollMe } = UseEnrollToCourse();
+  const { mutate: EnrollMe, isLoading } = UseEnrollToCourse();
 
   useEffect(() => {
     if (course.Id) {
@@ -139,7 +139,7 @@ const EnrollmentToCourse = ({
             </div>
           </div>
         </Modal.Body>
-        <ModalFooters onClose={handleClose} />
+        <ModalFooters onClose={handleClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

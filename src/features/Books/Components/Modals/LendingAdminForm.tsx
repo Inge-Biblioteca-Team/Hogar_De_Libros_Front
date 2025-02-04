@@ -40,7 +40,7 @@ const LendingAdminForm = ({
 
   const maxDate = formatToYMD(addDay(watch("BookPickUpDate"), 5));
 
-  const { mutate: createNew } = UseLeadingRequest();
+  const { mutate: createNew, isLoading } = UseLeadingRequest();
 
   const onConfirm = (data: BookLeading) => {
     createNew(data, {
@@ -173,7 +173,7 @@ const LendingAdminForm = ({
             </div>
           </fieldset>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

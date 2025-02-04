@@ -36,7 +36,7 @@ const EditRoom = ({
     setImageUrls(initialImageUrls);
   }, [initialImageUrls]);
 
-  const { mutate: updateRoom } = UseUpdateRoom();
+  const { mutate: updateRoom, isLoading } = UseUpdateRoom();
 
   const onSubmit = async (data: Room) => {
     updateRoom(data, {
@@ -184,7 +184,7 @@ const EditRoom = ({
               </div>
             </div>
           </Modal.Body>
-          <ModalFooters onClose={handleModalClose} />
+          <ModalFooters onClose={handleModalClose} isLoading={isLoading}/>
         </form>
       </Modal>
       <ModalAddNewImage

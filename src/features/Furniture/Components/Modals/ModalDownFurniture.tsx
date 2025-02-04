@@ -21,7 +21,7 @@ const ModalDownFurniture = ({
     defaultValues: { Id: id.toString() },
   });
 
-  const { mutate: edit } = UseDownFurniture();
+  const { mutate: edit, isLoading } = UseDownFurniture();
 
   const onConfirm = async (data: downType) => {
     edit(data, {
@@ -51,7 +51,7 @@ const ModalDownFurniture = ({
             </Select>
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading} />
       </form>
     </Modal>
   );
