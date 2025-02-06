@@ -31,7 +31,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
           className="flex items-center max-sm:pr-4 max-sm:pl-4  max-sm:w-full  w-4/5 flex-col "
           id="Courses"
         >
-          <h2 className="font-bold text-2xl">Cursos disponibles</h2>
+          <h2 className="font-bold text-2xl 2xl:text-4xl">Cursos disponibles</h2>
           {home&&
           <h4 className=" text-center text-md mb-2">Ven a pasar un tiempo especial junto a nosotros. Al mismo tiempo que aprendes cosas nuevas.</h4>
           }
