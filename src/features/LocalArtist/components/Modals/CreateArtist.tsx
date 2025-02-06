@@ -14,7 +14,7 @@ const CreateArtist = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { register, handleSubmit, setValue, reset } = useForm<Artist>();
 
-  const { mutate: create } = UseCreateArtist();
+  const { mutate: create, isLoading } = UseCreateArtist();
 
   const onSubmit = async (data: Artist) => {
     create(data, {
@@ -163,7 +163,7 @@ const CreateArtist = () => {
               />
             </div>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading} />
         </form>
       </Modal>
       <ModalAddNewImage

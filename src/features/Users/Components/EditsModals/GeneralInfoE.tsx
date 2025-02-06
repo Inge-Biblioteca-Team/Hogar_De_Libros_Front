@@ -24,7 +24,7 @@ const GeneralInfoE = ({
     }
   }, [User, setValue]);
 
-  const { mutate: patchUser } = UseEditInfoUser();
+  const { mutate: patchUser, isLoading } = UseEditInfoUser();
 
   const handleConfirm = (data: User) => {
     patchUser(data, {
@@ -52,7 +52,7 @@ const GeneralInfoE = ({
             <TextInput {...register("lastName")} />
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

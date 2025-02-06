@@ -17,7 +17,7 @@ const CreateCourse = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { mutate: createCourse } = UseCreateCourse();
+  const { mutate: createCourse, isLoading } = UseCreateCourse();
 
   const onSubmit = async (data: Courses) => {
     createCourse(data, {
@@ -207,7 +207,7 @@ const CreateCourse = () => {
               </fieldset>
             </div>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading}/>
         </form>
       </Modal>
       <ModalAddNewImage

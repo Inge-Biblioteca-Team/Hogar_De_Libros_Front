@@ -1,4 +1,4 @@
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Spinner } from "flowbite-react";
 import { Dispatch, SetStateAction, useContext } from "react";
 import UserContext from "../../../../Context/UserContext/UserContext";
 import UseAproveLoan from "../../Hooks/Books/UseAproveLoan";
@@ -18,7 +18,7 @@ const MDApproveLoan = ({
 
   const { currentUser } = useContext(UserContext);
 
-  const { mutate: Approve } = UseAproveLoan();
+  const { mutate: Approve, isLoading } = UseAproveLoan();
 
   const onConfirm = () => {
     Approve(
@@ -41,11 +41,15 @@ const MDApproveLoan = ({
           <div className="text-center">
             <h3>Está Seguro de aprobar la solicitud de préstamo</h3>
             <div className="flex justify-center gap-4 mt-10">
-              <Button color="red" onClick={onCancel}>
+              <Button color="red" onClick={onCancel} disabled={isLoading}>
                 Volver
               </Button>
-              <Button color="blue" onClick={onConfirm}>
-                Confirmar
+              <Button color="blue" onClick={onConfirm} disabled={isLoading}>
+              {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
               </Button>
             </div>
           </div>

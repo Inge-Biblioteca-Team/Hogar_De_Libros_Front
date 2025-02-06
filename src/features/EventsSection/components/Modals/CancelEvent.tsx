@@ -1,4 +1,4 @@
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Spinner } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Events } from "../../types/Events";
@@ -13,7 +13,7 @@ const CancelEvent = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   event: Events;
 }) => {
-  const { mutate: PatchStatus } = UseCancelEvent();
+  const { mutate: PatchStatus, isLoading } = UseCancelEvent();
   const handleConfirm = () => {
     PatchStatus(event.EventId, {
       onSuccess: () => {
@@ -36,11 +36,15 @@ const CancelEvent = ({
         <span>Está acción no es reversible!!!</span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"red"} onClick={() => setOpen(false)}>
+        <Button color={"red"} onClick={() => setOpen(false)} disabled={isLoading}>
           Cancelar
         </Button>
-        <Button color={"blue"} onClick={handleConfirm}>
-          Confirmar
+        <Button color={"blue"} onClick={handleConfirm} disabled={isLoading}>
+        {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
         </Button>
       </Modal.Footer>
     </Modal>

@@ -23,7 +23,7 @@ const MDRefuse = ({
     reset();
   };
 
-  const { mutate: refuse } = UseRefueseColab();
+  const { mutate: refuse, isLoading } = UseRefueseColab();
 
   const onConfirm = (data: downType) => {
     refuse(data, {
@@ -46,7 +46,7 @@ const MDRefuse = ({
             required
           />
         </ModalBody>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

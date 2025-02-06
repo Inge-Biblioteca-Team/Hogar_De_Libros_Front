@@ -18,7 +18,7 @@ const ModalMantenance = ({
 
  
 
-  const { mutate } = NewSetMaintenance();
+  const { mutate, isLoading } = NewSetMaintenance();
 
   const [inChange, setInCharge] = useState("");
   const [Location, setLocacion] = useState("");
@@ -78,7 +78,7 @@ const ModalMantenance = ({
             }}
           />
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

@@ -1,4 +1,4 @@
-import { Button, Modal, Textarea } from "flowbite-react";
+import { Button, Modal, Spinner, Textarea } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Reserve } from "../../../Types/RoomsReservations";
@@ -13,7 +13,7 @@ const MDRefuseReservation = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   reserve: Reserve;
 }) => {
-  const { mutate: refuse } = UseRefuese();
+  const { mutate: refuse, isLoading } = UseRefuese();
 
   const onConfirm = () => {
     refuse(
@@ -40,11 +40,15 @@ const MDRefuseReservation = ({
           <Textarea className="mt-3" rows={4} placeholder="Motivo" required />
         </Modal.Body>
         <Modal.Footer className=" flex items-center justify-center">
-          <Button color={"red"} onClick={onClose} tabIndex={2}>
+          <Button color={"red"} onClick={onClose} tabIndex={2} disabled={isLoading}>
             Cancelar
           </Button>
-          <Button color={"blue"} onClick={onConfirm}>
-            Confirmar
+          <Button color={"blue"} onClick={onConfirm} disabled={isLoading}>
+          {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
           </Button>
         </Modal.Footer>
       </form>

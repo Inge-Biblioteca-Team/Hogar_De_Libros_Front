@@ -33,7 +33,7 @@ const EditComponent = ({
     setSEdit(false);
   };
 
-  const { mutate: Edit } = useEditComputer();
+  const { mutate: Edit, isLoading } = useEditComputer();
 
   const onConfirm = (data: Equipment) => {
     Edit(data, {
@@ -119,7 +119,7 @@ const EditComponent = ({
               </span>
             </fieldset>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading}/>
         </form>
       </Modal>
     </>

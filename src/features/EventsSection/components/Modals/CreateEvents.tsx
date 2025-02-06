@@ -14,7 +14,7 @@ const CreateEvent = () => {
 
   const { register, handleSubmit, setValue, reset } = useForm<Events>();
 
-  const { mutate: createEvent } = useCreateEvent();
+  const { mutate: createEvent, isLoading } = useCreateEvent();
 
   const onSubmit = async (data: Events) => {
     if (imageUrl) {
@@ -185,7 +185,7 @@ const CreateEvent = () => {
               </div>
             </fieldset>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading}/>
         </form>
       </Modal>
       <ModalAddNewImage

@@ -26,7 +26,7 @@ const MDDownBook = ({
     },
   });
 
-  const { mutate: downResource } = UseDownChildrenBook();
+  const { mutate: downResource, isLoading } = UseDownChildrenBook();
 
   const onConfirm = (data: downType) => {
     downResource(data, {
@@ -60,7 +60,7 @@ const MDDownBook = ({
             />
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );
