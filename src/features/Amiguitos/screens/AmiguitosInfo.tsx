@@ -5,7 +5,7 @@ const AmiguitosInfo = ({ home }: { home?: boolean }) => {
       className="w-4/5 flex flex-col items-center justify-center gap-5"
       id="Friends"
     >
-      <h2 className="font-bold text-2xl">Amigos de la biblioteca</h2>
+      <h2 className="2xl:text-4xl font-bold text-2xl">Amigos de la biblioteca</h2>
       {home&&
       <h4 className=" text-center text-md">Únete a la biblioteca y comparte con nosotros existen varias formas de hacerlos aquí te comentamos como.</h4>
       }

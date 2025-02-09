@@ -9,13 +9,13 @@ const BookChildrenTable = ({ catalog }: { catalog: Catalog }) => {
       {catalog.count > 0 ? (
         <Table className=" text-center min-h-[30rem]" hoverable>
           <Table.Head>
-            <Table.HeadCell>Título</Table.HeadCell>
-            <Table.HeadCell className=" max-sm:hidden">Autor</Table.HeadCell>
-            <Table.HeadCell className=" max-sm:hidden">ISBN</Table.HeadCell>
-            <Table.HeadCell className=" md:hidden max-sm:hidden">Código De Signatura</Table.HeadCell>
-            <Table.HeadCell className="md:hidden max-sm:hidden">Código de inscripción</Table.HeadCell>
-            <Table.HeadCell>Estado</Table.HeadCell>
-            <Table.HeadCell className="md:hidden max-sm:hidden"></Table.HeadCell>
+            <Table.HeadCell className="xl:h-1/6 2xl:w-1/6">Título</Table.HeadCell>
+            <Table.HeadCell className="xl:h-1/6 2xl:w-1/6 max-sm:hidden">Autor</Table.HeadCell>
+            <Table.HeadCell className="xl:h-1/6 2xl:w-1/6 max-sm:hidden">ISBN</Table.HeadCell>
+            <Table.HeadCell className="xl:h-1/6 xl:table-cell 2xl:w-1/6 2xl:table-cell md:hidden max-sm:hidden">Código De Signatura</Table.HeadCell>
+            <Table.HeadCell className="xl:h-1/6 xl:table-cell 2xl:w-1/6 2xl:table-cell md:hidden max-sm:hidden">Código de inscripción</Table.HeadCell>
+            <Table.HeadCell className="xl:h-1/6 2xl:w-1/6 2xl:table-cell">Estado</Table.HeadCell>
+            <Table.HeadCell className="xl:h-1/6 2xl:w-1/6 md:hidden max-sm:hidden"></Table.HeadCell>
           </Table.Head>
           <Table.Body className="h-96">
             {catalog.data.map((Book) => (

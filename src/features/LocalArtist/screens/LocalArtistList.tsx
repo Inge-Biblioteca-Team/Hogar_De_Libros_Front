@@ -47,10 +47,10 @@ const LocalArtistList = () => {
     <>
       {LArtists && LArtists.count > 0 && (
         <section
-          className="flex items-center max-sm:pr-4 max-sm:pl-4  max-sm:w-full  w-4/5 flex-col "
+          className="flex gap-6 items-center max-sm:pr-4 max-sm:pl-4  max-sm:w-full  w-4/5 flex-col "
           id="Courses"
         >
-          <h2 className="font-bold text-2xl">Artistas locales</h2>
+          <h2 className="2xl:text-4xl font-bold text-2xl">Artistas locales</h2>
           <Carousel
             indicators={false}
             pauseOnHover

@@ -9,12 +9,12 @@ const TblRowsReservation = ({ reserve }: { reserve: ReserveResponse }) => {
   return (
     <>
       <Table.Head className="h-11">
-        <Table.HeadCell>Solicitante</Table.HeadCell>
-        <Table.HeadCell className="max-sm:hidden">Fecha de Solicitud</Table.HeadCell>
-        <Table.HeadCell>Fecha reservada</Table.HeadCell>
-        <Table.HeadCell className=" md:hidden max-sm:hidden">Hora de inicio / Fin</Table.HeadCell>
-        <Table.HeadCell className="max-sm:hidden">Actividad</Table.HeadCell>
-        <Table.HeadCell className="md:hidden"></Table.HeadCell>
+        <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Solicitante</Table.HeadCell>
+        <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">Fecha de Solicitud</Table.HeadCell>
+        <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Fecha reservada</Table.HeadCell>
+        <Table.HeadCell className="xl:w-1/5 xl:table-cell 2xl:w-1/5 2xl:table-cell md:hidden max-sm:hidden">Hora de inicio / Fin</Table.HeadCell>
+        <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">Actividad</Table.HeadCell>
+        <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 md:hidden"></Table.HeadCell>
       </Table.Head>
       <Table.Body>
         {reserve.data.map((reservation) => {
@@ -29,7 +29,7 @@ const TblRowsReservation = ({ reserve }: { reserve: ReserveResponse }) => {
                 <Table.Cell>{reservation.name} </Table.Cell>
                 <Table.Cell className="max-sm:hidden">{requestDay} </Table.Cell>
                 <Table.Cell>{reserveDay} </Table.Cell>
-                <Table.Cell className="md:hidden max-sm:hidden">
+                <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
                   {HourMapping[start]} / {HourMapping[end]}
                 </Table.Cell>
                 <Table.Cell className="max-sm:hidden" >{reservation.reason} </Table.Cell>

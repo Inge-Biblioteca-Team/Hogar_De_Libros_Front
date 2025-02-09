@@ -22,7 +22,7 @@ const AprovRows = ({ reservation }: { reservation: Reserve }) => {
           <Table.Cell>{reservation.name} </Table.Cell>
           <Table.Cell className="max-sm:hidden">{requestDay} </Table.Cell>
           <Table.Cell>{reserveDay} </Table.Cell>
-          <Table.Cell className="md:hidden max-sm:hidden">
+          <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
             {HourMapping[start]} / {HourMapping[end]}
           </Table.Cell>
           <Table.Cell className="max-sm:hidden" >{reservation.reason} </Table.Cell>

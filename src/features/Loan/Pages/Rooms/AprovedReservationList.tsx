@@ -38,7 +38,7 @@ const AprovedReservationList = () => {
     <>
       <LoansAndCirculationCrumbs text="Reservas de salas aprobadas" />
       <div className=" w-full flex items-center justify-center mt-28">
-        <div className="w-4/5 max-sm:w-full max-sm:p-2">
+        <div className="w-4/5 xl:w-full xl:ml-4 xl:mr-4 2xl:w-full 2xl:mr-4 2xl:ml-4 max-sm:w-full max-sm:p-2">
           {reservations?.count == 0 ? (
             <NoRequest text={"No existen solicitudes aprobadas"} />
           ) : (

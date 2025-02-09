@@ -20,7 +20,7 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
           className="relative w-full max-w-4xl mx-auto md:w-4/5 max-sm:w-4/5"
           id="Events"
         >
-          <h2 className="text-center font-bold text-2xl mb-6">
+          <h2 className="text-2x text-center font-bold text-2xl mb-6">
             Próximos eventos
           </h2>
           {home && (

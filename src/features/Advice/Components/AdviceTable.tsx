@@ -11,18 +11,18 @@ const AdviceTable = ({ advices }: { advices: ApiAdvices }) => {
             <Table.HeadCell className="w-52 md:hidden max-sm:hidden">
               Numero de aviso
             </Table.HeadCell>
-            <Table.HeadCell className="w-52">Motivo</Table.HeadCell>
-            <Table.HeadCell className="w-52 max-sm:hidden">
+            <Table.HeadCell className="w-52 xl:w-1/4 2xl:w-1/4">Motivo</Table.HeadCell>
+            <Table.HeadCell className="w-52 xl:w-1/4 2xl:w-1/4 max-sm:hidden">
               Categoría
             </Table.HeadCell>
-            <Table.HeadCell className="w-52">Fecha de actividad</Table.HeadCell>
-            <Table.HeadCell className="w-52 md:hidden max-sm:hidden">
+            <Table.HeadCell className="w-52 xl:w-1/4 2xl:w-1/4">Fecha de actividad</Table.HeadCell>
+            <Table.HeadCell className="w-52 xl:w-1/4 2xl:w-1/4 md:hidden max-sm:hidden">
               Información Extra
             </Table.HeadCell>
-            <Table.HeadCell className="w-52 max-sm:hidden">
+            <Table.HeadCell className="w-52 xl:w-1/4 2xl:w-1/4 max-sm:hidden">
               Estado
             </Table.HeadCell>
-            <Table.HeadCell className="w-52 md:hidden max-sm:hidden"></Table.HeadCell>
+            <Table.HeadCell className="w-52 xl:w-1/4 2xl:w-1/5 md:hidden max-sm:hidden"></Table.HeadCell>
           </Table.Head>
           <Table.Body>
             {advices.data.map((advice) => (

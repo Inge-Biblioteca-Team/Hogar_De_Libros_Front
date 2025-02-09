@@ -49,7 +49,7 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
           className="flex items-center w-4/5 flex-col max-sm:m-0 "
           id="Programs"
         >
-          <h2 className="font-bold text-2xl">Nuestros programas</h2>
+          <h2 className="2xl:text-4xl font-bold text-2xl">Nuestros programas</h2>
           {home && (
             <h3 className=" text-center text-md">
               La biblioteca cuenta con diversos programas los cuales tienen

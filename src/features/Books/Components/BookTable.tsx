@@ -9,12 +9,12 @@ const BookTable = ({ catalog }: { catalog: Catalog }) => {
       {catalog.count > 0 ? (
         <Table className=" w-full text-center min-h-[30rem] " hoverable>
           <Table.Head>
-            <Table.HeadCell>Título</Table.HeadCell>
-            <Table.HeadCell className=" max-sm:hidden" >Autor</Table.HeadCell>
-            <Table.HeadCell className=" max-sm:hidden" >ISBN</Table.HeadCell>
-            <Table.HeadCell className="md:hidden max-sm:hidden">Código De Signatura</Table.HeadCell>
-            <Table.HeadCell className="md:hidden max-sm:hidden" >Código De inscripción</Table.HeadCell>
-            <Table.HeadCell>Estado</Table.HeadCell>
+            <Table.HeadCell className="2xl:w-1/4 xl:w-1/4">Título</Table.HeadCell>
+            <Table.HeadCell className="2xl:w-1/4 xl:w-1/4 max-sm:hidden" >Autor</Table.HeadCell>
+            <Table.HeadCell className="2xl:w-1/4 xl:w-1/4 max-sm:hidden" >ISBN</Table.HeadCell>
+            <Table.HeadCell className="2xl:w-1/4 xl:w-1/4 md:hidden max-sm:hidden">Código De Signatura</Table.HeadCell>
+            <Table.HeadCell className="2xl:w-1/4 xl:w-1/4 md:hidden max-sm:hidden" >Código De inscripción</Table.HeadCell>
+            <Table.HeadCell className="2xl:w-1/4 xl:w-1/4">Estado</Table.HeadCell>
             <Table.HeadCell className=" max-sm:hidden"></Table.HeadCell>
           </Table.Head>
           <Table.Body className=" h-96">
