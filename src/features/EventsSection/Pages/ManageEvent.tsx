@@ -59,21 +59,21 @@ const ManageEvents = () => {
             <>
               <Table hoverable className="text-center">
                 <Table.Head>
-                  <Table.HeadCell>Título</Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden">
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Título</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 2xl:table-cell xl:table-cell md:hidden max-sm:hidden">
                     Ubicación
                   </Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">
                     Persona a Cargo
                   </Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">
                     Fecha
                   </Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden">
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 2xl:table-cell xl:table-cell md:hidden max-sm:hidden">
                     Hora
                   </Table.HeadCell>
-                  <Table.HeadCell>Estado</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden"></Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Estado</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className=" h-[30rem]">
                   {Events?.data.map((event) => (

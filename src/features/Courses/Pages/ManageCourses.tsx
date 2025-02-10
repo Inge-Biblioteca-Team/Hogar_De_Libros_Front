@@ -78,14 +78,14 @@ const ManageCourses = () => {
             <>
               <Table hoverable className=" text-center">
                 <Table.Head className=" h-20 text-sm">
-                  <Table.HeadCell>Nombre</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Encargado</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Fecha</Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden">Hora</Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden">Cupos Disponibles</Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden">Matricula</Table.HeadCell>
-                  <Table.HeadCell>Estado</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden"></Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Nombre</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Encargado</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Fecha</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">Hora</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">Cupos Disponibles</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">Matricula</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Estado</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="h-96">
                   {Courses?.data.map((course: Courses) => (

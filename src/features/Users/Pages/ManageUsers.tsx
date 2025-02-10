@@ -67,13 +67,13 @@ const ManageUsers = () => {
             <>
               <Table hoverable className=" text-center min-h-[30rem] max-sm:text-sm max-sm:justify-center">
                 <Table.Head className=" bg-white">
-                  <Table.HeadCell>Cédula</Table.HeadCell>
-                  <Table.HeadCell>Nombre</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Rol</Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell">Provincia</Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell">Teléfono</Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden lg:table-cell">Fecha de registro</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Estado</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Cédula</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Nombre</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Rol</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Provincia</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Teléfono</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Fecha de registro</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Estado</Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>

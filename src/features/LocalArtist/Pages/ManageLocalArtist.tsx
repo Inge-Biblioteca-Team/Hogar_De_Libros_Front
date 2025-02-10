@@ -71,11 +71,11 @@ const ManageLocalArtist = () => {
             <>
               <Table hoverable className="text-center h-[30rem] max-sm:text-sm max-sm:justify-center">
                 <Table.Head className="h-20 text-sm bg-white">
-                  <Table.HeadCell>Nombre</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Tipo de Artista</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Información Relevante</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Redes Sociales</Table.HeadCell>
-                  <Table.HeadCell>Estado</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Nombre</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">Tipo de Artista</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">Información Relevante</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 xl:table-cell 2xl:w-1/5 2xl:table-cell max-sm:hidden">Redes Sociales</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Estado</Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>

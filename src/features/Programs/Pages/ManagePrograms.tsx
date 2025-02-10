@@ -80,18 +80,18 @@ const ManagePrograms = () => {
             <>
               <Table hoverable className="text-center">
                 <Table.Head className="h-20 text-sm">
-                  <Table.HeadCell className="md:hidden max-sm:hidden w-20">
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 xl:table-cell 2xl:table-cell  md:hidden max-sm:hidden w-20">
                     Numero de Registro
                   </Table.HeadCell>
-                  <Table.HeadCell className="max-sm:p-2 w-20">
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:p-2 w-20">
                     Nombre del Programa
                   </Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden w-20">Descripción</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden w-20">
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">Descripción</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">
                     Información Relacionada
                   </Table.HeadCell>
-                  <Table.HeadCell className=" w-20">Estado</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden w-20"></Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 w-20">Estado</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 before:max-sm:hidden w-20"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="h-96">
                   {Programs?.data.map((Program) => (

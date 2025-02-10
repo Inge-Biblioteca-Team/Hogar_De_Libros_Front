@@ -104,12 +104,12 @@ const ManagerComputer = () => {
                 style={{ height: "30rem" }}
               >
                 <Table.Head className=" h-16">
-                  <Table.HeadCell>Número de Máquina</Table.HeadCell>
-                  <Table.HeadCell className=" max-sm:hidden" >Categoría</Table.HeadCell>
-                  <Table.HeadCell className=" max-sm:hidden" >Marca</Table.HeadCell>
-                  <Table.HeadCell className=" max-sm:hidden" >Serial</Table.HeadCell>
-                  <Table.HeadCell>Estado</Table.HeadCell>
-                  <Table.HeadCell className=" max-sm:hidden" ></Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Número de Máquina</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden" >Categoría</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden" >Marca</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden" >Serial</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Estado</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden" ></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
                   {computers?.data.map((computers) => (

@@ -93,23 +93,23 @@ const ManageFurniture = () => {
                 style={{ height: "30rem" }}
               >
                 <Table.Head className=" h-16">
-                  <Table.HeadCell className="  w-44">
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 w-44">
                     Número de placa
                   </Table.HeadCell>
-                  <Table.HeadCell className=" w-44">Descripción</Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden  w-44">
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 w-44">Descripción</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden  w-44">
                     Ubicación
                   </Table.HeadCell>
-                  <Table.HeadCell className="md:hidden max-sm:hidden  w-44">
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden  w-44">
                     Responsable
                   </Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden  w-44">
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden  w-44">
                     Condición
                   </Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden  w-44">
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden  w-44">
                     Estado
                   </Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden "></Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden "></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
                   {furnitures?.data.map((furniture) => (
