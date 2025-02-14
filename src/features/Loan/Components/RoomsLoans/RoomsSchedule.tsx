@@ -107,7 +107,7 @@ const RoomsSchedule = ({
       <div className="font-bold text-center text-lg">
         Disponibilidad de salas
       </div>
-      <Table className="text-center h-80 mt-2 max-sm:hidden">
+      <Table className="text-center h-80 mt-2 hidden lg:table">
         <Table.Head>
           <Table.HeadCell className="w-10">Número de sala</Table.HeadCell>
           {hours.map((hour) => (
@@ -154,7 +154,7 @@ const RoomsSchedule = ({
         </Table.Body>
       </Table>
 
-      <Table className="text-center mt-2 hidden max-sm:block">
+      <Table className="text-center mt-2 lg:hidden xl:hidden 2xl:hidden ">
         <Table.Head>
           <Table.HeadCell>Hora</Table.HeadCell>
           {rooms.map((room) => (
@@ -203,7 +203,7 @@ const RoomsSchedule = ({
         </Table.Body>
       </Table>
 
-      <div className="mt-4 max-sm:w-full max-sm:flex max-sm:justify-center">
+      <div className="mt-4 md:w-full max-sm:w-full md:flex max-sm:flex md:justify-center max-sm:justify-center">
         <Button
           onClick={handleConfirmSelection}
           color={"blue"}

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Spinner } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Artist } from "../../types/LocalArtist";
 import UseDownArtist from "../../Hooks/UseDownArtist";
@@ -13,7 +13,7 @@ const DisableArtist = ({
   setDow: Dispatch<SetStateAction<boolean>>;
   Artist: Artist;
 }) => {
-  const { mutate: Disable } = UseDownArtist();
+  const { mutate: Disable, isLoading } = UseDownArtist();
 
   const handleDisbale = () => {
     Disable(Artist.ID);
@@ -32,11 +32,15 @@ const DisableArtist = ({
             {Artist.Name}
           </p>
           <div className="flex justify-center gap-4">
-            <Button color="red" onClick={() => setDow(false)}>
+            <Button color="red" onClick={() => setDow(false)} disabled={isLoading}>
               Cancelar
             </Button>
-            <Button color="blue" onClick={() => handleDisbale()}>
-              Confirmar
+            <Button color="blue" onClick={() => handleDisbale()} disabled={isLoading}>
+            {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
             </Button>
           </div>
         </div>

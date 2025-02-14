@@ -10,7 +10,7 @@ const ProgramsRows = ({ program }: { program: Program }) => {
   return (
     <>
       <Table.Row className="h-20">
-        <Table.Cell className="max-sm:hidden">{program.programsId} </Table.Cell>
+        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">{program.programsId} </Table.Cell>
         <Table.Cell>{program.programName} </Table.Cell>
         <Table.Cell className="max-sm:hidden ">
           <div>

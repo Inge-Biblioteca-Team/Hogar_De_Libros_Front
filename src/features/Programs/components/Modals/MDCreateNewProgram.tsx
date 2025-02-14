@@ -15,7 +15,7 @@ const MDCreateNewProgram = ({
 }) => {
   const { register, setValue, reset, handleSubmit } = useForm<Program>();
 
-  const { mutate: createProgram } = UseCreateProgram();
+  const { mutate: createProgram, isLoading } = UseCreateProgram();
 
   const onSubmit = async (data: Program) => {
     createProgram(data, {
@@ -96,7 +96,7 @@ const MDCreateNewProgram = ({
               </div>
             </div>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading}/>
         </form>
       </Modal>
       <ModalAddNewImage

@@ -27,7 +27,7 @@ const AdminHomePage = () => {
 
   return (
     <>
-      <div className=" flex justify-between">
+      <div className=" flex md:w-full justify-between">
         <Breadcrumb className="custom-breadcrumb">
           <Breadcrumb.Item icon={IoIosHome}>Inicio</Breadcrumb.Item>
         </Breadcrumb>
@@ -37,11 +37,11 @@ const AdminHomePage = () => {
         </span>
       </div>
       <main className=" w-full flex flex-col items-center gap-3">
-        <section className=" grid grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
-          <div className="col-span-4 max-sm:hidden">
+        <section className=" grid lg:grid-cols-6 md:grid-cols-1 md:w-full md:pr-4 md:pl-4 grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
+          <div className="col-span-4 md:w-full max-sm:hidden">
             <LoanStadisticts />
           </div>
-          <div className="grid grid-cols-2 gap-6 col-span-2 ">
+          <div className="grid   grid-cols-2 gap-6 col-span-2 ">
             <CounterCard
               counter={GeneralCounts?.Libros || 0}
               text="Libros en colección"

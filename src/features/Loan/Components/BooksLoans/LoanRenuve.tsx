@@ -1,4 +1,4 @@
-import { Button, Modal, TextInput } from "flowbite-react";
+import { Button, Modal, Spinner, TextInput } from "flowbite-react";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { ChangeExpiredDate, Loans } from "../../Types/BookLoan";
 import UseExtendLoan from "../../Hooks/Books/UseExtendLoan";
@@ -14,7 +14,7 @@ const LoanRenuve = ({
   showChange: boolean;
   setShowChange: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { mutate: ExtendLoan, } = UseExtendLoan();
+  const { mutate: ExtendLoan, isLoading } = UseExtendLoan();
 
   const { register, handleSubmit, setValue } = useForm<ChangeExpiredDate>();
 
@@ -52,11 +52,16 @@ const LoanRenuve = ({
                   onClick={() => {
                     setShowChange(false);
                   }}
+                  disabled={isLoading}
                 >
                   Regresar
                 </Button>
-                <Button color="blue" type="submit">
-                  Guardar
+                <Button color="blue" type="submit" disabled={isLoading}>
+                {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Guardar"
+        )}
                 </Button>
               </div>
             </div>

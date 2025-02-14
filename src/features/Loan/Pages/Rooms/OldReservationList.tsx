@@ -47,7 +47,7 @@ const OldReservationList = () => {
     <>
       <LoansCrumbs text="Salas" />
       <div className=" w-full flex items-center justify-center">
-        <div className="w-4/5">
+        <div className="w-4/5 md:w-full md:pl-4 md:pr-4">
           <div className=" flex gap-3 pb-4">
             <div>
               <Label value="Fecha reservada" />

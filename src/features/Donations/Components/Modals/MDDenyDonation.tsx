@@ -23,7 +23,7 @@ const MDDenyDonation = ({
     defaultValues: { Id: id.toString() },
   });
 
-  const { mutate: refuse } = UseRefuseDonation();
+  const { mutate: refuse, isLoading } = UseRefuseDonation();
 
   const onConfirm = (data: downType) => {
     refuse(data, {
@@ -49,7 +49,7 @@ const MDDenyDonation = ({
             />
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

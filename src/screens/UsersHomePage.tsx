@@ -28,7 +28,7 @@ const UsersHomePage = () => {
             Navega fácilmente a través de nuestros módulos del sistema.
           </p>
           <div className="flex justify-center mb-28 px-6">
-            <div className="grid grid-cols-4 gap-6 justify-center">
+            <div className="grid md:grid-cols-2 grid-cols-4 gap-6 justify-center">
               <RoomAccessCard />
               <BookAccessCard />
               <ComputerAccessCard />

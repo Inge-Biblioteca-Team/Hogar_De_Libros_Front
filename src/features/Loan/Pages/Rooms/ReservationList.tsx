@@ -38,7 +38,7 @@ const ReservationList = () => {
     <>
       <LoansAndCirculationCrumbs text="Solicitudes de salas" />
       <div className=" w-full flex items-center justify-center mt-16">
-        <div className="w-4/5 max-sm:w-full max-sm:p-2">
+        <div className="w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:p-2">
           {reservations?.count == 0 ? (
             <NoRequest text={"No existen solicitudes pendientes"} />
           ) : (

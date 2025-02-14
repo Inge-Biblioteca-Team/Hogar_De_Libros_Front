@@ -20,7 +20,7 @@ const ModalDownEquip = ({
     defaultValues: { Id: Code },
   });
 
-  const { mutate: PatchStatus } = UseDownEquip();
+  const { mutate: PatchStatus, isLoading } = UseDownEquip();
 
   const handleConfirm = (data: downType) => {
     PatchStatus(data, {
@@ -53,7 +53,7 @@ const ModalDownEquip = ({
             />
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

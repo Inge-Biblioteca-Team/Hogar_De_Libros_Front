@@ -1,4 +1,4 @@
-import { Button, Card, Modal, Timeline } from "flowbite-react";
+import { Button, Card, Modal, Spinner, Timeline } from "flowbite-react";
 import { HourMapping, myReservation } from "../../Types/RoomsReservations";
 import { CiCalendarDate } from "react-icons/ci";
 import UseCancelReservation from "../../Hooks/Rooms/UseCancelReservation";
@@ -10,7 +10,7 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
   const start = HourMapping[Math.min(...reserve.selectedHours)];
   const end = HourMapping[Math.max(...reserve.selectedHours)];
 
-  const { mutate: cancelReserve } = UseCancelReservation();
+  const { mutate: cancelReserve, isLoading } = UseCancelReservation();
   const handleCancel = async () => {
     cancelReserve(reserve.rommReservationId, {
       onSuccess: () => {
@@ -84,11 +84,15 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
           <span>está acción no es reversible!!</span>
         </Modal.Body>
         <Modal.Footer className="flex items-center justify-center">
-          <Button color={"red"} tabIndex={2} onClick={() => setOpen(false)}>
+          <Button color={"red"} tabIndex={2} onClick={() => setOpen(false)} disabled={isLoading}>
             Regresar
           </Button>
-          <Button color={"blue"} onClick={handleCancel}>
-            Confirmar
+          <Button color={"blue"} onClick={handleCancel} disabled={isLoading}>
+          {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
           </Button>{" "}
         </Modal.Footer>
       </Modal>

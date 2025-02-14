@@ -21,13 +21,13 @@ const BookRow = ({ book }: { book: Book }) => {
           <div className=" line-clamp-2">{book.Author}</div>
         </Table.Cell>
         <Table.Cell className=" max-sm:hidden">{book.ISBN}</Table.Cell>
-        <Table.Cell className=" max-sm:hidden">
+        <Table.Cell className="2xl:table-cell xl:table-cell md:hidden max-sm:hidden">
           {book.signatureCode ? book.signatureCode : "N/A"}
         </Table.Cell>
-        <Table.Cell className=" max-sm:hidden">
+        <Table.Cell className="2xl:table-cell xl:table-cell md:hidden max-sm:hidden">
           {book.InscriptionCode ? book.InscriptionCode : "N/A"}{" "}
         </Table.Cell>
-        <Table.Cell>{book.Status ? "Disponible" : "Baja"}</Table.Cell>
+        <Table.Cell className="">{book.Status ? "Disponible" : "Baja"}</Table.Cell>
         <Table.Cell className=" max-sm:w-full">
           <AccionsBTN
             Status={book.Status}

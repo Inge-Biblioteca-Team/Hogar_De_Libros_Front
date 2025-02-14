@@ -56,7 +56,7 @@ const InProgressLoans = () => {
     <>
       <LoansAndCirculationCrumbs text="Préstamos en progreso" />
       <div className=" flex  place-content-center pb-3">
-        <div className="w-4/5 max-sm:w-full max-sm:p-2">
+        <div className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:p-2">
           <SearchInputs
             SignaCode={SignaCode}
             EndDate={EndDate}

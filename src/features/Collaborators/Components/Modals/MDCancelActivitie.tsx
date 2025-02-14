@@ -23,7 +23,7 @@ const MDCancelActivitie = ({
     reset();
   };
 
-  const { mutate: cancel } = UseCancelColab();
+  const { mutate: cancel, isLoading } = UseCancelColab();
 
   const onConfirm = (data: downType) => {
     cancel(data, {
@@ -46,7 +46,7 @@ const MDCancelActivitie = ({
             required
           />
         </ModalBody>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

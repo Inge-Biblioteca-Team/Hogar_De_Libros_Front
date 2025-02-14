@@ -23,7 +23,7 @@ const ModalewSWLoan = ({
 
   setValue("MachineNumber", MNumber);
 
-  const { mutate } = UseGenerateWSLoan();
+  const { mutate, isLoading } = UseGenerateWSLoan();
 
   const onSubmit = (data: NewWSLoan) => {
     mutate(data, {
@@ -88,7 +88,7 @@ const ModalewSWLoan = ({
             />
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

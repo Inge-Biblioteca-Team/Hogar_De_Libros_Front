@@ -27,7 +27,7 @@ const PlaceE = ({
     }
   }, [User, setValue]);
 
-  const { mutate: patchUser } = UseEditInfoUser();
+  const { mutate: patchUser, isLoading } = UseEditInfoUser();
 
   const handleConfirm = (data: User) => {
     patchUser(data,
@@ -65,7 +65,7 @@ const PlaceE = ({
             <TextInput {...register("address")} />
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

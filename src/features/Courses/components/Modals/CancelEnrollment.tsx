@@ -1,4 +1,4 @@
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Spinner } from "flowbite-react";
 import { format } from "@formkit/tempo";
 import UseCancelEnrollment from "../../Hooks/UseCancelEnrollment";
 import { NextCourses } from "../../types/Courses";
@@ -23,7 +23,7 @@ const CancelEnrollment = ({
     tz: "America/Costa_Rica",
   });
 
-  const { mutate } = UseCancelEnrollment();
+  const { mutate, isLoading } = UseCancelEnrollment();
 
   const handleCancel = () => {
     mutate(
@@ -50,11 +50,15 @@ const CancelEnrollment = ({
         </span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"red"} onClick={() => setopen(false)}>
+        <Button color={"red"} onClick={() => setopen(false)} disabled={isLoading}>
           Volver
         </Button>
-        <Button color={"blue"} onClick={handleCancel}>
-          Confirmar
+        <Button color={"blue"} onClick={handleCancel} disabled={isLoading}>
+        {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
         </Button>
       </Modal.Footer>
     </Modal>

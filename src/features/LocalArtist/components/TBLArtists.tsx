@@ -18,7 +18,7 @@ const TBLArtists = ({ artist }: { artist: Artist }) => {
         <Table.Cell className="w-56 max-sm:hidden">
           <div className="line-clamp-2">{artist.MoreInfo}</div>
         </Table.Cell>
-        <Table.Cell className="w-56 max-sm:hidden">
+        <Table.Cell className="w-56 xl:table-cell 2xl:table-cell max-sm:hidden">
           <div>
             <a href={artist.FBLink}>FB</a> / <a href={artist.IGLink}>IG</a> /{" "}
             <a href={artist.LILink}>LI</a>

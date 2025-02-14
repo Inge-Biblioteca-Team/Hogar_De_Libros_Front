@@ -13,7 +13,7 @@ const CardTypeAmiguito = () => {
     <>
      <figure className="rounded-md bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
-          className="h-40 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
+          className="h-40 md:w-full md:h-2/4 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={
             "https://i0.wp.com/asociaciones.org/wp-content/uploads/2024/03/donacion-web.jpg"
           }
@@ -31,7 +31,7 @@ const CardTypeAmiguito = () => {
             </span>
             <br />
           </p>
-          <Button color={"blue"} onClick={() => setIsOpenD(true)}>
+          <Button className="md:w-32" color={"blue"} onClick={() => setIsOpenD(true)}>
             Donar
           </Button>
         </figcaption>
@@ -39,14 +39,14 @@ const CardTypeAmiguito = () => {
 
       <figure className="rounded-md bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
-          className="h-40 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
+          className="h-40 md:w-full md:h-2/4 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={
             "https://universoabierto.org/wp-content/uploads/2019/05/7464d163b1c27c4d75f62ea6c6c0982e.jpg?w=625"
           }
           alt={"Amigos de la biblioteca"}
         />
         <figcaption
-          className="text-lg break-words max-w-80 px-4 h-full flex flex-col items-center justify-between"
+          className="text-lg break-words max-w-80 px-4 md:h-2/4 flex flex-col items-center justify-between"
         >
           <strong className="mb-1 lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
             {"Amigos de la biblioteca"}
@@ -57,7 +57,7 @@ const CardTypeAmiguito = () => {
             </span>
             <br />
           </p>
-          <Button color={"blue"} onClick={() => setIsOpenA(true)}>
+          <Button className="md:w-32" color={"blue"} onClick={() => setIsOpenA(true)}>
             Únete ahora
           </Button>
         </figcaption>
@@ -65,7 +65,7 @@ const CardTypeAmiguito = () => {
 
       <figure className="rounded-md bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
-          className="h-40 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
+          className="h-40 w-80 md:w-full md:h-3/4 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={
             "https://www.comunidadbaratz.com/wp-content/uploads/2022/02/Agenda-de-actividades-en-AbsysNet.jpg"
           }
@@ -83,7 +83,7 @@ const CardTypeAmiguito = () => {
             </span>
             <br />
           </p>
-          <Button color={"blue"} onClick={() => setIsOpenC(true)}>
+          <Button className="md:w-32" color={"blue"} onClick={() => setIsOpenC(true)}>
             Participar
           </Button>
         </figcaption>

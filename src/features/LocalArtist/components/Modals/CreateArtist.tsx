@@ -14,7 +14,7 @@ const CreateArtist = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { register, handleSubmit, setValue, reset } = useForm<Artist>();
 
-  const { mutate: create } = UseCreateArtist();
+  const { mutate: create, isLoading } = UseCreateArtist();
 
   const onSubmit = async (data: Artist) => {
     create(data, {
@@ -51,7 +51,7 @@ const CreateArtist = () => {
       <button
         type="button"
         onClick={() => setIsModalOpen(true)}
-        className="w-full sm:w-40 bg-Body text-white mt-2 p-2 rounded-md hover:bg-blue-800"
+        className="w-full md:w-full lg:w-auto sm:w-40 bg-Body text-white mt-2 p-2 rounded-md hover:bg-blue-800"
       >
         Añadir artista
       </button>
@@ -163,7 +163,7 @@ const CreateArtist = () => {
               />
             </div>
           </Modal.Body>
-          <ModalFooters onClose={onClose} />
+          <ModalFooters onClose={onClose} isLoading={isLoading} />
         </form>
       </Modal>
       <ModalAddNewImage

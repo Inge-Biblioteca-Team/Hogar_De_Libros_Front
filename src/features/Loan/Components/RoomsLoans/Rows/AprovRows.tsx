@@ -22,12 +22,12 @@ const AprovRows = ({ reservation }: { reservation: Reserve }) => {
           <Table.Cell>{reservation.name} </Table.Cell>
           <Table.Cell className="max-sm:hidden">{requestDay} </Table.Cell>
           <Table.Cell>{reserveDay} </Table.Cell>
-          <Table.Cell className="max-sm:hidden">
+          <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
             {HourMapping[start]} / {HourMapping[end]}
           </Table.Cell>
           <Table.Cell className="max-sm:hidden" >{reservation.reason} </Table.Cell>
           <Table.Cell>
-            <div className=" flex justify-center max-sm:gap-4 gap-x-12">
+            <div className=" flex justify-center md:gap-x-4 max-sm:gap-4 gap-x-12">
               <button
                 type="button"
                 className=" hover:text-Body"

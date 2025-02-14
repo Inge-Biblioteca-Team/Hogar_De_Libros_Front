@@ -61,7 +61,7 @@ const ReservationForm = ({
     setValue("courseId", "0");
   }, [cedula, date, roomId, selectHours, setValue]);
 
-  const { mutate: createReservation } = PostNewRoomReservation();
+  const { mutate: createReservation, isLoading } = PostNewRoomReservation();
 
   const onSubmit = async (data: Reservation) => {
     let observation = "";
@@ -205,7 +205,7 @@ const ReservationForm = ({
             </div>
           </fieldset>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

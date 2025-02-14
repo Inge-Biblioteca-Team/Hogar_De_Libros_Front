@@ -48,7 +48,7 @@ const ManagePrograms = () => {
     <>
       <ServicesCrumbs text="Programas" />
       <div className="w-full flex items-center justify-center">
-        <div className="w-4/5 max-sm:w-full max-sm:p-2">
+        <div className="w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:p-2">
           <div className="flex  max-sm:flex-col max-sm:items-center items-end justify-between w-full mb-5 mt-3">
             <div className="flex max-sm:w-full max-sm:flex-col  gap-2">
               <div>
@@ -80,18 +80,18 @@ const ManagePrograms = () => {
             <>
               <Table hoverable className="text-center">
                 <Table.Head className="h-20 text-sm">
-                  <Table.HeadCell className="max-sm:hidden w-20">
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 xl:table-cell 2xl:table-cell  md:hidden max-sm:hidden w-20">
                     Numero de Registro
                   </Table.HeadCell>
-                  <Table.HeadCell className="max-sm:p-2 w-20">
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:p-2 w-20">
                     Nombre del Programa
                   </Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden w-20">Descripción</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden w-20">
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">Descripción</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">
                     Información Relacionada
                   </Table.HeadCell>
-                  <Table.HeadCell className=" w-20">Estado</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden w-20"></Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 w-20">Estado</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 before:max-sm:hidden w-20"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="h-96">
                   {Programs?.data.map((Program) => (

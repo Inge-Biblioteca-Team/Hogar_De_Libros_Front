@@ -47,7 +47,7 @@ const WorkStationsLoanHistory = () => {
       <LoansCrumbs text="Equipo de cómputo" />
 
       <main className=" w-full flex items-center justify-center flex-col gap-2">
-        <section className="w-4/5 flex  gap-4">
+        <section className="w-4/5 md:w-full md:pr-4 md:pl-4 flex  gap-4">
           <div>
             <Label value="Numero de maquina" />
             <TextInput
@@ -66,7 +66,7 @@ const WorkStationsLoanHistory = () => {
         </section>
 
         <div className=" w-full flex items-center justify-center">
-          <div className=" w-4/5">
+          <div className=" w-4/5 md:w-full md:pr-4 md:pl-4">
             {WSLoan && WSLoan.count > 0 ? (
               <>
                 <Table hoverable className=" text-center h-[30rem]">

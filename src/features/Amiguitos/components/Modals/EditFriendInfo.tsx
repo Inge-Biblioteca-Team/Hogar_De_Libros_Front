@@ -35,7 +35,7 @@ const EditFriendInfo = ({
     reset();
   };
 
-  const { mutate: editFriend } = UseEditFriend();
+  const { mutate: editFriend, isLoading } = UseEditFriend();
 
   const onConfirm = (data: Friend) => {
     editFriend(data, {
@@ -98,7 +98,7 @@ const EditFriendInfo = ({
             </Select>
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} />
+        <ModalFooters onClose={onClose} isLoading={isLoading}/>
       </form>
     </Modal>
   );

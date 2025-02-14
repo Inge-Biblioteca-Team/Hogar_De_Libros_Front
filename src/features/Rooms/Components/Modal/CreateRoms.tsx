@@ -13,7 +13,7 @@ const CreateRooms = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { mutate: createRoom } = UseCreateRooms();
+  const { mutate: createRoom, isLoading } = UseCreateRooms();
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -47,7 +47,7 @@ const CreateRooms = () => {
 
   return (
     <>
-      <Button className="max-sm:w-full" onClick={() => setIsModalOpen(true)} color="blue">
+      <Button className="max-sm:w-full lg:w-auto md:w-full" onClick={() => setIsModalOpen(true)} color="blue">
         Añadir sala
       </Button>
 
@@ -165,7 +165,7 @@ const CreateRooms = () => {
               </div>
             </div>
           </Modal.Body>
-          <ModalFooters onClose={handleModalClose} />
+          <ModalFooters onClose={handleModalClose} isLoading={isLoading}/>
         </form>
       </Modal>
       <ModalAddNewImage

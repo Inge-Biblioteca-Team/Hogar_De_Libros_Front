@@ -51,7 +51,7 @@ const ManageCourses = () => {
     <>
       <ServicesCrumbs text="Cursos" />
       <main className="w-full flex items-center justify-center flex-col gap-4">
-        <section className=" w-4/5 max-sm:w-full max-sm:p-2 max-sm:gap-4 max-sm:place-items-center max-sm:flex-col flex justify-between items-end">
+        <section className=" w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:p-2 max-sm:gap-4 max-sm:place-items-center max-sm:flex-col flex justify-between items-end">
           <div className=" flex max-sm:w-full max-sm:flex-col gap-2">
             <div>
               <Label className=" text-lg">Nombre</Label>
@@ -73,19 +73,19 @@ const ManageCourses = () => {
           </div>
           <CreateCourse />
         </section>
-        <section className="w-4/5 max-sm:w-full max-sm:p-2">
+        <section className="w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:p-2">
           {Courses && Courses.count > 0 ? (
             <>
               <Table hoverable className=" text-center">
                 <Table.Head className=" h-20 text-sm">
-                  <Table.HeadCell>Nombre</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Encargado</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Fecha</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Hora</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Cupos Disponibles</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Matricula</Table.HeadCell>
-                  <Table.HeadCell>Estado</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden"></Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Nombre</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Encargado</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Fecha</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">Hora</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">Cupos Disponibles</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">Matricula</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Estado</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="h-96">
                   {Courses?.data.map((course: Courses) => (
