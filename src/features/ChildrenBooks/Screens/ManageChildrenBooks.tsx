@@ -59,8 +59,8 @@ const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
         <BreadCrumbManage text="Libros infantiles" />
       )}
       <main className="flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5 sm:items-center flex lg:flex-row flex-col justify-between lg:items-end max-sm:w-full max-sm:px-2 gap-4 lg:gap-0">
-          <div className="flex lg:flex-row flex-col gap-3">
+        <section className="w-4/5 md:w-full md:pl-4 md:pr-4 sm:items-center flex lg:flex-row flex-col justify-between lg:items-end max-sm:w-full max-sm:px-2 gap-4 lg:gap-0">
+          <div className="flex md:w-full lg:flex-row flex-col gap-3">
             <TextInput
               onChange={(event) => setSearchTitle(event.target.value)}
               rightIcon={MdTitle}
@@ -82,11 +82,11 @@ const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
               <option value="0">Baja</option>
             </Select>
           </div>
-          <Button color={"blue"} onClick={() => setOpen(true)}>
+          <Button className="md:w-full lg:w-auto" color={"blue"} onClick={() => setOpen(true)}>
             Añadir nuevo libro
           </Button>
         </section>
-        <section className="w-4/5 max-sm:w-full max-sm:px-2">
+        <section className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:px-2">
           {Catalog && Catalog.count > 0 ? (
             <>
               <BookChildrenTable catalog={Catalog} />

@@ -12,7 +12,7 @@ const BookAccessCard = () => {
     };
 
   return (
-    <Card className="hover:scale-105 transition-transform duration-300 max-w-sm mx-auto flex flex-col justify-between h-full">
+    <Card className="hover:scale-105 md:w-full transition-transform duration-300 max-w-sm mx-auto flex flex-col justify-between h-full">
         <div>
         <FontAwesomeIcon icon={faBook} size="2x" className="mb-2" />
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">

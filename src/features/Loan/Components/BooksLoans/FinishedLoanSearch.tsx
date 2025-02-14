@@ -14,7 +14,7 @@ const FinishedLoanSearch = ({
   setSignaCode: (SignaCode: string) => void;
 }) => {
   return (
-    <div className=" flex gap-3 mb-4">
+    <div className=" flex md:flex-col  gap-3 mb-4">
       <div>
         <Label className=" text-lg" htmlFor="InitialDate">
           Fecha de solicitud (Inicio)

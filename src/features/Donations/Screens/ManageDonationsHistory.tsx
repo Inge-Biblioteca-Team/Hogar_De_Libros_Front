@@ -39,22 +39,22 @@ const ManageDonationsHistory = () => {
     <>
       <DonationsCrumbs text="Donaciones finalizadas" />
       <main className="flex flex-col items-center justify-center w-full gap-5">
-        <section className="max-sm:w-full max-sm:p-2 max-sm:flex-col flex w-4/5 gap-2">
+        <section className="max-sm:w-full md:w-full md:pr-4 md:pl-4 max-sm:p-2 max-sm:flex-col flex w-4/5 gap-2">
           <div>
-            <Label value="Categoría del colaborador" />
+            <Label value="Categoría de la donación" />
             <Select onChange={(event) => setCategory(event.target.value)}>
               <OptDonMainCategories />
             </Select>
           </div>
           <div>
-            <Label value="Fecha de colaboración" />
+            <Label value="Fecha de donación" />
             <TextInput
               type="date"
               onChange={(event) => setDate(event.target.value)}
             />
           </div>
         </section>
-        <section className=" max-sm:w-full max-sm:p-2 w-4/5">
+        <section className=" max-sm:w-full md:w-full md:pr-4 md:pl-4 max-sm:p-2 w-4/5">
           {Donations && Donations.count > 0 ? (
             <>
               <TableDonations hidd>

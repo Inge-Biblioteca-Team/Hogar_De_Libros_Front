@@ -44,6 +44,7 @@ const MDViewInfo = ({
           value={`Categoría de la colaboración: ${colaboration.PrincipalCategory}`}
         />
         <Label value={`Sub categoría: ${colaboration.SubCategory}`} />
+        <Label value={`Estado: ${colaboration.Status}`} />
         <Label value={`Propuesta: ${colaboration.Description}`} />
         {colaboration.Document && (
           <>

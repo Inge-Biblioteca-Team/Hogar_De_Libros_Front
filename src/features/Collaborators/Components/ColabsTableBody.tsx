@@ -11,17 +11,17 @@ const ColabsTableBody = ({
   return (
     <Table hoverable className=" text-center max-sm:h-96 h-[30rem] ">
       <Table.Head className="">
-        <Table.HeadCell className="max-sm:p-2">Fecha de colaboración</Table.HeadCell>
-        <Table.HeadCell className="max-sm:p-2">Nombre del colaborador</Table.HeadCell>
-        <Table.HeadCell className=" max-sm:hidden ">Teléfono</Table.HeadCell>
-        <Table.HeadCell className=" max-sm:hidden ">Correo</Table.HeadCell>
-        <Table.HeadCell className=" max-sm:hidden ">
+        <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:p-2">Fecha de colaboración</Table.HeadCell>
+        <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:p-2">Nombre del colaborador</Table.HeadCell>
+        <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell ">Teléfono</Table.HeadCell>
+        <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell ">Correo</Table.HeadCell>
+        <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden ">
           Categoría de colaboración
         </Table.HeadCell>
-        <Table.HeadCell className=" max-sm:hidden ">
+        <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden ">
           Sub categoría
         </Table.HeadCell>
-        <Table.HeadCell className=""> {!hiid ? "Estado" : ""}</Table.HeadCell>
+        <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidde lg:table-cell"> {!hiid ? "Estado" : ""}</Table.HeadCell>
       </Table.Head>
       <Table.Body>{children}</Table.Body>
     </Table>

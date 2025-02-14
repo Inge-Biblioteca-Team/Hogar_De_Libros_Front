@@ -54,8 +54,8 @@ const ManageUsers = () => {
         <BreadLastItems text="Gestión de usuarios" />
       </BreadCrumbsItems>
       <div className=" flex place-content-center">
-        <div className="w-4/5 flex flex-col items-center justify-center pt-1 max-sm:w-full max-sm:p-2 gap-2">
-          <div className="max-sm:w-full sm:w-full flex justify-center max-sm:pb-8">
+        <div className="w-4/5 md:w-full md:pr-4 md:pl-4 flex flex-col items-center justify-center pt-1 max-sm:w-full max-sm:p-2 gap-2">
+          <div className="max-sm:w-full sm:w-full md:w-full flex justify-center max-sm:pb-8">
           <SearchUsers
             setYear={setYear}
             setRol={setRol}
@@ -67,13 +67,13 @@ const ManageUsers = () => {
             <>
               <Table hoverable className=" text-center min-h-[30rem] max-sm:text-sm max-sm:justify-center">
                 <Table.Head className=" bg-white">
-                  <Table.HeadCell>Cédula</Table.HeadCell>
-                  <Table.HeadCell>Nombre</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Rol</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Provincia</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Teléfono</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Fecha de registro</Table.HeadCell>
-                  <Table.HeadCell className="max-sm:hidden">Estado</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Cédula</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Nombre</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Rol</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Provincia</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Teléfono</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Fecha de registro</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Estado</Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>

@@ -16,10 +16,10 @@ const EventsRows = ({ event }: { event: Events }) => {
     <>
       <Table.Row key={event.EventId}>
         <Table.Cell>{event.Title}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">{event.Location}</Table.Cell>
+        <Table.Cell className="2xl:table-cell xl:table-cell md:hidden max-sm:hidden">{event.Location}</Table.Cell>
         <Table.Cell className="max-sm:hidden">{event.InchargePerson}</Table.Cell>
         <Table.Cell className="max-sm:hidden">{eventDay}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">{event.Time}</Table.Cell>
+        <Table.Cell className="2xl:table-cell xl:table-cell md:hidden max-sm:hidden">{event.Time}</Table.Cell>
         <Table.Cell>
           {event.Status}
         </Table.Cell>

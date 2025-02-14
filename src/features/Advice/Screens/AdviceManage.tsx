@@ -48,8 +48,8 @@ const AdviceManage = () => {
         <BreadLastItems text="Avisos importantes" />
       </BreadCrumbsItems>
       <main className="flex items-center justify-center w-full flex-col gap-5 ">
-        <section className=" w-4/5 flex max-sm:flex-col max-sm:gap-4 max-sm:items-center justify-between items-end max-sm:w-full max-sm:px-2">
-          <div className=" flex max-sm:w-full max-sm:flex-col gap-6">
+        <section className=" w-4/5 md:w-full md:pr-4 md:pl-4 flex md:gap-8 md:flex-col max-sm:flex-col max-sm:gap-4 max-sm:items-center justify-between items-end max-sm:w-full max-sm:px-2">
+          <div className=" flex md:flex-col md:w-full max-sm:w-full max-sm:flex-col gap-6">
             <div>
               <Label value="Fecha de actividad" />
               <TextInput
@@ -74,14 +74,14 @@ const AdviceManage = () => {
             </div>
           </div>
           <Button
-            className="max-sm:w-full"
+            className="md:w-full max-sm:w-full"
             color={"blue"}
             onClick={() => setOpen(true)}
           >
             Agregar nuevo aviso
           </Button>
         </section>
-        <section className=" w-4/5 max-sm:w-full max-sm:px-2">
+        <section className=" w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:px-2">
           {Advices && (
             <>
               <AdviceTable advices={Advices} />

@@ -41,7 +41,7 @@ const ManageColabHistory = () => {
     <>
       <ColabCrumbs text="Historial de colaboraciones" />
       <main className="  flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex max-sm:flex-col w-4/5 gap-2 max-sm:w-full max-sm:px-2">
+        <section className=" flex lg:flex-row md:flex-col md:w-full md:pl-4 md:pr-4 max-sm:flex-col w-4/5 gap-2 max-sm:w-full max-sm:px-2">
           <div>
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
@@ -62,7 +62,7 @@ const ManageColabHistory = () => {
             />
           </div>
         </section>
-        <section className="w-4/5 max-sm:w-full max-sm:px-2">
+        <section className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:px-2">
           {ColaborationsList && ColaborationsList.count > 0 ? (
             <>
               <ColabsTableBody>

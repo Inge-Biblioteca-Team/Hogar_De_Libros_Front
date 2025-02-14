@@ -9,7 +9,7 @@ const FeedbackRating = () => {
   };
 
   return (
-    <form  className=" shadow-md rounded-md p-3 flex flex-col gap-3 w-1/3 max-sm:w-full max-sm:text-md">
+    <form  className=" shadow-md rounded-md p-3 flex flex-col gap-3 md:w-full w-1/3 max-sm:w-full max-sm:text-md">
       <fieldset>
         <legend>Tu opinion</legend>
         <Textarea required />

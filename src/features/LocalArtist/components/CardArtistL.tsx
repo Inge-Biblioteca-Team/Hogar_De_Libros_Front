@@ -4,14 +4,15 @@ import { FaLinkedin, FaFacebookSquare, FaInstagramSquare } from "react-icons/fa"
 
 const CardArtistL = ({ artist }: { artist: Artist }) => {
   return (
-    <Card className=" max-sm:w-full">
+    <Card className="2xl:w-full  max-sm:w-full">
       <figure>
         <img
           className="h-64 w-80 mb-8 border-t border-transparent rounded-t-md object-cover
-          max-sm:h-48 max-sm:rounded-md max-sm:mb-0"
+          max-sm:h-48 2xl:w-full max-sm:rounded-md max-sm:mb-0"
           src={artist.Cover}
           alt={artist.Name}
         />
+        <div className="flex flex-col justify-between items-center">
         <figcaption
           className="text-lg break-words max-w-80 px-4  text-center
           max-sm:pt-7 max-sm:text-center max-sm:text-sm max-sm:h-auto flex flex-col justify-between items-center p-3
@@ -54,6 +55,7 @@ const CardArtistL = ({ artist }: { artist: Artist }) => {
             )}
           </ButtonGroup>
         </figcaption>
+        </div>
       </figure>
     </Card>
   );

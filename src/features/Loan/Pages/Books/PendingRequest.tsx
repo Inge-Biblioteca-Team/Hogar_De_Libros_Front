@@ -37,7 +37,7 @@ const PendingRequest = () => {
       <LoansAndCirculationCrumbs text="Solicitudes de libros" />
       {Loan && Loan.count > 0 ? (
         <div className=" flex place-content-center mt-20">
-          <div className="w-4/5 max-sm:w-full max-sm:p-2">
+          <div className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:p-2">
             {Loan && Loan.count && <TBLLoan Loan={Loan} NeedAccions />}
             <div className="block max-sm:hidden">
               <CustomPagination

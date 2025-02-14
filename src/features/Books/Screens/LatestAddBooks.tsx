@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 const LatestAddBooks = () => {
   const { data: catalog } = useQuery<Catalog, Error>(
     ["colection"],
-    () => getUserColection (1, 20, "", "", "", "1", "", ""),
+    () => getUserColection(1, 20, "", "", "", "1", "", ""),
     {
       staleTime: 5000,
     }
@@ -17,11 +17,21 @@ const LatestAddBooks = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setItemsPerGroup(window.innerWidth < 640 ? 2 : 5); 
+      if (window.innerWidth < 640) {
+        setItemsPerGroup(2);
+      } else if (window.innerWidth >= 640 && window.innerWidth < 1024) {
+        setItemsPerGroup(3);
+      } else if (window.innerWidth >= 1024 && window.innerWidth < 1280) {
+        setItemsPerGroup(4);  //este hace lg
+      } else if (window.innerWidth >= 1280 && window.innerWidth < 1536) {
+        setItemsPerGroup(6);  // este hace el xl
+      } else {
+        setItemsPerGroup(7);  // paneo para el 2xl
+      }
     };
 
-    handleResize(); 
-    window.addEventListener("resize", handleResize); 
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -43,7 +53,7 @@ const LatestAddBooks = () => {
           className="m-5 flex items-center w-4/5 flex-col max-sm:m-0"
           id="MostPopularBooks"
         >
-          <h2 className="font-bold text-2xl text-center">
+          <h2 className="font-bold 2xl:text-4xl text-2xl text-center">
             Últimos libros añadidos a la colección
           </h2>
           <Carousel

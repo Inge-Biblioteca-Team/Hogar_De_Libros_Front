@@ -93,7 +93,7 @@ const EditCourse = ({
       <Modal show={open} onClose={() => setOpen(false)} size={"5xl"}>
         <Modal.Header>Editar curso</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className=" bg-white grid max-sm:grid-cols-1 grid-cols-3 gap-3">
+          <Modal.Body className=" bg-white md:gap-4 grid max-sm:grid-cols-1 grid-cols-3 gap-3">
             <fieldset className=" flex">
               <legend className=" font-bold pb-3">Imagen del curso</legend>
               <figure className=" w-full">
