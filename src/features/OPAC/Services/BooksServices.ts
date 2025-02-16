@@ -26,4 +26,14 @@ const getColection = async (
     }
   };
 
-  export {getColection}
+  const getCategoriesNames =async()=>{
+    try{
+      const response = await api.get("/books/Categories");
+      return response.data
+    } catch(error){
+      console.log(error)
+      throw error
+    }
+  }
+
+  export {getColection, getCategoriesNames}
