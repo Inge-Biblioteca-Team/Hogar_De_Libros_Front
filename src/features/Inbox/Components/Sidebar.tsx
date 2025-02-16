@@ -11,7 +11,7 @@ export function SidebarComponent({
   option: string;
 }) {
   return (
-    <Sidebar aria-label="Default sidebar example" className="h-[88vh]">
+    <Sidebar aria-label="Default sidebar example" className="h-[88vh] xl:h-[92vh] 2xl:h-[94vh]">
       <Sidebar.Items>
         <Sidebar.ItemGroup>
           <Sidebar.Item

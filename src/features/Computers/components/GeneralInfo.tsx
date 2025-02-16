@@ -7,7 +7,7 @@ const GeneralInfo = () => {
 
   return (
     <div className=" lg:grid lg:grid-cols-3 lg:max-w-4xl lg:gap-6
-    flex flex-col 2xl:max-w-screen-2xl 2xl:gap-20">
+    flex flex-col 2xl:max-w-screen-2xl 2xl:gap-20 xl:max-w-screen-xl xl:ml-36 xl:mr-36 xl:gap-20">
       <GeneralComputerInfo />
       <div className="flex lg:justify-between flex-col max-sm:text-sm md:items-center lg:max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl
        m-2 lg:m-0 md:p-2">
