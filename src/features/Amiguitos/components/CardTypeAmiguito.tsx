@@ -11,7 +11,7 @@ const CardTypeAmiguito = () => {
 
   return (
     <>
-     <figure className="rounded-md bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
+     <figure className="rounded-md xl:h-full 2xl:h-full bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
           className="h-40 md:w-full md:h-2/4 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={
@@ -37,7 +37,7 @@ const CardTypeAmiguito = () => {
         </figcaption>
       </figure>
 
-      <figure className="rounded-md bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
+      <figure className="rounded-md xl:h-full 2xl:h-full bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
           className="h-40 md:w-full md:h-2/4 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={
@@ -63,7 +63,7 @@ const CardTypeAmiguito = () => {
         </figcaption>
       </figure>
 
-      <figure className="rounded-md bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
+      <figure className="rounded-md xl:h-full 2xl:h-full bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
           className="h-40 w-80 md:w-full md:h-3/4 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={

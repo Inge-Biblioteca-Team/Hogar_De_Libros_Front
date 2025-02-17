@@ -78,7 +78,7 @@ const CoruseSchedule = () => {
           </Select>
         </div>
         <div
-          className=" w-4/5 overflow-x-scroll pt-7 px-8 custom-bar"
+          className=" w-4/5 overflow-x-scroll pt-7  px-8 custom-bar"
           style={{ height: "40rem" }}
         >
           <Timeline
@@ -93,7 +93,7 @@ const CoruseSchedule = () => {
               ))
             )}
           </Timeline>
-          <div className=" w-full flex items-center justify-center"></div>
+          <div className=" w-full  flex items-center justify-center"></div>
         </div>
       </div>
     </>

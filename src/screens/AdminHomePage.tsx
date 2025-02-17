@@ -177,7 +177,7 @@ const AdminHomePage = () => {
             />
           </div>
         </section>
-        <section className=" flex w-11/12 justify-start gap-6">
+        <section className=" flex xl:w-full 2xl:w-full xl:pr-4 xl:pl-4 2xl:pl-4 2xl:pr-4 w-11/12 justify-start gap-6">
           <Card className=" w-full h-[32vh] p0 rounded-sm">
             <Calendar />
           </Card>
