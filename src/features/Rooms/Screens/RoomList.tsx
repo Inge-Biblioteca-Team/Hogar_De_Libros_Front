@@ -23,7 +23,7 @@ function RoomList() {
         >
           <h2 className="font-bold text-2xl 2xl:text-4xl mb-6">Nuestras salas</h2>
 
-          <div className="w-full  sm:hidden relative">
+          <div className="w-full sm:hidden relative">
             <Carousel
               indicators={false}
               leftControl={<FaChevronLeft className="hidden" />}
