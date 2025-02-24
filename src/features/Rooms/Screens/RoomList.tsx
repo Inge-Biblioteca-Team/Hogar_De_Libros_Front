@@ -18,10 +18,10 @@ function RoomList() {
     <>
       {Rooms && Rooms.count > 0 && (
         <section
-          className="max-w-4xl w-full flex flex-col items-center justify-center"
+          className=" max-md:max-w-4xl md:pl-2 md:pr-2 xl:pl-36 xl:pr-36 2xl:pl-48 2xl:pr-48 w-full flex flex-col items-center justify-center"
           id="Rooms"
         >
-          <h2 className="font-bold text-2xl mb-6">Nuestras salas</h2>
+          <h2 className="font-bold text-2xl 2xl:text-4xl mb-6">Nuestras salas</h2>
 
           <div className="w-full sm:hidden relative">
             <Carousel
@@ -30,7 +30,7 @@ function RoomList() {
               rightControl={<FaChevronRight className="hidden" />}
             >
               {Rooms.data.map((room: Room) => (
-                <div key={"RO" + room.roomId} className="flex justify-center">
+                <div key={"RO" + room.roomId} className="flex  justify-center">
                   <div className="w-3/4 ">
                     <RoomCard Rooms={room} />
                   </div>
@@ -39,7 +39,7 @@ function RoomList() {
             </Carousel>
           </div>
 
-          <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:flex gap-5 w-full items-center justify-center">
+          <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:gap-10 2xl:grid-cols-3 xl: gap-5 w-full items-center justify-center">
             {Rooms.data.map((rooms: Room) => (
               <RoomCard Rooms={rooms} key={"RO" + rooms.roomId} />
             ))}
