@@ -2,7 +2,9 @@ import { Button, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 import { Loans } from "../../Types/BookLoan";
 import { format } from "@formkit/tempo";
-import CreateLoanPDF from "../../Hooks/Books/CreateLoanPDF";
+import DocumentForLoan from "../../Utilities/DocumentForLoan";
+import { pdf } from "@react-pdf/renderer";
+import { saveAs } from "file-saver";
 
 const SeeLoanInfo = ({
   see,
@@ -25,6 +27,12 @@ const SeeLoanInfo = ({
     tz: "America/Costa_Rica",
   });
 
+  const generatePDF = async (data:Loans) => {
+    const blob = await pdf(<DocumentForLoan loanInfo={data} />).toBlob();
+    saveAs(blob, `boleta#${data.BookLoanId}.pdf`);
+};
+
+
   return (
     <Modal show={see} onClose={() => setSee(false)}>
       <Modal.Header>
@@ -35,13 +43,14 @@ const SeeLoanInfo = ({
           <span className=" flex flex-col">
             <strong>Información del Usuario</strong>
             <span>Nombre: {Loan.user.name}</span>
-            <span>Apellidos: {Loan.user.lastName}</span>
             <span>Cedula: {Loan.user.cedula}</span>
+            <span>Direccion: {Loan.user.Adress}</span>
+            <span>Telefono: {Loan.user.PhoneNumber} </span>
           </span>
           <span className=" flex flex-col">
             <strong>Sobre el Libro</strong>
             <span>Título: {Loan.book.Title}</span>
-            <span>Código de Signatura: {Loan.book.signatureCode}</span>
+            <span>Código de Signatura: {(Loan.book.signatureCode || "N/A")}</span>
             <span>Código De Inscripcion: {Loan.book.InscriptionCode}</span>
           </span>
           <span className=" flex flex-col">
@@ -59,7 +68,7 @@ const SeeLoanInfo = ({
           {" "}
           Cerrar{" "}
         </Button>
-        <Button color={"blue"} onClick={CreateLoanPDF}>
+        <Button color={"blue"} onClick={() => generatePDF(Loan)}>
           Guardar Copia
         </Button>
       </Modal.Footer>

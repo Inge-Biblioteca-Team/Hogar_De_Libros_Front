@@ -23,12 +23,14 @@ export type Book = {
   signatureCode: string;
   InscriptionCode: string;
   BookCode: number;
+  Author: string;
 };
 
 export type User = {
   cedula: string;
   name: string;
-  lastName: string;
+  Adress: string;
+  PhoneNumber: string;
 };
 
 export type finishLoan = {
