@@ -25,7 +25,7 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
 
   return (
     <>
-    <Card className="p0 2xl:w-full">
+    <Card className="p0 2xl:w-full max-sm:w-full">
       <figure>
         <img
           className="h-40 w-full object-fill rounded-t-lg

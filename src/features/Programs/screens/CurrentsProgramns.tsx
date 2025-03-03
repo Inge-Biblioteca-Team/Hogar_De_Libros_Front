@@ -46,10 +46,10 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
     <>
       {Programs && Programs?.count > 0 && (
         <section
-          className="flex items-center w-4/5 flex-col max-sm:m-0 "
+          className="flex items-center max-sm:w-full max-sm:h-full w-4/5 flex-col max-sm:m-0 "
           id="Programs"
         >
-          <h2 className="2xl:text-4xl font-bold text-2xl">Nuestros programas</h2>
+          <h2 className="2xl:text-4xl font-bold text-2xl lg:text-4xl pb-4">Nuestros programas</h2>
           {home && (
             <h3 className=" text-center text-md">
               La biblioteca cuenta con diversos programas los cuales tienen

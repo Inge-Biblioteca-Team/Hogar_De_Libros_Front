@@ -3,7 +3,7 @@ import { Program } from "../types/Programs";
 
 const CardProgram = ({ program }: { program: Program }) => {
   return (
-    <Card className="p0">
+    <Card className="p0 max-sm:h-full">
       <figure className=" ">
         <img
           className="w-full h-60 object-cover"
@@ -14,7 +14,7 @@ const CardProgram = ({ program }: { program: Program }) => {
           className=" text-base break-words max-w-96 px-4 sm:h-auto
       max-sm:text-sm lg:h-80 flex flex-col justify-between p-4"
         >
-          <p className="sm:m-4">
+          <p className="text-center sm:m-4">
             <strong className="">{program.programName}</strong>
             <br />
             <span className=" text-base">

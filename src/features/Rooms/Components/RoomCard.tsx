@@ -3,7 +3,7 @@ import { Room } from "../Types/Room_Interface";
 
 const RoomCard = ({ Rooms }: { Rooms: Room }) => {
   return (
-    <Card className="p0 2xl:h-full xl:h-full">
+    <Card className="p0 2xl:h-full xl:h-full max-sm:w-full">
       <figure>
         <img
           className="h-64 w-full border-t border-transparent rounded-t-md object-cover
