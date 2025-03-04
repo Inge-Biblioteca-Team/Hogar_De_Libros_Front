@@ -23,7 +23,7 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
       } else if (window.innerWidth >= 640 && window.innerWidth < 1024) {
         setItemsPerGroup(2); 
       } else {
-        setItemsPerGroup(4); 
+        setItemsPerGroup(3); 
       }
     };
 
@@ -64,7 +64,7 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
             className="w-[64rem] max-sm:w-full max-sm:h-[500px] "
           >
             {groupedProgram.map((group, groupIndex) => (
-              <div key={groupIndex} className=" flex justify-center max-sm:h-full max-sm:pr-4 max-sm:pl-4 lg:gap-x-4">
+              <div key={groupIndex} className=" flex justify-center max-sm:h-full lg:h-full max-sm:pr-4 max-sm:pl-4 lg:gap-x-4">
                 {group.map((program) => (
                   <CardProgram
                     key={"PR" + program.programsId}
