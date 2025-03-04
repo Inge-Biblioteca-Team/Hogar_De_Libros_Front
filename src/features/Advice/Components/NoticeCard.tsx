@@ -5,8 +5,8 @@ import { Advice } from "../Types/Advice";
 const NoticeCard = ({ advice }: { advice: Advice }) => {
   const AdviceDay = formatToDMY(advice.date);
   return (
-    <Card className="p0">
-      <figure className="h-full">
+    <Card className="p0 w-full ">
+      <figure className="h-full w-full ">
         <img
           src={advice.image}
           alt={advice.reason}
