@@ -25,9 +25,9 @@ const LandingHomeCards = ({
       />{" "}
       <figcaption className="text-center">
         <p>
-          <span className=" text-lg font-bold">{Title}</span>
+          <span className=" lg:text-xl text-lg font-bold">{Title}</span>
           <br />
-          <span className="">{Message}</span>
+          <span className="lg:text-lg">{Message}</span>
         </p>
         <Link to={Path} className=" underline hover:text-gray-400">
           Ver mas

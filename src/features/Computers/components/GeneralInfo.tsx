@@ -12,14 +12,14 @@ const GeneralInfo = () => {
       <div className="flex max-sm:pr-2 max-sm:pl-2 lg:justify-between flex-col max-sm:text-sm md:items-center lg:max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl
        m-2 lg:m-0 md:p-2">
         <p>
-          <strong className="2xl:text-3xl">Acceso a computadoras, </strong>
-          <span className="2xl:text-3xl">
+          <strong className="2xl:text-3xl lg:text-lg">Acceso a computadoras, </strong>
+          <span className="2xl:text-3xl lg:text-lg">
              la biblioteca cuenta con <strong>{computerCount}</strong>{" "}
             computadoras las cuales están a disposición de los usuarios de la
             biblioteca.
-            <span className=" hidden 2xl:text-3xl max-sm:block">
+            <span className=" lg:text-lg hidden 2xl:text-3xl max-sm:block">
               Los equipos cuentan con:{" "}
-              <strong className="2xl:text-3xl">
+              <strong className="2xl:text-3xl lg:text-lg">
                 Firma Digital,Acceso Gratuito a Internet, Puertos USB y paquete
                 Microsoft completo
               </strong>{" "}
@@ -29,12 +29,12 @@ const GeneralInfo = () => {
             preguntar sobre disponibilidad y requerimientos, o puedes acceder en
             línea dando click en el siguiente botón para ver los términos y
             condiciones del uso de estos equipos, así como su{" "}
-            <strong>disponibilidad en tiempo real.</strong>
+            <strong className="">disponibilidad en tiempo real.</strong>
           </span>
         </p>
-        <div className="m-4 text  lg:m-0">
+        <div className="m-4   lg:m-0">
           <Link to={"/HogarDeLibros/Equipo_Disponible"}>
-            <Button className="md:w-52 2xl:w-72 2xl:h-14 2xl:items-center text-2xl " color={"blue"}>Ver mas información</Button>
+            <Button className="md:w-52 2xl:w-72 2xl:h-14 2xl:items-center text-2xl  " color={"blue"}>Ver mas información</Button>
           </Link>
         </div>
       </div>

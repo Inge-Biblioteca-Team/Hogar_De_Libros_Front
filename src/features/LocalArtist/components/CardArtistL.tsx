@@ -9,7 +9,7 @@ import {
 const CardArtistL = ({ artist }: { artist: Artist }) => {
   return (
     <Card className="2xl:w-full 2xl:h-full max-sm:h- max-sm:w-full">
-      <figure>
+      <figure className="flex flex-col justify-between items-center">
         <img
           className="lg:h-64 max-sm:w-full lg:w-80 mb-8 border-t border-transparent rounded-t-md object-cover
           max-sm:h-48 2xl:w-full 2xl:h-80 2xl:pt-6 max-sm:rounded-md max-sm:mb-0"
@@ -20,10 +20,10 @@ const CardArtistL = ({ artist }: { artist: Artist }) => {
           <figcaption
             className="text-lg break-words max-w-80 px-4  text-center
           max-sm:pt-7 max-sm:text-center max-sm:text-sm max-sm:h-auto flex flex-col justify-between items-center p-3
-          max-sm:flex-wrap max-sm:overflow-hidden max-sm:gap-2"
+          max-sm:flex-wrap max-sm:overflow-hidden max-sm:gap-2 flex-grow "
           >
-            <strong className="">{artist.Name}</strong>
-            <span className="text-gray-600 text-sm ">
+            <strong className="lg:text-xl">{artist.Name}</strong>
+            <span className="text-gray-600 text-sm lg:text-base">
               {artist.ArtisProfession}
             </span>
             <div className="  max-sm:h-[50px] flex items-center">

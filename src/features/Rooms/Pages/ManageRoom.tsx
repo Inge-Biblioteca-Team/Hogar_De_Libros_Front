@@ -49,7 +49,7 @@ const ManageRoom = () => {
           </div>
           <div className="w-full pt-2">
             {rooms && rooms?.count > 0 ? (
-              <div className="grid md:grid-cols-1 max-sm:grid-cols-1 grid-cols-2 gap-5 my-4">
+              <div className="grid md:grid-cols-1 max-sm:grid-cols-1 lg:grid-cols-3 grid-cols-2 gap-5 my-4">
                 {rooms?.data.map((room) => (
                   <RoomCards Rooms={room} key={room.roomId} />
                 ))}
