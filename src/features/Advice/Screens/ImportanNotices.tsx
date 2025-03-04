@@ -18,12 +18,12 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
   );
   return (
     <section
-      className="relative w-full max-w-4xl mx-auto md:w-4/5 max-sm:w-4/5 mt-10"
+      className="relative max-sm:max-w-full max-sm:pr-4 max-sm:pl-4 lg:max-w-6xl mx-auto md:w-4/5  mt-10"
       id="Activities"
     >
       {Advices && Advices.count > 0 ? (
         <>
-          <h2 className="text-center font-bold text-2xl mb-6">
+          <h2 className="text-center font-bold lg:text-4xl pb-4 text-2xl mb-6">
             Avisos importantes
           </h2>
           {home && (
@@ -32,10 +32,10 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
             </h4>
           )}
           <Carousel
-            className="Custom-Carousel"
+            className="Custom-Carousel h-[28rem]  "
             indicators={false}
             pauseOnHover
-            style={{ height: "28rem" }}
+            
           >
             {Advices?.data.map((advice) => (
               <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />

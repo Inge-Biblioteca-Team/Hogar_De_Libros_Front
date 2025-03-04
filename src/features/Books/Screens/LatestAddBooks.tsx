@@ -50,10 +50,10 @@ const LatestAddBooks = () => {
     <>
       {catalog && catalog?.count > 0 && (
         <section
-          className="m-5 flex items-center w-4/5 flex-col max-sm:m-0"
+          className="m-5 flex items-center w-4/5 flex-col max-sm:w-full max-sm:pr-5 max-sm:pl-5 max-sm:m-0"
           id="MostPopularBooks"
         >
-          <h2 className="font-bold 2xl:text-4xl text-2xl text-center">
+          <h2 className="font-bold 2xl:text-4xl lg:text-4xl pb-4 text-2xl text-center">
             Últimos libros añadidos a la colección
           </h2>
           <Carousel
@@ -64,7 +64,7 @@ const LatestAddBooks = () => {
             style={{ height: "25rem" }}
           >
             {groupedBooks.map((group, groupIndex) => (
-              <div key={groupIndex} className=" flex justify-center gap-x-4">
+              <div key={groupIndex} className=" flex justify-center gap-x-4 ">
                 {group.map((Book) => (
                   <BookCard book={Book} key={"BO" + Book.BookCode} />
                 ))}
