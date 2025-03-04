@@ -17,10 +17,10 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
     <>
       {events && events.count > 0 && (
         <section
-          className="relative w-full max-w-4xl mx-auto md:w-4/5 max-sm:w-4/5"
+          className="relative max-sm:w-full  w-full max-w-6xl mx-auto md:w-4/5 max-sm:pr-4 max-sm:pl-4"
           id="Events"
         >
-          <h2 className="text-2x text-center font-bold text-2xl mb-6">
+          <h2 className="text-2x text-center font-bold text-2xl mb-6 lg:text-4xl pb-4">
             Próximos eventos
           </h2>
           {home && (
@@ -31,10 +31,10 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
           )}
           <article>
             <Carousel
-              className="Custom-Carousel"
+              className="Custom-Carousel h-[28rem] max-sm:h-[23rem]"
               pauseOnHover
               indicators={false}
-              style={{ height: "28rem" }}
+             
             >
               {events?.data.map((event) => (
                 <CardEvent key={"E" + event.id} event={event} />
