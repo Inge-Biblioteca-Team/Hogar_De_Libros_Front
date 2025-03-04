@@ -3,10 +3,10 @@ import { Program } from "../types/Programs";
 
 const CardProgram = ({ program }: { program: Program }) => {
   return (
-    <Card className="p0 max-sm:h-full">
-      <figure className=" ">
+    <Card className="p0 max-sm:h-auto">
+      <figure className="flex flex-col max-sm:w-full max-sm:h-full">
         <img
-          className="w-full h-60 object-cover"
+          className="w-full h-60 object-cover max-sm:w-ful max-sm:h-64"
           src={program.image}
           alt={program.programName}
         />

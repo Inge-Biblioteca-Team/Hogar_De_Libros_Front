@@ -32,10 +32,10 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
             </h4>
           )}
           <Carousel
-            className="Custom-Carousel "
+            className="Custom-Carousel h-[28rem]  "
             indicators={false}
             pauseOnHover
-            style={{ height: "28rem" }}
+            
           >
             {Advices?.data.map((advice) => (
               <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />

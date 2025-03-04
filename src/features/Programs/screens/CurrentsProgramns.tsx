@@ -61,10 +61,10 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
             pauseOnHover
             leftControl
             rightControl
-            style={{ height: "40rem" }}
+            className="w-[64rem] max-sm:w-full max-sm:h-[500px] "
           >
             {groupedProgram.map((group, groupIndex) => (
-              <div key={groupIndex} className=" flex justify-center gap-x-4">
+              <div key={groupIndex} className=" flex justify-center max-sm:h-full max-sm:pr-4 max-sm:pl-4 lg:gap-x-4">
                 {group.map((program) => (
                   <CardProgram
                     key={"PR" + program.programsId}

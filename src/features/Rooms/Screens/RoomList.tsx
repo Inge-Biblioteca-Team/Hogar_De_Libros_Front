@@ -30,8 +30,8 @@ function RoomList() {
               rightControl={<FaChevronRight className="hidden" />}
             >
               {Rooms.data.map((room: Room) => (
-                <div key={"RO" + room.roomId} className="flex   justify-center">
-                  <div className="w-3/4 ">
+                <div key={"RO" + room.roomId} className="flex justify-center">
+                  <div className="lg:w-3/4 max-sm:max-w-full w-full max-sm:pr-4 max-sm:pl-4">
                     <RoomCard Rooms={room} />
                   </div>
                 </div>

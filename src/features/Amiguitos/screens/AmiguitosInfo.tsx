@@ -10,7 +10,7 @@ const AmiguitosInfo = ({ home }: { home?: boolean }) => {
       <h4 className=" text-center text-md">Únete a la biblioteca y comparte con nosotros existen varias formas de hacerlos aquí te comentamos como.</h4>
       }
       <article className="w-full flex overflow-x-scroll justify-center lg:justify-center lg:overflow-hidden lg:gap-6 scroll">
-  <div className="grid grid-flow-col max-sm:auto-cols-[96%] max-sm:pl-4 max-sm:gap-x-10  md:auto-cols-[100%]  lg:auto-cols-fr gap-8">
+  <div className="grid grid-flow-col max-sm:auto-cols-[85%] max-sm:pl-14 max-sm:gap-x-10  md:auto-cols-[100%]  lg:auto-cols-fr gap-8">
     <CardTypeAmiguito />
   </div>
 </article>
