@@ -6,10 +6,10 @@ const GeneralInfo = () => {
   const computerCount = 20; //Se cambia por un conteo de los equipos inventariados, con un estado activo
 
   return (
-    <div className=" lg:grid lg:grid-cols-3 lg:max-w-4xl lg:gap-6
-    flex flex-col 2xl:max-w-screen-2xl 2xl:gap-20 xl:max-w-screen-xl xl:ml-36 xl:mr-36 xl:gap-20">
+    <div className=" lg:grid lg:grid-cols-3 lg:max-w-4xl lg:gap-6 max-sm:max-w-full m
+    flex flex-col 2xl:max-w-screen-2xl 2xl:gap-20 xl:max-w-screen-xl xl:ml-36 xl:mr-36 xl:gap-20 lg:w-full lg:pl-32 lg:pr-32   ">
       <GeneralComputerInfo />
-      <div className="flex lg:justify-between flex-col max-sm:text-sm md:items-center lg:max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl
+      <div className="flex max-sm:pr-2 max-sm:pl-2 lg:justify-between flex-col max-sm:text-sm md:items-center lg:max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl
        m-2 lg:m-0 md:p-2">
         <p>
           <strong className="2xl:text-3xl">Acceso a computadoras, </strong>
