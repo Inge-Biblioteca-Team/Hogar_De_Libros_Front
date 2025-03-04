@@ -20,6 +20,7 @@ export type BiblioStats = {
   eventsCount: number;
   coursesCount: number;
   loansCount: number;
+  UsoComputo: number;
 };
 
 export type Counts = {
