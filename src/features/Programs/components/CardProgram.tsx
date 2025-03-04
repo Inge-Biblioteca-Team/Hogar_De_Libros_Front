@@ -15,9 +15,9 @@ const CardProgram = ({ program }: { program: Program }) => {
       max-sm:text-sm lg:h-80 flex flex-col justify-between p-4"
         >
           <p className="text-center sm:m-4">
-            <strong className="">{program.programName}</strong>
+            <strong className="lg:text-xl">{program.programName}</strong>
             <br />
-            <span className=" text-base line-clamp-6">
+            <span className=" text-base lg:text-lg line-clamp-6">
               Descripción del programa: {program.description}
             </span>
           </p>

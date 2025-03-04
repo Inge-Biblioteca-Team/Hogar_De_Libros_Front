@@ -12,8 +12,8 @@ const RoomCard = ({ Rooms }: { Rooms: Room }) => {
           alt={Rooms.name}
         />
         <figcaption className="m-3 lg:text-lg break-words max-sm:text-sm max-sm:h-40 max-sm:flex max-sm:flex-col max-sm:justify-end">
-          <strong>{Rooms.name}</strong>
-          <p>
+          <strong className="lg:text-xl">{Rooms.name}</strong>
+          <p className="lg:text-lg">
             <span>Área: {Rooms.area}m²</span>
             <br />
             <span>Aforo: {Rooms.capacity} Personas</span>
