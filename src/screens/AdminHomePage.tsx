@@ -8,6 +8,8 @@ import { useQuery } from "react-query";
 import { GetActivitiesCounts, GetGeneralCounts } from "../Services/Stats";
 import Calendar from "../components/Calendar";
 import LoanStadisticts from "../components/LoanStadisticts";
+import { useState } from "react";
+import ReportModal from "../components/Modals/ReportModal";
 
 const AdminHomePage = () => {
   const { data: Activitiescounts } = useQuery<Counts>(
@@ -24,6 +26,9 @@ const AdminHomePage = () => {
       staleTime: 600,
     }
   );
+
+  const [open, setOpen] = useState(false);
+  const [reportType, setReportType] = useState<string>("");
 
   return (
     <>
@@ -85,6 +90,12 @@ const AdminHomePage = () => {
                   >
                     Ver historial de prestamos
                   </Link>
+                  <button
+                      type="button"
+                      onClick={() => (setReportType("BL"), setOpen(true))}
+                    >
+                      Generar reporte
+                    </button>
                 </div>
               }
             />
@@ -140,6 +151,14 @@ const AdminHomePage = () => {
                   >
                     Historial de prestamos
                   </Link>
+                  <span className=" hover:text-Body">
+                    <button
+                      type="button"
+                      onClick={() => (setReportType("WS"), setOpen(true))}
+                    >
+                      Generar reporte
+                    </button>
+                  </span>
                 </div>
               }
             />
@@ -172,6 +191,18 @@ const AdminHomePage = () => {
                   >
                     Ver programas
                   </Link>
+                  <button
+                      type="button"
+                      onClick={() => (setReportType("EV"), setOpen(true))}
+                    >
+                      Reporte de Eventos
+                    </button>
+                  <button
+                      type="button"
+                      onClick={() => (setReportType("CO"), setOpen(true))}
+                    >
+                      Reporte de Cursos
+                    </button>
                 </div>
               }
             />
@@ -183,6 +214,11 @@ const AdminHomePage = () => {
           </Card>
         </section>
       </main>
+      <ReportModal
+        open={open}
+        setOpen={setOpen}
+        reportType={reportType}
+      />
     </>
   );
 };

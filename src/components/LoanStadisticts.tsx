@@ -63,8 +63,17 @@ const LoanStadisticts = () => {
             <Tooltip />
             <Legend />
             <Bar dataKey="Eventos" fill="#8884d8" />
-            <Bar dataKey="Prestamos" fill="#ffc658" />
             <Bar dataKey="Cursos" fill="#82ca9d" />
+            <Bar
+              dataKey="Prestamos"
+              fill="#ffc658"
+              name={"Prestamos de libros"}
+            />
+            <Bar
+              dataKey="UsoComputo"
+              fill="#82ca9d"
+              name={"Usos de equipo de computo"}
+            />
             <Line type="monotone" dataKey="Eventos" stroke="#8884d8" />
             <Line type="monotone" dataKey="Prestamos" stroke="#82ca9d" />
             <Line type="monotone" dataKey="Cursos" stroke="#ffc658" />
