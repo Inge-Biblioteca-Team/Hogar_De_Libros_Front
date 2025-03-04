@@ -77,7 +77,7 @@ const ManageFurniture = () => {
             </Select>
           </div>
           <Button
-            className="md:w-full lg:w-auto max-sm:w-full"
+            className="md:w-full lg:w-44 max-sm:w-full"
             color={"blue"}
             onClick={() => setSNew(true)}
           >
