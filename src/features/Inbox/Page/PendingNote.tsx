@@ -16,7 +16,7 @@ const PendingNote = () => {
   const {
     data: inboxData,
     isLoading,
-    error,
+    
   } = useQuery<InboxResponse, Error>(
     ["Notifications"],
     () => getPendingNotes(),

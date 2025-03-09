@@ -17,7 +17,7 @@ const TrashNote = () => {
   const {
     data: inboxData,
     isLoading,
-    error,
+   
   } = useQuery<InboxResponse, Error>(
     ["TrashNotifications"],
     () => getTrashNotes(),

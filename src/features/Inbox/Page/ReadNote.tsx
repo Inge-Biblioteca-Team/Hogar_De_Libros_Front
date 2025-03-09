@@ -14,7 +14,7 @@ const ReadNote = () => {
   const {
     data: inboxData,
     isLoading,
-    error,
+ 
   } = useQuery<InboxResponse, Error>(
     ["ReadNotifications"],
     () => getReadNotes(),
