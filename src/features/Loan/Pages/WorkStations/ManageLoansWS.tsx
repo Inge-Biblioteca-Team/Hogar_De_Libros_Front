@@ -5,6 +5,8 @@ import { GetStatus } from "../../Services/SvComputerLoan";
 import { useQuery } from "react-query";
 import ButtonsAccions from "../../Components/WorkStations/ButtonsAccions";
 import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
+import NoResults from "../../../../components/NoResults";
 
 type ComputerStatus = {
   Status: string;
@@ -17,7 +19,7 @@ const conditionColors: { [key: string]: string } = {
   Mantenimiento: "text-yellow-500",
 };
 const ManageLoansWS = () => {
-  const { data: computers } = useQuery<ComputerStatus[], Error>(
+  const { data: computers, isLoading } = useQuery<ComputerStatus[], Error>(
     ["WSStatus"],
     () => GetStatus(),
     {
@@ -28,43 +30,56 @@ const ManageLoansWS = () => {
   return (
     <>
       <LoansAndCirculationCrumbs text="Equipo de cómputo" />
-      <div className=" w-full flex items-center justify-center mt-12">
-        <div className="grid grid-cols-4 gap-26 w-4/5">
-          {computers?.map((computer) => (
-            <div
-              key={computer.MachineNumber}
-              className="flex flex-col-reverse items-center p-2 "
-            >
-              <Popover content={<ButtonsAccions computer={computer} />}>
+      {isLoading ? (
+        <div className="w-full flex items-center justify-center mt-12">
+          <figure>
+            <img width={200} src={Loader} alt="Cargando..." />
+            <figcaption className="text-center">Cargando...</figcaption>
+          </figure>
+        </div>
+      ) : computers ? (
+        <>
+          <div className="w-full flex items-center justify-center mt-12">
+            <div className="grid grid-cols-4 gap-26 w-4/5">
+              {computers?.map((computer) => (
                 <div
-                  title={"PC" + computer.MachineNumber}
-                  className={`text-6xl ${conditionColors[computer.Status]}`}
+                  key={computer.MachineNumber}
+                  className="flex flex-col-reverse items-center p-2 "
                 >
-                  <FontAwesomeIcon icon={faDesktop} />
+                  <Popover content={<ButtonsAccions computer={computer} />}>
+                    <div
+                      title={"PC" + computer.MachineNumber}
+                      className={`text-6xl ${conditionColors[computer.Status]}`}
+                    >
+                      <FontAwesomeIcon icon={faDesktop} />
+                    </div>
+                  </Popover>
+                  <div className="text-black font-semibold text-xl">
+                    PC-{computer.MachineNumber}
+                  </div>
                 </div>
-              </Popover>
-              <div className="text-black font-semibold text-xl ">
-                PC-
-                {computer.MachineNumber}
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex justify-center mt-5 space-x-8">
-        <div className="flex items-center">
-          <span className="text-green-500 text-2xl">●</span>
-          <span className="ml-2">Disponible</span>
-        </div>
-        <div className="flex items-center">
-          <span className="text-yellow-500 text-2xl">●</span>
-          <span className="ml-2">En mantenimiento</span>
-        </div>
-        <div className="flex items-center">
-          <span className="text-red-500 text-2xl">●</span>
-          <span className="ml-2">En uso</span>
-        </div>
-      </div>
+          </div>
+
+          <div className="flex justify-center mt-5 space-x-8">
+            <div className="flex items-center">
+              <span className="text-green-500 text-2xl">●</span>
+              <span className="ml-2">Disponible</span>
+            </div>
+            <div className="flex items-center">
+              <span className="text-yellow-500 text-2xl">●</span>
+              <span className="ml-2">En mantenimiento</span>
+            </div>
+            <div className="flex items-center">
+              <span className="text-red-500 text-2xl">●</span>
+              <span className="ml-2">En uso</span>
+            </div>
+          </div>
+        </>
+      ) : (
+        <NoResults />
+      )}
     </>
   );
 };

@@ -8,6 +8,7 @@ import CreateRooms from "../Components/Modal/CreateRoms";
 import SearchRooms from "../Components/BTN/SearchRooms";
 import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import NoResults from "../../../components/NoResults";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageRoom = () => {
   const [Sname, setName] = useState<string>("");
@@ -18,11 +19,7 @@ const ManageRoom = () => {
   const Status = UseDebounce(SStatus, 100);
   const Num = UseDebounce(SNum, 100);
 
-  const {
-    data: rooms,
-    error,
-    isLoading,
-  } = useQuery<RoomApiResponse, Error>(
+  const { data: rooms, isLoading } = useQuery<RoomApiResponse, Error>(
     ["Rooms", { Status, Num, Name }],
     () => GetRooms(1, 100, Status, Num, Name),
     {
@@ -30,9 +27,6 @@ const ManageRoom = () => {
       staleTime: 600,
     }
   );
-
-  if (isLoading) return <span>Loading...</span>;
-  if (error) return <span>Error: {error.message}</span>;
 
   return (
     <>
@@ -48,7 +42,14 @@ const ManageRoom = () => {
             <CreateRooms />
           </div>
           <div className="w-full pt-2">
-            {rooms && rooms?.count > 0 ? (
+            {isLoading ? (
+              <div className=" w-full flex items-center justify-center">
+                <figure>
+                  <img width={400} src={Loader} alt="...Cargando" />
+                  <figcaption className=" text-center">...Cargando</figcaption>
+                </figure>
+              </div>
+            ) : rooms ? (
               <div className="grid md:grid-cols-1 max-sm:grid-cols-1 lg:grid-cols-3 grid-cols-2 gap-5 my-4">
                 {rooms?.data.map((room) => (
                   <RoomCards Rooms={room} key={room.roomId} />

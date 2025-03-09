@@ -9,6 +9,7 @@ import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/Br
 import CustomPagination from "../../../../components/CustomPagination";
 import NoResults from "../../../../components/NoResults";
 import { Pagination } from "flowbite-react";
+import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
 
 const InProgressLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -32,7 +33,7 @@ const InProgressLoans = () => {
 
   const sSignaCode = UseDebounce(SignaCode, 1000);
 
-  const { data: Loan } = useQuery<LoanResponse, Error>(
+  const { data: Loan, isLoading } = useQuery<LoanResponse, Error>(
     ["IPLoans", currentPage, currentLimit, StartDate, EndDate, sSignaCode],
     () =>
       GetInProgressLoan(
@@ -55,16 +56,24 @@ const InProgressLoans = () => {
   return (
     <>
       <LoansAndCirculationCrumbs text="Préstamos en progreso" />
-      <div className=" flex  place-content-center pb-3">
-        <div className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:p-2">
-          <SearchInputs
-            SignaCode={SignaCode}
-            EndDate={EndDate}
-            setStartDate={setStartDate}
-            setEndtDate={setEndtDate}
-            setSignaCode={setSignaCode}
-          />
-          {Loan && Loan?.count > 0 ? (
+      {isLoading ? (
+        <div className=" w-full flex items-center justify-center">
+          <figure>
+            <img width={400} src={Loader} alt="...Cargando" />
+            <figcaption className=" text-center">...Cargando</figcaption>
+          </figure>
+        </div>
+      ) : Loan ? (
+        <div className=" flex  place-content-center pb-3">
+          <div className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:p-2">
+            <SearchInputs
+              SignaCode={SignaCode}
+              EndDate={EndDate}
+              setStartDate={setStartDate}
+              setEndtDate={setEndtDate}
+              setSignaCode={setSignaCode}
+            />
+
             <>
               {Loan && <TBLLoan Loan={Loan} NeedAccions Inprogress />}
               <div className="block max-sm:hidden">
@@ -86,11 +95,11 @@ const InProgressLoans = () => {
                 />
               </div>
             </>
-          ) : (
-            <NoResults />
-          )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <NoResults />
+      )}
     </>
   );
 };

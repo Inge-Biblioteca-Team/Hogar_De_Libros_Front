@@ -10,13 +10,14 @@ import { GoUnread } from "react-icons/go";
 import useRecoverMulTrash from "../Hooks/RecoverfromTrash/useRecoverMulTrash";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import NoMessage from "../Components/NoMessage";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const TrashNote = () => {
   const queryClient = useQueryClient();
   const {
     data: inboxData,
     isLoading,
-    error,
+   
   } = useQuery<InboxResponse, Error>(
     ["TrashNotifications"],
     () => getTrashNotes(),
@@ -80,9 +81,16 @@ const TrashNote = () => {
     }
   };
 
-  if (isLoading) return <div>Cargando...</div>;
-  if (error) return <div>Error al cargar las notas de la papelera.</div>;
-
+  if (isLoading) {
+    return (
+      <div className="w-full flex items-center justify-center mt-12">
+        <figure>
+          <img width={200} src={Loader} alt="Cargando..." />
+          <figcaption className="text-center">Cargando...</figcaption>
+        </figure>
+      </div>
+    );
+  }
   return (
     <>
       <div className="bg-white p-4 flex items-center pb-4 rounded-t-xl">

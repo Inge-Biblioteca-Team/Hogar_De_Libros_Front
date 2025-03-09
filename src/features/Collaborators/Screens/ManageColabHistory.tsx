@@ -11,7 +11,7 @@ import OptSubCategory from "../Components/OptSubCategory";
 import { ColabCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import NoResults from "../../../components/NoResults";
 import { Pagination } from "flowbite-react";
-
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 const ManageColabHistory = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
     const savedPage = sessionStorage.getItem("CLHPage");
@@ -23,7 +23,10 @@ const ManageColabHistory = () => {
   const [subCategory, setSubCategory] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
-  const { data: ColaborationsList } = useQuery<ColaboratorsList, Error>(
+  const { data: ColaborationsList, isLoading } = useQuery<
+    ColaboratorsList,
+    Error
+  >(
     ["ColaborationsHistory", Page, Limit, category, subCategory, date],
     () => GetColabs(Page, Limit, category, subCategory, date),
     {
@@ -63,7 +66,14 @@ const ManageColabHistory = () => {
           </div>
         </section>
         <section className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:px-2">
-          {ColaborationsList && ColaborationsList.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : ColaborationsList ? (
             <>
               <ColabsTableBody>
                 {ColaborationsList?.data.map((colab) => (

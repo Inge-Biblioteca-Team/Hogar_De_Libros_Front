@@ -8,12 +8,13 @@ import { PiTrash } from "react-icons/pi";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import useMultipleMoveTrassh from "../Hooks/MoveToTrash/useMultipleMoveTrassh";
 import NoMessage from "../Components/NoMessage";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ReadNote = () => {
   const {
     data: inboxData,
     isLoading,
-    error,
+ 
   } = useQuery<InboxResponse, Error>(
     ["ReadNotifications"],
     () => getReadNotes(),
@@ -62,8 +63,16 @@ const ReadNote = () => {
     }
   };
 
-  if (isLoading) return <div>Cargando...</div>;
-  if (error) return <div>Error al cargar las notas leídas.</div>;
+  if (isLoading) {
+    return (
+      <div className="w-full flex items-center justify-center mt-12">
+        <figure>
+          <img width={200} src={Loader} alt="Cargando..." />
+          <figcaption className="text-center">Cargando...</figcaption>
+        </figure>
+      </div>
+    );
+  }
 
   return (
     <>

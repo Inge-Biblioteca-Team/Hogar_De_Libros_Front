@@ -8,6 +8,7 @@ import OPTRooms from "../../Components/RoomsLoans/OPTRooms";
 import CustomPagination from "../../../../components/CustomPagination";
 import { LoansCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 import NoResults from "../../../../components/NoResults";
+import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
 
 const OldReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -28,7 +29,7 @@ const OldReservationList = () => {
   const [SroomN, setSroomN] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
-  const { data: reservations } = useQuery<ReserveResponse, Error>(
+  const { data: reservations, isLoading } = useQuery<ReserveResponse, Error>(
     ["Oldreservations", currentPage, currentLimit, SroomN, date],
     () =>
       getReservations(currentPage, currentLimit, "Finalizado", date, SroomN),
@@ -70,7 +71,14 @@ const OldReservationList = () => {
               </Select>
             </div>
           </div>
-          {reservations && reservations?.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : reservations ? (
             <>
               <Table
                 hoverable
