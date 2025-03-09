@@ -18,8 +18,8 @@ const OPACHPage = () => {
     >
       <OPACBanner />
       <div className="m-2 lg:m-0  lg:w-11/12">
-        <div className="grid max-sm:grid-cols-2 gap-4 mt-10 md:grid-cols-2 lg:grid-cols-3
-        ">
+        <div className="grid max-sm:grid-cols-2 gap-4 mt-10 md:grid-cols-2 lg:grid-cols-3 lg:pb-2
+        lg:h-60 2xl:h-96">
           <OPACCard
             Icon={faBookOpen}
             Title="catalogo de libros"
@@ -32,7 +32,7 @@ const OPACHPage = () => {
             Message="Acceso a computadoras, la biblioteca cuenta con 20 computadoras las cuales están a disposición de los usuarios de la biblioteca."
             Path="/OPAC/Equipo-Computo"
           />
-          <div onClick={() => setOpenAsistencia(true)}>
+          <div className="max-sm:col-span-2 md:col-span-2 lg:col-span-1 " onClick={() => setOpenAsistencia(true)}>
             <OPACCard
               Icon={faChildren}
               Title="Asistencia"
