@@ -17,8 +17,9 @@ const OPACHPage = () => {
       className="flex w-full items-center justify-center flex-col gap-5"
     >
       <OPACBanner />
-      <div className="m-2 lg:m-0 lg:w-4/5">
-        <div className="grid max-sm:grid-cols-2 gap-4 mt-10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="m-2 lg:m-0  lg:w-11/12">
+        <div className="grid max-sm:grid-cols-2 gap-4 mt-10 md:grid-cols-2 lg:grid-cols-3
+        ">
           <OPACCard
             Icon={faBookOpen}
             Title="catalogo de libros"
