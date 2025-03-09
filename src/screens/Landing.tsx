@@ -1,4 +1,3 @@
-
 //import FreeBooksList from "../features/Books/screens/FreeBooksList"
 import ComputerInfo from "../features/Computers/screens/ComputerInfo";
 import RoomList from "../features/Rooms/Screens/RoomList";
@@ -13,24 +12,35 @@ import ImportanNotices from "../features/Advice/Screens/ImportanNotices";
 import LandingHome from "../components/LandingHome";
 import LandingFooter from "../components/Layout/LandingFooter";
 import LatestAddBooks from "../features/Books/Screens/LatestAddBooks";
+import LandingSkeletonLoader from "../components/LandingSkeletonLoader";
+import { useEffect, useState } from "react";
 
 const Landing = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 2000); // Simula 2s de carga
+  }, []);
   return (
     <>
-      <LandingHome/>
-      <main className="flex items-center gap-16 justify-center flex-col mt-5 mb-10 max-sm:gap-10">
-        <ImportanNotices />
-        <LatestAddBooks />
-        <RoomList />
-        <ComputerInfo />
-        <UpcomingCourses />
-        <UpcomingEvents />
-        <CurrentPrograms />
-        <AmiguitosInfo />
-        <LocalArtistList />
-        <DirectContac />
-        <Feedback />
-      </main>
+      {isLoading ? (
+        <LandingSkeletonLoader />
+      ) : (
+        <main className="flex items-center gap-16 justify-center flex-col mt-5 mb-10 max-sm:gap-10">
+          <LandingHome />
+          <ImportanNotices />
+          <LatestAddBooks />
+          <RoomList />
+          <ComputerInfo />
+          <UpcomingCourses />
+          <UpcomingEvents />
+          <CurrentPrograms />
+          <AmiguitosInfo />
+          <LocalArtistList />
+          <DirectContac />
+          <Feedback />
+        </main>
+      )}
       <LandingFooter />
     </>
   );
