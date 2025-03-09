@@ -7,6 +7,7 @@ import { useQuery } from "react-query";
 import { ApiAdvices } from "../Types/Advice";
 import { GetAdvice } from "../Service/SvAdvice";
 import UseDebounce from "../../../hooks/UseDebounce";
+import Loader from '../../OPAC/Assets/LoaderOPAC.gif';
 import {
   BreadCrumbsItems,
   BreadLastItems,
@@ -28,7 +29,7 @@ const AdviceManage = () => {
 
   const reasonS = UseDebounce(reason, 200);
 
-  const { data: Advices } = useQuery<ApiAdvices, Error>(
+  const { data: Advices, isLoading } = useQuery<ApiAdvices, Error>(
     ["AdvicesList", page, limit, category, date, reasonS],
     () => GetAdvice(page, limit, reasonS, category, date),
     {
@@ -82,9 +83,16 @@ const AdviceManage = () => {
           </Button>
         </section>
         <section className=" w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:px-2">
-          {Advices && (
+          {isLoading? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="... Cargando" />
+                <figcaption className=" text-center">... cargando</figcaption>
+              </figure>
+            </div>
+          ) : Advices ? (
             <>
-              <AdviceTable advices={Advices} />
+             <AdviceTable advices={Advices} />
               <div className="block max-sm:hidden">
                 <CustomPagination
                   page={page}
@@ -104,7 +112,10 @@ const AdviceManage = () => {
                 />
               </div>
             </>
+          ): (
+            <p className="text-center">No hay datos disponibles.</p>
           )}
+          
         </section>
       </main>
       <NewAdvice open={open} setOpen={setOpen} />

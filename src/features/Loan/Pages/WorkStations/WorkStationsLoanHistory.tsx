@@ -8,6 +8,7 @@ import UseDebounce from "../../../../hooks/UseDebounce";
 import CustomPagination from "../../../../components/CustomPagination";
 import NoResults from "../../../../components/NoResults";
 import { LoansCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
+import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
 
 const WorkStationsLoanHistory = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -30,7 +31,7 @@ const WorkStationsLoanHistory = () => {
     sessionStorage.setItem("WSPage", currentPage.toString());
   }, [currentPage]);
 
-  const { data: WSLoan } = useQuery<ApiWSResponse, Error>(
+  const { data: WSLoan, isLoading } = useQuery<ApiWSResponse, Error>(
     ["WSLoans", currentPage, currentLimit, StartDate, MachineNumberDelay],
     () => GetWSLoans(currentPage, currentLimit, StartDate, MachineNumberDelay),
     {
@@ -67,7 +68,14 @@ const WorkStationsLoanHistory = () => {
 
         <div className=" w-full flex items-center justify-center">
           <div className=" w-4/5 md:w-full md:pr-4 md:pl-4">
-            {WSLoan && WSLoan.count > 0 ? (
+            {isLoading ? (
+              <div className=" w-full flex items-center justify-center">
+                <figure>
+                  <img width={400} src={Loader} alt="...Cargando" />
+                  <figcaption className=" text-center">...Cargando</figcaption>
+                </figure>
+              </div>
+            ) : WSLoan ? (
               <>
                 <Table hoverable className=" text-center h-[30rem]">
                   <Table.Head className=" h-16 text-sm">

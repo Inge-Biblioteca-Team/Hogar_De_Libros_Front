@@ -11,6 +11,8 @@ import { CiCalendarDate } from "react-icons/ci";
 import { FaReadme } from "react-icons/fa6";
 import ActivitieTimeItem from "../components/ActivitieTimeItem";
 import ProgramsOPT from "../../../components/ProgramsOPT";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import NoResults from "../../../components/NoResults";
 
 const ProgramActivities = () => {
   const [month, setMonth] = useState<string>("");
@@ -40,7 +42,7 @@ const ProgramActivities = () => {
     monthOpt.push({ month: months[monthIndex], value: monthIndex + 1 });
   }
 
-  const { data: Activities } = useQuery<ActivitieList, Error>(
+  const { data: Activities, isLoading } = useQuery<ActivitieList, Error>(
     ["Activities", month, program],
     () => GetProgramsActivitiesList(program, month),
     {
@@ -79,23 +81,34 @@ const ProgramActivities = () => {
           className=" w-4/5 overflow-x-scroll pt-7 px-8 custom-bar"
           style={{ height: "35rem" }}
         >
-          <Timeline
-            className="custom-timeline border-blue-900 h-full "
-            horizontal
-          >
-            {Activities && Activities?.count > 0 ? (
-              Activities?.data.map((activitie) => (
-                <ActivitieTimeItem
-                  activitie={activitie}
-                  key={activitie.activitieID}
-                />
-              ))
-            ) : (
-              <strong className=" flex w-full items-center justify-center text-2xl">
-                No hay actividades próximas
-              </strong>
-            )}
-          </Timeline>
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : Activities ? (
+            <Timeline
+              className="custom-timeline border-blue-900 h-full "
+              horizontal
+            >
+              {Activities && Activities?.count > 0 ? (
+                Activities?.data.map((activitie) => (
+                  <ActivitieTimeItem
+                    activitie={activitie}
+                    key={activitie.activitieID}
+                  />
+                ))
+              ) : (
+                <strong className=" flex w-full items-center justify-center text-2xl">
+                  No hay actividades próximas
+                </strong>
+              )}
+            </Timeline>
+          ) : (
+            <NoResults />
+          )}
           <div className=" w-full flex items-center justify-center"></div>
         </div>
       </div>

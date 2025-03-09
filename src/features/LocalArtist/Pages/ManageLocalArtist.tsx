@@ -11,6 +11,7 @@ import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsIte
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
 import { Pagination } from "flowbite-react";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageLocalArtist = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -38,7 +39,7 @@ const ManageLocalArtist = () => {
   const Name = UseDebounce(SName, 100);
   const Type = UseDebounce(SType, 100);
 
-  const { data: Artists } = useQuery<ResponseA, Error>(
+  const { data: Artists, isLoading } = useQuery<ResponseA, Error>(
     ["Artist", currentPage, currentLimit, Name, Type, Status],
     () => getLocalArtist(currentPage, currentLimit, Name, Type, Status),
     {
@@ -56,26 +57,46 @@ const ManageLocalArtist = () => {
       <div className=" w-full flex items-center justify-center">
         <div className=" w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:p-2 max-sm:w-full">
           <div className="flex md:flex-col lg:flex-row sm:w-full items-center max-sm:flex-col ">
-          <div className="w-full sm:w-full flex justify-center max-sm:pb-8">
-            <SearchArtists
-              Status={SetStatus}
-              SName={SetSName}
-              SType={SetSType}
-            />
-          </div>
+            <div className="w-full sm:w-full flex justify-center max-sm:pb-8">
+              <SearchArtists
+                Status={SetStatus}
+                SName={SetSName}
+                SType={SetSType}
+              />
+            </div>
             <div className="w-full sm:w-full lg:mt-8 md:pb-6 flex justify-end max-sm:pb-8">
               <CreateArtist />
             </div>
           </div>
-          {Artists && Artists.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : Artists ? (
             <>
-              <Table hoverable className="text-center h-[30rem] max-sm:text-sm max-sm:justify-center">
+              <Table
+                hoverable
+                className="text-center h-[30rem] max-sm:text-sm max-sm:justify-center"
+              >
                 <Table.Head className="h-20 text-sm bg-white">
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Nombre</Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">Tipo de Artista</Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">Información Relevante</Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 xl:table-cell 2xl:w-1/5 2xl:table-cell max-sm:hidden">Redes Sociales</Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Estado</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">
+                    Nombre
+                  </Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">
+                    Tipo de Artista
+                  </Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">
+                    Información Relevante
+                  </Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 xl:table-cell 2xl:w-1/5 2xl:table-cell max-sm:hidden">
+                    Redes Sociales
+                  </Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">
+                    Estado
+                  </Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
@@ -85,13 +106,13 @@ const ManageLocalArtist = () => {
                 </Table.Body>
               </Table>
               <div className="block max-sm:hidden">
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={Artists?.count || 0}
-              />
+                <CustomPagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={Artists?.count || 0}
+                />
               </div>
               <div className="sm:hidden  flex justify-center ">
                 <Pagination

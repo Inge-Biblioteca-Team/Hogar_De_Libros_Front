@@ -11,6 +11,7 @@ import CustomPagination from "../../../components/CustomPagination";
 import OPTState from "../Components/OPTState";
 import NoResults from "../../../components/NoResults";
 import { Pagination } from "flowbite-react";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageFurniture = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
@@ -32,7 +33,7 @@ const ManageFurniture = () => {
 
   const [sNew, setSNew] = useState<boolean>(false);
 
-  const { data: furnitures } = useQuery<apiResponseFt, Error>(
+  const { data: furnitures, isLoading } = useQuery<apiResponseFt, Error>(
     [
       "FurnitureCatalog",
       currentPage,
@@ -85,7 +86,14 @@ const ManageFurniture = () => {
           </Button>
         </section>
         <section className="w-4/5 md:w-full  md:pl-4 md:pr-4 max-sm:w-full max-sm:p-2">
-          {furnitures && furnitures.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : furnitures ? (
             <>
               <Table
                 hoverable
@@ -96,7 +104,9 @@ const ManageFurniture = () => {
                   <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 w-44">
                     Número de placa
                   </Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 w-44">Descripción</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 w-44">
+                    Descripción
+                  </Table.HeadCell>
                   <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden  w-44">
                     Ubicación
                   </Table.HeadCell>

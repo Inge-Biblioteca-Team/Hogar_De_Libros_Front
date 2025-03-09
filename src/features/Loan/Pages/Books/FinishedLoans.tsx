@@ -8,6 +8,7 @@ import UseDebounce from "../../../../hooks/UseDebounce";
 import { LoansCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../../components/CustomPagination";
 import NoResults from "../../../../components/NoResults";
+import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
 
 const FinishedLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -33,7 +34,7 @@ const FinishedLoans = () => {
   const SName = UseDebounce(Name, 1000);
   const sSignaCode = UseDebounce(SignaCode, 1000);
 
-  const { data: Loan } = useQuery<LoanResponse, Error>(
+  const { data: Loan, isLoading } = useQuery<LoanResponse, Error>(
     [
       "DLoans",
       currentPage,
@@ -74,7 +75,14 @@ const FinishedLoans = () => {
             setName={setName}
             setSignaCode={setSignaCode}
           />
-          {Loan && Loan?.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : Loan ? (
             <>
               {Loan && <TBLLoan Loan={Loan} />}
               <CustomPagination

@@ -12,6 +12,7 @@ import OPTCategories from "../components/OPTCategories";
 import OPTSubCategories from "../components/OPTSubCategories";
 import NoResults from "../../../components/NoResults";
 import { Pagination } from "flowbite-react";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageFriendsRequest = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -26,7 +27,7 @@ const ManageFriendsRequest = () => {
 
   const exp = UseDebounce(experience, 1000);
 
-  const { data: FriendList } = useQuery<FriendResponse, Error>(
+  const { data: FriendList, isLoading } = useQuery<FriendResponse, Error>(
     ["FriendReqList", Page, Limit, category, subCategory, exp],
     () => GetFriends(Page, Limit, category, subCategory, exp, "Pendiente"),
     {
@@ -66,7 +67,14 @@ const ManageFriendsRequest = () => {
           </div>
         </section>
         <section className="max-sm:w-full md:w-full md:pr-4 md:pl-4 max-sm:p-2 w-4/5">
-          {FriendList && FriendList.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : FriendList ? (
             <>
               <FriendsTableBody hidd>
                 {FriendList?.data.map((friend) => (
@@ -77,13 +85,13 @@ const ManageFriendsRequest = () => {
                 ))}
               </FriendsTableBody>
               <div className="block max-sm:hidden">
-              <CustomPagination
-                page={Page}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={FriendList?.count || 0}
-              />
+                <CustomPagination
+                  page={Page}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={FriendList?.count || 0}
+                />
               </div>
 
               <div className="sm:hidden  flex justify-center ">
