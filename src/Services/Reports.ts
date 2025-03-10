@@ -1,3 +1,4 @@
+import axios from "axios";
 import api from "./AxiosConfig";
 
 const downloadLoanReport = async (
@@ -12,16 +13,31 @@ const downloadLoanReport = async (
       { responseType: "blob" }
     );
 
-    const contentDisposition = response.headers['content-disposition'];
-    console.log("Content-Disposition:", contentDisposition);
-
+    const contentDisposition = response.headers["content-disposition"];
     const fileNameMatch = contentDisposition?.match(/filename="(.+)"/);
-    const fileName = fileNameMatch ? fileNameMatch[1] : `Reporte_${reportType}.pdf`;
-
+    const fileName = fileNameMatch
+      ? fileNameMatch[1]
+      : `Reporte_${reportType}.pdf`;
 
     downloadFile(response.data, fileName);
-  } catch (error) {
-    console.error("Error al descargar el reporte:", error);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      const errorMessage = error.response?.data;
+
+      if (errorMessage instanceof Blob) {
+        const errorText = await errorMessage.text();
+        const errorJson = JSON.parse(errorText);
+        throw new Error(errorJson.message || "Error al generar el reporte");
+      } else {
+        const message =
+          errorMessage?.message || "Error desconocido al procesar el reporte";
+        throw new Error(message);
+      }
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
   }
 };
 
