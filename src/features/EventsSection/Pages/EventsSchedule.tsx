@@ -10,6 +10,8 @@ import {
   BreadCrumbsItems,
   BreadLastItems,
 } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import NoResults from "../../../components/NoResults";
 
 const EventsSchedule = () => {
   const [month, setMonth] = useState<string>("");
@@ -39,7 +41,7 @@ const EventsSchedule = () => {
     monthOpt.push({ month: months[monthIndex], value: monthIndex + 1 });
   }
 
-  const { data: events } = useQuery<ApiEventsResponse, Error>(
+  const { data: events, isLoading } = useQuery<ApiEventsResponse, Error>(
     ["EventCatalog", month, type],
     () => GetNextEvents(month, type),
     {
@@ -81,20 +83,31 @@ const EventsSchedule = () => {
           className=" w-4/5 overflow-x-scroll pt-7 px-8 custom-bar"
           style={{ height: "40rem" }}
         >
-          <Timeline
-            className="custom-timeline border-blue-900 h-full"
-            horizontal
-          >
-            {events?.count == 0 ? (
-              <strong className=" flex w-full items-center justify-center text-2xl">
-                No hay eventos Próximos
-              </strong>
-            ) : (
-              events?.data.map((event) => (
-                <EventTimeItem event={event} key={event.id} />
-              ))
-            )}
-          </Timeline>
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : events ? (
+            <Timeline
+              className="custom-timeline border-blue-900 h-full"
+              horizontal
+            >
+              {events?.count == 0 ? (
+                <strong className=" flex w-full items-center justify-center text-2xl">
+                  No hay eventos Próximos
+                </strong>
+              ) : (
+                events?.data.map((event) => (
+                  <EventTimeItem event={event} key={event.id} />
+                ))
+              )}
+            </Timeline>
+          ) : (
+            <NoResults />
+          )}
           <div className=" w-full flex items-center justify-center"></div>
         </div>
       </div>

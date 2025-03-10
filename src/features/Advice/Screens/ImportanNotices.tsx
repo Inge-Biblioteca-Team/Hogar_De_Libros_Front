@@ -18,7 +18,7 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
   );
   return (
     <section
-      className="relative max-sm:max-w-full max-sm:pr-4 max-sm:pl-4 lg:max-w-6xl mx-auto md:w-4/5  mt-10"
+      className="relative max-sm:max-w-full max-sm:pr-4 max-sm:pl-4 lg:max-w-7xl mx-auto md:w-4/5  mt-10"
       id="Activities"
     >
       {Advices && Advices.count > 0 ? (

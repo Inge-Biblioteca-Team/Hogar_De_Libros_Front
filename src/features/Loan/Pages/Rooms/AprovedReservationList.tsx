@@ -8,6 +8,7 @@ import { getReservations } from "../../Services/SVReservations";
 import CustomPagination from "../../../../components/CustomPagination";
 import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 import { Pagination } from "flowbite-react";
+import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
 
 const AprovedReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -25,7 +26,7 @@ const AprovedReservationList = () => {
     sessionStorage.setItem("AprovPage", currentPage.toString());
   }, [currentPage]);
 
-  const { data: reservations } = useQuery<ReserveResponse, Error>(
+  const { data: reservations, isLoading } = useQuery<ReserveResponse, Error>(
     ["reserveRequest", currentPage, currentLimit],
     () => getReservations(currentPage, currentLimit, "Aprobado"),
     {
@@ -39,7 +40,14 @@ const AprovedReservationList = () => {
       <LoansAndCirculationCrumbs text="Reservas de salas aprobadas" />
       <div className=" w-full flex items-center justify-center mt-28">
         <div className="w-4/5 xl:w-full xl:ml-4 xl:mr-4 2xl:w-full 2xl:mr-4 2xl:ml-4 max-sm:w-full max-sm:p-2">
-          {reservations?.count == 0 ? (
+          {isLoading ? (
+            <div className="w-full flex items-center justify-center">
+              <figure>
+                <img width={200} src={Loader} alt="Cargando..." />
+                <figcaption className="text-center">Cargando...</figcaption>
+              </figure>
+            </div>
+          ) : reservations?.count === 0 ? (
             <NoRequest text={"No existen solicitudes aprobadas"} />
           ) : (
             <>
@@ -61,8 +69,7 @@ const AprovedReservationList = () => {
                   total={reservations?.count || 0}
                 />
               </div>
-
-              <div className="sm:hidden  flex justify-center ">
+              <div className="sm:hidden flex justify-center">
                 <Pagination
                   layout="navigation"
                   currentPage={currentPage}

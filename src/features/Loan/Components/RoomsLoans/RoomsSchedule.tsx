@@ -5,7 +5,7 @@ import ReservationForm from "../../Pages/Rooms/ReservationForm";
 import { queque } from "../../Types/RoomsReservations";
 import { useQuery } from "react-query";
 import { getRoomsList } from "../../Services/SVReservations";
-
+import Loader from '../../../OPAC/Assets/LoaderOPAC.gif';
 const RoomsSchedule = ({
   date,
   reservations,
@@ -13,7 +13,7 @@ const RoomsSchedule = ({
   date: string;
   reservations: queque[];
 }) => {
-  const { data: roomss = [] } = useQuery<queque[], Error>(
+  const { data: roomss = [], isLoading } = useQuery<queque[], Error>(
     ["QueQueReservations"],
     () => getRoomsList(),
     {
@@ -95,6 +95,17 @@ const RoomsSchedule = ({
   const finishReservation = () => {
     setSelectedHours([]);
   };
+  
+  if (isLoading) {
+    return (
+      <div className="w-full flex items-center justify-center mt-12">
+        <figure>
+          <img width={200} src={Loader} alt="Cargando..." />
+          <figcaption className="text-center">Cargando...</figcaption>
+        </figure>
+      </div>
+    );
+  }
 
   if (rooms.length == 0)
     return (

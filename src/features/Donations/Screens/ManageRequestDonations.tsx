@@ -10,6 +10,7 @@ import TableDonations from "../Components/TableDonations";
 import RowsRequestDonation from "../Components/RowsRequestDonation";
 import NoResults from "../../../components/NoResults";
 import { Pagination } from "flowbite-react";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageRequestDonations = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -21,7 +22,7 @@ const ManageRequestDonations = () => {
   const [category, setCategory] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
-  const { data: Donations } = useQuery<DonationsList, Error>(
+  const { data: Donations, isLoading } = useQuery<DonationsList, Error>(
     ["DonationsRequest", Page, Limit, category, date],
     () => GetDonationList(Page, Limit, category, date, "Pendiente"),
     {
@@ -55,7 +56,14 @@ const ManageRequestDonations = () => {
           </div>
         </section>
         <section className=" max-sm:w-full md:w-full md:pr-4 md:pl-4 max-sm:p-2 w-4/5">
-          {Donations && Donations.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : Donations ? (
             <>
               <TableDonations>
                 {Donations?.data.map((donation) => (

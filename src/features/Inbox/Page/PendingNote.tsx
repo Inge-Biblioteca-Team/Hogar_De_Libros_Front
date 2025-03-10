@@ -10,12 +10,13 @@ import useMultipleMoveTrassh from "../Hooks/MoveToTrash/useMultipleMoveTrassh";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import NoMessage from "../Components/NoMessage";
 import UseMarkMultipleAsRead from "../Hooks/UseMarkMultipleAsRead";
+import Loader from '../../OPAC/Assets/LoaderOPAC.gif';
 
 const PendingNote = () => {
   const {
     data: inboxData,
     isLoading,
-    error,
+    
   } = useQuery<InboxResponse, Error>(
     ["Notifications"],
     () => getPendingNotes(),
@@ -76,8 +77,16 @@ const PendingNote = () => {
     }
   };
 
-  if (isLoading) return <div>Cargando...</div>;
-  if (error) return <div>Error al cargar las notas.</div>;
+  if (isLoading) {
+    return (
+      <div className="w-full flex items-center justify-center mt-12">
+        <figure>
+          <img width={200} src={Loader} alt="Cargando..." />
+          <figcaption className="text-center">Cargando...</figcaption>
+        </figure>
+      </div>
+    );
+  }
 
   return (
     <>

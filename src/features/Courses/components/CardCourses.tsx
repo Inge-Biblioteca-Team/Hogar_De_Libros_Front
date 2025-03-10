@@ -25,43 +25,49 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
 
   return (
     <>
-    <Card className="p0 2xl:w-full max-sm:w-full">
-      <figure>
-        <img
-          className="h-40 w-full object-fill rounded-t-lg
+      <Card className="p0 2xl:w-full max-sm:w-full">
+        <figure>
+          <img
+            className="h-40 w-full object-fill rounded-t-lg
             max-sm:h-48 max-sm:rounded-md"
-          src={Courses.image}
-          alt={Courses.courseType}
-        />
-        <figcaption className="p-4">
-          <div className=" flex flex-col justify-between mr-3">
-            <span className=" font-bold text-black">{Courses.courseName} </span>
-            <span>
-              Impartido por: {Courses.instructor}{" "}
-            </span>
-            <span>Comienzo: {fullDate.toUpperCase()}</span>
-            <span>Duracion: {Courses.duration} </span>
-            <span>
-              {Courses.location} {time}{" "}
-            </span>
-            <span>
-              Cupos: {Courses.avaibleQuota}/{Courses.capacity}{" "}
-            </span>
-            {Courses.materials == "" ? (
-              "Te esperamos"
-            ) : (
-              <span>Necesitaras: {Courses.materials}</span>
-            )}
-            <div className=" flex justify-center items-center mt-3">
-              <Button color={"blue"} onClick={() => setopen(true)}>
-                Matricula ahora
-              </Button>
+            src={Courses.image}
+            alt={Courses.courseType}
+          />
+          <figcaption className="p-4">
+            <div className=" flex flex-col justify-between mr-3">
+              <span className=" lg:text-xl font-bold text-black">
+                {Courses.courseName}{" "}
+              </span>
+              <span className="text-lg">
+                Impartido por: {Courses.instructor}{" "}
+              </span>
+              <span className="text-lg">
+                Comienzo: {fullDate.toUpperCase()}
+              </span>
+              <span className="text-lg">Duracion: {Courses.duration} </span>
+              <span className="text-lg">
+                {Courses.location} {time}{" "}
+              </span>
+              <span className="text-lg">
+                Cupos: {Courses.avaibleQuota}/{Courses.capacity}{" "}
+              </span>
+              {Courses.materials === "" ? (
+                <span className="text-lg">Te esperamos</span>
+              ) : (
+                <span className="text-lg">
+                  Necesitaras: {Courses.materials}
+                </span>
+              )}
+              <div className=" flex justify-center items-center mt-3">
+                <Button className="" color={"blue"} onClick={() => setopen(true)}>
+                  Matricula ahora
+                </Button>
+              </div>
             </div>
-          </div>
-        </figcaption>
-      </figure>
-    </Card>
-    <EnrollmentToCourse course={Courses} open={open} setOpen={setopen} />
+          </figcaption>
+        </figure>
+      </Card>
+      <EnrollmentToCourse course={Courses} open={open} setOpen={setopen} />
     </>
   );
 };

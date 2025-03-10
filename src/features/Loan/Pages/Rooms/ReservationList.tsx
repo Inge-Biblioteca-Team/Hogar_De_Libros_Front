@@ -8,6 +8,7 @@ import TblRowsReservation from "../../Components/RoomsLoans/TablesHeaders/TblRow
 import CustomPagination from "../../../../components/CustomPagination";
 import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 import { Pagination } from "flowbite-react";
+import Loader from '../../../OPAC/Assets/LoaderOPAC.gif';
 
 const ReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -25,7 +26,7 @@ const ReservationList = () => {
     sessionStorage.setItem("PRpage", currentPage.toString());
   }, [currentPage]);
 
-  const { data: reservations } = useQuery<ReserveResponse, Error>(
+  const { data: reservations, isLoading } = useQuery<ReserveResponse, Error>(
     ["PendingRreservations", currentPage, currentLimit],
     () => getReservations(currentPage, currentLimit, "Pendiente"),
     {
@@ -39,7 +40,14 @@ const ReservationList = () => {
       <LoansAndCirculationCrumbs text="Solicitudes de salas" />
       <div className=" w-full flex items-center justify-center mt-16">
         <div className="w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:p-2">
-          {reservations?.count == 0 ? (
+        {isLoading ? (
+            <div className="w-full flex items-center justify-center">
+              <figure>
+                <img width={200} src={Loader} alt="Cargando..." />
+                <figcaption className="text-center">Cargando...</figcaption>
+              </figure>
+            </div>
+          ) : reservations?.count === 0 ? (
             <NoRequest text={"No existen solicitudes pendientes"} />
           ) : (
             <>
@@ -51,15 +59,15 @@ const ReservationList = () => {
                 {reservations && <TblRowsReservation reserve={reservations} />}
               </Table>
               <div className="block max-sm:hidden">
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={reservations?.count || 0}
-              />
+                <CustomPagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={reservations?.count || 0}
+                />
               </div>
-              <div className="sm:hidden  flex justify-center ">
+              <div className="sm:hidden flex justify-center">
                 <Pagination
                   layout="navigation"
                   currentPage={currentPage}

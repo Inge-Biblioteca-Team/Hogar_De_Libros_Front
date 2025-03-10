@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { Link } from "react-router-dom";
 
-const LandingHomeCards = ({
+const OPACCard = ({
   Icon,
   Title,
   Message,
@@ -17,17 +17,17 @@ const LandingHomeCards = ({
   return (
     <figure
       className="bg-Body text-white flex flex-col gap-5 items-center justify-center rounded-md
-     max-sm:justify-start max-sm:px-2  max-sm:text-sm p-4"
+     max-sm:justify-start max-sm:px-2  max-sm:text-sm p-4 lg:h-full xl:h-full 2xl:h-full"
     >
       <FontAwesomeIcon
         icon={Icon}
         className="text-white h-6 w-6 cursor-default"
       />{" "}
-      <figcaption className="text-center">
+      <figcaption className="text-center flex flex-col flex-grow justify-around ">
         <p>
-          <span className=" lg:text-xl text-lg font-bold">{Title}</span>
+          <span className=" text-lg font-bold">{Title}</span>
           <br />
-          <span className="lg:text-lg">{Message}</span>
+          <span className="">{Message}</span>
         </p>
         <Link to={Path} className=" underline hover:text-gray-400">
           Ver mas
@@ -37,4 +37,4 @@ const LandingHomeCards = ({
   );
 };
 
-export default LandingHomeCards;
+export default OPACCard;

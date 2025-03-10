@@ -15,6 +15,7 @@ import BookChildrenTable from "../Components/BookChildrenTable";
 import { LuClipboardSignature } from "react-icons/lu";
 import NoResults from "../../../components/NoResults";
 import { Pagination } from "flowbite-react";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
   const [open, setOpen] = useState(false);
@@ -32,7 +33,7 @@ const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
   });
   const [limit, setLimit] = useState<number>(5);
 
-  const { data: Catalog } = useQuery<Catalog, Error>(
+  const { data: Catalog, isLoading } = useQuery<Catalog, Error>(
     ["Children-colection", page, limit, title, author, Signa, status],
     () => getColection(page, limit, title, author, "", status, Signa),
     {
@@ -82,12 +83,23 @@ const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
               <option value="0">Baja</option>
             </Select>
           </div>
-          <Button className="md:w-full lg:w-auto" color={"blue"} onClick={() => setOpen(true)}>
+          <Button
+            className="md:w-full lg:w-44"
+            color={"blue"}
+            onClick={() => setOpen(true)}
+          >
             Añadir nuevo libro
           </Button>
         </section>
         <section className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:px-2">
-          {Catalog && Catalog.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="... Cargando" />
+                <figcaption className=" text-center">... cargando</figcaption>
+              </figure>
+            </div>
+          ) : Catalog && Catalog.count > 0 ? (
             <>
               <BookChildrenTable catalog={Catalog} />
               <div className="block max-sm:hidden">
