@@ -1,6 +1,5 @@
 import { Label, Select, Table, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
-
 import { useQuery } from "react-query";
 import { getCourses } from "../services/SvCourses";
 import { Courses, ResponseC } from "../types/Courses";
@@ -12,6 +11,7 @@ import { ServicesCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
 import { Pagination } from "flowbite-react";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageCourses = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -33,7 +33,7 @@ const ManageCourses = () => {
 
   const Name = UseDebounce(SName, 600);
 
-  const { data: Courses } = useQuery<ResponseC, Error>(
+  const { data: Courses, isLoading } = useQuery<ResponseC, Error>(
     ["CourseMG", currentPage, currentLimit, Name, Status],
     () => getCourses(currentPage, currentLimit, Name, Status),
     {
@@ -74,17 +74,38 @@ const ManageCourses = () => {
           <CreateCourse />
         </section>
         <section className="w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:p-2">
-          {Courses && Courses.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : Courses ? (
             <>
               <Table hoverable className=" text-center">
                 <Table.Head className=" h-20 text-sm">
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Nombre</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Encargado</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Fecha</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">Hora</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">Cupos Disponibles</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">Matricula</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Estado</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">
+                    Nombre
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">
+                    Encargado
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">
+                    Fecha
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
+                    Hora
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
+                    Cupos Disponibles
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
+                    Matricula
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">
+                    Estado
+                  </Table.HeadCell>
                   <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="h-96">

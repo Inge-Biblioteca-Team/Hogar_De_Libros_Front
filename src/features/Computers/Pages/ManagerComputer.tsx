@@ -1,4 +1,11 @@
-import { Button, Label, Pagination, Select, Table, TextInput } from "flowbite-react";
+import {
+  Button,
+  Label,
+  Pagination,
+  Select,
+  Table,
+  TextInput,
+} from "flowbite-react";
 import { useState } from "react";
 import { apiResponseCE } from "../types/Computer";
 import { GetComputerPaginated } from "../Services/SvComputer";
@@ -10,6 +17,7 @@ import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsIte
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
 import OPTCategoryEquipment from "../components/OPTCategoryEquipment";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManagerComputer = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
@@ -30,7 +38,7 @@ const ManagerComputer = () => {
     sessionStorage.setItem("MCPage", page.toString());
   };
 
-  const { data: computers } = useQuery<apiResponseCE, Error>(
+  const { data: computers, isLoading } = useQuery<apiResponseCE, Error>(
     [
       "EquipCatalog",
       currentPage,
@@ -91,12 +99,23 @@ const ManagerComputer = () => {
               </Select>
             </div>
           </div>
-          <Button className="md:w-full lg:w-auto" color={"blue"} onClick={() => setSNew(true)}>
+          <Button
+            className="md:w-full lg:w-36"
+            color={"blue"}
+            onClick={() => setSNew(true)}
+          >
             Añadir equipo
           </Button>
         </section>
         <section className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:px-2">
-          {computers && computers.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : computers ? (
             <>
               <Table
                 hoverable
@@ -104,12 +123,22 @@ const ManagerComputer = () => {
                 style={{ height: "30rem" }}
               >
                 <Table.Head className=" h-16">
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Número de Máquina</Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden" >Categoría</Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden" >Marca</Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden" >Serial</Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Estado</Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden" ></Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">
+                    Número de Máquina
+                  </Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">
+                    Categoría
+                  </Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">
+                    Marca
+                  </Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">
+                    Serial
+                  </Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">
+                    Estado
+                  </Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
                   {computers?.data.map((computers) => (
@@ -121,22 +150,22 @@ const ManagerComputer = () => {
                 </Table.Body>
               </Table>
               <div className="block max-sm:hidden">
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={computers?.count || 0}
-              />
+                <CustomPagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={computers?.count || 0}
+                />
               </div>
 
               <div className="sm:hidden  flex justify-center ">
-              <Pagination
-                layout="navigation"
-                currentPage={currentPage}
-                totalPages={MaxPage}
-                onPageChange={onPageChange}
-              />
+                <Pagination
+                  layout="navigation"
+                  currentPage={currentPage}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
               </div>
             </>
           ) : (

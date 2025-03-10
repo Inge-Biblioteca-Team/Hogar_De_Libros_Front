@@ -3,11 +3,11 @@ import { Book } from "../../Books/Types/BooksTypes";
 const OPACBookCard = ({ book }: { book: Book }) => {
   return (
     <>
-      <figure className=" hover:scale-105">
+      <figure className=" hover:scale-105 max-sm:w-full ">
         <img
           src={book.Cover}
           alt={book.Title}
-          className=" rounded-md h-52 w-52 rounded-b-none"
+          className=" rounded-md h-52 w-52 rounded-b-none max-sm:w-full"
         />
         <figcaption className=" bg-white w-52 h-32 pl-1 pt-2 rounded-b-md overflow-clip">
           <p>

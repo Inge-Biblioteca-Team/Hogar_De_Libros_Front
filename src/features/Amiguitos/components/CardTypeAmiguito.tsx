@@ -11,9 +11,9 @@ const CardTypeAmiguito = () => {
 
   return (
     <>
-      <figure className="rounded-md max-sm:w-full xl:h-full 2xl:h-full bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
+      <figure className="rounded-md max-sm:w-full lg:w-[26rem] xl:h-full 2xl:h-full bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
-          className="h-40 md:w-full max-sm:w-full md:h-2/4 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
+          className="h-40 lg:h-[200px] md:w-full max-sm:w-full md:h-2/4 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={
             "https://i0.wp.com/asociaciones.org/wp-content/uploads/2024/03/donacion-web.jpg"
           }
@@ -21,11 +21,11 @@ const CardTypeAmiguito = () => {
         />
         <figcaption className="text-lg break-words max-w-80 px-4 h-full flex flex-col items-center justify-between max-sm:pb-2">
           <div className="flex flex-col items-center">
-            <strong className="mb-1 lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
+            <strong className="mb-1 lg:text-xl lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
               {"Donaciones"}
             </strong>
             <p className="max-sm:text-xs mb-2 max-sm:block lg:max-sm:hidden text-center">
-              <span>
+              <span className="lg:text-lg">
                 {
                   "¿Tienes libros que ya no utilizas? Puedes donarlos a la biblioteca para que otra persona pueda compartir tu pasión por la lectura. Más información aquí abajo."
                 }
@@ -53,11 +53,11 @@ const CardTypeAmiguito = () => {
         />
         <figcaption className="text-lg break-words max-w-80 px-4 h-full flex flex-col items-center justify-between max-sm:pb-2">
           <div className="flex flex-col items-center">
-            <strong className="mb-1 lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
+            <strong className="mb-1 lg:text-xl lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
               {"Amigos de la biblioteca"}
             </strong>
             <p className="max-sm:text-xs mb-2  max-sm:block lg:max-sm:hidden text-center">
-              <span>
+              <span className="lg:text-lg">
                 {
                   "Un programa de voluntariado dedicado a apoyar las actividades y servicios de nuestra biblioteca local. Nuestra misión es promover la lectura recreativa y la cultura a través de la participación comunitaria y el apoyo voluntario."
                 }
@@ -85,11 +85,11 @@ const CardTypeAmiguito = () => {
         />
         <figcaption className="text-lg break-words max-w-80 px-4 l flex flex-col items-center justify-between max-sm:pb-2">
           <div className="flex flex-col items-center">
-            <strong className="mb-1 lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
+            <strong className="mb-1 lg:text-xl lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
               {"Colaboraciones"}
             </strong>
             <p className="max-sm:text-xs mb-2 max-sm:block lg:max-sm:hidden text-center">
-              <span>
+              <span className="lg:text-lg">
                 {
                   "¿Tienes alguna actividad en mente pero no sabes cómo ponerla en marcha? Puedes comunicarte con nosotros para realizar una propuesta. Será un gusto colaborar contigo. También recibimos pasantes y estudiantes que necesitan horas de trabajo comunal."
                 }

@@ -2,13 +2,15 @@ import { useState } from "react";
 import { ColecctionCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import { useQuery } from "react-query";
 import { Catalog } from "../Types/BooksTypes";
-import {getUserColection } from "../Services/BooksServices";
+import { getUserColection } from "../Services/BooksServices";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { Label, Select, TextInput } from "flowbite-react";
 import OptCategories from "../Components/OptsCategories";
 import ColectionList from "../Components/Views/ColectionList";
 import { Pagination } from "flowbite-react";
 import ListCard from "../Components/Views/ListCard";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import NoResults from "../../../components/NoResults";
 
 const AdvanceSearchColection = () => {
   const [page, setPage] = useState<number>(() => {
@@ -33,7 +35,7 @@ const AdvanceSearchColection = () => {
   const ISBN = UseDebounce(searchISBN, 3000);
   const Editorial = UseDebounce(SearchEditorial, 3000);
 
-  const { data: catalog } = useQuery<Catalog, Error>(
+  const { data: catalog, isLoading } = useQuery<Catalog, Error>(
     ["SearchColection", page, title, author, signa, category, ISBN],
     () =>
       getUserColection(
@@ -111,9 +113,18 @@ const AdvanceSearchColection = () => {
           <span> Por favor complete al menos un criterios de búsqueda </span>
         )}
       </section>
-      <section className="lg:absolute top-[20%] left-[28%] lg:right-40 h-full lg:h-[75vh] w-full lg:w-[120vh] overflow-y-scroll custom-bar px-4 py-10
-      ">
-        {catalog && catalog.count > 0 ? (
+      <section
+        className="lg:absolute top-[20%] left-[28%] lg:right-40 h-full lg:h-[75vh] w-full lg:w-[120vh] overflow-y-scroll custom-bar px-4 py-10
+      "
+      >
+        {isLoading ? (
+          <div className=" w-full flex items-center justify-center">
+            <figure>
+              <img width={400} src={Loader} alt="...Cargando" />
+              <figcaption className=" text-center">...Cargando</figcaption>
+            </figure>
+          </div>
+        ) : catalog  && catalog.count > 0 ? (
           <>
             <div className="hidden lg:block">
               <ColectionList inf={false}
@@ -130,20 +141,18 @@ const AdvanceSearchColection = () => {
                   <ListCard key={'BK' + book.BookCode} book={book} inf={false} />
                 ))}
               </div>
-                <div className="flex justify-center">
-              <Pagination
-                layout="navigation"
-                currentPage={page}
-                totalPages={MaxPage}
-                onPageChange={onPageChange}
-              />
+              <div className="flex justify-center">
+                <Pagination
+                  layout="navigation"
+                  currentPage={page}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
               </div>
             </div>
           </>
         ) : (
-          <div className="flex items-center justify-center h-96 font-bold text-2xl">
-            Lo sentimos, no existen libros
-          </div>
+          <NoResults />
         )}
       </section>
     </>

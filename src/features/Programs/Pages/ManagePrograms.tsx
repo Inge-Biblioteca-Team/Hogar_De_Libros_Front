@@ -10,6 +10,7 @@ import { ServicesCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
 import { Pagination } from "flowbite-react";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManagePrograms = () => {
   const [Oadd, SetOAdd] = useState<boolean>(false);
@@ -35,7 +36,7 @@ const ManagePrograms = () => {
   const Name = UseDebounce(SName, 100);
   const Status = UseDebounce(SStatus, 100);
 
-  const { data: Programs } = useQuery<ApiProgramsResponse, Error>(
+  const { data: Programs, isLoading } = useQuery<ApiProgramsResponse, Error>(
     ["ProgramCatalog", currentPage, currentLimit, Name, Status],
     () => GetProgramsList(currentPage, currentLimit, Name, Status),
     {
@@ -75,8 +76,14 @@ const ManagePrograms = () => {
               Añadir programa
             </Button>
           </div>
-
-          {Programs && Programs?.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : Programs ? (
             <>
               <Table hoverable className="text-center">
                 <Table.Head className="h-20 text-sm">
@@ -86,11 +93,15 @@ const ManagePrograms = () => {
                   <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:p-2 w-20">
                     Nombre del Programa
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">Descripción</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">
+                    Descripción
+                  </Table.HeadCell>
                   <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">
                     Información Relacionada
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 w-20">Estado</Table.HeadCell>
+                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 w-20">
+                    Estado
+                  </Table.HeadCell>
                   <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 before:max-sm:hidden w-20"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="h-96">
@@ -100,13 +111,13 @@ const ManagePrograms = () => {
                 </Table.Body>
               </Table>
               <div className="block max-sm:hidden">
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={Programs?.count || 0}
-              />
+                <CustomPagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={Programs?.count || 0}
+                />
               </div>
 
               <div className="sm:hidden  flex justify-center ">

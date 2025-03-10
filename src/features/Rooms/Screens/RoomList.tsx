@@ -39,7 +39,7 @@ function RoomList() {
             </Carousel>
           </div>
 
-          <div className="hidden sm:grid  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:gap-10 2xl:grid-cols-3 xl: gap-5 lg:w-[1024px] items-center justify-center">
+          <div className="hidden sm:grid lg:w-[1280px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:gap-10 2xl:grid-cols-3 xl: gap-5  items-center justify-center">
             {Rooms.data.map((rooms: Room) => (
               <RoomCard Rooms={rooms} key={"RO" + rooms.roomId} />
             ))}

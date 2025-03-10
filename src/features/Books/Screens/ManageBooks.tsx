@@ -14,6 +14,7 @@ import BookTable from "../Components/BookTable";
 import { LuClipboardSignature } from "react-icons/lu";
 import { getColection } from "../Services/BooksServices";
 import { Pagination } from "flowbite-react";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageBooks = ({ loans }: { loans?: boolean }) => {
   const [open, setOpen] = useState(false);
@@ -31,7 +32,7 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
   });
   const [limit, setLimit] = useState<number>(5);
 
-  const { data: Catalog } = useQuery<Catalog, Error>(
+  const { data: Catalog, isLoading } = useQuery<Catalog, Error>(
     ["colection", page, limit, title, author, status, signa],
     () => getColection(page, limit, title, author, "", status, signa),
     {
@@ -64,7 +65,6 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
               placeholder="Búsqueda por titulo"
             />
             <TextInput
-              
               onChange={(event) => (
                 setSearchAuthor(event.target.value), setPage(1)
               )}
@@ -73,7 +73,6 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
               placeholder="Búsqueda por autor"
             />
             <TextInput
-              
               onChange={(event) => (
                 setSearchSigna(event.target.value), setPage(1)
               )}
@@ -81,7 +80,6 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
               placeholder="Código de signatura"
             />
             <Select
-              
               onChange={(event) => (setStatus(event.target.value), setPage(1))}
             >
               <option value="">Estado</option>
@@ -89,35 +87,50 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
               <option value="0">Baja</option>
             </Select>
           </div>
-          <Button className="md:w-full lg:w-auto" color={"blue"} onClick={() => setOpen(true)}>
+          <Button
+            className="md:w-full lg:w-44"
+            color={"blue"}
+            onClick={() => setOpen(true)}
+          >
             Añadir nuevo libro
           </Button>
         </section>
+
         <section className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:px-2">
-          {Catalog && (
+          {isLoading ? (
+            
+            <div className="w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className="text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : Catalog ? (
             <>
-            <div className=" ">
-              <BookTable catalog={Catalog} />
+              <div className=" ">
+                <BookTable catalog={Catalog} />
               </div>
               <div className="block max-sm:hidden">
-              <CustomPagination
-                page={page}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setLimit}
-                total={Catalog.count}
-              />
+                <CustomPagination
+                  page={page}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setLimit}
+                  total={Catalog.count}
+                />
               </div>
 
               <div className="sm:hidden  flex justify-center ">
-              <Pagination
-                layout="navigation"
-                currentPage={page}
-                totalPages={MaxPage}
-                onPageChange={onPageChange}
-              />
+                <Pagination
+                  layout="navigation"
+                  currentPage={page}
+                  totalPages={MaxPage}
+                  onPageChange={onPageChange}
+                />
               </div>
             </>
+          ) : (
+            <p className="text-center">No hay datos disponibles.</p>
           )}
         </section>
       </main>

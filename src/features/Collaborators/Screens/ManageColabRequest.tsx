@@ -11,6 +11,7 @@ import OptSubCategory from "../Components/OptSubCategory";
 import { ColabCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import NoResults from "../../../components/NoResults";
 import { Pagination } from "flowbite-react";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageColabRequest = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -23,7 +24,10 @@ const ManageColabRequest = () => {
   const [subCategory, setSubCategory] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
-  const { data: ColaborationsList } = useQuery<ColaboratorsList, Error>(
+  const { data: ColaborationsList, isLoading } = useQuery<
+    ColaboratorsList,
+    Error
+  >(
     ["ColaborationsList", Page, Limit, category, subCategory, date],
     () => GetColabs(Page, Limit, category, subCategory, date, "Pendiente"),
     {
@@ -48,13 +52,13 @@ const ManageColabRequest = () => {
               <OptMainCategory />
             </Select>
           </div>
-          <div >
+          <div>
             <Label value="Categoría secundaria" />
             <Select onChange={(event) => setSubCategory(event.target.value)}>
               <OptSubCategory />
             </Select>
           </div>
-          <div >
+          <div>
             <Label value="Fecha de colaboración" />
             <TextInput
               type="date"
@@ -63,7 +67,14 @@ const ManageColabRequest = () => {
           </div>
         </section>
         <section className=" w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full  max-sm:px-2">
-          {ColaborationsList && ColaborationsList.count > 0 ? (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : ColaborationsList ? (
             <>
               <ColabsTableBody hiid>
                 {ColaborationsList?.data.map((colab) => (
@@ -71,13 +82,13 @@ const ManageColabRequest = () => {
                 ))}
               </ColabsTableBody>
               <div className="block max-sm:hidden">
-              <CustomPagination
-                page={Page}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={ColaborationsList?.count || 0}
-              />
+                <CustomPagination
+                  page={Page}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={ColaborationsList?.count || 0}
+                />
               </div>
               <div className="sm:hidden  flex justify-center ">
                 <Pagination

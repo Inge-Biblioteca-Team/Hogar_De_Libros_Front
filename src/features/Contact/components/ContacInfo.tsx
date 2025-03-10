@@ -1,7 +1,7 @@
 const ContacInfo = () => {
   return (
     <aside className=" lg:w-1/2">
-      <p className="text-xl max-sm:text-sm">
+      <p className="text-xl lg:text-2xl max-sm:text-sm">
         <span className=" lg:max-sm:hidden">
           Bienvenido a nuestra sección de contacto, donde nos encanta escuchar
           de ti. ¿Tienes alguna pregunta o sugerencia? Estamos aquí para

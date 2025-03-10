@@ -3,7 +3,12 @@ import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from "react-query";
 import { GetStatus } from "../../Loan/Services/SvComputerLoan";
 import { Card } from "flowbite-react";
-import { BreadCrumbsItems, BreadLastItems } from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import {
+  BreadCrumbsItems,
+  BreadLastItems,
+} from "../../../components/Breadcrumbs/BreadCrumbsItems";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import NoResults from "../../../components/NoResults";
 
 type ComputerStatus = {
   Status: string;
@@ -16,7 +21,7 @@ const conditionColors: { [key: string]: string } = {
   Mantenimiento: "text-yellow-500",
 };
 const AvailableComputers = () => {
-  const { data: computers } = useQuery<ComputerStatus[], Error>(
+  const { data: computers, isLoading } = useQuery<ComputerStatus[], Error>(
     ["WSStatus"],
     () => GetStatus(),
     {
@@ -26,8 +31,7 @@ const AvailableComputers = () => {
   return (
     <>
       <BreadCrumbsItems>
-      <BreadLastItems text="Disponibilidad de equipos de cómputo" />
-      
+        <BreadLastItems text="Disponibilidad de equipos de cómputo" />
       </BreadCrumbsItems>
       <div className=" flex  flex-col lg:flex-row items-center justify-center mt-10">
         <Card className="m-4 lg:text-md tex">
@@ -76,24 +80,37 @@ const AvailableComputers = () => {
             </ul>
           </p>
         </Card>
-        <div className="w-full ">
-          <div className="grid lg:grid-cols-4 grid-cols-3 mr-10 ml-10 lg:ml-0 lg:mr-0 gap-x-4 grid-rows-5 w-4/5 gap-y-6">
-            {computers?.map((computer) => (
-              <div
-                key={computer.MachineNumber}
-                className="flex flex-col-reverse items-center p-2"
-              >
-                <div className={`text-6xl ${conditionColors[computer.Status]}`}>
-                  <FontAwesomeIcon icon={faDesktop} />
-                </div>
-                <div className="text-black font-semibold text-xl">
-                  PC-
-                  {computer.MachineNumber}
-                </div>
-              </div>
-            ))}
+        {isLoading ? (
+          <div className=" w-full flex items-center justify-center">
+            <figure>
+              <img width={400} src={Loader} alt="...Cargando" />
+              <figcaption className=" text-center">...Cargando</figcaption>
+            </figure>
           </div>
-        </div>
+        ) : computers ? (
+          <div className="w-full ">
+            <div className="grid lg:grid-cols-4 grid-cols-3 mr-10 ml-10 lg:ml-0 lg:mr-0 gap-x-4 grid-rows-5 w-4/5 gap-y-6">
+              {computers?.map((computer) => (
+                <div
+                  key={computer.MachineNumber}
+                  className="flex flex-col-reverse items-center p-2"
+                >
+                  <div
+                    className={`text-6xl ${conditionColors[computer.Status]}`}
+                  >
+                    <FontAwesomeIcon icon={faDesktop} />
+                  </div>
+                  <div className="text-black font-semibold text-xl">
+                    PC-
+                    {computer.MachineNumber}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <NoResults />
+        )}
       </div>
     </>
   );

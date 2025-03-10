@@ -13,6 +13,7 @@ import {
 import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
 import { Pagination } from "flowbite-react";
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageUsers = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -39,7 +40,7 @@ const ManageUsers = () => {
   const SCedula = UseDebounce(cedula, 500);
   const SYear = UseDebounce(year, 100);
 
-  const { data: Users } = useQuery<UsersResponse, Error>(
+  const { data: Users, isLoading } = useQuery<UsersResponse, Error>(
     ["UsersMG", currentPage, currentLimit, SName, SCedula, rol, SYear],
     () => GetUsersList(currentPage, currentLimit, SCedula, SName, rol, SYear),
     {
@@ -56,24 +57,48 @@ const ManageUsers = () => {
       <div className=" flex place-content-center">
         <div className="w-4/5 md:w-full md:pr-4 md:pl-4 flex flex-col items-center justify-center pt-1 max-sm:w-full max-sm:p-2 gap-2">
           <div className="max-sm:w-full sm:w-full md:w-full flex justify-center max-sm:pb-8">
-          <SearchUsers
-            setYear={setYear}
-            setRol={setRol}
-            setCedula={setCedula}
-            setName={setName}
-          />
+            <SearchUsers
+              setYear={setYear}
+              setRol={setRol}
+              setCedula={setCedula}
+              setName={setName}
+            />
           </div>
-          {Users && Users.count > 0 ?  (
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : Users ? (
             <>
-              <Table hoverable className=" text-center min-h-[30rem] max-sm:text-sm max-sm:justify-center">
+              <Table
+                hoverable
+                className=" text-center min-h-[30rem] max-sm:text-sm max-sm:justify-center"
+              >
                 <Table.Head className=" bg-white">
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Cédula</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">Nombre</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Rol</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Provincia</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Teléfono</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Fecha de registro</Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">Estado</Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">
+                    Cédula
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">
+                    Nombre
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">
+                    Rol
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
+                    Provincia
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
+                    Teléfono
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
+                    Fecha de registro
+                  </Table.HeadCell>
+                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">
+                    Estado
+                  </Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
@@ -83,13 +108,13 @@ const ManageUsers = () => {
                 </Table.Body>
               </Table>
               <div className="block w-full max-sm:hidden">
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={Users?.count || 0}
-              />
+                <CustomPagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  totalPages={MaxPage}
+                  setCurrentLimit={setCurrentLimit}
+                  total={Users?.count || 0}
+                />
               </div>
               <div className="sm:hidden  flex justify-center ">
                 <Pagination
@@ -100,8 +125,7 @@ const ManageUsers = () => {
                 />
               </div>
             </>
-          ):
-          (
+          ) : (
             <NoResults />
           )}
         </div>
