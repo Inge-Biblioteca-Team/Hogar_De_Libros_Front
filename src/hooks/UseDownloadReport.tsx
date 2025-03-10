@@ -1,7 +1,6 @@
 import { useMutation } from "react-query";
 import { downloadLoanReport } from "../Services/Reports";
 import toast from "react-hot-toast";
-import { ApiError } from "../Types/ApiTypes";
 
 const UseDownloadReport = () => {
   return useMutation({
@@ -15,9 +14,9 @@ const UseDownloadReport = () => {
       reportType: string;
     }) =>
       toast.promise(downloadLoanReport(startDate, endDate, reportType), {
-        loading: "Generando reporte porfavor...",
+        loading: "Generando reporte porfavor espere...",
         success: <span>Reporte generado con exito.</span>,
-        error: (error: ApiError) => (
+        error: (error: Error) => (
           <span>Error al generar reporte: {error.message}</span>
         ),
       }),
