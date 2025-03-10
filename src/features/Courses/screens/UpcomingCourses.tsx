@@ -28,7 +28,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
     <>
       {Courses && Courses.count > 0 && (
         <section
-          className=" flex items-center max-sm:pr-4 max-sm:pl-4 md:w-full   max-sm:w-full gap-8 w-4/5 flex-col "
+          className=" flex items-center max-sm:pr-4 md:pl-0 md:pr-0 max-sm:pl-4 md:w-full w-full pl-16 pr-16 lg:w-full lg:pr-16  lg:pl-16   max-sm:w-full gap-8  flex-col "
           id="Courses"
         >
           <h2 className=" font-bold text-2xl 2xl:text-4xl lg:text-4xl ">

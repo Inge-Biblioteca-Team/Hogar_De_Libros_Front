@@ -6,15 +6,22 @@ const GeneralInfo = () => {
   const computerCount = 20; //Se cambia por un conteo de los equipos inventariados, con un estado activo
 
   return (
-    <div className=" lg:grid lg:grid-cols-3 lg:max-w-4xl lg:gap-6 max-sm:max-w-full m
-    flex flex-col 2xl:max-w-screen-2xl 2xl:gap-20 xl:max-w-screen-xl xl:ml-36 xl:mr-36 xl:gap-20 lg:w-full lg:pl-32 lg:pr-32   ">
+    <div
+      className=" lg:grid lg:grid-cols-3 grid-cols-3 lg:max-w-4xl lg:gap-6 max-sm:max-w-full m
+    flex flex-col 2xl:max-w-screen-2xl 2xl:gap-20 xl:max-w-screen-xl xl:ml-36 xl:mr-36 xl:gap-20 lg:w-full lg:pl-14 lg:pr-14 pl-14 pr-14
+    max-sm:pl-0 max-sm:pr-0 md:pl-0 md:pr-0 "
+    >
       <GeneralComputerInfo />
-      <div className="flex max-sm:pr-2 max-sm:pl-2 lg:justify-between flex-col max-sm:text-sm md:items-center lg:max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl
-       m-2 lg:m-0 md:p-2">
+      <div
+        className="flex max-sm:pr-2 max-sm:pl-2 lg:justify-between flex-col max-sm:text-sm md:items-center lg:w-full max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl
+       m-2 lg:m-0 md:p-2"
+      >
         <p>
-          <strong className="2xl:text-3xl lg:text-lg">Acceso a computadoras, </strong>
+          <strong className="2xl:text-3xl lg:text-lg">
+            Acceso a computadoras,{" "}
+          </strong>
           <span className="2xl:text-3xl lg:text-lg">
-             la biblioteca cuenta con <strong>{computerCount}</strong>{" "}
+            la biblioteca cuenta con <strong>{computerCount}</strong>{" "}
             computadoras las cuales están a disposición de los usuarios de la
             biblioteca.
             <span className=" lg:text-lg hidden 2xl:text-3xl max-sm:block">
@@ -34,7 +41,12 @@ const GeneralInfo = () => {
         </p>
         <div className="m-4   lg:m-0">
           <Link to={"/HogarDeLibros/Equipo_Disponible"}>
-            <Button className="md:w-52 2xl:w-72 2xl:h-14 2xl:items-center text-2xl  " color={"blue"}>Ver mas información</Button>
+            <Button
+              className="md:w-52 2xl:w-72 2xl:h-14 2xl:items-center text-2xl  "
+              color={"blue"}
+            >
+              Ver mas información
+            </Button>
           </Link>
         </div>
       </div>

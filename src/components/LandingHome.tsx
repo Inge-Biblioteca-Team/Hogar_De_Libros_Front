@@ -15,8 +15,8 @@ const LandingHome = () => {
       "
     >
       <LandingBanner />
-      <div className=" m-2 lg:m-0 lg:w-4/5 max-sm:pr-2 max-sm:pl-2">
-        <div className=" grid max-sm:grid-cols-2 gap-4 mt-10 md:grid-cols-2 lg:grid-cols-4">
+      <div className=" m-2 md:w-full md:pl-2 md:pr-2 w-full lg:m-0 pr-20 pl-20 lg:pl-20 lg:pr-20 max-sm:pr-2 max-sm:pl-2">
+        <div className=" grid max-sm:grid-cols-2 gap-4 mt-10 md:grid-cols-2  lg:grid-cols-4">
           <LandingHomeCards
             Icon={faBookOpen}
             Title="catalogo de libros"

@@ -19,15 +19,15 @@ const LocalArtistList = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setItemsPerGroup(1); 
+        setItemsPerGroup(1);
       } else if (window.innerWidth >= 640 && window.innerWidth < 1024) {
-        setItemsPerGroup(2); 
+        setItemsPerGroup(2);
       } else {
-        setItemsPerGroup(5); 
+        setItemsPerGroup(5);
       }
     };
 
-    handleResize(); 
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
@@ -47,17 +47,18 @@ const LocalArtistList = () => {
     <>
       {LArtists && LArtists.count > 0 && (
         <section
-          className="flex md:w-full md:pl-2 md:pr-2 gap-6 items-center max-sm:pr-4 max-sm:pl-4  max-sm:w-full  w-4/5 flex-col "
+          className="flex md:w-full md:pl-2 md:pr-2 gap-6 items-center max-sm:pr-4 max-sm:pl-4  max-sm:w-full  w-full lg:pr-16 lg:pl-16 pr-16 pl-16 flex-col "
           id="Courses"
         >
-          <h2 className="2xl:text-4xl font-bold text-2xl lg:text-4xl pb-4">Artistas locales</h2>
+          <h2 className="2xl:text-4xl font-bold text-2xl lg:text-4xl pb-4">
+            Artistas locales
+          </h2>
           <Carousel
-          className="h-[32rem] md:h-[32rem] md:w-full"
+            className="h-[32rem] md:h-[32rem] md:w-full"
             indicators={false}
             pauseOnHover
             leftControl
             rightControl
-         
           >
             {groupedArtist.map((group, groupIndex) => (
               <div key={groupIndex} className=" flex justify-center   gap-x-4">

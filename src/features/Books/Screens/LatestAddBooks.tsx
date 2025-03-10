@@ -50,14 +50,15 @@ const LatestAddBooks = () => {
     <>
       {catalog && catalog?.count > 0 && (
         <section
-          className="m-5 flex items-center w-4/5 flex-col max-sm:w-full md:w-full max-sm:pr-5 max-sm:pl-5 max-sm:m-0"
+          className="m-5 flex items-center w-full lg:w-full lg:pr-20 lg:pl-20 pr-20 pl-20 flex-col max-sm:w-full md:w-full max-sm:pr-5 max-sm:pl-5 max-sm:m-0
+          md:pr-0 md:pl-0"
           id="MostPopularBooks"
         >
           <h2 className="font-bold 2xl:text-4xl lg:text-4xl pb-4 text-2xl text-center">
             Últimos libros añadidos a la colección
           </h2>
           <Carousel
-            className="h-[25rem] md:w-full"
+            className="h-[25rem] w-full lg:w-full md:w-full"
             indicators={false}
             pauseOnHover
             leftControl

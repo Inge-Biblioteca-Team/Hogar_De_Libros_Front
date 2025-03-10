@@ -3,7 +3,7 @@ import InfoFeedback from "../components/InfoFeedback";
 
 const Feedback = () => {
   return (
-    <section className="w-4/5 md:w-full md:pr-2 md:pl-2 max-sm:w-full max-sm:pl-4 max-sm:pr-4 flex flex-col items-center justify-center">
+    <section className="w-full  pr-16 pl-16 lg:w-full lg:pr-16 lg:pl-16 md:w-full md:pr-2 md:pl-2 max-sm:w-full max-sm:pl-4 max-sm:pr-4 flex flex-col items-center justify-center">
       <h2 className="text-center font-bold 2xl:text-4xl text-2xl pb-8 lg:text-4xl ">
         Recomendaciones sobre el servicio
       </h2>
