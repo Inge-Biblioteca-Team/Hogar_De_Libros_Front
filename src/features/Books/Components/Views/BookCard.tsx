@@ -14,7 +14,7 @@ const BookCard = ({ book }: { book: Book }) => {
         trigger="hover"
         placement="right"
         content={
-          <Card className=" h-56 p0 w-64">
+          <Card className=" h-56 p0 w-64 md:w-full">
             <div className=" flex flex-col justify-between ml-4">
               <div className=" line-clamp-2">
                 <Label value={` Titulo: ${book.Title}`} />
@@ -42,11 +42,11 @@ const BookCard = ({ book }: { book: Book }) => {
           </Card>
         }
       >
-        <figure>
+        <figure className="md:w-full md:pl-2 md:pr-2">
           <img
             src={book.Cover}
             alt={book.Title}
-            className=" rounded-t-2xl h-80 w-52"
+            className="md:w-full rounded-t-2xl h-80 w-52"
           />
           <figcaption className="w-full">
             {isLogged && (

@@ -47,19 +47,20 @@ const LocalArtistList = () => {
     <>
       {LArtists && LArtists.count > 0 && (
         <section
-          className="flex gap-6 items-center max-sm:pr-4 max-sm:pl-4  max-sm:w-full  w-4/5 flex-col "
+          className="flex md:w-full md:pl-2 md:pr-2 gap-6 items-center max-sm:pr-4 max-sm:pl-4  max-sm:w-full  w-4/5 flex-col "
           id="Courses"
         >
           <h2 className="2xl:text-4xl font-bold text-2xl lg:text-4xl pb-4">Artistas locales</h2>
           <Carousel
+          className="h-[32rem] md:h-[32rem] md:w-full"
             indicators={false}
             pauseOnHover
             leftControl
             rightControl
-            style={{ height: "32rem" }}
+         
           >
             {groupedArtist.map((group, groupIndex) => (
-              <div key={groupIndex} className=" flex justify-center  gap-x-4">
+              <div key={groupIndex} className=" flex justify-center   gap-x-4">
                 {group.map((artist) => (
                   <CardArtistL key={"Art" + artist.ID} artist={artist} />
                 ))}

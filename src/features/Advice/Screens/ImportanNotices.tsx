@@ -18,7 +18,7 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
   );
   return (
     <section
-      className="relative max-sm:max-w-full max-sm:pr-4 max-sm:pl-4 lg:max-w-7xl mx-auto md:w-4/5  mt-10"
+      className="relative md:w-full max-sm:max-w-full max-sm:pr-4 max-sm:pl-4 lg:max-w-7xl mx-auto  mt-10"
       id="Activities"
     >
       {Advices && Advices.count > 0 ? (
@@ -32,7 +32,7 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
             </h4>
           )}
           <Carousel
-            className="Custom-Carousel h-[28rem]  "
+            className="Custom-Carousel md:w-full md:h-full md:pl-2 md:pr-2 h-[28rem]  "
             indicators={false}
             pauseOnHover
             
