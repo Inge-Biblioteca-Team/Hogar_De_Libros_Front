@@ -14,8 +14,11 @@ const AmiguitosInfo = ({ home }: { home?: boolean }) => {
           hacerlos aquí te comentamos como.
         </h4>
       )}
-      <article className="lg:hidden xl:hidden 2xl:hidden w-full md:w-full lg:w-full flex overflow-x-scroll justify-center lg:justify-center lg:overflow-hidden lg:gap-6 scroll">
-        <div className="grid lg:w-full w-full grid-flow-col max-sm:auto-cols-[87%] max-sm:pl-14 max-sm:gap-x-10  md:pl-2 md:pr-2  md:auto-cols-[100%]  lg:auto-cols-fr gap-8">
+      <article className="lg:hidden xl:hidden 2xl:hidden w-full md:w-full  flex overflow-x-scroll justify-center scroll">
+        <div
+          className=" max-sm:w-full max-sm:pl-4 max-sm:pr-4  gap-6
+        md:w-full md:pl-2  grid grid-flow-col auto-cols-[99%] "
+        >
           <CardTypeAmiguito />
         </div>
       </article>
