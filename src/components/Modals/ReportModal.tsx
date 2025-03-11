@@ -7,6 +7,7 @@ const reportDescriptions: Record<string, string> = {
   BL: "préstamo de Libros",
   CO: "cursos",
   EV: "eventos",
+  AS:'asistencia'
 };
 
 const ReportModal = ({
