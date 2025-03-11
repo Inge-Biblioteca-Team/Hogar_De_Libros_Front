@@ -38,6 +38,7 @@ export type ActivesCounts = {
   Equipos: number;
   Amigos: number;
   Usuarios: number;
+  AsistenciaMes: number
 };
 
 export type weekItems = {

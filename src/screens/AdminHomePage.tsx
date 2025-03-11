@@ -71,7 +71,7 @@ const AdminHomePage = () => {
               counter={Activitiescounts?.PrestamosExitosos || 0}
               text="Préstamos de libro"
               children={
-                <div className="p-3 flex flex-col gap-3">
+                <div className="p-3 flex flex-col gap-3 items-start">
                   <Link
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Catalogo/Completo"}
@@ -92,6 +92,7 @@ const AdminHomePage = () => {
                   </Link>
                   <button
                       type="button"
+                      className="hover:text-Body"
                       onClick={() => (setReportType("BL"), setOpen(true))}
                     >
                       Generar reporte
@@ -115,22 +116,18 @@ const AdminHomePage = () => {
             />
 
             <CounterCard
-              counter={GeneralCounts?.Amigos || 0}
-              text="Amigos"
+              counter={GeneralCounts?.AsistenciaMes || 0}
+              text="Asistencia del mes"
               children={
                 <div className="p-3 flex flex-col gap-3">
-                  <Link
-                    className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
-                  >
-                    Ir a solicitudes de amigos
-                  </Link>
-                  <Link
-                    className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
-                  >
-                    Ir a amigos de la biblioteca
-                  </Link>
+                   <button
+                      type="button"
+                      className="hover:text-Body"
+                      onClick={() => (setReportType("AS"), setOpen(true))}
+                    >
+                      Generar reporte
+                    </button>
+                 
                 </div>
               }
             />
