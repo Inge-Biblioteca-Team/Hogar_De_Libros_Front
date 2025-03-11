@@ -15,22 +15,22 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
   );
 
   const [itemsPerGroup, setItemsPerGroup] = useState(4);
-  
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setItemsPerGroup(1); 
+        setItemsPerGroup(1);
       } else if (window.innerWidth >= 640 && window.innerWidth < 1024) {
-        setItemsPerGroup(2); 
+        setItemsPerGroup(2);
       } else {
-        setItemsPerGroup(3); 
+        setItemsPerGroup(3);
       }
     };
 
-    handleResize(); 
+    handleResize();
     window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize); 
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const chunkArray = (arr: Program[], size: number): Program[][] => {
@@ -46,10 +46,13 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
     <>
       {Programs && Programs?.count > 0 && (
         <section
-          className="flex items-center max-sm:w-full max-sm:h-full lg:gap-8 w-4/5 flex-col max-sm:m-0 "
+          className="flex h-full md:w-full pr-16 pl-16 items-center max-sm:w-full max-sm:h-full lg:gap-8 w-full lg:w-full lg:pr-16 lg:pl-16  flex-col max-sm:m-0
+          max-sm:pl-0 max-sm:pr-0 md:pl-0 md:pr-0 "
           id="Programs"
         >
-          <h2 className="2xl:text-4xl font-bold text-2xl lg:text-4xl pb-4">Nuestros programas</h2>
+          <h2 className="2xl:text-4xl font-bold text-2xl lg:text-4xl pb-4">
+            Nuestros programas
+          </h2>
           {home && (
             <h3 className=" text-center text-md">
               La biblioteca cuenta con diversos programas los cuales tienen
@@ -61,10 +64,13 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
             pauseOnHover
             leftControl
             rightControl
-            className="w-[64rem] lg:w-[80rem] max-sm:w-full max-sm:h-[500px] "
+            className="w-[64rem] lg:w-full md:w-full md:h-[30rem] md:pl-2 md:pr-2  max-sm:w-full max-sm:h-[500px] "
           >
             {groupedProgram.map((group, groupIndex) => (
-              <div key={groupIndex} className=" flex justify-center max-sm:h-full lg:h-full  max-sm:pr-4 max-sm:pl-4 lg:gap-x-4">
+              <div
+                key={groupIndex}
+                className=" flex md:gap-4 md:h-full md:w-full justify-center max-sm:h-full lg:h-full lg:w-full  max-sm:pr-4 max-sm:pl-4 lg:gap-x-4"
+              >
                 {group.map((program) => (
                   <CardProgram
                     key={"PR" + program.programsId}

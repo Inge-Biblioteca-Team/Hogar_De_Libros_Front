@@ -8,63 +8,65 @@ import {
 
 const CardArtistL = ({ artist }: { artist: Artist }) => {
   return (
-    <Card className="2xl:w-full 2xl:h-full max-sm:h- max-sm:w-full">
-      <figure className="flex flex-col justify-between items-center">
+    <Card className="w-full flex flex-col justify-between shadow-lg">
+      
+      <figure className="w-full flex justify-center">
         <img
-          className="lg:h-64 max-sm:w-full lg:w-80 mb-8 border-t border-transparent rounded-t-md object-cover
-          max-sm:h-48 2xl:w-full 2xl:h-80 2xl:pt-6 max-sm:rounded-md max-sm:mb-0"
+          className="w-full h-60 object-cover rounded-t-md max-sm:h-48 md:w-full lg:w-80 2xl:w-full"
           src={artist.Cover}
           alt={artist.Name}
         />
-        <div className="flex flex-col justify-between items-center">
-          <figcaption
-            className="text-lg break-words max-w-80 px-4  text-center
-          max-sm:pt-7 max-sm:text-center max-sm:text-sm max-sm:h-auto flex flex-col justify-between items-center p-3
-          max-sm:flex-wrap max-sm:overflow-hidden max-sm:gap-2 flex-grow "
-          >
-            <strong className="lg:text-xl">{artist.Name}</strong>
-            <span className="text-gray-600 text-sm lg:text-base">
-              {artist.ArtisProfession}
-            </span>
-            <div className="  max-sm:h-[50px] flex items-center">
-              {artist.MoreInfo && (
-                <p className="text-gray-500  text-sm line-clamp-3 lg:line-clamp-2 max-sm:overflow-hidden max-sm:text-ellipsis max-sm:w-full">
-                  {artist.MoreInfo}
-                </p>
-              )}
-            </div>
-            <ButtonGroup className="mt-4 max-sm:mt-2">
-              {artist.FBLink && (
-                <Button
-                  className="bg-transparent hover:text-gray-700"
-                  color="grey"
-                  href={artist.FBLink}
-                >
-                  <FaFacebookSquare size={30} />
-                </Button>
-              )}
-              {artist.IGLink && (
-                <Button
-                  className="bg-transparent hover:text-gray-700"
-                  color="grey"
-                  href={artist.IGLink}
-                >
-                  <FaInstagramSquare size={30} />
-                </Button>
-              )}
-              {artist.LILink && (
-                <Button
-                  className="bg-transparent hover:text-gray-700"
-                  color="grey"
-                  href={artist.LILink}
-                >
-                  <FaLinkedin size={30} />
-                </Button>
-              )}
-            </ButtonGroup>
-          </figcaption>
-        </div>
       </figure>
+
+
+      <figcaption className="flex flex-col flex-grow justify-between items-center text-center px-4 py-3">
+        <div className="flex flex-col items-center">
+          <strong className="text-lg lg:text-xl">{artist.Name}</strong>
+          <span className="text-gray-600 text-sm lg:text-base">
+            {artist.ArtisProfession}
+          </span>
+        </div>
+
+      
+        <div className="flex-grow overflow-hidden">
+          {artist.MoreInfo && (
+            <p className="text-gray-500 text-sm line-clamp-3 lg:line-clamp-4">
+              {artist.MoreInfo}
+            </p>
+          )}
+        </div>
+
+   
+        <ButtonGroup className="mt-4 flex justify-center">
+          {artist.FBLink && (
+            <Button
+              className="bg-transparent hover:text-gray-700"
+              color="grey"
+              href={artist.FBLink}
+            >
+              <FaFacebookSquare size={25} />
+            </Button>
+          )}
+          {artist.IGLink && (
+            <Button
+              className="bg-transparent hover:text-gray-700"
+              color="grey"
+              href={artist.IGLink}
+            >
+              <FaInstagramSquare size={25} />
+            </Button>
+          )}
+          {artist.LILink && (
+            <Button
+              className="bg-transparent hover:text-gray-700"
+              color="grey"
+              href={artist.LILink}
+            >
+              <FaLinkedin size={25} />
+            </Button>
+          )}
+        </ButtonGroup>
+      </figcaption>
     </Card>
   );
 };

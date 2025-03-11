@@ -16,7 +16,7 @@ const LandingBanner = () => {
   };
   return (
     <div
-      className="w-full flex flex-col justify-center items-center bg-cover bg-center gap-6 h-96 text-slate-50 
+      className="w-full -mt-5 flex flex-col justify-center items-center bg-cover bg-center gap-6 h-96 text-slate-50 
        "
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.01),90%, #dfe2e6), url(${"https://sicultura-live.s3.amazonaws.com/public/media/nicoyafachada1.jpg"})`,

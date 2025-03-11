@@ -17,7 +17,7 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
     <>
       {events && events.count > 0 && (
         <section
-          className="relative max-sm:w-full lg:max-w-7xl w-full max-w-6xl mx-auto md:w-4/5 max-sm:pr-4 max-sm:pl-4"
+          className="relative  md:w-full max-sm:w-full lg:w-full lg:pr-20 lg:pl-20 w-full pl-20 pr-20  md:pl-2 md:pr-2 max-sm:pr-4 max-sm:pl-4"
           id="Events"
         >
           <h2 className="text-2x text-center font-bold text-2xl mb-6 lg:text-4xl pb-4">
@@ -31,7 +31,7 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
           )}
           <article>
             <Carousel
-              className="Custom-Carousel  h-[28rem] max-sm:h-[23rem]"
+              className="Custom-Carousel w-full lg:w-full h-[28rem] max-sm:h-[23rem]"
               pauseOnHover
               indicators={false}
              
