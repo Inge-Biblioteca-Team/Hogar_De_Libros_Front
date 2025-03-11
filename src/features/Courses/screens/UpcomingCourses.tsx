@@ -28,23 +28,31 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
     <>
       {Courses && Courses.count > 0 && (
         <section
-          className=" flex items-center max-sm:pr-4 max-sm:pl-4   max-sm:w-full gap-8 w-4/5 flex-col "
+          className=" flex items-center max-sm:pr-4 md:pl-0 md:pr-0 max-sm:pl-4 md:w-full w-full pl-16 pr-16 lg:w-full lg:pr-16  lg:pl-16   max-sm:w-full gap-8  flex-col "
           id="Courses"
         >
-          <h2 className=" font-bold text-2xl 2xl:text-4xl lg:text-4xl ">Cursos disponibles</h2>
-          {home&&
-          <h4 className=" text-center text-md mb-2">Ven a pasar un tiempo especial junto a nosotros. Al mismo tiempo que aprendes cosas nuevas.</h4>
-          }
+          <h2 className=" font-bold text-2xl 2xl:text-4xl lg:text-4xl ">
+            Cursos disponibles
+          </h2>
+          {home && (
+            <h4 className=" text-center text-md mb-2">
+              Ven a pasar un tiempo especial junto a nosotros. Al mismo tiempo
+              que aprendes cosas nuevas.
+            </h4>
+          )}
           <Carousel
             indicators={false}
             pauseOnHover
             leftControl
             rightControl
-            className="max-sm:w-full"
+            className="max-sm:w-full h-[30rem] md:w-full md:h-full"
             style={{ height: "30rem" }}
           >
             {groupedCourses.map((group, groupIndex) => (
-              <div key={groupIndex} className=" flex justify-center max-sm:w-full max-sm:gap-20 gap-x-4">
+              <div
+                key={groupIndex}
+                className=" flex justify-center md:pr-2 md:pl-2 md:w-full md:h-full max-sm:w-full max-sm:gap-20 gap-x-4"
+              >
                 {group.map((course) => (
                   <CardCourses Courses={course} key={"CO" + course.Id} />
                 ))}

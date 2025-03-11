@@ -13,7 +13,7 @@ const OPACAsistencia = ({ open, setOpen }: ModalOpen)=> {
           <TextInput type="number" />
         </div>
         <div>
-          <label className="block mb-2">Nombre Completo</label>
+          <label className="block mb-2">Nombre completo</label>
           <TextInput />
         </div>
         <div className="lg:col-span-2">

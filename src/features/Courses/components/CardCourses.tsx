@@ -25,8 +25,8 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
 
   return (
     <>
-      <Card className="p0 2xl:w-full max-sm:w-full">
-        <figure>
+      <Card className="p0 2xl:w-full max-sm:w-full md:h-full md:w-full">
+        <figure className="md:flex md:flex-col md:justify-between md:h-full">
           <img
             className="h-40 w-full object-fill rounded-t-lg
             max-sm:h-48 max-sm:rounded-md"
@@ -59,7 +59,11 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
                 </span>
               )}
               <div className=" flex justify-center items-center mt-3">
-                <Button className="" color={"blue"} onClick={() => setopen(true)}>
+                <Button
+                  className=""
+                  color={"blue"}
+                  onClick={() => setopen(true)}
+                >
                   Matricula ahora
                 </Button>
               </div>
