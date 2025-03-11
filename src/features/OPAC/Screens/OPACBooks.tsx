@@ -66,7 +66,7 @@ const OPACBooks = () => {
           <Sidebar className="max-sm:w-full md:w-full lg:w-auto xl:w-auto xl:p-0 2xl:w-auto 2xl:p-0 lg:p-0 md:pl-2 md:pr-2 max-sm:pl-2 max-sm:pr-2">
             <Sidebar.Items>
               <Sidebar.ItemGroup className="custom-Group ">
-                <span className=" text-lg">Categoria</span>
+                <span className=" text-lg">Categoría</span>
                 <>
                   {categories &&
                     categories
@@ -89,7 +89,7 @@ const OPACBooks = () => {
               </Sidebar.ItemGroup>
               <Sidebar.ItemGroup>
                 <Sidebar.Item>
-                  <Label value="Titulo" />
+                  <Label value="Título" />
                   <TextInput
                     onChange={(event) => {
                       setTitle(event?.target.value), setPage(1);
