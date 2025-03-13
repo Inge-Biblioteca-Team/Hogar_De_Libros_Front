@@ -3,9 +3,11 @@ import { useQuery } from "react-query";
 import { ApiEventsResponse } from "../types/Events";
 import { GetNextEvents } from "../services/SvEvents";
 import { Carousel } from "flowbite-react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const UpcomingEvents = ({ home }: { home?: boolean }) => {
-  const { data: events } = useQuery<ApiEventsResponse, Error>(
+  const { data: events,isLoading } = useQuery<ApiEventsResponse, Error>(
     ["EventCatalog"],
     () => GetNextEvents(),
     {
@@ -29,18 +31,28 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
               acompañarnos, estos son nuestros próximos eventos.
             </h4>
           )}
-          <article>
-            <Carousel
-              className="Custom-Carousel w-full lg:w-full h-[28rem] max-sm:h-[23rem]"
-              pauseOnHover
-              indicators={false}
-             
-            >
-              {events?.data.map((event) => (
-                <CardEvent key={"E" + event.id} event={event} />
-              ))}
-            </Carousel>
-          </article>
+          {isLoading ? (
+            <div className="bg-white w-full lg:w-full h-[28rem] max-sm:h-[23rem] rounded-md p-2">
+              <Skeleton style={{ height: "19rem" }} />
+              <Skeleton width={250} height={20} />
+              <Skeleton width={220} height={20} />
+              <Skeleton width={220} height={20} />
+              <Skeleton width={300} height={20} />
+              <Skeleton width={280} height={20} />
+            </div>
+          ) : (
+            <article>
+              <Carousel
+                className="Custom-Carousel w-full lg:w-full h-[28rem] max-sm:h-[23rem]"
+                pauseOnHover
+                indicators={false}
+              >
+                {events?.data.map((event) => (
+                  <CardEvent key={"E" + event.id} event={event} />
+                ))}
+              </Carousel>
+            </article>
+          )}
         </section>
       )}
     </>

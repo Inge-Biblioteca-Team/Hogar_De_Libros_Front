@@ -9,16 +9,25 @@ const LandingFooter = () => {
             className="text-lg md:text-xs text-white max-sm:text-sm"
             title="Biblioteca Pública Municipal De Nicoya"
           />
-          <Footer.Title className="text-lg md:text-xs text-white max-sm:text-sm" title="Dirección" />
+          <Footer.Title
+            className="text-lg md:text-xs text-white max-sm:text-sm"
+            title="Dirección"
+          />
           <Footer.LinkGroup>
-            <Footer.Link href="" className=" mb-10 lg:mb-0 md:text-xs max-sm:text-xs ">
+            <Footer.Link
+              href=""
+              className=" mb-10 lg:mb-0 md:text-xs max-sm:text-xs "
+            >
               50 Norte del Liceo de Nicoya, frente a piscinas ANDE
             </Footer.Link>
           </Footer.LinkGroup>
         </div>
         <div className=" flex max-lg:gap-1 max-sm:gap-8">
           <div>
-            <Footer.Title title="Contactos" className="text-lg md:text-xs text-white max-sm:text-xs" />
+            <Footer.Title
+              title="Contactos"
+              className="text-lg md:text-xs text-white max-sm:text-xs"
+            />
             <Footer.LinkGroup col className="md:text-xs max-sm:text-xs">
               <Footer.Link href="">bpnicoya@sinabi.go.cr</Footer.Link>
               <Footer.Link href="">+506 2685-4213</Footer.Link>
@@ -26,7 +35,10 @@ const LandingFooter = () => {
             </Footer.LinkGroup>
           </div>
           <div>
-            <Footer.Title title="Servicios" className="text-lg md:text-xs text-white max-sm:text-xs" />
+            <Footer.Title
+              title="Servicios"
+              className="text-lg md:text-xs text-white max-sm:text-xs"
+            />
             <Footer.LinkGroup col className="md:text-xs max-sm:text-xs">
               <Footer.Link href="#MostPopularBooks">Libros</Footer.Link>
               <Footer.Link href="#Rooms">Salas</Footer.Link>
@@ -36,7 +48,10 @@ const LandingFooter = () => {
             </Footer.LinkGroup>
           </div>
           <div>
-            <Footer.Title title="Legal" className="text-lg md:text-xs text-white max-sm:text-xs" />
+            <Footer.Title
+              title="Legal"
+              className="text-lg md:text-xs text-white max-sm:text-xs"
+            />
             <Footer.LinkGroup col className="md:text-xs max-sm:text-xs">
               <Footer.Link href="">Política de privacidad</Footer.Link>
               <Footer.Link href="">Términos & condiciones</Footer.Link>
@@ -44,7 +59,7 @@ const LandingFooter = () => {
           </div>
         </div>
       </div>
-      <Footer.Divider/>
+      <Footer.Divider />
       <div className="w-full sm:flex sm:items-center sm:justify-between">
         <Footer.Copyright href="#" by="Biblioteca De Nicoya™" year={2024} />
         <div className="mt-4 flex space-x-6 max-sm:text-sm">
