@@ -11,7 +11,6 @@ const CardTypeAmiguito = () => {
 
   return (
     <>
-    {/* Arreglo de cards */}
       <figure className="rounded-md max-sm:w-full xl:h-full 2xl:h-full bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
           className="h-40 lg:h-[200px] md:w-full max-sm:w-full md:h-2/4 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
@@ -21,7 +20,7 @@ const CardTypeAmiguito = () => {
           alt={"Donaciones"}
         />
         <figcaption className="text-lg break-words max-w-80 px-4 h-full flex flex-col items-center justify-between max-sm:pb-2">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center m">
             <strong className="mb-1 lg:text-xl lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
               {"Donaciones"}
             </strong>
@@ -44,7 +43,7 @@ const CardTypeAmiguito = () => {
         </figcaption>
       </figure>
 
-      <figure className="rounded-md max-sm:w-full xl:h-full 2xl:h-full bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
+      <figure className="rounded-md md:h-[36rem] md:w-full max-sm:w-full lg:w-full xl:h-full 2xl:h-full bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
           className="lg:h-[200px] max-sm:w-full md:w-full md:h-2/4 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={
@@ -76,7 +75,7 @@ const CardTypeAmiguito = () => {
         </figcaption>
       </figure>
 
-      <figure className="rounded-md max-sm:w-full xl:h-full 2xl:h-full bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
+      <figure className="rounded-md md:w-full lg:w-full md:h-[36rem] max-sm:w-full xl:h-full 2xl:h-full bg-white w-full shadow-lg flex flex-col justify-center items-center pb-5 max-sm:p-0 lg:h-[450px]">
         <img
           className="lg:h-[200px]  max-sm:w-full md:w-full md:h-2/4 w-80 mb-2 border-t border-transparent rounded-t-md object-cover max-sm:h-32 max-sm:rounded-md"
           src={

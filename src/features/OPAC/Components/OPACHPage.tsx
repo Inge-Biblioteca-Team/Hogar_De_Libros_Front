@@ -22,7 +22,7 @@ const OPACHPage = () => {
         lg:h-60 2xl:h-96">
           <OPACCard
             Icon={faBookOpen}
-            Title="catalogo de libros"
+            Title="Catálogo de libros"
             Message="Explora la amplia cantidad de diversos libros"
             Path="/OPAC/Libros"
           />

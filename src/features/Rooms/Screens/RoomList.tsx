@@ -18,7 +18,7 @@ function RoomList() {
     <>
       {Rooms && Rooms.count > 0 && (
         <section
-          className=" lg:w-full max-md:max-w-4xl max-sm:max-w-full md:pl-2 md:pr-2 xl:pl-36 xl:pr-36 2xl:pl-48 2xl:pr-48 w-full flex flex-col items-center justify-center"
+          className=" lg:w-full max-sm:pl-0 max-md:max-w-4xl max-sm:max-w-full md:pl-2 md:pr-2 xl:pl-36 xl:pr-36 2xl:pl-48 2xl:pr-48 w-full flex flex-col items-center justify-center"
           id="Rooms"
         >
           <h2 className="font-bold text-2xl 2xl:text-4xl mb-6 lg:text-4xl pb-4">Nuestras salas</h2>
@@ -39,7 +39,7 @@ function RoomList() {
             </Carousel>
           </div>
 
-          <div className="hidden sm:grid lg:w-[1280px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:gap-10 2xl:grid-cols-3 xl: gap-5  items-center justify-center">
+          <div className="hidden sm:grid lg:w-screen lg:pr-20 lg:pl-20 w-screen md:pr-2 md:pl-2 pr-20 pl-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:gap-10 2xl:grid-cols-3 xl: gap-5  items-center justify-center">
             {Rooms.data.map((rooms: Room) => (
               <RoomCard Rooms={rooms} key={"RO" + rooms.roomId} />
             ))}

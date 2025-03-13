@@ -4,7 +4,7 @@ import { Event } from "../types/Events";
 
 const CardEvent = ({ event }: { event: Event }) => {
   return (
-    <Card className="p0 max-sm:h-96 lg:h-full lg:w-full">
+    <Card className="p0 max-sm:h-96 lg:h-full lg:w-full w-full">
       <figure className=" rounded-lg max-sm:h-full max-sm:mr-2">
         <img
           src={event.image}
