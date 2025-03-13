@@ -7,7 +7,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const UpcomingEvents = ({ home }: { home?: boolean }) => {
-  const { data: events,isLoading } = useQuery<ApiEventsResponse, Error>(
+  const { data: events, isLoading } = useQuery<ApiEventsResponse, Error>(
     ["EventCatalog"],
     () => GetNextEvents(),
     {
@@ -17,30 +17,31 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
 
   return (
     <>
-      {events && events.count > 0 && (
-        <section
-          className="relative  md:w-full max-sm:w-full lg:w-full lg:pr-20 lg:pl-20 w-full pl-20 pr-20  md:pl-2 md:pr-2 max-sm:pr-4 max-sm:pl-4"
-          id="Events"
-        >
-          <h2 className="text-2x text-center font-bold text-2xl mb-6 lg:text-4xl pb-4">
-            Próximos eventos
-          </h2>
-          {home && (
-            <h4>
-              Asi como cursos también tenemos diversos eventos, vean a
-              acompañarnos, estos son nuestros próximos eventos.
-            </h4>
-          )}
-          {isLoading ? (
-            <div className="bg-white w-full lg:w-full h-[28rem] max-sm:h-[23rem] rounded-md p-2">
-              <Skeleton style={{ height: "19rem" }} />
-              <Skeleton width={250} height={20} />
-              <Skeleton width={220} height={20} />
-              <Skeleton width={220} height={20} />
-              <Skeleton width={300} height={20} />
-              <Skeleton width={280} height={20} />
-            </div>
-          ) : (
+      <section
+        className="relative  md:w-full max-sm:w-full lg:w-full lg:pr-20 lg:pl-20 w-full pl-20 pr-20  md:pl-2 md:pr-2 max-sm:pr-4 max-sm:pl-4"
+        id="Events"
+      >
+        <h2 className="text-2x text-center font-bold text-2xl mb-6 lg:text-4xl pb-4">
+          Próximos eventos
+        </h2>
+        {home && (
+          <h4>
+            Asi como cursos también tenemos diversos eventos, vean a
+            acompañarnos, estos son nuestros próximos eventos.
+          </h4>
+        )}
+        {isLoading ? (
+          <div className="bg-white w-full lg:w-full h-[28rem] max-sm:h-[23rem] rounded-md p-2">
+            <Skeleton style={{ height: "19rem" }} />
+            <Skeleton width={250} height={20} />
+            <Skeleton width={220} height={20} />
+            <Skeleton width={220} height={20} />
+            <Skeleton width={300} height={20} />
+            <Skeleton width={280} height={20} />
+          </div>
+        ) : (
+          events &&
+          events.count > 0 && (
             <article>
               <Carousel
                 className="Custom-Carousel w-full lg:w-full h-[28rem] max-sm:h-[23rem]"
@@ -52,9 +53,9 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
                 ))}
               </Carousel>
             </article>
-          )}
-        </section>
-      )}
+          )
+        )}
+      </section>
     </>
   );
 };
