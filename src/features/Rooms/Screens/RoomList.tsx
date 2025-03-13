@@ -19,45 +19,46 @@ function RoomList() {
 
   return (
     <>
-      {Rooms && Rooms.count > 0 && (
-        <section
-          className=" lg:w-full max-sm:pl-0 max-md:max-w-4xl max-sm:max-w-full md:pl-2 md:pr-2 xl:pl-36 xl:pr-36 2xl:pl-48 2xl:pr-48 w-full flex flex-col items-center justify-center"
-          id="Rooms"
-        >
-          <h2 className="font-bold text-2xl 2xl:text-4xl mb-6 lg:text-4xl pb-4">
-            Nuestras salas
-          </h2>
+      <section
+        className=" lg:w-full max-sm:pl-0 max-md:max-w-4xl max-sm:max-w-full md:pl-2 md:pr-2 xl:pl-36 xl:pr-36 2xl:pl-48 2xl:pr-48 w-full flex flex-col items-center justify-center"
+        id="Rooms"
+      >
+        <h2 className="font-bold text-2xl 2xl:text-4xl mb-6 lg:text-4xl pb-4">
+          Nuestras salas
+        </h2>
 
-          {isLoading ? (
-            <div className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 max-sm:grid-cols-1 md:grid-cols-2 w-full h-full gap-8">
-              <div className="w-full h-[26rem] bg-white">
-                <Skeleton className="w-full h-56" />
-                <Skeleton className="w-52 h-8" />
-                <Skeleton className="w-20 h-8" />
-                <Skeleton className="w-28 h-8" />
-                <Skeleton className="w-36 h-8" />
-                <Skeleton className="w-72 h-8" />
-              </div>
-
-              <div className="w-full max-sm:hidden h-[26rem] bg-white">
-                <Skeleton className="w-full h-56" />
-                <Skeleton className="w-52 h-8" />
-                <Skeleton className="w-20 h-8" />
-                <Skeleton className="w-28 h-8" />
-                <Skeleton className="w-36 h-8" />
-                <Skeleton className="w-72 h-8" />
-              </div>
-
-              <div className="w-full max-sm:hidden md:hidden lg:block xl:block 2xl:block  h-[26rem] bg-white">
-                <Skeleton className="w-full h-56" />
-                <Skeleton className="w-52 h-8" />
-                <Skeleton className="w-20 h-8" />
-                <Skeleton className="w-28 h-8" />
-                <Skeleton className="w-36 h-8" />
-                <Skeleton className="w-72 h-8" />
-              </div>
+        {isLoading ? (
+          <div className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 max-sm:grid-cols-1 md:grid-cols-2 w-full h-full gap-8">
+            <div className="w-full h-[26rem] bg-white">
+              <Skeleton className="w-full h-56" />
+              <Skeleton className="w-52 h-8" />
+              <Skeleton className="w-20 h-8" />
+              <Skeleton className="w-28 h-8" />
+              <Skeleton className="w-36 h-8" />
+              <Skeleton className="w-72 h-8" />
             </div>
-          ) : (
+
+            <div className="w-full max-sm:hidden h-[26rem] bg-white">
+              <Skeleton className="w-full h-56" />
+              <Skeleton className="w-52 h-8" />
+              <Skeleton className="w-20 h-8" />
+              <Skeleton className="w-28 h-8" />
+              <Skeleton className="w-36 h-8" />
+              <Skeleton className="w-72 h-8" />
+            </div>
+
+            <div className="w-full max-sm:hidden md:hidden lg:block xl:block 2xl:block  h-[26rem] bg-white">
+              <Skeleton className="w-full h-56" />
+              <Skeleton className="w-52 h-8" />
+              <Skeleton className="w-20 h-8" />
+              <Skeleton className="w-28 h-8" />
+              <Skeleton className="w-36 h-8" />
+              <Skeleton className="w-72 h-8" />
+            </div>
+          </div>
+        ) : (
+          Rooms &&
+          Rooms.count > 0 && (
             <>
               <div className="w-full max-sm:max-w-full   sm:hidden relative">
                 <Carousel
@@ -84,9 +85,9 @@ function RoomList() {
                 ))}
               </div>
             </>
-          )}
-        </section>
-      )}
+          )
+        )}
+      </section>
     </>
   );
 }
