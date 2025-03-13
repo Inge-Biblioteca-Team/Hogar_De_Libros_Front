@@ -4,9 +4,11 @@ import { Book, Catalog } from "../Types/BooksTypes";
 import { Carousel } from "flowbite-react";
 import BookCard from "../Components/Views/BookCard";
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const LatestAddBooks = () => {
-  const { data: catalog } = useQuery<Catalog, Error>(
+  const { data: catalog, isLoading } = useQuery<Catalog, Error>(
     ["colection"],
     () => getUserColection(1, 20, "", "", "", "1", "", ""),
     {
@@ -57,22 +59,35 @@ const LatestAddBooks = () => {
           <h2 className="font-bold 2xl:text-4xl lg:text-4xl pb-4 text-2xl text-center">
             Últimos libros añadidos a la colección
           </h2>
-          <Carousel
-            className="h-[25rem] w-full lg:w-full md:w-full"
-            indicators={false}
-            pauseOnHover
-            leftControl
-            rightControl
-            
-          >
-            {groupedBooks.map((group, groupIndex) => (
-              <div key={groupIndex} className=" md:w-full flex justify-center gap-x-4 ">
-                {group.map((Book) => (
-                  <BookCard book={Book} key={"BO" + Book.BookCode} />
-                ))}
-              </div>
-            ))}
-          </Carousel>
+          {isLoading ? (
+            <div className="grid lg:grid-cols-6 xl:grid-cols-6  2xl:grid-cols-6 max-sm:grid-cols-2 md:grid-cols-3 w-full gap-10">
+              <Skeleton className="w-full h-96" />
+              <Skeleton className="w-full h-96" />
+              <Skeleton className="max-sm:hidden lg:block xl:block 2xl:block w-full h-96" />
+              <Skeleton className="hidden lg:block xl:block 2xl:block w-full h-96" />
+              <Skeleton className="hidden lg:block xl:block 2xl:block w-full h-96" />
+              <Skeleton className="hidden lg:block xl:block 2xl:block w-full h-96" />
+            </div>
+          ) : (
+            <Carousel
+              className="h-[25rem] w-full lg:w-full md:w-full"
+              indicators={false}
+              pauseOnHover
+              leftControl
+              rightControl
+            >
+              {groupedBooks.map((group, groupIndex) => (
+                <div
+                  key={groupIndex}
+                  className=" md:w-full flex justify-center gap-x-4 "
+                >
+                  {group.map((Book) => (
+                    <BookCard book={Book} key={"BO" + Book.BookCode} />
+                  ))}
+                </div>
+              ))}
+            </Carousel>
+          )}
         </section>
       )}
     </>

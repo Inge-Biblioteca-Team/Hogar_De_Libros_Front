@@ -4,9 +4,11 @@ import { getLocalArtist } from "../services/SvArtist";
 import CardArtistL from "../components/CardArtistL";
 import { Carousel } from "flowbite-react";
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const LocalArtistList = () => {
-  const { data: LArtists } = useQuery<ResponseA, Error>(
+  const { data: LArtists, isLoading } = useQuery<ResponseA, Error>(
     ["LocalArtist"],
     () => getLocalArtist(1, 100),
     {
@@ -53,21 +55,70 @@ const LocalArtistList = () => {
           <h2 className="2xl:text-4xl font-bold text-2xl lg:text-4xl pb-4">
             Artistas locales
           </h2>
-          <Carousel
-            className="h-[32rem] md:h-[32rem] md:w-full"
-            indicators={false}
-            pauseOnHover
-            leftControl
-            rightControl
-          >
-            {groupedArtist.map((group, groupIndex) => (
-              <div key={groupIndex} className=" flex justify-center   gap-x-4">
-                {group.map((artist) => (
-                  <CardArtistL key={"Art" + artist.ID} artist={artist} />
-                ))}
+          {isLoading ? (
+            <div
+              className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3
+            max-sm:grid-cols-1 md:grid-cols-2 w-full h-full gap-4"
+            >
+              <div className="bg-white w-full flex gap-2 flex-col h-[27rem] ">
+                <Skeleton className="w-full h-52" />
+                <div className=" flex flex-col items-center gap-4 justify-center">
+                  <Skeleton className="w-48 h-6" />
+                  <Skeleton className="w-32 h-6" />
+                  <Skeleton className="w-40 h-6" />
+                  <div className="flex items-center justify-center gap-8">
+                    <Skeleton className="w-10 h-10" />
+                    <Skeleton className="w-10 h-10" />
+                  </div>
+                </div>
               </div>
-            ))}
-          </Carousel>
+
+              <div className="max-sm:hidden bg-white w-full flex gap-2 flex-col h-[27rem] ">
+                <Skeleton className="w-full h-52" />
+                <div className=" flex flex-col items-center gap-4 justify-center">
+                  <Skeleton className="w-48 h-6" />
+                  <Skeleton className="w-32 h-6" />
+                  <Skeleton className="w-40 h-6" />
+                  <div className="flex items-center justify-center gap-8">
+                    <Skeleton className="w-10 h-10" />
+                    <Skeleton className="w-10 h-10" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="max-sm:hidden max-md:hidden bg-white w-full flex gap-2 flex-col h-[27rem] ">
+                <Skeleton className="w-full h-52" />
+                <div className=" flex flex-col items-center gap-4 justify-center">
+                  <Skeleton className="w-48 h-6" />
+                  <Skeleton className="w-32 h-6" />
+                  <Skeleton className="w-40 h-6" />
+                  <div className="flex items-center justify-center gap-8">
+                    <Skeleton className="w-10 h-10" />
+                    <Skeleton className="w-10 h-10" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <Carousel
+              className="h-[32rem] md:h-[32rem] md:w-full"
+              indicators={false}
+              pauseOnHover
+              leftControl
+              rightControl
+            >
+              {groupedArtist.map((group, groupIndex) => (
+                <div
+                  key={groupIndex}
+                  className=" flex justify-center   gap-x-4"
+                >
+                  {group.map((artist) => (
+                    <CardArtistL key={"Art" + artist.ID} artist={artist} />
+                  ))}
+                </div>
+              ))}
+            </Carousel>
+          )}
         </section>
       )}
     </>
