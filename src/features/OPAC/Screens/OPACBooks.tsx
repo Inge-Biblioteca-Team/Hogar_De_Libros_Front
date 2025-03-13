@@ -15,7 +15,7 @@ const OPACBooks = () => {
 
   const { data: catalog, isLoading } = useQuery<Catalog, Error>(
     ["OPACSearch", page, title, Author, publishYear, selectedCategory],
-    () => getColection(page, 40, title, Author, publishYear, selectedCategory),
+    () => getColection(page, 10, title, Author, publishYear, selectedCategory),
     {
       staleTime: 5000,
     }
@@ -135,9 +135,9 @@ const OPACBooks = () => {
                 </figure>
               </div>
             ) : (
-              <div className=" w-full max-sm:pt-8 max-sm:pl-2 max-sm:pr-2  pt-4">
+              <div className=" w-full max-sm:pt-8 max-sm:pl-2 max-sm:pr-2 flex flex-col justify-between  pt-4">
                 {catalog && <OPACGridFBooks colection={catalog} />}
-                <div className=" flex items-center max w-full justify-center pb-4 pt-3">
+                <div className=" flex items-center max w-full justify-center pb-4 ">
                   <Pagination
                     previousLabel="Anterior"
                     nextLabel="Siguiente"

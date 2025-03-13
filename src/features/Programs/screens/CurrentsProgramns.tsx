@@ -4,9 +4,11 @@ import { ApiProgramsResponse, Program } from "../types/Programs";
 import { GetProgramsList } from "../services/SvPrograms";
 import { Carousel } from "flowbite-react";
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const CurrentPrograms = ({ home }: { home?: boolean }) => {
-  const { data: Programs } = useQuery<ApiProgramsResponse, Error>(
+  const { data: Programs, isLoading } = useQuery<ApiProgramsResponse, Error>(
     ["ProgramCatalog"],
     () => GetProgramsList(1, 100, "", "1"),
     {
@@ -42,6 +44,7 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
   };
 
   const groupedProgram = chunkArray(Programs?.data || [], itemsPerGroup);
+
   return (
     <>
       {Programs && Programs?.count > 0 && (
@@ -59,27 +62,70 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
               actividades para todas las edades aquí te mostramos cuales son.
             </h3>
           )}
-          <Carousel
-            indicators={false}
-            pauseOnHover
-            leftControl
-            rightControl
-            className="w-[64rem] lg:w-full md:w-full md:h-[30rem] md:pl-2 md:pr-2  max-sm:w-full max-sm:h-[500px] "
-          >
-            {groupedProgram.map((group, groupIndex) => (
-              <div
-                key={groupIndex}
-                className=" flex md:gap-4 md:h-full md:w-full justify-center max-sm:h-full lg:h-full lg:w-full  max-sm:pr-4 max-sm:pl-4 lg:gap-x-4"
-              >
-                {group.map((program) => (
-                  <CardProgram
-                    key={"PR" + program.programsId}
-                    program={program}
-                  />
-                ))}
+          {isLoading ? (
+            <div
+              className="grid lg:grid-cols-3 xl:grid-cols-3  2xl:grid-cols-3  max-sm:pl-4 max-sm:pr-4 md:pl-2 md:pr-2
+            lg:pl-0 lg:pr-0 xl:pl-0 xl:pr-0 2xl:pl-0 2xl:pr-0 max-sm:grid-cols-1 md:grid-cols-2  w-full h-full gap-8"
+            >
+              <div className="w-full flex flex-col gap-4  h-[26rem] bg-white">
+                <Skeleton className="w-full h-40" />
+                <div className="flex flex-col gap-0 items-center justify-center">
+                  <Skeleton className="w-72 h-8" />
+                  <Skeleton className="w-56 h-8" />
+                  <Skeleton className="w-20 h-8" />
+                  <Skeleton className="w-44 h-8" />
+                  <Skeleton className="w-52 h-8" />
+                  <Skeleton className="w-36 h-8" />
+                </div>
               </div>
-            ))}
-          </Carousel>
+
+              <div className="max-sm:hidden w-full flex flex-col gap-4  h-[26rem] bg-white">
+                <Skeleton className="w-full h-40" />
+                <div className="flex flex-col gap-0 items-center justify-center">
+                  <Skeleton className="w-72 h-8" />
+                  <Skeleton className="w-56 h-8" />
+                  <Skeleton className="w-20 h-8" />
+                  <Skeleton className="w-44 h-8" />
+                  <Skeleton className="w-52 h-8" />
+                  <Skeleton className="w-36 h-8" />
+                </div>
+              </div>
+
+              <div className=" max-sm:hidden md:hidden lg:block xl:block 2xl:block w-full flex flex-col gap-4  h-[26rem] bg-white">
+                <Skeleton className="w-full h-40" />
+                <div className="flex flex-col gap-0 items-center justify-center">
+                  <Skeleton className="w-72 h-8" />
+                  <Skeleton className="w-56 h-8" />
+                  <Skeleton className="w-20 h-8" />
+                  <Skeleton className="w-44 h-8" />
+                  <Skeleton className="w-52 h-8" />
+                  <Skeleton className="w-36 h-8" />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <Carousel
+              indicators={false}
+              pauseOnHover
+              leftControl
+              rightControl
+              className="w-[64rem] lg:w-full md:w-full md:h-[30rem] md:pl-2 md:pr-2  max-sm:w-full max-sm:h-[500px] "
+            >
+              {groupedProgram.map((group, groupIndex) => (
+                <div
+                  key={groupIndex}
+                  className=" flex md:gap-4 md:h-full md:w-full justify-center max-sm:h-full lg:h-full lg:w-full  max-sm:pr-4 max-sm:pl-4 lg:gap-x-4"
+                >
+                  {group.map((program) => (
+                    <CardProgram
+                      key={"PR" + program.programsId}
+                      program={program}
+                    />
+                  ))}
+                </div>
+              ))}
+            </Carousel>
+          )}
         </section>
       )}
     </>
