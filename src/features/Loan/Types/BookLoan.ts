@@ -10,6 +10,7 @@ export type Loans = {
   BookPickUpDate: Date;
   LoanExpirationDate: Date;
   Observations: string;
+  OldObservations:[]
   user: User;
   book: Book;
   Name: string;
