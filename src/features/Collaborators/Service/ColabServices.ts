@@ -29,7 +29,6 @@ const GetColabs = async (
 };
 
 const RefueseColab = async (data: downType) => {
-  console.table(data);
   try {
     const response = await api.patch(
       `collaborator/denyCollaborator/${data.Id}`,
@@ -57,7 +56,6 @@ const RefueseColab = async (data: downType) => {
   }
 };
 const CancelColab = async (data: downType) => {
-  console.table(data);
   try {
     const response = await api.patch(
       `collaborator/cancelCollaborator/${data.Id}`,

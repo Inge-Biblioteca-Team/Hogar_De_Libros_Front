@@ -4,16 +4,16 @@ import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 import { useEffect, useState } from "react";
 const CompletCatalog = () => {
   const categories = [
+    "Artes y Recreacion",
+    "Ciencias Naturales y Matematicas",
     "Ciencias Sociales",
-    "Literatura",
-    "Geografía",
-    "Artes y Recreación",
-    "Ciencias Naturales",
-    "Filosofía y Psicología",
-    "Tecnología",
-    "Religión",
+    "Filosofia y Psicologia",
+    "Geografia e Historia",
     "Lenguas",
+    "Literatura",
     "Obras Generales",
+    "Religion",
+    "Tecnologia (Aplicada)",
   ];
   const [isLoading, setIsLoading] = useState(true);
 

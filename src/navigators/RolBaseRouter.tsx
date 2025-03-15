@@ -10,8 +10,6 @@ type RoleBasedRouteProps = {
 const RoleBasedRoute = ({ roles, children }: RoleBasedRouteProps) => {
   const { isLogged, currentUser } = useContext(UserContext);
 
-  console.log("isLogged:", isLogged);
-  console.log("roles:", roles);
   const role = currentUser?.role || "admin";
 
   if (!isLogged) {

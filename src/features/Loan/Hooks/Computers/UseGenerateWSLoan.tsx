@@ -15,8 +15,7 @@ const UseGenerateWSLoan = () => {
     const queryClient = useQueryClient(); 
   return useMutation({
     mutationFn: (data: NewWSLoan) => CreateNewWSLoan(data),
-    onSuccess: (data) => {
-      console.log("New loan created successfully:", data);
+    onSuccess: () => {
       queryClient.invalidateQueries("WSStatus");
       toast.success(`Exito, equipo en uso correctamente`)
     },

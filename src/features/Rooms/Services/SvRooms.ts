@@ -37,7 +37,9 @@ const ActionRoom = async (roomId: string, action: string) => {
         "Error al editar el estado de la sala:",
         error.response?.data || error.message
       );
-      throw new Error(error.response?.data.message || "Error al editar el estado de la sala");
+      throw new Error(
+        error.response?.data.message || "Error al editar el estado de la sala"
+      );
     } else {
       console.error("Error desconocido:", error);
       throw new Error("Error desconocido");
@@ -46,7 +48,6 @@ const ActionRoom = async (roomId: string, action: string) => {
 };
 
 const PostNewRoom = async (data: CreateRoom) => {
-  console.table(data);
   try {
     const addRoom = await api.post("rooms", data, {
       headers: {
@@ -83,7 +84,8 @@ const UpdateRoom = async (data: updateRooms) => {
         error.response?.data || error.message
       );
       throw new Error(
-        error.response?.data.message || "Error al editar la información de la sala"
+        error.response?.data.message ||
+          "Error al editar la información de la sala"
       );
     } else {
       console.error("Error desconocido:", error);
@@ -91,6 +93,5 @@ const UpdateRoom = async (data: updateRooms) => {
     }
   }
 };
-
 
 export { GetRooms, PostNewRoom, UpdateRoom, ActionRoom };

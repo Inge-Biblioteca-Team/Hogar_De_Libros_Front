@@ -33,19 +33,19 @@ const Inboxbtn = ({ message }: { message: Nota }) => {
 
   const moveToTrashHandler = () => {
     moveToTrash(message.id_Note, {
-      onSuccess: () => console.log("Nota movida a la papelera con éxito"),
+   
     });
   };
 
   const deleteFromTrashHandler = () => {
     deleteFromTrash(message.id_Note, {
-      onSuccess: () => console.log("Nota eliminada definitivamente con éxito"),
+     
     });
   };
 
   const recoverFromTrashHandler = () => {
     recoverNote(message.id_Note, {
-      onSuccess: () => console.log("Nota recuperada de la papelera con éxito"),
+     
     });
   };
 

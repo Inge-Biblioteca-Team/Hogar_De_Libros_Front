@@ -7,7 +7,8 @@ const reportDescriptions: Record<string, string> = {
   BL: "préstamo de Libros",
   CO: "cursos",
   EV: "eventos",
-  AS:'asistencia'
+  AS:'asistencia',
+  US: 'usuarios registrados'
 };
 
 const ReportModal = ({
@@ -47,7 +48,7 @@ const ReportModal = ({
             />
           </div>
           <div>
-            <Label value="Fecha de incio" />
+            <Label value="Fecha de fin" />
             <TextInput
               type="date"
               value={endDate}

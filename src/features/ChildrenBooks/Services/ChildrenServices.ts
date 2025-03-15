@@ -16,7 +16,6 @@ const searchCovers = async (
   const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY || "";
   const GOOGLE_BOOKS_URL = import.meta.env.VITE_GOOGLE_BOOKS_URL || "";
   const OPEN_LIBRARY_URL = import.meta.env.VITE_OPEN_LIBRARY_URL;
-  console.log(OPEN_LIBRARY_URL);
   const covers: CoverImage[] = [];
 
   try {
@@ -42,7 +41,7 @@ const searchCovers = async (
       throw new Error("No se encontraron las caratulas en Open Library");
     }
   } catch (error) {
-    console.error("Open Library error:", error);
+    console.warn("Open Library error:", error);
 
     try {
       const response = await axios.get<GoogleBooksResponse>(
@@ -63,7 +62,7 @@ const searchCovers = async (
 
       return covers;
     } catch (error) {
-      console.error("Google Books error:", error);
+      console.warn("Google Books error:", error);
       return [];
     }
   }
@@ -99,7 +98,6 @@ const getColection = async (
 };
 
 const CreateChildrenBook = async (data: Book) => {
-  console.table(data);
   try {
     const response = await api.post(`book-children`, data, {
       headers: {
