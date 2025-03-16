@@ -23,7 +23,7 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
   return (
     <SidebarProvider>
       <Navbar
-        className="sticky top-0 z-50 h-fit
+        className="sticky top-0 z-50 h-fitGG
          text-white w-full bg-Body custom-navbar
           p-2 py-4 max-sm:py-0 max-sm:pt-5 max-sm:h-fit"
         fluid

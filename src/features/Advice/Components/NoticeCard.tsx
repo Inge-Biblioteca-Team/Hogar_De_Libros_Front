@@ -6,10 +6,10 @@ const NoticeCard = ({ advice }: { advice: Advice }) => {
   return (
     <div className=" w-full gap-8 justify-between bg-white flex rounded-md h-[15rem] sm:h-[15rem] xl:h-[16rem] 2xl:h-[20rem] space-x-2">
       <span className=" m-3">
-        <h3 className="text-2xl font-bold">{advice.reason}</h3>
+        <h3 className="text-2xl font-bold max-sm:text-sm">{advice.reason}</h3>
         <div className="">
-          <strong className="">Fecha:</strong> {AdviceDay}
-          <p className="text-gray-600 ">
+          <strong className=" max-sm:text-sm">Fecha:</strong> {AdviceDay}
+          <p className="text-gray-600 max-sm:text-xs">
             {advice.extraInfo.split(".").map((info, index) => (
               <span className=" !bg-transparent" key={index}>
                 {info.trim()}
