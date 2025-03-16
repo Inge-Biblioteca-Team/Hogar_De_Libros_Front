@@ -27,10 +27,10 @@ const LandingHomeCards = ({
         <p>
           <span className=" lg:text-xl text-lg font-bold">{Title}</span>
           <br />
-          <span className="lg:text-lg">{Message}</span>
+          <span className="2xl:text-3xl lg:text-base">{Message}</span>
         </p>
         <Link to={Path} className=" underline hover:text-gray-400">
-          Ver mas
+          Ver más
         </Link>
       </figcaption>
     </figure>

@@ -25,7 +25,7 @@ const CardTypeAmiguito = () => {
               {"Donaciones"}
             </strong>
             <p className="max-sm:text-xs mb-2 max-sm:block lg:max-sm:hidden text-center">
-              <span className="lg:text-lg">
+              <span className="2xl:text-3xl lg:text-base">
                 {
                   "¿Tienes libros que ya no utilizas? Puedes donarlos a la biblioteca para que otra persona pueda compartir tu pasión por la lectura. Más información aquí abajo."
                 }
@@ -56,8 +56,8 @@ const CardTypeAmiguito = () => {
             <strong className="mb-1 lg:text-xl lg:mb-0 max-sm:text-sm lg:max-sm:min-w-20">
               {"Amigos de la biblioteca"}
             </strong>
-            <p className="max-sm:text-xs mb-2  max-sm:block lg:max-sm:hidden text-center">
-              <span className="lg:text-lg">
+            <p className="max-sm:text-xs mb-2 max-sm:block lg:max-sm:hidden text-center">
+              <span className="2xl:text-3xl lg:text-base">
                 {
                   "Un programa de voluntariado dedicado a apoyar las actividades y servicios de nuestra biblioteca local. Nuestra misión es promover la lectura recreativa y la cultura a través de la participación comunitaria y el apoyo voluntario."
                 }
@@ -89,7 +89,7 @@ const CardTypeAmiguito = () => {
               {"Colaboraciones"}
             </strong>
             <p className="max-sm:text-xs mb-2 max-sm:block lg:max-sm:hidden text-center">
-              <span className="lg:text-lg">
+              <span className="2xl:text-3xl lg:text-base">
                 {
                   "¿Tienes alguna actividad en mente pero no sabes cómo ponerla en marcha? Puedes comunicarte con nosotros para realizar una propuesta. Será un gusto colaborar contigo. También recibimos pasantes y estudiantes que necesitan horas de trabajo comunal."
                 }

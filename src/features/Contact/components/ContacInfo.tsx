@@ -1,7 +1,7 @@
 const ContacInfo = () => {
   return (
     <aside className=" lg:w-1/2">
-      <p className="text-xl lg:text-2xl max-sm:text-sm">
+      <p className="text-base lg:text-lg text-center lg:text-left">
         <span className=" lg:max-sm:hidden">
           Bienvenido a nuestra sección de contacto, donde nos encanta escuchar
           de ti. ¿Tienes alguna pregunta o sugerencia? Estamos aquí para
@@ -10,7 +10,8 @@ const ContacInfo = () => {
           nosotros.
         </span>{" "}
         <br />
-        <span  className=" max-sm:hidden">También puedes contactarnos via</span>
+        <br />
+        <span  className=" max-sm:hidden">También puedes ponerte en contacto con nosotros a través de:</span>
         <br />
         <strong>Teléfono: </strong>
         <span>+506 2685-4213</span> <br />
@@ -24,7 +25,7 @@ const ContacInfo = () => {
           Biblioteca Pública Municipal de Nicoya.
         </a>
         <br />
-        <strong>O en nuestra Casa </strong>{" "}
+        <strong>En nuestras instalaciones: </strong>{" "}
         <a target="blank" href="https://maps.app.goo.gl/4Gjmf7esqqua8cxB9">
           Frente a las piscinas de ANDE, Nicoya, Costa Rica 59.
         </a>

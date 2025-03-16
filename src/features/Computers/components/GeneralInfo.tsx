@@ -17,10 +17,10 @@ const GeneralInfo = () => {
        m-2 lg:m-0 md:p-2"
       >
         <p>
-          <strong className="2xl:text-3xl lg:text-lg">
+          <strong className="2xl:text-3xl lg:text-base">
             Acceso a computadoras,{" "}
           </strong>
-          <span className="2xl:text-3xl lg:text-lg">
+          <span className="2xl:text-3xl lg:text-base">
             la biblioteca cuenta con <strong>{computerCount}</strong>{" "}
             computadoras las cuales están a disposición de los usuarios de la
             biblioteca.
@@ -45,7 +45,7 @@ const GeneralInfo = () => {
               className="md:w-52 2xl:w-72 2xl:h-14 2xl:items-center text-2xl  "
               color={"blue"}
             >
-              Ver mas información
+              Ver más información
             </Button>
           </Link>
         </div>

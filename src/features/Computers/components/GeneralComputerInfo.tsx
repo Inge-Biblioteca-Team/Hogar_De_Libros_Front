@@ -10,10 +10,10 @@ const GeneralComputerInfo = () => {
           className="h-28 md:h-48 w-full lg:h-36 "
         />
         <figcaption>
-          <p className=" max-sm:text-sm">Características del equipo</p>
-          <ul className=" list-inside list-disc ml-5 max-sm:text-xs max-sm:ml-0">
+          <p className=" text-xs sm:text-sm">Características del equipo:</p>
+          <ul className=" list-inside list-disc ml-5 text-xs sm:text-sm">
             <li>Acceso a Internet</li>
-            <li>Paquete Microsoft 365: Word,Excel y mas</li>
+            <li>Paquete Microsoft 365</li>
             <li>Periféricos: Monitor, teclado y mouse</li>
             <li>Puertos USB y Salida de audio 3.5mm</li>
             <li>Firma Digital</li>
