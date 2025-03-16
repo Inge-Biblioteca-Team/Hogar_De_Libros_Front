@@ -19,43 +19,36 @@ function RoomList() {
 
   return (
     <>
-      <section
-       className="space-y-4 w-11/12"
-        id="Rooms"
-      >
-        <h2  className="font-bold text-4xl text-center 
-          max-sm:text-xl">
+      <section className="space-y-4 w-11/12" id="Rooms">
+        <h2
+          className="font-bold text-4xl text-center 
+          max-sm:text-xl"
+        >
           Nuestras salas
         </h2>
 
         {isLoading ? (
           <div className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 max-sm:grid-cols-1 md:grid-cols-2 w-full h-full gap-8">
-            <div className="w-full h-[26rem] bg-white">
+            <div className="w-[98%] h-[26rem] p-3 rounded-md bg-white">
               <Skeleton className="w-full h-56" />
               <Skeleton className="w-52 h-8" />
               <Skeleton className="w-20 h-8" />
               <Skeleton className="w-28 h-8" />
               <Skeleton className="w-36 h-8" />
-              <Skeleton className="w-72 h-8" />
             </div>
 
-            <div className="w-full max-sm:hidden h-[26rem] bg-white">
-              <Skeleton className="w-full h-56" />
-              <Skeleton className="w-52 h-8" />
-              <Skeleton className="w-20 h-8" />
-              <Skeleton className="w-28 h-8" />
-              <Skeleton className="w-36 h-8" />
-              <Skeleton className="w-72 h-8" />
-            </div>
-
-            <div className="w-full max-sm:hidden md:hidden lg:block xl:block 2xl:block  h-[26rem] bg-white">
-              <Skeleton className="w-full h-56" />
-              <Skeleton className="w-52 h-8" />
-              <Skeleton className="w-20 h-8" />
-              <Skeleton className="w-28 h-8" />
-              <Skeleton className="w-36 h-8" />
-              <Skeleton className="w-72 h-8" />
-            </div>
+            {[...Array(2)].map((_, index) => (
+              <div
+                key={index + "RL"}
+                className="w-[98%] h-[26rem] p-3 max-sm:hidden rounded-md bg-white"
+              >
+                <Skeleton className="w-full h-56" />
+                <Skeleton className="w-52 h-8" />
+                <Skeleton className="w-20 h-8" />
+                <Skeleton className="w-28 h-8" />
+                <Skeleton className="w-36 h-8" />
+              </div>
+            ))}
           </div>
         ) : (
           Rooms &&

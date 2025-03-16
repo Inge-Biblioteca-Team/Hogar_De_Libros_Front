@@ -36,9 +36,6 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
             <Skeleton style={{ height: "19rem" }} />
             <Skeleton width={250} height={20} />
             <Skeleton width={220} height={20} />
-            <Skeleton width={220} height={20} />
-            <Skeleton width={300} height={20} />
-            <Skeleton width={280} height={20} />
           </div>
         ) : (
           events &&

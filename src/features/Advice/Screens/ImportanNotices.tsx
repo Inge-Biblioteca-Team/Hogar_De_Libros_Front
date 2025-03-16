@@ -39,18 +39,18 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
 
         {isLoading ? (
           <>
-            <div className="bg-white w-full max-lg:w-full h-[28rem] max-sm:h-[23rem] rounded-md p-2">
-              <Skeleton className="h-[22rem] max-sm:h-[17rem]" />
+            <div
+              className="bg-white w-full max-lg:w-full rounded-md p-2
+            h-[17rem] sm:h-[17rem] xl:h-[18rem] 2xl:h-[22rem]"
+            >
+              <Skeleton className="h-[70%]" />
               <Skeleton width={200} height={20} />
               <Skeleton width={150} height={20} />
               <Skeleton width={150} height={20} />
             </div>
           </>
         ) : (
-          <Carousel
-            indicators={false}
-            pauseOnHover
-          >
+          <Carousel indicators={false} pauseOnHover>
             {Advices?.data.map((advice) => (
               <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />
             ))}

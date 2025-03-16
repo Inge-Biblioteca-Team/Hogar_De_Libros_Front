@@ -47,12 +47,11 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
 
   return (
     <>
-      <section
-        className="space-y-4 w-11/12"
-        id="Programs"
-      >
-        <h2 className="font-bold text-4xl text-center 
-          max-sm:text-xl">
+      <section className="space-y-4 w-11/12" id="Programs">
+        <h2
+          className="font-bold text-4xl text-center 
+          max-sm:text-xl"
+        >
           Nuestros programas
         </h2>
         {home && (
@@ -66,7 +65,7 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
             className="grid lg:grid-cols-3 xl:grid-cols-3  2xl:grid-cols-3  max-sm:pl-4 max-sm:pr-4 md:pl-2 md:pr-2
             lg:pl-0 lg:pr-0 xl:pl-0 xl:pr-0 2xl:pl-0 2xl:pr-0 max-sm:grid-cols-1 md:grid-cols-2  w-full h-full gap-8"
           >
-            <div className="w-full flex flex-col gap-4  h-[26rem] bg-white">
+            <div className="w-full flex flex-col gap-4  h-[26rem] bg-white p-2 rounded-md">
               <Skeleton className="w-full h-40" />
               <div className="flex flex-col gap-0 items-center justify-center">
                 <Skeleton className="w-72 h-8" />
@@ -78,29 +77,22 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
               </div>
             </div>
 
-            <div className="max-sm:hidden w-full flex flex-col gap-4  h-[26rem] bg-white">
-              <Skeleton className="w-full h-40" />
-              <div className="flex flex-col gap-0 items-center justify-center">
-                <Skeleton className="w-72 h-8" />
-                <Skeleton className="w-56 h-8" />
-                <Skeleton className="w-20 h-8" />
-                <Skeleton className="w-44 h-8" />
-                <Skeleton className="w-52 h-8" />
-                <Skeleton className="w-36 h-8" />
+            {[...Array(2)].map((_, index) => (
+              <div
+                key={index}
+                className="max-sm:hidden w-full flex flex-col gap-4  h-[26rem] bg-white rounded-md p-2"
+              >
+                <Skeleton className="w-full h-40" />
+                <div className="flex flex-col gap-0 items-center justify-center">
+                  <Skeleton className="w-72 h-8" />
+                  <Skeleton className="w-56 h-8" />
+                  <Skeleton className="w-20 h-8" />
+                  <Skeleton className="w-44 h-8" />
+                  <Skeleton className="w-52 h-8" />
+                  <Skeleton className="w-36 h-8" />
+                </div>
               </div>
-            </div>
-
-            <div className=" max-sm:hidden md:hidden lg:block xl:block 2xl:block w-full flex flex-col gap-4  h-[26rem] bg-white">
-              <Skeleton className="w-full h-40" />
-              <div className="flex flex-col gap-0 items-center justify-center">
-                <Skeleton className="w-72 h-8" />
-                <Skeleton className="w-56 h-8" />
-                <Skeleton className="w-20 h-8" />
-                <Skeleton className="w-44 h-8" />
-                <Skeleton className="w-52 h-8" />
-                <Skeleton className="w-36 h-8" />
-              </div>
-            </div>
+            ))}
           </div>
         ) : (
           Programs &&

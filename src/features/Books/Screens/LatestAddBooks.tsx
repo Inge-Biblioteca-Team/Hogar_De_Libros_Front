@@ -58,13 +58,21 @@ const LatestAddBooks = () => {
           Últimos libros añadidos a la colección
         </h2>
         {isLoading ? (
-          <div className="grid max-lg:grid-cols-6 xl:grid-cols-6  2xl:grid-cols-6 max-sm:grid-cols-2 md:grid-cols-3 w-full gap-10">
-            <Skeleton className="w-full h-96" />
-            <Skeleton className="w-full h-96" />
-            <Skeleton className="max-sm:hidden max-lg:block xl:block 2xl:block w-full h-96" />
-            <Skeleton className="hidden max-lg:block xl:block 2xl:block w-full h-96" />
-            <Skeleton className="hidden max-lg:block xl:block 2xl:block w-full h-96" />
-            <Skeleton className="hidden max-lg:block xl:block 2xl:block w-full h-96" />
+          <div className="flex w-full justify-between">
+            <div className="bg-white p-2 rounded-md w-fit">
+              <Skeleton width={170} height={320} />
+              <Skeleton height={30} />
+            </div>
+            <div className="bg-white p-2 rounded-md w-fit">
+              <Skeleton width={170} height={320} />
+              <Skeleton height={30} />
+            </div>
+            {[...Array(3)].map((_, index) => (
+              <div key={index} className="bg-white p-2 rounded-md w-fit max-lg:hidden">
+                <Skeleton width={170} height={320} />
+                <Skeleton height={30} className="mt-2" />
+              </div>
+            ))}
           </div>
         ) : (
           catalog &&
