@@ -21,12 +21,14 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
 
   return (
     <section
-      className="relative w-full md:w-full max-sm:max-w-full max-sm:pr-4 max-sm:pl-4 lg:w-full lg:pl-20 lg:pr-20
-      xl:w-full xl:pl-20 xl:pr-20 2xl:w-full 2xl:pr-20 2xl:pl-20 mt-10 md:pl-2 md:pr-2"
+      className="
+      relative w-11/12
+      h-[17rem] sm:h-[17rem] xl:h-[18rem] 2xl:h-[22rem]
+       space-y-4"
       id="Activities"
     >
       <>
-        <h2 className="text-center font-bold lg:text-4xl pb-4 text-2xl mb-6">
+        <h2 className="text-center font-bold text-4xl max-sm:text-xl">
           Avisos importantes
         </h2>
         {home && (
@@ -37,7 +39,7 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
 
         {isLoading ? (
           <>
-            <div className="bg-white w-full lg:w-full h-[28rem] max-sm:h-[23rem] rounded-md p-2">
+            <div className="bg-white w-full max-lg:w-full h-[28rem] max-sm:h-[23rem] rounded-md p-2">
               <Skeleton className="h-[22rem] max-sm:h-[17rem]" />
               <Skeleton width={200} height={20} />
               <Skeleton width={150} height={20} />
@@ -46,7 +48,6 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
           </>
         ) : (
           <Carousel
-            className="Custom-Carousel w-full lg:w-full h-[28rem] max-sm:h-[23rem]"
             indicators={false}
             pauseOnHover
           >

@@ -50,28 +50,27 @@ const LatestAddBooks = () => {
 
   return (
     <>
-      <section
-        className="m-5 flex items-center w-full lg:w-full lg:pr-20 lg:pl-20 pr-20 pl-20 flex-col max-sm:w-full md:w-full max-sm:pr-5 max-sm:pl-5 max-sm:m-0
-          md:pr-0 md:pl-0"
-        id="MostPopularBooks"
-      >
-        <h2 className="font-bold 2xl:text-4xl lg:text-4xl pb-4 text-2xl text-center">
+      <section className="space-y-4 mt-6 w-11/12" id="MostPopularBooks">
+        <h2
+          className="font-bold text-4xl text-center 
+          max-sm:text-xl"
+        >
           Últimos libros añadidos a la colección
         </h2>
         {isLoading ? (
-          <div className="grid lg:grid-cols-6 xl:grid-cols-6  2xl:grid-cols-6 max-sm:grid-cols-2 md:grid-cols-3 w-full gap-10">
+          <div className="grid max-lg:grid-cols-6 xl:grid-cols-6  2xl:grid-cols-6 max-sm:grid-cols-2 md:grid-cols-3 w-full gap-10">
             <Skeleton className="w-full h-96" />
             <Skeleton className="w-full h-96" />
-            <Skeleton className="max-sm:hidden lg:block xl:block 2xl:block w-full h-96" />
-            <Skeleton className="hidden lg:block xl:block 2xl:block w-full h-96" />
-            <Skeleton className="hidden lg:block xl:block 2xl:block w-full h-96" />
-            <Skeleton className="hidden lg:block xl:block 2xl:block w-full h-96" />
+            <Skeleton className="max-sm:hidden max-lg:block xl:block 2xl:block w-full h-96" />
+            <Skeleton className="hidden max-lg:block xl:block 2xl:block w-full h-96" />
+            <Skeleton className="hidden max-lg:block xl:block 2xl:block w-full h-96" />
+            <Skeleton className="hidden max-lg:block xl:block 2xl:block w-full h-96" />
           </div>
         ) : (
           catalog &&
           catalog?.count > 0 && (
             <Carousel
-              className="h-[25rem] w-full lg:w-full md:w-full"
+              className="h-[25rem] w-full max-lg:w-full md:w-full"
               indicators={false}
               pauseOnHover
               leftControl

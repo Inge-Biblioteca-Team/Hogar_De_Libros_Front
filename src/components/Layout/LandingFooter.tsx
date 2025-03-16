@@ -6,57 +6,28 @@ const LandingFooter = () => {
       <div className=" flex flex-col md:flex-row lg:flex-row justify-between w-full">
         <div className=" flex flex-col">
           <Footer.Title
-            className="text-lg text-xl md:text-sm text-white max-sm:text-base"
+            className=" text-xl md:text-sm text-white max-sm:text-base"
             title="Biblioteca Pública Municipal De Nicoya"
           />
-<<<<<<< Updated upstream
-          <Footer.Title
-            className="text-lg md:text-xs text-white max-sm:text-sm"
-            title="Dirección"
-          />
-          <Footer.LinkGroup>
-            <Footer.Link
-              href=""
-              className=" mb-10 lg:mb-0 md:text-xs max-sm:text-xs "
-            >
-              50 Norte del Liceo de Nicoya, frente a piscinas ANDE
-=======
-          <Footer.Title className="text-lg text-xl md:text-sm text-white max-sm:text-base" title="Dirección" />
+          <Footer.Title className="text-xl md:text-sm text-white max-sm:text-base" title="Dirección" />
           <Footer.LinkGroup>
             <Footer.Link href="" className=" mb-10 lg:mb-0 md:text-sm max-sm:text-sm ">
               50 metros Norte del Liceo de Nicoya, frente a piscinas ANDE
->>>>>>> Stashed changes
             </Footer.Link>
           </Footer.LinkGroup>
         </div>
         <div className=" flex max-lg:gap-1 max-sm:gap-8">
           <div>
-<<<<<<< Updated upstream
-            <Footer.Title
-              title="Contactos"
-              className="text-lg md:text-xs text-white max-sm:text-xs"
-            />
-            <Footer.LinkGroup col className="md:text-xs max-sm:text-xs">
-=======
-            <Footer.Title title="Contactos" className="text-lg text-xl md:text-sm text-white max-sm:text-base" />
+            <Footer.Title title="Contactos" className=" text-xl md:text-sm text-white max-sm:text-base" />
             <Footer.LinkGroup col className="md:text-sm max-sm:text-sm">
->>>>>>> Stashed changes
               <Footer.Link href="">bpnicoya@sinabi.go.cr</Footer.Link>
               <Footer.Link href="">+506 2685-4213</Footer.Link>
               <Footer.Link href=""></Footer.Link>
             </Footer.LinkGroup>
           </div>
           <div>
-<<<<<<< Updated upstream
-            <Footer.Title
-              title="Servicios"
-              className="text-lg md:text-xs text-white max-sm:text-xs"
-            />
-            <Footer.LinkGroup col className="md:text-xs max-sm:text-xs">
-=======
-            <Footer.Title title="Servicios" className="text-lg text-xl md:text-sm text-white max-sm:text-base" />
+            <Footer.Title title="Servicios" className=" text-xl md:text-sm text-white max-sm:text-base" />
             <Footer.LinkGroup col className="md:text-sm max-sm:text-sm">
->>>>>>> Stashed changes
               <Footer.Link href="#MostPopularBooks">Libros</Footer.Link>
               <Footer.Link href="#Rooms">Salas</Footer.Link>
               <Footer.Link href="#Computers">Equipo de Cómputo</Footer.Link>
@@ -65,16 +36,8 @@ const LandingFooter = () => {
             </Footer.LinkGroup>
           </div>
           <div>
-<<<<<<< Updated upstream
-            <Footer.Title
-              title="Legal"
-              className="text-lg md:text-xs text-white max-sm:text-xs"
-            />
-            <Footer.LinkGroup col className="md:text-xs max-sm:text-xs">
-=======
-            <Footer.Title title="Legal" className="text-lg text-xl md:text-sm text-white max-sm:text-base" />
+            <Footer.Title title="Legal" className="text-xl md:text-sm text-white max-sm:text-base" />
             <Footer.LinkGroup col className="md:text-sm max-sm:text-sm">
->>>>>>> Stashed changes
               <Footer.Link href="">Política de privacidad</Footer.Link>
               <Footer.Link href="">Términos & condiciones</Footer.Link>
             </Footer.LinkGroup>

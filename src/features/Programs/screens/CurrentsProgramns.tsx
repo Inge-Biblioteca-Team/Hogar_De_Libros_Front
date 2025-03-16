@@ -48,11 +48,11 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
   return (
     <>
       <section
-        className="flex h-full md:w-full pr-16 pl-16 items-center max-sm:w-full max-sm:h-full lg:gap-8 w-full lg:w-full lg:pr-16 lg:pl-16  flex-col max-sm:m-0
-          max-sm:pl-0 max-sm:pr-0 md:pl-0 md:pr-0 "
+        className="space-y-4 w-11/12"
         id="Programs"
       >
-        <h2 className="2xl:text-4xl font-bold text-2xl lg:text-4xl pb-4">
+        <h2 className="font-bold text-4xl text-center 
+          max-sm:text-xl">
           Nuestros programas
         </h2>
         {home && (

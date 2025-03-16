@@ -70,7 +70,6 @@ const LoanStadisticts = () => {
   return (
     <>
       {!isLoading ? (
-<<<<<<< Updated upstream
         <div className="relative">
           <Button
             type="button"
@@ -78,7 +77,7 @@ const LoanStadisticts = () => {
             color={"gray"}
             className="z-50 absolute top-2 right-2 "
           >
-            <IoClipboard size={23}/>
+            <IoClipboard size={23} />
           </Button>
           <div ref={chartRef} id="chart-container">
             <ResponsiveContainer
@@ -92,17 +91,17 @@ const LoanStadisticts = () => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="Eventos" fill="#1a53d9" />
-                <Bar dataKey="Cursos" fill="#00955e" />
+                <Bar dataKey="Eventos" fill="#8884d8" />
+                <Bar dataKey="Cursos" fill="#82ca9d" />
                 <Bar
                   dataKey="Prestamos"
                   fill="#ffc658"
-                  name={"Prestamos de libros"}
+                  name={"Préstamos de libros"}
                 />
                 <Bar
                   dataKey="UsoComputo"
-                  fill="#ff00ff"
-                  name={"Usos de equipo de computo"}
+                  fill="#82ca9d"
+                  name={"Usos de equipo de cómputo"}
                 />
                 <Line type="monotone" dataKey="Eventos" stroke="#8884d8" />
                 <Line type="monotone" dataKey="Prestamos" stroke="#82ca9d" />
@@ -111,36 +110,6 @@ const LoanStadisticts = () => {
             </ResponsiveContainer>
           </div>
         </div>
-=======
-        <ResponsiveContainer
-          width="100%"
-          height={400}
-          className={"bg-white rounded-md p-3"}
-        >
-          <BarChart data={formattedStats}>
-            <CartesianGrid strokeDasharray="3 4" />
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="Eventos" fill="#8884d8" />
-            <Bar dataKey="Cursos" fill="#82ca9d" />
-            <Bar
-              dataKey="Prestamos"
-              fill="#ffc658"
-              name={"Préstamos de libros"}
-            />
-            <Bar
-              dataKey="UsoComputo"
-              fill="#82ca9d"
-              name={"Usos de equipo de cómputo"}
-            />
-            <Line type="monotone" dataKey="Eventos" stroke="#8884d8" />
-            <Line type="monotone" dataKey="Prestamos" stroke="#82ca9d" />
-            <Line type="monotone" dataKey="Cursos" stroke="#ffc658" />
-          </BarChart>
-        </ResponsiveContainer>
->>>>>>> Stashed changes
       ) : (
         <span>Cargando</span>
       )}

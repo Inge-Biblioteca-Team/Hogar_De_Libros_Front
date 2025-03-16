@@ -47,16 +47,16 @@ const LocalArtistList = () => {
 
   return (
     <>
-      <section
-        className="flex md:w-full md:pl-2 md:pr-2 gap-6 items-center max-sm:pr-4 max-sm:pl-4  max-sm:w-full  w-full lg:pr-16 lg:pl-16 pr-16 pl-16 flex-col "
-        id="Courses"
-      >
-        <h2 className="2xl:text-4xl font-bold text-2xl lg:text-4xl pb-4">
+      <section className="space-y-4 w-11/12" id="Courses">
+        <h2
+          className="font-bold text-4xl text-center 
+          max-sm:text-xl"
+        >
           Artistas locales
         </h2>
         {isLoading ? (
           <div
-            className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3
+            className="grid max-lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3
             max-sm:grid-cols-1 md:grid-cols-2 w-full h-full gap-4"
           >
             <div className="bg-white w-full flex gap-2 flex-col h-[27rem] ">

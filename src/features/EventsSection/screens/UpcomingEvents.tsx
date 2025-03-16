@@ -18,10 +18,11 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
   return (
     <>
       <section
-        className="relative  md:w-full max-sm:w-full lg:w-full lg:pr-20 lg:pl-20 w-full pl-20 pr-20  md:pl-2 md:pr-2 max-sm:pr-4 max-sm:pl-4"
+       className="space-y-4 w-11/12"
         id="Events"
       >
-        <h2 className="text-2x text-center font-bold text-2xl mb-6 lg:text-4xl pb-4">
+        <h2 className="font-bold text-4xl text-center 
+          max-sm:text-xl">
           Próximos eventos
         </h2>
         {home && (
@@ -31,7 +32,7 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
           </h4>
         )}
         {isLoading ? (
-          <div className="bg-white w-full lg:w-full h-[28rem] max-sm:h-[23rem] rounded-md p-2">
+          <div className="bg-white w-full max-lg:w-full h-[28rem] max-sm:h-[23rem] rounded-md p-2">
             <Skeleton style={{ height: "19rem" }} />
             <Skeleton width={250} height={20} />
             <Skeleton width={220} height={20} />
@@ -44,7 +45,7 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
           events.count > 0 && (
             <article>
               <Carousel
-                className="Custom-Carousel w-full lg:w-full h-[28rem] max-sm:h-[23rem]"
+                className="Custom-Carousel w-full max-lg:w-full h-[28rem] max-sm:h-[23rem]"
                 pauseOnHover
                 indicators={false}
               >

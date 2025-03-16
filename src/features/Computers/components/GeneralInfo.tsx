@@ -13,20 +13,19 @@ const GeneralInfo = () => {
     >
       <GeneralComputerInfo />
       <div
-        className="flex max-sm:pl-4 max-sm:pr-4 max-sm:-ml-2 lg:justify-between flex-col max-sm:text-sm md:items-center lg:w-full max-sm:w-full max-sm:text-center max-sm:items-center col-span-2 text-2xl
-       m-2 lg:m-0 md:p-2"
+        className=" text-lg max-sm:text-sm"
       >
         <p>
-          <strong className="2xl:text-3xl lg:text-base">
+          <strong className="">
             Acceso a computadoras,{" "}
           </strong>
-          <span className="2xl:text-3xl lg:text-base">
+          <span className="">
             la biblioteca cuenta con <strong>{computerCount}</strong>{" "}
             computadoras las cuales están a disposición de los usuarios de la
             biblioteca.
             <span className=" lg:text-lg hidden 2xl:text-3xl max-sm:block">
               Los equipos cuentan con:{" "}
-              <strong className="2xl:text-3xl lg:text-lg">
+              <strong className="">
                 Firma Digital,Acceso Gratuito a Internet, Puertos USB y paquete
                 Microsoft completo
               </strong>{" "}
@@ -39,10 +38,9 @@ const GeneralInfo = () => {
             <strong className="">disponibilidad en tiempo real.</strong>
           </span>
         </p>
-        <div className="m-4   lg:m-0">
+        <div className="">
           <Link to={"/HogarDeLibros/Equipo_Disponible"}>
             <Button
-              className="md:w-52 2xl:w-72 2xl:h-14 2xl:items-center text-2xl  "
               color={"blue"}
             >
               Ver más información
