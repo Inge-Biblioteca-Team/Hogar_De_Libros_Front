@@ -18,7 +18,7 @@ const ListCard = ({ book, inf }: { book: Book; inf: boolean }) => {
             />
           </figure>
           <div className=" flex flex-col justify-between ml-4 gap-2">
-            <Label className="line-clamp-4" value={` Titulo: ${book.Title}`} />
+            <Label className="line-clamp-4" value={` Título: ${book.Title}`} />
             <Label className="line-clamp-4" value={` Autor: ${book.Author}`} />
             <Label
               value={` Año de publicación: ${

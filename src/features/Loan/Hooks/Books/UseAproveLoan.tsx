@@ -12,7 +12,7 @@ const UseAproveLoan = () => {
         loading: "Espere por favor...",
         success: <span>Éxito, se aprobó el préstamo correctamente:</span>,
         error: (error: ApiError) => (
-          <span>Error al aprobar el prestamo: {error.message}</span>
+          <span>Error al aprobar el préstamo: {error.message}</span>
         ),
       }),
     onSuccess() {

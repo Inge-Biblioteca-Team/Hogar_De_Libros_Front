@@ -10,7 +10,7 @@ const UseEnd = () => {
     mutationFn: PatchEndReservation,
     onSuccess: () => {
       queryClient.invalidateQueries("ProgramCatalog");
-      toast.success("Exito, programa añadido correctamente");
+      toast.success("Éxito, programa añadido correctamente");
     },
     onError: (error: ApiError) => {
       toast.error("Error al crear el programa: " + error.message);

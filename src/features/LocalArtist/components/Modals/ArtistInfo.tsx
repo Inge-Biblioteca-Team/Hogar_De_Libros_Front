@@ -28,7 +28,7 @@ const ArtistInfo = ({
           />
         </figure>
         <span className=" flex-col flex gap-2 text-center">
-          <strong>Información Del Artista</strong>
+          <strong>Información del artista</strong>
           <span>Nombre: {Artist.Name}</span>
           <span>Profesión: {Artist.ArtisProfession}</span>
           {Artist.MoreInfo == "" ? (

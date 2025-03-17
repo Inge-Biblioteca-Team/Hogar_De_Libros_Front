@@ -15,7 +15,7 @@ const UseDownloadReport = () => {
     }) =>
       toast.promise(downloadLoanReport(startDate, endDate, reportType), {
         loading: "Generando reporte porfavor espere...",
-        success: <span>Reporte generado con exito.</span>,
+        success: <span>Reporte generado con éxito.</span>,
         error: (error: Error) => (
           <span>Error al generar reporte: {error.message}</span>
         ),

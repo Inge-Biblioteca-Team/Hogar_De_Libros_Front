@@ -34,7 +34,7 @@ const ViewChildrenBook = ({
             />
           </figure>
           <div className=" flex flex-col lg:justify-between col-span-2">
-            <Label value={`Titulo: ${book.Title}`} />
+            <Label value={`Título: ${book.Title}`} />
             <Label value={`Autor: ${book.Author}`} />
             <Label value={`Editorial: ${book.Editorial || "No Posee"}`} />
             <Label

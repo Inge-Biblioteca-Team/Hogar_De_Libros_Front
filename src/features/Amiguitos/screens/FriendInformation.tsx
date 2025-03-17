@@ -18,7 +18,7 @@ const FriendInformation = () => {
       <MiddleCrumb label="Información de voluntariados" />
       <main className=" flex flex-col w-full items-center justify-center gap-4 mb-4">
         <h3 className=" font-bold text-xl max-sm:text-base">
-          Conoce mas sobre como apoyar a la biblioteca
+          Conoce más sobre cómo apoyar a la biblioteca
         </h3>
         <section className="w-11/12 flex flex-col gap-7">
           <Card>
@@ -26,12 +26,12 @@ const FriendInformation = () => {
             <div className=" flex justify-around max-sm:flex-col-reverse max-sm:gap-3">
               <div>
                 <p>
-                  Puedes realizar una actividad colaboración con la biblioteca
+                  Puedes realizar una actividad de colaboración con la biblioteca
                   en una de las siguientes areas:
                 </p>
                 <ul className="list-disc">
                   <li className=" ml-5">
-                    Cuentacuentos para adultos mayores,niños o jóvenes
+                    Cuentacuentos para adultos mayores, niños o jóvenes
                   </li>
                   <li className=" ml-5">Exposiciones artísticas</li>
                   <li className=" ml-5">Presentaciones audiovisuales</li>
@@ -101,7 +101,7 @@ const FriendInformation = () => {
                   <ul className="list-disc">
                     <li className=" ml-5">Historia</li>
                     <li className=" ml-5">Literatura</li>
-                    <li className=" ml-5">Educativos:Máximo 5 años.</li>
+                    <li className=" ml-5">Educativos:Máximo 5 años de antiguedad.</li>
                   </ul>
                 </div>
                 <div>
@@ -110,10 +110,10 @@ const FriendInformation = () => {
                     <li className=" ml-5">Mobiliarios</li>
                     <li className=" ml-5">Estanterías</li>
                     <li className=" ml-5">Expositores de libros</li>
-                    <li className=" ml-5">Loquers</li>
+                    <li className=" ml-5">Lockers</li>
                     <li className=" ml-5">Dispensadores</li>
                     <li className=" ml-5">Coffe maker</li>
-                    <li className=" ml-5">Manteleria</li>
+                    <li className=" ml-5">Mantelería</li>
                     <li className=" ml-5">Entre otros</li>
                   </ul>
                 </div>
@@ -157,10 +157,10 @@ const FriendInformation = () => {
             <div className=" flex justify-around max-sm:flex-col-reverse max-sm:gap-3">
               <div className=" flex flex-col gap-3">
                 <p>
-                  Contamos con amigos los cuales nos ayudan en las labores{" "}
+                  Contamos con amigos que nos ayudan en las labores{" "}
                   <br />
-                  cotidianas de la biblioteca, si quiere apoyarnos, también
-                  puedes unirte, aquí algunas de las areas de nuestros amigos:
+                  cotidianas de la biblioteca. Si quieres apoyarnos, también
+                  puedes unirte. Aquí algunas de las áreas de nuestros amigos:
                 </p>
                 <ul className="list-disc">
                   <li className=" ml-5">Atención al usuario</li>

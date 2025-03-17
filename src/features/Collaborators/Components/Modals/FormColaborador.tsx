@@ -132,7 +132,7 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
                 </Select>
               </div>
               <div>
-                <Label value=" Numero de cédula" />
+                <Label value="Número de cédula" />
                 <TextInput
                   {...register("UserCedula", { required: true })}
                   required
@@ -224,7 +224,7 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
                 />
                 <Label
                   className="ml-2"
-                  value="Experiencia previa en el area seleccionada"
+                  value="Experiencia previa en el área seleccionada"
                 />
                 <TextInput
                   {...register("Experience")}
@@ -247,7 +247,7 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
                   rows={10}
                   {...register("Description")}
                   required
-                  placeholder="Por favor, proporcione una descripción sobre la actividad propuesta, es de suma importancia este apartado."
+                  placeholder="Por favor, proporcione una descripción sobre la actividad propuesta. Este apartado es de suma importancia."
                 />
               </div>
               <div className=" flex flex-col gap-3">

@@ -71,10 +71,10 @@ const ManagerComputer = () => {
         <section className="w-4/5 md:w-full md:pl-4 md:pr-4 sm:items-center flex lg:flex-row flex-col justify-between lg:items-end max-sm:w-full max-sm:px-2 gap-4 lg:gap-0">
           <div className="flex md:w-full lg:flex-row flex-col gap-3">
             <div>
-              <Label value="Búsqueda por numero de equipo" />
+              <Label value="Búsqueda por número de equipo" />
               <TextInput
                 onChange={(event) => setMNum(event.target.value)}
-                placeholder="Numero de equipo"
+                placeholder="Número de equipo"
               />
             </div>
             <div>

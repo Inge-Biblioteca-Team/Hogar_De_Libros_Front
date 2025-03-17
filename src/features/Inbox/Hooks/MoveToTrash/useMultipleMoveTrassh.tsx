@@ -10,7 +10,7 @@ const useMultipleMoveToTrash = () => {
     async (id_Note: number[]) =>
       toast.promise(moveMultipleToTrash(id_Note), {
         loading: "Moviendo...",
-        success: <span>Notificaciones movidas a la papelera. </span>,
+        success: <span>Notificaciones enviada a la papelera. </span>,
         error: (error: ApiError) => (
           <span>Error al mover las notificaciones: {error.message}</span>
         ),

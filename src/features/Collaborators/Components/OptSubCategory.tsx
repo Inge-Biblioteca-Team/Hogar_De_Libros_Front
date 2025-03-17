@@ -13,7 +13,7 @@ const OptSubCategory = () => {
         Presentaciones audiovisuales
       </option>
       <option value="Dirigir una tertulia con todo público">
-        Dirigir una tertulia con todo público
+        Dirigir una tertulia a todo público
       </option>
       <option value="Impartir cursos (inducción, Excel, Word, PowerPoint)">
         Impartir cursos (inducción, Excel, Word, PowerPoint)

@@ -52,7 +52,7 @@ const ManageColabHistory = () => {
             </Select>
           </div>
           <div className=" ">
-            <Label value="Sub categoría" />
+            <Label value="Subcategoría" />
             <Select onChange={(event) => setSubCategory(event.target.value)}>
               <OptSubCategory />
             </Select>

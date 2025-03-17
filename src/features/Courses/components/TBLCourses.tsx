@@ -46,7 +46,7 @@ const TBLCourses = ({ course }: { course: Courses }) => {
           className="hover:text-Body xl:table-cell 2xl:table-cell cursor-pointer md:hidden max-sm:hidden"
           onClick={handleOpen}
         >
-          Lista de Matricula
+          Lista de Matrícula
         </Table.Cell>
         <Table.Cell>{course.currentStatus}</Table.Cell>
         <Table.Cell>

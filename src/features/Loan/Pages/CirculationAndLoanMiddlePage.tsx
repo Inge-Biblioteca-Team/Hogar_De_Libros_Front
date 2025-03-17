@@ -30,9 +30,9 @@ const CirculationAndLoanMiddlePage = () => {
             onClick={() => navi("/HogarDeLibros/Prestamos_Circulacion/Prestamo_Computo")}
           >
             <h3>Préstamos de Computo</h3>
-            <Label value={`Total de préstamos de computo: `} />
+            <Label value={`Total de préstamos de cómputo: `} />
             <Label value={`Préstamos en ejecución: `} />
-            <Label value={`Último préstamo de computo: `} />
+            <Label value={`Último préstamo de cómputo: `} />
           </Card>
           <Card
             className="h-72 w-80 transition-transform hover:scale-105"

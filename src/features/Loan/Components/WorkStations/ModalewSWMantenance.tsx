@@ -68,7 +68,7 @@ const ModalMantenance = ({
               setInCharge(event.target.value);
             }}
           />
-          <Label htmlFor="UserName">Ubicacion del equipo</Label>
+          <Label htmlFor="UserName">Ubicación del equipo</Label>
           <TextInput
             className=""
             type="text"

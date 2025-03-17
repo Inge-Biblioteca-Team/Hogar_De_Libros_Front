@@ -22,7 +22,7 @@ const InfoColaborador = ({children}:{children:React.ReactNode}) => {
             </ul>
             <p className="text-sm font-medium">Nota: Estos documentos pueden ser presentados en formato digital o físico.</p>
             
-            <h3 className="font-semibold mt-4">Cualidades Necesarias</h3>
+            <h3 className="font-semibold mt-4">Cualidades Necesarias: </h3>
             <ul className="list-disc list-inside text-sm mb-2">
               <li>Dominio del tema a exponer o curso a realizar.</li>
               <li>Habilidades de comunicación efectiva y claridad en la exposición.</li>

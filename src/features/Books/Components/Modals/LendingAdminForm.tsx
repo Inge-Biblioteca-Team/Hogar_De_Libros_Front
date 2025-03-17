@@ -119,7 +119,7 @@ const LendingAdminForm = ({
             <legend className="mb-1">Información del solicitante</legend>
             <FloatingLabel
               variant="outlined"
-              label="Numero de cédula"
+              label="Número de cédula"
               {...register("userCedula")}
               className=" cursor-default"
               type="number"
@@ -132,13 +132,13 @@ const LendingAdminForm = ({
             />
             <FloatingLabel
               variant="outlined"
-              label="Numero de teléfono"
+              label="Número de teléfono"
               {...register("userPhone")}
               className=" cursor-default"
             />
             <FloatingLabel
               variant="outlined"
-              label="Dirección"
+              label="Dirección de residencia"
               {...register("userAddress")}
               className=" cursor-default"
             />

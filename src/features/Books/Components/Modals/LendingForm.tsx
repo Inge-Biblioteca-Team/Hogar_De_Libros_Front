@@ -62,7 +62,7 @@ const LendingForm = ({
             <legend className="mb-1">Información del solicitante</legend>
             <FloatingLabel
               variant="filled"
-              label="Numero de cédula"
+              label="Número de cédula"
               {...register("userCedula")}
               readOnly
               className=" cursor-default"
@@ -79,7 +79,7 @@ const LendingForm = ({
             <FloatingLabel
               variant="filled"
               disabled={true}
-              label="Numero de teléfono"
+              label="Número de teléfono"
               {...register("userPhone")}
               readOnly
               className=" cursor-default"
@@ -87,7 +87,7 @@ const LendingForm = ({
             <FloatingLabel
               variant="filled"
               disabled={true}
-              label="Dirección"
+              label="Dirección de residencia"
               {...register("userAddress")}
               readOnly
               className=" cursor-default"
@@ -123,7 +123,7 @@ const LendingForm = ({
             <FloatingLabel
               variant="filled"
               disabled={true}
-              label="Titulo"
+              label="Título"
               value={book.Title}
               className=" cursor-default"
               readOnly

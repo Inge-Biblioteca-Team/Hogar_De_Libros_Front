@@ -25,20 +25,20 @@ const MDViewFriend = ({
           <strong>Nombre:</strong> {friend.UserFullName}
         </span>
         <span>
-          <strong>Cedula:</strong> {friend.UserCedula}
+          <strong>Cédula:</strong> {friend.UserCedula}
         </span>
         <span>
           <strong>Fecha de nacimiento:</strong>{" "}
           {formatToDMY(friend.UserBirthDate)}
         </span>
         <span>
-          <strong>Número de telefono:</strong> {friend.UserPhone}
+          <strong>Número de teléfono:</strong> {friend.UserPhone}
         </span>
         <span>
           <strong>Correo electrónico:</strong> {friend.UserEmail}
         </span>
         <span>
-          <strong>Direccion de residencia:</strong> {friend.UserAddress}
+          <strong>Dirección de residencia:</strong> {friend.UserAddress}
         </span>
         <span>
           <strong>Categoría de apoyo:</strong> {friend.PrincipalCategory}

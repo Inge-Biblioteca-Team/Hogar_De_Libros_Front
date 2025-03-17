@@ -67,7 +67,7 @@ const ForAll = () => {
             handleNavigation("/HogarDeLibros/AmigosYColaboradores")
           }
         >
-          Se un amigo más
+          Sé un amigo más
         </Sidebar.Item>
         <Sidebar.Item
           className=""

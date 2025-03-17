@@ -38,7 +38,7 @@ const MDDenyDonation = ({
       <Modal.Header></Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body className=" flex flex-col gap-4">
-          <span>¿Esta seguro de rechazar la donación?</span>
+          <span>¿Está seguro de rechazar la donación?</span>
           <div>
             <Label value="Razón de rechazo" />
             <Textarea

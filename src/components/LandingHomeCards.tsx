@@ -23,10 +23,7 @@ const LandingHomeCards = ({
           <br />
           <span className=" max-sm:hidden">{Message}</span>
         </p>
-        <Link
-          to={Path}
-          className="underline hover:text-gray-400 mt-auto  max-sm:text-xs"
-        >
+        <Link to={Path} className=" underline hover:text-gray-400">
           Ver más
         </Link>
       </figcaption>

@@ -30,7 +30,7 @@ const CustomPagination = ({
             <option value={10}>10</option>
             <option value={15}>15</option>
           </select>
-          <span>elementos por pagina. </span>
+          <span>elementos por página. </span>
         </div>
         <span className=" hidden">
           Se han mostrado {total > 5 ? page * 5 : total} de {total} registros

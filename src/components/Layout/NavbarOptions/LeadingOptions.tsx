@@ -36,7 +36,7 @@ const LeadingOptions = () => {
               handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Prestamos_Activos")
             }
           >
-            Préstamo de libro activos
+            Préstamo de libros activos
           </Sidebar.Item>
           <Sidebar.Item
             onClick={() =>
@@ -50,14 +50,14 @@ const LeadingOptions = () => {
               handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Solicitudes_Salas")
             }
           >
-            Solicitud de préstamo <br /> salas
+            Solicitud de préstamo <br /> de salas
           </Sidebar.Item>
           <Sidebar.Item
             onClick={() =>
               handleNavigation("/HogarDeLibros/Prestamos_Circulacion/Reserva_Aprovadas")
             }
           >
-            Reserva de sala aprobadas
+            Reservas de sala aprobadas
           </Sidebar.Item>
           <Sidebar.Item
             onClick={() =>

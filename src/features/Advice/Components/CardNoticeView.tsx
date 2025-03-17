@@ -23,7 +23,7 @@ const CardNoticeView: React.FC<CardNoticeViewProps> = ({ notice }) => {
           {notice.reason}
         </h5>
         <p className="font-normal text-gray-700">
-          Información Extra{notice.extraInfo}
+          Información extra{notice.extraInfo}
         </p>
         <p className="font-normal text-gray-700">
           Fecha: {new Date(notice.date).toLocaleDateString()}

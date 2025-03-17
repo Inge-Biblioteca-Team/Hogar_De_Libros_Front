@@ -38,7 +38,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
           {home && (
             <h4 className=" text-center text-md mb-2">
               Ven a pasar un tiempo especial junto a nosotros. Al mismo tiempo
-              que aprendes cosas nuevas.
+              que aprendas cosas nuevas.
             </h4>
           )}
           <Carousel

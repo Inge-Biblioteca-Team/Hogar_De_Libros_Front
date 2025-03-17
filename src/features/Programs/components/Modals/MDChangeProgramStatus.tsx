@@ -29,11 +29,11 @@ const MDChangeProgramStatus = ({
           <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
         </div>
         <span>
-          ¿Está seguro de deshabilitar el programa{" "}
+          ¿Está seguro de deshabilitar el programa{" "}?
           <strong className=" font-bold">{program.programName}</strong>?
         </span>
         <br />
-        <span>Está acción no es reversible!!!</span>
+        <span>¡¡Está acción no es reversible!!!</span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
         <Button color={"red"} onClick={() => setOpen(false)} disabled={isLoading}>
