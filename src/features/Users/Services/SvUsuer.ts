@@ -78,7 +78,7 @@ const GetUserInfo = async (NCedula: string) => {
     const response = await api.get(`user/${NCedula}`);
     return response.data;
   } catch (error) {
-    console.log("Usuario no encontrado");
+    console.warn("Usuario no encontrado");
   }
 };
 
@@ -109,7 +109,7 @@ const getUserInformationByCedula = async (Ncedula: string) => {
     );
     return response.data;
   } catch (error) {
-    console.log("Usuario no encontrado");
+    console.warn("Usuario no encontrado");
   }
 };
 

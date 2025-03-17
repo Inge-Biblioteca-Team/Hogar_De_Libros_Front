@@ -2,8 +2,9 @@ import { Button, Card, Label, Popover } from "flowbite-react";
 import { Book } from "../../Types/BooksTypes";
 import { useState } from "react";
 import LendingForm from "../Modals/LendingForm";
+import SorryModal from "../Modals/SorryModal";
 
-const GridCard = ({ book }: { book: Book }) => {
+const GridCard = ({ book, inf }: { book: Book; inf: boolean }) => {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <>
@@ -57,7 +58,11 @@ const GridCard = ({ book }: { book: Book }) => {
           </figcaption>
         </figure>
       </Popover>
-      <LendingForm open={open} setOpen={setOpen} book={book} />
+      {inf ? (
+        <SorryModal open={open} setOpen={setOpen}/>
+      ) : (
+        <LendingForm open={open} setOpen={setOpen} book={book} />
+      )}
     </>
   );
 };

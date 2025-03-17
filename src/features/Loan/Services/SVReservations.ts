@@ -3,7 +3,6 @@ import { EndReservation, Reservation } from "../Types/RoomsReservations";
 import axios from "axios";
 
 const NewReservation = async (data: Reservation) => {
-  console.table(data);
   try {
     const response = await api.post("room-reservation", data, {
       headers: {

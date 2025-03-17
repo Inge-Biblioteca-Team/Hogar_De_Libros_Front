@@ -27,11 +27,10 @@ const SeeLoanInfo = ({
     tz: "America/Costa_Rica",
   });
 
-  const generatePDF = async (data:Loans) => {
+  const generatePDF = async (data: Loans) => {
     const blob = await pdf(<DocumentForLoan loanInfo={data} />).toBlob();
     saveAs(blob, `boleta#${data.BookLoanId}.pdf`);
-};
-
+  };
 
   return (
     <Modal show={see} onClose={() => setSee(false)}>
@@ -46,11 +45,21 @@ const SeeLoanInfo = ({
             <span>Cedula: {Loan.user.cedula}</span>
             <span>Direccion: {Loan.user.Adress}</span>
             <span>Telefono: {Loan.user.PhoneNumber} </span>
+            {Loan.OldObservations.length > 0 && (
+              <details>
+                <summary>Anotaciones del usuario</summary>
+                <ul>
+                  {Loan.OldObservations.map((observation) => (
+                    <li>{observation} </li>
+                  ))}
+                </ul>
+              </details>
+            )}
           </span>
           <span className=" flex flex-col">
             <strong>Sobre el Libro</strong>
             <span>Título: {Loan.book.Title}</span>
-            <span>Código de Signatura: {(Loan.book.signatureCode || "N/A")}</span>
+            <span>Código de Signatura: {Loan.book.signatureCode || "N/A"}</span>
             <span>Código De Inscripcion: {Loan.book.InscriptionCode}</span>
           </span>
           <span className=" flex flex-col">

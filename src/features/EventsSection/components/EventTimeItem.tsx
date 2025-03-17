@@ -47,8 +47,8 @@ const EventTimeItem = ({ event }: { event: Event }) => {
                 <span className=" font-bold text-black">
                   {event.title}{" "}
                 </span>
-                <span>Descripción del evento: {event.details} </span>
-                <span>Fecha del evento: {fullDate.toUpperCase()}</span>
+                <span>{event.details} </span>
+                <span>Fecha: {fullDate.toUpperCase()}</span>
                 <span>
                   {event.location} {time}{" "}
                 </span>

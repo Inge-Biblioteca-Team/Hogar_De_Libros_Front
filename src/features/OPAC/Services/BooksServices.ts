@@ -31,7 +31,7 @@ const getColection = async (
       const response = await api.get("/books/Categories");
       return response.data
     } catch(error){
-      console.log(error)
+      console.error(error)
       throw error
     }
   }

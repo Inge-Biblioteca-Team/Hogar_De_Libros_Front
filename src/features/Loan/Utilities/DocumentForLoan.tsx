@@ -62,8 +62,9 @@ const DocumentForLoan = ({ loanInfo }: { loanInfo: Loans }) => (
           <Image style={style.logo} src={SinabiLogo} />
         </View>
         <Text style={style.header}>SISTEMA NACIONAL DE BIBLIOTECAS</Text>
+        <Text style={style.header}>BIBLIOTECA SEMIOFICIAL FELIPE DIAZ VIDAURE</Text>
         <View>
-          <Text style={style.section}>BIBLIOTECA PUBLICA MUNICIPAL DE NICOYA</Text>
+          <Text style={style.section}>BIBLIOTECA PUBLICA MUNICIPAL FELIPE DIAZ VIDAURE</Text>
         </View>
         <View style={style.section}>
           <Text>SIGNATURA {loanInfo.book.signatureCode || "No Posee"} </Text>
@@ -92,7 +93,7 @@ const DocumentForLoan = ({ loanInfo }: { loanInfo: Loans }) => (
           <View style={style.altSeparator} />
           <View style={style.altSectionText}>
             <Text>HORA</Text>
-            <Text>5:00 PM</Text>
+            <Text>4:00 PM</Text>
           </View>
         </View>
 
@@ -123,6 +124,7 @@ const DocumentForLoan = ({ loanInfo }: { loanInfo: Loans }) => (
         </View>
         <View style={style.section}>
           <View style={style.firma}>
+            <Text> {loanInfo.user.name} </Text>
             <Text>_______________________________________{"\n"}FIRMA</Text>
           </View>
         </View>

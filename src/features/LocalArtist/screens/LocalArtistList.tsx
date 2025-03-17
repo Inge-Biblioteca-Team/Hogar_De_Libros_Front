@@ -47,19 +47,19 @@ const LocalArtistList = () => {
 
   return (
     <>
-      <section
-        className="flex md:w-full md:pl-2 md:pr-2 gap-6 items-center max-sm:pr-4 max-sm:pl-4  max-sm:w-full  w-full lg:pr-16 lg:pl-16 pr-16 pl-16 flex-col "
-        id="Courses"
-      >
-        <h2 className="2xl:text-4xl font-bold text-2xl lg:text-4xl pb-4">
+      <section className="space-y-4 w-11/12" id="Courses">
+        <h2
+          className="font-bold text-4xl text-center 
+          max-sm:text-xl"
+        >
           Artistas locales
         </h2>
         {isLoading ? (
           <div
-            className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3
+            className="grid max-lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3
             max-sm:grid-cols-1 md:grid-cols-2 w-full h-full gap-4"
           >
-            <div className="bg-white w-full flex gap-2 flex-col h-[27rem] ">
+            <div className="bg-white w-full flex gap-2 flex-col h-[27rem] p-2 rounded-md ">
               <Skeleton className="w-full h-52" />
               <div className=" flex flex-col items-center gap-4 justify-center">
                 <Skeleton className="w-48 h-6" />
@@ -72,31 +72,23 @@ const LocalArtistList = () => {
               </div>
             </div>
 
-            <div className="max-sm:hidden bg-white w-full flex gap-2 flex-col h-[27rem] ">
-              <Skeleton className="w-full h-52" />
-              <div className=" flex flex-col items-center gap-4 justify-center">
-                <Skeleton className="w-48 h-6" />
-                <Skeleton className="w-32 h-6" />
-                <Skeleton className="w-40 h-6" />
-                <div className="flex items-center justify-center gap-8">
-                  <Skeleton className="w-10 h-10" />
-                  <Skeleton className="w-10 h-10" />
+            {[...Array(2)].map((_, index) => (
+              <div
+                key={index}
+                className="max-sm:hidden bg-white w-full flex gap-2 flex-col h-[27rem] rounded-md  p-2"
+              >
+                <Skeleton className="w-full h-52" />
+                <div className=" flex flex-col items-center gap-4 justify-center">
+                  <Skeleton className="w-48 h-6" />
+                  <Skeleton className="w-32 h-6" />
+                  <Skeleton className="w-40 h-6" />
+                  <div className="flex items-center justify-center gap-8">
+                    <Skeleton className="w-10 h-10" />
+                    <Skeleton className="w-10 h-10" />
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="max-sm:hidden max-md:hidden bg-white w-full flex gap-2 flex-col h-[27rem] ">
-              <Skeleton className="w-full h-52" />
-              <div className=" flex flex-col items-center gap-4 justify-center">
-                <Skeleton className="w-48 h-6" />
-                <Skeleton className="w-32 h-6" />
-                <Skeleton className="w-40 h-6" />
-                <div className="flex items-center justify-center gap-8">
-                  <Skeleton className="w-10 h-10" />
-                  <Skeleton className="w-10 h-10" />
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         ) : (
           LArtists &&

@@ -30,10 +30,8 @@ const GetEvents = async (
 };
 
 const PostNewEvent = async (data: Events) => {
-  console.log("Datos a enviar:", data);
   try {
     const addEvent = await api.post("events", data);
-    console.log("Respuesta de la API:", addEvent.data);
     return addEvent.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {

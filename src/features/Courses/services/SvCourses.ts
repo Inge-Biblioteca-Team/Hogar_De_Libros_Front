@@ -49,8 +49,7 @@ const GetUserEnrollment = async (
   }
 };
 
-
-const CancelEroll = async (data:{courseID: number, userCedula: string}) => {
+const CancelEroll = async (data: { courseID: number; userCedula: string }) => {
   try {
     const response = await api.patch(
       `enrollments/cancel?courseId=${data.courseID}&userCedula=${data.userCedula}`
@@ -124,7 +123,6 @@ const editCourse = async (data: Courses) => {
 };
 
 const CreateCourses = async (data: Courses) => {
-  console.table(data);
   try {
     const addCourse = await api.post("courses", data);
     return addCourse.data;
@@ -144,13 +142,12 @@ const CreateCourses = async (data: Courses) => {
   }
 };
 
-
 const GetUserData = async (NCedula: string) => {
   try {
     const response = await api.get(`user/${NCedula}`);
     return response.data;
   } catch (error) {
-    console.log("Usuario no encontrado");
+    console.error("Usuario no encontrado");
   }
 };
 

@@ -90,8 +90,8 @@ const ChildrenColection = () => {
           </div>
         ) : catalog?.count && catalog.count > 0 ? (
           <section className="w-4/5">
-            {view == "List" && <ColectionList colection={catalog} />}
-            {view == "Grid" && <ColectionGrid colection={catalog} />}
+            {view == "List" && <ColectionList colection={catalog} inf />}
+            {view == "Grid" && <ColectionGrid colection={catalog} inf />}
             <CustomUsersPagination
               limit={limit}
               page={page}

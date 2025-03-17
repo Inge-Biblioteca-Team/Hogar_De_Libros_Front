@@ -6,8 +6,7 @@ const UseReactiveSW = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ReactiveWS,
-    onSuccess: (data) => {
-      console.log("Machine reactivated successfully:", data);
+    onSuccess: () => {
       queryClient.invalidateQueries("WSStatus");
       toast.success("Exito, el equipo disponible nuevamente")
     },

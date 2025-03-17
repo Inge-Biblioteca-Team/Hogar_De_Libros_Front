@@ -12,7 +12,7 @@ const EquipmentAccionBTNS = ({ computers }: { computers: Equipment }) => {
   return (
     <div className="flex gap-2 lg:gap-4 items-center justify-center">
       <button
-        title="ver información"
+        title="Ver información"
         type="button"
         className="hover:text-Body"
         onClick={() => setOpenSee(true)}

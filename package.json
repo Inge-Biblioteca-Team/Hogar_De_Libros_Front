@@ -34,6 +34,7 @@
     "date-fns": "^3.6.0",
     "file-saver": "^2.0.5",
     "flowbite-react": "^0.10.1",
+    "html2canvas": "^1.4.1",
     "jspdf": "^3.0.0",
     "jwt-decode": "^4.0.0",
     "loadash": "^1.0.0",
@@ -53,7 +54,8 @@
     "serve": "^14.2.4",
     "styled-components": "^6.1.13",
     "tempo": "^0.2.7",
-    "tempojs": "^1.0.3"
+    "tempojs": "^1.0.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.7",

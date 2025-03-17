@@ -1,11 +1,11 @@
 import CardTypeAmiguito from "../components/CardTypeAmiguito";
 const AmiguitosInfo = ({ home }: { home?: boolean }) => {
   return (
-    <section
-      className="w-full lg:w-full pr-16 pl-16 md:pl-0 md:pr-0 max-sm:pl-0 max-sm:pr-0 lg:pl-16 lg:pr-16  md:w-full flex max-sm:w-full flex-col items-center justify-center gap-5"
-      id="Friends"
-    >
-      <h2 className="2xl:text-4xl font-bold text-2xl lg:text-4xl pb-4">
+    <section className="space-y-4 w-11/12" id="Friends">
+      <h2
+        className="font-bold text-4xl text-center 
+          max-sm:text-xl"
+      >
         Amigos de la biblioteca
       </h2>
       {home && (

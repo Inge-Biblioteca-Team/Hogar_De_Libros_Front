@@ -7,7 +7,6 @@ import { downType } from "../../../Types/GlobalTypes";
 const GetComputersByCondition = async () => {
   try {
     const response = await api.get("/computers?ConditionRating");
-    console.log("Response data:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error al cargar los equipos de cómputo:", error);
@@ -18,7 +17,6 @@ const GetComputersByCondition = async () => {
 //Agregar computadora
 const PostNewComputer = async (computer: EquipmentEdit) => {
   try {
-    console.table(computer);
     const response = await api.post(`/computers`, computer);
     return response.data;
   } catch (error: unknown) {

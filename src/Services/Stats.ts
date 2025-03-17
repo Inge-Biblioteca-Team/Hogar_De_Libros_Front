@@ -5,7 +5,7 @@ const GetStats = async () => {
     const response = await api.get(`stats`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 };
@@ -15,7 +15,7 @@ const GetActivitiesCounts = async () => {
     const response = await api.get(`stats/successful-counts/current-year`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 };
@@ -24,7 +24,7 @@ const GetGeneralCounts = async () => {
     const response = await api.get(`stats/general-counts`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 };
@@ -34,7 +34,7 @@ const GetCalendarItems = async () => {
     const response = await api.get(`stats/Week-Calendar`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 };

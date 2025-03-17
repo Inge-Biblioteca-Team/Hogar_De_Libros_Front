@@ -42,11 +42,11 @@ const AdminHomePage = () => {
         </span>
       </div>
       <main className=" w-full flex flex-col items-center gap-3">
-        <section className=" grid lg:grid-cols-6 md:grid-cols-1 md:w-full md:pr-4 md:pl-4 grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
+        <section className=" grid max-lg:grid-cols-6 md:grid-cols-1 md:w-full md:pr-4 md:pl-4 grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
           <div className="col-span-4 md:w-full max-sm:hidden">
             <LoanStadisticts />
           </div>
-          <div className="grid   grid-cols-2 gap-6 col-span-2 ">
+          <div className="grid grid-cols-2 gap-6 col-span-2 ">
             <CounterCard
               counter={GeneralCounts?.Libros || 0}
               text="Libros en colección"
@@ -104,13 +104,20 @@ const AdminHomePage = () => {
               counter={GeneralCounts?.Usuarios || 0}
               text="Usuarios registrados"
               children={
-                <div className="p-3 flex flex-col gap-3">
+                <div className="p-3 flex flex-col gap-3 items-start">
                   <Link
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Catalogo/Completo"}
                   >
                     Ir a gestión de usuarios
                   </Link>
+                  <button
+                      type="button"
+                      className="hover:text-Body"
+                      onClick={() => (setReportType("US"), setOpen(true))}
+                    >
+                      Generar reporte
+                    </button>
                 </div>
               }
             />
@@ -169,7 +176,7 @@ const AdminHomePage = () => {
               }
               text="Actividades"
               children={
-                <div className="p-3 flex flex-col gap-3">
+                <div className="p-3 flex flex-col gap-3 items-start">
                   <Link
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Catalogo/Completo"}
