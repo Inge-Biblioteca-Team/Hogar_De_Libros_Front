@@ -7,13 +7,12 @@ const GeneralInfo = () => {
 
   return (
     <div
-      className=" lg:grid lg:grid-cols-3 grid-cols-3 lg:gap-6 max-sm:max-w-full
-    flex flex-col  lg:w-full lg:pl-20 lg:pr-20 pl-20 pr-20
-    max-sm:pl-0 max-sm:pr-0 md:pl-0 md:pr-0 "
+      className=" grid grid-cols-2 lg:gap-6 max-lg:m-0 ml-2 max-sm:flex max-sm:flex-col
+      max-sm:gap-4 max-lg:gap-10 max-lg:w-full "
     >
       <GeneralComputerInfo />
       <div
-        className=" text-lg max-sm:text-sm"
+        className=" text-lg max-sm:text-sm flex flex-col justify-around items-center max-sm:gap-4"
       >
         <p>
           <strong className="">

@@ -47,7 +47,7 @@ const LocalArtistList = () => {
 
   return (
     <>
-      <section className="space-y-4 w-11/12" id="Courses">
+      <section className="space-y-4 w-11/12 pl-2 pr-2" id="Courses">
         <h2
           className="font-bold text-4xl text-center 
           max-sm:text-xl"

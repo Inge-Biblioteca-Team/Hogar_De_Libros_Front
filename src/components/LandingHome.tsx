@@ -16,7 +16,7 @@ const LandingHome = () => {
     >
       <LandingBanner />
       <div className="w-11/12">
-        <div className=" w-full grid grid-cols-4 gap-3">
+        <div className=" w-full grid grid-cols-4 max-md:grid-cols-2 gap-3">
           <LandingHomeCards
             Icon={faBookOpen}
             Title="Catálogo de libros "

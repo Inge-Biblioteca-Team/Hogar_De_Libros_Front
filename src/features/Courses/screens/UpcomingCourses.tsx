@@ -28,7 +28,8 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
     <>
       {Courses && Courses.count > 0 && (
         <section
-          className="space-y-4 w-11/12"
+          className="space-y-4 w-11/12 max-lg:w-full max-sm:pl-4 max-sm:pr-4
+          max-lg:pl-8 max-lg:pr-8"
           id="Courses"
         >
           <h2  className="font-bold text-4xl text-center 
