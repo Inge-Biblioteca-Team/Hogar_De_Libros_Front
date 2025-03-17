@@ -60,13 +60,13 @@ const OldReservationList = () => {
               />
             </div>
             <div>
-              <Label value="Numero de sala reservada" />
+              <Label value="Número de sala reservada" />
               <Select
                 onChange={(e) => {
                   setSroomN(e.target.value), setCurrentPage(1);
                 }}
               >
-                <option value="">Seleccione el numero de sala</option>
+                <option value="">Seleccione el número de sala</option>
                 <OPTRooms />
               </Select>
             </div>

@@ -121,7 +121,7 @@ const CreateCourse = () => {
                     type="text"
                     required
                     {...register("location")}
-                    placeholder="Lugar donde se realizaran las sesiones"
+                    placeholder="Lugar donde se realizarán las sesiones"
                   />
                 </span>
                 <div>
@@ -143,7 +143,7 @@ const CreateCourse = () => {
               </fieldset>
 
               <fieldset className="flex flex-col justify-between gap-2">
-                <legend className="font-bold max-sm:text-center max-sm:pt-2 pb-2">Fechas y matricula</legend>
+                <legend className="font-bold max-sm:text-center max-sm:pt-2 pb-2">Fechas y matrícula</legend>
                 <div>
                   <Label htmlFor="startDate" value="Fecha de inicio" />
                   <TextInput
@@ -182,7 +182,7 @@ const CreateCourse = () => {
                   <Label htmlFor="duration" value="Duración del curso" />
                   <TextInput
                     type="number"
-                    placeholder="Numero de sesiones Ej. 3"
+                    placeholder="Número de sesiones Ej. 3"
                     {...register("duration")}
                   />
                 </span>
@@ -193,7 +193,7 @@ const CreateCourse = () => {
                     type="number"
                     required
                     {...register("capacity")}
-                    placeholder="capacidad máxima del curso"
+                    placeholder="Capacidad máxima del curso"
                   />
                 </span>
                 <div>

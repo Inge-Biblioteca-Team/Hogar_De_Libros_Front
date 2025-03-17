@@ -22,7 +22,7 @@ const UseMarkMultipleAsRead = () => {
           queryClient.invalidateQueries("TrashNotifications");
         },
         onError: (error) => {
-          console.error("Error al eliminar notificaciones:", error);
+          console.error("Error al eliminar las notificaciones:", error);
         },
       }
     );

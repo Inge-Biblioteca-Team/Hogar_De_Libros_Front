@@ -21,7 +21,7 @@ const MDSeeDonation = ({
       <Modal.Header>Información de la donación</Modal.Header>
       <Modal.Body className=" flex flex-col gap-4">
         <Label value={`Nombre del donante: ${donation.UserFullName}`} />
-        <Label value={`Cedula: ${donation.UserCedula}`} />
+        <Label value={`Cédula: ${donation.UserCedula}`} />
         <Label value={`Dirección: ${donation.UserAddress}`} />
         <Label value={`Teléfono: ${donation.UserPhone}`} />
         <Label value={`Correo: ${donation.UserEmail}`} />
@@ -56,7 +56,7 @@ const MDSeeDonation = ({
             ))}
           </div>
         ) : (
-          <Label value="No proporciona imágenes del articulo" />
+          <Label value="No proporciona imágenes del artículo" />
         )}
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">

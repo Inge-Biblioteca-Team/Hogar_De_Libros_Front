@@ -83,14 +83,14 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
         <Modal.Body className=" grid grid-cols-1 bg-white lg:grid-cols-2 gap-x-5 gap-y-4 ">
           <>
             <div>
-              <Label value="Tipo de articulo a donar" />
+              <Label value="Tipo de artículo a donar" />
               <Select {...register("SubCategory")} required>
                 <OptDonMainCategories />
               </Select>
             </div>
 
             <div>
-              <Label value=" Numero de cédula" />
+              <Label value="Número de cédula" />
               <TextInput
               type="number"
                 {...register("UserCedula")}
@@ -133,12 +133,12 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
                 {...register("UserPhone")}
                 type="number"
                 required
-                placeholder="Numero de teléfono"
+                placeholder="Número de teléfono"
               />
             </div>
 
             <div>
-              <Label value="Correo electronico" />
+              <Label value="Correo eléctronico" />
               <TextInput
                 {...register("UserEmail")}
                 type="email"
@@ -177,7 +177,7 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
               <Label value="Estado del articulo" />
               <Select {...register("ResourceCondition")}>
                 <option value="">
-                  Seleccione el estado del articulo a donar
+                  Seleccione el estado del artículo a donar
                 </option>
                 <option value="en perfecto estado">En perfecto estado</option>
                 <option value="Bueno">Bueno</option>

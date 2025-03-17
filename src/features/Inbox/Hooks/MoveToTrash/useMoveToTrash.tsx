@@ -9,7 +9,7 @@ const useMoveToTrash = () => {
     async (id_Note: number) =>
       toast.promise(moveToTrash(id_Note), {
         loading: "Moviendo...",
-        success: <span>Notificación movida a la papelera.</span>,
+        success: <span>Notificación enviada a la papelera..</span>,
         error: (error: ApiError) => (
           <span>Error al eliminar la notificación: {error.message}</span>
         ),

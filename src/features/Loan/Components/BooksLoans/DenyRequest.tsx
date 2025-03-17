@@ -49,7 +49,7 @@ const DenyRequest = ({
         <Modal.Body>
           <div className="text-center">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-            <h3>Está Seguro de rechazar la solicitud de préstamo</h3>
+            <h3>¿Está seguro de rechazar la solicitud de préstamo?</h3>
             <Textarea
               required
               rows={3}

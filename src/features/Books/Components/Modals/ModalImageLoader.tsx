@@ -90,7 +90,7 @@ const ModalImageLoader = ({
   return (
     <Modal show={open} onClose={onClose}>
       <Modal.Header>
-        Seleccionar caratula del libro
+        Seleccionar carátula del libro
         <div className=" flex gap-3 items-center">
           <Checkbox onChange={(event) => setLocal(event.target.checked)} />
           <Label value="Utilizar imágenes locales" />

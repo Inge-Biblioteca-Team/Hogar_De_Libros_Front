@@ -65,7 +65,7 @@ const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
             <TextInput
               onChange={(event) => setSearchTitle(event.target.value)}
               rightIcon={MdTitle}
-              placeholder="Búsqueda por titulo"
+              placeholder="Búsqueda por título"
             />
             <TextInput
               onChange={(event) => setSearchAuthor(event.target.value)}

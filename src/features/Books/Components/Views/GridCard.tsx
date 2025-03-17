@@ -15,7 +15,7 @@ const GridCard = ({ book, inf }: { book: Book; inf: boolean }) => {
           <Card className=" h-56 p0 w-64">
             <div className=" flex flex-col justify-between ml-4">
               <div className=" line-clamp-2">
-                <Label value={` Titulo: ${book.Title}`} />
+                <Label value={` Título: ${book.Title}`} />
               </div>
               <div className=" line-clamp-2">
                 <Label value={` Autor: ${book.Author || "Desconocido"}`} />

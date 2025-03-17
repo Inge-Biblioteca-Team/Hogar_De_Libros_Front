@@ -20,18 +20,18 @@ const GeneralInfo = () => {
           </strong>
           <span className="">
             la biblioteca cuenta con <strong>{computerCount}</strong>{" "}
-            computadoras las cuales están a disposición de los usuarios de la
-            biblioteca.
+            computadoras, las cuales están a disposición de los usuarios de la
+            Biblioteca.
             <span className=" lg:text-lg hidden 2xl:text-3xl max-sm:block">
               Los equipos cuentan con:{" "}
-              <strong className="">
-                Firma Digital,Acceso Gratuito a Internet, Puertos USB y paquete
+              <strong className="2xl:text-3xl lg:text-lg">
+                Firma Digital, acceso Gratuito a Internet, puertos USB y paquete
                 Microsoft completo
               </strong>{" "}
             </span>
             <br />
             Si necesitas hacer uso de estas, puedes acercarte a la biblioteca y
-            preguntar sobre disponibilidad y requerimientos, o puedes acceder en
+            puedes preguntar sobre disponibilidad y requerimientos, o puedes acceder en
             línea dando click en el siguiente botón para ver los términos y
             condiciones del uso de estos equipos, así como su{" "}
             <strong className="">disponibilidad en tiempo real.</strong>

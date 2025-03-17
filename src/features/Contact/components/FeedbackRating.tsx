@@ -15,7 +15,7 @@ const FeedbackRating = () => {
         <Textarea required />
       </fieldset>
       <fieldset>
-        <legend>Calificación de Atención</legend>
+        <legend>Calificación de atención</legend>
         <Rating>
           {[1, 2, 3, 4, 5].map((value) => (
             <Rating.Star

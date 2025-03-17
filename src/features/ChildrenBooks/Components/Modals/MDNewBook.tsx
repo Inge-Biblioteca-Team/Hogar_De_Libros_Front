@@ -81,7 +81,7 @@ const MDNewBook = ({
               <div className=" grid grid-cols-2 gap-4 ">
                 <FloatingLabel
                   variant="outlined"
-                  label="Titulo del libro"
+                  label="Título del libro"
                   {...register("Title")}
                   required
                 />

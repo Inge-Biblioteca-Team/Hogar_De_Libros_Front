@@ -88,7 +88,7 @@ const ManagePrograms = () => {
               <Table hoverable className="text-center">
                 <Table.Head className="h-20 text-sm">
                   <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 xl:table-cell 2xl:table-cell  md:hidden max-sm:hidden w-20">
-                    Numero de Registro
+                    Número de Registro
                   </Table.HeadCell>
                   <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:p-2 w-20">
                     Nombre del Programa

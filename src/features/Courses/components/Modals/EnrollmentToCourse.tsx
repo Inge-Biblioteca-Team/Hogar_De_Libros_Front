@@ -77,7 +77,7 @@ const EnrollmentToCourse = ({
             ""
           ) : (
             <span className=" font-bold">
-              Te recordamos que para el curso {course.courseName} necesitaras lo
+              Te recordamos que para el curso {course.courseName} necesitarás lo
               siguiente: {course.materials}{" "}
             </span>
           )}

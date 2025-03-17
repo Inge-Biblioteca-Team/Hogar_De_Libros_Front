@@ -43,7 +43,7 @@ const ContacE = ({
 
   return (
     <Modal show={open} onClose={onClose}>
-      <Modal.Header>Editar Información De Contacto</Modal.Header>
+      <Modal.Header>Editar información de contacto</Modal.Header>
       <form onSubmit={handleSubmit(handleConfirm)}>
         <Modal.Body>
           <div>

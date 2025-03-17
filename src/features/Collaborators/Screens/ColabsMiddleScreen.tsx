@@ -17,7 +17,7 @@ const ColabsMiddleScreen = () => {
           >
             <h3>Propuestas de colaboración</h3>
             <Label value={`Solicitudes pendientes de respuesta: `} />
-            <Label value={`Fecha de ultima solicitud: `} />
+            <Label value={`Fecha de última solicitud: `} />
           </Card>
           <Card
             className="h-96 w-80 transition-transform hover:scale-105"
@@ -26,7 +26,7 @@ const ColabsMiddleScreen = () => {
             }
           >
             <h3>Colaboraciones pendientes de realización</h3>
-            <Label value={`Donación mas próxima: `} />
+            <Label value={`Donación más próxima: `} />
             <Label value={`Colaboraciones pendientes de realización: `} />
           </Card>
 
@@ -36,7 +36,7 @@ const ColabsMiddleScreen = () => {
           >
             <h3>Historial de colaboraciones</h3>
             <Label value={`Colaboraciones realizadas: `} />
-            <Label value={`Ultima colaboración: `} />
+            <Label value={`Última colaboración: `} />
           </Card>
         </section>
       </main>

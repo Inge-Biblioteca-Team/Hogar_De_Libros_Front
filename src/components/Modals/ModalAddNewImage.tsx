@@ -80,7 +80,7 @@ const ModalAddNewImage = ({
         )}
         {!localImage && (
           <div className=" text-center mt-4">
-            <div className="font-bold">Imágenes existentes</div>
+            <div className="font-bold">Imágenes previas</div>
             <div className=" h-60 w-full flex gap-5 flex-wrap">
               {images?.map((image, index) => (
                 <figure key={index}>

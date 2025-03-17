@@ -51,14 +51,14 @@ const AvailableComputers = () => {
                 responsabilidad del usuario, quien deberá cubrir los costos de
                 reparación o reemplazo del equipo dañado.
               </li>
-              <li>No apague el equipo directamente desde el botón del CPU.</li>
+              <li>No apagué el equipo directamente desde el botón del CPU.</li>
               <li>
                 En caso de requerir audífonos, puede solicitarlos al personal a
                 cargo de la biblioteca.
               </li>
               <li>
                 El usuario es responsable de finalizar correctamente el préstamo
-                del equipo al termino de su uso.
+                del equipo al término de su uso.
               </li>
             </ul>
             A continuación, se muestra el estado actual de cada equipo con su

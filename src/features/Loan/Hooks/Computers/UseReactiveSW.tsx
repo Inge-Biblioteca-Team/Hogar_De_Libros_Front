@@ -8,7 +8,7 @@ const UseReactiveSW = () => {
     mutationFn: ReactiveWS,
     onSuccess: () => {
       queryClient.invalidateQueries("WSStatus");
-      toast.success("Exito, el equipo disponible nuevamente")
+      toast.success("Éxito, el equipo disponible nuevamente")
     },
     onError: (error) => {
       console.error("Error al reactivar el equipo de cómputo", error);
