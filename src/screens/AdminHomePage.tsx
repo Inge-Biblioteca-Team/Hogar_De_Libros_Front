@@ -34,19 +34,23 @@ const AdminHomePage = () => {
     <>
       <div className=" flex md:w-full justify-between">
         <Breadcrumb className="custom-breadcrumb">
-          <Breadcrumb.Item icon={IoIosHome}>Inicio</Breadcrumb.Item>
+          <Breadcrumb.Item icon={IoIosHome}>
+          <span className="dark:text-white text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
+           Inicio
+          </span>
+          </Breadcrumb.Item>
         </Breadcrumb>
-        <span className=" text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
+        <span className="dark:text-white text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
           {" "}
           {formatToFullDate(new Date())}{" "}
         </span>
       </div>
       <main className=" w-full flex flex-col items-center gap-3">
-        <section className=" grid max-lg:grid-cols-6 md:grid-cols-1 md:w-full md:pr-4 md:pl-4 grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
+        <section className=" grid lg:grid-cols-6 md:grid-cols-1 md:w-full md:pr-4 md:pl-4 grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
           <div className="col-span-4 md:w-full max-sm:hidden">
             <LoanStadisticts />
           </div>
-          <div className="grid grid-cols-2 gap-6 col-span-2 ">
+          <div className="grid   grid-cols-2 gap-6 col-span-2 ">
             <CounterCard
               counter={GeneralCounts?.Libros || 0}
               text="Libros en colección"
@@ -56,7 +60,7 @@ const AdminHomePage = () => {
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Catalogo/Completo"}
                   >
-                    Ver catálogo completo
+                    Ver catalogo completo
                   </Link>
                   <Link
                     className=" hover:text-Body"
@@ -88,7 +92,7 @@ const AdminHomePage = () => {
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Recursos/Catalogo_General"}
                   >
-                    Ver historial de préstamos
+                    Ver historial de prestamos
                   </Link>
                   <button
                       type="button"
@@ -104,20 +108,13 @@ const AdminHomePage = () => {
               counter={GeneralCounts?.Usuarios || 0}
               text="Usuarios registrados"
               children={
-                <div className="p-3 flex flex-col gap-3 items-start">
+                <div className="p-3 flex flex-col gap-3">
                   <Link
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Catalogo/Completo"}
                   >
                     Ir a gestión de usuarios
                   </Link>
-                  <button
-                      type="button"
-                      className="hover:text-Body"
-                      onClick={() => (setReportType("US"), setOpen(true))}
-                    >
-                      Generar reporte
-                    </button>
                 </div>
               }
             />
@@ -153,7 +150,7 @@ const AdminHomePage = () => {
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Catalogo/Completo"}
                   >
-                    Historial de préstamos
+                    Historial de prestamos
                   </Link>
                   <span className=" hover:text-Body">
                     <button
@@ -176,7 +173,7 @@ const AdminHomePage = () => {
               }
               text="Actividades"
               children={
-                <div className="p-3 flex flex-col gap-3 items-start">
+                <div className="p-3 flex flex-col gap-3">
                   <Link
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Catalogo/Completo"}
