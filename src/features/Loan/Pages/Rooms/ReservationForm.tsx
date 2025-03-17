@@ -187,7 +187,7 @@ const ReservationForm = ({
               <Textarea
                 rows={3}
                 className="h-full"
-                placeholder="Comentarios, si tienes alguna situación o necesitas algo que no este contemplado en lo anterior puedes escribirlo aquí."
+                placeholder="Comentarios: Si tienes alguna situación o necesitas algo que no esté contemplado en lo anterior, puedes escribirlo aquí."
                 onChange={(event) => setExtra(event.target.value)}
               />
             </div>

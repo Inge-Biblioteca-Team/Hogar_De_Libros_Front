@@ -9,7 +9,7 @@ const InfoDonation = ({ children }: { children: React.ReactNode }) => {
         trigger="click"
         content={
           <div className="p-4 bg-white border rounded shadow-md w-80 h-auto lg:h-max lg:w-max">
-            <h3 className="font-semibold">Requisitos para Donar Libros</h3>
+            <h3 className="font-semibold">Requisitos para donar libros</h3>
             <p className="mb-2">
               Para que un libro sea aceptado en donación, debe cumplir con los
               siguientes requisitos:
@@ -34,7 +34,7 @@ const InfoDonation = ({ children }: { children: React.ReactNode }) => {
               <li>etc.</li>
             </ul>
             <p className="text-sm mb-2">
-              Los libros deben ser de las ediciones más recientes, no se
+              Los libros deben ser de las ediciones más recientes, no sé
               aceptarán libros publicados hace más de 5 años.
             </p>
 

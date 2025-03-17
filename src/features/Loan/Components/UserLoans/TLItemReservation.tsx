@@ -78,10 +78,10 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
           </div>
           <span>
-            Está seguro que quiere cancelar la reserva de {reserve.name}
+          ¿Está seguro de que quiere cancelar la reserva de {reserve.name}?" 
           </span>
           <br />
-          <span>está acción no es reversible!!</span>
+          <span>¡Esta acción no es reversible!</span>
         </Modal.Body>
         <Modal.Footer className="flex items-center justify-center">
           <Button color={"red"} tabIndex={2} onClick={() => setOpen(false)} disabled={isLoading}>

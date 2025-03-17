@@ -28,10 +28,10 @@ const ModalAddMore = ({
                 primaryOpen(false), setOpen(false);
               }}
             >
-              No, Regresar.
+              No, regresar.
             </Button>
             <Button color={"blue"} onClick={() => setOpen(false)}>
-              Sí, Añadir otro activo
+              Sí, añadir otro activo
             </Button>
           </div>
         </div>

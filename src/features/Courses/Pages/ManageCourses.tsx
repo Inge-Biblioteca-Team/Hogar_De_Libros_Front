@@ -66,7 +66,7 @@ const ManageCourses = () => {
               <Label className=" text-lg">Estado</Label>
               <Select onChange={(event) => SetStatus(event.target.value)}>
                 <option value="">Seleccione un estado</option>
-                <option value="1">Proximos</option>
+                <option value="1">Próximos</option>
                 <option value="0">Pasados</option>
               </Select>
             </div>
@@ -101,7 +101,7 @@ const ManageCourses = () => {
                     Cupos Disponibles
                   </Table.HeadCell>
                   <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
-                    Matricula
+                    Matrícula
                   </Table.HeadCell>
                   <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">
                     Estado

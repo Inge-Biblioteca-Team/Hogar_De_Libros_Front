@@ -40,7 +40,7 @@ const NextViewCourses = () => {
     <section className="container mx-auto text-center py-8">
       <h2 className="text-4xl font-bold mb-4">Cursos Próximos</h2>
       <p className="text-lg mb-8">
-        Explora y matricula fácilmente nuestros cursos.
+        Explora y matrícula fácilmente nuestros cursos.
       </p>
       <div className="flex items-center justify-center">
         <button

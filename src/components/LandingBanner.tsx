@@ -31,12 +31,8 @@ const LandingBanner = () => {
       >
         Bienvenidos a la Biblioteca Pública Municipal de Nicoya
       </h1>
-      <p
-        className="
-      text-3xl text-center
-      max-sm:text-lg "
-      >
-        Adéntrate a un mundo de conocimiento y explora nuestro catálogo
+      <p className="text-2xl lg:text-3xl max-sm:text-lg max-sm:text-center">
+        Descubra un mundo de conocimiento y explora nuestro catálogo
       </p>
       <Button
         className=""

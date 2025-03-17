@@ -68,7 +68,7 @@ const ModalewSWLoan = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body className=" flex flex-col gap-5">
           <div>
-            <Label htmlFor="UserName">Numero de cédula</Label>
+            <Label htmlFor="UserName">Número de cédula</Label>
             <TextInput
               placeholder="Numero de cédula sin guiones ni espacios"
               className=""

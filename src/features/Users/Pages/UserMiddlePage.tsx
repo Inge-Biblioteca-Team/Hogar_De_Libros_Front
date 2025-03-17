@@ -15,9 +15,9 @@ const UserMiddlePage = () => {
             onClick={() => navi("/HogarDeLibros/Perfil/MisPréstamos")}
           >
             <h3>Mis prestamos</h3>
-            <Label value={`Total de prestamos: `} />
-            <Label value={`Prestamos activos: `} />
-            <Label value={`Prestamos pendientes de devolución: `} />
+            <Label value={`Total de préstamos: `} />
+            <Label value={`Préstamos activos: `} />
+            <Label value={`Préstamos pendientes de devolución: `} />
             <Label value={`Máximo de prestamos permitidos: `} />
           </Card>
           <Card
@@ -37,7 +37,7 @@ const UserMiddlePage = () => {
             onClick={() => navi("/HogarDeLibros/Perfil/CursosMatriculados")}
           >
             <h3>Cursos matriculados</h3>
-            <Label value={`Curso mas próximo: `} />
+            <Label value={`Curso más próximo: `} />
             <Label value={`Fecha: `} />
             <Label value={`Hora: `} />
             <Label value={`Requisitos: `} />

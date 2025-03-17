@@ -44,7 +44,7 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
               <span className="text-lg">
                 Comienzo: {fullDate.toUpperCase()}
               </span>
-              <span className="text-lg">Duracion: {Courses.duration} </span>
+              <span className="text-lg">Duración: {Courses.duration} </span>
               <span className="text-lg">
                 {Courses.location} {time}{" "}
               </span>
@@ -55,7 +55,7 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
                 <span className="text-lg">Te esperamos</span>
               ) : (
                 <span className="text-lg">
-                  Necesitaras: {Courses.materials}
+                  Necesitarás: {Courses.materials}
                 </span>
               )}
               <div className=" flex justify-center items-center mt-3">
@@ -64,7 +64,7 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
                   color={"blue"}
                   onClick={() => setopen(true)}
                 >
-                  Matricula ahora
+                  Matrícula ahora
                 </Button>
               </div>
             </div>

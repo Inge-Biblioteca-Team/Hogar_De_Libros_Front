@@ -34,7 +34,7 @@ const DeleteAdvice = ({
         </span>
         <span>
           {" "}
-          En caso de aceptar y eliminarlo no podrá revertir esta acción.
+          En caso de aceptar y eliminarlo, no podrá revertir esta acción.
         </span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">

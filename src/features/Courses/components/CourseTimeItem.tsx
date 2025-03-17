@@ -52,7 +52,7 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
                   {course.courseName}{" "}
                 </span>
                 <span>Comienzo: {fullDate.toUpperCase()}</span>
-                <span>Numero de sesiones: {course.duration} </span>
+                <span>Número de sesiones: {course.duration} </span>
                 <span>
                   {course.location} {time}{" "}
                 </span>

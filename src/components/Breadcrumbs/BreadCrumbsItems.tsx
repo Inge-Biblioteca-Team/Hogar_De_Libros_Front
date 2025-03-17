@@ -47,9 +47,9 @@ const ChlildrenColecctionCrumbs = ({ text }: { text: string }) => {
   return (
     <BreadCrumbsItems>
       <Breadcrumb.Item onClick={() => navi("/HogarDeLibros/Catalogo")}>
-        Catalogo
+        Catálogo
       </Breadcrumb.Item>
-      <Breadcrumb.Item>Catalogo infantil</Breadcrumb.Item>
+      <Breadcrumb.Item>Catálogo infantil</Breadcrumb.Item>
       <Breadcrumb.Item>{text}</Breadcrumb.Item>
     </BreadCrumbsItems>
   );
@@ -95,7 +95,7 @@ const LoansCrumbs = ({ text }: { text: string }) => {
   return (
     <BreadCrumbsItems>
       <Breadcrumb.Item onClick={() => navi("/HogarDeLibros/Historial")}>
-        Historial de prestamos
+        Historial de préstamos
       </Breadcrumb.Item>
       <Breadcrumb.Item>{text}</Breadcrumb.Item>
     </BreadCrumbsItems>
@@ -139,7 +139,7 @@ const LoansAndCirculationCrumbs = ({ text }: { text: string }) => {
   return (
     <BreadCrumbsItems>
       <Breadcrumb.Item onClick={() => navi("/HogarDeLibros/Prestamos_Circulacion")}>
-      Circulación y prestamos
+      Circulación y préstamos
       </Breadcrumb.Item>
       <Breadcrumb.Item>{text}</Breadcrumb.Item>
     </BreadCrumbsItems>

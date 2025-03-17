@@ -17,7 +17,7 @@ const UseGenerateWSLoan = () => {
     mutationFn: (data: NewWSLoan) => CreateNewWSLoan(data),
     onSuccess: () => {
       queryClient.invalidateQueries("WSStatus");
-      toast.success(`Exito, equipo en uso correctamente`)
+      toast.success(`Éxito, equipo en uso correctamente`)
     },
     onError: (error:ApiError) => {
       if (error.response?.data?.message) {

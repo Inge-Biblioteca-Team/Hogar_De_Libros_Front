@@ -10,7 +10,7 @@ const useRecoverFromTrash = () => {
     async (id_Note: number) =>
       toast.promise(recoverFromTrash(id_Note), {
         loading: "Moviendo...",
-        success: <span>Notificación recuperada con exito. </span>,
+        success: <span>Notificación recuperada con éxito. </span>,
         error: (error: ApiError) => (
           <span>Error al recuperar: {error.message}</span>
         ),

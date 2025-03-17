@@ -58,7 +58,7 @@ const EditFriendInfo = ({
 
           <FloatingLabel
             variant="outlined"
-            label="Dirección"
+            label="Dirección de residencia"
             {...register("UserAddress")}
           />
 

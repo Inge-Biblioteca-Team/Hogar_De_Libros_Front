@@ -12,7 +12,7 @@ const TableDonations = ({
     <Table hoverable className=" text-center" style={{ height: "30rem" }}>
       <Table.Head>
         <Table.HeadCell className="xl:w-1/6 2xl:w-1/6">Nombre del donador</Table.HeadCell>
-        <Table.HeadCell className="xl:w-1/6 2xl:w-1/6">Cedula</Table.HeadCell>
+        <Table.HeadCell className="xl:w-1/6 2xl:w-1/6">Cédula</Table.HeadCell>
         <Table.HeadCell className="xl:w-1/6 2xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Correo</Table.HeadCell>
         <Table.HeadCell className="xl:w-1/6 2xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Teléfono</Table.HeadCell>
         <Table.HeadCell className="xl:w-1/6 2xl:w-1/6 max-sm:hidden">Categoría de donación</Table.HeadCell>

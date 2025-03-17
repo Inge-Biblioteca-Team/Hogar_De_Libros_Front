@@ -3,18 +3,20 @@ const ContacInfo = () => {
     <aside className=" lg:w-1/2">
       <p className="text-base lg:text-lg text-center lg:text-left">
         <span className=" lg:max-sm:hidden">
-          Bienvenido a nuestra sección de contacto, donde nos encanta escuchar
-          de ti. ¿Tienes alguna pregunta o sugerencia? Estamos aquí para
+          Bienvenido a nuestra sección de contacto. Nos encanta escucharte.
+          ¿Tienes alguna pregunta o sugerencia? Estamos aquí para
           ayudarte. Completa el formulario a continuación y nos pondremos en
           contacto contigo lo antes posible. Tu opinión es muy importante para
           nosotros.
         </span>{" "}
         <br />
-        <br />
-        <span  className=" max-sm:hidden">También puedes ponerte en contacto con nosotros a través de:</span>
+        <span  className=" max-sm:hidden">También puedes contactarnos vía</span>
         <br />
         <strong>Teléfono: </strong>
-        <span>+506 2685-4213</span> <br />
+        <span>+506 2685-4213</span>
+        <br />
+        <strong>Whatsapp: </strong>
+        <span>+506 7271-6041</span> <br />
         <strong>Correo: </strong><a>bpnicoya@sinabi.go.cr</a>
         <br />
         <strong>Facebook: </strong>{" "}
@@ -31,7 +33,7 @@ const ContacInfo = () => {
         </a>
         <span> De Lunes a Viernes de 8:00 am a 4:00 pm.</span>
         <br />
-        <strong className=" hidden max-sm:block">También Puedes llenar el formulario adjunto y nos contactaremos pronto.</strong>
+        <strong className=" hidden max-sm:block">También puedes llenar el formulario adjunto y nos contactaremos pronto.</strong>
       </p>
     </aside>
   );

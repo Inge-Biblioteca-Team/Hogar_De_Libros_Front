@@ -56,7 +56,7 @@ const AdminHomePage = () => {
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Catalogo/Completo"}
                   >
-                    Ver catalogo completo
+                    Ver catálogo completo
                   </Link>
                   <Link
                     className=" hover:text-Body"
@@ -88,7 +88,7 @@ const AdminHomePage = () => {
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Recursos/Catalogo_General"}
                   >
-                    Ver historial de prestamos
+                    Ver historial de préstamos
                   </Link>
                   <button
                       type="button"
@@ -153,7 +153,7 @@ const AdminHomePage = () => {
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Catalogo/Completo"}
                   >
-                    Historial de prestamos
+                    Historial de préstamos
                   </Link>
                   <span className=" hover:text-Body">
                     <button

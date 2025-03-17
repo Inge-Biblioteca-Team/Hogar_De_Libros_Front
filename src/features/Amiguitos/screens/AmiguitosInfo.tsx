@@ -10,8 +10,8 @@ const AmiguitosInfo = ({ home }: { home?: boolean }) => {
       </h2>
       {home && (
         <h4 className=" text-center text-md">
-          Únete a la biblioteca y comparte con nosotros existen varias formas de
-          hacerlos aquí te comentamos como.
+          Únete a la biblioteca y comparte con nosotros. Existen varias formas de
+          hacerlo, aquí te comentamos cómo.
         </h4>
       )}
       <article className="lg:hidden xl:hidden 2xl:hidden w-full md:w-full  flex overflow-x-scroll justify-center scroll">

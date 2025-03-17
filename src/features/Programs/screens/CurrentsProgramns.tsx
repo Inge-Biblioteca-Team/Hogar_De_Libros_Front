@@ -56,8 +56,8 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
         </h2>
         {home && (
           <h3 className=" text-center text-md">
-            La biblioteca cuenta con diversos programas los cuales tienen
-            actividades para todas las edades aquí te mostramos cuales son.
+            La biblioteca cuenta con diversos programas, los cuales tienen
+            actividades para todas las edades. Aquí te mostramos cuales son.
           </h3>
         )}
         {isLoading ? (

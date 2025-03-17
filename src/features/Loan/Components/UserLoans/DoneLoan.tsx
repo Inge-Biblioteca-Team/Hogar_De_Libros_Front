@@ -26,7 +26,7 @@ const DoneLoan = () => {
   return (
     <>
       <div className="">
-        <h5 className=" font-bold">Ultimos préstamos </h5>
+        <h5 className=" font-bold">Últimos préstamos </h5>
         <Table hoverable className=" text-center  bg-white">
           <Table.Head>
             <Table.HeadCell className="max-sm:hidden">#De Solicitud</Table.HeadCell>
@@ -45,7 +45,7 @@ const DoneLoan = () => {
             {Loan?.count === 0 ? (
               <Table.Row>
                 <Table.Cell colSpan={6}>
-                  No ha realizado Préstamos. Te invitamos a visitar nuestro{" "}
+                  No ha realizado préstamos. Te invitamos a visitar nuestro{" "}
                   <Link to="/HogarDeLibros/Catalogo/Completo">
                     Catalogo de libros.
                   </Link>

@@ -35,7 +35,7 @@ const MDRefuseReservation = ({
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
           </div>
           <span>
-            Está seguro que quiere rechazar la reserva de {reserve.name}
+          ¿Está seguro de que quiere rechazar la reserva de {reserve.name}?
           </span>
           <Textarea className="mt-3" rows={4} placeholder="Motivo" required />
         </Modal.Body>

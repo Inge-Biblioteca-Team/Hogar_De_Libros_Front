@@ -97,7 +97,7 @@ const CourseInfo = ({
               <span>{course.availableQuota}</span>
             </span>
             <span>
-              <strong className="font-bold">Limite de matricula:</strong>{" "}
+              <strong className="font-bold">Límite de matrícula:</strong>{" "}
               <span>{course.capacity}</span>
             </span>
             <span>

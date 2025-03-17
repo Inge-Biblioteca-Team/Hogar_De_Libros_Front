@@ -11,8 +11,11 @@ const LandingFooter = () => {
           />
           <Footer.Title className="text-xl md:text-sm text-white max-sm:text-base" title="Dirección" />
           <Footer.LinkGroup>
-            <Footer.Link href="" className=" mb-10 lg:mb-0 md:text-sm max-sm:text-sm ">
-              50 metros Norte del Liceo de Nicoya, frente a piscinas ANDE
+            <Footer.Link
+              href=""
+              className=" mb-10 lg:mb-0 md:text-xs max-sm:text-xs "
+            >
+              50 metros norte del Liceo de Nicoya, frente a piscinas ANDE
             </Footer.Link>
           </Footer.LinkGroup>
         </div>
