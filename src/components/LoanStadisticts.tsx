@@ -1,3 +1,4 @@
+
 import {
   Line,
   BarChart,
@@ -30,29 +31,29 @@ const LoanStadisticts = () => {
 
   const formattedStats = Array.isArray(stats)
     ? stats
-        .map((stat) => {
-          const monthValue = stat.month;
+      .map((stat) => {
+        const monthValue = stat.month;
 
-          let date;
-          if (monthValue && !isNaN(new Date(monthValue).getTime())) {
-            date = new Date(monthValue);
-          } else {
-            console.error("Fecha inválida: ", monthValue);
-            return stat;
-          }
+        let date;
+        if (monthValue && !isNaN(new Date(monthValue).getTime())) {
+          date = new Date(monthValue);
+        } else {
+          console.error("Fecha inválida: ", monthValue);
+          return stat;
+        }
 
-          const monthInSpanish = new Intl.DateTimeFormat("es-ES", {
-            month: "long",
-            year: "numeric",
-          }).format(date);
+        const monthInSpanish = new Intl.DateTimeFormat("es-ES", {
+          month: "long",
+          year: "numeric",
+        }).format(date);
 
-          return {
-            ...stat,
-            month:
-              monthInSpanish.charAt(0).toUpperCase() + monthInSpanish.slice(1),
-          };
-        })
-        .reverse()
+        return {
+          ...stat,
+          month:
+            monthInSpanish.charAt(0).toUpperCase() + monthInSpanish.slice(1),
+        };
+      })
+      .reverse()
     : [];
 
   const copyChartToClipboard = async () => {
@@ -67,6 +68,7 @@ const LoanStadisticts = () => {
       }
     });
   };
+
   return (
     <>
       {!isLoading ? (
@@ -83,25 +85,30 @@ const LoanStadisticts = () => {
             <ResponsiveContainer
               width="100%"
               height={400}
-              className={"bg-white rounded-md p-3"}
+              className={"bg-white dark:bg-gray-800 rounded-md p-3"}
             >
               <BarChart data={formattedStats}>
                 <CartesianGrid strokeDasharray="3 4" />
                 <XAxis dataKey="month" />
                 <YAxis />
-                <Tooltip />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: 'var(--tw-bg-opacity)',
+                  }}
+                  cursor={{ fill: 'rgba(255, 255, 255, 0.1)' }}
+                />
                 <Legend />
                 <Bar dataKey="Eventos" fill="#8884d8" />
                 <Bar dataKey="Cursos" fill="#82ca9d" />
                 <Bar
                   dataKey="Prestamos"
                   fill="#ffc658"
-                  name={"Préstamos de libros"}
+                  name={"Prestamos de libros"}
                 />
                 <Bar
                   dataKey="UsoComputo"
                   fill="#82ca9d"
-                  name={"Usos de equipo de cómputo"}
+                  name={"Usos de equipo de computo"}
                 />
                 <Line type="monotone" dataKey="Eventos" stroke="#8884d8" />
                 <Line type="monotone" dataKey="Prestamos" stroke="#82ca9d" />

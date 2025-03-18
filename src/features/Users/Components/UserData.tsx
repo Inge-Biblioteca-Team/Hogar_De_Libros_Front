@@ -138,8 +138,9 @@ const UserData = () => {
             </span>
           </div>
           <div className="flex items-center mb-4">
-            <div className=" text-gray-800 dark:text-gray-200">
-              Modo: <DarkThemeToggle />
+            <div className="flex items-center gap-1 text-gray-800 dark:text-gray-200">
+              Modo:
+              <DarkThemeToggle />
             </div>
           </div>
           <Button
@@ -159,8 +160,8 @@ const UserData = () => {
         className="bg-Bottoms text-white text-2xl rounded-lg px-2 hover:bg-Bottoms-dark hover:scale-105 w-12"
       >
         <FontAwesomeIcon
-         icon={faUserAlt}
-         className="text-white max-sm:h-4 max-sm:w-4 sm:h-6 sm:w-6" />
+          icon={faUserAlt}
+          className="text-white max-sm:h-4 max-sm:w-4 sm:h-6 sm:w-6" />
       </button>
     </Popover>
   );
