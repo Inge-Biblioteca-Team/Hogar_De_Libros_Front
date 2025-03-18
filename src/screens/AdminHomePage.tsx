@@ -42,7 +42,7 @@ const AdminHomePage = () => {
         </span>
       </div>
       <main className=" w-full flex flex-col items-center gap-3">
-        <section className=" grid max-lg:grid-cols-6 md:grid-cols-1 md:w-full md:pr-4 md:pl-4 grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
+        <section className=" grid lg:grid-cols-6 md:grid-cols-1 md:w-full md:pr-4 md:pl-4 grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
           <div className="col-span-4 md:w-full max-sm:hidden">
             <LoanStadisticts />
           </div>
