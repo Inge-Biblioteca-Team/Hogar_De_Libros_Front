@@ -45,7 +45,7 @@ const SeeLoanInfo = ({
             <span>Cédula: {Loan.user.cedula}</span>
             <span>Dirección: {Loan.user.Adress}</span>
             <span>Teléfono: {Loan.user.PhoneNumber} </span>
-            {Loan.OldObservations.length > 0 && (
+            {Loan.OldObservations && (
               <details>
                 <summary>Anotaciones del usuario</summary>
                 <ul>
