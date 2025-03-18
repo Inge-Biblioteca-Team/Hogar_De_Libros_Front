@@ -1,6 +1,7 @@
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import UseDownloadReport from "../../hooks/UseDownloadReport";
+import { formatToYMD } from "../FormatTempo";
 
 const reportDescriptions: Record<string, string> = {
   WS: "usos de equipos de Cómputo",
@@ -31,6 +32,8 @@ const ReportModal = ({
       { onSuccess: () => setOpen(false) }
     );
   };
+  
+    const minMax = formatToYMD(new Date());
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
       <Modal.Header>
@@ -43,6 +46,7 @@ const ReportModal = ({
             <TextInput
               type="date"
               value={startDate}
+              max={minMax}
               onChange={(e) => setStartDate(e.target.value)}
               required
             />
@@ -52,7 +56,9 @@ const ReportModal = ({
             <TextInput
               type="date"
               value={endDate}
+              max={minMax}
               onChange={(e) => setEndDate(e.target.value)}
+              min={startDate}
               required
             />
           </div>
