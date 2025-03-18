@@ -101,7 +101,7 @@ const MDEditChildrenBook = ({
               <div className=" grid grid-cols-2 gap-4 ">
                 <FloatingLabel
                   variant="outlined"
-                  label="Titulo del recurso"
+                  label="Título del recurso"
                   {...register("Title")}
                   required
                 />

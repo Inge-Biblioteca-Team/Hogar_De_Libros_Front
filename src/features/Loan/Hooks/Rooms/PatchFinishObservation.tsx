@@ -11,7 +11,7 @@ const PatchFinishObservation = () => {
     onSuccess: () => {
       queryClient.invalidateQueries("QueQueReservations");
       queryClient.invalidateQueries("reserveRequest");
-      toast.success("Exito, reservacion finalizada correctamente");
+      toast.success("Éxito, reservacion finalizada correctamente");
     },
     onError: (error: ApiError) => {
       toast.error("Error al finlizar la reservacion: " + error.message);

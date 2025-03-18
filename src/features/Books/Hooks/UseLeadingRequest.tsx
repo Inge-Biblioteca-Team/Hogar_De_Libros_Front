@@ -12,7 +12,7 @@ const UseLeadingRequest = () => {
         loading: "Enviando...",
         success: <span>Éxito, solicitud enviada correctamente</span>,
         error: (error: ApiError) => (
-          <span>Error enviar la solicitud: {error.message}</span>
+          <span>Error al enviar la solicitud: {error.message}</span>
         ),
       }),
     onSuccess() {

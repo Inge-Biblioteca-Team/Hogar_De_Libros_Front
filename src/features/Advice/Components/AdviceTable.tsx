@@ -9,7 +9,7 @@ const AdviceTable = ({ advices }: { advices: ApiAdvices }) => {
         <Table className=" text-center min-h-[30rem] " hoverable>
           <Table.Head>
             <Table.HeadCell className="w-52 md:hidden max-sm:hidden">
-              Numero de aviso
+              Número de aviso
             </Table.HeadCell>
             <Table.HeadCell className="w-52 xl:w-1/4 2xl:w-1/4">Motivo</Table.HeadCell>
             <Table.HeadCell className="w-52 xl:w-1/4 2xl:w-1/4 max-sm:hidden">
@@ -17,7 +17,7 @@ const AdviceTable = ({ advices }: { advices: ApiAdvices }) => {
             </Table.HeadCell>
             <Table.HeadCell className="w-52 xl:w-1/4 2xl:w-1/4">Fecha de actividad</Table.HeadCell>
             <Table.HeadCell className="w-52 xl:w-1/4 2xl:w-1/4 md:hidden max-sm:hidden">
-              Información Extra
+              Información extra
             </Table.HeadCell>
             <Table.HeadCell className="w-52 xl:w-1/4 2xl:w-1/4 max-sm:hidden">
               Estado

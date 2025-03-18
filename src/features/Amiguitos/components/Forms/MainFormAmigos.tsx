@@ -145,7 +145,7 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
                   {...register("UserGender", { required: true })}
                   required
                 >
-                  <option value="">Seleccione el genero</option>
+                  <option value="">Seleccione el género</option>
                   <option value="Hombre">Hombre</option>
                   <option value="Mujer">Mujer</option>
                 </Select>
@@ -190,7 +190,7 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
               </div>
 
               <div>
-                <Label value="Correo electronico" />
+                <Label value="Correo electrónico" />
                 <TextInput
                   {...register("UserEmail", { required: true })}
                   type="email"
@@ -205,7 +205,7 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
                 />
                 <Label
                   className="ml-2"
-                  value="Experiencia previa en el area seleccionada"
+                  value="Experiencia previa en el área seleccionada"
                 />
                 <TextInput
                   {...register("Experience")}
@@ -219,11 +219,11 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
             <>
               <div className=" flex flex-col gap-3">
                 <div>
-                  <Label value="Cualquier cosa que quieras consultar puedes usar este espacio" />
+                  <Label value="Cualquier cosa que quieras consultar, puedes usar este espacio" />
                   <Textarea
                     rows={5}
                     {...register("ExtraInfo")}
-                    placeholder="Recuerda que tu opinión siempre sera importante para nosotros."
+                    placeholder="Recuerda que tu opinión siempre será importante para nosotros."
                   />
                 </div>
               </div>

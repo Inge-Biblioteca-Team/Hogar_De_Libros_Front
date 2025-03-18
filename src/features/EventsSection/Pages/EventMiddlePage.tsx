@@ -19,7 +19,7 @@ const EventMiddlePage = () => {
             <h3>Cursos</h3>
             <Label value={`Cursos impartidos: `} />
             <Label value={`Cursos pendientes de ejecución: `} />
-            <Label value={`Fecha mas próxima de curso: `} />
+            <Label value={`Fecha más próxima de curso: `} />
           </Card>
           <Card
             className="h-96 w-80 transition-transform hover:scale-105"
@@ -28,7 +28,7 @@ const EventMiddlePage = () => {
             <h3>Eventos</h3>
             <Label value={`Eventos realizados: `} />
             <Label value={`Eventos pendientes de ejecución: `} />
-            <Label value={`Fecha mas próxima de evento: `} />
+            <Label value={`Fecha más próxima de evento: `} />
           </Card>
           <Card
             className="h-96 w-80 transition-transform hover:scale-105"

@@ -10,7 +10,7 @@ const UseRefuese = () => {
     mutationFn: (data: {id:number, acction:string}) =>
       toast.promise(PatchResolveReservation(data), {
         loading: "Por favor espere...",
-        success: <span>Éxito, estado de la reservación modificado con éxito!</span>,
+        success: <span>¡Éxito! Estado de la reservación modificado correctamente.</span>,
         error: (error: ApiError) => (
           <span>Error al actualizar estado: {error.message}</span>
         ),

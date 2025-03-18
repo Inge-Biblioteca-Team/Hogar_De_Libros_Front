@@ -16,7 +16,7 @@ const BTNAccions = ({ rooms }: { rooms: Room }) => {
       <div className="w-full flex gap-3 items-center justify-center text-3xl">
         <button
           type="button"
-          title="Ver Información de la Sala"
+          title="Ver información de la Sala"
           className="hover:text-Body"
           onClick={() => setOpenS(true)}
         >
@@ -24,7 +24,7 @@ const BTNAccions = ({ rooms }: { rooms: Room }) => {
         </button>
         <button
           type="button"
-          title="Editar Información de la Sala"
+          title="Editar información de la Sala"
           className={`${
             rooms.status ? "" : "cursor-not-allowed"
           } hover:text-yellow-400`}

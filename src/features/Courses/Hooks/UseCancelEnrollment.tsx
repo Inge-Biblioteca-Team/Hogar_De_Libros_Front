@@ -9,9 +9,9 @@ const UseCancelEnrollment = () => {
     mutationFn: (data:{courseID: number, userCedula: string}) =>
       toast.promise(CancelEroll(data), {
         loading: "Creando...",
-        success: <span>Éxito, matricula cancelada correctamente</span>,
+        success: <span>Éxito, matrícula cancelada correctamente</span>,
         error: (error: ApiError) => (
-          <span>Error al cancelar la matricula: {error.message}</span>
+          <span>Error al cancelar la matrícula: {error.message}</span>
         ),
       }),
     onSuccess() {

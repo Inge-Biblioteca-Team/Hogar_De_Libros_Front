@@ -73,7 +73,7 @@ const AdvanceSearchColection = () => {
           />
         </div>
         <div>
-          <Label value="Titulo" />
+          <Label value="Título" />
           <TextInput
             placeholder="Ej. Aliento de barro y fuego"
             onChange={(event) => setSearchTitle(event.target.value)}
@@ -110,7 +110,7 @@ const AdvanceSearchColection = () => {
           <span> Existen {catalog.count} registros para su búsqueda </span>
         )}
         {catalog && catalog.count > 15 && (
-          <span> Por favor complete al menos un criterios de búsqueda </span>
+          <span> Por favor, complete al menos un criterio de búsqueda </span>
         )}
       </section>
       <section

@@ -31,10 +31,10 @@ const FinishLoan = ({
   const onSubmit = async (data: EndReservation) => {
     let observation = "";
     if (check1) {
-      observation += "Se entrego la sala dentro de la hora establecida. ";
+      observation += "Se entregó la sala dentro de la hora establecida. ";
     }
     if (check2) {
-      observation += " Se entrego la sala limpia. ";
+      observation += " Se entregó la sala limpia. ";
     }
     if (Damage1 != "") {
       observation += Damage1;
@@ -81,10 +81,10 @@ const FinishLoan = ({
           />
         </div>
         <div>
-          <Label value="El moviliario prestado se entrega con daños" />
+          <Label value="El mobiliario prestado se entrega con daños" />
           <Textarea
             rows={3}
-            placeholder="Especifique el moviliario y los daños"
+            placeholder="Especifique el mobiliario y los daños"
             onChange={(event) => setDamage2(event.target.value)}
           />
         </div>
@@ -92,7 +92,7 @@ const FinishLoan = ({
           <Label value="Anotaciones Extras" />
           <Textarea
             rows={3}
-            placeholder="Especifique el moviliario y los daños"
+            placeholder="Especifique el mobiliario y los daños"
             onChange={(event) => setExtra(event.target.value)}
           />
         </div>

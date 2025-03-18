@@ -42,9 +42,9 @@ const SeeLoanInfo = ({
           <span className=" flex flex-col">
             <strong>Información del Usuario</strong>
             <span>Nombre: {Loan.user.name}</span>
-            <span>Cedula: {Loan.user.cedula}</span>
-            <span>Direccion: {Loan.user.Adress}</span>
-            <span>Telefono: {Loan.user.PhoneNumber} </span>
+            <span>Cédula: {Loan.user.cedula}</span>
+            <span>Dirección: {Loan.user.Adress}</span>
+            <span>Teléfono: {Loan.user.PhoneNumber} </span>
             {Loan.OldObservations.length > 0 && (
               <details>
                 <summary>Anotaciones del usuario</summary>

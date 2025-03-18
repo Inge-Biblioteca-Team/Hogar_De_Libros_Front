@@ -45,7 +45,7 @@ const PlaceE = ({
 
   return (
     <Modal show={open} onClose={onClose}>
-      <Modal.Header>Editar Información De Residencia</Modal.Header>
+      <Modal.Header>Editar información de residencia</Modal.Header>
       <form onSubmit={handleSubmit(handleConfirm)}>
         <Modal.Body>
           <div>

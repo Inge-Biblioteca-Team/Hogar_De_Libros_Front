@@ -28,11 +28,11 @@ const MDViewInfo = ({
           )}`}
         />
         <Label value={`Nombre del colaborador: ${colaboration.UserFullName}`} />
-        <Label value={`Cedula del colaborador: ${colaboration.UserCedula}`} />
-        <Label value={`Correo de contacto: ${colaboration.UserEmail}`} />
+        <Label value={`Cédula del colaborador: ${colaboration.UserCedula}`} />
+        <Label value={`Correo de electrónico: ${colaboration.UserEmail}`} />
         <Label value={`Teléfono de contacto: ${colaboration.UserPhone}`} />
         <Label value={`Dirección: ${colaboration.UserAddress}`} />
-        <Label value={`Genero: ${colaboration.UserGender}`} />
+        <Label value={`Género: ${colaboration.UserGender}`} />
         {colaboration.Entitycollaborator && (
           <Label
             value={`Institución colaboradora: ${colaboration.Entitycollaborator}`}

@@ -39,7 +39,7 @@ const MDApproveLoan = ({
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
-            <h3>Está Seguro de aprobar la solicitud de préstamo</h3>
+            <h3>¿Está seguro de aprobar la solicitud de préstamo?</h3>
             <div className="flex justify-center gap-4 mt-10">
               <Button color="red" onClick={onCancel} disabled={isLoading}>
                 Volver

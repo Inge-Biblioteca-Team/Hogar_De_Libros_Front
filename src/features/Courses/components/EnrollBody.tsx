@@ -29,16 +29,16 @@ const EnrollBody = ({ courseId }: { courseId: number }) => {
             Nombre
           </Table.HeadCell>
           <Table.HeadCell className=" bg-gray-300 !rounded-none">
-            Cedula
+            Cédula
           </Table.HeadCell>
           <Table.HeadCell className=" bg-gray-300 !rounded-none">
             Fecha de matrícula
           </Table.HeadCell>
           <Table.HeadCell className=" bg-gray-300 !rounded-none">
-            Direccion
+            Dirección
           </Table.HeadCell>
           <Table.HeadCell className=" bg-gray-300 !rounded-none">
-            Telefono
+            Teléfono
           </Table.HeadCell>
           <Table.HeadCell className=" bg-gray-300 !rounded-none">
             Teléfono de Emergencia
