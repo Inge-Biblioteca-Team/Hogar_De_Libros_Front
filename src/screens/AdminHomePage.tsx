@@ -34,9 +34,13 @@ const AdminHomePage = () => {
     <>
       <div className=" flex md:w-full justify-between">
         <Breadcrumb className="custom-breadcrumb">
-          <Breadcrumb.Item icon={IoIosHome}>Inicio</Breadcrumb.Item>
+        <Breadcrumb.Item icon={IoIosHome}>
+           <span className="dark:text-white text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
+            Inicio
+           </span>
+           </Breadcrumb.Item>
         </Breadcrumb>
-        <span className=" text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
+        <span className="dark:text-white text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
           {" "}
           {formatToFullDate(new Date())}{" "}
         </span>
