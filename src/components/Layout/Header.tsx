@@ -31,7 +31,7 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
         <div
           className={` w-full ${
             NavBarType !== "HogarDeLibros"
-              ? "flex flex-col gap-4"
+              ? "flex flex-col pt-2"
               : " flex justify-between items-center max-sm:gap-4 max-sm:pb-2"
           }`}
         >
