@@ -37,7 +37,7 @@ const AprovRows = ({ reservation }: { reservation: Reserve }) => {
               </button>
               <button
                 type="button"
-                title="Rechazar préstamo"
+                title="Finalizar"
                 className="hover:text-red-600"
                 onClick={() => setOpenF(true)}
               >

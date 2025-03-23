@@ -3,12 +3,14 @@ import TLItemReservation from "./TLItemReservation";
 import { responseMyReservations } from "../../Types/RoomsReservations";
 import { useQuery } from "react-query";
 import { getMyReservations } from "../../Services/SVReservations";
+import { useContext } from "react";
+import UserContext from "../../../../Context/UserContext/UserContext";
+import { ProfileCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 
 const RoomsReservationsTL = () => {
+  const { currentUser } = useContext(UserContext);
 
-
-  
-  const cedula = sessionStorage.getItem("cedula");
+  const cedula = currentUser?.cedula;
 
   const { data: reserves } = useQuery<responseMyReservations, Error>(
     ["MyReservations", cedula],
@@ -23,6 +25,7 @@ const RoomsReservationsTL = () => {
 
   return (
     <>
+      <ProfileCrumbs text="Mis reservaciones" />
       <div
         className=" w-full flex items-center justify-center mt-28"
         style={{ height: "60vh" }}
