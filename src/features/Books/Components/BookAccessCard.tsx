@@ -18,7 +18,7 @@ const BookAccessCard = () => {
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
         Catálogo de libros
       </h5>
-      <p className="font-normal text-gray-700 dark:text-gray-400 text-justify">
+      <p className="font-normal text-gray-700 dark:text-gray-400 text-center">
         Explora nuestra colección de libros.
       </p>
       </div>

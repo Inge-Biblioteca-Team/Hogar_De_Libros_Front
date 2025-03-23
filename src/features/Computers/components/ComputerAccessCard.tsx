@@ -17,7 +17,7 @@ const ComputerAccessCard = () => {
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
       Equipo de cómputo
       </h5>
-      <p className="font-normal text-gray-700 dark:text-gray-400 text-justify">
+      <p className="font-normal text-gray-700 dark:text-gray-400 text-center">
       Computadoras con internet para tus proyectos.
       </p>
       </div>
