@@ -47,7 +47,7 @@ const HomeNavbar = () => {
         />
         {rol == "admin" && (
           <div className=" flex ml-5 mb-2 gap-3">
-            <span className=" text-black">Modo de usuario</span>
+            <span className="dark:text-white text-black">Modo de usuario</span>
             <ToggleSwitch
               color="gray"
               checked={navMode}
