@@ -99,31 +99,32 @@ const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
                 <figcaption className=" text-center">... cargando</figcaption>
               </figure>
             </div>
-          ) : Catalog && Catalog.count > 0 ? (
+          ) : Catalog && Catalog.data.length > 0 ? (
             <>
               <BookChildrenTable catalog={Catalog} />
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={page}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setLimit}
-                  total={Catalog.count}
-                />
-              </div>
-
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={page}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
             </>
           ) : (
             <NoResults />
           )}
+
+          <div className="block max-sm:hidden">
+            <CustomPagination
+              page={page}
+              onPageChange={onPageChange}
+              totalPages={MaxPage}
+              setCurrentLimit={setLimit}
+              total={Catalog?.count || 0}
+            />
+          </div>
+
+          <div className="sm:hidden  flex justify-center ">
+            <Pagination
+              layout="navigation"
+              currentPage={page}
+              totalPages={MaxPage}
+              onPageChange={onPageChange}
+            />
+          </div>
         </section>
       </main>
       <MDNewBook open={open} setOpen={setOpen} />

@@ -61,7 +61,7 @@ const ManageEvents = () => {
                 <figcaption className=" text-center">...Cargando</figcaption>
               </figure>
             </div>
-          ) : Events ? (
+          ) : Events && Events.data.length > 0 ? (
             <>
               <Table hoverable className="text-center">
                 <Table.Head>
@@ -91,7 +91,12 @@ const ManageEvents = () => {
                   ))}
                 </Table.Body>
               </Table>
-              <div className="block max-sm:hidden">
+             
+            </>
+          ) : (
+            <NoResults />
+          )}
+           <div className="block max-sm:hidden">
                 <CustomPagination
                   page={currentPage}
                   onPageChange={onPageChange}
@@ -109,10 +114,6 @@ const ManageEvents = () => {
                   onPageChange={onPageChange}
                 />
               </div>
-            </>
-          ) : (
-            <NoResults />
-          )}
         </div>
       </div>
     </>

@@ -82,20 +82,18 @@ const FinishedLoans = () => {
                 <figcaption className=" text-center">...Cargando</figcaption>
               </figure>
             </div>
-          ) : Loan ? (
-            <>
-              {Loan && <TBLLoan Loan={Loan} />}
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-                total={Loan?.count || 0}
-              />
-            </>
+          ) : Loan && Loan.data.length > 0 ? (
+            <>{Loan && <TBLLoan Loan={Loan} />}</>
           ) : (
             <NoResults />
           )}
+          <CustomPagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+            total={Loan?.count || 0}
+          />
         </div>
       </div>
     </>

@@ -47,9 +47,7 @@ const AprovedReservationList = () => {
                 <figcaption className="text-center">Cargando...</figcaption>
               </figure>
             </div>
-          ) : reservations?.count === 0 ? (
-            <NoRequest text={"No existen solicitudes aprobadas"} />
-          ) : (
+          ) : reservations && reservations.data.length > 0 ? (
             <>
               <Table
                 hoverable
@@ -60,25 +58,27 @@ const AprovedReservationList = () => {
                   <TBLAprovReservations reserve={reservations} />
                 )}
               </Table>
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={currentPage}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                  total={reservations?.count || 0}
-                />
-              </div>
-              <div className="sm:hidden flex justify-center">
-                <Pagination
-                  layout="navigation"
-                  currentPage={currentPage}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
             </>
+          ) : (
+            <NoRequest text={"No existen solicitudes aprobadas"} />
           )}
+          <div className="block max-sm:hidden">
+            <CustomPagination
+              page={currentPage}
+              onPageChange={onPageChange}
+              totalPages={MaxPage}
+              setCurrentLimit={setCurrentLimit}
+              total={reservations?.count || 0}
+            />
+          </div>
+          <div className="sm:hidden flex justify-center">
+            <Pagination
+              layout="navigation"
+              currentPage={currentPage}
+              totalPages={MaxPage}
+              onPageChange={onPageChange}
+            />
+          </div>
         </div>
       </div>
     </>

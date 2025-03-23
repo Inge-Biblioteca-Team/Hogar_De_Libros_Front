@@ -75,7 +75,7 @@ const WorkStationsLoanHistory = () => {
                   <figcaption className=" text-center">...Cargando</figcaption>
                 </figure>
               </div>
-            ) : WSLoan ? (
+            ) : WSLoan && WSLoan.data.length > 0 ? (
               <>
                 <Table hoverable className=" text-center h-[30rem]">
                   <Table.Head className=" h-16 text-sm">
@@ -98,17 +98,17 @@ const WorkStationsLoanHistory = () => {
                     ))}
                   </Table.Body>
                 </Table>
-                <CustomPagination
-                  page={currentPage}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                  total={WSLoan?.count || 0}
-                />
               </>
             ) : (
               <NoResults />
             )}
+            <CustomPagination
+              page={currentPage}
+              onPageChange={onPageChange}
+              totalPages={MaxPage}
+              setCurrentLimit={setCurrentLimit}
+              total={WSLoan?.count || 0}
+            />
           </div>
         </div>
       </main>

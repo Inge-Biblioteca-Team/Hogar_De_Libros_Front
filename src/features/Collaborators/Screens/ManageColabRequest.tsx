@@ -74,34 +74,34 @@ const ManageColabRequest = () => {
                 <figcaption className=" text-center">...Cargando</figcaption>
               </figure>
             </div>
-          ) : ColaborationsList ? (
+          ) : ColaborationsList && ColaborationsList.data.length ? (
             <>
               <ColabsTableBody hiid>
                 {ColaborationsList?.data.map((colab) => (
                   <ColabsRows colaborator={colab} key={colab.CollaboratorId} />
                 ))}
               </ColabsTableBody>
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={Page}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                  total={ColaborationsList?.count || 0}
-                />
-              </div>
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={Page}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
             </>
           ) : (
             <NoResults />
           )}
+          <div className="block max-sm:hidden">
+            <CustomPagination
+              page={Page}
+              onPageChange={onPageChange}
+              totalPages={MaxPage}
+              setCurrentLimit={setCurrentLimit}
+              total={ColaborationsList?.count || 0}
+            />
+          </div>
+          <div className="sm:hidden  flex justify-center ">
+            <Pagination
+              layout="navigation"
+              currentPage={Page}
+              totalPages={MaxPage}
+              onPageChange={onPageChange}
+            />
+          </div>
         </section>
       </main>
     </>
