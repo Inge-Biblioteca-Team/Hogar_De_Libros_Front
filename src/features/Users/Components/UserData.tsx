@@ -14,10 +14,9 @@ import UseLogOut from "../Hooks/UseLogOut";
 const UserData = () => {
   const Navi = useNavigate();
 
-  const cedula = sessionStorage.getItem("cedula");
-
   const { currentUser, isLogged } = useContext(UserContext);
 
+  const cedula = currentUser?.cedula;
   const email = currentUser?.email;
 
   const [count, setCount] = useState<number>(0);
@@ -72,7 +71,7 @@ const UserData = () => {
   return (
     <Popover
       content={
-        <div className="w-64 p-3">
+        <div className="w-64 p-3 space-y-3">
           <div className="mb-2 flex items-center justify-between">
             <span>
               <img
@@ -96,15 +95,15 @@ const UserData = () => {
             className="text-base font-semibold leading-none text-gray-900 dark:text-gray-100"
           >
             <span className="text-gray-900 dark:text-gray-100">
-              {User?.name}
+              {currentUser?.name} {currentUser?.lastName}
             </span>
           </p>
-          <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
+          <p className="text-sm font-normal text-gray-800 dark:text-gray-200">
             <span className="hover:underline text-gray-800 dark:text-gray-200">
               {email}
             </span>
           </p>
-          <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
+          <p className="text-sm font-normal text-gray-800 dark:text-gray-200">
             <span
               className="hover:underline text-gray-800 dark:text-gray-200 cursor-pointer"
               onClick={goToMyLoans}
@@ -112,7 +111,7 @@ const UserData = () => {
               Mis Préstamos
             </span>
           </p>
-          <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
+          <p className="text-sm font-normal text-gray-800 dark:text-gray-200">
             <span
               className="hover:underline text-gray-800 dark:text-gray-200 cursor-pointer"
               onClick={goToEnrolmentCurses}
@@ -122,7 +121,7 @@ const UserData = () => {
           </p>
           {count > 0 &&
             (User?.role === "admin" || User?.role === "creator") && (
-              <p className="mb-3 text-sm font-normal text-gray-800 dark:text-gray-200">
+              <p className="text-sm font-normal text-gray-800 dark:text-gray-200">
                 <span
                   className="hover:underline text-gray-800 dark:text-gray-200 cursor-pointer"
                   onClick={goToMyReservations}
@@ -161,7 +160,8 @@ const UserData = () => {
       >
         <FontAwesomeIcon
           icon={faUserAlt}
-          className="text-white max-sm:h-4 max-sm:w-4 sm:h-6 sm:w-6" />
+          className="text-white max-sm:h-4 max-sm:w-4 sm:h-6 sm:w-6"
+        />
       </button>
     </Popover>
   );

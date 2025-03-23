@@ -32,8 +32,12 @@ const SeeLoanInfo = ({
     saveAs(blob, `boleta#${data.BookLoanId}.pdf`);
   };
 
+  const close=()=>{
+    setSee(false)
+  }
+
   return (
-    <Modal show={see} onClose={() => setSee(false)}>
+    <Modal show={see} onClose={close}>
       <Modal.Header>
         <span>Información del préstamo</span>
       </Modal.Header>
@@ -49,8 +53,8 @@ const SeeLoanInfo = ({
               <details>
                 <summary>Anotaciones del usuario</summary>
                 <ul>
-                  {Loan.OldObservations.map((observation) => (
-                    <li>{observation} </li>
+                  {Loan.OldObservations.map((observation, index) => (
+                    <li key={index + "observation"}>{observation} </li>
                   ))}
                 </ul>
               </details>
