@@ -10,7 +10,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 const LocalArtistList = () => {
   const { data: LArtists, isLoading } = useQuery<ResponseA, Error>(
     ["LocalArtist"],
-    () => getLocalArtist(1, 100),
+    () => getLocalArtist(1, 100,"","","1"),
     {
       staleTime: 600,
     }

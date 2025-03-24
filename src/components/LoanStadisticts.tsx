@@ -98,8 +98,8 @@ const LoanStadisticts = () => {
                   cursor={{ fill: 'rgba(255, 255, 255, 0.1)' }}
                 />
                 <Legend />
-                <Bar dataKey="Eventos" fill="#8884d8" />
-                <Bar dataKey="Cursos" fill="#82ca9d" />
+                <Bar dataKey="Eventos" fill="#1a53d9" />
+                <Bar dataKey="Cursos" fill="#00955e" />
                 <Bar
                   dataKey="Prestamos"
                   fill="#ffc658"
@@ -107,7 +107,7 @@ const LoanStadisticts = () => {
                 />
                 <Bar
                   dataKey="UsoComputo"
-                  fill="#82ca9d"
+                  fill="#ff00ff"
                   name={"Usos de equipo de computo"}
                 />
                 <Line type="monotone" dataKey="Eventos" stroke="#8884d8" />
