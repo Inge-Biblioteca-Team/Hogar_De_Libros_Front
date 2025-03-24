@@ -75,7 +75,7 @@ const UserData = () => {
         <div className="w-64 p-3 space-y-3">
           <div className="mb-2 flex items-center justify-between">
             <span>
-              {User?.name == "Adrian" ? (
+              {User?.name == "ADRIAN" ? (
                 <img
                   className="h-10 w-10 rounded-full"
                   src={image}

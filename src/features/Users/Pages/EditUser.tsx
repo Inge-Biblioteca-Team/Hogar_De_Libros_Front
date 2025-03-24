@@ -74,7 +74,7 @@ const EditUser = () => {
                 <div className=" w-full flex items-end justify-between max-sm:flex-col max-sm:items-start max-sm:gap-4">
                   <div className=" flex items-center gap-5">
                     <figure>
-                      {User?.name == "Adrian" ? (
+                      {User?.name == "ADRIAN" ? (
                         <img
                           className=" rounded-full w-40 h-40"
                           src={image}
