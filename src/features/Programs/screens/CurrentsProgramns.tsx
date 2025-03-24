@@ -12,7 +12,8 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
     ["ProgramCatalog"],
     () => GetProgramsList(1, 100, "", "1"),
     {
-      staleTime: 600,
+      staleTime: 900,
+      refetchOnWindowFocus: false
     }
   );
 

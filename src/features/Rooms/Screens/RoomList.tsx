@@ -14,6 +14,7 @@ function RoomList() {
     {
       keepPreviousData: true,
       staleTime: 600,
+      refetchOnWindowFocus: false
     }
   );
 

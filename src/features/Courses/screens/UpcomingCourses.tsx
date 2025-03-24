@@ -9,7 +9,8 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
     ["CourseCatalog"],
     () => GetNextCourses(),
     {
-      staleTime: 600,
+      staleTime: 1200,
+      refetchOnWindowFocus: false
     }
   );
 

@@ -13,6 +13,7 @@ const LocalArtistList = () => {
     () => getLocalArtist(1, 100,"","","1"),
     {
       staleTime: 600,
+      refetchOnWindowFocus: false
     }
   );
 

@@ -13,6 +13,7 @@ const LatestAddBooks = () => {
     () => getUserColection(1, 20, "", "", "", "1", "", ""),
     {
       staleTime: 5000,
+      refetchOnWindowFocus: false
     }
   );
   const [itemsPerGroup, setItemsPerGroup] = useState(5);
