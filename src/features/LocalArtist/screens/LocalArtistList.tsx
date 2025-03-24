@@ -10,9 +10,10 @@ import "react-loading-skeleton/dist/skeleton.css";
 const LocalArtistList = () => {
   const { data: LArtists, isLoading } = useQuery<ResponseA, Error>(
     ["LocalArtist"],
-    () => getLocalArtist(1, 100),
+    () => getLocalArtist(1, 100,"","","1"),
     {
       staleTime: 600,
+      refetchOnWindowFocus: false
     }
   );
 
@@ -47,7 +48,6 @@ const LocalArtistList = () => {
 
   return (
     <>
-      <section className="space-y-4 w-11/12" id="Courses">
         <h2
           className="font-bold text-4xl text-center 
           max-sm:text-xl"
@@ -113,7 +113,6 @@ const LocalArtistList = () => {
             </Carousel>
           )
         )}
-      </section>
     </>
   );
 };

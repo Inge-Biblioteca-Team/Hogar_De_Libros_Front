@@ -10,6 +10,7 @@ import { getCountReservations } from "../../Loan/Services/SVReservations";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../../Context/UserContext/UserContext";
 import UseLogOut from "../Hooks/UseLogOut";
+import image from "../../../Assets/MyProfile.jpg";
 
 const UserData = () => {
   const Navi = useNavigate();
@@ -74,11 +75,19 @@ const UserData = () => {
         <div className="w-64 p-3 space-y-3">
           <div className="mb-2 flex items-center justify-between">
             <span>
-              <img
-                className="h-10 w-10 rounded-full"
-                src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
-                alt="User Profile"
-              />
+              {User?.name == "ADRIAN" ? (
+                <img
+                  className="h-10 w-10 rounded-full"
+                  src={image}
+                  alt={User?.imageUrl}
+                />
+              ) : (
+                <img
+                  className="h-10 w-10 rounded-full"
+                  src={User?.imageUrl}
+                  alt={User?.name}
+                />
+              )}
             </span>
             <div>
               <button

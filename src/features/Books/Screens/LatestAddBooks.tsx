@@ -13,6 +13,7 @@ const LatestAddBooks = () => {
     () => getUserColection(1, 20, "", "", "", "1", "", ""),
     {
       staleTime: 5000,
+      refetchOnWindowFocus: false
     }
   );
   const [itemsPerGroup, setItemsPerGroup] = useState(5);
@@ -50,7 +51,6 @@ const LatestAddBooks = () => {
 
   return (
     <>
-      <section className="space-y-4 mt-6 w-11/12" id="MostPopularBooks">
         <h2
           className="font-bold text-4xl text-center 
           max-sm:text-xl"
@@ -97,7 +97,6 @@ const LatestAddBooks = () => {
             </Carousel>
           )
         )}
-      </section>
     </>
   );
 };

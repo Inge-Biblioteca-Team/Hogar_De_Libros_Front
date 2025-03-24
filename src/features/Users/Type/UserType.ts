@@ -13,6 +13,7 @@ export type User = {
   birthDate: Date;
   gender: string;
   loanPolicy:number
+  imageUrl?:string
 };
 
 export type UsersResponse = {

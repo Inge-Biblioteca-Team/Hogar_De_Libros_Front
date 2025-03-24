@@ -72,6 +72,7 @@ const InProgressLoans = () => {
               setStartDate={setStartDate}
               setEndtDate={setEndtDate}
               setSignaCode={setSignaCode}
+              startDate={StartDate}
             />
 
             <>
