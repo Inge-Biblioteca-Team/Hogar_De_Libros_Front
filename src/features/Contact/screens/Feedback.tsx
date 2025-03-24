@@ -3,7 +3,7 @@ import InfoFeedback from "../components/InfoFeedback";
 
 const Feedback = () => {
   return (
-    <section className="space-y-4 w-11/12">
+    <>
       <h2 className="font-bold text-4xl text-center 
           max-sm:text-xl">
         Recomendaciones sobre el servicio
@@ -12,7 +12,7 @@ const Feedback = () => {
         <InfoFeedback />
         <FeedbackRating />
       </div>
-    </section>
+    </>
   );
 };
 

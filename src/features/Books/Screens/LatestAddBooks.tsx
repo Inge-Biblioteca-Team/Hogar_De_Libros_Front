@@ -50,7 +50,6 @@ const LatestAddBooks = () => {
 
   return (
     <>
-      <section className="space-y-4 mt-6 w-11/12" id="MostPopularBooks">
         <h2
           className="font-bold text-4xl text-center 
           max-sm:text-xl"
@@ -97,7 +96,6 @@ const LatestAddBooks = () => {
             </Carousel>
           )
         )}
-      </section>
     </>
   );
 };

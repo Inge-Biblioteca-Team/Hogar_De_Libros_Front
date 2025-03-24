@@ -17,10 +17,6 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
 
   return (
     <>
-      <section
-       className="space-y-4 w-11/12"
-        id="Events"
-      >
         <h2 className="font-bold text-4xl text-center 
           max-sm:text-xl">
           Próximos eventos
@@ -53,7 +49,6 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
             </article>
           )
         )}
-      </section>
     </>
   );
 };

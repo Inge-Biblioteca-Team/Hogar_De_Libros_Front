@@ -47,7 +47,6 @@ const LocalArtistList = () => {
 
   return (
     <>
-      <section className="space-y-4 w-11/12" id="Courses">
         <h2
           className="font-bold text-4xl text-center 
           max-sm:text-xl"
@@ -113,7 +112,6 @@ const LocalArtistList = () => {
             </Carousel>
           )
         )}
-      </section>
     </>
   );
 };

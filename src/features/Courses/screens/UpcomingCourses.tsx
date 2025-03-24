@@ -27,10 +27,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
   return (
     <>
       {Courses && Courses.count > 0 && (
-        <section
-          className="space-y-4 w-11/12"
-          id="Courses"
-        >
+        <>
           <h2  className="font-bold text-4xl text-center 
           max-sm:text-xl">
             Cursos disponibles
@@ -60,7 +57,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
               </div>
             ))}
           </Carousel>
-        </section>
+        </>
       )}
     </>
   );

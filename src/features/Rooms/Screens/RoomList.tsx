@@ -19,7 +19,6 @@ function RoomList() {
 
   return (
     <>
-      <section className="space-y-4 w-11/12" id="Rooms">
         <h2
           className="font-bold text-4xl text-center 
           max-sm:text-xl"
@@ -81,7 +80,6 @@ function RoomList() {
             </>
           )
         )}
-      </section>
     </>
   );
 }
