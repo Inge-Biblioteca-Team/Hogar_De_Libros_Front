@@ -260,6 +260,15 @@ const LeadingRequestBook = async (data: BookLeading) => {
     }
   }
 };
+const getCategoriesNames =async()=>{
+  try{
+    const response = await api.get("/books/Categories");
+    return response.data
+  } catch(error){
+    console.log(error)
+    throw error
+  }
+}
 
 export {
   getUserColection,
@@ -270,5 +279,6 @@ export {
   DisableBook,
   CreateBook,
   getColection,
-  GetBooks
+  GetBooks,
+  getCategoriesNames
 };

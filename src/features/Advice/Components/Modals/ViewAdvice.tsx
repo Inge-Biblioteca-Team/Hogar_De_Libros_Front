@@ -27,16 +27,16 @@ const ViewAdvice = ({
           <div className=" flex flex-col justify-between gap-3 mt-4">
             <div>Información del aviso</div>
             <div>
-              <span>Motivo: {advice.reason} </span>
+              <strong>Motivo: </strong> {advice.reason}
             </div>
             <div>
-              <span>Fecha: {date}</span>
+              <strong>Fecha: </strong> {date}
             </div>
             <div>
-              <span>Información extra: {advice.extraInfo} </span>
+              <strong>Información extra: </strong>{advice.extraInfo}
             </div>
             <div>
-              <span>Categoría del aviso: {advice.category} </span>
+              <strong> Categoría del aviso: </strong>{advice.category}
             </div>
           </div>
         </Modal.Body>

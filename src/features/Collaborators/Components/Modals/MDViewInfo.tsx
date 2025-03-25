@@ -20,35 +20,61 @@ const MDViewInfo = ({
   };
   return (
     <Modal show={open} onClose={onClose}>
-      <Modal.Header>Información de la colaboracion </Modal.Header>
+      <Modal.Header>Información de la colaboración </Modal.Header>
       <ModalBody className=" flex flex-col gap-2">
-        <Label
-          value={`Fecha de solicitud: ${formatToDMY(
+        <Label>
+          <strong>Fecha de solicitud: </strong>{" "}
+          {formatToDMY(
             colaboration.DateGenerated
-          )}`}
-        />
-        <Label value={`Nombre del colaborador: ${colaboration.UserFullName}`} />
-        <Label value={`Cédula del colaborador: ${colaboration.UserCedula}`} />
-        <Label value={`Correo de electrónico: ${colaboration.UserEmail}`} />
-        <Label value={`Teléfono de contacto: ${colaboration.UserPhone}`} />
-        <Label value={`Dirección: ${colaboration.UserAddress}`} />
-        <Label value={`Género: ${colaboration.UserGender}`} />
+          )}
+
+        </Label>
+        <Label>
+        <strong>Nombre del colaborador: </strong>{colaboration.UserFullName}
+        </Label>
+        <Label>
+        <strong>Cédula del colaborador: </strong>{colaboration.UserCedula}
+        </Label>
+        <Label>
+        <strong>Correo de electrónico: </strong>{colaboration.UserEmail}
+        </Label>
+        <Label>
+        <strong>Teléfono de contacto: </strong>{colaboration.UserPhone}
+        </Label>
+        <Label>
+        <strong>Dirección: </strong>{colaboration.UserAddress}
+        </Label>
+        <Label>
+          <strong>Género: </strong> {colaboration.UserGender} 
+        </Label>
         {colaboration.Entitycollaborator && (
-          <Label
-            value={`Institución colaboradora: ${colaboration.Entitycollaborator}`}
-          />
+           <Label>
+           <strong>Institución colaboradora: </strong> {colaboration.Entitycollaborator}
+           </Label>
         )}
-        <Label value={`Experiencia previa: ${colaboration.Experience}`} />
-        <Label value={`Información adicional: ${colaboration.ExtraInfo}`} />
-        <Label
-          value={`Categoría de la colaboración: ${colaboration.PrincipalCategory}`}
-        />
-        <Label value={`Sub categoría: ${colaboration.SubCategory}`} />
-        <Label value={`Estado: ${colaboration.Status}`} />
-        <Label value={`Propuesta: ${colaboration.Description}`} />
+        <Label>
+          <strong>Experiencia previa: </strong> {colaboration.Experience} 
+        </Label>
+        <Label>
+           <strong>Información adicional: </strong> {colaboration.ExtraInfo}
+        </Label>
+        <Label>
+         <strong>Categoría de la colaboración: </strong> {colaboration.PrincipalCategory}
+        </Label>
+        <Label>
+          <strong>Subcategoría: </strong> {colaboration.SubCategory}
+        </Label>
+        <Label>
+          <strong>Estado: </strong> {colaboration.Status}
+        </Label>
+        <Label>
+         <strong>Propuesta: </strong> {colaboration.Description}
+        </Label>
         {colaboration.Document && (
           <>
-            <Label value={`Documentos adjuntos.`} />
+        <Label>
+          <strong>Documentos adjuntos:</strong>
+        </Label>
             {colaboration.Document.map((doc, index) => (
               <a
                 target="#blank"

@@ -13,7 +13,7 @@ const GeneralInfo = () => {
     >
       <GeneralComputerInfo />
       <div
-        className=" text-lg max-sm:text-sm"
+        className=" text-lg max-sm:text-sm col-span-2 text-balance"
       >
         <p>
           <strong className="">
@@ -38,7 +38,7 @@ const GeneralInfo = () => {
             <strong className="">disponibilidad en tiempo real.</strong>
           </span>
         </p>
-        <div className="">
+        <div className="felx justify-center">
           <Link to={"/HogarDeLibros/Equipo_Disponible"}>
             <Button
               color={"blue"}
