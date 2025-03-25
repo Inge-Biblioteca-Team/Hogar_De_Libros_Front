@@ -41,12 +41,6 @@ const CustomPagination = ({
         previousLabel="Anterior"
         showIcons
         layout="pagination"
-        theme={{
-          pages: {
-            next: { base: "p-2 dark:text-white" },
-            previous: { base: "p-2 dark:text-white" }
-          }
-        }}
       />
     </div>
   );
