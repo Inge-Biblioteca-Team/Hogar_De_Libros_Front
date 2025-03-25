@@ -40,7 +40,7 @@ const ModalDownFurniture = ({
         <Modal.Body className="dark:bg-[#2d2d2d]">
           <div className="text-center">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-            <h3 className="dark:text-white mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+            <h3 className="dark:text-white mb-5 text-lg font-normal text-gray-500">
               Seleccione el nuevo estado del mobiliario <br /> {Description}
             </h3>
             <Select required {...register("reason")}>

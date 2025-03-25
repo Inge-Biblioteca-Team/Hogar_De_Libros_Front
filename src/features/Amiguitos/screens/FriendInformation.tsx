@@ -65,7 +65,7 @@ const FriendInformation = () => {
                   <h5 className=" font-semibold dark:text-white">
                     ¡Únete a nuestra comunidad de voluntariado!
                   </h5>
-                  <p className="dark:text-white font-normal text-gray-700 dark:text-gray-400">
+                  <p className="dark:text-white font-normal text-gray-700 ">
                     Participa en nuestras actividades y comparte tu amor por los
                     libros con otras personas.
                   </p>
@@ -128,7 +128,7 @@ const FriendInformation = () => {
                   <h5 className=" font-semibold dark:text-white">
                     ¡Únete a nuestra comunidad de voluntariado!
                   </h5>
-                  <p className="dark:text-white font-normal text-gray-700 dark:text-gray-400">
+                  <p className="dark:text-white font-normal text-gray-700">
                     Participa en nuestras actividades y comparte tu amor por los
                     libros con otras personas.
                   </p>
@@ -192,7 +192,7 @@ const FriendInformation = () => {
                   <h5 className=" font-semibold dark:text-white">
                     ¡Únete a nuestra comunidad de voluntariado!
                   </h5>
-                  <p className="dark:text-white font-normal text-gray-700 dark:text-gray-400">
+                  <p className="dark:text-white font-normal text-gray-700 ">
                     Participa en nuestras actividades y comparte tu amor por los
                     libros con otras personas.
                   </p>

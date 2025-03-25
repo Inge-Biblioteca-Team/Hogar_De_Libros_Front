@@ -28,7 +28,7 @@ const DisableCourse = ({
       <Modal.Body className="dark:bg-[#2d2d2d]">
         <div className="text-center mt-4">
           <HiOutlineExclamationCircle className="mx-auto h-14 w-14 text-gray-400 dark:text-gray-200" />
-          <h3 className="dark:text-white mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+          <h3 className="dark:text-white mb-5 text-lg font-normal text-gray-500">
             ¿Estás seguro de que deseas deshabilitar el curso?
           </h3>
           <p className="mb-6 text-md font-bold text-gray-600 dark:text-gray-300">

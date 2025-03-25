@@ -17,7 +17,7 @@ const RoomAccessCard = () => {
         <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
           Salas
         </h5>
-        <p className="dark:text-white font-normal text-gray-700 dark:text-gray-400 text-center">
+        <p className="dark:text-white font-normal text-gray-700 text-center">
         Espacios disponibles para tus actividades.  
         </p>
       </div>

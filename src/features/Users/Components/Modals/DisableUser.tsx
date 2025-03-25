@@ -25,10 +25,10 @@ const DisableUser = ({
       <Modal.Body className="dark:bg-[#2d2d2d]">
         <div className="text-center">
           <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-          <h3 className="dark:text-white mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+          <h3 className="dark:text-white mb-5 text-lg font-normal text-gray-500">
             ¿Estás seguro de que deseas dar de baja al usuario?
           </h3>
-          <p className="dark:text-white mb-4 text-md font-semibold text-gray-600 dark:text-gray-300">
+          <p className="dark:text-white mb-4 text-md font-semibold text-gray-600">
             {User.name} {User.lastName}; Cédula {User.cedula} <br />
           </p>
           <TextInput
