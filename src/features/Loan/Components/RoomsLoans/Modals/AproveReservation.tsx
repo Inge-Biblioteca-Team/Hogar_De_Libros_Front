@@ -28,8 +28,8 @@ const AproveReservation = ({
   return (
     <>
       <Modal show={open} popup onClose={onCancel} size={"sm"}>
-        <Modal.Header />
-        <Modal.Body>
+        <Modal.Header className="dark:bg-[#2d2d2d]"/>
+        <Modal.Body className="dark:bg-[#2d2d2d]">
           <div className="text-center">
             <h3>¿Está seguro de aprobar la solicitud de préstamo?</h3>
             <div className="flex justify-center gap-4 mt-10">

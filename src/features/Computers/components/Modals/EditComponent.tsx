@@ -46,9 +46,9 @@ const EditComponent = ({
   return (
     <>
       <Modal show={sEdit} onClose={onClose}>
-        <Modal.Header>Editar componente del equipo</Modal.Header>
+        <Modal.Header className="dark:bg-neutral-900">Editar componente del equipo</Modal.Header>
         <form onSubmit={handleSubmit(onConfirm)}>
-          <Modal.Body>
+          <Modal.Body className="dark:bg-[#2d2d2d]">
             <fieldset className=" grid grid-cols-2 gap-7 text-center">
               <legend className=" pb-3">Información del equipo</legend>
               <span>

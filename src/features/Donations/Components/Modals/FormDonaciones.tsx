@@ -76,11 +76,11 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
 
   return (
     <Modal show={open} onClose={onClose} size={"5xl"}>
-      <Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
         <div>Propuesta de donación</div>
       </Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body className=" grid grid-cols-1 bg-white lg:grid-cols-2 gap-x-5 gap-y-4 ">
+        <Modal.Body className="dark:bg-[#2d2d2d] grid grid-cols-1 bg-white lg:grid-cols-2 gap-x-5 gap-y-4 ">
           <>
             <div>
               <Label value="Tipo de artículo a donar" />
@@ -169,7 +169,7 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
                 accept=".jpg,.gif,.png"
                 multiple
                 onChange={handleFileChange}
-                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="dark:bg-[#2d2d2d] block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -215,7 +215,7 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
             )}
           </>
         </Modal.Body>
-        <Modal.Footer className=" flex bg-white items-center justify-between">
+        <Modal.Footer className="dark:bg-[#2d2d2d] flex bg-white items-center justify-between">
           <div></div>
           <Button color={"red"} tabIndex={2}  onClick={onClose} disabled={isLoading}>
             Cancelar

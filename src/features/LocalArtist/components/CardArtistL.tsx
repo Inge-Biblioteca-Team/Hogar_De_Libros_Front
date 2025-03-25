@@ -8,7 +8,7 @@ import {
 
 const CardArtistL = ({ artist }: { artist: Artist }) => {
   return (
-    <Card className="w-full flex flex-col justify-between shadow-lg">
+    <Card className="dark:bg-[#2d2d2d] w-full flex flex-col justify-between shadow-lg">
       
       <figure className="w-full flex justify-center">
         <img
@@ -21,16 +21,16 @@ const CardArtistL = ({ artist }: { artist: Artist }) => {
 
       <figcaption className="flex flex-col flex-grow justify-between items-center text-center px-4 py-3">
         <div className="flex flex-col items-center">
-          <strong className="text-lg lg:text-xl">{artist.Name}</strong>
-          <span className="text-gray-600 text-sm lg:text-base">
+          <strong className="dark:text-white text-lg lg:text-xl">{artist.Name}</strong>
+          <span className="dark:text-white text-gray-600 text-sm lg:text-base">
             {artist.ArtisProfession}
           </span>
         </div>
 
       
-        <div className="flex-grow overflow-hidden">
+        <div className="dark:text-white flex-grow overflow-hidden">
           {artist.MoreInfo && (
-            <p className="text-gray-500 text-sm line-clamp-3 lg:line-clamp-4">
+            <p className="dark:text-white text-gray-500 text-sm line-clamp-3 lg:line-clamp-4">
               {artist.MoreInfo}
             </p>
           )}

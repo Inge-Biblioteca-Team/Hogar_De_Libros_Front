@@ -28,11 +28,11 @@ const RelatedActivitiesList = ({
 
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
-      <Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
         Actividades relacionadas al programa {programName}
       </Modal.Header>
       {ActivitiesList && ActivitiesList.count > 0 ? (
-        <Modal.Body className=" flex flex-col gap-4">
+        <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-4">
           {ActivitiesList.data.map((Activitie) => (
             <ActivitiesRelated
               key={Activitie.activitieID}
@@ -43,7 +43,7 @@ const RelatedActivitiesList = ({
       ) : (
         <span className="m-4">No existen actividades relacionadas al programa</span>
       )}
-      <Modal.Footer className=" flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"blue"} onClick={() => setOpen(false)}>
           Regresar
         </Button>

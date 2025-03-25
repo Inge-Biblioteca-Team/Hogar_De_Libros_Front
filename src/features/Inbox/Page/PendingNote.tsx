@@ -90,7 +90,7 @@ const PendingNote = () => {
 
   return (
     <>
-      <div className="bg-white p-4 flex items-center pb-4 rounded-t-xl">
+      <div className="dark:bg-[#2d2d2d] bg-white p-4 flex items-center pb-4 rounded-t-xl">
         <ButtonGroup>
           <Button
             size={"sm"}
@@ -127,9 +127,9 @@ const PendingNote = () => {
       </div>
       {inboxData && inboxData.count > 0 ? (
         <div className="overflow-hidden rounded-b-2xl">
-          <div className="max-h-[40rem] min-h-[40rem] bg-white overflow-y-auto ">
-            <Table hoverable className="text-center text-lg">
-              <Table.Body>
+          <div className="dark:bg-[#2d2d2d] max-h-[40rem] min-h-[40rem] bg-white overflow-y-auto ">
+            <Table hoverable className="dark:bg-[#2d2d2d] text-center text-lg">
+              <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
                 {inboxMessages.map((message: Nota) => (
                   <TblInbox
                     key={message.id_Note}

@@ -31,14 +31,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      <div className="flex flex-col md:flex-row items-center max-w-4xl w-full bg-white shadow-lg rounded-lg max-sm:bg-transparent">
+    <div className="dark:bg-[#2d2d2d] flex items-center justify-center min-h-screen bg-gray-900">
+      <div className="dark:bg-[#161616] flex flex-col md:flex-row items-center max-w-4xl w-full bg-white shadow-lg rounded-lg max-sm:bg-transparent">
         <div className="w-full md:w-1/2 p-8 max-sm:p-3">
-          <Card className="max-w-lg w-full">
-            <h2 className="text-2xl font-bold text-gray-700 mb-4">
+          <Card className="dark:bg-[#2d2d2d] max-w-lg w-full">
+            <h2 className="dark:text-white text-2xl font-bold text-gray-700 mb-4">
               Iniciar Sesión
             </h2>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="dark:text-white text-sm text-gray-500 mb-4">
               ¿No posees una cuenta?{" "}
               <Link to="/Registro" className="text-blue-500 hover:underline">
                 Regístrate aquí.

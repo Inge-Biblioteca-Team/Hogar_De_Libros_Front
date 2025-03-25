@@ -22,7 +22,7 @@ const ActivitieTimeItem = ({ activitie }: { activitie: Activitie }) => {
             {activitie.programName}
           </Timeline.Title>
           <Timeline.Body>
-            <Card className="p0 hover:scale-105 transition-transform">
+            <Card className="dark:bg-[#2d2d2d] p0 hover:scale-105 transition-transform">
               <figure className=" w-full rounded-xl">
                 <img
                   className=" w-full rounded-t-lg h-40"
@@ -30,14 +30,14 @@ const ActivitieTimeItem = ({ activitie }: { activitie: Activitie }) => {
                   alt=""
                 />
               </figure>
-              <div className=" flex flex-col ml-6 gap-2 h-52 mr-6 ">
-                <span className=" font-bold text-black">
+              <div className="dark:text-white flex flex-col ml-6 gap-2 h-52 mr-6 ">
+                <span className="dark:text-white font-bold text-black">
                   {activitie.activityType}{" "}
                 </span>
-                <span className=" font-bold text-black">
+                <span className="dark:text-white font-bold text-black">
                   {activitie.activitieName}{" "}
                 </span>
-                <span className=" font-bold text-black">
+                <span className="dark:text-white font-bold text-black">
                   {activitie.description}{" "}
                 </span>
                 <span>

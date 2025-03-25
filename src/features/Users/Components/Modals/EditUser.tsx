@@ -47,13 +47,13 @@ const EditUser = ({
   };
 
   return (
-    <Modal show={edit} onClose={onClose} className=" bg-white">
-      <Modal.Header>
+    <Modal show={edit} onClose={onClose}>
+      <Modal.Header className="dark:bg-neutral-900">
         <span>Editar información del usuario {User.name}</span>
       </Modal.Header>
       <form onSubmit={handleSubmit(handleConfirm)} className=" bg-white">
-        <Modal.Body className=" bg-white">
-          <fieldset className="mb-4  bg-white">
+        <Modal.Body className="dark:bg-[#2d2d2d] bg-white">
+          <fieldset className="mb-4">
             <legend className="text-lg font-semibold mb-2">
               Información de contacto
             </legend>
@@ -79,7 +79,7 @@ const EditUser = ({
             </div>
           </fieldset>
 
-          <fieldset className="mb-4  bg-white">
+          <fieldset className="mb-4">
             <legend className="text-lg font-semibold mb-2">
               Información de residencia
             </legend>
@@ -112,7 +112,7 @@ const EditUser = ({
             </div>
           </fieldset>
 
-          <fieldset className="mb-4 bg-white">
+          <fieldset className="mb-4">
             <legend className="text-lg font-semibold mb-2 ">
               Rol y Privilegios
             </legend>

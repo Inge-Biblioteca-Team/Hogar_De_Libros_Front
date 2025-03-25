@@ -16,7 +16,7 @@ import LandingHome from "../components/LandingHome";
 const Landing = () => {
   return (
     <>
-      <main className="flex items-center gap-16 justify-center flex-col mb-10 max-sm:gap-10">
+      <main className="dark:bg-neutral-900 flex items-center gap-16 justify-center flex-col mb-10 max-sm:gap-10">
         <LandingHome />
         <ImportanNotices />
         <LatestAddBooks />
@@ -30,7 +30,6 @@ const Landing = () => {
         <DirectContac />
         <Feedback />
       </main>
-
       <LandingFooter />
     </>
   );

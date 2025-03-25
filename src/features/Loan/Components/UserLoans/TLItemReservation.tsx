@@ -34,7 +34,7 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
             {reserve.roomName}{" "}
           </Timeline.Title>
           <Timeline.Body>
-            <Card className="p0 hover:scale-105">
+            <Card className="dark:bg-[#2d2d2d] dark:text-white p0 hover:scale-105">
               <figure className="w-full rounded-xl">
                 <img
                   className="w-full rounded-t-lg h-28"

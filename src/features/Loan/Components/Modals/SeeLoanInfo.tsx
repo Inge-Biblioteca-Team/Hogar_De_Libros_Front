@@ -38,10 +38,10 @@ const SeeLoanInfo = ({
 
   return (
     <Modal show={see} onClose={close}>
-      <Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
         <span>Información del préstamo</span>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="dark:bg-[#2d2d2d]">
         <div className="flex flex-col gap-4 max-sm:text-sm text-lg">
           <span className=" flex flex-col">
             <strong>Información del Usuario</strong>
@@ -76,7 +76,7 @@ const SeeLoanInfo = ({
           </span>
         </div>
       </Modal.Body>
-      <Modal.Footer className=" flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"red"} onClick={() => setSee(false)}>
           {" "}
           Cerrar{" "}

@@ -35,9 +35,11 @@ const MDDenyDonation = ({
 
   return (
     <Modal show={open} onClose={onClose} popup size={"md"}>
-      <Modal.Header></Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
+      <span>Rechazar la donación</span>
+      </Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body className=" flex flex-col gap-4">
+        <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-4">
           <span>¿Está seguro de rechazar la donación?</span>
           <div>
             <Label value="Razón de rechazo" />

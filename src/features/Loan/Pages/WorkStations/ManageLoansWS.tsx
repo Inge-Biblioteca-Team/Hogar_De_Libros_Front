@@ -54,7 +54,7 @@ const ManageLoansWS = () => {
                       <FontAwesomeIcon icon={faDesktop} />
                     </div>
                   </Popover>
-                  <div className="text-black font-semibold text-xl">
+                  <div className="dark:text-white text-black font-semibold text-xl">
                     PC-{computer.MachineNumber}
                   </div>
                 </div>

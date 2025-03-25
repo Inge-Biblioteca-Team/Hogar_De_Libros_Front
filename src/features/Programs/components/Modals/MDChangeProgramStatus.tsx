@@ -24,18 +24,18 @@ const MDChangeProgramStatus = ({
 
   return (
     <Modal show={open} onClose={() => setOpen(false)} popup size={"md"}>
-      <Modal.Body className="text-center">
+      <Modal.Body className="dark:bg-[#2d2d2d] text-center">
         <div className="text-center mt-7">
           <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
         </div>
-        <span>
+        <span className="dark:text-white">
           ¿Está seguro de deshabilitar el programa{" "}?
           <strong className=" font-bold">{program.programName}</strong>?
         </span>
         <br />
         <span>¡¡Está acción no es reversible!!!</span>
       </Modal.Body>
-      <Modal.Footer className=" flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"red"} onClick={() => setOpen(false)} disabled={isLoading}>
           Cancelar
         </Button>

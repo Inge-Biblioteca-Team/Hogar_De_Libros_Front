@@ -39,7 +39,7 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
             {course.courseType}
           </Timeline.Title>
           <Timeline.Body>
-            <Card className="p0 ">
+            <Card className="p0 dark:bg-[#2d2d2d]">
               <figure className=" w-full rounded-xl">
                 <img
                   className=" w-full rounded-t-lg h-28"
@@ -48,18 +48,18 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
                 />
               </figure>
               <div className=" flex flex-col ml-3 justify-between mr-3 h-80 ">
-                <span className=" font-bold text-black">
+                <span className="dark:text-white font-bold text-black">
                   {course.courseName}{" "}
                 </span>
-                <span>Comienzo: {fullDate.toUpperCase()}</span>
-                <span>Número de sesiones: {course.duration} </span>
-                <span>
+                <span className="dark:text-white">Comienzo: {fullDate.toUpperCase()}</span>
+                <span className="dark:text-white">Número de sesiones: {course.duration} </span>
+                <span className="dark:text-white">
                   {course.location} {time}{" "}
                 </span>
-                <span>
+                <span className="dark:text-white">
                   Instructor: {course.instructor}{" "}
                 </span>
-                <span>
+                <span className="dark:text-white">
                   Cupos: 
                   {course.avaibleQuota}/{course.capacity}{" "}
                 </span>

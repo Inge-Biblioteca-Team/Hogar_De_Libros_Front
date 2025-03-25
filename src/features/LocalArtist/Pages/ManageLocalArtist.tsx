@@ -81,25 +81,25 @@ const ManageLocalArtist = () => {
                 hoverable
                 className="text-center h-[30rem] max-sm:text-sm max-sm:justify-center"
               >
-                <Table.Head className="h-20 text-sm bg-white">
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">
+                <Table.Head className="dark:text-white h-20 text-sm bg-white">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5">
                     Nombre
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden">
                     Tipo de Artista
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden">
                     Información Relevante
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 xl:table-cell 2xl:w-1/5 2xl:table-cell max-sm:hidden">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 xl:table-cell 2xl:w-1/5 2xl:table-cell max-sm:hidden">
                     Redes Sociales
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5">
                     Estado
                   </Table.HeadCell>
-                  <Table.HeadCell></Table.HeadCell>
+                  <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
                 </Table.Head>
-                <Table.Body>
+                <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
                   {Artists?.data.map((artist: Artist) => (
                     <TBLArtists key={artist.ID} artist={artist} />
                   ))}

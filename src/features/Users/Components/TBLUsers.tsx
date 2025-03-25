@@ -27,7 +27,7 @@ const TBLUsers = ({ user }: { user: User }) => {
 
   return (
     <>
-      <Table.Row className="h-20  bg-white" key={user.cedula}>
+      <Table.Row className="h-20" key={user.cedula}>
         <Table.Cell className="w-56">{user.cedula} </Table.Cell>
         <Table.Cell className="w-56">
           {user.name} {user.lastName}{" "}

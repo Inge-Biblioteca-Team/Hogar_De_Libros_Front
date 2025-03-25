@@ -43,8 +43,8 @@ const CourseInfo = ({
 
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
-      <Modal.Header>Información del curso</Modal.Header>
-      <Modal.Body className=" flex flex-col gap-4">
+      <Modal.Header className="dark:bg-neutral-900">Información del curso</Modal.Header>
+      <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-4">
         <div>
           <figure className="w-full flex items-center justify-center">
             <img
@@ -111,7 +111,7 @@ const CourseInfo = ({
           </div>
         </div>
       </Modal.Body>
-      <Modal.Footer className="flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"blue"} onClick={() => setOpen(false)}>
           Regresar
         </Button>

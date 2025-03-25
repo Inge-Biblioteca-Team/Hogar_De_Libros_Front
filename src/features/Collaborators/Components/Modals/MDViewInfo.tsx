@@ -20,8 +20,8 @@ const MDViewInfo = ({
   };
   return (
     <Modal show={open} onClose={onClose}>
-      <Modal.Header>Información de la colaboracion </Modal.Header>
-      <ModalBody className=" flex flex-col gap-2">
+      <Modal.Header className="dark:bg-neutral-900">Información de la colaboracion </Modal.Header>
+      <ModalBody className="dark:bg-[#2d2d2d] flex flex-col gap-2">
         <Label
           value={`Fecha de solicitud: ${formatToDMY(
             colaboration.DateGenerated
@@ -66,7 +66,7 @@ const MDViewInfo = ({
           <Label value={`Razón de rechazo: ${colaboration.Reason}`} />
         )}
       </ModalBody>
-      <Modal.Footer className=" flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"blue"} onClick={onClose}>
           Regresar
         </Button>

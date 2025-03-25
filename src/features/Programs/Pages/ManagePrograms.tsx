@@ -86,29 +86,29 @@ const ManagePrograms = () => {
           ) : Programs ? (
             <>
               <Table hoverable className="text-center">
-                <Table.Head className="h-20 text-sm">
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 xl:table-cell 2xl:table-cell  md:hidden max-sm:hidden w-20">
+                <Table.Head className="dark:text-white h-20 text-sm">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 xl:table-cell 2xl:table-cell  md:hidden max-sm:hidden w-20">
                     Número de Registro
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:p-2 w-20">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:p-2 w-20">
                     Nombre del Programa
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">
                     Descripción
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">
                     Información Relacionada
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 w-20">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 w-20">
                     Estado
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 before:max-sm:hidden w-20"></Table.HeadCell>
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 before:max-sm:hidden w-20"></Table.HeadCell>
                 </Table.Head>
-                <Table.Body className="h-96">
+                <Table.Body className="dark:bg-[#2d2d2d] dark:text-white h-96">
                   {Programs?.data.map((Program) => (
                     <ProgramsRows key={Program.programsId} program={Program} />
                   ))}
-                </Table.Body>
+                </Table.Body >
               </Table>
               <div className="block max-sm:hidden">
                 <CustomPagination

@@ -17,10 +17,10 @@ const ViewEvent = ({
     const eventDay = formatToDMY(event.Date);
     return (
       <Modal show={see} onClose={() => setSee(false)} size-40>
-        <Modal.Header>
+        <Modal.Header className="dark:bg-neutral-900">
           <span>Evento: {event.Title} </span>
         </Modal.Header>
-        <Modal.Body className="flex flex-col gap-2">
+        <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-2">
           <figure className="w-full flex items-center justify-center">
             {event.Image ? (
               <img
@@ -58,7 +58,7 @@ const ViewEvent = ({
           )}
           </div>
         </Modal.Body>
-        <Modal.Footer className="flex items-center justify-center">
+        <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
           <Button color={"blue"} onClick={() => setSee(false)}>
             Regresar
           </Button>

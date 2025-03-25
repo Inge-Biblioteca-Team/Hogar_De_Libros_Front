@@ -47,41 +47,47 @@ const EditFriendInfo = ({
 
   return (
     <Modal onClose={onClose} show={open}>
-      <Modal.Header>Editar información de amigo</Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">Editar información de amigo</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body className=" grid grid-cols-2 gap-3">
+        <Modal.Body className="dark:bg-[#2d2d2d] grid grid-cols-2 gap-3">
           <FloatingLabel
             variant="outlined"
+            className="dark:text-white"
             label="Nombre completo"
             {...register("UserFullName")}
           />
 
           <FloatingLabel
             variant="outlined"
+            className="dark:text-white"
             label="Dirección de residencia"
             {...register("UserAddress")}
           />
 
           <FloatingLabel
             variant="outlined"
+            className="dark:text-white"
             label="Número de teléfono"
             {...register("UserPhone")}
           />
 
           <FloatingLabel
             variant="outlined"
+            className="dark:text-white"
             label="Correo electrónico"
             {...register("UserEmail")}
           />
 
           <FloatingLabel
             variant="outlined"
+            className="dark:text-white"
             label="Experiencia"
             {...register("Experience")}
           />
 
           <FloatingLabel
             variant="outlined"
+            className="dark:text-white"
             label="Información adicional"
             {...register("ExtraInfo")}
           />

@@ -11,7 +11,7 @@ const CardTypeAmiguito = () => {
 
   return (
     <>
-      <div className="bg-white rounded-md text-lg">
+      <div className="dark:bg-[#2d2d2d] bg-white rounded-md text-lg">
         <img
           className="h-[20rem] w-full rounded-t-md"
           src={
@@ -35,7 +35,7 @@ const CardTypeAmiguito = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-md text-lg">
+      <div className="dark:bg-[#2d2d2d] bg-white rounded-md text-lg">
         <img
           className="h-[20rem] w-full rounded-t-md"
           src={
@@ -59,7 +59,7 @@ const CardTypeAmiguito = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-md text-lg">
+      <div className="dark:bg-[#2d2d2d] bg-white rounded-md text-lg">
         <img
           className="h-[20rem] w-full rounded-t-md"
           src={

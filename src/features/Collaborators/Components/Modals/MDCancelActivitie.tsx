@@ -35,9 +35,9 @@ const MDCancelActivitie = ({
 
   return (
     <Modal show={open} onClose={onClose}>
-      <Modal.Header>Cancelar colaboración</Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">Cancelar colaboración</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-      <ModalBody>
+      <ModalBody className="dark:bg-[#2d2d2d]">
           <Label value="Razón de cancelación" />
           <Textarea
             rows={4}

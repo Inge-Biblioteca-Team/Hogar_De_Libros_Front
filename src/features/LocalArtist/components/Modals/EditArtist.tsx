@@ -65,9 +65,9 @@ const EditArtist = ({
   return (
     <>
       <Modal show={edit} onClose={() => setEdit(false)}>
-        <Modal.Header className="bg-white">Editar artista</Modal.Header>
+        <Modal.Header className="dark:bg-neutral-900 bg-white">Editar artista</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className="bg-white">
+          <Modal.Body className="dark:bg-[#2d2d2d] bg-white">
             <div className="w-full flex items-center justify-center">
               {imageUrl ? (
                 <img

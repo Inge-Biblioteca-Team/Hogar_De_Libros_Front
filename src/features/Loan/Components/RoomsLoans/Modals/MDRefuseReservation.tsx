@@ -30,7 +30,7 @@ const MDRefuseReservation = ({
   return (
     <Modal show={open} onClose={onClose} popup size={"md"}>
       <form>
-        <Modal.Body className="flex items-center justify-center flex-col text-center">
+        <Modal.Body className="dark:bg-[#2d2d2d] flex items-center justify-center flex-col text-center">
           <div className="text-center mt-7">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
           </div>
@@ -39,7 +39,7 @@ const MDRefuseReservation = ({
           </span>
           <Textarea className="mt-3" rows={4} placeholder="Motivo" required />
         </Modal.Body>
-        <Modal.Footer className=" flex items-center justify-center">
+        <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
           <Button color={"red"} onClick={onClose} tabIndex={2} disabled={isLoading}>
             Cancelar
           </Button>

@@ -18,7 +18,7 @@ export function SidebarComponent({
             onClick={() => setOption("Recibidos")}
             icon={HiInbox}
             className={`${
-              option == "Recibidos" ? "bg-[#dfe2e6]" : ""
+              option == "Recibidos" ? "dark:bg-gray-800 bg-[#dfe2e6]" : ""
             } cursor-pointer  `}
           >
             Recibidos

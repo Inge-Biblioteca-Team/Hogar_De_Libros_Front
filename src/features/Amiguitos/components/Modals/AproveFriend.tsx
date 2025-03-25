@@ -28,13 +28,13 @@ const AproveFriend = ({
 
   return (
     <Modal show={open} popup size={"md"}>
-      <Modal.Body className="text-center">
+      <Modal.Body className="dark:bg-[#2d2d2d] text-center">
         <div className="text-center mt-7">
           <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
         </div>
         <span>¿Está seguro de aprobar la solicitud de amigo?</span>
       </Modal.Body>
-      <Modal.Footer className=" flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"red"} onClick={onClose}>
           Cancelar
         </Button>

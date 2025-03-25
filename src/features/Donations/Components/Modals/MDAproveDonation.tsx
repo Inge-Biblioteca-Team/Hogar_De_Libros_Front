@@ -27,13 +27,13 @@ const MDAproveDonation = ({
 
   return (
     <Modal show={open} onClose={onClose} popup size={"md"}>
-      <Modal.Header></Modal.Header>
-      <Modal.Body className=" flex justify-center items-center">
+      <Modal.Header className="dark:bg-[#2d2d2d]"></Modal.Header>
+      <Modal.Body className="dark:bg-[#2d2d2d] flex justify-center items-center">
         <span className=" text-center">
           Confirmar aprobación de la donación
         </span>{" "}
       </Modal.Body>
-      <Modal.Footer className=" flex justify-center items-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex justify-center items-center">
         <Button color={"red"} onClick={onClose} disabled={isLoading}>
           Cancelar
         </Button>

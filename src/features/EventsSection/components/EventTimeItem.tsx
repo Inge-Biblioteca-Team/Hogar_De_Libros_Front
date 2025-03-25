@@ -35,7 +35,7 @@ const EventTimeItem = ({ event }: { event: Event }) => {
             {event.eventType}
           </Timeline.Title>
           <Timeline.Body>
-            <Card className="p0 hover:scale-105 transition-transform">
+            <Card className="dark:bg-[#2d2d2d] p0 hover:scale-105 transition-transform">
               <figure className=" w-full rounded-xl">
                 <img
                   className=" w-full rounded-t-lg h-40"
@@ -44,15 +44,15 @@ const EventTimeItem = ({ event }: { event: Event }) => {
                 />
               </figure>
               <div className=" flex flex-col ml-6 gap-2 h-72 mr-6 ">
-                <span className=" font-bold text-black">
+                <span className="dark:text-white font-bold text-black">
                   {event.title}{" "}
                 </span>
-                <span>{event.details} </span>
-                <span>Fecha: {fullDate.toUpperCase()}</span>
-                <span>
+                <span className="dark:text-white">{event.details} </span>
+                <span className="dark:text-white">Fecha: {fullDate.toUpperCase()}</span>
+                <span className="dark:text-white">
                   {event.location} {time}{" "}
                 </span>
-                <span>
+                <span className="dark:text-white">
                   A Cargo de <br />
                   {event.instructor}{" "}
                 </span>

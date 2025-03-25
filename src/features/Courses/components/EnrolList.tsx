@@ -15,10 +15,10 @@ const EnrolList = ({
 }) => {
   return (
     <Modal show={open} onClose={() => setOpen(false)} size={"7xl"} popup>
-      <Modal.Body className="p-1">
+      <Modal.Body className="dark:bg-[#2d2d2d] p-1">
         <div className=" grid grid-cols-3">
           <div></div>
-          <div className=" w-full text-center font-bold text-2xl mt-2 mb-3">
+          <div className="w-full text-center font-bold text-2xl mt-2 mb-3">
             Matricula del curso {Course.courseName}{" "}
           </div>
           <div className=" flex justify-end items-center">

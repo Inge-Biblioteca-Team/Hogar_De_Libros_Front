@@ -122,25 +122,25 @@ const ManagerComputer = () => {
                 className="text-center"
                 style={{ height: "30rem" }}
               >
-                <Table.Head className=" h-16">
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">
+                <Table.Head className="dark:bg-neutral-900 dark:text-white h-16">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5">
                     Número de Máquina
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden">
                     Categoría
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden">
                     Marca
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden">
                     Serial
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5">
                     Estado
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden"></Table.HeadCell>
+                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden"></Table.HeadCell>
                 </Table.Head>
-                <Table.Body>
+                <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
                   {computers?.data.map((computers) => (
                     <TblRows
                       key={"COM" + computers.EquipmentUniqueCode}

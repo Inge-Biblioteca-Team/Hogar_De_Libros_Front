@@ -17,10 +17,10 @@ const ViewNote = ({
 
     return (
         <Modal show={isOpen} onClose={() => setIsOpen(false)} size="md">
-            <Modal.Header>
+            <Modal.Header className="dark:bg-neutral-900">
             <strong>Tipo: {note.type} </strong>
             </Modal.Header>
-            <Modal.Body className="flex flex-col gap-2">
+            <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-2">
                 <div className="flex-col flex gap-2 text-left justify-start">
                     <strong className="text-center p-2">Detalles de la notificación</strong>
                     <span>
@@ -31,7 +31,7 @@ const ViewNote = ({
                     </span>
                 </div>
             </Modal.Body>
-            <Modal.Footer className="flex items-center justify-center">
+            <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
                 <Button color={"blue"} onClick={() => setIsOpen(false)}>
                     Cerrar
                 </Button>

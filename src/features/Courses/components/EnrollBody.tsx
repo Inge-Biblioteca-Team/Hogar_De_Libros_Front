@@ -24,7 +24,7 @@ const EnrollBody = ({ courseId }: { courseId: number }) => {
   return (
     <>
       <Table hoverable className=" text-center">
-        <Table.Head className=" !rounded-none">
+        <Table.Head className="dark:text-white !rounded-none">
           <Table.HeadCell className=" bg-gray-300 !rounded-none">
             Nombre
           </Table.HeadCell>
@@ -47,7 +47,7 @@ const EnrollBody = ({ courseId }: { courseId: number }) => {
             Correo
           </Table.HeadCell>
         </Table.Head>
-        <Table.Body>
+        <Table.Body className="dark:text-white">
           {EnrollList?.data.map((Enroll) => (
             <EnrollRow Enroll={Enroll} key={Enroll.courseId} />
           ))}

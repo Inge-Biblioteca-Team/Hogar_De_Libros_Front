@@ -105,11 +105,11 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
 
   return (
     <Modal show={open} onClose={onClose} size={"5xl"}>
-      <Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
         <div>Solicitud de amigo de la biblioteca</div>
       </Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body className=" grid sm:grid-cols-1 bg-white lg:grid-cols-2 gap-x-5 gap-y-4 ">
+        <Modal.Body className="dark:bg-[#2d2d2d] grid sm:grid-cols-1 bg-white lg:grid-cols-2 gap-x-5 gap-y-4 ">
           {!secondForm && (
             <>
               <div>
@@ -264,7 +264,7 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
             </>
           )}
         </Modal.Body>
-        <Modal.Footer className=" flex bg-white items-center justify-between">
+        <Modal.Footer className="dark:bg-[#2d2d2d] flex bg-white items-center justify-between">
           <div></div>
           {!secondForm && (
             <>

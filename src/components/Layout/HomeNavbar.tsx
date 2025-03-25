@@ -20,10 +20,9 @@ const HomeNavbar = () => {
       <button type="button" onClick={showSidebar} id="hamburger">
         {""}
         <img
-          className="invert dark:invert-0
-            dark:hover:invert
+          className="invert
+            dark:invert
             hover:scale-110 
-            hover:invert-0
             max-sm:h-10 max-sm:w-10"
           width={35}
           src="https://cdn-icons-png.flaticon.com/128/561/561184.png"

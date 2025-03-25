@@ -119,15 +119,15 @@ const RoomsSchedule = ({
         Disponibilidad de salas
       </div>
       <Table className="text-center h-80 mt-2 hidden lg:table">
-        <Table.Head>
-          <Table.HeadCell className="w-10">Número de sala</Table.HeadCell>
+        <Table.Head className="dark:bg-neutral-900">
+          <Table.HeadCell className="dark:bg-neutral-900 w-10">Número de sala</Table.HeadCell>
           {hours.map((hour) => (
-            <Table.HeadCell key={hour}>
+            <Table.HeadCell key={hour} className="dark:bg-neutral-900">
               <div>{HourMapping[hour]}</div>
             </Table.HeadCell>
           ))}
         </Table.Head>
-        <Table.Body>
+        <Table.Body className="dark:bg-[#2d2d2d]">
           {rooms.map((room) => {
             const roomSelectedHours =
               selectedRoom?.roomNumber === room.roomNumber ? selectedHours : [];
@@ -148,10 +148,10 @@ const RoomsSchedule = ({
                       }}
                       className={`m-1 p-2 border ${
                         roomSelectedHours.includes(hour)
-                          ? "bg-blue-500"
+                          ? "dark:bg-gray-800 bg-blue-500"
                           : isOccupied
-                          ? "bg-gray-300"
-                          : "bg-white cursor-pointer"
+                          ? "dark:bg-gray-400 bg-gray-300"
+                          : "dark:bg-[#2d2d2d] bg-white cursor-pointer"
                       }`}
                       style={{ pointerEvents: isOccupied ? "none" : "auto" }}
                     >

@@ -8,15 +8,15 @@ import BTNRequest from "../BTNRequest";
 const TblRowsReservation = ({ reserve }: { reserve: ReserveResponse }) => {
   return (
     <>
-      <Table.Head className="h-11">
-        <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Solicitante</Table.HeadCell>
-        <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">Fecha de Solicitud</Table.HeadCell>
-        <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">Fecha reservada</Table.HeadCell>
-        <Table.HeadCell className="xl:w-1/5 xl:table-cell 2xl:w-1/5 2xl:table-cell md:hidden max-sm:hidden">Hora de inicio / Fin</Table.HeadCell>
-        <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden">Actividad</Table.HeadCell>
-        <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 md:hidden"></Table.HeadCell>
+      <Table.Head className="dark:bg-neutral-900 dark:text-white h-11">
+        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5">Solicitante</Table.HeadCell>
+        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden">Fecha de Solicitud</Table.HeadCell>
+        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5">Fecha reservada</Table.HeadCell>
+        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 xl:table-cell 2xl:w-1/5 2xl:table-cell md:hidden max-sm:hidden">Hora de inicio / Fin</Table.HeadCell>
+        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden">Actividad</Table.HeadCell>
+        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 md:hidden"></Table.HeadCell>
       </Table.Head>
-      <Table.Body>
+      <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
         {reserve.data.map((reservation) => {
           const reserveDay = formatToDMY(reservation.date);
           const requestDay = formatToDMY(reservation.reservationDate);

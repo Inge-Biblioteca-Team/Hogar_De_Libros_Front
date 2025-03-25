@@ -62,10 +62,10 @@ const MDEditChildrenBook = ({
 
   return (
     <Modal show={open} onClose={onClose} size={"5xl"}>
-      <Modal.Header>Añadir libro a la colección</Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">Añadir libro a la colección</Modal.Header>
 
       <form onSubmit={handleSubmit(onConfirm)} >
-        <Modal.Body className=" grid grid-cols-1 lg:grid-cols-3 bg-white gap-4">
+        <Modal.Body className="dark:bg-[#2d2d2d] grid grid-cols-1 lg:grid-cols-3 bg-white gap-4">
           <fieldset>
             <legend className="mb-2  text-center">Imagen del recurso</legend>
             <div>
@@ -101,23 +101,27 @@ const MDEditChildrenBook = ({
               <div className=" grid grid-cols-2 gap-4 ">
                 <FloatingLabel
                   variant="outlined"
+                  className="dark:text-white"
                   label="Título del recurso"
                   {...register("Title")}
                   required
                 />
                 <FloatingLabel
                   variant="outlined"
+                  className="dark:text-white"
                   label="Autor"
                   {...register("Author")}
                   required
                 />
                 <FloatingLabel
                   variant="outlined"
+                  className="dark:text-white"
                   label="Editorial"
                   {...register("Editorial")}
                 />
                 <FloatingLabel
                   variant="outlined"
+                  className="dark:text-white"
                   label="Año de publicación"
                   {...register("PublishedYear")}
                   type="number"
@@ -125,11 +129,13 @@ const MDEditChildrenBook = ({
                 />
                 <FloatingLabel
                   variant="outlined"
+                  className="dark:text-white"
                   label="ISBN"
                   {...register("ISBN")}
                 />
                 <FloatingLabel
                   variant="outlined"
+                  className="dark:text-white"
                   label="Código de signatura"
                   {...register("SignatureCode")}
                 />
@@ -141,13 +147,14 @@ const MDEditChildrenBook = ({
               </legend>
               <div className=" grid grid-cols-2 gap-4">
                 <FloatingLabel
-                className="whitespace-nowrap"
+                className="dark:text-white whitespace-nowrap"
                   variant="outlined"
                   label="Código de inscripción"
                   {...register("InscriptionCode")}
                 />
                 <FloatingLabel
                   variant="outlined"
+                  className="dark:text-white"
                   label="Observaciones"
                   {...register("Observations")}
                 />
