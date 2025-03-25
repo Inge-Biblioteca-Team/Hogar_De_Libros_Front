@@ -1,5 +1,5 @@
-import { Button, Modal } from "flowbite-react";
-import { Dispatch, SetStateAction } from "react";
+import { Button, Modal, Spinner } from "flowbite-react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Loans } from "../../Types/BookLoan";
 import { format } from "@formkit/tempo";
 import DocumentForLoan from "../../Utilities/DocumentForLoan";
@@ -15,6 +15,8 @@ const SeeLoanInfo = ({
   setSee: Dispatch<SetStateAction<boolean>>;
   Loan: Loans;
 }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const requestDate = format({
     date: Loan.LoanRequestDate,
     format: "DD/MM/YYYY hh:mm A",
@@ -28,11 +30,18 @@ const SeeLoanInfo = ({
   });
 
   const generatePDF = async (data: Loans) => {
-    const blob = await pdf(<DocumentForLoan loanInfo={data} />).toBlob();
-    saveAs(blob, `boleta#${data.BookLoanId}.pdf`);
+    try {
+      setIsLoading(true);
+      const blob = await pdf(<DocumentForLoan loanInfo={data} />).toBlob();
+      saveAs(blob, `boleta#${data.BookLoanId}.pdf`);
+    } catch (error) {
+      console.error("Error al generar PDF:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const close=()=>{
+  const close = () => {
     setSee(false)
   }
 
@@ -81,8 +90,12 @@ const SeeLoanInfo = ({
           {" "}
           Cerrar{" "}
         </Button>
-        <Button color={"blue"} onClick={() => generatePDF(Loan)}>
-          Guardar Copia
+        <Button color={"blue"} onClick={() => generatePDF(Loan)} disabled={isLoading}>
+          {isLoading ? (
+            <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Descargando...</p></>
+          ) : (
+            "Guardar copia"
+          )}
         </Button>
       </Modal.Footer>
     </Modal>
