@@ -8,6 +8,8 @@ const MDLoanInfo = ({
   Loan,
   showCancel,
   setShowCancel,
+  showChange,
+  setShowChange,
 }: {
   Loan: Loans;
   showCancel: boolean;
@@ -50,6 +52,34 @@ const MDLoanInfo = ({
                 Volver
               </Button>
               <Button color="blue" onClick={() => handleCancel()}>
+                Confirmar
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={showChange} popup onClose={() => setShowChange(false)} size="md">
+        <Modal.Header>Solicitar Extensión</Modal.Header>
+        <Modal.Body>
+          <div className="text-center">
+            <h3>Formulario de Solicitud de Extensión</h3>
+            <Textarea
+              rows={3}
+              placeholder="Ingresa el motivo de la extensión" />
+            <div className="flex justify-center gap-4 mt-10">
+              <Button
+                color="red"
+                onClick={() => setShowChange(false)}
+              >
+                Cancelar
+              </Button>
+              <Button
+                color="blue"
+                onClick={() => {
+                  setShowChange(false); 
+                } }
+              >
                 Confirmar
               </Button>
             </div>
