@@ -86,10 +86,10 @@ const EditRoom = ({
                   {imageUrls
                     .filter((url) => url !== null)
                     .map((url, index) => (
-                      <figure key={index}>
+                      <figure key={index} className="relative">
                         <Button
-                          className="absolute bottom-2 z-50 !rounded-md"
-                          color={"red"}
+                          className="absolute bottom-2 left-2 z-50 !rounded-md !bg-transparent hover:!bg-red-600 px-4 py-2"
+                          color="red"
                           onClick={() => removeImage(index)}
                         >
                           Eliminar
