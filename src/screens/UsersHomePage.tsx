@@ -18,17 +18,17 @@ const UsersHomePage = () => {
         <UpcomingCourses home />
         <UpcomingEvents home />
         <CurrentPrograms home />
-        <AmiguitosInfo home/>
+        <AmiguitosInfo home />
         <ImportanNotices home />
-        <section className="container mx-auto text-center max-sm:hidden">
+        <section className=" max-2xl:w-11/12  text-center w-full pt-20 max-sm:hidden">
           <h2 className="text-4xl font-bold mb-8">
             Servicios de la Biblioteca
           </h2>
           <p className="text-lg mb-12">
             Navega fácilmente a través de nuestros módulos del sistema.
           </p>
-          <div className="flex justify-center px-6">
-            <div className="grid md:grid-cols-2 grid-cols-4 gap-6 justify-center">
+          <div className="flex justify-center  w-full">
+            <div className="grid max-lg:grid-cols-2 grid-cols-4 w-full gap-6 justify-center">
               <RoomAccessCard />
               <BookAccessCard />
               <ComputerAccessCard />

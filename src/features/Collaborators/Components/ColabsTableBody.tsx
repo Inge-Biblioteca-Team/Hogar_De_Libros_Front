@@ -21,7 +21,7 @@ const ColabsTableBody = ({
         <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden ">
           Subcategoría
         </Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 md:hidde lg:table-cell"> {!hiid ? "Estado" : ""}</Table.HeadCell>
+        <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-lg:hidden lg:table-cell"> {!hiid ? "Estado" : ""}</Table.HeadCell>
       </Table.Head>
       <Table.Body className="dark:text-white dark:bg-[#2d2d2d]">{children}</Table.Body>
     </Table>

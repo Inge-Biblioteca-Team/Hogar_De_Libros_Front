@@ -81,7 +81,7 @@ const ManageCourses = () => {
                 <figcaption className=" text-center">...Cargando</figcaption>
               </figure>
             </div>
-          ) : Courses ? (
+          ) : Courses && Courses.data.length > 0 ? (
             <>
               <Table hoverable className=" text-center">
                 <Table.Head className="dark:text-white h-20 text-sm">
@@ -114,28 +114,28 @@ const ManageCourses = () => {
                   ))}
                 </Table.Body>
               </Table>
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={currentPage}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                  total={Courses?.count || 0}
-                />
-              </div>
-
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={currentPage}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
             </>
           ) : (
             <NoResults />
           )}
+          <div className="block max-sm:hidden">
+            <CustomPagination
+              page={currentPage}
+              onPageChange={onPageChange}
+              totalPages={MaxPage}
+              setCurrentLimit={setCurrentLimit}
+              total={Courses?.count || 0}
+            />
+          </div>
+
+          <div className="sm:hidden  flex justify-center ">
+            <Pagination
+              layout="navigation"
+              currentPage={currentPage}
+              totalPages={MaxPage}
+              onPageChange={onPageChange}
+            />
+          </div>
         </section>
       </main>
     </>

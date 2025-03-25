@@ -74,35 +74,36 @@ const ManageFriends = () => {
                 <figcaption className=" text-center">...Cargando</figcaption>
               </figure>
             </div>
-          ) : FriendList ? (
+          ) : FriendList && FriendList.data.length > 0 ? (
             <>
               <FriendsTableBody>
                 {FriendList?.data.map((friend) => (
                   <FriendsRows friend={friend} key={"Fri" + friend.FriendId} />
                 ))}
               </FriendsTableBody>
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={Page}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                  total={FriendList?.count || 0}
-                />
-              </div>
-
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={Page}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
             </>
           ) : (
             <NoResults />
           )}
+
+          <div className="block max-sm:hidden">
+            <CustomPagination
+              page={Page}
+              onPageChange={onPageChange}
+              totalPages={MaxPage}
+              setCurrentLimit={setCurrentLimit}
+              total={FriendList?.count || 0}
+            />
+          </div>
+
+          <div className="sm:hidden  flex justify-center ">
+            <Pagination
+              layout="navigation"
+              currentPage={Page}
+              totalPages={MaxPage}
+              onPageChange={onPageChange}
+            />
+          </div>
         </section>
       </main>
     </>

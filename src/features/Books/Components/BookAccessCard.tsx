@@ -17,8 +17,8 @@ const BookAccessCard = () => {
         <FontAwesomeIcon icon={faBook} size="2x" className="mb-2" />
       <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
         Catálogo de libros
-      </h5> 
-      <p className="dark:text-white font-normal text-gray-700 dark:text-gray-400 text-justify">
+      </h5>  
+      <p className="dark:text-white font-normal text-gray-700 dark:text-gray-400 text-center">
         Explora nuestra colección de libros.
       </p>
       </div>

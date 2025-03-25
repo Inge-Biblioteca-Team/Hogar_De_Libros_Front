@@ -18,7 +18,7 @@ const EventAccessCard = () => {
         <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
         Eventos
       </h5>
-      <p className="dark:text-white font-normal text-gray-700 dark:text-gray-400 text-justify">
+      <p className="dark:text-white  font-normal text-gray-700 dark:text-gray-400  text-center">
       Participa en actividades inspiradoras con la lectura.
       </p>
       </div>
