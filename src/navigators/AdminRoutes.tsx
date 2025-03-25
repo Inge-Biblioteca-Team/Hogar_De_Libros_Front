@@ -87,7 +87,7 @@ const AdminRoutes = [
     path: "Avisos",
     element: (
       <RoleBasedRoute roles={["admin"]}>
-        <AdviceManage />,
+        <AdviceManage />
       </RoleBasedRoute>
     ),
   },
