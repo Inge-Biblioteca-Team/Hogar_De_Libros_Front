@@ -17,10 +17,10 @@ const MDViewFriend = ({
   };
   return (
     <Modal show={open} onClose={onClose}>
-      <Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
         <span>Solicitud de amigo de la biblioteca: </span>
       </Modal.Header>
-      <Modal.Body className="flex flex-col gap-2">
+      <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-2">
         <span>
           <strong>Nombre:</strong> {friend.UserFullName}
         </span>
@@ -80,7 +80,7 @@ const MDViewFriend = ({
           </span>
         )}
       </Modal.Body>
-      <Modal.Footer className="flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"blue"} onClick={onClose}>
           Regresar
         </Button>

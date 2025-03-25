@@ -20,46 +20,45 @@ const MDViewInfo = ({
   };
   return (
     <Modal show={open} onClose={onClose}>
-      <Modal.Header>Información de la colaboración </Modal.Header>
-      <ModalBody className=" flex flex-col gap-2">
+      <Modal.Header className="dark:bg-neutral-900">
+        Información de la colaboración
+      </Modal.Header>
+      <ModalBody className="dark:bg-[#2d2d2d] flex flex-col gap-2">
         <Label>
           <strong>Fecha de solicitud: </strong>{" "}
-          {formatToDMY(
-            colaboration.DateGenerated
-          )}
-
+          {formatToDMY(colaboration.DateGenerated)}
         </Label>
         <Label>
-        <strong>Nombre del colaborador: </strong>{colaboration.UserFullName}
+          <strong>Nombre del colaborador: </strong>{colaboration.UserFullName}
         </Label>
         <Label>
-        <strong>Cédula del colaborador: </strong>{colaboration.UserCedula}
+          <strong>Cédula del colaborador: </strong>{colaboration.UserCedula}
         </Label>
         <Label>
-        <strong>Correo de electrónico: </strong>{colaboration.UserEmail}
+          <strong>Correo de electrónico: </strong>{colaboration.UserEmail}
         </Label>
         <Label>
-        <strong>Teléfono de contacto: </strong>{colaboration.UserPhone}
+          <strong>Teléfono de contacto: </strong>{colaboration.UserPhone}
         </Label>
         <Label>
-        <strong>Dirección: </strong>{colaboration.UserAddress}
+          <strong>Dirección: </strong>{colaboration.UserAddress}
         </Label>
         <Label>
-          <strong>Género: </strong> {colaboration.UserGender} 
+          <strong>Género: </strong> {colaboration.UserGender}
         </Label>
         {colaboration.Entitycollaborator && (
-           <Label>
-           <strong>Institución colaboradora: </strong> {colaboration.Entitycollaborator}
-           </Label>
+          <Label>
+            <strong>Institución colaboradora: </strong> {colaboration.Entitycollaborator}
+          </Label>
         )}
         <Label>
-          <strong>Experiencia previa: </strong> {colaboration.Experience} 
+          <strong>Experiencia previa: </strong> {colaboration.Experience}
         </Label>
         <Label>
-           <strong>Información adicional: </strong> {colaboration.ExtraInfo}
+          <strong>Información adicional: </strong> {colaboration.ExtraInfo}
         </Label>
         <Label>
-         <strong>Categoría de la colaboración: </strong> {colaboration.PrincipalCategory}
+          <strong>Categoría de la colaboración: </strong> {colaboration.PrincipalCategory}
         </Label>
         <Label>
           <strong>Subcategoría: </strong> {colaboration.SubCategory}
@@ -68,13 +67,13 @@ const MDViewInfo = ({
           <strong>Estado: </strong> {colaboration.Status}
         </Label>
         <Label>
-         <strong>Propuesta: </strong> {colaboration.Description}
+          <strong>Propuesta: </strong> {colaboration.Description}
         </Label>
         {colaboration.Document && (
           <>
-        <Label>
-          <strong>Documentos adjuntos:</strong>
-        </Label>
+            <Label>
+              <strong>Documentos adjuntos:</strong>
+            </Label>
             {colaboration.Document.map((doc, index) => (
               <a
               key={index+"Doc"}
@@ -93,7 +92,7 @@ const MDViewInfo = ({
           <Label value={`Razón de rechazo: ${colaboration.Reason}`} />
         )}
       </ModalBody>
-      <Modal.Footer className=" flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"blue"} onClick={onClose}>
           Regresar
         </Button>

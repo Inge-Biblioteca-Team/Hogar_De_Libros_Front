@@ -17,8 +17,8 @@ const ViewChildrenBook = ({
   };
   return (
     <Modal onClose={onClose} show={open}>
-      <Modal.Header>Información del Libro</Modal.Header>
-      <Modal.Body className=" grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <Modal.Header className="dark:bg-neutral-900">Información del Libro</Modal.Header>
+      <Modal.Body className="dark:bg-[#2d2d2d] grid grid-cols-1 lg:grid-cols-3 gap-4">
         <figure>
           <img
             title="Click para editar la imagen"
@@ -54,7 +54,7 @@ const ViewChildrenBook = ({
           {book.ReserveBook && <Label value={"Libro de reserva"} />}
         </div>
       </Modal.Body>
-      <Modal.Footer className=" flex items-center justify-center" onClick={()=>setOpen(false)}>
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center" onClick={()=>setOpen(false)}>
         <Button color={"blue"}>
           Regresar
         </Button>

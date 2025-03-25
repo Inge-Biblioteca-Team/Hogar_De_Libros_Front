@@ -53,9 +53,9 @@ const MDCreateNewProgram = ({
   return (
     <>
       <Modal show={open} onClose={onClose}>
-        <Modal.Header>Crear nuevo programa</Modal.Header>
+        <Modal.Header className="dark:bg-neutral-900">Crear nuevo programa</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className=" grid max-sm:grid-cols-1 grid-cols-3 grid-rows-1 gap-3">
+          <Modal.Body className="dark:bg-[#2d2d2d] grid max-sm:grid-cols-1 grid-cols-3 grid-rows-1 gap-3">
             <figure>
               <div className="w-full flex items-center justify-center">
                 {imageUrl ? (

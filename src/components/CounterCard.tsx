@@ -12,7 +12,7 @@ const CounterCard = ({
 }) => {
   return (
     <>
-      <Card>
+      <Card className="tbody dark:bg-[#2d2d2d]">
         <div className=" flex justify-between items-center">
           <span>{text}</span>
           <Popover content={children} trigger="click" placement="right">

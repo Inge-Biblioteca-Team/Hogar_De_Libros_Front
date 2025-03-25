@@ -24,7 +24,7 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
     <SidebarProvider>
       <Navbar
         className="sticky top-0 z-50 h-fit
-         text-white w-full bg-Body custom-navbar
+         text-white w-full bg-Body custom-navbar dark:bg-[#161616]
           p-2 pt-2 max-sm:py-0 max-sm:pt-5 max-sm:h-fit"
         fluid
       >

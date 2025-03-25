@@ -8,7 +8,7 @@ const InfoDonation = ({ children }: { children: React.ReactNode }) => {
         className="z-10"
         trigger="click"
         content={
-          <div className="p-4 bg-white border rounded shadow-md w-80 h-auto lg:h-max lg:w-max">
+          <div className="dark:bg-[#2d2d2d] p-4 bg-white border rounded shadow-md w-80 h-auto lg:h-max lg:w-max">
             <h3 className="font-semibold">Requisitos para donar libros</h3>
             <p className="mb-2">
               Para que un libro sea aceptado en donación, debe cumplir con los

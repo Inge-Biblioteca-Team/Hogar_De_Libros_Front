@@ -54,11 +54,11 @@ const ModalMantenance = ({
       onClose={() => setOpen(false)}
       className="text-center"
     >
-      <Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
         <h5>Mantenimiento de equipo {MNumber} </h5>
       </Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Body>
+        <Modal.Body className="dark:bg-[#2d2d2d]">
           <Label htmlFor="UserName">Realizado por</Label>
           <TextInput
             className="mb-5"

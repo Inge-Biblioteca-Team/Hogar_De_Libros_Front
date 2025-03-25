@@ -14,10 +14,10 @@ const UserInfo = ({
 }) => {
   return (
     <Modal show={see} onClose={() => setSee(false)}>
-      <Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
         <span>Información del usuario</span>
       </Modal.Header>
-      <Modal.Body className="">
+      <Modal.Body className="dark:bg-[#2d2d2d]">
         <figure className=" w-full flex items-center justify-center flex-col">
           <img
             className=" rounded-full w-40 h-40"
@@ -48,7 +48,7 @@ const UserInfo = ({
           <span className=" font-bold">{getLoanPolicity(User.loanPolicy) || "N/A"}</span>
         </span>
       </Modal.Body>
-      <Modal.Footer className=" flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"blue"} onClick={() => setSee(false)}>
           Regresar
         </Button>

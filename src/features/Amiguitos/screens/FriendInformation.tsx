@@ -21,7 +21,7 @@ const FriendInformation = () => {
           Conoce más sobre cómo apoyar a la biblioteca
         </h3>
         <section className="w-11/12 flex flex-col gap-7">
-          <Card>
+          <Card className="dark:bg-[#2d2d2d]">
             <h4 className=" font-bold">Colaboradores</h4>
             <div className=" flex justify-around max-sm:flex-col-reverse max-sm:gap-3">
               <div>
@@ -65,7 +65,7 @@ const FriendInformation = () => {
                   <h5 className=" font-semibold dark:text-white">
                     ¡Únete a nuestra comunidad de voluntariado!
                   </h5>
-                  <p className="font-normal text-gray-700 dark:text-gray-400">
+                  <p className="dark:text-white font-normal text-gray-700 dark:text-gray-400">
                     Participa en nuestras actividades y comparte tu amor por los
                     libros con otras personas.
                   </p>
@@ -88,7 +88,7 @@ const FriendInformation = () => {
               ¡Ir al formulario!
             </Button>
           </Card>
-          <Card>
+          <Card className="dark:bg-[#2d2d2d]">
             <h4 className=" font-bold">Donaciones</h4>
             <div className=" flex justify-around max-sm:flex-col-reverse max-sm:gap-3 flex-row-reverse">
               <div className=" flex flex-col gap-3">
@@ -128,7 +128,7 @@ const FriendInformation = () => {
                   <h5 className=" font-semibold dark:text-white">
                     ¡Únete a nuestra comunidad de voluntariado!
                   </h5>
-                  <p className="font-normal text-gray-700 dark:text-gray-400">
+                  <p className="dark:text-white font-normal text-gray-700 dark:text-gray-400">
                     Participa en nuestras actividades y comparte tu amor por los
                     libros con otras personas.
                   </p>
@@ -152,7 +152,7 @@ const FriendInformation = () => {
             </Button>
           </Card>
 
-          <Card>
+          <Card className="dark:bg-[#2d2d2d]">
             <h4 className=" font-bold">Amigos de la biblioteca</h4>
             <div className=" flex justify-around max-sm:flex-col-reverse max-sm:gap-3">
               <div className=" flex flex-col gap-3">
@@ -192,7 +192,7 @@ const FriendInformation = () => {
                   <h5 className=" font-semibold dark:text-white">
                     ¡Únete a nuestra comunidad de voluntariado!
                   </h5>
-                  <p className="font-normal text-gray-700 dark:text-gray-400">
+                  <p className="dark:text-white font-normal text-gray-700 dark:text-gray-400">
                     Participa en nuestras actividades y comparte tu amor por los
                     libros con otras personas.
                   </p>

@@ -3,7 +3,7 @@ import { Program } from "../types/Programs";
 
 const CardProgram = ({ program }: { program: Program }) => {
   return (
-    <Card className="p0 lg:w-full h-full md:flex md:flex-col max-sm:h-auto md:w-full md:h-full">
+    <Card className="dark:bg-[#2d2d2d] p0 lg:w-full h-full md:flex md:flex-col max-sm:h-auto md:w-full md:h-full">
       <figure className="flex md:h-full flex-col md:justify-between max-sm:w-full max-sm:h-full">
         <img
           className="w-full md:h-52  h-60 object-cover max-sm:w-ful max-sm:h-64"

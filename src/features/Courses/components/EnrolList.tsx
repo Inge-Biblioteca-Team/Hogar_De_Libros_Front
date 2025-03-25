@@ -15,7 +15,7 @@ const EnrolList = ({
 }) => {
   return (
     <Modal show={open} onClose={() => setOpen(false)} size={"9xl"} popup>
-      <Modal.Body className=" p-0">
+      <Modal.Body className="dark:bg-[#2d2d2d] p-0">
         <div className=" flex items-center justify-between p-2">
           <div className=" w-full font-bold text-2xl">
             Matricula del curso {Course.courseName}{" "}

@@ -81,18 +81,18 @@ const WorkStationsLoanHistory = () => {
             ) : WSLoan && WSLoan.data.length > 0 ? (
               <>
                 <Table hoverable className=" text-center h-[30rem]">
-                  <Table.Head className=" h-16 text-sm">
-                    <Table.HeadCell>
+                  <Table.Head className="dark:text-white h-16 text-sm">
+                    <Table.HeadCell className="dark:bg-neutral-900">
                       <span className=" flex items-center justify-center gap-2">
                         Número de Máquina
                       </span>
                     </Table.HeadCell>
-                    <Table.HeadCell>Nombre del Usuario</Table.HeadCell>
-                    <Table.HeadCell>Fecha de uso</Table.HeadCell>
-                    <Table.HeadCell>Hora de Fin</Table.HeadCell>
+                    <Table.HeadCell className="dark:bg-neutral-900">Nombre del Usuario</Table.HeadCell>
+                    <Table.HeadCell className="dark:bg-neutral-900">Fecha de uso</Table.HeadCell>
+                    <Table.HeadCell className="dark:bg-neutral-900">Hora de Fin</Table.HeadCell>
                   </Table.Head>
 
-                  <Table.Body>
+                  <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
                     {WSLoan?.data.map((loans) => (
                       <HistoryRegist
                         WSLoan={loans}

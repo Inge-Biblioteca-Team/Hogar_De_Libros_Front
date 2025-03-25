@@ -57,10 +57,10 @@ const FinishLoan = ({
 
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
-      <Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
         <h3>Finalización de Prestamo</h3>
       </Modal.Header>
-      <Modal.Body className=" grid  grid-cols-2 gap-3">
+      <Modal.Body className="dark:bg-[#2d2d2d] grid grid-cols-2 gap-3">
         <div>
           <Checkbox color={"blue"}
           onChange={(event) => setCheck1(event.target.checked)} />
@@ -100,7 +100,7 @@ const FinishLoan = ({
         </div>
       </Modal.Body>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Footer className=" items-center justify-center flex">
+        <Modal.Footer className="dark:bg-[#2d2d2d] items-center justify-center flex">
           <Button tabIndex={2} onClick={() => setOpen(false)} color={"red"} disabled={isLoading}>
             Cancelar
           </Button>

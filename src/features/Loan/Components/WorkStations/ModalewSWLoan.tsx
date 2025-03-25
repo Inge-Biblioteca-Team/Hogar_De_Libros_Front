@@ -62,11 +62,11 @@ const ModalewSWLoan = ({
 
   return (
     <Modal show={open} onClose={onClose} size={"md"}>
-      <Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
         <h5>Nuevo préstamo de equipo {MNumber} </h5>
       </Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Body className=" flex flex-col gap-5">
+        <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-5">
           <div>
             <Label htmlFor="UserName">Número de cédula</Label>
             <TextInput

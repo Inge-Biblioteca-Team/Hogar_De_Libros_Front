@@ -58,9 +58,9 @@ const CreateCourse = () => {
         Añadir curso
       </Button>
       <Modal show={isModalOpen} onClose={onClose} size={"5xl"}>
-        <Modal.Header>Crear nuevo curso</Modal.Header>
+        <Modal.Header className="dark:bg-neutral-900">Crear nuevo curso</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className=" bg-white grid max-sm:grid-cols-1 grid-cols-3 gap-3">
+          <Modal.Body className="dark:bg-[#2d2d2d] bg-white grid max-sm:grid-cols-1 grid-cols-3 gap-3">
             <fieldset className=" flex ">
               <legend className=" font-bold pb-3">Imagen del curso</legend>
               <figure className=" w-full max-sm:h-96">

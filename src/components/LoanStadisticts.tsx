@@ -85,7 +85,7 @@ const LoanStadisticts = () => {
             <ResponsiveContainer
               width="100%"
               height={400}
-              className={"bg-white dark:bg-gray-800 rounded-md p-3"}
+              className={"bg-white dark:bg-[#2d2d2d] rounded-md p-3"}
             >
               <BarChart data={formattedStats}>
                 <CartesianGrid strokeDasharray="3 4" />

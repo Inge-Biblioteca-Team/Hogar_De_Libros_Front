@@ -33,6 +33,12 @@ const CustomUsersPagination = ({
         previousLabel="Anterior"
         showIcons
         layout="pagination"
+        theme={{
+          pages: {
+            next: { base: "p-2 dark:text-white" },
+            previous: { base: "p-2 dark:text-white" }
+          }
+        }}
       />
       <div className=" hidden w-full max-sm:flex items-center justify-center">
         <Pagination

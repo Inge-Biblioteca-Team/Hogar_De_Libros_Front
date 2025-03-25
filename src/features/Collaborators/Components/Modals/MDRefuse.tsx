@@ -35,9 +35,9 @@ const MDRefuse = ({
 
   return (
     <Modal show={open} onClose={onClose}>
-      <Modal.Header>Rechazar colaboración</Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">Rechazar colaboración</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <ModalBody>
+        <ModalBody className="dark:bg-[#2d2d2d]">
           <Label value="Razón de rechazo" />
           <Textarea
             rows={4}

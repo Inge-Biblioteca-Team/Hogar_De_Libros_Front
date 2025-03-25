@@ -13,8 +13,8 @@ const MDSeeProgram = ({
 }) => {
   return (
     <Modal show={open} onClose={() => setOpen(false)}>
-      <Modal.Header>Información del programa</Modal.Header>
-      <Modal.Body className=" grid max-sm:grid-cols-1 grid-cols-3 gap-5">
+      <Modal.Header className="dark:bg-neutral-900">Información del programa</Modal.Header>
+      <Modal.Body className="dark:bg-[#2d2d2d] grid max-sm:grid-cols-1 grid-cols-3 gap-5">
         <div>
           <figure>
             <img
@@ -39,7 +39,7 @@ const MDSeeProgram = ({
           </div>
         </div>
       </Modal.Body>
-      <Modal.Footer className=" flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"blue"} onClick={() => setOpen(false)}>
           Regresar
         </Button>

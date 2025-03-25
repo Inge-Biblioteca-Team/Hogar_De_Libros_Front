@@ -56,9 +56,9 @@ const NewAdvice = ({
 
   return (
     <Modal show={open} onClose={onClose}>
-      <Modal.Header>Generar nuevo aviso</Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">Generar nuevo aviso</Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Body className="">
+        <Modal.Body className="dark:bg-[#2d2d2d]">
           <fieldset>
             <legend className="mb-2 font-bold max-sm:hidden">
               Imagen del aviso
@@ -94,16 +94,19 @@ const NewAdvice = ({
             </fieldset>
             <FloatingLabel
               variant="outlined"
+              className="dark:text-white"
               label="Motivo"
               {...register("reason")}
             />
             <FloatingLabel
               variant="outlined"
+              className="dark:text-white"
               label="Información extra"
               {...register("extraInfo")}
             />
             <FloatingLabel
               variant="outlined"
+              className="dark:text-white"
               label="Fecha"
               type="Date"
               min={min}

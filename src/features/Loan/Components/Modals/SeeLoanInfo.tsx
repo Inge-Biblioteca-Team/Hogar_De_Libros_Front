@@ -1,5 +1,5 @@
-import { Button, Modal } from "flowbite-react";
-import { Dispatch, SetStateAction } from "react";
+import { Button, Modal, Spinner } from "flowbite-react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Loans } from "../../Types/BookLoan";
 import { format } from "@formkit/tempo";
 import DocumentForLoan from "../../Utilities/DocumentForLoan";
@@ -15,6 +15,8 @@ const SeeLoanInfo = ({
   setSee: Dispatch<SetStateAction<boolean>>;
   Loan: Loans;
 }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const requestDate = format({
     date: Loan.LoanRequestDate,
     format: "DD/MM/YYYY hh:mm A",
@@ -28,20 +30,27 @@ const SeeLoanInfo = ({
   });
 
   const generatePDF = async (data: Loans) => {
-    const blob = await pdf(<DocumentForLoan loanInfo={data} />).toBlob();
-    saveAs(blob, `boleta#${data.BookLoanId}.pdf`);
+    try {
+      setIsLoading(true);
+      const blob = await pdf(<DocumentForLoan loanInfo={data} />).toBlob();
+      saveAs(blob, `boleta#${data.BookLoanId}.pdf`);
+    } catch (error) {
+      console.error("Error al generar PDF:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const close=()=>{
+  const close = () => {
     setSee(false)
   }
 
   return (
     <Modal show={see} onClose={close}>
-      <Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
         <span>Información del préstamo</span>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="dark:bg-[#2d2d2d]">
         <div className="flex flex-col gap-4 max-sm:text-sm text-lg">
           <span className=" flex flex-col">
             <strong>Información del Usuario</strong>
@@ -76,13 +85,17 @@ const SeeLoanInfo = ({
           </span>
         </div>
       </Modal.Body>
-      <Modal.Footer className=" flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"red"} onClick={() => setSee(false)}>
           {" "}
           Cerrar{" "}
         </Button>
-        <Button color={"blue"} onClick={() => generatePDF(Loan)}>
-          Guardar Copia
+        <Button color={"blue"} onClick={() => generatePDF(Loan)} disabled={isLoading}>
+          {isLoading ? (
+            <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Descargando...</p></>
+          ) : (
+            "Guardar copia"
+          )}
         </Button>
       </Modal.Footer>
     </Modal>

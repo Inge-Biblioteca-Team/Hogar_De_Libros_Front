@@ -38,9 +38,9 @@ const MDDownBook = ({
 
   return (
     <Modal show={open} onClose={onClose}>
-      <Modal.Header>Deshabilitar registro de la colección</Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">Deshabilitar registro de la colección</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body>
+        <Modal.Body className="dark:bg-[#2d2d2d]">
           <div className=" text-center mb-2">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
             <span>

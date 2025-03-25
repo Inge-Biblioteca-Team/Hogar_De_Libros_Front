@@ -56,9 +56,9 @@ const CreateArtist = () => {
         Añadir artista
       </button>
       <Modal show={isModalOpen} onClose={onClose}>
-        <Modal.Header className="bg-white">Añadir nuevo artista</Modal.Header>
+        <Modal.Header className="dark:bg-neutral-900 bg-white">Añadir nuevo artista</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className="bg-white">
+          <Modal.Body className="dark:bg-[#2d2d2d] bg-white">
             <div className="w-full flex items-center justify-center">
               {imageUrl ? (
                 <img

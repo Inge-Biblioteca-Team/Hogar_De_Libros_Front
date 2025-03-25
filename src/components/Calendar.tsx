@@ -17,6 +17,21 @@ const Calendar = () => {
   );
   return (
     <>
+    <style>
+      {`
+        .dark .fc-list-day-cushion {
+          background-color: #171717 !important;
+        }
+        .dark .fc-list-event-time,
+        .dark .fc-list-event-title,
+        .dark .fc-list-empty-text {
+          color: white !important;
+        }
+          .dark .fc-list-event:hover td {
+          background-color: #161616 !important;
+        }
+      `}
+    </style>
       <FullCalendar
         plugins={[listPlugin]}
         initialView="listWeek"

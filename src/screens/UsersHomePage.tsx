@@ -13,7 +13,7 @@ import RoomAccessCard from "../features/Rooms/Components/Cards/RoomAccessCard";
 const UsersHomePage = () => {
   return (
     <>
-      <main className="w-full flex flex-col gap-5 pt-5 items-center justify-center pb-36">
+      <main className="dark:bg-neutral-900 w-full flex flex-col gap-5 pt-5 items-center justify-center pb-36">
         <LatestAddBooks />
         <UpcomingCourses home />
         <UpcomingEvents home />

@@ -27,11 +27,11 @@ const DoneLoan = () => {
     <>
       <div className="">
         <h5 className=" font-bold">Últimos préstamos </h5>
-        <Table hoverable className=" text-center  bg-white">
-          <Table.Head>
-            <Table.HeadCell className="max-sm:hidden">#De Solicitud</Table.HeadCell>
-            <Table.HeadCell>Título</Table.HeadCell>
-            <Table.HeadCell className="flex items-center justify-center gap-2">
+        <Table hoverable className="dark:bg-neutral-900 text-center  bg-white">
+          <Table.Head className="dark:bg-neutral-900">
+            <Table.HeadCell className="dark:bg-neutral-900 max-sm:hidden">#De Solicitud</Table.HeadCell>
+            <Table.HeadCell className="dark:bg-neutral-900">Título</Table.HeadCell>
+            <Table.HeadCell className="dark:bg-neutral-900 flex items-center justify-center gap-2">
               Fecha de solicitud{" "}
               <TextInput
                 type="date"
@@ -41,7 +41,7 @@ const DoneLoan = () => {
               ></TextInput>{" "}
             </Table.HeadCell>
           </Table.Head>
-          <Table.Body className=" h-44 max-h-44">
+          <Table.Body className="dark:bg-[#2d2d2d] h-44 max-h-44">
             {Loan?.count === 0 ? (
               <Table.Row>
                 <Table.Cell colSpan={6}>

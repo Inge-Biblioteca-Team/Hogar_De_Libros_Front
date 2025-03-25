@@ -52,9 +52,9 @@ const CreateRooms = () => {
       </Button>
 
       <Modal show={isModalOpen} onClose={handleModalClose} size={"5xl"}>
-        <Modal.Header>Crear nueva sala</Modal.Header>
+        <Modal.Header className="dark:bg-neutral-900">Crear nueva sala</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className="bg-white">
+          <Modal.Body className="dark:bg-[#2d2d2d] bg-white">
             <div className=" grid max-sm:grid-cols-1 grid-cols-3 grid-rows-1 gap-5">
               <fieldset className="flex flex-col w-full">
                 <legend className="font-bold pb-2">Imágenes de la sala</legend>
@@ -83,7 +83,7 @@ const CreateRooms = () => {
                       </figure>
                     ))}
                   <div
-                    className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-200"
+                    className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-200 dark:bg-[#2d2d2d]"
                     onClick={() => setOpenImage(true)}
                   >
                     <p>Selecciona una imagen</p>

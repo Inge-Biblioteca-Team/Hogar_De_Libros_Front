@@ -34,9 +34,9 @@ const ModalAddNewFurniture = ({
   return (
     <>
       <Modal show={sNewF} size="md" onClose={onClose}>
-        <Modal.Header>Agregar mobiliario</Modal.Header>
+        <Modal.Header className="dark:bg-neutral-900">Agregar mobiliario</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body>
+          <Modal.Body className="dark:bg-[#2d2d2d]">
             <fieldset className="grid grid-cols-2 gap-7 text-center">
               <legend className="pb-3">Información del mobiliario</legend>
               <span>

@@ -45,8 +45,8 @@ const DenyRequest = ({
         onClose={() => setShowCancel(false)}
         size={"sm"}
       >
-        <Modal.Header />
-        <Modal.Body>
+        <Modal.Header className="dark:bg-[#2d2d2d]"/>
+        <Modal.Body className="dark:bg-[#2d2d2d]">
           <div className="text-center">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
             <h3>¿Está seguro de rechazar la solicitud de préstamo?</h3>

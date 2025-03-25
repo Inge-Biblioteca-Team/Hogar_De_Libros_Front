@@ -11,7 +11,7 @@ const LandingHome = () => {
   return (
     <section
       id="Home"
-      className="flex w-full items-center justify-center flex-col gap-5
+      className="dark:bg-neutral-900 flex w-full items-center justify-center flex-col gap-5
       "
     >
       <LandingBanner />

@@ -14,8 +14,8 @@ const ModalViewFurniture = ({
   return (
     <>
       <Modal show={openVModal} onClose={() => setVModal(false)} size={"sm"}>
-        <Modal.Header>Detalles del mobiliario</Modal.Header>
-        <Modal.Body className=" flex flex-col gap-4">
+        <Modal.Header className="dark:bg-neutral-900">Detalles del mobiliario</Modal.Header>
+        <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-4">
           <Label value={`Numero de placa: ${furniture.LicenseNumber}`} />
           <Label value={`Ubicación: ${furniture.Location}`} />
           <Label value={`Descripción: ${furniture.Description}`} />
@@ -27,7 +27,7 @@ const ModalViewFurniture = ({
           />
           <Label value={`Estado: ${furniture.Status}`} />
         </Modal.Body>
-        <Modal.Footer className="flex w-full items-center justify-center">
+        <Modal.Footer className="dark:bg-[#2d2d2d] flex w-full items-center justify-center">
           <Button color={"blue"} onClick={() => setVModal(false)}>
             Regresar
           </Button>

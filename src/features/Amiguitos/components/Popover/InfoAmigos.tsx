@@ -11,7 +11,7 @@ const InfoAmigos = ({children}:{children:React.ReactNode}) => {
         trigger="click"
         
         content={
-          <div className="p-4 bg-white border rounded shadow-md w-full">
+          <div className="dark:bg-[#2d2d2d] p-4 bg-white border rounded shadow-md w-full">
             <h3 className="font-semibold">Cualidades Necesarias</h3>
             <ul className="list-disc list-inside text-sm mb-2">
               <li>Capacidad de empatía y cortesía</li>

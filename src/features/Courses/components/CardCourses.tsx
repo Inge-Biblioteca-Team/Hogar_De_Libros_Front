@@ -25,7 +25,7 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
 
   return (
     <>
-      <Card className="p0 2xl:w-full max-sm:w-full md:h-full md:w-full">
+      <Card className="dark:bg-[#2d2d2d] p0 2xl:w-full max-sm:w-full md:h-full md:w-full">
         <figure className="md:flex md:flex-col md:justify-between md:h-full">
           <img
             className="h-40 w-full object-fill rounded-t-lg

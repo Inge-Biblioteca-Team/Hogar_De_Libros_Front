@@ -48,20 +48,22 @@ const ModalEditFurniture = ({
   return (
     <>
       <Modal show={sEdit} size="md" onClose={onClose}>
-        <Modal.Header>
+        <Modal.Header className="dark:bg-neutral-900">
           Editar mobiliario {furniture.LicenseNumber}{" "}
         </Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className="flex flex-col gap-6">
+          <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-6">
             <fieldset className="grid grid-cols-2 gap-8 text-center">
               <FloatingLabel
                 variant="outlined"
+                className="dark:text-white"
                 label="Descripción"
                 {...register("Description")}
                 required
               />
               <FloatingLabel
                 variant="outlined"
+                className="dark:text-white"
                 label="Ubicación"
                 {...register("Location")}
                 required

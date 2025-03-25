@@ -12,7 +12,7 @@ const RoomCard = ({ Rooms }: { Rooms: Room }) => {
   const roomStatus = statusMap[Rooms.status] || "Desconocido";
 
   return (
-    <Card className=" p0">
+    <Card className="dark:bg-[#2d2d2d] p0">
       <figure>
         <img
           className="h-56 w-full mb-8 border-t border-transparent rounded-t-md object-cover

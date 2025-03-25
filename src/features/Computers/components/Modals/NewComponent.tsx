@@ -34,9 +34,9 @@ const NewComponent = ({
   return (
     <>
       <Modal show={sNew} onClose={onClose}>
-        <Modal.Header>Añadir nuevo componente</Modal.Header>
+        <Modal.Header className="dark:bg-neutral-900">Añadir nuevo componente</Modal.Header>
         <form onSubmit={handleSubmit(onConfirm)}>
-          <Modal.Body>
+          <Modal.Body className="dark:bg-[#2d2d2d]">
             <fieldset className=" grid grid-cols-2 gap-7 text-center">
               <legend className=" pb-3">Información del equipo</legend>
               <span>

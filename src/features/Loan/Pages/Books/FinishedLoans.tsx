@@ -9,6 +9,7 @@ import { LoansCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems
 import CustomPagination from "../../../../components/CustomPagination";
 import NoResults from "../../../../components/NoResults";
 import Loader from "../../../../components/Loader";
+import { Dispatch, SetStateAction } from "react";
 
 const FinishedLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -16,6 +17,14 @@ const FinishedLoans = () => {
     const savedPage = sessionStorage.getItem("DLPage");
     return savedPage ? Number(savedPage) : 1;
   });
+
+  const handleLimitChange: Dispatch<SetStateAction<number>> = (value) => {
+    const newLimit = typeof value === 'function' ? value(currentLimit) : value;
+    setCurrentLimit(newLimit);
+    setCurrentPage(1);
+    sessionStorage.setItem("DLPage", "1");
+  }; 
+
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
@@ -61,6 +70,11 @@ const FinishedLoans = () => {
 
   useEffect(() => {
     setCurrentPage(1);
+    sessionStorage.setItem("DLPage", "1");
+  }, [currentLimit, StartDate, EndDate, SName, sSignaCode]);
+
+  useEffect(() => {
+    setCurrentPage(1);
   }, [StartDate, EndDate, SName, sSignaCode]);
 
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
@@ -84,7 +98,7 @@ const FinishedLoans = () => {
                 page={currentPage}
                 onPageChange={onPageChange}
                 totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
+                setCurrentLimit={handleLimitChange}
                 total={Loan?.count || 0}
               />
             </>

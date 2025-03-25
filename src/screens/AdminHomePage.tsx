@@ -32,7 +32,7 @@ const AdminHomePage = () => {
 
   return (
     <>
-      <div className=" flex md:w-full justify-between">
+      <div className="dark:bg-neutral-900 flex md:w-full justify-between">
         <Breadcrumb className="custom-breadcrumb">
         <Breadcrumb.Item icon={IoIosHome}>
            <span className="dark:text-white text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
@@ -45,7 +45,7 @@ const AdminHomePage = () => {
           {formatToFullDate(new Date())}{" "}
         </span>
       </div>
-      <main className=" w-full flex flex-col items-center gap-3">
+      <main className="dark:bg-neutral-900 w-full flex flex-col items-center gap-3">
         <section className=" grid lg:grid-cols-6 md:grid-cols-1 md:w-full md:pr-4 md:pl-4 grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
           <div className="col-span-4 md:w-full max-sm:hidden">
             <LoanStadisticts />
@@ -111,7 +111,7 @@ const AdminHomePage = () => {
                 <div className="p-3 flex flex-col gap-3 items-start">
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Gestion_Usuarios"}
                   >
                     Ir a gestión de usuarios
                   </Link>
@@ -149,13 +149,13 @@ const AdminHomePage = () => {
                 <div className="p-3 flex flex-col gap-3">
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Prestamos_Circulacion/Prestamo_Computo"}
                   >
                     Ir a disponibilidad de equipos
                   </Link>
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Historial/Equipo_Computo"}
                   >
                     Historial de préstamos
                   </Link>
@@ -183,19 +183,19 @@ const AdminHomePage = () => {
                 <div className="p-3 flex flex-col gap-3 items-start">
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Servicios/Eventos"}
                   >
                     Ver lista de Eventos
                   </Link>
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Servicios/Cursos"}
                   >
                     Ver lista de cursos
                   </Link>
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Servicios/Programas"}
                   >
                     Ver programas
                   </Link>
@@ -216,8 +216,8 @@ const AdminHomePage = () => {
             />
           </div>
         </section>
-        <section className=" flex xl:w-full 2xl:w-full xl:pr-4 xl:pl-4 2xl:pl-4 2xl:pr-4 w-11/12 justify-start gap-6">
-          <Card className=" w-full h-[32vh] p0 rounded-sm">
+        <section className="dark:bg-neutral-900 flex xl:w-full 2xl:w-full xl:pr-4 xl:pl-4 2xl:pl-4 2xl:pr-4 w-11/12 justify-start gap-6">
+          <Card className="dark:bg-[#2d2d2d] w-full h-[32vh] p0 rounded-sm">
             <Calendar />
           </Card>
         </section>

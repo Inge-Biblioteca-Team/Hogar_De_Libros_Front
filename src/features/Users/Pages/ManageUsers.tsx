@@ -92,31 +92,31 @@ const ManageUsers = () => {
                 hoverable
                 className=" text-center min-h-[30rem] max-sm:text-sm max-sm:justify-center"
               >
-                <Table.Head className=" bg-white">
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">
+                <Table.Head className="dark:text-white bg-white">
+                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6">
                     Cédula
                   </Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">
+                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6">
                     Nombre
                   </Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">
+                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden">
                     Rol
                   </Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
+                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
                     Provincia
                   </Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
+                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
                     Teléfono
                   </Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
+                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
                     Fecha de registro
                   </Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden">
+                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden">
                     Estado
                   </Table.HeadCell>
-                  <Table.HeadCell></Table.HeadCell>
+                  <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
                 </Table.Head>
-                <Table.Body>
+                <Table.Body className="dark:text-white dark:bg-[#2d2d2d]">
                   {Users?.data.map((user: User) => (
                     <TBLUsers user={user} key={user.cedula} />
                   ))}

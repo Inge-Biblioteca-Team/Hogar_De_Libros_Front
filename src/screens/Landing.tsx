@@ -1,4 +1,3 @@
-//import FreeBooksList from "../features/Books/screens/FreeBooksList"
 import ComputerInfo from "../features/Computers/screens/ComputerInfo";
 import RoomList from "../features/Rooms/Screens/RoomList";
 import AmiguitosInfo from "../features/Amiguitos/screens/AmiguitosInfo";
@@ -60,7 +59,7 @@ const Landing = () => {
 
   return (
     <>
-      <main className="flex items-center gap-16 justify-center flex-col mb-10 max-sm:gap-10">
+      <main className="dark:bg-neutral-900 flex items-center gap-16 justify-center flex-col mb-10 max-sm:gap-10">
         <LandingHome />
         <ImportanNotices />
         <motion.section

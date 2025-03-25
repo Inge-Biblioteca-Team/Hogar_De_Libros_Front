@@ -15,7 +15,7 @@ const LandingHomeCards = ({
   Path: string;
 }) => {
   return (
-    <figure className="bg-Body text-white rounded-md space-y-3 text-center p-4 relative flex flex-col h-full">
+    <figure className="dark:bg-neutral-900 bg-Body text-white rounded-md space-y-3 text-center p-4 relative flex flex-col h-full">
       <FontAwesomeIcon icon={Icon} className=" h-6 max-sm:h-6" />{" "}
       <figcaption className="text-center flex flex-col flex-grow">
         <p className="flex-grow mb-2">

@@ -18,8 +18,8 @@ const MDSeeDonation = ({
 
   return (
     <Modal show={open} onClose={onClose}>
-      <Modal.Header>Información de la donación</Modal.Header>
-      <Modal.Body className=" flex flex-col gap-4">
+      <Modal.Header className="dark:bg-neutral-900">Información de la donación</Modal.Header>
+      <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-4">
       <Label>
         <strong>Nombre del donante: </strong> {donation.UserFullName}
       </Label>
@@ -79,7 +79,7 @@ const MDSeeDonation = ({
           </Label>
         )}
       </Modal.Body>
-      <Modal.Footer className=" flex items-center justify-center">
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
         <Button color={"blue"} onClick={onClose}>
           Regresar
         </Button>
