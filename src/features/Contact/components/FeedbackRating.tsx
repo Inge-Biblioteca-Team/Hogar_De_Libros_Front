@@ -39,7 +39,7 @@ const FeedbackRating = () => {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="shadow-md rounded-md p-3 flex flex-col gap-3 md:w-full w-1/3 lg:w-1/2 max-sm:w-full max-sm:text-md"
+        className="bg-white shadow-md rounded-md p-3 flex flex-col gap-3 md:w-full w-1/3 lg:w-1/2 max-sm:w-full max-sm:text-md"
       >
         <fieldset>
           <legend>Tu opinión</legend>
