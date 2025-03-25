@@ -4,8 +4,8 @@ import { Table } from "flowbite-react";
 import { formatToDMY } from "../../../../../components/FormatTempo";
 import FinishLoan from "../Modals/FinishLoan";
 import MDSeeReservation from "../Modals/MDSeeReservation";
-import { FaRegCalendarXmark } from "react-icons/fa6";
 import { PiEyeFill } from "react-icons/pi";
+import { LuCalendarCheck2 } from "react-icons/lu";
 
 const AprovRows = ({ reservation }: { reservation: Reserve }) => {
   const reserveDay = formatToDMY(reservation.date);
@@ -41,7 +41,7 @@ const AprovRows = ({ reservation }: { reservation: Reserve }) => {
                 className="hover:text-red-600"
                 onClick={() => setOpenF(true)}
               >
-                <FaRegCalendarXmark  className="size-6" size={25} />
+                <LuCalendarCheck2   className="size-6" size={25} />
               </button>
             </div>
           </Table.Cell>

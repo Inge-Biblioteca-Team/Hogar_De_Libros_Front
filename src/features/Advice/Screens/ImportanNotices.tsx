@@ -50,11 +50,15 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
             </div>
           </>
         ) : (
-          <Carousel indicators={false} pauseOnHover>
-            {Advices?.data.map((advice) => (
-              <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />
-            ))}
-          </Carousel>
+          <>
+            {Advices && Advices.count > 0 && (
+              <Carousel indicators={false} pauseOnHover>
+                {Advices.data.map((advice) => (
+                  <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />
+                ))}
+              </Carousel>
+            )}
+          </>
         )}
       </>
     </section>
