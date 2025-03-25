@@ -22,9 +22,9 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
   const [searchAuthor, setSearchAuthor] = useState<string>("");
   const [searchSigna, setSearchSigna] = useState<string>("");
   const [status, setStatus] = useState<string>("");
-  const title = UseDebounce(searchTitle, 3000);
-  const author = UseDebounce(searchAuthor, 3000);
-  const signa = UseDebounce(searchSigna, 3000);
+  const title = UseDebounce(searchTitle, 1000);
+  const author = UseDebounce(searchAuthor, 1000);
+  const signa = UseDebounce(searchSigna, 1000);
 
   const [page, setPage] = useState<number>(() => {
     const savedPage = sessionStorage.getItem("CatalogPage");
