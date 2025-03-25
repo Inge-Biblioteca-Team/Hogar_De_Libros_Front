@@ -63,7 +63,7 @@ const ManageRequestDonations = () => {
                 <figcaption className=" text-center">...Cargando</figcaption>
               </figure>
             </div>
-          ) : Donations ? (
+          ) : Donations && Donations.data.length > 0 ? (
             <>
               <TableDonations>
                 {Donations?.data.map((donation) => (
@@ -73,29 +73,28 @@ const ManageRequestDonations = () => {
                   />
                 ))}
               </TableDonations>
-
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={Page}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                  total={Donations?.count || 0}
-                />
-              </div>
-
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={Page}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
             </>
           ) : (
             <NoResults />
           )}
+          <div className="block max-sm:hidden">
+            <CustomPagination
+              page={Page}
+              onPageChange={onPageChange}
+              totalPages={MaxPage}
+              setCurrentLimit={setCurrentLimit}
+              total={Donations?.count || 0}
+            />
+          </div>
+
+          <div className="sm:hidden  flex justify-center ">
+            <Pagination
+              layout="navigation"
+              currentPage={Page}
+              totalPages={MaxPage}
+              onPageChange={onPageChange}
+            />
+          </div>
         </section>
       </main>
     </>

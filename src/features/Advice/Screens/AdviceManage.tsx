@@ -7,13 +7,14 @@ import { useQuery } from "react-query";
 import { ApiAdvices } from "../Types/Advice";
 import { GetAdvice } from "../Service/SvAdvice";
 import UseDebounce from "../../../hooks/UseDebounce";
-import Loader from '../../OPAC/Assets/LoaderOPAC.gif';
+import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 import {
   BreadCrumbsItems,
   BreadLastItems,
 } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../components/CustomPagination";
 import { Pagination } from "flowbite-react";
+import NoResults from "../../../components/NoResults";
 
 const AdviceManage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -83,39 +84,38 @@ const AdviceManage = () => {
           </Button>
         </section>
         <section className=" w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:px-2">
-          {isLoading? (
+          {isLoading ? (
             <div className=" w-full flex items-center justify-center">
               <figure>
                 <img width={400} src={Loader} alt="... Cargando" />
                 <figcaption className=" text-center">... cargando</figcaption>
               </figure>
             </div>
-          ) : Advices ? (
+          ) : Advices && Advices.data.length > 0 ? (
             <>
-             <AdviceTable advices={Advices} />
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={page}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setLimit}
-                  total={Advices.count}
-                />
-              </div>
-
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={page}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
+              <AdviceTable advices={Advices} />
             </>
-          ): (
-            <p className="text-center">No hay datos disponibles.</p>
+          ) : (
+            <NoResults />
           )}
-          
+          <div className="block max-sm:hidden">
+            <CustomPagination
+              page={page}
+              onPageChange={onPageChange}
+              totalPages={MaxPage}
+              setCurrentLimit={setLimit}
+              total={Advices?.count || 0}
+            />
+          </div>
+
+          <div className="sm:hidden  flex justify-center ">
+            <Pagination
+              layout="navigation"
+              currentPage={page}
+              totalPages={MaxPage}
+              onPageChange={onPageChange}
+            />
+          </div>
         </section>
       </main>
       <NewAdvice open={open} setOpen={setOpen} />

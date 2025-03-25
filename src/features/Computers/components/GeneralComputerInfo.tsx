@@ -2,8 +2,8 @@ import { Card } from "flowbite-react";
 
 const GeneralComputerInfo = () => {
   return (
-    <Card className="m-4 h-60 md:h-full lg:h-full lg:m-0 max-sm:max-w-full   ">
-      <figure className=" max-sm:max-w-full ">
+    <Card className="m-4 h-60 md:h-full lg:h-full lg:m-0 max-lg:w-full max-sm:m-0  ">
+      <figure className=" max-lg:w-full ">
         <img
           src="https://informaciondeinformatica308.wordpress.com/wp-content/uploads/2013/10/computadora-de-escritorio.jpg"
           alt=""

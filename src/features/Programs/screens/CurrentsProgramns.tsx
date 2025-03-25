@@ -62,7 +62,7 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
         )}
         {isLoading ? (
           <div
-            className="grid lg:grid-cols-3 xl:grid-cols-3  2xl:grid-cols-3  max-sm:pl-4 max-sm:pr-4 md:pl-2 md:pr-2
+            className="grid lg:grid-cols-3 xl:grid-cols-3  2xl:grid-cols-3 
             lg:pl-0 lg:pr-0 xl:pl-0 xl:pr-0 2xl:pl-0 2xl:pr-0 max-sm:grid-cols-1 md:grid-cols-2  w-full h-full gap-8"
           >
             <div className="w-full flex flex-col gap-4  h-[26rem] bg-white p-2 rounded-md">
@@ -80,7 +80,7 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
             {[...Array(2)].map((_, index) => (
               <div
                 key={index}
-                className="max-sm:hidden w-full flex flex-col gap-4  h-[26rem] bg-white rounded-md p-2"
+                className="max-sm:hidden w-full flex flex-col gap-4  h-[26rem] bg-white rounded-md p-2 max-sm:p-0"
               >
                 <Skeleton className="w-full h-40" />
                 <div className="flex flex-col gap-0 items-center justify-center">

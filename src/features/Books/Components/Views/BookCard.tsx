@@ -14,7 +14,7 @@ const BookCard = ({ book }: { book: Book }) => {
         trigger="hover"
         placement="right"
         content={
-          <Card className=" h-56 p0 w-64 md:w-full">
+          <Card className=" h-72 p0 w-64 max-sm:w-40">
             <div className=" flex flex-col justify-between ml-4">
               <div className=" line-clamp-2">
                 <Label value={` Título: ${book.Title}`} />
