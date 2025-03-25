@@ -9,7 +9,7 @@ const reportDescriptions: Record<string, string> = {
   CO: "cursos",
   EV: "eventos",
   AS:'asistencia',
-  US: 'usuarios registrados'
+  US: 'usuarios externos registrados'
 };
 
 const ReportModal = ({

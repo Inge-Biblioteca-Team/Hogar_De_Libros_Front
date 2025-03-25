@@ -111,7 +111,7 @@ const AdminHomePage = () => {
                 <div className="p-3 flex flex-col gap-3 items-start">
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Gestion_Usuarios"}
                   >
                     Ir a gestión de usuarios
                   </Link>
@@ -149,13 +149,13 @@ const AdminHomePage = () => {
                 <div className="p-3 flex flex-col gap-3">
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Prestamos_Circulacion/Prestamo_Computo"}
                   >
                     Ir a disponibilidad de equipos
                   </Link>
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Historial/Equipo_Computo"}
                   >
                     Historial de préstamos
                   </Link>
@@ -183,19 +183,19 @@ const AdminHomePage = () => {
                 <div className="p-3 flex flex-col gap-3 items-start">
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Servicios/Eventos"}
                   >
                     Ver lista de Eventos
                   </Link>
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Servicios/Cursos"}
                   >
                     Ver lista de cursos
                   </Link>
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={"/HogarDeLibros/Servicios/Programas"}
                   >
                     Ver programas
                   </Link>
