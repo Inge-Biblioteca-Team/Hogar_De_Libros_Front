@@ -20,28 +20,46 @@ const MDSeeDonation = ({
     <Modal show={open} onClose={onClose}>
       <Modal.Header className="dark:bg-neutral-900">Información de la donación</Modal.Header>
       <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-4">
-        <Label value={`Nombre del donante: ${donation.UserFullName}`} />
-        <Label value={`Cédula: ${donation.UserCedula}`} />
-        <Label value={`Dirección: ${donation.UserAddress}`} />
-        <Label value={`Teléfono: ${donation.UserPhone}`} />
-        <Label value={`Correo: ${donation.UserEmail}`} />
-        <Label value={`Categoría: ${donation.SubCategory}`} />
-        <Label
-          value={`Fecha de entrega del donativo: ${formatToDMY(
-            donation.DateRecolatedDonation
-          )}`}
-        />
-        <Label value={`Descripción: ${donation.ItemDescription}`} />
-        <Label
-          value={`Condición del objeto a donar: ${donation.ResourceCondition}`}
-        />
-        <Label value={`Estado: ${donation.Status}`} />
-        {donation.Reason && (
-          <Label value={`Motivo de rechazo: ${donation.Reason}`} />
-        )}
-        {donation.Document && donation.Document.length > 0 ? (
-          <div>
-            <Label value="Imágenes adjuntas" />
+      <Label>
+        <strong>Nombre del donante: </strong> {donation.UserFullName}
+      </Label>
+      <Label>
+       <strong>Cédula: </strong>{donation.UserCedula}
+      </Label>
+      <Label>
+       <strong>Dirección: </strong> {donation.UserAddress}
+      </Label>
+      <Label>
+        <strong>Teléfono: </strong> {donation.UserPhone}
+      </Label>
+      <Label>
+       <strong>Correo: </strong> {donation.UserEmail}
+      </Label>
+      <Label>
+        <strong>Categoría: </strong> {donation.SubCategory}
+      </Label>
+      <Label>
+       <strong>Fecha de entrega del donativo: </strong> {formatToDMY(donation.DateRecolatedDonation)}
+      </Label>
+      <Label>
+        <strong>Descripción: </strong> {donation.ItemDescription}
+      </Label>
+      <Label>
+       <strong>Condición del objeto a donar: </strong> {donation.ResourceCondition}
+      </Label>
+      <Label>
+       <strong>Estado: </strong> {donation.Status}
+      </Label>
+      {donation.Reason && (
+        <Label>
+          <strong>Motivo de rechazo: </strong> {donation.Reason}
+        </Label>
+      )}
+      {donation.Document && donation.Document.length > 0 ? (
+        <div>
+          <Label>
+           <strong>Imágenes adjuntas:</strong>
+          </Label>
             {donation.Document.map((image, index) => (
               <figure className="h-20 w-32">
                 <a href={image} target="#blank">
@@ -54,9 +72,11 @@ const MDSeeDonation = ({
                 </a>
               </figure>
             ))}
-          </div>
+        </div>
         ) : (
-          <Label value="No proporciona imágenes del artículo" />
+          <Label>
+            <strong>No proporciona imágenes del artículo</strong>
+          </Label>
         )}
       </Modal.Body>
       <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">

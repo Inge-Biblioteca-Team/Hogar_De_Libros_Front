@@ -11,49 +11,47 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
     ["EventCatalog"],
     () => GetNextEvents(),
     {
-      staleTime: 600,
+      staleTime: 1000,
+      refetchOnWindowFocus: false,
     }
   );
 
   return (
     <>
-      <section
-       className="space-y-4 w-11/12"
-        id="Events"
+      <h2
+        className="font-bold text-4xl text-center 
+          max-sm:text-xl"
       >
-        <h2 className="font-bold text-4xl text-center 
-          max-sm:text-xl">
-          Próximos eventos
-        </h2>
-        {home && (
-          <h4>
-            Asi como cursos también tenemos diversos eventos, vean a
-            acompañarnos, estos son nuestros próximos eventos.
-          </h4>
-        )}
-        {isLoading ? (
-          <div className="bg-white w-full max-lg:w-full h-[28rem] max-sm:h-[23rem] rounded-md p-2">
-            <Skeleton style={{ height: "19rem" }} />
-            <Skeleton width={250} height={20} />
-            <Skeleton width={220} height={20} />
-          </div>
-        ) : (
-          events &&
-          events.count > 0 && (
-            <article>
-              <Carousel
-                className="Custom-Carousel w-full max-lg:w-full h-[28rem] max-sm:h-[23rem]"
-                pauseOnHover
-                indicators={false}
-              >
-                {events?.data.map((event) => (
-                  <CardEvent key={"E" + event.id} event={event} />
-                ))}
-              </Carousel>
-            </article>
-          )
-        )}
-      </section>
+        Próximos eventos
+      </h2>
+      {home && (
+        <h4>
+          Asi como cursos también tenemos diversos eventos, vean a acompañarnos,
+          estos son nuestros próximos eventos.
+        </h4>
+      )}
+      {isLoading ? (
+        <div className="bg-white w-full max-lg:w-full h-[28rem] max-sm:h-[23rem] rounded-md p-2">
+          <Skeleton style={{ height: "19rem" }} />
+          <Skeleton width={250} height={20} />
+          <Skeleton width={220} height={20} />
+        </div>
+      ) : (
+        events &&
+        events.count > 0 && (
+          <article>
+            <Carousel
+              className="Custom-Carousel w-full max-lg:w-full h-[28rem] max-sm:h-[23rem]"
+              pauseOnHover
+              indicators={false}
+            >
+              {events?.data.map((event) => (
+                <CardEvent key={"E" + event.id} event={event} />
+              ))}
+            </Carousel>
+          </article>
+        )
+      )}
     </>
   );
 };

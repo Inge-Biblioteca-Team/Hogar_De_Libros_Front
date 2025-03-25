@@ -6,22 +6,16 @@ const SearchInputs = ({
   setStartDate,
   SignaCode,
   EndDate,
+  startDate
 }: {
   setStartDate: (StartDate: string) => void;
   setEndtDate: (EndDate: string) => void;
   setSignaCode: (SignaCode: string) => void;
   SignaCode: string;
   EndDate: string;
+  startDate:string
 }) => {
-  const handleStartDateChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const date = event.target.value;
-    const time = " 00:00:00";
-    const StarDate = date + time;
-    setStartDate(StarDate);
-  };
-
+  
   return (
     <>
       <div className="w-full grid max-sm:grid-cols-1 grid-cols-4 gap-2 pb-4 items-end">
@@ -32,7 +26,8 @@ const SearchInputs = ({
           <TextInput
             id="InitialDate"
             type="Date"
-            onChange={handleStartDateChange}
+            value={startDate}
+            onChange={(event)=>setStartDate(event.target.value)}
           />
         </div>
         <div>

@@ -65,10 +65,11 @@ const ModalImageLoader = ({
   const [searchKey, setSearchKey] = useState<string>("");
 
   const { data: images = [], refetch } = useQuery<CoverImage[], Error>(
-    ["CoverList"],
+    ["CoverList", searchKey],
     () => searchCovers(searchKey),
     {
       staleTime: Infinity,
+      enabled: Boolean(searchKey),
     }
   );
 

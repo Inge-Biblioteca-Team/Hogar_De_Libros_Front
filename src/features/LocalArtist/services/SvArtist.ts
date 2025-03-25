@@ -19,7 +19,7 @@ const getLocalArtist = async (
     if (Status) params.Actived = Status;
 
     const response = await api.get("/local-artist", { params });
-    return response.data;
+    return await response.data;
   } catch (error) {
     console.error(error);
     throw error;

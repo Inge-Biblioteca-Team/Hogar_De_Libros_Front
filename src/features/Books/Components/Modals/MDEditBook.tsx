@@ -1,12 +1,13 @@
 import { Modal, FloatingLabel, Label, Select, Checkbox } from "flowbite-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useQuery } from "react-query";
 import ModalFooters from "../../../../components/ModalFooters";
 import { Book } from "../../Types/BooksTypes";
 import OpsCoditions from "../../../../components/OptsConditions";
-import OptsCateogryChildren from "../OptsCategories";
 import ModalImageLoader from "./ModalImageLoader";
 import UseEditBook from "../../Hooks/UseEditBook";
+import { getCategoriesNames } from "../../Services/BooksServices";
 
 const MDEditChildrenBook = ({
   open,
@@ -24,7 +25,7 @@ const MDEditChildrenBook = ({
       Editorial: book.Editorial || "",
       PublishedYear: book.PublishedYear,
       ISBN: book.ISBN || "",
-      ShelfCategory: book.ShelfCategory || "",
+      ShelfCategory: book.ShelfCategory || "", 
       Cover: book.Cover || "",
       BookConditionRating: book.BookConditionRating || 0,
       signatureCode: book.signatureCode || "",
@@ -57,6 +58,15 @@ const MDEditChildrenBook = ({
       },
     });
   };
+
+  
+  const { data: categories, isLoading: loadingCategories } = useQuery<string[]>(
+    ["CategoriesName"],
+    getCategoriesNames, 
+    {
+      staleTime: Infinity,
+    }
+  );
 
   return (
     <Modal show={open} onClose={onClose} size={"5xl"}>
@@ -159,7 +169,7 @@ const MDEditChildrenBook = ({
                 <div>
                   <Label value="Estado del libro" />
                   <Select
-                    className="custom-Select "
+                    className="custom-Select"
                     {...register("BookConditionRating")}
                   >
                     <OpsCoditions />
@@ -167,13 +177,23 @@ const MDEditChildrenBook = ({
                 </div>
                 <div>
                   <Label value="Categoría de estante" />
-                  <Select
-                    className="custom-Select "
-                    {...register("ShelfCategory")}
-                    required
-                  >
-                    <OptsCateogryChildren />
-                  </Select>
+                  {loadingCategories ? (
+                    <span>Cargando categorías...</span>
+                  ) : (
+                    <Select
+                      className="custom-Select"
+                      {...register("ShelfCategory")}
+                      required
+                    >
+                      {categories
+                        ?.filter((category) => category !== "")
+                        .map((category) => (
+                          <option key={category} value={category}>
+                            {category}
+                          </option>
+                        ))}
+                    </Select>
+                  )}
                 </div>
                 <div className=" ">
                   <Checkbox {...register("ReserveBook")} />
@@ -183,7 +203,7 @@ const MDEditChildrenBook = ({
             </fieldset>
           </div>
         </Modal.Body>
-        <ModalFooters onClose={onClose} isLoading={isLoading}/>
+        <ModalFooters onClose={onClose} isLoading={isLoading} />
         <ModalImageLoader
           setOpen={setOpenImageM}
           open={openImageM}

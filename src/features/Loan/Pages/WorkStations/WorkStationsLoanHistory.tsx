@@ -9,6 +9,7 @@ import CustomPagination from "../../../../components/CustomPagination";
 import NoResults from "../../../../components/NoResults";
 import { LoansCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
+import { formatToYMD } from "../../../../components/FormatTempo";
 
 const WorkStationsLoanHistory = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -26,6 +27,7 @@ const WorkStationsLoanHistory = () => {
   const [MachineNumber, SetMachineNumber] = useState<string>("");
 
   const MachineNumberDelay = UseDebounce(MachineNumber, 100);
+  
 
   useEffect(() => {
     sessionStorage.setItem("WSPage", currentPage.toString());
@@ -62,6 +64,7 @@ const WorkStationsLoanHistory = () => {
             <TextInput
               type="date"
               onChange={(event) => SetStartDate(event.target.value)}
+              max={formatToYMD(new Date())}
             />
           </div>
         </section>

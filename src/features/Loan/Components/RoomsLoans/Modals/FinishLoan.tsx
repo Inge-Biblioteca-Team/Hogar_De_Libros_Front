@@ -62,14 +62,16 @@ const FinishLoan = ({
       </Modal.Header>
       <Modal.Body className="dark:bg-[#2d2d2d] grid grid-cols-2 gap-3">
         <div>
-          <Checkbox onChange={(event) => setCheck1(event.target.checked)} />
+          <Checkbox color={"blue"}
+          onChange={(event) => setCheck1(event.target.checked)} />
           <Label
             className="ml-2"
             value="Se entrega dentro de la hora establecida"
           />
         </div>
         <div>
-          <Checkbox onChange={(event) => setCheck2(event.target.checked)} />
+          <Checkbox color={"blue"}
+          onChange={(event) => setCheck2(event.target.checked)} />
           <Label className="ml-2" value="La sala se entrega limpia" />
         </div>
         <div>
