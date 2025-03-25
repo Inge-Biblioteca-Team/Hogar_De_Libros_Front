@@ -6,7 +6,7 @@ const CustomPagination = ({
   onPageChange,
   totalPages,
   setCurrentLimit,
-  total,
+ 
 }: {
   page: number;
   onPageChange: (page: number) => void;
@@ -32,10 +32,6 @@ const CustomPagination = ({
           </select>
           <span>elementos por página. </span>
         </div>
-        <span className=" hidden">
-          Se han mostrado {total > 5 ? page * 5 : total} de {total} registros
-          totales
-        </span>
       </div>
       <Pagination
         currentPage={page}

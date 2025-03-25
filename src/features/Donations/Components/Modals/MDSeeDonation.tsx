@@ -61,7 +61,7 @@ const MDSeeDonation = ({
            <strong>Imágenes adjuntas:</strong>
           </Label>
             {donation.Document.map((image, index) => (
-              <figure className="h-20 w-32">
+              <figure className="h-20 w-32" key={"Doc" + index}>
                 <a href={image} target="#blank">
                   <img
                     src={image}

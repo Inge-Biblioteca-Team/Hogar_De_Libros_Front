@@ -102,7 +102,7 @@ const ManagePrograms = () => {
                   <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 w-20">
                     Estado
                   </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 before:max-sm:hidden w-20"></Table.HeadCell>
+                  <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="dark:bg-[#2d2d2d] dark:text-white h-96">
                   {Programs?.data.map((Program) => (

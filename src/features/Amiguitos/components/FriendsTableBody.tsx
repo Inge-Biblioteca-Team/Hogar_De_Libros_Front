@@ -18,7 +18,7 @@ const FriendsTableBody = ({
         <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/6 2xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Genero</Table.HeadCell>
         <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/6 2xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Teléfono</Table.HeadCell>
         {!hidd && <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/6 2xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Estado</Table.HeadCell>}
-        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/6 2xl:w-1/6 max-sm:hidden"></Table.HeadCell>
+        <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
       </Table.Head>
       <Table.Body className="dark:text-white dark:bg-[#2d2d2d]">{children}</Table.Body>
     </Table>

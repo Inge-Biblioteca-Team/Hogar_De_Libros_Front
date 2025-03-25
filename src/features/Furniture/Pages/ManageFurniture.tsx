@@ -119,7 +119,7 @@ const ManageFurniture = () => {
                   <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden  w-44">
                     Estado
                   </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden "></Table.HeadCell>
+                  <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
                   {furnitures?.data.map((furniture) => (

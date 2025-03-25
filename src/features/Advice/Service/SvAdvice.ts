@@ -136,7 +136,7 @@ const uploadAdviceImage = async (file: File): Promise<string> => {
       throw new Error("Error al subir imagen");
     }
   }
-  throw new Error("N}ingun archivo fue dado");
+  throw new Error("Ningun archivo fue dado");
 };
 
 export {

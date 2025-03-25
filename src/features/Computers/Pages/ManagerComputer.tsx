@@ -138,7 +138,7 @@ const ManagerComputer = () => {
                   <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5">
                     Estado
                   </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden"></Table.HeadCell>
+                  <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
                   {computers?.data.map((computers) => (
