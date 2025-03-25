@@ -15,7 +15,7 @@ const BookChildrenTable = ({ catalog }: { catalog: Catalog }) => {
             <Table.HeadCell className="xl:h-1/6 xl:table-cell 2xl:w-1/6 2xl:table-cell md:hidden max-sm:hidden">Código De Signatura</Table.HeadCell>
             <Table.HeadCell className="xl:h-1/6 xl:table-cell 2xl:w-1/6 2xl:table-cell md:hidden max-sm:hidden">Código de inscripción</Table.HeadCell>
             <Table.HeadCell className="xl:h-1/6 2xl:w-1/6 2xl:table-cell">Estado</Table.HeadCell>
-            <Table.HeadCell className="xl:h-1/6 2xl:w-1/6 md:hidden max-sm:hidden"></Table.HeadCell>
+            <Table.HeadCell></Table.HeadCell>
           </Table.Head>
           <Table.Body className="h-96">
             {catalog.data.map((Book) => (

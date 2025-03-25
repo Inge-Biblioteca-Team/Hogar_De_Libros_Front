@@ -102,7 +102,7 @@ const ManagePrograms = () => {
                   <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 w-20">
                     Estado
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 before:max-sm:hidden w-20"></Table.HeadCell>
+                  <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="h-96">
                   {Programs?.data.map((Program) => (

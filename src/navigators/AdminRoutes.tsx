@@ -39,8 +39,8 @@ import { Outlet } from "react-router-dom";
 const AdminRoutes = [
   {
     path: "Prestamos_Circulacion",
-    element:(
-      <RoleBasedRoute roles={['admin', 'asistente']} >
+    element: (
+      <RoleBasedRoute roles={["admin", "asistente"]}>
         <Outlet />
       </RoleBasedRoute>
     ),
@@ -51,7 +51,7 @@ const AdminRoutes = [
       },
       {
         path: "Catalogo_General",
-        element:<ManageBooks loans />,
+        element: <ManageBooks loans />,
       },
       {
         path: "Catalogo_Infantil",
@@ -86,22 +86,22 @@ const AdminRoutes = [
   {
     path: "Avisos",
     element: (
-      <RoleBasedRoute roles={['admin']} >
+      <RoleBasedRoute roles={["admin"]}>
         <AdviceManage />,
       </RoleBasedRoute>
-    ), 
+    ),
   },
   {
     path: "Historial",
-    element:(
-      <RoleBasedRoute roles={['admin', 'asistente']} >
+    element: (
+      <RoleBasedRoute roles={["admin", "asistente"]}>
         <Outlet />
       </RoleBasedRoute>
     ),
     children: [
       {
         index: true,
-        element:<LoansMiddlePage/>
+        element: <LoansMiddlePage />,
       },
       {
         path: "Libros",
@@ -119,15 +119,15 @@ const AdminRoutes = [
   },
   {
     path: "Servicios",
-    element:(
-      <RoleBasedRoute roles={['admin', 'asistente']} >
+    element: (
+      <RoleBasedRoute roles={["admin", "asistente"]}>
         <Outlet />
       </RoleBasedRoute>
     ),
     children: [
       {
         index: true,
-        element:<EventMiddlePage />
+        element: <EventMiddlePage />,
       },
       {
         path: "Cursos",
@@ -146,15 +146,15 @@ const AdminRoutes = [
   {
     path: "Gestion_Usuarios",
     element: (
-      <RoleBasedRoute roles={['admin']} >
-        <ManageUsers />,
+      <RoleBasedRoute roles={["admin"]}>
+        <ManageUsers />
       </RoleBasedRoute>
-    ), 
+    ),
   },
   {
     path: "Recursos",
-    element:(
-      <RoleBasedRoute roles={['admin', 'asistente']} >
+    element: (
+      <RoleBasedRoute roles={["admin", "asistente"]}>
         <Outlet />
       </RoleBasedRoute>
     ),
@@ -191,8 +191,8 @@ const AdminRoutes = [
   },
   {
     path: "Colaboraciones",
-    element:(
-      <RoleBasedRoute roles={['admin', 'asistente']} >
+    element: (
+      <RoleBasedRoute roles={["admin", "asistente"]}>
         <Outlet />
       </RoleBasedRoute>
     ),
@@ -217,8 +217,8 @@ const AdminRoutes = [
   },
   {
     path: "Donaciones",
-    element:(
-      <RoleBasedRoute roles={['admin', 'asistente']} >
+    element: (
+      <RoleBasedRoute roles={["admin", "asistente"]}>
         <Outlet />
       </RoleBasedRoute>
     ),
@@ -243,8 +243,8 @@ const AdminRoutes = [
   },
   {
     path: "Amigos",
-    element:(
-      <RoleBasedRoute roles={['admin', 'asistente']} >
+    element: (
+      <RoleBasedRoute roles={["admin", "asistente"]}>
         <Outlet />
       </RoleBasedRoute>
     ),
@@ -266,10 +266,10 @@ const AdminRoutes = [
   {
     path: "Mensajeria",
     element: (
-      <RoleBasedRoute roles={['admin']} >
+      <RoleBasedRoute roles={["admin"]}>
         <Inbox />
       </RoleBasedRoute>
-    ), 
+    ),
   },
 ];
 

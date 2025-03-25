@@ -18,7 +18,7 @@ const TableDonations = ({
         <Table.HeadCell className="xl:w-1/6 2xl:w-1/6 max-sm:hidden">Categoría de donación</Table.HeadCell>
         <Table.HeadCell className="xl:w-1/6 2xl:w-1/6 max-sm:hidden">Fecha de entrega</Table.HeadCell>
         {!hidd && <Table.HeadCell className="xl:w-1/6 2xl:w-1/6 md:hidden  max-sm:hidden lg:table-cell">Estado</Table.HeadCell>}
-        <Table.HeadCell className="xl:w-1/6 2xl:w-1/6 d:hidden max-sm:hidden lg:table-cell"></Table.HeadCell>
+        <Table.HeadCell></Table.HeadCell>
       </Table.Head>
       <Table.Body>{children}</Table.Body>
     </Table>
