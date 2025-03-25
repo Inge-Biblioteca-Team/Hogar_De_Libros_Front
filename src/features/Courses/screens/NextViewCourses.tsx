@@ -97,6 +97,7 @@ const NextViewCourses = () => {
       <div className="flex justify-center mt-6 space-x-2">
         {Array.from({ length: totalPages }).map((_, pageIndex) => (
           <button
+          type="button"
             key={pageIndex}
             onClick={() => setCurrentIndex(pageIndex)}
             className={`w-3 h-3 rounded-full ${

@@ -77,7 +77,7 @@ const LoanStadisticts = () => {
             type="button"
             onClick={copyChartToClipboard}
             color={"gray"}
-            className="z-50 absolute top-2 right-2 "
+            className="z-20 absolute top-2 right-2 "
           >
             <IoClipboard size={23} />
           </Button>
@@ -93,13 +93,16 @@ const LoanStadisticts = () => {
                 <YAxis />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: 'var(--tw-bg-opacity)',
+                    backgroundColor: '#ffffff',
+                     color: '#000000',
+                     border: '1px solid #ddd',
+                       borderRadius: '8px'
                   }}
                   cursor={{ fill: 'rgba(255, 255, 255, 0.1)' }}
                 />
                 <Legend />
-                <Bar dataKey="Eventos" fill="#8884d8" />
-                <Bar dataKey="Cursos" fill="#82ca9d" />
+                <Bar dataKey="Eventos" fill="#1a53d9" />
+                <Bar dataKey="Cursos" fill="#00955e" />
                 <Bar
                   dataKey="Prestamos"
                   fill="#ffc658"
@@ -107,7 +110,7 @@ const LoanStadisticts = () => {
                 />
                 <Bar
                   dataKey="UsoComputo"
-                  fill="#82ca9d"
+                  fill="#ff00ff"
                   name={"Usos de equipo de computo"}
                 />
                 <Line type="monotone" dataKey="Eventos" stroke="#8884d8" />

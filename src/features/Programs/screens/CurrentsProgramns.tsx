@@ -12,7 +12,8 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
     ["ProgramCatalog"],
     () => GetProgramsList(1, 100, "", "1"),
     {
-      staleTime: 600,
+      staleTime: 900,
+      refetchOnWindowFocus: false
     }
   );
 
@@ -47,7 +48,6 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
 
   return (
     <>
-      <section className="space-y-4 w-11/12 max-lg:w-full max-lg:pl-8 max-lg:pr-8 max-sm:p-0" id="Programs">
         <h2
           className="font-bold text-4xl text-center 
           max-sm:text-xl"
@@ -120,7 +120,6 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
             </Carousel>
           )
         )}
-      </section>
     </>
   );
 };

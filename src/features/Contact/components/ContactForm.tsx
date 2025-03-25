@@ -36,7 +36,7 @@ const ContactForm = () => {
       <form
         ref={refForm} 
         onSubmit={handleSubmit} 
-        className="shadow-md rounded-md lg:w-1/2 lg:h-full p-3 flex flex-col gap-3 md:w-full w-1/3 max-sm:w-full max-sm:text-sm"
+        className="bg-white shadow-md rounded-md lg:w-1/2 lg:h-full p-3 flex flex-col gap-3 md:w-full w-1/3 max-sm:w-full max-sm:text-sm"
       >
         <fieldset>
           <legend>Nombre y Apellidos</legend>
@@ -46,6 +46,7 @@ const ContactForm = () => {
             icon={IoPerson}
             required
             name="name" 
+            color={'gray'}
           />
           <legend>Correo:</legend>
           <TextInput

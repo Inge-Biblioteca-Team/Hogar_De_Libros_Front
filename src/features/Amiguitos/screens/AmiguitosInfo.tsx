@@ -1,8 +1,7 @@
 import CardTypeAmiguito from "../components/CardTypeAmiguito";
 const AmiguitosInfo = ({ home }: { home?: boolean }) => {
   return (
-    <section className="space-y-4 w-11/12 max-lg:w-full max-sm:p-0 
-    max-lg:pl-8 max-lg:pr-8" id="Friends">
+    <>
       <h2
         className="font-bold text-4xl text-center 
           max-sm:text-xl"
@@ -32,7 +31,7 @@ const AmiguitosInfo = ({ home }: { home?: boolean }) => {
           <CardTypeAmiguito />
         </div>
       </article>
-    </section>
+    </>
   );
 };
 

@@ -14,7 +14,9 @@ const OPTRooms = () => {
   return (
     <>
       {rooms.map((room) => (
-        <option value={room.roomId}>{room.roomNumber} </option>
+        <option key={"RO" + room.roomId} value={room.roomId}>
+          {room.roomNumber}{" "}
+        </option>
       ))}
     </>
   );

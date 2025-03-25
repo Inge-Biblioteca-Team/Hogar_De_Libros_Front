@@ -32,7 +32,6 @@ const BTNResolveLoan = ({ Loan }: { Loan: Loans }) => {
       </div>
       <DenyRequest Loan={Loan} showCancel={showD} setShowCancel={setShowD} />
       <SeeLoanInfo Loan={Loan} see={see} setSee={setSee} />
-      <SeeLoanInfo Loan={Loan} see={see} setSee={setSee} />
       <MDApproveLoan open={openA} setOpen={setOpenA} LoanID={Loan.BookLoanId} />
     </>
   );

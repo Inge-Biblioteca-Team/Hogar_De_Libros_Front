@@ -23,15 +23,15 @@ const Header = ({ NavBarType }: { NavBarType: string }) => {
   return (
     <SidebarProvider>
       <Navbar
-        className="sticky top-0 z-50 h-fitGG
+        className="sticky top-0 z-50 h-fit
          text-white w-full bg-Body custom-navbar
-          p-2 py-4 max-sm:py-0 max-sm:pt-5 max-sm:h-fit"
+          p-2 pt-2 max-sm:py-0 max-sm:pt-5 max-sm:h-fit"
         fluid
       >
         <div
           className={` w-full ${
             NavBarType !== "HogarDeLibros"
-              ? "flex flex-col gap-4"
+              ? "flex flex-col pt-2"
               : " flex justify-between items-center max-sm:gap-4 max-sm:pb-2"
           }`}
         >

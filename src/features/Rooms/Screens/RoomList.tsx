@@ -14,14 +14,12 @@ function RoomList() {
     {
       keepPreviousData: true,
       staleTime: 600,
+      refetchOnWindowFocus: false
     }
   );
 
   return (
     <>
-      <section className="space-y-4 w-11/12 max-lg:w-full max-lg:pl-10 max-lg:pr-10
-        max-sm:pl-0 max-sm:pr-0
-       pl-2 pr-2 " id="Rooms">
         <h2
           className="font-bold text-4xl text-center 
           max-sm:text-xl"
@@ -83,7 +81,6 @@ function RoomList() {
             </>
           )
         )}
-      </section>
     </>
   );
 }

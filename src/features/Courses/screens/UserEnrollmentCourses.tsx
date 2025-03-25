@@ -29,9 +29,9 @@ const UserEnrollmentCourses = () => {
     <>
       <ProfileCrumbs text="Cursos matriculados"/>
       <div className="overflow-x-hidden w-full flex items-center justify-center mt-12">
-        <div className=" w-4/5 grid max-sm:grid-cols-1 grid-cols-3 gap-5 my-4">
+        <div className=" w-4/5 grid max-sm:grid-cols-1 grid-cols-1 gap-5 my-4">
           {Courses?.count == 0 ? (
-            <div className=" text-center w-full mt-72 ml-96 text-3xl font-bold ">
+            <div className=" flex justify-center items-center w-full h-screen text-3xl font-bold text-center px-4 pb-40">
               No posee cursos matriculados
             </div>
           ) : (

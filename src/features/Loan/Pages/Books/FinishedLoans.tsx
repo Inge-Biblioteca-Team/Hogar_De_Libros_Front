@@ -8,7 +8,7 @@ import UseDebounce from "../../../../hooks/UseDebounce";
 import { LoansCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 import CustomPagination from "../../../../components/CustomPagination";
 import NoResults from "../../../../components/NoResults";
-import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
+import Loader from "../../../../components/Loader";
 
 const FinishedLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -76,24 +76,21 @@ const FinishedLoans = () => {
             setSignaCode={setSignaCode}
           />
           {isLoading ? (
-            <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
-            </div>
-          ) : Loan && Loan.data.length > 0 ? (
-            <>{Loan && <TBLLoan Loan={Loan} />}</>
+            <Loader />
+          ) : Loan ? (
+            <>
+              {Loan && <TBLLoan Loan={Loan} />}
+              <CustomPagination
+                page={currentPage}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+                total={Loan?.count || 0}
+              />
+            </>
           ) : (
             <NoResults />
           )}
-          <CustomPagination
-            page={currentPage}
-            onPageChange={onPageChange}
-            totalPages={MaxPage}
-            setCurrentLimit={setCurrentLimit}
-            total={Loan?.count || 0}
-          />
         </div>
       </div>
     </>

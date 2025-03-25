@@ -9,7 +9,8 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
     ["CourseCatalog"],
     () => GetNextCourses(),
     {
-      staleTime: 600,
+      staleTime: 1200,
+      refetchOnWindowFocus: false
     }
   );
 
@@ -27,11 +28,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
   return (
     <>
       {Courses && Courses.count > 0 && (
-        <section
-          className="space-y-4 w-11/12 max-lg:w-full max-sm:pl-4 max-sm:pr-4
-          max-lg:pl-8 max-lg:pr-8"
-          id="Courses"
-        >
+        <>
           <h2  className="font-bold text-4xl text-center 
           max-sm:text-xl">
             Cursos disponibles
@@ -61,7 +58,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
               </div>
             ))}
           </Carousel>
-        </section>
+        </>
       )}
     </>
   );
