@@ -83,7 +83,7 @@ const ManageEvents = () => {
                   <Table.HeadCell className="2xl:w-1/6 xl:w-1/6">
                     Estado
                   </Table.HeadCell>
-                  <Table.HeadCell className="2xl:w-1/6 xl:w-1/6 max-sm:hidden"></Table.HeadCell>
+                  <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className=" h-[30rem]">
                   {Events?.data.map((event) => (

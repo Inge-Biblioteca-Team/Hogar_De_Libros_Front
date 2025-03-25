@@ -138,7 +138,7 @@ const ManagerComputer = () => {
                   <Table.HeadCell className="xl:w-1/5 2xl:w-1/5">
                     Estado
                   </Table.HeadCell>
-                  <Table.HeadCell className="xl:w-1/5 2xl:w-1/5 max-sm:hidden"></Table.HeadCell>
+                  <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
                   {computers?.data.map((computers) => (

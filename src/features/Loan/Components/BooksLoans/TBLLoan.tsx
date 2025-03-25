@@ -20,7 +20,7 @@ const TBLLoan = ({
           <Table.HeadCell className="2xl:w-1/4 max-sm:w-20">Título del libro</Table.HeadCell>
           <Table.HeadCell className="xl:table-cell 2xl:w-1/4 2xl:table-cell md:hidden max-sm:hidden">Código de signatura</Table.HeadCell>
           <Table.HeadCell
-            className={`${NeedAccions ? `hidden` : ``}  max-sm:hidden rounded-r-xl`}
+            className={`${NeedAccions ? `hidden` : ``}  max-sm:hidden`}
           >
             Aprobado Por
           </Table.HeadCell>
