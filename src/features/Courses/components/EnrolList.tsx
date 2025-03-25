@@ -14,35 +14,30 @@ const EnrolList = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
-    <Modal show={open} onClose={() => setOpen(false)} size={"7xl"} popup>
-      <Modal.Body className="p-1">
-        <div className=" grid grid-cols-3">
-          <div></div>
-          <div className=" w-full text-center font-bold text-2xl mt-2 mb-3">
+    <Modal show={open} onClose={() => setOpen(false)} size={"9xl"} popup>
+      <Modal.Body className=" p-0">
+        <div className=" flex items-center justify-between p-2">
+          <div className=" w-full font-bold text-2xl">
             Matricula del curso {Course.courseName}{" "}
           </div>
-          <div className=" flex justify-end items-center">
-            <Popover
-              trigger="hover"
-              content={
-                <div className=" flex flex-col items-center gap-4 m-3">
-                  <span className="hover:text-Body cursor-pointer">
-                    Imprimir
-                  </span>
-                  <span
-                    className="hover:text-red-700 cursor-pointer"
-                    onClick={() => setOpen(false)}
-                  >
-                    Cerrar
-                  </span>
-                </div>
-              }
-            >
-              <Button color={""}>
-                <SlOptionsVertical className=" text-3xl" />
-              </Button>
-            </Popover>
-          </div>
+          <Popover
+            trigger="click"
+            content={
+              <div className=" flex flex-col items-center gap-4 m-3">
+                <span className="hover:text-Body cursor-pointer">Imprimir</span>
+                <span
+                  className="hover:text-red-700 cursor-pointer"
+                  onClick={() => setOpen(false)}
+                >
+                  Cerrar
+                </span>
+              </div>
+            }
+          >
+            <Button color={""}>
+              <SlOptionsVertical className=" text-3xl" />
+            </Button>
+          </Popover>
         </div>
         <EnrollBody courseId={Course.courseId} key={Course.courseId} />
       </Modal.Body>

@@ -28,26 +28,26 @@ const EnrollBody = ({ courseId }: { courseId: number }) => {
           <Table.HeadCell className=" bg-gray-300 !rounded-none">
             Nombre
           </Table.HeadCell>
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+          <Table.HeadCell className=" bg-gray-300">
             Cédula
           </Table.HeadCell>
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+          <Table.HeadCell className=" bg-gray-300">
             Fecha de matrícula
           </Table.HeadCell>
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+          <Table.HeadCell className=" bg-gray-300">
             Dirección
           </Table.HeadCell>
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+          <Table.HeadCell className=" bg-gray-300">
             Teléfono
           </Table.HeadCell>
-          <Table.HeadCell className=" bg-gray-300 !rounded-none">
+          <Table.HeadCell className=" bg-gray-300">
             Teléfono de Emergencia
           </Table.HeadCell>
           <Table.HeadCell className=" bg-gray-300 !rounded-none">
             Correo
           </Table.HeadCell>
         </Table.Head>
-        <Table.Body>
+        <Table.Body className=" h-[45vh]">
           {EnrollList?.data.map((Enroll) => (
             <EnrollRow Enroll={Enroll} key={Enroll.courseId} />
           ))}

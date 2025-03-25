@@ -10,13 +10,15 @@ import {
   BreadCrumbsItems,
   BreadLastItems,
 } from "../../../components/Breadcrumbs/BreadCrumbsItems";
-import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
 import { Pagination } from "flowbite-react";
 import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageUsers = () => {
-  const [currentLimit, setCurrentLimit] = useState<number>(5);
+  const [currentLimit, setCurrentLimit] = useState<number>(() => {
+    const savedLimit = sessionStorage.getItem("UsersCLimit");
+    return savedLimit ? Number(savedLimit) : 5;
+  });
   const [currentPage, setCurrentPage] = useState<number>(() => {
     const savedPage = sessionStorage.getItem("UersCPages");
     return savedPage ? Number(savedPage) : 1;
@@ -26,6 +28,15 @@ const ManageUsers = () => {
     setCurrentPage(page);
     sessionStorage.setItem("UersCPages", page.toString());
   };
+
+  const onLimitChange = (limit: number) => {
+    setCurrentLimit(limit);
+    sessionStorage.setItem("UsersCLimit", limit.toString());
+  };
+
+  useEffect(() => {
+    sessionStorage.setItem("UsersCLimit", currentLimit.toString());
+  }, [currentLimit]);
 
   useEffect(() => {
     sessionStorage.setItem("UersCPages", currentPage.toString());
@@ -48,14 +59,18 @@ const ManageUsers = () => {
     }
   );
 
-  const MaxPage = Math.ceil((Users?.count ?? 0) / 5);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [SName, SCedula, SYear, currentLimit]);
+
+  const MaxPage = Math.ceil((Users?.count ?? 0) / currentLimit);
   return (
     <>
       <BreadCrumbsItems>
         <BreadLastItems text="Gestión de usuarios" />
       </BreadCrumbsItems>
       <div className=" flex place-content-center">
-        <div className="w-4/5 md:w-full md:pr-4 md:pl-4 flex flex-col items-center justify-center pt-1 max-sm:w-full max-sm:p-2 gap-2">
+        <div className="w-full md:w-full md:pr-4 md:pl-4 flex flex-col items-center justify-center pt-1 max-sm:w-full max-sm:p-2 gap-2">
           <div className="max-sm:w-full sm:w-full md:w-full flex justify-center max-sm:pb-8">
             <SearchUsers
               setYear={setYear}
@@ -71,8 +86,8 @@ const ManageUsers = () => {
                 <figcaption className=" text-center">...Cargando</figcaption>
               </figure>
             </div>
-          ) : Users ? (
-            <>
+          ) : Users && Users.data && Users.count && Users.count > 0 ? (
+            <section className="w-full">
               <Table
                 hoverable
                 className=" text-center min-h-[30rem] max-sm:text-sm max-sm:justify-center"
@@ -107,30 +122,59 @@ const ManageUsers = () => {
                   ))}
                 </Table.Body>
               </Table>
-              <div className="block w-full max-sm:hidden">
-                <CustomPagination
-                  page={currentPage}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                  total={Users?.count || 0}
-                />
-              </div>
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={currentPage}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
-            </>
+            </section>
           ) : (
             <NoResults />
           )}
+          <>
+            <div className="block w-full max-sm:hidden">
+              <div className=" flex items-center justify-between py-2">
+                <div className=" flex items-center flex-col">
+                  <div>
+                    <span>Mostrar</span>
+                    <select
+                      name="Limit"
+                      id="Limit"
+                      title="Resultados por página"
+                      className=" bg-transparent border-none rounded-lg"
+                      onChange={(e) => onLimitChange(Number(e.target.value))}
+                    >
+                      <option value={5}>5</option>
+                      <option value={10}>10</option>
+                      <option value={15}>15</option>
+                    </select>
+                    <span>elementos por página. </span>
+                  </div>
+                </div>
+                {Users && Users.count && Users.count > 0 && (
+                  <Pagination
+                    currentPage={currentPage}
+                    onPageChange={onPageChange}
+                    totalPages={MaxPage}
+                    nextLabel="Siguiente"
+                    previousLabel="Anterior"
+                    showIcons
+                    layout="pagination"
+                  />
+                )}
+              </div>
+            </div>
+            <div className="sm:hidden  flex justify-center ">
+              <Pagination
+                layout="navigation"
+                nextLabel="Siguiente"
+                previousLabel="Anterior"
+                currentPage={currentPage}
+                totalPages={MaxPage}
+                onPageChange={onPageChange}
+              />
+            </div>
+          </>
         </div>
       </div>
     </>
   );
 };
 export default ManageUsers;
+
+//! Separar el limite y la paginacion en 2 componentes para evitar que al cambiar el limite se oculte.
