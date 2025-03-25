@@ -21,7 +21,7 @@ const EnrolList = ({
             Matricula del curso {Course.courseName}{" "}
           </div>
           <Popover
-            trigger="hover"
+            trigger="click"
             content={
               <div className=" flex flex-col items-center gap-4 m-3">
                 <span className="hover:text-Body cursor-pointer">Imprimir</span>

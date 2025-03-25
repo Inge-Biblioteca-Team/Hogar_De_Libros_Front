@@ -51,6 +51,7 @@ const MDViewInfo = ({
             <Label value={`Documentos adjuntos.`} />
             {colaboration.Document.map((doc, index) => (
               <a
+              key={index+"Doc"}
                 target="#blank"
                 href={doc}
                 title="Click para abrir"
