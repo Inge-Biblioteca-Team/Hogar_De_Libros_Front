@@ -1,6 +1,6 @@
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
-import notFoundImage from '../assets/NotFound.webp';
+import notFoundImage from '../Assets/NotFound.svg';
 
 const NotFound = () => {
   return (
