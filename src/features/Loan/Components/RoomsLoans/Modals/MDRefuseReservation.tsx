@@ -40,10 +40,10 @@ const MDRefuseReservation = ({
           <Textarea className="mt-3" rows={4} placeholder="Motivo" required />
         </Modal.Body>
         <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
-          <Button color={"red"} onClick={onClose} tabIndex={2} disabled={isLoading}>
+          <Button title="Cancelar y regresar" color={"red"} onClick={onClose} tabIndex={2} disabled={isLoading}>
             Cancelar
           </Button>
-          <Button color={"blue"} onClick={onConfirm} disabled={isLoading}>
+          <Button title="Confirmar" color={"blue"} onClick={onConfirm} disabled={isLoading}>
           {isLoading ? (
           <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
         ) : (

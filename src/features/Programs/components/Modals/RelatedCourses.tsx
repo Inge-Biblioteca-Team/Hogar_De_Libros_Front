@@ -44,7 +44,7 @@ const RelatedActivitiesList = ({
         <span className="m-4">No existen actividades relacionadas al programa</span>
       )}
       <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
-        <Button color={"blue"} onClick={() => setOpen(false)}>
+        <Button title="Cancelar y regresar" color={"blue"} onClick={() => setOpen(false)}>
           Regresar
         </Button>
       </Modal.Footer>

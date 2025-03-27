@@ -58,7 +58,7 @@ const ModalInfo = ({
         </Modal.Body>
 
         <Modal.Footer className=" flex items-center justify-center">
-          <Button color={"blue"} onClick={() => setShow(false)}>
+          <Button title="Cancelar y regresar" color={"blue"} onClick={() => setShow(false)}>
             Regresar
           </Button>
         </Modal.Footer>

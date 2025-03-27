@@ -49,7 +49,7 @@ const UserInfo = ({
         </span>
       </Modal.Body>
       <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
-        <Button color={"blue"} onClick={() => setSee(false)}>
+        <Button title="Regresar" color={"blue"} onClick={() => setSee(false)}>
           Regresar
         </Button>
       </Modal.Footer>

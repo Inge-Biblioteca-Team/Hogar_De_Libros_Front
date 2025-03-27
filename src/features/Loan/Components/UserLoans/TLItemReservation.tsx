@@ -64,7 +64,7 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
                 <span>{reserve.reserveStatus} </span>
               </div>
               <div className="flex justify-center items-center mb-2">
-                <Button color={"blue"} onClick={() => setOpen(true)}>
+                <Button title="Cancelar y regresar" color={"blue"} onClick={() => setOpen(true)}>
                   Cancelar
                 </Button>
               </div>
@@ -84,10 +84,10 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
           <span>¡Esta acción no es reversible!</span>
         </Modal.Body>
         <Modal.Footer className="flex items-center justify-center">
-          <Button color={"red"} tabIndex={2} onClick={() => setOpen(false)} disabled={isLoading}>
+          <Button title="Cancelar y regresar" color={"red"} tabIndex={2} onClick={() => setOpen(false)} disabled={isLoading}>
             Regresar
           </Button>
-          <Button color={"blue"} onClick={handleCancel} disabled={isLoading}>
+          <Button title="Confirmar" color={"blue"} onClick={handleCancel} disabled={isLoading}>
           {isLoading ? (
           <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
         ) : (

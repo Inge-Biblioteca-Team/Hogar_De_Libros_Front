@@ -48,10 +48,11 @@ const MDLoanInfo = ({
                 onClick={() => {
                   setShowCancel(false);
                 }}
+                title="Cancelar y regresar"
               >
                 Volver
               </Button>
-              <Button color="blue" onClick={() => handleCancel()}>
+              <Button title="Confirmar" color="blue" onClick={() => handleCancel()}>
                 Confirmar
               </Button>
             </div>

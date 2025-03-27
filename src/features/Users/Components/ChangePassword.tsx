@@ -158,7 +158,7 @@ const ChangePassword = () => {
             >
               Cancelar
             </Button>
-            <Button color={"blue"} type="submit">
+            <Button title="Confirmar" color={"blue"} type="submit">
               Confirmar
             </Button>
           </Modal.Footer>

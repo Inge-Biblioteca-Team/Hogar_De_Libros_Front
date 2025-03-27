@@ -79,7 +79,7 @@ const Login = () => {
               </button>
               </div>
 
-              <Button type="submit" gradientMonochrome="info" fullSized>
+              <Button title="Iniciar sesion" type="submit" gradientMonochrome="info" fullSized>
                 Iniciar Sesión
               </Button>
 
@@ -90,7 +90,7 @@ const Login = () => {
                 >
                   Regresar
                 </Button>
-                <Button color="light" onClick={openRecoverPasswordModal}>
+                <Button title="Olvide mi contraseña" color="light" onClick={openRecoverPasswordModal}>
                   ¿Olvidó su contraseña?
                 </Button>
               </div>

@@ -21,7 +21,11 @@ const OPACButtonAccionsWS = ({ computer }: { computer: ComputerStatus }) => {
       <Button.Group>
         {computer.Status === "Disponible" && (
           <>
-            <Button color="gray" onClick={() => setOpen(true)}>
+            <Button
+              title="Poner equipo en uso"
+              color="gray"
+              onClick={() => setOpen(true)}
+            >
               <HiUserCircle className="mr-3 h-4 w-4" />
               En Uso
             </Button>
@@ -29,7 +33,11 @@ const OPACButtonAccionsWS = ({ computer }: { computer: ComputerStatus }) => {
         )}
 
         {computer.Status === "En Uso" && (
-          <Button color="gray" onClick={() => handleFinalizeLoan()}>
+          <Button
+            title="Terminar uso del equipo"
+            color="gray"
+            onClick={() => handleFinalizeLoan()}
+          >
             <HiCloudDownload className="mr-3 h-4 w-4" />
             Finalizar uso
           </Button>

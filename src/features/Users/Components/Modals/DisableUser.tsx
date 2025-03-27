@@ -38,10 +38,10 @@ const DisableUser = ({
             className="mb-4"
           />
           <div className="flex justify-center gap-4">
-            <Button color="red" onClick={() => setDow(false)}>
+            <Button title="Cancelar y regresar" color="red" onClick={() => setDow(false)}>
               Cancelar
             </Button>
-            <Button color="blue" onClick={() => handleDisbale()}>
+            <Button title="Confirmar" color="blue" onClick={() => handleDisbale()}>
               Confirmar
             </Button>
           </div>

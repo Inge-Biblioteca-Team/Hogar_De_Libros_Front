@@ -32,10 +32,10 @@ const DisableArtist = ({
             {Artist.Name}
           </p>
           <div className="flex justify-center gap-4">
-            <Button color="red" onClick={() => setDow(false)} disabled={isLoading}>
+            <Button title="Cancelar y regresar" color="red" onClick={() => setDow(false)} disabled={isLoading}>
               Cancelar
             </Button>
-            <Button color="blue" onClick={() => handleDisbale()} disabled={isLoading}>
+            <Button title="Confirmar" color="blue" onClick={() => handleDisbale()} disabled={isLoading}>
             {isLoading ? (
           <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
         ) : (

@@ -62,7 +62,7 @@ const EnrolList = ({
             </Button>
           </Popover>
         </div>
-        <EnrollBody courseId={Course.courseId} key={Course.courseId} />
+        <EnrollBody courseId={Course.courseId} key={Course.courseId  + "CK"} />
       </Modal.Body>
     </Modal>
   );
