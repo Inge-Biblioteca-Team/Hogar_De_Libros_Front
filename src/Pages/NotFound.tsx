@@ -1,13 +1,13 @@
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
-import notFound from "/src/Assets/notFound.webp";
+import notFoundImage from './Assets/notFound.webp';
 
 const NotFound = () => {
   return (
     <>
       <div className="w-full h-[100vh] flex items-center justify-center">
         <div className="text-center space-y-4 flex items-center justify-center flex-col">
-          <img src={notFound} alt="No encontrado" />
+          <img src={notFoundImage} alt="No encontrado" />
           <h1 className="text-4xl font-bold text-gray-800">
             ¡Ups! Página no encontrada
           </h1>
