@@ -13,7 +13,7 @@ const UserInfo = ({
   User: User;
 }) => {
   return (
-    <Modal show={see} onClose={() => setSee(false)}>
+    <Modal dismissible show={see} onClose={() => setSee(false)}>
       <Modal.Header className="dark:bg-neutral-900">
         <span>Información del usuario</span>
       </Modal.Header>

@@ -61,7 +61,7 @@ const ModalewSWLoan = ({
   }, [User, setValue]);
 
   return (
-    <Modal show={open} onClose={onClose} size={"md"}>
+    <Modal dismissible show={open} onClose={onClose} size={"md"}>
       <Modal.Header className="dark:bg-neutral-900">
         <h5>Nuevo préstamo de equipo {MNumber} </h5>
       </Modal.Header>

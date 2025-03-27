@@ -35,7 +35,7 @@ const ReportModal = ({
   
     const minMax = formatToYMD(new Date());
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal dismissible show={open} onClose={() => setOpen(false)}>
       <Modal.Header>
         Generar reporte de {reportDescriptions[reportType]}
       </Modal.Header>

@@ -75,7 +75,7 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
   const minMax = formatToYMD(new Date());
 
   return (
-    <Modal show={open} onClose={onClose} size={"5xl"}>
+    <Modal dismissible show={open} onClose={onClose} size={"5xl"}>
       <Modal.Header className="dark:bg-neutral-900">
         <div>Propuesta de donación</div>
       </Modal.Header>

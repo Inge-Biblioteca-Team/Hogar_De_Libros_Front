@@ -35,7 +35,7 @@ const ViewRoom = ({
   };
 
   return (
-    <Modal show={see} onClose={() => setSee(false)} size="md">
+    <Modal dismissible show={see} onClose={() => setSee(false)} size="md">
       <Modal.Header className="dark:bg-neutral-900">
         <span>Sala: {room.roomNumber}</span>
       </Modal.Header>

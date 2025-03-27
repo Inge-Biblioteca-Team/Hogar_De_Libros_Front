@@ -37,7 +37,7 @@ const MDDownBook = ({
   };
 
   return (
-    <Modal show={open} onClose={onClose}>
+    <Modal dismissible show={open} onClose={onClose}>
       <Modal.Header className="dark:bg-neutral-900">Deshabilitar registro de la colección</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body className="dark:bg-[#2d2d2d]">

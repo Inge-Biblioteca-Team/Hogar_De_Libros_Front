@@ -35,7 +35,7 @@ const LoanRenuve = ({
 
   return (
     <>
-      <Modal show={showChange} onClose={() => setShowChange(false)} size={"md"}>
+      <Modal dismissible show={showChange} onClose={() => setShowChange(false)} size={"md"}>
         <Modal.Header>Extensión de fecha de devolución</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>

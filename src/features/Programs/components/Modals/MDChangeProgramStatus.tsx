@@ -23,7 +23,7 @@ const MDChangeProgramStatus = ({
   };
 
   return (
-    <Modal show={open} onClose={() => setOpen(false)} popup size={"md"}>
+    <Modal dismissible show={open} onClose={() => setOpen(false)} popup size={"md"}>
       <Modal.Body className="dark:bg-[#2d2d2d] text-center">
         <div className="text-center mt-7">
           <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />

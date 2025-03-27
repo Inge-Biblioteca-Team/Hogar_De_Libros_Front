@@ -75,7 +75,7 @@ const EditEvent = ({
 
   return (
     <>
-      <Modal show={edit} onClose={onClose}>
+      <Modal dismissible show={edit} onClose={onClose}>
         <Modal.Header className="dark:bg-neutral-900">Editar Evento</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="dark:bg-[#2d2d2d] bg-white flex flex-col">

@@ -72,7 +72,7 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
           </Timeline.Body>
         </Timeline.Content>
       </Timeline.Item>
-      <Modal show={open} onClose={() => setOpen(false)}>
+      <Modal dismissible show={open} onClose={() => setOpen(false)}>
         <Modal.Body className="flex items-center justify-center flex-col">
           <div className="text-center mt-7">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />

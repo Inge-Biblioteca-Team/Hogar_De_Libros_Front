@@ -12,7 +12,7 @@ const MDSeeProgram = ({
   program: Program;
 }) => {
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal dismissible show={open} onClose={() => setOpen(false)}>
       <Modal.Header className="dark:bg-neutral-900">Información del programa</Modal.Header>
       <Modal.Body className="dark:bg-[#2d2d2d] grid max-sm:grid-cols-1 grid-cols-3 gap-5">
         <div>

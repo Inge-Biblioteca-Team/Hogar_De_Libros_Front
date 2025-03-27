@@ -25,7 +25,7 @@ const ModalInfo = ({
   });
   return (
     <>
-      <Modal show={show} onClose={() => setShow(false)}>
+      <Modal dismissible show={show} onClose={() => setShow(false)}>
         <Modal.Header>
           <span>Información de préstamo de equipo</span>
         </Modal.Header>

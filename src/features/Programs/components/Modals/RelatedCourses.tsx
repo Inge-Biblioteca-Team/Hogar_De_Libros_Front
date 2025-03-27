@@ -27,7 +27,7 @@ const RelatedActivitiesList = ({
   );
 
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal dismissible show={open} onClose={() => setOpen(false)}>
       <Modal.Header className="dark:bg-neutral-900">
         Actividades relacionadas al programa {programName}
       </Modal.Header>

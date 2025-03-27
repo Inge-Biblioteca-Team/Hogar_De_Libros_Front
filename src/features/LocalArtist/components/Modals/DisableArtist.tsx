@@ -21,7 +21,7 @@ const DisableArtist = ({
   };
 
   return (
-    <Modal show={dow} onClose={() => setDow(false)} popup size={"md"}>
+    <Modal dismissible show={dow} onClose={() => setDow(false)} popup size={"md"}>
       <Modal.Body>
         <div className="text-center mt-10">
           <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />

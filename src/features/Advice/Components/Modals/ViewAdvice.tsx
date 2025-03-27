@@ -14,7 +14,7 @@ const ViewAdvice = ({
 }) => {
   const date = formatToDMY(advice.date);
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal dismissible show={open} onClose={() => setOpen(false)}>
       <form>
         <Modal.Body className="flex flex-col">
           <figure>

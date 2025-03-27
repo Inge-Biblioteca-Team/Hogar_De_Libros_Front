@@ -24,7 +24,7 @@ const RecoverPasswordModal = ({
   };
 
   return (
-    <Modal show={openModal} size="md" onClose={onCloseModal} popup>
+    <Modal dismissible show={openModal} size="md" onClose={onCloseModal} popup>
       <Modal.Header />
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body>

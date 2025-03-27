@@ -34,7 +34,7 @@ const MDRefuse = ({
   };
 
   return (
-    <Modal show={open} onClose={onClose}>
+    <Modal dismissible show={open} onClose={onClose}>
       <Modal.Header className="dark:bg-neutral-900">Rechazar colaboración</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
         <ModalBody className="dark:bg-[#2d2d2d]">

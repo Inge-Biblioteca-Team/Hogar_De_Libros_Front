@@ -17,7 +17,7 @@ const MDSeeReservation = ({
   const end = HourMapping[Math.max(...reserve.selectedHours)];
 
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal dismissible show={open} onClose={() => setOpen(false)}>
       <Modal.Header className="dark:bg-neutral-900">Resumen de reserva de sala</Modal.Header>
       <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-2">
         <div>

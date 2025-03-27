@@ -42,7 +42,7 @@ const ContacE = ({
   };
 
   return (
-    <Modal show={open} onClose={onClose}>
+    <Modal dismissible show={open} onClose={onClose}>
       <Modal.Header>Editar información de contacto</Modal.Header>
       <form onSubmit={handleSubmit(handleConfirm)}>
         <Modal.Body>

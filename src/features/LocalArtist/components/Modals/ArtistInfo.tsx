@@ -15,7 +15,7 @@ const ArtistInfo = ({
   Artist: Artist;
 }) => {
   return (
-    <Modal show={see} onClose={() => setSee(false)}>
+    <Modal dismissible show={see} onClose={() => setSee(false)}>
       <Modal.Header>
         <span>Artista: {Artist.Name} </span>
       </Modal.Header>

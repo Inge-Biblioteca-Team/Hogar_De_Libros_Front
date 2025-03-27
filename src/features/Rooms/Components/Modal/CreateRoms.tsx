@@ -51,7 +51,7 @@ const CreateRooms = () => {
         Añadir sala
       </Button>
 
-      <Modal show={isModalOpen} onClose={handleModalClose} size={"5xl"}>
+      <Modal dismissible show={isModalOpen} onClose={handleModalClose} size={"5xl"}>
         <Modal.Header className="dark:bg-neutral-900">Crear nueva sala</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="dark:bg-[#2d2d2d] bg-white">

@@ -31,7 +31,7 @@ const MDLoanInfo = ({
 
   return (
     <>
-      <Modal show={showCancel} popup onClose={() => setShowCancel(false)} size={"md"}>
+      <Modal dismissible show={showCancel} popup onClose={() => setShowCancel(false)} size={"md"}>
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
@@ -59,7 +59,7 @@ const MDLoanInfo = ({
         </Modal.Body>
       </Modal>
 
-      <Modal show={showChange} popup onClose={() => setShowChange(false)} size="md">
+      <Modal dismissible show={showChange} popup onClose={() => setShowChange(false)} size="md">
         <Modal.Header>Solicitar Extensión</Modal.Header>
         <Modal.Body>
           <div className="text-center">

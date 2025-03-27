@@ -105,7 +105,7 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
   const minMax = formatToYMD(new Date());
 
   return (
-    <Modal show={open} onClose={onClose} size={"5xl"}>
+    <Modal dismissible show={open} onClose={onClose} size={"5xl"}>
       <Modal.Header className="dark:bg-neutral-900">
         Solicitud de actividad conjunta con la biblioteca
       </Modal.Header>

@@ -70,7 +70,7 @@ const EditRoom = ({
 
   return (
     <>
-      <Modal show={open} onClose={handleModalClose} size={"5xl"}>
+      <Modal dismissible show={open} onClose={handleModalClose} size={"5xl"}>
         <Modal.Header className="dark:bg-neutral-900">Editar Sala</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="dark:bg-[#2d2d2d] bg-white">
