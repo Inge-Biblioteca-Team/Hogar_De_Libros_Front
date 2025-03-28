@@ -46,7 +46,7 @@ const SeeLoanInfo = ({
   }
 
   return (
-    <Modal show={see} onClose={close}>
+    <Modal dismissible show={see} onClose={close}>
       <Modal.Header className="dark:bg-neutral-900">
         <span>Información del préstamo</span>
       </Modal.Header>

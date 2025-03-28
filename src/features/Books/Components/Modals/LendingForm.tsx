@@ -54,7 +54,7 @@ const LendingForm = ({
   };
 
   return (
-    <Modal show={open} onClose={onClose}>
+    <Modal dismissible show={open} onClose={onClose}>
       <Modal.Header>Solicitud de préstamo</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body className=" flex bg-white flex-col gap-3">

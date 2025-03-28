@@ -16,7 +16,7 @@ const ViewEvent = ({
 
     const eventDay = formatToDMY(event.Date);
     return (
-      <Modal show={see} onClose={() => setSee(false)} size-40>
+      <Modal dismissible show={see} onClose={() => setSee(false)} size-40>
         <Modal.Header className="dark:bg-neutral-900">
           <span>Evento: {event.Title} </span>
         </Modal.Header>

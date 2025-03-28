@@ -38,7 +38,7 @@ const FinishLoanBook = ({
   };
 
   return (
-    <Modal show={open} size="md" onClose={() => setOpen(false)} popup>
+    <Modal dismissible show={open} size="md" onClose={() => setOpen(false)} popup>
       <Modal.Header />
       <Modal.Body>
         <div className="text-center">

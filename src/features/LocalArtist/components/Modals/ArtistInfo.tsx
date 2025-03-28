@@ -15,7 +15,7 @@ const ArtistInfo = ({
   Artist: Artist;
 }) => {
   return (
-    <Modal show={see} onClose={() => setSee(false)}>
+    <Modal dismissible show={see} onClose={() => setSee(false)}>
       <Modal.Header>
         <span>Artista: {Artist.Name} </span>
       </Modal.Header>
@@ -72,7 +72,7 @@ const ArtistInfo = ({
         </span>
       </Modal.Body>
       <Modal.Footer className=" flex items-center justify-center">
-        <Button color={"blue"} onClick={() => setSee(false)}>
+        <Button title="Cancelar y regresar" color={"blue"} onClick={() => setSee(false)}>
           Regresar
         </Button>
       </Modal.Footer>

@@ -2,7 +2,7 @@ import { Table } from "flowbite-react";
 import { Enrollment } from "../types/Enroll";
 import { format } from "@formkit/tempo";
 
-const EnrollRow = ({Enroll}:{Enroll: Enrollment}) => {
+const EnrollRow = ({ Enroll }: { Enroll: Enrollment }) => {
   const Date = format({
     date: Enroll.enrollmentDate,
     format: "DD MMMM YYYY",
@@ -11,7 +11,7 @@ const EnrollRow = ({Enroll}:{Enroll: Enrollment}) => {
 
   return (
     <>
-      <Table.Row>
+      <Table.Row key={`${Enroll.courseId}-${Enroll.userCedula}`}>
         <Table.Cell>{Enroll.UserName} </Table.Cell>
         <Table.Cell>{Enroll.userCedula} </Table.Cell>
         <Table.Cell>{Date} </Table.Cell>

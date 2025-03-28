@@ -8,7 +8,7 @@ const SorryModal = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal dismissible show={open} onClose={() => setOpen(false)}>
       <Modal.Header>Solicitud de préstamo libro infantil</Modal.Header>
       <Modal.Body className=" flex flex-col justify-center items-center">
         <figure className=" flex flex-col">

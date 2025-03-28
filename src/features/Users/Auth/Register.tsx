@@ -346,7 +346,7 @@ const Register = () => {
                 >
                   Cancelar
                 </Button>
-                <Button type="submit" color="blue">
+                <Button title="Confirmar" type="submit" color="blue">
                   Confirmar
                 </Button>
               </div>

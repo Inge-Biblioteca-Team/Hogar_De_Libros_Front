@@ -27,7 +27,7 @@ const RelatedActivitiesList = ({
   );
 
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal dismissible show={open} onClose={() => setOpen(false)}>
       <Modal.Header className="dark:bg-neutral-900">
         Actividades relacionadas al programa {programName}
       </Modal.Header>
@@ -44,7 +44,7 @@ const RelatedActivitiesList = ({
         <span className="m-4">No existen actividades relacionadas al programa</span>
       )}
       <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
-        <Button color={"blue"} onClick={() => setOpen(false)}>
+        <Button title="Cancelar y regresar" color={"blue"} onClick={() => setOpen(false)}>
           Regresar
         </Button>
       </Modal.Footer>

@@ -1,5 +1,5 @@
 import { Label, Select, TextInput } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import CustomPagination from "../../../components/CustomPagination";
 import OptDonMainCategories from "../Components/OptDonMainCategories";
@@ -34,7 +34,12 @@ const ManageDonationsHistory = () => {
     sessionStorage.setItem("MHDPage", page.toString());
   };
 
-  const MaxPage = Math.ceil((Donations?.count ?? 0) / 5);
+  const MaxPage = Math.ceil((Donations?.count ?? 0) / Limit);
+
+    useEffect(() => {
+      onPageChange(1);
+    }, [Limit, category, date]);
+  
 
   return (
     <>
@@ -79,7 +84,6 @@ const ManageDonationsHistory = () => {
                   onPageChange={onPageChange}
                   totalPages={MaxPage}
                   setCurrentLimit={setCurrentLimit}
-                  total={Donations?.count || 0}
                 />
               </div>
 

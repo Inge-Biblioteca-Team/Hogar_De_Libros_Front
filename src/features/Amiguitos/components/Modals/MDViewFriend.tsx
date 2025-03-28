@@ -16,7 +16,7 @@ const MDViewFriend = ({
     setOpen(false);
   };
   return (
-    <Modal show={open} onClose={onClose}>
+    <Modal dismissible show={open} onClose={onClose}>
       <Modal.Header className="dark:bg-neutral-900">
         <span>Solicitud de amigo de la biblioteca: </span>
       </Modal.Header>

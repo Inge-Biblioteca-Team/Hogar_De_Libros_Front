@@ -45,7 +45,7 @@ const EditComponent = ({
 
   return (
     <>
-      <Modal show={sEdit} onClose={onClose}>
+      <Modal dismissible show={sEdit} onClose={onClose}>
         <Modal.Header className="dark:bg-neutral-900">Editar componente del equipo</Modal.Header>
         <form onSubmit={handleSubmit(onConfirm)}>
           <Modal.Body className="dark:bg-[#2d2d2d]">

@@ -47,11 +47,11 @@ const CreateRooms = () => {
 
   return (
     <>
-      <Button className="max-sm:w-full lg:w-36 md:w-full" onClick={() => setIsModalOpen(true)} color="blue">
+      <Button title="Añadir nueva sala" className="max-sm:w-full lg:w-36 md:w-full" onClick={() => setIsModalOpen(true)} color="blue">
         Añadir sala
       </Button>
 
-      <Modal show={isModalOpen} onClose={handleModalClose} size={"5xl"}>
+      <Modal dismissible show={isModalOpen} onClose={handleModalClose} size={"5xl"}>
         <Modal.Header className="dark:bg-neutral-900">Crear nueva sala</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="dark:bg-[#2d2d2d] bg-white">

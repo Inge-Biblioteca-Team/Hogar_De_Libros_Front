@@ -5,7 +5,7 @@ const LoginAcces = () => {
   const Navi = useNavigate();
   return (
     <>
-      <Button className=" transition-transform hover:scale-105 " onClick={() => Navi("/IniciarSesion")} color={"gray"}>
+      <Button title="Iniciar sesión" className=" transition-transform hover:scale-105 " onClick={() => Navi("/IniciarSesion")} color={"gray"}>
         Iniciar sesión<CiLogin size={22} />
       </Button>
     </>

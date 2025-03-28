@@ -31,11 +31,11 @@ const ButtonsAccions = ({ computer }: { computer: ComputerStatus }) => {
       <Button.Group>
         {computer.Status === "Disponible" && (
           <>
-            <Button color="gray" onClick={() => setOpen(true)}>
+            <Button title="Marcar como en uso" color="gray" onClick={() => setOpen(true)}>
               <HiUserCircle className="mr-3 h-4 w-4" />
               En Uso
             </Button>
-            <Button color="gray" onClick={() => setMantenace(true)}>
+            <Button title="Marcar como en mantenimiento" color="gray" onClick={() => setMantenace(true)}>
               <HiAdjustments className="mr-3 h-4 w-4" />
               Mantenimiento
             </Button>
@@ -43,14 +43,14 @@ const ButtonsAccions = ({ computer }: { computer: ComputerStatus }) => {
         )}
 
         {computer.Status === "En Uso" && (
-          <Button color="gray" onClick={() => handleFinalizeLoan()}>
+          <Button title="Marcar como disponible" color="gray" onClick={() => handleFinalizeLoan()}>
             <HiCloudDownload className="mr-3 h-4 w-4" />
             Finalizar uso
           </Button>
         )}
 
         {computer.Status === "Mantenimiento" && (
-          <Button color="gray" onClick={() => handleReactive()}>
+          <Button title="Terminar mantenimiento" color="gray" onClick={() => handleReactive()}>
             <HiAdjustments className="mr-3 h-4 w-4" />
             Terminar Mantenimiento
           </Button>

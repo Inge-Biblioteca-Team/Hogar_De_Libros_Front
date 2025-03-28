@@ -89,7 +89,7 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
     setSecondForm(false);
   };
 
-  const { mutate: send } = UseCreateFriend();
+  const { mutate: send, isLoading } = UseCreateFriend();
 
   const onConfirm = (data: CreateFriends) => {
     send(data, {
@@ -104,7 +104,7 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
   const minMax = formatToYMD(new Date());
 
   return (
-    <Modal show={open} onClose={onClose} size={"5xl"}>
+    <Modal dismissible show={open} onClose={onClose} size={"5xl"}>
       <Modal.Header className="dark:bg-neutral-900">
         <div>Solicitud de amigo de la biblioteca</div>
       </Modal.Header>
@@ -281,8 +281,8 @@ const MainFormAmigos = ({ open, setOpen }: ModalOpen) => {
               <Button color={"red"} tabIndex={2}  onClick={onReturn}>
                 Anterior
               </Button>
-              <Button color={"blue"} type="submit">
-                Confirmar
+              <Button color={"blue"} type="submit" disabled={isLoading}>
+                {isLoading ? "Cargando..." : "Enviar"}
               </Button>
             </>
           )}

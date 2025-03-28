@@ -13,6 +13,7 @@ import LandingHome from "../components/LandingHome";
 import { useInView } from "react-intersection-observer";
 import LatestAddBooks from "../features/Books/Screens/LatestAddBooks";
 import { motion } from "framer-motion";
+import MisionVision from "./MisionVision";
 
 const Landing = () => {
   const fadeInAnimation = {
@@ -61,6 +62,7 @@ const Landing = () => {
     <>
       <main className="dark:bg-neutral-900 flex items-center gap-16 justify-center flex-col mb-10 max-sm:gap-10">
         <LandingHome />
+        <MisionVision/>
         <ImportanNotices />
         <motion.section
           ref={refBooks}

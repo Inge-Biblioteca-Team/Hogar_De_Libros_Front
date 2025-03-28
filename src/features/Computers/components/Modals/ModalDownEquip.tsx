@@ -35,7 +35,7 @@ const ModalDownEquip = ({
   };
 
   return (
-    <Modal show={open} size="md" onClose={() => setOpen(false)} popup>
+    <Modal dismissible show={open} size="md" onClose={() => setOpen(false)} popup>
       <Modal.Header className="dark:bg-[#2d2d2d]"/>
       <form onSubmit={handleSubmit(handleConfirm)}>
         <Modal.Body className="dark:bg-[#2d2d2d]">

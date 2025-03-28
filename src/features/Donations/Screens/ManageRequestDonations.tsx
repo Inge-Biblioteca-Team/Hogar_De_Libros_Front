@@ -83,7 +83,6 @@ const ManageRequestDonations = () => {
               onPageChange={onPageChange}
               totalPages={MaxPage}
               setCurrentLimit={setCurrentLimit}
-              total={Donations?.count || 0}
             />
           </div>
 

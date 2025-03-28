@@ -19,7 +19,7 @@ const MDViewInfo = ({
     reset();
   };
   return (
-    <Modal show={open} onClose={onClose}>
+    <Modal dismissible show={open} onClose={onClose}>
       <Modal.Header className="dark:bg-neutral-900">
         Información de la colaboración
       </Modal.Header>

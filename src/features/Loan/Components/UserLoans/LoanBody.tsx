@@ -34,12 +34,12 @@ const LoanBody = ({
           <div className=" flex items-center justify-center flex-col m-2">
             <h5>Solicitud #{Loan.BookLoanId} </h5>
             {Loan.Status == "Pendiente" && (
-              <Button color={"red"} onClick={() => setShowCancel(true)}>
+              <Button title="Cancelar solicitud" color={"red"} onClick={() => setShowCancel(true)}>
                 Cancelar Solicitud
               </Button>
             )}
             {Loan.Status == "En progreso" && (
-              <Button color={"blue"} onClick={() => setShowChange(true)}>
+              <Button title="Solicitar extencion" color={"blue"} onClick={() => setShowChange(true)}>
                 Solicitar Extencion de préstamo
               </Button>
             )}

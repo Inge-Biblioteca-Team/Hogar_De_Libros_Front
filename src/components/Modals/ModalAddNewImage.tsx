@@ -56,7 +56,7 @@ const ModalAddNewImage = ({
   }, [file, uploadImage, Folder, onSelectImage]);
 
   return (
-    <Modal show={open} onClose={onClose} popup>
+    <Modal dismissible show={open} onClose={onClose} popup>
       <Modal.Header>Cargar Imagen {text} </Modal.Header>
       <Modal.Body className="flex flex-col">
         <FileInput onChange={handleUpload} className="custom-file-input" />

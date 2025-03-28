@@ -49,7 +49,7 @@ const EnrollBody = ({ courseId }: { courseId: number }) => {
         </Table.Head>
         <Table.Body className="dark:text-white h-[45vh]">
           {EnrollList?.data.map((Enroll) => (
-            <EnrollRow Enroll={Enroll} key={Enroll.courseId} />
+            <EnrollRow Enroll={Enroll} key={Enroll.userCedula + "ENRL"} />
           ))}
         </Table.Body>
       </Table>
