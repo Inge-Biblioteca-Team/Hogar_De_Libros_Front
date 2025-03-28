@@ -69,7 +69,7 @@ const ContactForm = () => {
         </fieldset>
         <button
           type="submit"
-          className="bg-Bottoms text-Text text-lg rounded-lg p-1 hover:bg-Bottoms-dark hover:scale-105 max-sm:text-sm"
+          className="bg-Bottoms text-Text text-lg rounded-lg p-1 hover:bg-Bottoms-dark max-sm:text-sm"
         >
           {isLoading ? (
             <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>

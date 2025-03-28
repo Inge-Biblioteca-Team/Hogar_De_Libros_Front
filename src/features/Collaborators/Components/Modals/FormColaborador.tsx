@@ -89,7 +89,7 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
     setSecondForm(false);
   };
 
-  const { mutate: send } = UseSendColaborator();
+  const { mutate: send, isLoading } = UseSendColaborator();
 
   const onConfirm = (data: CreateNewColaborator) => {
     send(data, {
@@ -313,8 +313,8 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
               <Button color={"red"} tabIndex={2}  onClick={onReturn}>
                 Anterior
               </Button>
-              <Button color={"blue"} type="submit">
-                Confirmar
+              <Button color={"blue"} type="submit" disabled={isLoading}>
+                {isLoading ? "Cargando..." : "Enviar"}
               </Button>
             </>
           )}
