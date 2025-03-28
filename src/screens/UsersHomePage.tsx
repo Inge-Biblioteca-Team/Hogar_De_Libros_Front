@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import LandingFooter from "../components/Layout/LandingFooter";
 import ImportanNotices from "../features/Advice/Screens/ImportanNotices";
 import AmiguitosInfo from "../features/Amiguitos/screens/AmiguitosInfo";
@@ -9,8 +10,10 @@ import EventAccessCard from "../features/EventsSection/components/EventAccessCar
 import UpcomingEvents from "../features/EventsSection/screens/UpcomingEvents";
 import CurrentPrograms from "../features/Programs/screens/CurrentsProgramns";
 import RoomAccessCard from "../features/Rooms/Components/Cards/RoomAccessCard";
+import UserContext from "../Context/UserContext/UserContext";
 
 const UsersHomePage = () => {
+  const { currentUser } = useContext(UserContext);
   return (
     <>
       <main className="dark:bg-neutral-900 w-full flex flex-col gap-5 pt-5 items-center justify-center pb-36">
@@ -29,10 +32,22 @@ const UsersHomePage = () => {
           </p>
           <div className="flex justify-center  w-full">
             <div className="grid max-lg:grid-cols-2 grid-cols-4 w-full gap-6 justify-center">
-              <RoomAccessCard />
-              <BookAccessCard />
-              <ComputerAccessCard />
-              <EventAccessCard />
+              <>
+                {currentUser?.role == "external_user" ? (
+                  <>
+                    <BookAccessCard />
+                    <ComputerAccessCard />
+                    <EventAccessCard />
+                  </>
+                ) : (
+                  <>
+                    <RoomAccessCard />
+                    <BookAccessCard />
+                    <ComputerAccessCard />
+                    <EventAccessCard />
+                  </>
+                )}
+              </>
             </div>
           </div>
         </section>
