@@ -105,6 +105,11 @@ const DownEquipment = async (data: downType) => {
   }
 };
 
+const WsCount = async () => {
+  const response = await api.get("work-stations/Count");
+  return response.data
+};
+
 export {
   PostNewComputer,
   GetComputerPaginated,
@@ -112,4 +117,5 @@ export {
   DownEquipment,
   GetByUniqueCode,
   GetComputersByCondition,
+  WsCount,
 };

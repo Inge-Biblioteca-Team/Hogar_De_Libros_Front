@@ -42,7 +42,7 @@ const BookCard = ({ book }: { book: Book }) => {
           </Card>
         }
       >
-        <figure className="md:w-full md:pl-2 md:pr-2">
+        <figure className="md:w-full">
           <img
             src={book.Cover}
             alt={book.Title}

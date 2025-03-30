@@ -23,41 +23,50 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
     <section
       className="
       relative w-11/12
-      h-[17rem] sm:h-[17rem] xl:h-[18rem] 2xl:h-[22rem]
        space-y-4"
       id="Activities"
     >
       <>
-        <h2 className="text-center font-bold text-4xl max-sm:text-xl">
-          Avisos importantes
-        </h2>
         {home && (
           <h4 className="text-center text-md mb-6">
             Mantente informado de nuestros eventos, cursos y demás.
           </h4>
         )}
 
-        {isLoading ? (
+        {isLoading && (
           <>
+            <h2 className="text-center font-bold text-4xl max-sm:text-xl">
+              Avisos importantes
+            </h2>
             <div
               className="bg-white w-full max-lg:w-full rounded-md p-2
-            h-[17rem] sm:h-[17rem] xl:h-[18rem] 2xl:h-[22rem]"
+            h-[17rem] sm:h-[17rem] xl:h-[18rem] 2xl:h-[22rem] flex gap-3"
             >
-              <Skeleton className="h-[70%]" />
-              <Skeleton width={200} height={20} />
-              <Skeleton width={150} height={20} />
-              <Skeleton width={150} height={20} />
+              <div className="w-3/6">
+                <Skeleton height={"10%"} width={"100%"} count={2} />
+                <Skeleton height={"10%"} width={"80%"} count={4} />
+              </div>
+              <div className="w-3/6">
+                <Skeleton height={"99%"} width={"100%"} />
+              </div>
             </div>
           </>
-        ) : (
+        )}
+
+        {!isLoading && Advices && Advices.count > 0 && (
           <>
-            {Advices && Advices.count > 0 && (
-              <Carousel indicators={false} pauseOnHover>
-                {Advices.data.map((advice) => (
-                  <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />
-                ))}
-              </Carousel>
-            )}
+            <h2 className="text-center font-bold text-4xl max-sm:text-xl">
+              Avisos importantes
+            </h2>
+            <Carousel
+              pauseOnHover
+              slideInterval={5000}
+              className="Custom-Carousel"
+            >
+              {Advices.data.map((advice) => (
+                <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />
+              ))}
+            </Carousel>
           </>
         )}
       </>
