@@ -155,7 +155,6 @@ const ManagerComputer = () => {
                   onPageChange={onPageChange}
                   totalPages={MaxPage}
                   setCurrentLimit={setCurrentLimit}
-                  total={computers?.count || 0}
                 />
               </div>
 

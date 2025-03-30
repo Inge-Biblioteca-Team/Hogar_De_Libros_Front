@@ -54,7 +54,6 @@ const PendingRequest = () => {
                   onPageChange={onPageChange}
                   totalPages={MaxPage}
                   setCurrentLimit={setCurrentLimit}
-                  total={Loan?.count || 0}
                 />
               </div>
 

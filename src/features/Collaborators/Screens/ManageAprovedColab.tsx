@@ -90,7 +90,6 @@ const ManageAprovedColab = () => {
                   onPageChange={onPageChange}
                   totalPages={MaxPage}
                   setCurrentLimit={setCurrentLimit}
-                  total={ColaborationsList?.count || 0}
                 />
               </div>
 

@@ -64,7 +64,6 @@ const ReservationList = () => {
                   onPageChange={onPageChange}
                   totalPages={MaxPage}
                   setCurrentLimit={setCurrentLimit}
-                  total={reservations?.count || 0}
                 />
               </div>
               <div className="sm:hidden flex justify-center">

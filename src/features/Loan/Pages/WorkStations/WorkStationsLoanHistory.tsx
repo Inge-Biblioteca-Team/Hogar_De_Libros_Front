@@ -110,7 +110,6 @@ const WorkStationsLoanHistory = () => {
               onPageChange={onPageChange}
               totalPages={MaxPage}
               setCurrentLimit={setCurrentLimit}
-              total={WSLoan?.count || 0}
             />
           </div>
         </div>

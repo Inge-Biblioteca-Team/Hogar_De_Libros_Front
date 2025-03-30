@@ -111,7 +111,6 @@ const ManageLocalArtist = () => {
                   onPageChange={onPageChange}
                   totalPages={MaxPage}
                   setCurrentLimit={setCurrentLimit}
-                  total={Artists?.count || 0}
                 />
               </div>
               <div className="sm:hidden  flex justify-center ">
