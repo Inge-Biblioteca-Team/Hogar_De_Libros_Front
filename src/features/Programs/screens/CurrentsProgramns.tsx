@@ -5,6 +5,7 @@ import { GetProgramsList } from "../services/SvPrograms";
 import { Carousel } from "flowbite-react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { ChevronsLeft, ChevronsRight } from "../../../components/Chrevrons/Chevrons";
 
 const CurrentPrograms = ({ home }: { home?: boolean }) => {
   const { data: Programs, isLoading } = useQuery<ApiProgramsResponse, Error>(
@@ -55,7 +56,8 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
           <Carousel
             slideInterval={5000}
             pauseOnHover
-            className="Custom-Carousel"
+            leftControl={<ChevronsLeft />}
+            rightControl={<ChevronsRight />}
           >
             {Programs.data.map((program) => (
               <CardProgram key={"PR" + program.programsId} program={program} />

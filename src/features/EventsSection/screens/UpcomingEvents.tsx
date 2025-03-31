@@ -5,6 +5,7 @@ import { GetNextEvents } from "../services/SvEvents";
 import { Carousel } from "flowbite-react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { ChevronsLeft, ChevronsRight } from "../../../components/Chrevrons/Chevrons";
 
 const UpcomingEvents = ({ home }: { home?: boolean }) => {
   const { data: events, isLoading } = useQuery<ApiEventsResponse, Error>(
@@ -49,9 +50,10 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
           </h2>
           <Carousel
             pauseOnHover
-            indicators={false}
+            indicators
             slideInterval={5000}
-            className="Custom-Carousel"
+            leftControl={<ChevronsLeft />}
+            rightControl={<ChevronsRight />}
           >
             {events?.data.map((event) => (
               <CardEvent key={"E" + event.id} event={event} />

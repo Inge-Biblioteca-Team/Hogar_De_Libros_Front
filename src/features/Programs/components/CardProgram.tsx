@@ -4,8 +4,8 @@ const CardProgram = ({ program }: { program: Program }) => {
   return (
     <>
       <div
-        className="w-full gap-8
-            bg-white flex rounded-md h-full justify-between text-right"
+        className="w-full
+            bg-white flex rounded-md h-full justify-end text-right"
         style={{ WebkitLineClamp: 12, overflow: "hidden" }}
       >
         <span className="m-3 !bg-transparent ml-9">
@@ -24,7 +24,7 @@ const CardProgram = ({ program }: { program: Program }) => {
         <img
           src={program.image}
           alt={program.programName}
-          className=" w-6/12 "
+          className="w-1/2 max-lg:w-1/2"
         />
       </div>
     </>

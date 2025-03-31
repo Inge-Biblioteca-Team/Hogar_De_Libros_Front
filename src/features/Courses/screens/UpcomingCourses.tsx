@@ -5,6 +5,10 @@ import Skeleton from "react-loading-skeleton";
 import { Button, Carousel } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import CardCourseForCarrousel from "../components/CardCourseForCarrousel";
+import {
+  ChevronsLeft,
+  ChevronsRight,
+} from "../../../components/Chrevrons/Chevrons";
 
 const UpcomingCourses = ({ home }: { home?: boolean }) => {
   const { data: Courses, isLoading } = useQuery<ApiCourseResponse, Error>(
@@ -55,7 +59,12 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
             </h4>
           )}
 
-          <Carousel pauseOnHover indicators={false} slideInterval={5000}>
+          <Carousel
+            pauseOnHover
+            slideInterval={5000}
+            leftControl={<ChevronsLeft />}
+            rightControl={<ChevronsRight />}
+          >
             {Courses.data.map((course) => (
               <CardCourseForCarrousel Courses={course} key={"CO" + course.Id} />
             ))}

@@ -3,7 +3,6 @@ import RoomList from "../features/Rooms/Screens/RoomList";
 import AmiguitosInfo from "../features/Amiguitos/screens/AmiguitosInfo";
 import UpcomingCourses from "../features/Courses/screens/UpcomingCourses";
 import UpcomingEvents from "../features/EventsSection/screens/UpcomingEvents";
-import LocalArtistList from "../features/LocalArtist/screens/LocalArtistList";
 import DirectContac from "../features/Contact/screens/DirectContac";
 import Feedback from "../features/Contact/screens/Feedback";
 import CurrentPrograms from "../features/Programs/screens/CurrentsProgramns";
@@ -36,10 +35,7 @@ const Landing = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
-  const { ref: refArtist, inView: inViewAsrtis } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+ 
   const { ref: refPrograms, inView: inViewPrograms } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -130,16 +126,7 @@ const Landing = () => {
           {inViewPrograms && <CurrentPrograms />}
         </motion.section>
 
-        <motion.section
-          ref={refArtist}
-          className="space-y-4 w-11/12"
-          id="LocalArtist"
-          initial="hidden"
-          animate={inViewAsrtis ? "visible" : "hidden"}
-          variants={fadeInAnimation}
-        >
-          {inViewAsrtis && <LocalArtistList />}
-        </motion.section>
+      
 
         <motion.section
           ref={refFroends}

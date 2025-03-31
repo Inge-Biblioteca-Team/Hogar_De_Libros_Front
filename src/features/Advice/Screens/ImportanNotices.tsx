@@ -67,7 +67,7 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
               indicators
             >
               {Advices.data.map((advice) => (
-                <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />
+                <NoticeCard advice={advice} key={"AD" + advice.id_Advice}  />
               ))}
             </Carousel>
           </>

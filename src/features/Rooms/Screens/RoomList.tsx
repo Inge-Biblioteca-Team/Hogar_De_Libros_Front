@@ -55,7 +55,6 @@ function RoomList() {
             </h2>
             <Carousel
               slideInterval={5000}
-              slide={false}
               leftControl={<ChevronsLeft />}
               rightControl={<ChevronsRight />}
             >
