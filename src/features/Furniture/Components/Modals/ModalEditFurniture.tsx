@@ -47,7 +47,7 @@ const ModalEditFurniture = ({
 
   return (
     <>
-      <Modal show={sEdit} size="md" onClose={onClose}>
+      <Modal dismissible show={sEdit} size="md" onClose={onClose}>
         <Modal.Header className="dark:bg-neutral-900">
           Editar mobiliario {furniture.LicenseNumber}{" "}
         </Modal.Header>

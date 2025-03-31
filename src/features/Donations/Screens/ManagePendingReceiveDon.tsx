@@ -1,5 +1,5 @@
 import { Label, Select, TextInput } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import CustomPagination from "../../../components/CustomPagination";
 import OptDonMainCategories from "../Components/OptDonMainCategories";
@@ -11,7 +11,6 @@ import TableDonations from "../Components/TableDonations";
 import RowsPeningReceive from "../Components/RowsPeningReceive";
 import { Pagination } from "flowbite-react";
 import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
-
 const ManagePendingReceiveDon = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
     const savedPage = sessionStorage.getItem("MPRage");
@@ -34,7 +33,11 @@ const ManagePendingReceiveDon = () => {
     sessionStorage.setItem("MPRPage", page.toString());
   };
 
-  const MaxPage = Math.ceil((Donations?.count ?? 0) / 5);
+  const MaxPage = Math.ceil((Donations?.count ?? 0) / Limit);
+
+  useEffect(() => {
+    onPageChange(1);
+  }, [Limit, category, date]);
 
   return (
     <>
@@ -83,7 +86,6 @@ const ManagePendingReceiveDon = () => {
               onPageChange={onPageChange}
               totalPages={MaxPage}
               setCurrentLimit={setCurrentLimit}
-              total={Donations?.count || 0}
             />
           </div>
 

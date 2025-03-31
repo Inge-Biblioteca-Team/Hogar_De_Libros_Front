@@ -71,7 +71,7 @@ const EditAdvice = ({
   };
 
   return (
-    <Modal show={open} onClose={onClose}>
+    <Modal dismissible show={open} onClose={onClose}>
       <Modal.Header className="dark:bg-[#161616]">Editar información del aviso</Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body className="dark:bg-[#2d2d2d]">

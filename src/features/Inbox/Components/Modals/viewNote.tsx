@@ -16,7 +16,7 @@ const ViewNote = ({
     const noteDate = formatToDMY(note.date); 
 
     return (
-        <Modal show={isOpen} onClose={() => setIsOpen(false)} size="md">
+        <Modal dismissible show={isOpen} onClose={() => setIsOpen(false)} size="md">
             <Modal.Header className="dark:bg-neutral-900">
             <strong>Tipo: {note.type} </strong>
             </Modal.Header>

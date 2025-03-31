@@ -8,6 +8,7 @@ import UserRoutes from "./UserRoutes";
 import RoleBasedRoute from "./RolBaseRouter";
 import HomePage from "../Pages/HomePage";
 import OPACRoutes from "./OPACRoutes";
+import NotFound from "../Pages/NotFound";
 
 const Routes = createBrowserRouter([
   {
@@ -37,8 +38,12 @@ const Routes = createBrowserRouter([
       },
       ...BasicUsersRoutes,
       ...AdminRoutes,
-      ...UserRoutes
+      ...UserRoutes,
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

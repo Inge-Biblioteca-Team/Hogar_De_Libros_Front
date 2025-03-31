@@ -95,7 +95,7 @@ const ReservationForm = ({
   };
 
   return (
-    <Modal show={open} onClose={onClose} popup>
+    <Modal dismissible show={open} onClose={onClose} popup>
       <Modal.Header>Formulario: Solicitud de reservación de sala</Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body className=" grid-rows-2 grid gap-3">

@@ -10,7 +10,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
     () => GetNextCourses(),
     {
       staleTime: 1200,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
 
@@ -29,8 +29,10 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
     <>
       {Courses && Courses.count > 0 && (
         <>
-          <h2  className="font-bold text-4xl text-center 
-          max-sm:text-xl">
+          <h2
+            className="font-bold text-4xl text-center 
+          max-sm:text-xl"
+          >
             Cursos disponibles
           </h2>
           {home && (
@@ -44,13 +46,13 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
             pauseOnHover
             leftControl
             rightControl
-            className="max-sm:w-full h-[30rem] md:w-full md:h-full"
+            className="max-sm:w-full h-[30rem] max-lg:w-full w-full"
             style={{ height: "30rem" }}
           >
             {groupedCourses.map((group, groupIndex) => (
               <div
                 key={groupIndex}
-                className=" flex justify-center md:pr-2 md:pl-2 md:w-full md:h-full max-sm:w-full max-sm:gap-20 gap-x-4"
+                className=" flex justify-center max-lg:pr-2 max-lg:pl-2 md:w-full md:h-full max-sm:w-full max-sm:gap-20 gap-x-4 max-sm:pr-0 max-sm:pl-0"
               >
                 {group.map((course) => (
                   <CardCourses Courses={course} key={"CO" + course.Id} />

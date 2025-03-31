@@ -46,7 +46,7 @@ const EditFriendInfo = ({
   };
 
   return (
-    <Modal onClose={onClose} show={open}>
+    <Modal dismissible onClose={onClose} show={open}>
       <Modal.Header className="dark:bg-neutral-900">Editar información de amigo</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body className="dark:bg-[#2d2d2d] grid grid-cols-2 gap-3">

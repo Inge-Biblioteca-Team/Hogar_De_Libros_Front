@@ -47,7 +47,7 @@ const EditUser = ({
   };
 
   return (
-    <Modal show={edit} onClose={onClose}>
+    <Modal dismissible show={edit} onClose={onClose}>
       <Modal.Header className="dark:bg-neutral-900">
         <span>Editar información del usuario {User.name}</span>
       </Modal.Header>

@@ -35,7 +35,7 @@ const CancelEnrollment = ({
   };
 
   return (
-    <Modal show={open} onClose={() => setopen(false)}>
+    <Modal dismissible show={open} onClose={() => setopen(false)}>
       <Modal.Header>Cancelar Matricula</Modal.Header>
       <Modal.Body>
         <span>

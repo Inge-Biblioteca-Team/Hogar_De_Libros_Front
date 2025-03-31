@@ -60,7 +60,7 @@ const ChangePassword = () => {
   };
   return (
     <div className=" h-screen w-full bg-black">
-      <Modal show onClose={() => navigate("/IniciarSesion", { replace: true })}>
+      <Modal dismissible show onClose={() => navigate("/IniciarSesion", { replace: true })}>
         <Modal.Header>Recuperación de Contraseña</Modal.Header>
         <form
           onSubmit={async (e) => {
@@ -158,7 +158,7 @@ const ChangePassword = () => {
             >
               Cancelar
             </Button>
-            <Button color={"blue"} type="submit">
+            <Button title="Confirmar" color={"blue"} type="submit">
               Confirmar
             </Button>
           </Modal.Footer>

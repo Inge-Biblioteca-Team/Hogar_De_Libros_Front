@@ -35,7 +35,7 @@ const ViewRoom = ({
   };
 
   return (
-    <Modal show={see} onClose={() => setSee(false)} size="md">
+    <Modal dismissible show={see} onClose={() => setSee(false)} size="md">
       <Modal.Header className="dark:bg-neutral-900">
         <span>Sala: {room.roomNumber}</span>
       </Modal.Header>
@@ -50,13 +50,13 @@ const ViewRoom = ({
               />
 
               <div className="flex justify-between w-full mt-2">
-                <Button color="light" onClick={handlePrevious}>
+                <Button title="Anterior" color="light" onClick={handlePrevious}>
                   Anterior
                 </Button>
                 <span>
                   {currentImageIndex + 1} / {images.length}
                 </span>
-                <Button color="light" onClick={handleNext}>
+                <Button title="Siguiente" color="light" onClick={handleNext}>
                   Siguiente
                 </Button>
               </div>
@@ -90,7 +90,7 @@ const ViewRoom = ({
         </div>
       </Modal.Body>
       <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
-        <Button color={"blue"} onClick={() => setSee(false)}>
+        <Button title="Regresar" color={"blue"} onClick={() => setSee(false)}>
           Regresar
         </Button>
       </Modal.Footer>

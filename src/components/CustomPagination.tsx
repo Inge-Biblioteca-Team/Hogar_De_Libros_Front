@@ -6,13 +6,11 @@ const CustomPagination = ({
   onPageChange,
   totalPages,
   setCurrentLimit,
- 
 }: {
   page: number;
   onPageChange: (page: number) => void;
   totalPages: number;
   setCurrentLimit: Dispatch<SetStateAction<number>>;
-  total: number;
 }) => {
   return (
     <div className=" flex items-center justify-between py-2">
@@ -33,21 +31,17 @@ const CustomPagination = ({
           <span>elementos por página. </span>
         </div>
       </div>
-      <Pagination
-        currentPage={page}
-        onPageChange={onPageChange}
-        totalPages={totalPages}
-        nextLabel="Siguiente"
-        previousLabel="Anterior"
-        showIcons
-        layout="pagination"
-        theme={{
-          pages: {
-            next: { base: "p-2 dark:text-white" },
-            previous: { base: "p-2 dark:text-white" }
-          }
-        }}
-      />
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={page}
+          onPageChange={onPageChange}
+          totalPages={totalPages}
+          nextLabel="Siguiente"
+          previousLabel="Anterior"
+          showIcons
+          layout="pagination"
+        />
+      )}
     </div>
   );
 };

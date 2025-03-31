@@ -25,7 +25,7 @@ const ModalInfo = ({
   });
   return (
     <>
-      <Modal show={show} onClose={() => setShow(false)}>
+      <Modal dismissible show={show} onClose={() => setShow(false)}>
         <Modal.Header>
           <span>Información de préstamo de equipo</span>
         </Modal.Header>
@@ -58,7 +58,7 @@ const ModalInfo = ({
         </Modal.Body>
 
         <Modal.Footer className=" flex items-center justify-center">
-          <Button color={"blue"} onClick={() => setShow(false)}>
+          <Button title="Cancelar y regresar" color={"blue"} onClick={() => setShow(false)}>
             Regresar
           </Button>
         </Modal.Footer>

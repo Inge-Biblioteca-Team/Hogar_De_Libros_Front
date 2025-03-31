@@ -3,7 +3,7 @@ import { ModalOpen } from "../../../Types/GlobalTypes";
 
 const OPACAsistencia = ({ open, setOpen }: ModalOpen)=> {
  return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal dismissible show={open} onClose={() => setOpen(false)}>
       <ModalHeader>
         <div>Registro de asistencia</div>
       </ModalHeader>

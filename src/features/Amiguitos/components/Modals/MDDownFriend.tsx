@@ -36,7 +36,7 @@ const MDDownFriend = ({
     });
   };
   return (
-    <Modal show={open} onClose={onClose}>
+    <Modal dismissible show={open} onClose={onClose}>
       <form onSubmit={handleSubmit(handleConfirm)}>
         <Modal.Body className="dark:bg-[#2d2d2d] text-center">
           <div className="text-center mt-7">

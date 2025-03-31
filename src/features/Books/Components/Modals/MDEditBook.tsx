@@ -69,7 +69,7 @@ const MDEditChildrenBook = ({
   );
 
   return (
-    <Modal show={open} onClose={onClose} size={"5xl"}>
+    <Modal dismissible show={open} onClose={onClose} size={"5xl"}>
       <Modal.Header className="dark:bg-neutral-900">Modificar libro en la colección</Modal.Header>
 
       <form onSubmit={handleSubmit(onConfirm)}>

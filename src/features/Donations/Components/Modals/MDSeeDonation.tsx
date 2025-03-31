@@ -17,7 +17,7 @@ const MDSeeDonation = ({
   };
 
   return (
-    <Modal show={open} onClose={onClose}>
+    <Modal dismissible show={open} onClose={onClose}>
       <Modal.Header className="dark:bg-neutral-900">Información de la donación</Modal.Header>
       <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-4">
       <Label>

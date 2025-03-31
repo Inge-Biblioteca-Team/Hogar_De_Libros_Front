@@ -31,7 +31,7 @@ const MDLoanInfo = ({
 
   return (
     <>
-      <Modal show={showCancel} popup onClose={() => setShowCancel(false)} size={"md"}>
+      <Modal dismissible show={showCancel} popup onClose={() => setShowCancel(false)} size={"md"}>
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
@@ -48,10 +48,11 @@ const MDLoanInfo = ({
                 onClick={() => {
                   setShowCancel(false);
                 }}
+                title="Cancelar y regresar"
               >
                 Volver
               </Button>
-              <Button color="blue" onClick={() => handleCancel()}>
+              <Button title="Confirmar" color="blue" onClick={() => handleCancel()}>
                 Confirmar
               </Button>
             </div>
@@ -59,7 +60,7 @@ const MDLoanInfo = ({
         </Modal.Body>
       </Modal>
 
-      <Modal show={showChange} popup onClose={() => setShowChange(false)} size="md">
+      <Modal dismissible show={showChange} popup onClose={() => setShowChange(false)} size="md">
         <Modal.Header>Solicitar Extensión</Modal.Header>
         <Modal.Body>
           <div className="text-center">

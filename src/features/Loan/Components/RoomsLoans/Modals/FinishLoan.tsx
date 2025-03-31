@@ -56,7 +56,7 @@ const FinishLoan = ({
   };
 
   return (
-    <Modal show={open} onClose={() => setOpen(false)}>
+    <Modal dismissible show={open} onClose={() => setOpen(false)}>
       <Modal.Header className="dark:bg-neutral-900">
         <h3>Finalización de Prestamo</h3>
       </Modal.Header>

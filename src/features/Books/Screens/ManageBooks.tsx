@@ -116,7 +116,6 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
                   onPageChange={onPageChange}
                   totalPages={MaxPage}
                   setCurrentLimit={setLimit}
-                  total={Catalog.count}
                 />
               </div>
 
