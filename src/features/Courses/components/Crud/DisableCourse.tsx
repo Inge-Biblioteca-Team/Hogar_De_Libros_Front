@@ -24,7 +24,7 @@ const DisableCourse = ({
   };
 
   return (
-    <Modal dismissible show={dow} onClose={() => setDow(false)} size={"lg"}>
+    <Modal  show={dow} onClose={() => setDow(false)} size={"lg"}>
       <Modal.Body className="dark:bg-[#2d2d2d]">
         <div className="text-center mt-4">
           <HiOutlineExclamationCircle className="mx-auto h-14 w-14 text-gray-400 dark:text-gray-200" />

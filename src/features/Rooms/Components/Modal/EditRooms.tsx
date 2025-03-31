@@ -1,10 +1,14 @@
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { Button, Carousel, Label, Modal, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import { Room} from "../../Types/Room_Interface";
+import { Room } from "../../Types/Room_Interface";
 import UseUpdateRoom from "../../Hooks/UseUpdateRooms";
 import ModalFooters from "../../../../components/ModalFooters";
 import ModalAddNewImage from "../../../../components/Modals/ModalAddNewImage";
+import {
+  ChevronsLeft,
+  ChevronsRight,
+} from "../../../../components/Chrevrons/Chevrons";
 
 const EditRoom = ({
   open,
@@ -70,7 +74,7 @@ const EditRoom = ({
 
   return (
     <>
-      <Modal dismissible show={open} onClose={handleModalClose} size={"5xl"}>
+      <Modal show={open} onClose={handleModalClose} size={"5xl"}>
         <Modal.Header className="dark:bg-neutral-900">Editar Sala</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="dark:bg-[#2d2d2d] bg-white">
@@ -79,17 +83,19 @@ const EditRoom = ({
                 <legend className="font-bold pb-2">Imágenes de la Sala</legend>
                 <Carousel
                   slide={false}
-                  className="Custom-Carousel"
                   indicators={false}
                   style={{ height: "15rem" }}
+                  leftControl={<ChevronsLeft />}
+                  rightControl={<ChevronsRight />}
                 >
                   {imageUrls
                     .filter((url) => url !== null)
                     .map((url, index) => (
                       <figure key={index} className="relative">
                         <Button
-                          className="absolute bottom-2 left-2 z-50 !rounded-md !bg-transparent hover:!bg-red-600 px-4 py-2"
+                          className="absolute bottom-2 left-[35%] z-50 px-4 py-2"
                           color="red"
+                          size={"xs"}
                           onClick={() => removeImage(index)}
                         >
                           Eliminar
@@ -184,7 +190,7 @@ const EditRoom = ({
               </div>
             </div>
           </Modal.Body>
-          <ModalFooters onClose={handleModalClose} isLoading={isLoading}/>
+          <ModalFooters onClose={handleModalClose} isLoading={isLoading} />
         </form>
       </Modal>
       <ModalAddNewImage

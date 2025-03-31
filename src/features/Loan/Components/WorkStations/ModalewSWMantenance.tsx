@@ -49,7 +49,7 @@ const ModalMantenance = ({
 
   return (
     <Modal
-      dismissible
+      
       show={open}
       onClose={() => setOpen(false)}
       className="text-center"

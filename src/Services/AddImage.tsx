@@ -37,7 +37,7 @@ const AddImage = ({
     }
   };
   return (
-    <Modal dismissible show={showModal} onClose={onCloseModal} popup>
+    <Modal  show={showModal} onClose={onCloseModal} popup>
       <Modal.Header>Subir Imagen Local</Modal.Header>
       <Modal.Body className="flex flex-col">
         <p className="mb-2 font-semibold">Cargar una imagen local:</p>

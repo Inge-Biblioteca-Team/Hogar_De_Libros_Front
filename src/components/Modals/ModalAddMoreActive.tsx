@@ -27,7 +27,7 @@ const ModalAddMoreActive = ({
     }
   };
   return (
-    <Modal dismissible show={open} >
+    <Modal  show={open} >
         <Modal.Body className="mx-auto">
           <div className="text-center">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />

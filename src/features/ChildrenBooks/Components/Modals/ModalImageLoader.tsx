@@ -88,7 +88,7 @@ const ModalImageLoader = ({
   );
 
   return (
-    <Modal dismissible show={open} onClose={onClose}>
+    <Modal  show={open} onClose={onClose}>
       <Modal.Header>
         Seleccionar carátula del libro
         <div className=" flex gap-3 items-center">
