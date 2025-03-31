@@ -30,11 +30,11 @@ const CardCourseForCarrousel = ({ Courses }: { Courses: NextCourses }) => {
       >
         <img src={Courses.image} alt={Courses.courseType} className="w-6/12" />
         <span className="m-3 !bg-transparent">
-          <h3 className="text-2xl font-bold max-sm:text-sm">
+          <h3 className="text-2xl font-bold max-md:text-base">
             {Courses.courseName}
           </h3>
-          <div className=" text-lg">
-            <p className=" max-sm:hidden">
+          <div className=" text-lg max-md:text-sm">
+            <p className="">
               Impartido por: {Courses.instructor}
               <br />
               Comienzo: {fullDate.toUpperCase()}
@@ -51,7 +51,6 @@ const CardCourseForCarrousel = ({ Courses }: { Courses: NextCourses }) => {
               )}
             </p>
             <Button
-              className="max-lg:hidden"
               color={"blue"}
               onClick={() => setopen(true)}
             >

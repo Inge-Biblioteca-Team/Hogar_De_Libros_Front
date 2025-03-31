@@ -6,6 +6,7 @@ import { Carousel } from "flowbite-react";
 import { formatToYMD } from "../../../components/FormatTempo";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { ChevronsLeft, ChevronsRight } from "../../../components/Chrevrons/Chevrons";
 
 const ImportanNotices = ({ home }: { home?: boolean }) => {
   const date = new Date();
@@ -61,10 +62,12 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
             <Carousel
               pauseOnHover
               slideInterval={5000}
-              className="Custom-Carousel"
+              leftControl={<ChevronsLeft/>}
+              rightControl={<ChevronsRight/>}
+              indicators
             >
               {Advices.data.map((advice) => (
-                <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />
+                <NoticeCard advice={advice} key={"AD" + advice.id_Advice}  />
               ))}
             </Carousel>
           </>

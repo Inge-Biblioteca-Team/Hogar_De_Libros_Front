@@ -6,6 +6,10 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useNavigate } from "react-router-dom";
 import BookCardForCarousel from "../Components/Views/BookCardForCarousel";
+import {
+  ChevronsLeft,
+  ChevronsRight,
+} from "../../../components/Chrevrons/Chevrons";
 
 const LatestAddBooks = () => {
   const { data: catalog, isLoading } = useQuery<Catalog, Error>(
@@ -51,11 +55,13 @@ const LatestAddBooks = () => {
           >
             Últimos libros añadidos a la colección
           </h2>
-          <Carousel className="Custom-Carousel" slideInterval={5000}>
+          <Carousel
+            slideInterval={5000}
+            leftControl={<ChevronsLeft />}
+            rightControl={<ChevronsRight />}
+          >
             {catalog.data.map((Book) => (
-              <>
-                <BookCardForCarousel key={"BO" + Book.BookCode} Book={Book} />
-              </>
+              <BookCardForCarousel key={"BO" + Book.BookCode} Book={Book} />
             ))}
           </Carousel>
           <Button size={"xl"} color={"blue"} onClick={goTo}>
