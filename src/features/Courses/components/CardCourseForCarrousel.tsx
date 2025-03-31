@@ -30,7 +30,7 @@ const CardCourseForCarrousel = ({ Courses }: { Courses: NextCourses }) => {
       >
         <img src={Courses.image} alt={Courses.courseType} className="w-6/12" />
         <span className="m-3 !bg-transparent">
-          <h3 className="text-2xl font-bold max-md:text-lg">
+          <h3 className="text-2xl font-bold max-md:text-base">
             {Courses.courseName}
           </h3>
           <div className=" text-lg max-md:text-sm">
