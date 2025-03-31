@@ -42,6 +42,7 @@ const AddImage = ({
       <Modal.Body className="flex flex-col">
         <p className="mb-2 font-semibold">Cargar una imagen local:</p>
         <FileInput onChange={handleLocalImageUpload}
+                accept=".jpg,.png,.pdf"
         className="custom-file-input" />
         {localImage && (
           <div className="mt-4">

@@ -101,6 +101,7 @@ const ModalImageLoader = ({
         {localStorage ? (
           <>
             <FileInput
+              accept=".jpg,.png,.svg,.webp"
               onChange={handleImageUpload}
               className="custom-file-input"
             />

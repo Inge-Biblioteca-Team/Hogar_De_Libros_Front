@@ -56,10 +56,14 @@ const ModalAddNewImage = ({
   }, [file, uploadImage, Folder, onSelectImage]);
 
   return (
-    <Modal  show={open} onClose={onClose} popup>
+    <Modal show={open} onClose={onClose} popup>
       <Modal.Header>Cargar Imagen {text} </Modal.Header>
       <Modal.Body className="flex flex-col">
-        <FileInput onChange={handleUpload} className="custom-file-input" />
+        <FileInput
+          onChange={handleUpload}
+          className="custom-file-input"
+          accept=".jpg,.gif,.png,.webp,.svg"
+        />
         {localImage && (
           <div className="mt-4">
             <p className="mb-2 font-semibold">Previsualización:</p>
