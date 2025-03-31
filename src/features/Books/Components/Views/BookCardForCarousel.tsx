@@ -5,11 +5,11 @@ const BookCardForCarousel = ({ Book }: { Book: Book }) => {
     <div className=" w-full gap-8 justify-between bg-white flex rounded-md h-full space-x-2">
       <img src={Book.Cover} alt="" className="rounded-md w-2/4" />
       <span className="!bg-white w-3/4 m-3">
-        <h3 className="text-2xl font-bold max-sm:text-sm mr-16">
-          {Book.Title} escrito por
+        <h3 className="text-2xl font-bold max-md:text-lg mr-16 max-md:line-clamp-4">
+          {Book.Title} {Book.Author && "escrito por"}
         </h3>
         <div className=" text-lg max-md:text-sm mr-16 ">
-          <strong>{Book.Author}</strong>
+          <strong className="max-md:line-clamp-3 ">{Book.Author}</strong>
           <p className="text-gray-600">
             <span className="!bg-white">Editorial: {Book.Editorial}</span>
             <br />

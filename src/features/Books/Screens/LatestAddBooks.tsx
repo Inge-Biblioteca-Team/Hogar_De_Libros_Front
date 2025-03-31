@@ -53,9 +53,7 @@ const LatestAddBooks = () => {
           </h2>
           <Carousel className="Custom-Carousel" slideInterval={5000}>
             {catalog.data.map((Book) => (
-              <>
-                <BookCardForCarousel key={"BO" + Book.BookCode} Book={Book} />
-              </>
+              <BookCardForCarousel key={"BO" + Book.BookCode} Book={Book} />
             ))}
           </Carousel>
           <Button size={"xl"} color={"blue"} onClick={goTo}>

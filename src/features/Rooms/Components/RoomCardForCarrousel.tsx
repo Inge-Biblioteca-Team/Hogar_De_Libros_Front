@@ -4,7 +4,7 @@ const RoomCardForCarrousel = ({ Rooms }: { Rooms: Room }) => {
   return (
     <div className=" w-full gap-8 justify-between bg-white flex rounded-md h-full space-x-2">
       <span className="!bg-white w-3/4 m-3">
-        <h3 className="text-2xl font-bold max-sm:text-sm ml-10">
+        <h3 className="text-2xl font-bold max-md:text-lg ml-10">
           {Rooms.name}
         </h3>
         <div className=" text-lg max-md:text-sm ml-16 ">
