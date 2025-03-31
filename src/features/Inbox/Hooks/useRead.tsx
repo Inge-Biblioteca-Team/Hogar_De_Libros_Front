@@ -9,7 +9,7 @@ const useRead = () => {
   return useMutation(
     async (id_Note: number) =>
       toast.promise(markAsRead(id_Note), {
-        loading: "Eliminando...",
+        loading: "Marcando como leído...",
         success: <span>Notificación marcada como leída. </span>,
         error: (error: ApiError) => (
           <span>Error al marcar como leída: {error.message}</span>
@@ -22,7 +22,7 @@ const useRead = () => {
         queryClient.invalidateQueries("TrashNotifications");
       },
       onError: (error) => {
-        console.error("Error al eliminar las notificaciones:", error);
+        console.error("Error al marcar como leída la notificación:", error);
       },
     }
   );

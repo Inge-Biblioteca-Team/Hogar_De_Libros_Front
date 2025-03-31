@@ -23,13 +23,13 @@ const RequestLoan = () => {
   return (
     <>
       <div className="">
-        <h5 className=" font-bold">Solicitudes Pendientes de Aprobación</h5>
-        <Table hoverable className="dark:bg-neutral-900 text-center dark:text-white  bg-white">
-          <Table.Head className="dark:bg-neutral-900 dark:text-white">
-            <Table.HeadCell className="dark:bg-neutral-900 w-10 max-sm:hidden">#De Solicitud</Table.HeadCell>
-            <Table.HeadCell className="dark:bg-neutral-900 w-40">Título</Table.HeadCell>
-            <Table.HeadCell className="dark:bg-neutral-900 w-9">Fecha de solicitud</Table.HeadCell>
-            <Table.HeadCell className="dark:bg-neutral-900 w-80">Fecha de vencimiento</Table.HeadCell>
+        <h5 className=" font-bold">Solicitudes pendientes de aprobación</h5>
+        <Table hoverable className="text-center  bg-white">
+          <Table.Head>
+            <Table.HeadCell className="w-10 max-sm:hidden">#de solicitud</Table.HeadCell>
+            <Table.HeadCell className="w-40">Título</Table.HeadCell>
+            <Table.HeadCell className="w-9">Fecha de solicitud</Table.HeadCell>
+            <Table.HeadCell className="w-80">Fecha de vencimiento</Table.HeadCell>
           </Table.Head>
           <Table.Body className="dark:bg-[#2d2d2d] h-64 dark:text-white">
             {Loan?.count === 0 ? (
