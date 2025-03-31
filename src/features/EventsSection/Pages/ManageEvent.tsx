@@ -102,7 +102,6 @@ const ManageEvents = () => {
                   onPageChange={onPageChange}
                   totalPages={MaxPage}
                   setCurrentLimit={setCurrentLimit}
-                  total={Events?.count || 0}
                 />
               </div>
 

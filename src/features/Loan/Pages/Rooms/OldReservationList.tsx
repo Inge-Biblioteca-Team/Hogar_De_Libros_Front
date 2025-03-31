@@ -92,7 +92,6 @@ const OldReservationList = () => {
                 onPageChange={onPageChange}
                 totalPages={MaxPage}
                 setCurrentLimit={setCurrentLimit}
-                total={reservations?.count || 0}
               />
             </>
           ) : (
