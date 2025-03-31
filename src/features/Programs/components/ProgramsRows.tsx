@@ -28,7 +28,7 @@ const ProgramsRows = ({ program }: { program: Program }) => {
         <Table.Cell>{program.status ? "Activo" : "Inactivo"} </Table.Cell>
         <Table.Cell>
           {" "}
-          <BTNProgramsAct program={program} />{" "}
+          <BTNProgramsAct status={program.status} program={program} />{" "}
         </Table.Cell>
       </Table.Row>
       {program && (

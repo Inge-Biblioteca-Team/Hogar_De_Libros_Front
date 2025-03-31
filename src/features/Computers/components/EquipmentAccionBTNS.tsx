@@ -5,7 +5,13 @@ import { Equipment } from "../types/Computer";
 import EditComponent from "./Modals/EditComponent";
 import SeeComponent from "./Modals/SeeComponent";
 
-const EquipmentAccionBTNS = ({ computers }: { computers: Equipment }) => {
+const EquipmentAccionBTNS = ({
+  computers,
+  status,
+}: {
+  computers: Equipment;
+  status: boolean;
+}) => {
   const [openModal, setOpenModal] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openSee, setOpenSee] = useState(false);
@@ -19,25 +25,33 @@ const EquipmentAccionBTNS = ({ computers }: { computers: Equipment }) => {
       >
         <PiEyeLight size={24} />
       </button>
-      <button
-        title="Editar información"
-        type="button"
-        className={`${computers.Status ? "" : "cursor-not-allowed"}hover:text-yellow-500`}
-        onClick={() => setOpenEdit(true)}
-        disabled={!computers.Status}
-      >
-        <PiPencilDuotone size={24} />
-      </button>
+      { status &&
+        <>
+          <button
+            title="Editar información"
+            type="button"
+            className={`${
+              computers.Status ? "" : "cursor-not-allowed"
+            }hover:text-yellow-500`}
+            onClick={() => setOpenEdit(true)}
+            disabled={!computers.Status}
+          >
+            <PiPencilDuotone size={24} />
+          </button>
 
-      <button
-        title="Deshabilitar Activo"
-        type="button"
-        className={`${computers.Status ? "" : "cursor-not-allowed"}hover:text-red-800`}
-        onClick={() => setOpenModal(true)}
-        disabled={!computers.Status}
-      >
-        <PiTrash size={24} />
-      </button>
+          <button
+            title="Deshabilitar Activo"
+            type="button"
+            className={`${
+              computers.Status ? "" : "cursor-not-allowed"
+            }hover:text-red-800`}
+            onClick={() => setOpenModal(true)}
+            disabled={!computers.Status}
+          >
+            <PiTrash size={24} />
+          </button>
+        </>
+      }
       <>
         <ModalDownEquip
           open={openModal}

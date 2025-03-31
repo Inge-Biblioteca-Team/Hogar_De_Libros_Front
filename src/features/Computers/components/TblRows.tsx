@@ -14,7 +14,7 @@ const TblRows = ({ computers }: { computers: Equipment }) => {
           {computers.Status ? "Activo" : "Baja"}
         </Table.Cell>
         <Table.Cell className=" max-sm:w-full">
-          <EquipmentAccionBTNS computers={computers} />
+          <EquipmentAccionBTNS status={computers.Status} computers={computers} />
         </Table.Cell>
       </Table.Row>
     </>
