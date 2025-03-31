@@ -5,7 +5,7 @@ const CardProgram = ({ program }: { program: Program }) => {
     <>
       <div
         className="w-full gap-8
-            bg-white flex rounded-md h-full justify-between"
+            bg-white flex rounded-md h-full justify-between text-right"
         style={{ WebkitLineClamp: 12, overflow: "hidden" }}
       >
         <span className="m-3 !bg-transparent ml-9">
@@ -14,7 +14,7 @@ const CardProgram = ({ program }: { program: Program }) => {
           </h3>
           <div className=" text-lg ml-7">
             <p
-              className="text-gray-600 max-sm:text-sm w-10/12 line-clamp-1"
+              className="text-gray-600 max-sm:text-sm line-clamp-1"
               style={{ WebkitLineClamp: 12, overflow: "hidden" }}
             >
               Busca {program.description.toLocaleLowerCase()}
