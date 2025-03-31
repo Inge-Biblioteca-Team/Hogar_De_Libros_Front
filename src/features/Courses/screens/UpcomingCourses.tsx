@@ -34,7 +34,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
             Cursos disponibles
           </h2>
           {home && (
-            <h4 className=" text-center text-md mb-2">
+            <h4 className=" text-center text-md mb-2 max-lg:pl-10 max-lg:pr-10">
               Ven a pasar un tiempo especial junto a nosotros. Al mismo tiempo
               que aprendas cosas nuevas.
             </h4>

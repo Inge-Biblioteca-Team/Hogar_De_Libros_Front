@@ -55,7 +55,7 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
           Nuestros programas
         </h2>
         {home && (
-          <h3 className=" text-center text-md">
+          <h3 className=" text-center text-md max-sm: max-lg:pl-10 max-lg:pr-10">
             La biblioteca cuenta con diversos programas, los cuales tienen
             actividades para todas las edades. Aquí te mostramos cuales son.
           </h3>

@@ -22,17 +22,17 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
   return (
     <section
       className="
-      relative w-11/12
+      relative w-full
       h-[17rem] sm:h-[17rem] xl:h-[18rem] 2xl:h-[22rem]
        space-y-4"
       id="Activities"
     >
       <>
-        <h2 className="text-center font-bold text-4xl max-sm:text-xl">
+        <h2 className="text-center font-bold text-4xl max-sm:text-xl max-lg:pl-10 max-lg:pr-10">
           Avisos importantes
         </h2>
         {home && (
-          <h4 className="text-center text-md mb-6">
+          <h4 className="text-center text-md mb-6 ">
             Mantente informado de nuestros eventos, cursos y demás.
           </h4>
         )}
