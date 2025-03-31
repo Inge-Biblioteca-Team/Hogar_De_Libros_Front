@@ -9,7 +9,7 @@ const UseMarkMultipleAsRead = () => {
     return useMutation(
       async (id_Note: number[]) =>
         toast.promise(moveMultipleToRead(id_Note), {
-          loading: "Moviendo...",
+          loading: "Marcando como leído...",
           success: <span>Notificaciones marcadas como leídas. </span>,
           error: (error: ApiError) => (
             <span>Error al marcar como leídas: {error.message}</span>
@@ -22,7 +22,7 @@ const UseMarkMultipleAsRead = () => {
           queryClient.invalidateQueries("TrashNotifications");
         },
         onError: (error) => {
-          console.error("Error al eliminar las notificaciones:", error);
+          console.error("Error al marcar como leídas las notificaciones:", error);
         },
       }
     );

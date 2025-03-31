@@ -29,7 +29,7 @@ const UserInfo = ({
           </figcaption>
         </figure>
         <span className=" flex-col flex items-center justify-center w-full gap-2">
-          <strong className=" font-bold mt-4">Información Del Usuario </strong>
+          <strong className=" font-bold mt-4">Información del usuario </strong>
           <span>
             <strong className=" font-bold">Cédula:</strong> {User.cedula}
           </span>

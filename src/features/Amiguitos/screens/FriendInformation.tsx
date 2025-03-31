@@ -27,7 +27,7 @@ const FriendInformation = () => {
               <div>
                 <p>
                   Puedes realizar una actividad de colaboración con la biblioteca
-                  en una de las siguientes areas:
+                  en una de las siguientes áreas:
                 </p>
                 <ul className="list-disc">
                   <li className=" ml-5">
@@ -52,7 +52,7 @@ const FriendInformation = () => {
                   <li className=" ml-5">Derechos y deberes de los jóvenes</li>
                   <li className=" ml-5">Igualdad y equidad de género</li>
                   <li className=" ml-5">Historia y rescate indígena</li>
-                  <li className=" ml-5">Entre otras</li>
+                  <li className=" ml-5">Entre otras áreas</li>
                 </ul>
               </div>
               <figure className="">
@@ -93,21 +93,21 @@ const FriendInformation = () => {
             <div className=" flex justify-around max-sm:flex-col-reverse max-sm:gap-3 flex-row-reverse">
               <div className=" flex flex-col gap-3">
                 <p>
-                  Estamos abiertos a recibir donativos, aquí te dejamos algunas
-                  cosas de las que recibimos:
+                  Estamos abiertos a recibir donaciones. Aquí te mencionamos algunos
+                  articulos que recibimos:
                 </p>
                 <div>
                   <h3>Libros</h3>
                   <ul className="list-disc">
                     <li className=" ml-5">Historia</li>
                     <li className=" ml-5">Literatura</li>
-                    <li className=" ml-5">Educativos:Máximo 5 años de antiguedad.</li>
+                    <li className=" ml-5">Educativos:Máximo 5 años de antigüedad.</li>
                   </ul>
                 </div>
                 <div>
                   <h3>Mobiliario y accesorios</h3>
                   <ul className="list-disc">
-                    <li className=" ml-5">Mobiliarios</li>
+                    <li className=" ml-5">Mobiliario</li>
                     <li className=" ml-5">Estanterías</li>
                     <li className=" ml-5">Expositores de libros</li>
                     <li className=" ml-5">Lockers</li>
@@ -159,8 +159,8 @@ const FriendInformation = () => {
                 <p>
                   Contamos con amigos que nos ayudan en las labores{" "}
                   <br />
-                  cotidianas de la biblioteca. Si quieres apoyarnos, también
-                  puedes unirte. Aquí algunas de las áreas de nuestros amigos:
+                  cotidianas de la biblioteca. Si deseas apoyarnos, también
+                  puedes unirte. Estas son algunas áreas de nuestros amigos:
                 </p>
                 <ul className="list-disc">
                   <li className=" ml-5">Atención al usuario</li>
@@ -174,11 +174,11 @@ const FriendInformation = () => {
                   <li className=" ml-5">Acompañamiento de puertas abiertas</li>
                   <li className=" ml-5">
                     Actualización del contenido de la página web de la
-                    Biblioteca
+                    biblioteca
                   </li>
                   <li className=" ml-5">Lectura y Escritura</li>
                   <li className=" ml-5">Emprendedurismo</li>
-                  <li className=" ml-5">Hora del Cuento para Niños</li>
+                  <li className=" ml-5">Hora del cuento para niños</li>
                   <li className=" ml-5">Manualidades</li>
                 </ul>
               </div>
