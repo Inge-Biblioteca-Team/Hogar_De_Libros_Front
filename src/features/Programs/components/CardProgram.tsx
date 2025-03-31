@@ -24,7 +24,7 @@ const CardProgram = ({ program }: { program: Program }) => {
         <img
           src={program.image}
           alt={program.programName}
-          className=" w-6/12"
+          className=" w-6/12 "
         />
       </div>
     </>

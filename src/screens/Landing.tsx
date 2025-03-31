@@ -66,7 +66,7 @@ const Landing = () => {
         <ImportanNotices />
         <motion.section
           ref={refBooks}
-          className="w-11/12  mt-10"
+          className="w-11/12 mt-10"
           id="MostPopularBooks"
           initial="hidden"
           animate={inViewBooks ? "visible" : "hidden"}
