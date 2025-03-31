@@ -5,7 +5,10 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Carousel } from "flowbite-react";
 import RoomCardForCarrousel from "../Components/RoomCardForCarrousel";
-
+import {
+  ChevronsLeft,
+  ChevronsRight,
+} from "../../../components/Chrevrons/Chevrons";
 function RoomList() {
   const { data: Rooms, isLoading } = useQuery<RoomApiResponse, Error>(
     ["Rooms"],
@@ -51,9 +54,10 @@ function RoomList() {
               Nuestras Salas
             </h2>
             <Carousel
-              className="Custom-Carousel"
               slideInterval={5000}
               slide={false}
+              leftControl={<ChevronsLeft />}
+              rightControl={<ChevronsRight />}
             >
               {Rooms.data.map((room: Room) => (
                 <RoomCardForCarrousel Rooms={room} key={"RO" + room.roomId} />
