@@ -16,37 +16,29 @@ const UsersHomePage = () => {
   const { currentUser } = useContext(UserContext);
   return (
     <>
-      <main className="dark:bg-neutral-900 w-full flex flex-col gap-5 pt-5 items-center justify-center pb-36">
-        <section className="space-y-4 mt-6 w-11/12 ">
+      <main
+        className="dark:bg-neutral-900 
+      flex items-center gap-16 
+      justify-center flex-col mb-10 max-sm:gap-10 pt-5"
+      >
+        <section className="w-11/12">
           <LatestAddBooks />
         </section>
-
-        <section className="space-y-4 mt-6 w-11/12  ">
+        <section className="w-11/12">
           <UpcomingCourses home />
         </section>
-
-        <section className="space-y-4 mt-6 max-sm:w-full max-sm:pl-4 max-sm:pr-4 w-11/12 pl-2 pr-2">
+        <section className="w-11/12">
           <UpcomingEvents home />
         </section>
-
-        <section className="space-y-4  mt-6 w-11/12">
+        <section className="w-11/12">
           <CurrentPrograms home />
         </section>
-
-        <section
-          className="space-y-4  max-sm:w-[102%] max-sm:pl-1 mt-6 w-[92.6%]
-        max-lg:w-[93.5%]"
-        >
+        <section className="w-11/12 space-y-4">
           <AmiguitosInfo home />
         </section>
-
-        <section
-          className="space-y-4 mt-6 flex max-sm:w-full justify-center
-        max-lg:w-full"
-        >
+        <section className="w-11/12">
           <ImportanNotices home />
         </section>
-
         <section className=" max-2xl:w-11/12  text-center w-full pt-20 max-sm:hidden">
           <h2 className="text-4xl font-bold mb-8">
             Servicios de la Biblioteca

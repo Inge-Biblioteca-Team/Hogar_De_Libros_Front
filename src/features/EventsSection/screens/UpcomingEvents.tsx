@@ -5,7 +5,10 @@ import { GetNextEvents } from "../services/SvEvents";
 import { Carousel } from "flowbite-react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { ChevronsLeft, ChevronsRight } from "../../../components/Chrevrons/Chevrons";
+import {
+  ChevronsLeft,
+  ChevronsRight,
+} from "../../../components/Chrevrons/Chevrons";
 
 const UpcomingEvents = ({ home }: { home?: boolean }) => {
   const { data: events, isLoading } = useQuery<ApiEventsResponse, Error>(
@@ -19,12 +22,6 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
 
   return (
     <>
-      {home && (
-        <h4 className=" just max-lg:pl-10 max-lg:pr-10 text-center">
-          Asi como cursos también tenemos diversos eventos, vean a acompañarnos,
-          estos son nuestros próximos eventos.
-        </h4>
-      )}
       {isLoading && (
         <>
           <h2
@@ -48,6 +45,12 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
           >
             Próximos eventos
           </h2>
+          {home && (
+            <h4 className=" just max-lg:pl-10 max-lg:pr-10 text-center">
+              Asi como cursos también tenemos diversos eventos, vean a
+              acompañarnos, estos son nuestros próximos eventos.
+            </h4>
+          )}
           <Carousel
             pauseOnHover
             indicators
