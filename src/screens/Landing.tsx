@@ -8,7 +8,6 @@ import DirectContac from "../features/Contact/screens/DirectContac";
 import Feedback from "../features/Contact/screens/Feedback";
 import CurrentPrograms from "../features/Programs/screens/CurrentsProgramns";
 import ImportanNotices from "../features/Advice/Screens/ImportanNotices";
-import LandingFooter from "../components/Layout/LandingFooter";
 import LandingHome from "../components/LandingHome";
 import { useInView } from "react-intersection-observer";
 import LatestAddBooks from "../features/Books/Screens/LatestAddBooks";
@@ -77,7 +76,7 @@ const Landing = () => {
 
         <motion.section
           ref={refRoom}
-          className="space-y-4 mt-6 w-11/12"
+          className="space-y-4 mt-6 w-11/12 "
           id="Rooms"
           initial="hidden"
           animate={inViewRooms ? "visible" : "hidden"}
@@ -172,7 +171,6 @@ const Landing = () => {
           {inViewFeedback && <Feedback />}
         </motion.section>
       </main>
-      <LandingFooter />
     </>
   );
 };

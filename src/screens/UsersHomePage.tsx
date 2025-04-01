@@ -15,11 +15,11 @@ const UsersHomePage = () => {
     <>
       <main className="dark:bg-neutral-900 w-full flex flex-col gap-5 pt-5 items-center justify-center pb-36">
         <LatestAddBooks />
-        <UpcomingCourses home />
-        <UpcomingEvents home />
-        <CurrentPrograms home />
-        <AmiguitosInfo home />
-        <ImportanNotices home />
+        <UpcomingCourses/>
+        <UpcomingEvents/>
+        <CurrentPrograms/>
+        <AmiguitosInfo/>
+        <ImportanNotices/>
         <section className=" max-2xl:w-11/12  text-center w-full pt-20 max-sm:hidden">
           <h2 className="text-4xl font-bold mb-8">
             Servicios de la Biblioteca
