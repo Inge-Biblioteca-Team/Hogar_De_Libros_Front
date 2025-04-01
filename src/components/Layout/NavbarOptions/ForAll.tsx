@@ -2,18 +2,17 @@ import { Sidebar } from "flowbite-react";
 import { useContext } from "react";
 import UserContext from "../../../Context/UserContext/UserContext";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
-import toast from "react-hot-toast";
+import UseLogOut from "../../../features/Users/Hooks/UseLogOut";
 const ForAll = () => {
   const { currentUser } = useContext(UserContext);
   const { handleNavigation } = useContext(SidebarContext);
 
   const role = currentUser?.role;
 
-  const closeSession = () => {
-    localStorage.removeItem("isLogged");
-    localStorage.removeItem("currentUser");
-    handleNavigation("/");
-    toast.success("Éxito al cerrar sesión")
+  const { mutate: logOut } = UseLogOut();
+
+  const onLogOut = () => {
+    logOut();
   };
 
   return (
@@ -84,7 +83,7 @@ const ForAll = () => {
           Disponibilidad <br />
           de equipo de cómputo
         </Sidebar.Item>
-        {(role === "admin" || role === "creator") && (
+        {(role === "admin" || role === "creator" || role == "institucional") && (
           <Sidebar.Item
             className=""
             onClick={() => handleNavigation("/HogarDeLibros/Reserva_Salas")}
@@ -93,7 +92,7 @@ const ForAll = () => {
           </Sidebar.Item>
         )}
         <Sidebar.Item className="cursor-pointer bg-red-500 text-white text-center hidden max-sm:block"
-         onClick={()=>closeSession()} >
+         onClick={onLogOut} >
           Cerrar sesión
         </Sidebar.Item>
       </Sidebar.ItemGroup>

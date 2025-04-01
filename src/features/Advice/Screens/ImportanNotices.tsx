@@ -6,7 +6,10 @@ import { Carousel } from "flowbite-react";
 import { formatToYMD } from "../../../components/FormatTempo";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { ChevronsLeft, ChevronsRight } from "../../../components/Chrevrons/Chevrons";
+import {
+  ChevronsLeft,
+  ChevronsRight,
+} from "../../../components/Chrevrons/Chevrons";
 
 const ImportanNotices = ({ home }: { home?: boolean }) => {
   const date = new Date();
@@ -28,12 +31,6 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
       id="Activities"
     >
       <>
-        {home && (
-          <h4 className="text-center text-md mb-6 ">
-            Mantente informado de nuestros eventos, cursos y demás.
-          </h4>
-        )}
-
         {isLoading && (
           <>
             <h2 className="text-center font-bold text-4xl max-sm:text-xl">
@@ -59,15 +56,20 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
             <h2 className="text-center font-bold text-4xl max-sm:text-xl">
               Avisos importantes
             </h2>
+            {home && (
+              <h4 className="text-center text-md mb-6 ">
+                Mantente informado de nuestros eventos, cursos y demás.
+              </h4>
+            )}
             <Carousel
               pauseOnHover
               slideInterval={5000}
-              leftControl={<ChevronsLeft/>}
-              rightControl={<ChevronsRight/>}
+              leftControl={<ChevronsLeft />}
+              rightControl={<ChevronsRight />}
               indicators
             >
               {Advices.data.map((advice) => (
-                <NoticeCard advice={advice} key={"AD" + advice.id_Advice}  />
+                <NoticeCard advice={advice} key={"AD" + advice.id_Advice} />
               ))}
             </Carousel>
           </>
