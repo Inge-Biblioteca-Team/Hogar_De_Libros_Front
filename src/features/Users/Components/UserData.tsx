@@ -95,7 +95,7 @@ const UserData = () => {
                 onClick={() => Navi(`/HogarDeLibros/Perfil/EditarPerfil`)}
                 className="rounded-lg bg-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Editar Perfil
+                Editar perfil
               </button>
             </div>
           </div>
@@ -117,7 +117,7 @@ const UserData = () => {
               className="hover:underline text-gray-800 dark:text-gray-200 cursor-pointer"
               onClick={goToMyLoans}
             >
-              Mis Préstamos
+              Mis préstamos
             </span>
           </p>
           <p className="text-sm font-normal text-gray-800 dark:text-gray-200">
@@ -125,7 +125,7 @@ const UserData = () => {
               className="hover:underline text-gray-800 dark:text-gray-200 cursor-pointer"
               onClick={goToEnrolmentCurses}
             >
-              Cursos Matriculados
+              Cursos matriculados
             </span>
           </p>
           {count > 0 &&
@@ -157,7 +157,7 @@ const UserData = () => {
             color={"gray"}
             className="w-full hover:!text-red-800 hover:!border-red-400"
           >
-            Cerrar Sesión
+            Cerrar sesión
           </Button>
         </div>
       }

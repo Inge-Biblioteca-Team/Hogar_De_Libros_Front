@@ -90,7 +90,6 @@ const ManageFriendsRequest = () => {
                   onPageChange={onPageChange}
                   totalPages={MaxPage}
                   setCurrentLimit={setCurrentLimit}
-                  total={FriendList?.count || 0}
                 />
               </div>
 

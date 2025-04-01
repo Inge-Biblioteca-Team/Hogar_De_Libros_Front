@@ -133,7 +133,6 @@ const ManageFurniture = () => {
                   onPageChange={onPageChange}
                   totalPages={MaxPage}
                   setCurrentLimit={setCurrentLimit}
-                  total={furnitures?.count || 0}
                 />
               </div>
 

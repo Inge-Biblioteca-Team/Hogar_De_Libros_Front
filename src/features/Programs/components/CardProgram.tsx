@@ -1,31 +1,33 @@
-import { Card } from "flowbite-react";
 import { Program } from "../types/Programs";
 
 const CardProgram = ({ program }: { program: Program }) => {
   return (
-    <Card className="dark:bg-[#2d2d2d] p0 lg:w-full h-full md:flex md:flex-col max-sm:h-auto md:w-full md:h-full">
-      <figure className="flex md:h-full flex-col md:justify-between max-sm:w-full max-sm:h-full">
+    <>
+      <div
+        className="w-full
+            bg-white flex rounded-md h-full justify-end text-right"
+        style={{ WebkitLineClamp: 12, overflow: "hidden" }}
+      >
+        <span className="m-3 !bg-transparent ml-9">
+          <h3 className="text-2xl font-bold max-md:text-lg">
+            {program.programName}
+          </h3>
+          <div className=" text-lg ml-7">
+            <p
+              className="text-gray-600 max-sm:text-sm line-clamp-1"
+              style={{ WebkitLineClamp: 12, overflow: "hidden" }}
+            >
+              Busca {program.description.toLocaleLowerCase()}
+            </p>
+          </div>
+        </span>
         <img
-          className="w-full md:h-52  h-60 object-cover max-sm:w-ful max-sm:h-64"
           src={program.image}
           alt={program.programName}
+          className="w-1/2 max-lg:w-1/2"
         />
-        <figcaption
-          className=" text-base break-words max-w-96 px-4 sm:h-auto
-      max-sm:text-sm lg:h-80 md:h-full flex flex-col justify-between p-4"
-        >
-         <div className="flex flex-col justify-between flex-grow">
-         <p className="text-center sm:m-4">
-            <strong className="lg:text-xl">{program.programName}</strong>
-            <br />
-            <span className=" text-base lg:text-lg line-clamp-6">
-              Descripción del programa: {program.description}
-            </span>
-          </p>
-         </div>
-        </figcaption>
-      </figure>
-    </Card>
+      </div>
+    </>
   );
 };
 export default CardProgram;

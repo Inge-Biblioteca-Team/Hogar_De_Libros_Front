@@ -91,7 +91,6 @@ const ManageColabRequest = () => {
               onPageChange={onPageChange}
               totalPages={MaxPage}
               setCurrentLimit={setCurrentLimit}
-              total={ColaborationsList?.count || 0}
             />
           </div>
           <div className="sm:hidden  flex justify-center ">

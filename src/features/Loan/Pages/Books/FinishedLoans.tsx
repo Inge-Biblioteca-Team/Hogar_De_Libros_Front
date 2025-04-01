@@ -99,7 +99,6 @@ const FinishedLoans = () => {
                 onPageChange={onPageChange}
                 totalPages={MaxPage}
                 setCurrentLimit={handleLimitChange}
-                total={Loan?.count || 0}
               />
             </>
           ) : (

@@ -1,10 +1,10 @@
-import { Button, Card } from "flowbite-react";
+import { useState } from "react";
 import { NextCourses } from "../types/Courses";
 import { format } from "@formkit/tempo";
-import { useState } from "react";
+import { Button } from "flowbite-react";
 import EnrollmentToCourse from "./Modals/EnrollmentToCourse";
 
-const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
+const CardCourseForCarrousel = ({ Courses }: { Courses: NextCourses }) => {
   const courseTime = Courses.CourseTime;
   const courseDate = Courses.Date;
   const dateTimeString = `${courseDate}T${courseTime}`;
@@ -22,20 +22,19 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
   });
 
   const [open, setopen] = useState<boolean>(false);
-
   return (
     <>
-      <Card className="dark:bg-[#2d2d2d] p0 2xl:w-full">
-        <figure>
-          <img
-            className="h-40 w-full object-fill rounded-t-lg
-            max-sm:h-48 max-sm:rounded-md"
-            src={Courses.image}
-            alt={Courses.courseType}
-          />
-          <figcaption className="p-4 max-sm:p-1 max-lg:text-xs">
-            <strong>{Courses.courseName}</strong>
-            <p className=" max-sm:hidden">
+      <div
+        className="w-full gap-8 
+          bg-white flex rounded-md h-full"
+      >
+        <img src={Courses.image} alt={Courses.courseType} className="w-6/12" />
+        <span className="m-3 !bg-transparent">
+          <h3 className="text-2xl font-bold max-md:text-base">
+            {Courses.courseName}
+          </h3>
+          <div className=" text-lg max-md:text-sm">
+            <p className="">
               Impartido por: {Courses.instructor}
               <br />
               Comienzo: {fullDate.toUpperCase()}
@@ -52,17 +51,19 @@ const CardCourses = ({ Courses }: { Courses: NextCourses }) => {
               )}
             </p>
             <Button
-              className="max-lg:hidden"
               color={"blue"}
               onClick={() => setopen(true)}
             >
               Matrícula ahora
             </Button>
-          </figcaption>
-        </figure>
-      </Card>
-      <EnrollmentToCourse course={Courses} open={open} setOpen={setopen} />
+          </div>
+        </span>
+      </div>
+      {open && (
+        <EnrollmentToCourse course={Courses} open={open} setOpen={setopen} />
+      )}
     </>
   );
 };
-export default CardCourses;
+
+export default CardCourseForCarrousel;

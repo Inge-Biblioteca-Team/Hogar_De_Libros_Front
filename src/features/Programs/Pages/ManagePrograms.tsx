@@ -116,7 +116,6 @@ const ManagePrograms = () => {
                   onPageChange={onPageChange}
                   totalPages={MaxPage}
                   setCurrentLimit={setCurrentLimit}
-                  total={Programs?.count || 0}
                 />
               </div>
 

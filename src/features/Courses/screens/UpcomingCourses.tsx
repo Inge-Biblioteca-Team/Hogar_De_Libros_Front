@@ -1,34 +1,51 @@
-import { Carousel } from "flowbite-react";
 import { useQuery } from "react-query";
 import { GetNextCourses } from "../services/SvCourses";
-import { ApiCourseResponse, NextCourses } from "../types/Courses";
-import CardCourses from "../components/CardCourses";
+import { ApiCourseResponse } from "../types/Courses";
+import Skeleton from "react-loading-skeleton";
+import { Button, Carousel } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
+import CardCourseForCarrousel from "../components/CardCourseForCarrousel";
+import {
+  ChevronsLeft,
+  ChevronsRight,
+} from "../../../components/Chrevrons/Chevrons";
 
 const UpcomingCourses = ({ home }: { home?: boolean }) => {
-  const { data: Courses } = useQuery<ApiCourseResponse, Error>(
+  const { data: Courses, isLoading } = useQuery<ApiCourseResponse, Error>(
     ["CourseCatalog"],
-    () => GetNextCourses(),
+    () => GetNextCourses(1, 5),
     {
       staleTime: 1200,
       refetchOnWindowFocus: false,
     }
   );
 
-  const chunkArray = (arr: NextCourses[], size: number): NextCourses[][] => {
-    const result: NextCourses[][] = [];
-    for (let i = 0; i < arr.length; i += size) {
-      result.push(arr.slice(i, i + size));
-    }
-    return result;
-  };
+  const nav = useNavigate();
 
-  const isSmallScreen = window.innerWidth <= 740; // max-sm en Tailwind
-  const groupedCourses = chunkArray(Courses?.data || [], isSmallScreen ? 1 : 3);
+  const goTo = () => {
+    nav("/HogarDeLibros/Cronograma_Cursos");
+  };
 
   return (
     <>
-      {Courses && Courses.count > 0 && (
+      {isLoading && (
         <>
+          <h2
+            className="font-bold text-4xl text-center 
+         max-sm:text-xl"
+          >
+            Cursos disponibles
+          </h2>
+          <div className="bg-white w-full max-lg:w-full h-[28rem] max-sm:h-[23rem] rounded-md p-2">
+            <Skeleton style={{ height: "19rem" }} />
+            <Skeleton width={250} height={20} />
+            <Skeleton width={220} height={20} />
+          </div>
+        </>
+      )}
+
+      {!isLoading && Courses && Courses.count > 0 && (
+        <div className=" flex flex-col items-center space-y-4">
           <h2
             className="font-bold text-4xl text-center 
           max-sm:text-xl"
@@ -36,31 +53,26 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
             Cursos disponibles
           </h2>
           {home && (
-            <h4 className=" text-center text-md mb-2 max-lg:pl-10 max-lg:pr-10">
+            <h4 className="text-center text-md mb-2">
               Ven a pasar un tiempo especial junto a nosotros. Al mismo tiempo
               que aprendas cosas nuevas.
             </h4>
           )}
+
           <Carousel
-            indicators={false}
             pauseOnHover
-            leftControl
-            rightControl
-            className="max-sm:w-full h-[30rem] max-lg:w-full w-full"
-            style={{ height: "30rem" }}
+            slideInterval={5000}
+            leftControl={<ChevronsLeft />}
+            rightControl={<ChevronsRight />}
           >
-            {groupedCourses.map((group, groupIndex) => (
-              <div
-                key={groupIndex}
-                className=" flex justify-center max-lg:pr-2 max-lg:pl-2 md:w-full md:h-full max-sm:w-full max-sm:gap-20 gap-x-4 max-sm:pr-0 max-sm:pl-0"
-              >
-                {group.map((course) => (
-                  <CardCourses Courses={course} key={"CO" + course.Id} />
-                ))}
-              </div>
+            {Courses.data.map((course) => (
+              <CardCourseForCarrousel Courses={course} key={"CO" + course.Id} />
             ))}
           </Carousel>
-        </>
+          <Button color={"blue"} size={"xl"} onClick={goTo}>
+            <span>Ver más</span>
+          </Button>
+        </div>
       )}
     </>
   );

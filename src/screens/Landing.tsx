@@ -63,13 +63,10 @@ const Landing = () => {
       <main className="dark:bg-neutral-900 flex items-center gap-16 justify-center flex-col mb-10 max-sm:gap-10">
         <LandingHome />
         <MisionVision />
-        <section className="space-y-4 mt-6 w-11/12">
-          <ImportanNotices />
-        </section>
-
+        <ImportanNotices />
         <motion.section
           ref={refBooks}
-          className="space-y-4 mt-6 w-11/12"
+          className="w-11/12 mt-10"
           id="MostPopularBooks"
           initial="hidden"
           animate={inViewBooks ? "visible" : "hidden"}
@@ -92,7 +89,7 @@ const Landing = () => {
 
         <motion.section
           ref={refRoom}
-          className="space-y-4 mt-6 w-11/12"
+          className="w-11/12 space-y-4"
           id="Computers"
           initial="hidden"
           animate={inViewRooms ? "visible" : "hidden"}
@@ -103,7 +100,7 @@ const Landing = () => {
 
         <motion.section
           ref={refCourses}
-          className="space-y-4  w-11/12 pl-2.5 pr-2.5"
+          className="w-11/12"
           id="Courses"
           initial="hidden"
           animate={inViewCourses ? "visible" : "hidden"}
@@ -126,7 +123,7 @@ const Landing = () => {
 
         <motion.section
           ref={refPrograms}
-          className="space-y-4 w-11/12 max-sm:w-full max-s"
+          className="w-11/12"
           id="Programs"
           initial="hidden"
           animate={inViewPrograms ? "visible" : "hidden"}

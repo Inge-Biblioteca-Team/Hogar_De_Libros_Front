@@ -9,9 +9,9 @@ const AmiguitosInfo = ({ home }: { home?: boolean }) => {
         Amigos de la biblioteca
       </h2>
       {home && (
-        <h4 className=" text-center text-md max-lg:pl-10 max-lg:pr-10">
-          Únete a la biblioteca y comparte con nosotros. Existen varias formas de
-          hacerlo, aquí te comentamos cómo.
+        <h4 className=" text-center text-md">
+          Únete a la biblioteca y comparte con nosotros. Existen varias formas
+          de hacerlo, aquí te comentamos cómo.
         </h4>
       )}
       <article className="lg:hidden xl:hidden 2xl:hidden w-full md:w-full  flex overflow-x-scroll justify-center scroll">

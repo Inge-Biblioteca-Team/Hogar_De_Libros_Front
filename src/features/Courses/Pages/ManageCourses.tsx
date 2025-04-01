@@ -124,7 +124,6 @@ const ManageCourses = () => {
               onPageChange={onPageChange}
               totalPages={MaxPage}
               setCurrentLimit={setCurrentLimit}
-              total={Courses?.count || 0}
             />
           </div>
 

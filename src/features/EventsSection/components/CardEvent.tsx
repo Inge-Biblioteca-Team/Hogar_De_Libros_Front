@@ -1,30 +1,33 @@
-import { Card } from "flowbite-react";
 import { formatToDMY } from "../../../components/FormatTempo";
 import { Event } from "../types/Events";
 
 const CardEvent = ({ event }: { event: Event }) => {
   return (
-    <Card className="dark:bg-[#2d2d2d] p0 max-sm:h-96 lg:h-full lg:w-full w-full">
-      <figure className=" rounded-lg max-sm:h-full max-sm:mr-2">
+    <>
+      <div
+        className="w-full gap-8 
+      bg-white flex rounded-md h-full "
+      >
         <img
           src={event.image}
           alt={event.title}
-          className="w-full h-64 max-sm:h-48"
+          className="w-6/12"
         />
-        <figcaption className="p-4">
-          <h3 className="text-lg font-bold mb-2 lg:text-xl ">{event.title}</h3>
-          <p className="dark:text-white text-sm lg:text-lg text-gray-600 ">
-            <strong className="dark:text-white">Fecha:</strong> {formatToDMY(event.date)}
-            <br />
-            <strong className="dark:text-white">Ubicación:</strong> {event.location}
-            <br />
-            <strong className="dark:text-white">Detalles del evento:</strong> {event.details}
-            <br />
-            <strong className="dark:text-white">Público objetivo:</strong> {event.objetiveAge}
-          </p>
-        </figcaption>
-      </figure>
-    </Card>
+        <span className="m-3 !bg-transparent">
+          <h3 className="text-2xl font-bold max-md:text-base">{event.title}</h3>
+          <div className=" text-lg max-md:text-sm">
+            <strong>Fecha:</strong> {formatToDMY(event.date)}
+            <p className="text-gray-600 max-sm:text-xs">
+              <strong className="">Ubicación:</strong> {event.location}
+              <br />
+              <strong>Detalles del evento:</strong> {event.details}
+              <br />
+              <strong>Público objetivo:</strong> {event.objetiveAge}
+            </p>
+          </div>
+        </span>
+      </div>
+    </>
   );
 };
 

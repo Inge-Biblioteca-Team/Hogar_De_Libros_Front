@@ -53,7 +53,7 @@ const EditUser = () => {
       {isLoading ? (
         <div className=" flex items-center w-full justify-center">
           <div className=" w-4/5">
-            <span className=" font-bold text-2xl">Información General</span>
+            <span className=" font-bold text-2xl">Información general</span>
             <Skeleton className="mb-2" height={200} />
             <span className=" text-2xl font-bold">Información de contacto</span>
             <Skeleton className="mb-2" height={120} />
@@ -68,7 +68,7 @@ const EditUser = () => {
           <div className=" w-4/5 flex flex-col gap-6 justify-center ">
             <fieldset>
               <legend className=" font-bold text-2xl">
-                Información General
+                Información general
               </legend>
               <Card className=" w-full">
                 <div className=" w-full flex items-end justify-between max-sm:flex-col max-sm:items-start max-sm:gap-4">
@@ -91,7 +91,7 @@ const EditUser = () => {
                     <div className=" flex flex-col">
                       <span>
                         <strong className=" font-bold">
-                          Número de Cédula:{" "}
+                          Número de cédula:{" "}
                         </strong>
                         {User?.cedula}
                       </span>
@@ -105,13 +105,13 @@ const EditUser = () => {
                       </span>
                       <span>
                         <strong className=" font-bold">
-                          Fecha de Nacimiento:{" "}
+                          Fecha de nacimiento:{" "}
                         </strong>
                         {BirthDate}
                       </span>
                       <span>
                         <strong className=" font-bold">
-                          Fecha de Registro:{" "}
+                          Fecha de registro:{" "}
                         </strong>
                         {RegDate}
                       </span>
@@ -126,8 +126,8 @@ const EditUser = () => {
                     </div>
                   </div>
                   <div>
-                    <Button title="Editar informacion generar" color={"blue"} onClick={() => setOpneI(true)}>
-                      Editar Información
+                    <Button color={"blue"} onClick={() => setOpneI(true)}>
+                      Editar información
                     </Button>
                   </div>
                 </div>
@@ -150,8 +150,8 @@ const EditUser = () => {
                     </div>
                   </div>
                   <div>
-                    <Button title="Editar contactos" color={"blue"} onClick={() => setOpneC(true)}>
-                      Editar Información de contacto
+                    <Button color={"blue"} onClick={() => setOpneC(true)}>
+                      Editar información de contacto
                     </Button>
                   </div>
                 </div>
@@ -179,8 +179,8 @@ const EditUser = () => {
                     </div>
                   </div>
                   <div>
-                    <Button title="Editar residencia" color={"blue"} onClick={() => setOpneR(true)}>
-                      Editar Información de residencia
+                    <Button color={"blue"} onClick={() => setOpneR(true)}>
+                      Editar información de residencia
                     </Button>
                   </div>
                 </div>

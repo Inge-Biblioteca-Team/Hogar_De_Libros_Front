@@ -104,7 +104,6 @@ const AdviceManage = () => {
               onPageChange={onPageChange}
               totalPages={MaxPage}
               setCurrentLimit={setLimit}
-              total={Advices?.count || 0}
             />
           </div>
 

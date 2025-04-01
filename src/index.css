@@ -6,7 +6,7 @@
 
 :root {
   background-color: #dfe2e6;
-  font-family: 'Aleo', serif;
+  font-family: "Aleo", serif;
 }
 
 body::-webkit-scrollbar {
@@ -69,7 +69,6 @@ input[type="number"] {
   background-color: #ffffff;
 }
 
-
 .custom-bar::-webkit-scrollbar {
   display: none;
 }
@@ -80,20 +79,6 @@ input[type="number"] {
 
 .custom-DatePicker .bg-cyan-700 {
   background: #1e439fdc;
-}
-
-.Custom-Carousel span {
-  background-color: #323232c7;
-}
-
-.Custom-Carousel button {
-  background-color: #212121c7;
-  border-radius: 50%;
-}
-
-.Custom-Carousel button:hover {
-  background-color: #4545aec7;
-  border-radius: 50%;
 }
 
 .custom-Select select {
@@ -125,12 +110,11 @@ input[type="number"] {
   background-color: #ffffff;
 }
 
-.custom-Sidebar div{
+.custom-Sidebar div {
   background-color: transparent;
 }
-.custom-Sidebar :hover a{
+.custom-Sidebar :hover a {
   background-color: transparent;
-  
 }
 .custom-Group :hover a {
   scale: 115%;
@@ -138,4 +122,11 @@ input[type="number"] {
   color: #4ba0e6;
 }
 
+[data-testid="carousel-indicator"] {
+  filter: invert();
+  transition: background-color 0.3s ease;
+}
 
+[data-testid="carousel-indicator"]:hover {
+  background-color: black !important;
+}
