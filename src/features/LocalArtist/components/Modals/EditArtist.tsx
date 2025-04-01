@@ -64,7 +64,7 @@ const EditArtist = ({
 
   return (
     <>
-      <Modal dismissible show={edit} onClose={() => setEdit(false)}>
+      <Modal  show={edit} onClose={() => setEdit(false)}>
         <Modal.Header className="dark:bg-neutral-900 bg-white">Editar artista</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="dark:bg-[#2d2d2d] bg-white">

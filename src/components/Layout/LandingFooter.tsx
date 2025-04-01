@@ -2,7 +2,7 @@ import { Footer } from "flowbite-react";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
 const LandingFooter = () => {
   return (
-    <Footer className=" bottom-0 z-50 w-full bg-Body-dark text-white rounded-none flex flex-col max-lg:p-1 p-3">
+    <Footer className=" bottom-0 z-50 w-full bg-Body-dark text-white rounded-none flex flex-col p-3">
       <div className=" flex flex-col md:flex-row lg:flex-row justify-between w-full">
         <div className=" flex flex-col">
           <Footer.Title
@@ -22,7 +22,7 @@ const LandingFooter = () => {
             </Footer.Link>
           </Footer.LinkGroup>
         </div>
-        <div className=" flex max-lg:gap-1 max-sm:gap-8">
+        <div className=" flex max-lg:gap-1 max-sm:gap-2">
           <div>
             <Footer.Title
               title="Contactos"

@@ -13,7 +13,7 @@ const ModalViewFurniture = ({
 }) => {
   return (
     <>
-      <Modal dismissible show={openVModal} onClose={() => setVModal(false)} size={"sm"}>
+      <Modal  show={openVModal} onClose={() => setVModal(false)} size={"sm"}>
         <Modal.Header className="dark:bg-neutral-900">Detalles del mobiliario</Modal.Header>
         <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-4">
           <Label value={`Numero de placa: ${furniture.LicenseNumber}`} />

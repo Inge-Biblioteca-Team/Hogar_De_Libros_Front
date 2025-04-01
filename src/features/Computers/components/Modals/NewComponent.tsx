@@ -33,7 +33,7 @@ const NewComponent = ({
 
   return (
     <>
-      <Modal dismissible show={sNew} onClose={onClose}>
+      <Modal  show={sNew} onClose={onClose}>
         <Modal.Header className="dark:bg-neutral-900">Añadir nuevo componente</Modal.Header>
         <form onSubmit={handleSubmit(onConfirm)}>
           <Modal.Body className="dark:bg-[#2d2d2d]">

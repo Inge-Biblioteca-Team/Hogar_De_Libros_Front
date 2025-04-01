@@ -5,7 +5,13 @@ import MDChangeProgramStatus from "./Modals/MDChangeProgramStatus";
 import MDEditProgram from "./Modals/MDEditProgram";
 import MDSeeProgram from "./Modals/MDSeeProgram";
 
-const BTNProgramsAct = ({ program }: { program: Program }) => {
+const BTNProgramsAct = ({
+  program,
+  status,
+}: {
+  program: Program;
+  status: boolean;
+}) => {
   const [openS, setOpenS] = useState<boolean>(false);
   const [openE, setOpenE] = useState<boolean>(false);
   const [openD, setOpenD] = useState<boolean>(false);
@@ -20,27 +26,39 @@ const BTNProgramsAct = ({ program }: { program: Program }) => {
       >
         <PiEyeLight size={24} />
       </button>
-      <button
-        title="Editar información"
-        type="button"
-        className={`${program.status ? "" : "cursor-not-allowed"} hover:text-yellow-400`}
-        onClick={() => setOpenE(true)}
-        disabled={!program.status}
-      >
-        <PiPencilDuotone size={24} />
-      </button>
+      { status &&
+        <>
+          <button
+            title="Editar información"
+            type="button"
+            className={`${
+              program.status ? "" : "cursor-not-allowed"
+            } hover:text-yellow-400`}
+            onClick={() => setOpenE(true)}
+            disabled={!program.status}
+          >
+            <PiPencilDuotone size={24} />
+          </button>
 
-      <button
-        title="Deshabilitar Activo"
-        type="button"
-        className={`${program.status ? "" : "cursor-not-allowed"} hover:text-red-800`}
-        onClick={() => setOpenD(true)}
-        disabled={!program.status}
-      >
-        <PiTrash size={24} />
-      </button>
-      <MDChangeProgramStatus open={openD} setOpen={setOpenD} program={program}/>
-      <MDEditProgram open={openE} setOpen={setOpenE} program={program}/>
+          <button
+            title="Deshabilitar Activo"
+            type="button"
+            className={`${
+              program.status ? "" : "cursor-not-allowed"
+            } hover:text-red-800`}
+            onClick={() => setOpenD(true)}
+            disabled={!program.status}
+          >
+            <PiTrash size={24} />
+          </button>
+        </>
+      }
+      <MDChangeProgramStatus
+        open={openD}
+        setOpen={setOpenD}
+        program={program}
+      />
+      <MDEditProgram open={openE} setOpen={setOpenE} program={program} />
       <MDSeeProgram open={openS} setOpen={setOpenS} program={program} />
     </div>
   );

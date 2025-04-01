@@ -57,7 +57,7 @@ const CreateCourse = () => {
       <Button className="max-sm:w-full" onClick={() => setIsModalOpen(true)} color="blue">
         Añadir curso
       </Button>
-      <Modal dismissible show={isModalOpen} onClose={onClose} size={"5xl"}>
+      <Modal  show={isModalOpen} onClose={onClose} size={"5xl"}>
         <Modal.Header className="dark:bg-neutral-900">Crear nuevo curso</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="dark:bg-[#2d2d2d] bg-white grid max-sm:grid-cols-1 grid-cols-3 gap-3">

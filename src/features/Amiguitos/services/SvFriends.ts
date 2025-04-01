@@ -126,7 +126,7 @@ const GetFriends = async (
     };
     if (category) params.PrincipalCategory = category;
     if (subCategory) params.SubCategory = subCategory;
-    if (Experience) params.Experience = Experience;
+    if (Experience) params.Exp = Experience;
     if (Status) params.Status = Status;
     const response = await api.get("friends-library", { params });
     return response.data;

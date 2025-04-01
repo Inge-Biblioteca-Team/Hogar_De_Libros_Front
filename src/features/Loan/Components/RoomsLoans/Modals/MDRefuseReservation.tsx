@@ -28,7 +28,7 @@ const MDRefuseReservation = ({
     setOpen(false);
   };
   return (
-    <Modal dismissible show={open} onClose={onClose} popup size={"md"}>
+    <Modal  show={open} onClose={onClose} popup size={"md"}>
       <form>
         <Modal.Body className="dark:bg-[#2d2d2d] flex items-center justify-center flex-col text-center">
           <div className="text-center mt-7">

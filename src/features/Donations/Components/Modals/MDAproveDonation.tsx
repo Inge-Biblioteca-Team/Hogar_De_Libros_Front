@@ -26,7 +26,7 @@ const MDAproveDonation = ({
   };
 
   return (
-    <Modal dismissible show={open} onClose={onClose} popup size={"md"}>
+    <Modal  show={open} onClose={onClose} popup size={"md"}>
       <Modal.Header className="dark:bg-[#2d2d2d]"></Modal.Header>
       <Modal.Body className="dark:bg-[#2d2d2d] flex justify-center items-center">
         <span className=" text-center">

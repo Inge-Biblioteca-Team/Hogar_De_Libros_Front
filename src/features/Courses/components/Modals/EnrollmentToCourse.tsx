@@ -69,7 +69,7 @@ const EnrollmentToCourse = ({
   };
 
   return (
-    <Modal dismissible show={open} onClose={handleClose}>
+    <Modal  show={open} onClose={handleClose}>
       <Modal.Header>Matricula de curso</Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body className=" flex flex-col gap-2">

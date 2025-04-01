@@ -24,29 +24,35 @@ const BTNAccions = ({
           {""}
           <PiEyeLight size={24} />
         </button>
-        <button
-          type="button"
-          className={`${
-            status ? "" : "cursor-not-allowed"
-          } hover:text-yellow-400`}
-          onClick={() => setEdit(true)}
-          disabled={!status}
-        >
-          {" "}
-          {""}
-          <PiPencilDuotone size={24} />
-        </button>
-        <button
-          type="button"
-          title="Desabilitar Artista"
-          className={`${status ? "" : "cursor-not-allowed"} hover:text-red-800`}
-          onClick={() => setDow(true)}
-          disabled={!status}
-        >
-          {" "}
-          {""}
-          <PiTrash size={24} />
-        </button>
+        {status && (
+          <>
+            <button
+              type="button"
+              className={`${
+                status ? "" : "cursor-not-allowed"
+              } hover:text-yellow-400`}
+              onClick={() => setEdit(true)}
+              disabled={!status}
+            >
+              {" "}
+              {""}
+              <PiPencilDuotone size={24} />
+            </button>
+            <button
+              type="button"
+              title="Desabilitar Artista"
+              className={`${
+                status ? "" : "cursor-not-allowed"
+              } hover:text-red-800`}
+              onClick={() => setDow(true)}
+              disabled={!status}
+            >
+              {" "}
+              {""}
+              <PiTrash size={24} />
+            </button>
+          </>
+        )}
         <button type="button" title="Rehabilitar Artista" className="hidden">
           <TbTruckReturn />
         </button>

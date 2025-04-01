@@ -67,7 +67,6 @@ const LocalArtistList = () => {
           <Carousel
           pauseOnHover
           slideInterval={5000}
-          slide={false}
           leftControl={<ChevronsLeft/>}
           rightControl={<ChevronsRight/>}
           indicators

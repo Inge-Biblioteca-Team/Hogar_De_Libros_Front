@@ -5,7 +5,10 @@ import { GetProgramsList } from "../services/SvPrograms";
 import { Carousel } from "flowbite-react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { ChevronsLeft, ChevronsRight } from "../../../components/Chrevrons/Chevrons";
+import {
+  ChevronsLeft,
+  ChevronsRight,
+} from "../../../components/Chrevrons/Chevrons";
 
 const CurrentPrograms = ({ home }: { home?: boolean }) => {
   const { data: Programs, isLoading } = useQuery<ApiProgramsResponse, Error>(
@@ -19,12 +22,6 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
 
   return (
     <>
-      {home && (
-        <h3 className=" text-center text-md">
-          La biblioteca cuenta con diversos programas, los cuales tienen
-          actividades para todas las edades. Aquí te mostramos cuales son.
-        </h3>
-      )}
       {isLoading && (
         <>
           {[...Array(2)].map((_, index) => (
@@ -53,6 +50,12 @@ const CurrentPrograms = ({ home }: { home?: boolean }) => {
           >
             Nuestros programas
           </h2>
+          {home && (
+            <h3 className=" text-center text-md">
+              La biblioteca cuenta con diversos programas, los cuales tienen
+              actividades para todas las edades. Aquí te mostramos cuales son.
+            </h3>
+          )}
           <Carousel
             slideInterval={5000}
             pauseOnHover
