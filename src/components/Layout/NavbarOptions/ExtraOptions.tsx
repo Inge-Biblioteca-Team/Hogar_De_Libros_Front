@@ -1,18 +1,15 @@
 import { Sidebar } from "flowbite-react";
 import { useContext } from "react";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
-import toast from "react-hot-toast";
-import UserContext from "../../../Context/UserContext/UserContext";
+import UseLogOut from "../../../features/Users/Hooks/UseLogOut";
 
 const ExtraOptions = () => {
   const { handleNavigation } = useContext(SidebarContext);
-  const { setIsLogged } = useContext(UserContext);
-  const closeSession = () => {
-    localStorage.removeItem("isLogged");
-    localStorage.removeItem("currentUser");
-    handleNavigation("/");
-    toast.success("Éxito al cerrar sesión");
-    setIsLogged(false);
+ 
+  const { mutate: logOut } = UseLogOut();
+
+  const onLogOut = () => {
+    logOut();
   };
 
   return (
@@ -88,7 +85,7 @@ const ExtraOptions = () => {
       </Sidebar.Collapse>
       <Sidebar.Item
         className="cursor-pointer bg-red-500 text-white text-center hidden max-sm:block"
-        onClick={() => closeSession()}
+        onClick={onLogOut}
       >
         Cerrar sesión
       </Sidebar.Item>

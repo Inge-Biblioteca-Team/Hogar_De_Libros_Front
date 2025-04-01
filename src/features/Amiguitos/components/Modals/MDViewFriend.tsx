@@ -68,6 +68,7 @@ const MDViewFriend = ({
             <strong>Documentos adjuntos:</strong>
             {friend.Document.map((doc, index) => (
               <a
+                key={index + "docs"}
                 target="#blank"
                 href={doc}
                 title="Click para abrir"
