@@ -7,6 +7,7 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 const BookAccessCard = () => {
   const navigate = useNavigate(); 
 
+  
     const handleRedirect = () => {
       navigate('/HogarDeLibros/Catalogo'); 
     };
