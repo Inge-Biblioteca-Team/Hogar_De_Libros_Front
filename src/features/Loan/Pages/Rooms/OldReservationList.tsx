@@ -1,4 +1,4 @@
-import { Label, Select, Table, TextInput } from "flowbite-react";
+import { Label, Pagination, Select, Table, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
 import TblOldReservation from "../../Components/RoomsLoans/TablesHeaders/TblOldReservation";
 import { ReserveResponse } from "../../Types/RoomsReservations";
@@ -48,7 +48,7 @@ const OldReservationList = () => {
     <>
       <LoansCrumbs text="Salas" />
       <div className=" w-full flex items-center justify-center">
-        <div className="w-4/5 md:w-full md:pl-4 md:pr-4">
+        <div className="w-full md:px-4 max-sm:px-2">
           <div className=" flex gap-3 pb-4">
             <div>
               <Label value="Fecha reservada" />
@@ -87,16 +87,28 @@ const OldReservationList = () => {
               >
                 {reservations && <TblOldReservation reserve={reservations} />}
               </Table>
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={setCurrentLimit}
-              />
             </>
           ) : (
             <NoResults />
           )}
+
+          <div className="block max-sm:hidden">
+            <CustomPagination
+              page={currentPage}
+              onPageChange={onPageChange}
+              totalPages={MaxPage}
+              setCurrentLimit={setCurrentLimit}
+            />
+          </div>
+
+          <div className="sm:hidden  flex justify-center pb-4 ">
+            <Pagination
+              layout="navigation"
+              currentPage={currentPage}
+              totalPages={MaxPage}
+              onPageChange={onPageChange}
+            />
+          </div>
         </div>
       </div>
     </>

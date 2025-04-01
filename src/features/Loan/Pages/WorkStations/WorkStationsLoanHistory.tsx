@@ -1,4 +1,4 @@
-import { Label, Table, TextInput } from "flowbite-react";
+import { Label, Pagination, Table, TextInput } from "flowbite-react";
 import HistoryRegist from "../../Components/WorkStations/HistoryRegist";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
@@ -27,7 +27,6 @@ const WorkStationsLoanHistory = () => {
   const [MachineNumber, SetMachineNumber] = useState<string>("");
 
   const MachineNumberDelay = UseDebounce(MachineNumber, 100);
-  
 
   useEffect(() => {
     sessionStorage.setItem("WSPage", currentPage.toString());
@@ -50,7 +49,7 @@ const WorkStationsLoanHistory = () => {
       <LoansCrumbs text="Equipo de cómputo" />
 
       <main className=" w-full flex items-center justify-center flex-col gap-2">
-        <section className="w-4/5 md:w-full md:pr-4 md:pl-4 flex  gap-4">
+        <section className="w-full md:w-full md:px-4 max-sm:px-2 flex gap-4">
           <div>
             <Label value="Numero de maquina" />
             <TextInput
@@ -70,7 +69,7 @@ const WorkStationsLoanHistory = () => {
         </section>
 
         <div className=" w-full flex items-center justify-center">
-          <div className=" w-4/5 md:w-full md:pr-4 md:pl-4">
+          <div className=" w-full md:px-4 max-sm:px-2">
             {isLoading ? (
               <div className=" w-full flex items-center justify-center">
                 <figure>
@@ -87,9 +86,15 @@ const WorkStationsLoanHistory = () => {
                         Número de Máquina
                       </span>
                     </Table.HeadCell>
-                    <Table.HeadCell className="dark:bg-neutral-900">Nombre del Usuario</Table.HeadCell>
-                    <Table.HeadCell className="dark:bg-neutral-900">Fecha de uso</Table.HeadCell>
-                    <Table.HeadCell className="dark:bg-neutral-900">Hora de Fin</Table.HeadCell>
+                    <Table.HeadCell className="dark:bg-neutral-900 max-sm:hidden">
+                      Nombre del Usuario
+                    </Table.HeadCell>
+                    <Table.HeadCell className="dark:bg-neutral-900">
+                      Fecha de uso
+                    </Table.HeadCell>
+                    <Table.HeadCell className="dark:bg-neutral-900">
+                      Hora de Fin
+                    </Table.HeadCell>
                   </Table.Head>
 
                   <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
@@ -105,12 +110,23 @@ const WorkStationsLoanHistory = () => {
             ) : (
               <NoResults />
             )}
-            <CustomPagination
-              page={currentPage}
-              onPageChange={onPageChange}
-              totalPages={MaxPage}
-              setCurrentLimit={setCurrentLimit}
-            />
+            <div className="block max-sm:hidden">
+              <CustomPagination
+                page={currentPage}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                setCurrentLimit={setCurrentLimit}
+              />
+            </div>
+
+            <div className="sm:hidden  flex justify-center pb-4 ">
+              <Pagination
+                layout="navigation"
+                currentPage={currentPage}
+                totalPages={MaxPage}
+                onPageChange={onPageChange}
+              />
+            </div>
           </div>
         </div>
       </main>

@@ -61,8 +61,8 @@ const ManageFurniture = () => {
     <>
       <BreadCrumbManage text="Mobiliario" />
       <main className="flex m items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5 md:w-full lg:flex-row  md:pl-4 md:pr-4 md:flex-col max-sm:p-2 max-sm:w-full max-sm:flex-col max-sm:gap-4 md:items-center max-sm:items-center flex justify-between items-end">
-          <div className="flex  md:w-full mb-4 md:flex-col lg:flex-row max-sm:w-full max-sm:flex-col gap-3 ">
+        <section className="w-full  lg:flex-row md:px-4 max-sm:px-2 max-sm:flex-col max-sm:gap-4 items-center flex justify-between ">
+          <div className="flex w-full md:flex-col lg:flex-row  max-sm:flex-col gap-3 ">
             <TextInput
               placeholder="Búsqueda por placa"
               className="w-52 md:w-full lg:w-auto max-sm:w-full"
@@ -78,14 +78,14 @@ const ManageFurniture = () => {
             </Select>
           </div>
           <Button
-            className="dark:bg-[#2d2d2d] md:w-full lg:w-44 max-sm:w-full"
+            className="dark:bg-[#2d2d2d] w-56 max-sm:w-full"
             color={"blue"}
             onClick={() => setSNew(true)}
           >
             Añadir mobiliario
           </Button>
         </section>
-        <section className="w-4/5 md:w-full  md:pl-4 md:pr-4 max-sm:w-full max-sm:p-2">
+        <section className="w-full md:px-4 max-sm:px-2">
           {isLoading ? (
             <div className=" w-full flex items-center justify-center">
               <figure>

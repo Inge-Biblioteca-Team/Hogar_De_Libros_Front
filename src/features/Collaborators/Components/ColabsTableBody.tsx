@@ -9,7 +9,7 @@ const ColabsTableBody = ({
   hiid?: boolean;
 }) => {
   return (
-    <Table hoverable className=" text-center max-sm:h-96 h-[30rem] ">
+    <Table hoverable className=" text-center max-sm:h-full h-[30rem] ">
       <Table.Head className="dark:text-white">
         <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:p-2">Fecha de colaboración</Table.HeadCell>
         <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:p-2">Nombre del colaborador</Table.HeadCell>

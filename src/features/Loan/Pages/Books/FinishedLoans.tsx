@@ -10,6 +10,7 @@ import CustomPagination from "../../../../components/CustomPagination";
 import NoResults from "../../../../components/NoResults";
 import Loader from "../../../../components/Loader";
 import { Dispatch, SetStateAction } from "react";
+import { Pagination } from "flowbite-react";
 
 const FinishedLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -19,12 +20,11 @@ const FinishedLoans = () => {
   });
 
   const handleLimitChange: Dispatch<SetStateAction<number>> = (value) => {
-    const newLimit = typeof value === 'function' ? value(currentLimit) : value;
+    const newLimit = typeof value === "function" ? value(currentLimit) : value;
     setCurrentLimit(newLimit);
     setCurrentPage(1);
     sessionStorage.setItem("DLPage", "1");
-  }; 
-
+  };
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
@@ -82,7 +82,7 @@ const FinishedLoans = () => {
     <>
       <LoansCrumbs text="Libros" />
       <div className="flex place-content-center mt-14">
-        <div className="w-4/5 md:w-full md:pr-4 md:pl-4">
+        <div className="w-full md:px-4 max-sm:px-2">
           <FinishedLoanSearch
             setStartDate={setStartDate}
             setEndtDate={setEndtDate}
@@ -92,18 +92,27 @@ const FinishedLoans = () => {
           {isLoading ? (
             <Loader />
           ) : Loan ? (
-            <>
-              {Loan && <TBLLoan Loan={Loan} />}
-              <CustomPagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                totalPages={MaxPage}
-                setCurrentLimit={handleLimitChange}
-              />
-            </>
+            <>{Loan && <TBLLoan Loan={Loan} />}</>
           ) : (
             <NoResults />
           )}
+          <div className="max-sm:hidden block">
+            <CustomPagination
+              page={currentPage}
+              onPageChange={onPageChange}
+              totalPages={MaxPage}
+              setCurrentLimit={handleLimitChange}
+            />
+          </div>
+
+          <div className="sm:hidden  flex justify-center pb-4 ">
+            <Pagination
+              layout="navigation"
+              currentPage={currentPage}
+              totalPages={MaxPage}
+              onPageChange={onPageChange}
+            />
+          </div>
         </div>
       </div>
     </>
