@@ -75,6 +75,7 @@ const LoanStadisticts = () => {
         <div className="relative">
           <Button
             type="button"
+            title="Copiar al portapapeles"
             onClick={copyChartToClipboard}
             color={"gray"}
             className="z-20 absolute top-2 right-2 "

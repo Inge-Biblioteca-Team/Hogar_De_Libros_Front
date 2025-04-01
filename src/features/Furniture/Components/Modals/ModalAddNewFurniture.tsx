@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction } from "react";
 import { furniture } from "../../type/furniture";
 import ModalFooters from "../../../../components/ModalFooters";
 import useNewFurniture from "../../Hooks/useNewFurniture";
-import OptInChangePersons from "../OptInChangePersons";
+import AdminList from "../AdminList";
 
 const ModalAddNewFurniture = ({
   sNewF,
@@ -79,7 +79,7 @@ const ModalAddNewFurniture = ({
                   {...register("InChargePerson")}
                   required
                 >
-                  <OptInChangePersons />
+                  <AdminList />
                 </Select>
               </span>
             </fieldset>

@@ -19,6 +19,7 @@ const useMoveToTrash = () => {
         queryClient.invalidateQueries("Notifications");
         queryClient.invalidateQueries("ReadNotifications");
         queryClient.invalidateQueries("TrashNotifications");
+        queryClient.invalidateQueries("MessageCount");
       },
       onError: (error) => {
         console.error("Error al mover la notificación a la papelera:", error);
