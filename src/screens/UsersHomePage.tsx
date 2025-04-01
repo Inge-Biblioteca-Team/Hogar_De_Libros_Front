@@ -21,7 +21,7 @@ const UsersHomePage = () => {
           <LatestAddBooks />
         </section>
 
-        <section className="space-y-4 mt-6 w-11/12 pl-2 pr-2 max-lg:pl-0 max-lg:pr-0">
+        <section className="space-y-4 mt-6 w-11/12  ">
           <UpcomingCourses home />
         </section>
 
@@ -29,15 +29,21 @@ const UsersHomePage = () => {
           <UpcomingEvents home />
         </section>
 
-        <section className="space-y-4 max-sm:w-full mt-6 w-11/12">
+        <section className="space-y-4  mt-6 w-11/12">
           <CurrentPrograms home />
         </section>
 
-        <section className="space-y-4 max-sm:w-full  mt-6 w-11/12">
+        <section
+          className="space-y-4  max-sm:w-[102%] max-sm:pl-1 mt-6 w-[92.6%]
+        max-lg:w-[93.5%]"
+        >
           <AmiguitosInfo home />
         </section>
 
-        <section className="space-y-4 mt-6 w-11/12 pr-2 pl-2">
+        <section
+          className="space-y-4 mt-6 flex max-sm:w-full justify-center
+        max-lg:w-full"
+        >
           <ImportanNotices home />
         </section>
 
@@ -48,18 +54,20 @@ const UsersHomePage = () => {
           <p className="text-lg mb-12">
             Navega fácilmente a través de nuestros módulos del sistema.
           </p>
-          <div className="flex justify-center  w-full">
+          <div className="flex justify-center w-full">
             <>
               {currentUser?.role == "external_user" ? (
-                <div className="grid max-lg:grid-cols-2 grid-cols-3 gap-10 w-full max-lg:pl-2 max-lg:pr-2">
+                <div
+                  className="grid  grid-cols-3 lg:gap-32 lg:p-3 max-lg:gap-10  max-lg:w-full max-xl:w-11/12 
+                max-2xl:w-full 2xl:w-full 2xl:p-8"
+                >
                   <BookAccessCard />
                   <ComputerAccessCard />
-                  <div className="max-lg:col-span-2 w-full">
-                    <EventAccessCard />
-                  </div>
+
+                  <EventAccessCard />
                 </div>
               ) : (
-                <div className="grid max-lg:grid-cols-2 grid-cols-4 max-lg:w-full w-11/12 2xl:w-full max-2xl:w-full 2xl:pl-16 2xl:pr-16  gap-6 justify-center max-2xl:pl-2 max-2xl:pr-2">
+                <div className="grid max-lg:grid-cols-2 grid-cols-4 gap-10 max-xl:w-11/12 w-full 2xl:w-[93.6%] max-lg:w-full ">
                   <RoomAccessCard />
                   <BookAccessCard />
                   <ComputerAccessCard />

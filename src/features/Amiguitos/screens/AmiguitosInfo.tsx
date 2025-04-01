@@ -9,7 +9,7 @@ const AmiguitosInfo = ({ home }: { home?: boolean }) => {
         Amigos de la biblioteca
       </h2>
       {home && (
-        <h4 className=" text-center text-md">
+        <h4 className=" text-center text-md max-sm:pl-6 max-sm:pr-6">
           Únete a la biblioteca y comparte con nosotros. Existen varias formas
           de hacerlo, aquí te comentamos cómo.
         </h4>
