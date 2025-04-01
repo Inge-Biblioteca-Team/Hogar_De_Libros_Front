@@ -36,9 +36,7 @@ const UsersHomePage = () => {
         <section className="w-11/12 space-y-4">
           <AmiguitosInfo home />
         </section>
-        <section className="w-11/12">
-          <ImportanNotices home />
-        </section>
+        <ImportanNotices home />
         <section className=" max-2xl:w-11/12  text-center w-full pt-20 max-sm:hidden">
           <h2 className="text-4xl font-bold mb-8">
             Servicios de la Biblioteca

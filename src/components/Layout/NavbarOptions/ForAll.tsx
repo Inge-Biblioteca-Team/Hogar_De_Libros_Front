@@ -84,7 +84,7 @@ const ForAll = () => {
           Disponibilidad <br />
           de equipo de cómputo
         </Sidebar.Item>
-        {(role === "admin" || role === "creator") && (
+        {(role === "admin" || role === "creator" || role == "institucional") && (
           <Sidebar.Item
             className=""
             onClick={() => handleNavigation("/HogarDeLibros/Reserva_Salas")}
