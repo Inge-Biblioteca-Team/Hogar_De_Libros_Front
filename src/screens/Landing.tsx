@@ -13,6 +13,7 @@ import { useInView } from "react-intersection-observer";
 import LatestAddBooks from "../features/Books/Screens/LatestAddBooks";
 import { motion } from "framer-motion";
 import MisionVision from "./MisionVision";
+import LandingFooter from "../components/Layout/LandingFooter";
 
 const Landing = () => {
   const fadeInAnimation = {
@@ -171,6 +172,7 @@ const Landing = () => {
           {inViewFeedback && <Feedback />}
         </motion.section>
       </main>
+      <LandingFooter/>
     </>
   );
 };
