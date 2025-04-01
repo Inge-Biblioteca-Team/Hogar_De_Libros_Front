@@ -68,8 +68,8 @@ const ManagerComputer = () => {
     <>
       <BreadCrumbManage text="Equipo de cómputo" />
       <main className=" flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-4/5 md:w-full md:pl-4 md:pr-4 sm:items-center flex lg:flex-row flex-col justify-between lg:items-end max-sm:w-full max-sm:px-2 gap-4 lg:gap-0">
-          <div className="flex md:w-full lg:flex-row flex-col gap-3">
+        <section className="w-full px-4 flex flex-row max-sm:flex-col lg:items-end max-sm:px-2 gap-4">
+          <div className="flex w-full lg:flex-row flex-col gap-3">
             <div>
               <Label value="Búsqueda por número de equipo" />
               <TextInput
@@ -100,7 +100,7 @@ const ManagerComputer = () => {
             </div>
           </div>
           <Button
-            className="md:w-full lg:w-36"
+            className="max-sm:w-full w-56"
             color={"blue"}
             onClick={() => setSNew(true)}
           >

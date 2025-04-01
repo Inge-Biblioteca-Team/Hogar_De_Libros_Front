@@ -31,8 +31,8 @@ const ManageRoom = () => {
   return (
     <>
       <BreadCrumbManage text="Salas" />
-      <section className="flex md:w-full md:pl-4 md:pr-4 flex-col justify-center items-center">
-        <div className="w-4/5 md:w-full  max-sm:w-full max-sm:p-2 flex lg:flex-col items-center justify-center pt-1">
+      <section className="flex w-full md:px-4 flex-col justify-center items-center max-sm:px-2">
+        <div className="w-full flex lg:flex-col items-center justify-center pt-1">
           <div className="w-full lg:flex-row md:flex-col md:gap-4 max-sm:gap-4 max-sm:flex-col flex max-sm:items-center lg:justify-between items-end">
             <SearchRooms
               RName={setName}
@@ -41,24 +41,24 @@ const ManageRoom = () => {
             />
             <CreateRooms />
           </div>
-          <div className="w-full pt-2">
-            {isLoading ? (
-              <div className=" w-full flex items-center justify-center">
-                <figure>
-                  <img width={400} src={Loader} alt="...Cargando" />
-                  <figcaption className=" text-center">...Cargando</figcaption>
-                </figure>
-              </div>
-            ) : rooms ? (
-              <div className="grid md:grid-cols-1 max-sm:grid-cols-1 lg:grid-cols-3 grid-cols-2 gap-5 my-4">
-                {rooms?.data.map((room) => (
-                  <RoomCards Rooms={room} key={room.roomId} />
-                ))}
-              </div>
-            ) : (
-              <NoResults />
-            )}
-          </div>
+        </div>
+        <div className="w-full pt-2">
+          {isLoading ? (
+            <div className=" w-full flex items-center justify-center">
+              <figure>
+                <img width={400} src={Loader} alt="...Cargando" />
+                <figcaption className=" text-center">...Cargando</figcaption>
+              </figure>
+            </div>
+          ) : rooms ? (
+            <div className="grid max-sm:grid-cols-1 grid-cols-3 gap-5 my-4">
+              {rooms?.data.map((room) => (
+                <RoomCards Rooms={room} key={room.roomId} />
+              ))}
+            </div>
+          ) : (
+            <NoResults />
+          )}
         </div>
       </section>
     </>

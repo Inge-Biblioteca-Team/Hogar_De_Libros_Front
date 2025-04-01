@@ -66,7 +66,7 @@ const ManageColabRequest = () => {
             />
           </div>
         </section>
-        <section className=" w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full  max-sm:px-2">
+        <section className=" w-full md:pl-4 md:pr-4  max-sm:px-2">
           {isLoading ? (
             <div className=" w-full flex items-center justify-center">
               <figure>

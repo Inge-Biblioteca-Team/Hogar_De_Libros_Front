@@ -15,9 +15,9 @@ const OldRows = ({ reservation }: { reservation: Reserve }) => {
     <>
       <Table.Row className="h-20" onClick={() => setOpenS(true)}>
         <Table.Cell>{reservation.name} </Table.Cell>
-        <Table.Cell>{requestDay} </Table.Cell>
+        <Table.Cell className="max-sm:hidden">{requestDay} </Table.Cell>
         <Table.Cell>{reserveDay} </Table.Cell>
-        <Table.Cell>
+        <Table.Cell className="max-sm:hidden">
           {start === end ? `${end}` : `${start} a ${end}`}
         </Table.Cell>
         <Table.Cell>{reservation.reason} </Table.Cell>

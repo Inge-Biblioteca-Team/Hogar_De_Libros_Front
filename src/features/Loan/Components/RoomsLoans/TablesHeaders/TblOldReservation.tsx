@@ -8,9 +8,9 @@ const TblOldReservation = ({ reserve }: { reserve: ReserveResponse }) => {
     <>
       <Table.Head className="dark:text-white h-11">
         <Table.HeadCell className="dark:bg-neutral-900">Solicitante</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900">Fecha de Solicitud</Table.HeadCell>
+        <Table.HeadCell className="dark:bg-neutral-900 max-sm:hidden">Fecha de Solicitud</Table.HeadCell>
         <Table.HeadCell className="dark:bg-neutral-900">Fecha reservada</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900">Hora de inicio / Fin</Table.HeadCell>
+        <Table.HeadCell className="dark:bg-neutral-900 max-sm:hidden">Hora de inicio / Fin</Table.HeadCell>
         <Table.HeadCell className="dark:bg-neutral-900">Actividad</Table.HeadCell>
       </Table.Head>
       <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
