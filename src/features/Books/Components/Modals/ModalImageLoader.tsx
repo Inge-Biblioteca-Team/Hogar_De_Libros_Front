@@ -6,7 +6,7 @@ import {
   Label,
   Modal,
 } from "flowbite-react";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { LiaSearchengin } from "react-icons/lia";
 
 import { useQuery } from "react-query";
@@ -14,6 +14,7 @@ import UseUploadImage from "../../../../hooks/UseUploadImage";
 import { CoverImage } from "../../Types/Types";
 import { searchCovers } from "../../Services/BooksServices";
 import { GetImageList } from "../../../../Services/UploadImg";
+import toast from "react-hot-toast";
 
 const ModalImageLoader = ({
   setOpen,
@@ -35,14 +36,33 @@ const ModalImageLoader = ({
 
   const [file, setFile] = useState<File | null>(null);
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const uploadedFile = e.target.files?.[0];
-    if (uploadedFile) {
+  const handleImageUpload = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const uploadedFile = e.target.files?.[0];
+      const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "image/webp",
+        "image/svg+xml",
+      ];
+
+      if (!uploadedFile) return;
+
+      if (!allowedTypes.includes(uploadedFile.type)) {
+        toast.error(
+          "Formato no permitido. Solo se aceptan JPG, PNG, GIF, WEBP y SVG."
+        );
+        e.target.value = "";
+        return;
+      }
+
       setFile(uploadedFile);
       const imageURL = URL.createObjectURL(uploadedFile);
       setLocalImage(imageURL);
-    }
-  };
+    },
+    []
+  );
 
   const { mutate: uploadImage } = UseUploadImage();
 
@@ -89,7 +109,7 @@ const ModalImageLoader = ({
   );
 
   return (
-    <Modal  show={open} onClose={onClose}>
+    <Modal show={open} onClose={onClose}>
       <Modal.Header>
         Seleccionar carátula del libro
         <div className=" flex gap-3 items-center">

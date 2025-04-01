@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { GetImageList } from "../../Services/UploadImg";
 import { useCallback, useState } from "react";
 import UseUploadImage from "../../hooks/UseUploadImage";
+import toast from "react-hot-toast";
 
 const ModalAddNewImage = ({
   open,
@@ -33,11 +34,28 @@ const ModalAddNewImage = ({
 
   const handleUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files?.[0];
-    if (uploadedFile) {
-      setFile(uploadedFile);
-      const imageURL = URL.createObjectURL(uploadedFile);
-      setLocalImage(imageURL);
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+      "image/svg+xml",
+    ];
+
+    if (!uploadedFile) return;
+
+    if (!allowedTypes.includes(uploadedFile.type)) {
+      toast.error(
+        "Formato no permitido. Solo se aceptan JPG, PNG, GIF, WEBP y SVG."
+      );
+      e.target.value = "";
+      return;
     }
+    
+    setFile(uploadedFile);
+    const imageURL = URL.createObjectURL(uploadedFile);
+    setLocalImage(imageURL);
+
   }, []);
 
   const handleConfirmImage = useCallback(() => {

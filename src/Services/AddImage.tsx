@@ -1,6 +1,7 @@
 import { Modal, FileInput, Button } from "flowbite-react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { uploadImage } from "./UploadImg";
+import toast from "react-hot-toast";
 
 const AddImage = ({
   showModal,
@@ -14,14 +15,33 @@ const AddImage = ({
   const [localImage, setLocalImage] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
 
-  const handleLocalImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const uploadedFile = e.target.files?.[0];
-    if (uploadedFile) {
+  const handleLocalImageUpload = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const uploadedFile = e.target.files?.[0];
+      const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "image/webp",
+        "image/svg+xml",
+      ];
+
+      if (!uploadedFile) return;
+
+      if (!allowedTypes.includes(uploadedFile.type)) {
+        toast.error(
+          "Formato no permitido. Solo se aceptan JPG, PNG, GIF, WEBP y SVG."
+        );
+        e.target.value = "";
+        return;
+      }
+
       setFile(uploadedFile);
       const imageURL = URL.createObjectURL(uploadedFile);
       setLocalImage(imageURL);
-    }
-  };
+    },
+    []
+  );
 
   const handleConfirmLocalImage = async () => {
     if (file) {
@@ -37,13 +57,15 @@ const AddImage = ({
     }
   };
   return (
-    <Modal  show={showModal} onClose={onCloseModal} popup>
+    <Modal show={showModal} onClose={onCloseModal} popup>
       <Modal.Header>Subir Imagen Local</Modal.Header>
       <Modal.Body className="flex flex-col">
         <p className="mb-2 font-semibold">Cargar una imagen local:</p>
-        <FileInput onChange={handleLocalImageUpload}
-                accept=".jpg,.png,.pdf"
-        className="custom-file-input" />
+        <FileInput
+          onChange={handleLocalImageUpload}
+          accept=".jpg,.png,.pdf"
+          className="custom-file-input"
+        />
         {localImage && (
           <div className="mt-4">
             <p className="mb-2 font-semibold">Previsualización:</p>
