@@ -39,7 +39,7 @@ const FeedbackRating = () => {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded-md p-3 flex flex-col gap-3 md:w-full w-1/3 lg:w-1/2 max-sm:w-full max-sm:text-md"
+        className="dark:bg-[#2d2d2d] bg-white shadow-md rounded-md p-3 flex flex-col gap-3 md:w-full w-1/3 lg:w-1/2 max-sm:w-full max-sm:text-md"
       >
         <fieldset>
           <legend>Tu opinión</legend>
@@ -65,7 +65,7 @@ const FeedbackRating = () => {
         <input type="hidden" name="rating" value={rating} />
         <button
           type="submit"
-          className="bg-Bottoms text-Text text-lg rounded-lg p-1 hover:bg-Bottoms-dark  max-sm:text-sm"
+          className="dark:bg-[#161616] bg-Bottoms text-Text text-lg rounded-lg p-1 hover:bg-Bottoms-dark  max-sm:text-sm"
           disabled={isLoading}
         >
           {isLoading ? (

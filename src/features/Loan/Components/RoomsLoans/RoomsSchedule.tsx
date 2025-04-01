@@ -219,6 +219,7 @@ const RoomsSchedule = ({
           onClick={handleConfirmSelection}
           color={"blue"}
           disabled={roomss.length == 0}
+          className="dark:bg-[#2d2d2d]"
         >
           Llenar formulario de solicitud
         </Button>

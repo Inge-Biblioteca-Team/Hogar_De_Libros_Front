@@ -51,6 +51,7 @@ const CardCourseForCarrousel = ({ Courses }: { Courses: NextCourses }) => {
               )}
             </p>
             <Button
+            className="dark:bg-[#2d2d2d]"
               color={"blue"}
               onClick={() => setopen(true)}
             >

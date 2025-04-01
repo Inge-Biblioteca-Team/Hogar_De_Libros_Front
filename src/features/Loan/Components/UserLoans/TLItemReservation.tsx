@@ -64,7 +64,7 @@ const TLItemReservation = ({ reserve }: { reserve: myReservation }) => {
                 <span>{reserve.reserveStatus} </span>
               </div>
               <div className="flex justify-center items-center mb-2">
-                <Button title="Cancelar y regresar" color={"blue"} onClick={() => setOpen(true)}>
+                <Button className="dark:bg-neutral-900" title="Cancelar y regresar" color={"blue"} onClick={() => setOpen(true)}>
                   Cancelar
                 </Button>
               </div>

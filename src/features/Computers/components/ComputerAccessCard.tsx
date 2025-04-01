@@ -21,7 +21,7 @@ const ComputerAccessCard = () => {
         </p>
       </div>
       <div className="mt-4 flex justify-center">
-        <Button onClick={handleRedirect} color="blue" className="w-1/2">
+        <Button onClick={handleRedirect} color="blue" className="dark:bg-neutral-900 w-1/2">
           Ir a Equipos
         </Button>
       </div>

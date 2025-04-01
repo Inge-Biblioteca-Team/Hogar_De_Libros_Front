@@ -27,7 +27,7 @@ const RoomAccessCard = () => {
           title="Ir a Salas"
           onClick={handleRedirect}
           color="blue"
-          className="w-1/2"
+          className="dark:bg-neutral-900 w-1/2"
         >
           Ir a Salas
         </Button>

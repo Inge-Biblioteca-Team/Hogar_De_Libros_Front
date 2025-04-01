@@ -55,9 +55,9 @@ const LendingForm = ({
 
   return (
     <Modal  show={open} onClose={onClose}>
-      <Modal.Header>Solicitud de préstamo</Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">Solicitud de préstamo</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body className=" flex bg-white flex-col gap-3">
+        <Modal.Body className=" flex bg-white dark:bg-[#2d2d2d] flex-col gap-3">
           <fieldset className="grid lg:grid-cols-2 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del solicitante</legend>
             <FloatingLabel
@@ -65,7 +65,7 @@ const LendingForm = ({
               label="Número de cédula"
               {...register("userCedula")}
               readOnly
-              className=" cursor-default"
+              className="dark:text-white cursor-default"
               disabled={true}
             />
             <FloatingLabel
@@ -74,7 +74,7 @@ const LendingForm = ({
               label="Nombre completo"
               {...register("userName")}
               readOnly
-              className=" cursor-default"
+              className="dark:text-white cursor-default"
             />
             <FloatingLabel
               variant="filled"
@@ -82,7 +82,7 @@ const LendingForm = ({
               label="Número de teléfono"
               {...register("userPhone")}
               readOnly
-              className=" cursor-default"
+              className="dark:text-white cursor-default"
             />
             <FloatingLabel
               variant="filled"
@@ -90,7 +90,7 @@ const LendingForm = ({
               label="Dirección de residencia"
               {...register("userAddress")}
               readOnly
-              className=" cursor-default"
+              className="dark:text-white cursor-default"
             />
           </fieldset>
 
@@ -101,7 +101,7 @@ const LendingForm = ({
               disabled={true}
               label="Código de signatura"
               value={book.signatureCode || "N/A"}
-              className=" cursor-default"
+              className="dark:text-white cursor-default"
               readOnly
             />
             <FloatingLabel
@@ -109,7 +109,7 @@ const LendingForm = ({
               disabled={true}
               label="Numero de inscripción"
               value={book.InscriptionCode}
-              className=" cursor-default"
+              className="dark:text-white cursor-default"
               readOnly
             />
             <FloatingLabel
@@ -117,7 +117,7 @@ const LendingForm = ({
               disabled={true}
               label="Autor"
               value={book.Author || "Desconocido"}
-              className=" cursor-default"
+              className="dark:text-white cursor-default"
               readOnly
             />
             <FloatingLabel
@@ -125,7 +125,7 @@ const LendingForm = ({
               disabled={true}
               label="Título"
               value={book.Title}
-              className=" cursor-default"
+              className="dark:text-white cursor-default"
               readOnly
             />
           </fieldset>
@@ -134,6 +134,7 @@ const LendingForm = ({
             <legend className="mb-1">Información del préstamo</legend>
             <FloatingLabel
               required
+              className="dark:text-white"
               id="BookPickUpDate"
               variant="outlined"
               label="Fecha de recolección"
@@ -143,6 +144,7 @@ const LendingForm = ({
             />
             <FloatingLabel
               required
+              className="dark:text-white"
               variant="outlined"
               label="Fecha de vencimiento"
               type="date"
@@ -153,6 +155,7 @@ const LendingForm = ({
             />
             <div className=" col-span-2 space-y-1">
               <FloatingLabel
+              className="dark:text-white"
                 variant="outlined"
                 label="Centro educativo o institución"
                 helperText="En caso de no pertenecer a un centro educativo favor omita el campo anterior."
