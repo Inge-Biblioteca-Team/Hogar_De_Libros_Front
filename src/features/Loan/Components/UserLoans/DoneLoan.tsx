@@ -43,7 +43,7 @@ const DoneLoan = () => {
           </Table.Head>
           <Table.Body className="dark:bg-[#2d2d2d] h-44 max-h-44">
             {Loan?.count === 0 ? (
-              <Table.Row>
+              <Table.Row className="dark:bg-neutral-900">
                 <Table.Cell colSpan={6}>
                   No ha realizado préstamos. Te invitamos a visitar nuestro{" "}
                   <Link to="/HogarDeLibros/Catalogo/Completo">

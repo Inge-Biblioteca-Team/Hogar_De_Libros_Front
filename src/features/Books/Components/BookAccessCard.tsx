@@ -27,7 +27,7 @@ const BookAccessCard = () => {
       <div className="mt-4 flex justify-center">
       <Button onClick={handleRedirect} 
       color="blue"
-      className="w-1/2">
+      className="dark:bg-neutral-900 w-1/2">
         Ir a libros
       </Button>
       </div>

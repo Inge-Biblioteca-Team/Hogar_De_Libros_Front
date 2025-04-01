@@ -36,7 +36,7 @@ const ContactForm = () => {
       <form
         ref={refForm} 
         onSubmit={handleSubmit} 
-        className="bg-white shadow-md rounded-md lg:w-1/2 lg:h-full p-3 flex flex-col gap-3 md:w-full w-1/3 max-sm:w-full max-sm:text-sm"
+        className="dark:bg-[#2d2d2d] bg-white shadow-md rounded-md lg:w-1/2 lg:h-full p-3 flex flex-col gap-3 md:w-full w-1/3 max-sm:w-full max-sm:text-sm"
       >
         <fieldset>
           <legend>Nombre y Apellidos</legend>
@@ -47,6 +47,15 @@ const ContactForm = () => {
             required
             name="name" 
             color={'gray'}
+            pattern="^[A-Za-zÀ-ÿ\s]+$"
+            onInvalid={(e) =>
+              (e.target as HTMLInputElement).setCustomValidity(
+                "Solo se permiten letras y espacios."
+              )
+            }
+            onInput={(e) =>
+              (e.target as HTMLInputElement).setCustomValidity("")
+            }
           />
           <legend>Correo:</legend>
           <TextInput
@@ -69,7 +78,7 @@ const ContactForm = () => {
         </fieldset>
         <button
           type="submit"
-          className="bg-Bottoms text-Text text-lg rounded-lg p-1 hover:bg-Bottoms-dark max-sm:text-sm"
+          className="dark:bg-[#161616] bg-Bottoms text-Text text-lg rounded-lg p-1 hover:bg-Bottoms-dark max-sm:text-sm"
         >
           {isLoading ? (
             <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>

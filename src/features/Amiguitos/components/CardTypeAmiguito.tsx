@@ -29,7 +29,7 @@ const CardTypeAmiguito = () => {
               }
             </span>
           </p>
-          <Button className="" color={"blue"} onClick={() => setIsOpenD(true)}>
+          <Button className="dark:bg-neutral-900" color={"blue"} onClick={() => setIsOpenD(true)}>
             Donar
           </Button>
         </div>
@@ -53,7 +53,7 @@ const CardTypeAmiguito = () => {
               }
             </span>
           </p>
-          <Button color={"blue"} onClick={() => setIsOpenA(true)}>
+          <Button className="dark:bg-neutral-900" color={"blue"} onClick={() => setIsOpenA(true)}>
             Únete ahora
           </Button>
         </div>
@@ -77,7 +77,7 @@ const CardTypeAmiguito = () => {
               }
             </span>
           </p>
-          <Button color={"blue"} onClick={() => setIsOpenC(true)}>
+          <Button className="dark:bg-neutral-900" color={"blue"} onClick={() => setIsOpenC(true)}>
             Participar
           </Button>
         </div>

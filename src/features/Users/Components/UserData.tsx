@@ -1,6 +1,6 @@
 import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, DarkThemeToggle, Popover } from "flowbite-react";
+import { Button, Popover } from "flowbite-react";
 import { FaUserFriends } from "react-icons/fa";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,8 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "../../../Context/UserContext/UserContext";
 import UseLogOut from "../Hooks/UseLogOut";
 import image from "../../../Assets/MyProfile.jpg";
+import { useTheme } from "../../../Context/dark";
+import DarkModeSwitch from "../../../components/DarkSwitch";
 
 const UserData = () => {
   const Navi = useNavigate();
@@ -21,6 +23,7 @@ const UserData = () => {
   const email = currentUser?.email;
 
   const [count, setCount] = useState<number>(0);
+  const { isDark, toggleDark } = useTheme();
 
   const { data: User } = useQuery<User>(
     ["userInfo", cedula],
@@ -93,7 +96,7 @@ const UserData = () => {
               <button
                 type="button"
                 onClick={() => Navi(`/HogarDeLibros/Perfil/EditarPerfil`)}
-                className="rounded-lg bg-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="dark:bg-neutral-900 rounded-lg bg-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Editar perfil
               </button>
@@ -148,7 +151,7 @@ const UserData = () => {
           <div className="flex items-center mb-4">
             <div className="flex items-center gap-1 text-gray-800 dark:text-gray-200">
               Modo:
-              <DarkThemeToggle />
+              <DarkModeSwitch isDark={isDark} toggleDark={toggleDark} />
             </div>
           </div>
           <Button
@@ -165,7 +168,7 @@ const UserData = () => {
       <button
         title="Usuario"
         type="button"
-        className="bg-Bottoms text-white text-2xl rounded-lg px-2 hover:bg-Bottoms-dark hover:scale-105 w-12"
+        className="dark:bg-neutral-900 bg-Bottoms text-white text-2xl rounded-lg px-2 hover:bg-Bottoms-dark hover:scale-105 w-12"
       >
         <FontAwesomeIcon
           icon={faUserAlt}

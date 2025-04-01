@@ -5,7 +5,7 @@ import { FloatingLabel, Label, Modal, Select } from "flowbite-react";
 import OptsConditions from "../../../../components/OptsConditions";
 import ModalFooters from "../../../../components/ModalFooters";
 import useEditFurniture from "../../Hooks/useEditFuniture";
-import OptInChangePersons from "../OptInChangePersons";
+import AdminList from "../AdminList";
 
 const ModalEditFurniture = ({
   sEdit,
@@ -47,7 +47,7 @@ const ModalEditFurniture = ({
 
   return (
     <>
-      <Modal  show={sEdit} size="md" onClose={onClose}>
+      <Modal show={sEdit} size="md" onClose={onClose}>
         <Modal.Header className="dark:bg-neutral-900">
           Editar mobiliario {furniture.LicenseNumber}{" "}
         </Modal.Header>
@@ -71,7 +71,7 @@ const ModalEditFurniture = ({
               <span>
                 <Label htmlFor="ConditionRating" value="Persona a cargo" />
                 <Select {...register("InChargePerson")}>
-                  <OptInChangePersons />
+                  <AdminList />
                 </Select>
               </span>
               <div>

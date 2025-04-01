@@ -69,7 +69,7 @@ const ManagePrograms = () => {
               </div>
             </div>
             <Button
-              className="max-sm:mt-4 max-sm:w-full "
+              className="dark:bg-[#2d2d2d] max-sm:mt-4 max-sm:w-full "
               color={"blue"}
               onClick={() => SetOAdd(true)}
             >

@@ -126,7 +126,7 @@ const EditUser = () => {
                     </div>
                   </div>
                   <div>
-                    <Button color={"blue"} onClick={() => setOpneI(true)}>
+                    <Button className="dark:bg-[#2d2d2d]" color={"blue"} onClick={() => setOpneI(true)}>
                       Editar información
                     </Button>
                   </div>
@@ -150,7 +150,7 @@ const EditUser = () => {
                     </div>
                   </div>
                   <div>
-                    <Button color={"blue"} onClick={() => setOpneC(true)}>
+                    <Button className="dark:bg-[#2d2d2d]" color={"blue"} onClick={() => setOpneC(true)}>
                       Editar información de contacto
                     </Button>
                   </div>
@@ -179,7 +179,7 @@ const EditUser = () => {
                     </div>
                   </div>
                   <div>
-                    <Button color={"blue"} onClick={() => setOpneR(true)}>
+                    <Button className="dark:bg-[#2d2d2d]" color={"blue"} onClick={() => setOpneR(true)}>
                       Editar información de residencia
                     </Button>
                   </div>

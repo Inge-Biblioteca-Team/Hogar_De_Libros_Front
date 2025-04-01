@@ -103,10 +103,16 @@ const GetFurniturebyID = async (Id: string) => {
   }
 };
 
+const getAdmins = async () => {
+  const response = await api.get("user/Admin-List");
+  return response.data;
+};
+
 export {
   PostNewFurniture,
   GetFurniturePaginated,
   DownFurniture,
   PatchEditFurniture,
   GetFurniturebyID,
+  getAdmins
 };
