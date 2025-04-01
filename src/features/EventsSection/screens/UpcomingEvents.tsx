@@ -20,7 +20,7 @@ const UpcomingEvents = ({ home }: { home?: boolean }) => {
   return (
     <>
       {home && (
-        <h4>
+        <h4 className=" just max-lg:pl-10 max-lg:pr-10 text-center">
           Asi como cursos también tenemos diversos eventos, vean a acompañarnos,
           estos son nuestros próximos eventos.
         </h4>

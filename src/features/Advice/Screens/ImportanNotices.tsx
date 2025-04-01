@@ -29,7 +29,7 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
     >
       <>
         {home && (
-          <h4 className="text-center text-md mb-6">
+          <h4 className="text-center text-md mb-6 ">
             Mantente informado de nuestros eventos, cursos y demás.
           </h4>
         )}

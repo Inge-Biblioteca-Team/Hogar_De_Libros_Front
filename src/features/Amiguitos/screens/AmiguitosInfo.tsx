@@ -9,7 +9,7 @@ const AmiguitosInfo = ({ home }: { home?: boolean }) => {
         Amigos de la biblioteca
       </h2>
       {home && (
-        <h4 className=" text-center text-md">
+        <h4 className=" text-center text-md max-sm:pl-6 max-sm:pr-6">
           Únete a la biblioteca y comparte con nosotros. Existen varias formas
           de hacerlo, aquí te comentamos cómo.
         </h4>
@@ -25,8 +25,8 @@ const AmiguitosInfo = ({ home }: { home?: boolean }) => {
 
       <article className=" hidden lg:block xl:block 2xl:block  w-full lg:w-full xl:w-full 2xl:w-full">
         <div
-          className="w-full lg:w-full xl:w-full 2xl:w-full grid grid-flow-col gap-4 pl-2 pr-2
-        lg:gap-4 lg:pl-2 lg:pr-2 xl:gap-4 xl:pl-2 xl:pr-2 2xl:gap-4 2xl:pl-2 2xl:pr-2"
+          className="w-full lg:w-full xl:w-full 2xl:w-full grid grid-flow-col gap-4 
+        lg:gap-4  xl:gap-4 xl:pl-2 xl:pr-2 2xl:gap-4 2xl:pl-2 2xl:pr-2"
         >
           <CardTypeAmiguito />
         </div>

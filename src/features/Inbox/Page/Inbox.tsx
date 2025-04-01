@@ -13,7 +13,7 @@ const Inbox = () => {
       <main className="flex flex-col w-[79%]">
         <section className="w-full">
           {option == "Recibidos" && <PendingNote />}
-          {option == "Leídos" && <ReadNote />}
+          {option == "Leidos" && <ReadNote />}
           {option == "Papelera" && <TrashNote />}
         </section>
       </main>
