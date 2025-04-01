@@ -20,6 +20,7 @@ const useRead = () => {
         queryClient.invalidateQueries("Notifications");
         queryClient.invalidateQueries("ReadNotifications");
         queryClient.invalidateQueries("TrashNotifications");
+        queryClient.invalidateQueries("MessageCount");
       },
       onError: (error) => {
         console.error("Error al marcar como leída la notificación:", error);
