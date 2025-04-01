@@ -8,12 +8,12 @@ import DirectContac from "../features/Contact/screens/DirectContac";
 import Feedback from "../features/Contact/screens/Feedback";
 import CurrentPrograms from "../features/Programs/screens/CurrentsProgramns";
 import ImportanNotices from "../features/Advice/Screens/ImportanNotices";
-import LandingFooter from "../components/Layout/LandingFooter";
 import LandingHome from "../components/LandingHome";
 import { useInView } from "react-intersection-observer";
 import LatestAddBooks from "../features/Books/Screens/LatestAddBooks";
 import { motion } from "framer-motion";
 import MisionVision from "./MisionVision";
+import LandingFooter from "../components/Layout/LandingFooter";
 
 const Landing = () => {
   const fadeInAnimation = {
@@ -77,8 +77,7 @@ const Landing = () => {
 
         <motion.section
           ref={refRoom}
-          className="space-y-4 mt-6 w-11/12 max-sm:w-full
-          max-sm:pr-0 max-sm:pl-0 max-lg:pl-2 max-lg:pr-2"
+          className="space-y-4 mt-6 w-11/12 "
           id="Rooms"
           initial="hidden"
           animate={inViewRooms ? "visible" : "hidden"}
@@ -111,8 +110,7 @@ const Landing = () => {
 
         <motion.section
           ref={refEvent}
-          className="space-y-4 w-11/12  max-sm:w-full max-lg:pl-2 max-lg:pr-2
-          max-sm:pr-4 max-sm:pl-4"
+          className="space-y-4 w-11/12"
           id="Events"
           initial="hidden"
           animate={inViewEvent ? "visible" : "hidden"}
@@ -134,8 +132,7 @@ const Landing = () => {
 
         <motion.section
           ref={refArtist}
-          className="space-y-4 w-11/12 max-sm:w-full max-sm:pl-4 max-sm:pr-4
-          max-lg:pl-2 max-lg:pr-2"
+          className="space-y-4 w-11/12"
           id="LocalArtist"
           initial="hidden"
           animate={inViewAsrtis ? "visible" : "hidden"}
@@ -175,7 +172,7 @@ const Landing = () => {
           {inViewFeedback && <Feedback />}
         </motion.section>
       </main>
-      <LandingFooter />
+      <LandingFooter/>
     </>
   );
 };

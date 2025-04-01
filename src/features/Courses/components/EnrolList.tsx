@@ -22,7 +22,7 @@ const EnrolList = ({
 
   return (
     <Modal
-      dismissible
+      
       show={open}
       onClose={() => setOpen(false)}
       size={"9xl"}

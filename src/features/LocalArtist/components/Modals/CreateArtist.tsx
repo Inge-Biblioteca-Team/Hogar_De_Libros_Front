@@ -55,7 +55,7 @@ const CreateArtist = () => {
       >
         Añadir artista
       </button>
-      <Modal dismissible show={isModalOpen} onClose={onClose}>
+      <Modal  show={isModalOpen} onClose={onClose}>
         <Modal.Header className="dark:bg-neutral-900 bg-white">Añadir nuevo artista</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="dark:bg-[#2d2d2d] bg-white">

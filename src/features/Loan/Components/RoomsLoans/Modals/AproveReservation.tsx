@@ -27,7 +27,7 @@ const AproveReservation = ({
   };
   return (
     <>
-      <Modal dismissible show={open} popup onClose={onCancel} size={"sm"}>
+      <Modal  show={open} popup onClose={onCancel} size={"sm"}>
         <Modal.Header className="dark:bg-[#2d2d2d]"/>
         <Modal.Body className="dark:bg-[#2d2d2d]">
           <div className="text-center">

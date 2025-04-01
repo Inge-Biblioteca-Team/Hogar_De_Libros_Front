@@ -42,7 +42,7 @@ const CourseInfo = ({
   };
 
   return (
-    <Modal dismissible show={open} onClose={() => setOpen(false)}>
+    <Modal  show={open} onClose={() => setOpen(false)}>
       <Modal.Header className="dark:bg-neutral-900">Información del curso</Modal.Header>
       <Modal.Body className="dark:bg-[#2d2d2d] flex flex-col gap-4">
         <div>

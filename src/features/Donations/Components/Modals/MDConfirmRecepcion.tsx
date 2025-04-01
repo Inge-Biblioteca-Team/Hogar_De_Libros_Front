@@ -34,7 +34,7 @@ const MDConfirmRecepcion = ({
   };
 
   return (
-    <Modal dismissible show={open} onClose={onClose} size={"md"}>
+    <Modal  show={open} onClose={onClose} size={"md"}>
       <Modal.Header className="dark:bg-neutral-900">Confirmar recepción</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body className="dark:bg-[#2d2d2d]">

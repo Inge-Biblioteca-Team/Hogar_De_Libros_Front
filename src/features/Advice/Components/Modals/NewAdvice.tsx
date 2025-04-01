@@ -55,7 +55,7 @@ const NewAdvice = ({
   
 
   return (
-    <Modal dismissible show={open} onClose={onClose}>
+    <Modal  show={open} onClose={onClose}>
       <Modal.Header className="dark:bg-neutral-900">Generar nuevo aviso</Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body className="dark:bg-[#2d2d2d]">

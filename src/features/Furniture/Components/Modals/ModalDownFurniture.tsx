@@ -34,7 +34,7 @@ const ModalDownFurniture = ({
   };
 
   return (
-    <Modal dismissible show={open} size="md" onClose={onClose} popup>
+    <Modal  show={open} size="md" onClose={onClose} popup>
       <Modal.Header className="dark:bg-neutral-900"/>
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body className="dark:bg-[#2d2d2d]">

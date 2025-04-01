@@ -26,7 +26,7 @@ const MDAproved = ({
   };
 
   return (
-    <Modal dismissible show={open} onClose={onClose} popup size={"sm"}>
+    <Modal  show={open} onClose={onClose} popup size={"sm"}>
       <ModalBody className=" flex justify-center items-center mt-12">
         <span className=" text-2xl">Aprobar colaboración</span>
       </ModalBody>

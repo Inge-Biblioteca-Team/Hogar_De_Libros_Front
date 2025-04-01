@@ -34,7 +34,7 @@ const MDDenyDonation = ({
   };
 
   return (
-    <Modal dismissible show={open} onClose={onClose} popup size={"md"}>
+    <Modal  show={open} onClose={onClose} popup size={"md"}>
       <Modal.Header className="dark:bg-neutral-900">
       <span>Rechazar la donación</span>
       </Modal.Header>
