@@ -76,7 +76,7 @@ const AdviceManage = () => {
             </div>
           </div>
           <Button
-            className="max-md:w-full xl:mr-4 2xl:mr- max-sm:w-full"
+            className="dark:bg-[#2d2d2d] max-md:w-full xl:mr-4 2xl:mr- max-sm:w-full"
             color={"blue"}
             onClick={() => setOpen(true)}
           >

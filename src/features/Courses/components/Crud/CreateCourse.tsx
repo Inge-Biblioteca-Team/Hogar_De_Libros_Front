@@ -54,7 +54,7 @@ const CreateCourse = () => {
 
   return (
     <>
-      <Button className="max-sm:w-full" onClick={() => setIsModalOpen(true)} color="blue">
+      <Button className="dark:bg-[#2d2d2d] max-sm:w-full" onClick={() => setIsModalOpen(true)} color="blue">
         Añadir curso
       </Button>
       <Modal  show={isModalOpen} onClose={onClose} size={"5xl"}>

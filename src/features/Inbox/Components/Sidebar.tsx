@@ -25,7 +25,7 @@ export function SidebarComponent({
           </Sidebar.Item>
           <Sidebar.Item
             className={`${
-              option == "Leidos" ? "bg-[#dfe2e6]" : ""
+              option == "Leidos" ? "dark:bg-gray-800 bg-[#dfe2e6]" : ""
             } cursor-pointer  `}
             onClick={() => setOption("Leidos")}
             icon={MdMarkAsUnread}
@@ -36,7 +36,7 @@ export function SidebarComponent({
             onClick={() => setOption("Papelera")}
             icon={HiTrash}
             className={`${
-              option == "Papelera" ? "bg-[#dfe2e6]" : ""
+              option == "Papelera" ? "dark:bg-gray-800 bg-[#dfe2e6]" : ""
             } cursor-pointer  `}
           >
             Papelera

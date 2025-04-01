@@ -6,6 +6,7 @@ export const content = [
   "./src/**/*.{js,ts,jsx,tsx}",
   _content(),
 ];
+
 export const theme = {
   extend: {
     colors: {

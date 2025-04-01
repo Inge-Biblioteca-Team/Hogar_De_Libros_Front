@@ -70,7 +70,7 @@ const FriendInformation = () => {
                     libros con otras personas.
                   </p>
                   <Button
-                    className="hover:scale-105 transition-transform duration-300"
+                    className="dark:bg-neutral-900 hover:scale-105 transition-transform duration-300"
                     color={"blue"}
                     onClick={() => setOpenC(true)}
                   >
@@ -80,7 +80,7 @@ const FriendInformation = () => {
               </figure>
             </div>
             <Button
-              className="w-36 hover:scale-105 transition-transform duration-300
+              className="dark:bg-neutral-900 w-36 hover:scale-105 transition-transform duration-300
                hidden max-sm:block"
               onClick={() => setOpenC(true)}
               color={"blue"}
@@ -133,7 +133,7 @@ const FriendInformation = () => {
                     libros con otras personas.
                   </p>
                   <Button
-                    className="hover:scale-105 transition-transform duration-300"
+                    className="dark:bg-neutral-900 hover:scale-105 transition-transform duration-300"
                     color={"blue"}
                     onClick={() => setOpenD(true)}
                   >
@@ -143,7 +143,7 @@ const FriendInformation = () => {
               </figure>
             </div>
             <Button
-              className="w-36 hover:scale-105 transition-transform duration-300
+              className="dark:bg-neutral-900 w-36 hover:scale-105 transition-transform duration-300
                hidden max-sm:block"
               onClick={() => setOpenD(true)}
               color={"blue"}
@@ -197,7 +197,7 @@ const FriendInformation = () => {
                     libros con otras personas.
                   </p>
                   <Button
-                    className="hover:scale-105 transition-transform duration-300"
+                    className="dark:bg-neutral-900 hover:scale-105 transition-transform duration-300"
                     color={"blue"}
                     onClick={() => setOpenA(true)}
                   >
@@ -207,7 +207,7 @@ const FriendInformation = () => {
               </figure>
             </div>
             <Button
-              className="w-36 hover:scale-105 transition-transform duration-300
+              className="dark:bg-neutral-900 w-36 hover:scale-105 transition-transform duration-300
                hidden max-sm:block"
               onClick={() => setOpenA(true)}
               color={"blue"}
