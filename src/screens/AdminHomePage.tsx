@@ -10,6 +10,7 @@ import Calendar from "../components/Calendar";
 import LoanStadisticts from "../components/LoanStadisticts";
 import { useState } from "react";
 import ReportModal from "../components/Modals/ReportModal";
+import Driver from "../utils/Driver";
 
 const AdminHomePage = () => {
   const { data: Activitiescounts } = useQuery<Counts>(
@@ -34,11 +35,11 @@ const AdminHomePage = () => {
     <>
       <div className="dark:bg-neutral-900 flex md:w-full justify-between">
         <Breadcrumb className="custom-breadcrumb">
-        <Breadcrumb.Item icon={IoIosHome}>
-           <span className="dark:text-white text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
-            Inicio
-           </span>
-           </Breadcrumb.Item>
+          <Breadcrumb.Item icon={IoIosHome}>
+            <span className="dark:text-white text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
+              Inicio
+            </span>
+          </Breadcrumb.Item>
         </Breadcrumb>
         <span className="dark:text-white text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
           {" "}
@@ -47,10 +48,10 @@ const AdminHomePage = () => {
       </div>
       <main className="dark:bg-neutral-900 w-full flex flex-col items-center gap-3">
         <section className=" grid lg:grid-cols-6 md:grid-cols-1 md:w-full md:pr-4 md:pl-4 grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
-          <div className="col-span-4 md:w-full max-sm:hidden">
+          <div className="col-span-4 md:w-full max-sm:hidden" id="Stats">
             <LoanStadisticts />
           </div>
-          <div className="grid grid-cols-2 gap-6 col-span-2 ">
+          <div className="grid grid-cols-2 gap-6 col-span-2" id="Counter">
             <CounterCard
               counter={GeneralCounts?.Libros || 0}
               text="Libros en colección"
@@ -75,7 +76,10 @@ const AdminHomePage = () => {
               counter={Activitiescounts?.PrestamosExitosos || 0}
               text="Préstamos de libro"
               children={
-                <div className="p-3 flex flex-col gap-3 items-start">
+                <div
+                  className="p-3 flex flex-col gap-3 items-start"
+                  id="BookSubMenu"
+                >
                   <Link
                     className=" hover:text-Body"
                     to={"/HogarDeLibros/Catalogo/Completo"}
@@ -95,12 +99,12 @@ const AdminHomePage = () => {
                     Ver historial de préstamos
                   </Link>
                   <button
-                      type="button"
-                      className="hover:text-Body"
-                      onClick={() => (setReportType("BL"), setOpen(true))}
-                    >
-                      Generar reporte
-                    </button>
+                    type="button"
+                    className="hover:text-Body"
+                    onClick={() => (setReportType("BL"), setOpen(true))}
+                  >
+                    Generar reporte
+                  </button>
                 </div>
               }
             />
@@ -116,12 +120,12 @@ const AdminHomePage = () => {
                     Ir a gestión de usuarios
                   </Link>
                   <button
-                      type="button"
-                      className="hover:text-Body"
-                      onClick={() => (setReportType("US"), setOpen(true))}
-                    >
-                      Generar reporte
-                    </button>
+                    type="button"
+                    className="hover:text-Body"
+                    onClick={() => (setReportType("US"), setOpen(true))}
+                  >
+                    Generar reporte
+                  </button>
                 </div>
               }
             />
@@ -131,14 +135,13 @@ const AdminHomePage = () => {
               text="Asistencia del mes"
               children={
                 <div className="p-3 flex flex-col gap-3">
-                   <button
-                      type="button"
-                      className="hover:text-Body"
-                      onClick={() => (setReportType("AS"), setOpen(true))}
-                    >
-                      Generar reporte
-                    </button>
-                 
+                  <button
+                    type="button"
+                    className="hover:text-Body"
+                    onClick={() => (setReportType("AS"), setOpen(true))}
+                  >
+                    Generar reporte
+                  </button>
                 </div>
               }
             />
@@ -200,33 +203,33 @@ const AdminHomePage = () => {
                     Ver programas
                   </Link>
                   <button
-                      type="button"
-                      onClick={() => (setReportType("EV"), setOpen(true))}
-                    >
-                      Reporte de Eventos
-                    </button>
+                    type="button"
+                    onClick={() => (setReportType("EV"), setOpen(true))}
+                  >
+                    Reporte de Eventos
+                  </button>
                   <button
-                      type="button"
-                      onClick={() => (setReportType("CO"), setOpen(true))}
-                    >
-                      Reporte de Cursos
-                    </button>
+                    type="button"
+                    onClick={() => (setReportType("CO"), setOpen(true))}
+                  >
+                    Reporte de Cursos
+                  </button>
                 </div>
               }
             />
           </div>
         </section>
         <section className="dark:bg-neutral-900 flex xl:w-full 2xl:w-full xl:pr-4 xl:pl-4 2xl:pl-4 2xl:pr-4 w-11/12 justify-start gap-6">
-          <Card className="dark:bg-[#2d2d2d] w-full h-[32vh] p0 rounded-sm">
+          <Card
+            className="dark:bg-[#2d2d2d] w-full h-[32vh] p0 rounded-sm"
+            id="EventCalendar"
+          >
             <Calendar />
           </Card>
         </section>
+        <Driver />
       </main>
-      <ReportModal
-        open={open}
-        setOpen={setOpen}
-        reportType={reportType}
-      />
+      <ReportModal open={open} setOpen={setOpen} reportType={reportType} />
     </>
   );
 };

@@ -45,7 +45,7 @@ const HomeNavbar = () => {
           className="hidden max-sm:block cursor-pointer"
         />
         {rol == "admin" && (
-          <div className=" flex ml-5 mb-2 gap-3">
+          <div className=" flex ml-5 mb-2 gap-3" id="USerMode">
             <span className="dark:text-white text-black">Modo de usuario</span>
             <ToggleSwitch
               color="gray"

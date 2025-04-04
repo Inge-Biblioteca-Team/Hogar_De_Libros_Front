@@ -7,7 +7,7 @@ const LeadingOptions = () => {
 
   return (
     <>
-      <Sidebar.ItemGroup>
+      <Sidebar.ItemGroup id="loansOPT">
         <Sidebar.Collapse label="Préstamo y circulación">
           <Sidebar.Item
             onClick={() =>

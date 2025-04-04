@@ -14,12 +14,12 @@ const ExtraOptions = () => {
 
   return (
     <>
-      <Sidebar.Item
+      <Sidebar.Item id={"MgUsuer"}
         onClick={() => handleNavigation("/HogarDeLibros/Gestion_Usuarios")}
       >
         Gestión de usuarios
       </Sidebar.Item>
-      <Sidebar.Collapse label="Colaboradores">
+      <Sidebar.Collapse label="Colaboradores" id="Colabs">
         <Sidebar.Item
           onClick={() =>
             handleNavigation(
@@ -46,7 +46,7 @@ const ExtraOptions = () => {
           Historial de colaboradores
         </Sidebar.Item>
       </Sidebar.Collapse>
-      <Sidebar.Collapse label="Donaciones">
+      <Sidebar.Collapse label="Donaciones" id="Donaciones">
         <Sidebar.Item
           onClick={() =>
             handleNavigation("/HogarDeLibros/Donaciones/Pendientes_Respuesta")
@@ -69,7 +69,7 @@ const ExtraOptions = () => {
           Historial de donaciones
         </Sidebar.Item>
       </Sidebar.Collapse>
-      <Sidebar.Collapse label="Amigos de la biblioteca">
+      <Sidebar.Collapse label="Amigos de la biblioteca" id="friends">
         <Sidebar.Item
           onClick={() =>
             handleNavigation("/HogarDeLibros/Amigos/Pendiente_Respuesta")

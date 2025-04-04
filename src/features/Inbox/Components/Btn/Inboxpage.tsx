@@ -24,6 +24,7 @@ const Inboxpage = () => {
         onClick={goto}
         title="Mensajes recibidos"
         type="button"
+        id="inBoxBtn"
       >
         <HiInbox
           className=" md:hidden lg:table-cell max-sm:w-5 max-sm:h-5 sm:w-8 sm:h-8"
