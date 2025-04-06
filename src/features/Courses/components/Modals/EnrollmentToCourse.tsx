@@ -1,4 +1,4 @@
-import { Label, Modal, TextInput } from "flowbite-react";
+import { Label, Modal, Popover, Select, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { Enrollment } from "../../types/Enroll";
 import UseEnrollToCourse from "../../Hooks/UseEnrollToCourse";
@@ -8,6 +8,8 @@ import { User } from "../../../Users/Type/UserType";
 import { useQuery } from "react-query";
 import { GetUserData } from "../../services/SvCourses";
 import ModalFooters from "../../../../components/ModalFooters";
+import { PiKeyReturn } from "react-icons/pi";
+import { MdOutlineError } from "react-icons/md";
 
 const EnrollmentToCourse = ({
   course,
@@ -20,11 +22,6 @@ const EnrollmentToCourse = ({
 }) => {
   const [NCedula, setNCedula] = useState<string>("");
 
-  const handleCedula = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNCedula(event.target.value);
-    setValue("userCedula", NCedula);
-  };
-
   const { data: User } = useQuery<User, Error>(
     ["UserEnrol", NCedula],
     () => {
@@ -32,8 +29,9 @@ const EnrollmentToCourse = ({
     },
     { enabled: !!NCedula }
   );
+  const [idType, setIdType] = useState<string>("");
 
-  const { register, handleSubmit, setValue, reset } = useForm<Enrollment>();
+  const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm<Enrollment>({mode: "onChange",});
 
   const { mutate: EnrollMe, isLoading } = UseEnrollToCourse();
 
@@ -69,7 +67,7 @@ const EnrollmentToCourse = ({
   };
 
   return (
-    <Modal  show={open} onClose={handleClose}>
+    <Modal dismissible show={open} onClose={handleClose}>
       <Modal.Header>Matricula de curso</Modal.Header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body className=" flex flex-col gap-2">
@@ -82,17 +80,66 @@ const EnrollmentToCourse = ({
             </span>
           )}
           <div className="grid grid-cols-2 gap-2 max-sm:flex max-sm:flex-col">
-            <div>
+          <div>
               <Label
                 htmlFor="Cedula"
-                value="Cédula de la persona que asistirá a las sesiones"
+                value="Identificación de la persona que asistirá"
               />
-              <TextInput
-                id="Cedula"
-                required
-                placeholder="Sin guiones"
-                onChange={handleCedula}
-              />
+              {idType === "" ? (
+                <Select onChange={(e) => setIdType(e.target.value)} required>
+                  <option value="">Seleccione tipo de identificación</option>
+                  <option value="number">Cédula nacional</option>
+                  <option value="text">Pasaporte u otro</option>
+                </Select>
+              ) : (
+                <div className="relative">
+                  <TextInput
+                    id="Cedula"
+                    required
+                    type="text"
+                    placeholder={idType === "number" ? "Sin espacios o guiones" : "Digite su identificación"}
+                    {...register("userCedula", {
+                      required: "Este campo es obligatorio",
+                      pattern: {
+                        value:
+                          idType === "number"
+                            ? /^[0-9]{9}$/
+                            : /^[A-Za-z0-9]{9,14}$/,
+                        message:
+                          idType === "number"
+                            ? "La cédula debe tener 9 dígitos numéricos"
+                            : "El pasaporte debe tener entre 9 y 14 caracteres alfanuméricos",
+                      },
+                      onChange: (e) => {
+                        const value = e.target.value;
+                        setNCedula(value);
+                        setValue("userCedula", value);
+                      },
+                    })}
+                  />
+                  {errors.userCedula && (
+                    <Popover
+                      trigger="hover"
+                      placement="top"
+                      content={<div className="bg-slate-50 text-red-600 p-2 text-sm">{errors.userCedula.message}</div>}
+                      className="z-10"
+                    >
+                      <span className="absolute right-2 top-10 text-red-600 cursor-pointer">
+                        <MdOutlineError />
+                      </span>
+                    </Popover>
+                  )}
+                  <PiKeyReturn
+                    onClick={() => {
+                      setIdType("");
+                      setNCedula("");
+                    }}
+                    className="absolute top-3 right-2 cursor-pointer hover:text-blue-500"
+                    size={20}
+                    title="Volver a seleccionar tipo de identificación"
+                  />
+                </div>
+              )}
             </div>
             <div>
               <Label htmlFor="name" value="Nombre" />
