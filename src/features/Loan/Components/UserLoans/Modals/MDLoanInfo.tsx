@@ -1,8 +1,15 @@
-import { Button, Modal, Textarea } from "flowbite-react";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Button, FloatingLabel, Modal, Spinner, Textarea } from "flowbite-react";
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import { Loans } from "../../../Types/BookLoan";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import UseCancelLoan from "../../../Hooks/Books/UseCancelLoan";
+import UserContext from "../../../../../Context/UserContext/UserContext";
+import { BookLeading } from "../../../../Books/Types/BooksTypes";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { addDay } from "@formkit/tempo";
+import { formatToYMD } from "../../../../../components/FormatTempo";
+import UseLeadingRequestBookExtended from "../../../Hooks/Books/UseLeadingRequestBookExtended";
 
 const MDLoanInfo = ({
   Loan,
@@ -29,6 +36,54 @@ const MDLoanInfo = ({
     setShowCancel(false);
   };
 
+  const { currentUser } = useContext(UserContext);
+
+  const {handleSubmit, register, watch, setValue } = useForm<BookLeading>({
+    defaultValues: {
+      userCedula: currentUser?.cedula,
+      userName: `${currentUser?.name} ${currentUser?.lastName}`,
+      userPhone: currentUser?.phoneNumber,
+      userAddress: currentUser?.address,
+      InscriptionCode: Loan.book.InscriptionCode,
+      SignaCode: Loan.book.signatureCode,
+      Title: Loan.book.Title,
+      Author: Loan.book.Author,
+      bookBookCode: String(Loan.book.BookCode)
+    },
+  });
+
+    const minDate = formatToYMD(new Date());
+    const maxDate = formatToYMD(
+        addDay(watch("BookPickUpDate"), currentUser?.loanPolicity)
+      );
+
+    useEffect(() => {
+      if (currentUser) {
+        setValue("userCedula", currentUser.cedula);
+        setValue("userName", `${currentUser.name} ${currentUser.lastName}`);
+        setValue("userPhone", currentUser.phoneNumber);
+        setValue("userAddress", currentUser.address);
+        
+        // Campos relacionados con el libro
+        setValue("InscriptionCode", Loan.book.InscriptionCode);
+        setValue("SignaCode", Loan.book.signatureCode);
+        setValue("Title", Loan.book.Title);
+        setValue("Author", Loan.book.Author);
+        setValue("bookBookCode", String(Loan.book.BookCode));
+      }
+    }, [currentUser, Loan.book]); // Solo se ejecuta cuando currentUser cambia. Si Loan.book puede cambiar
+
+    const { mutate: createNew, isLoading } = UseLeadingRequestBookExtended();
+
+  const onConfirm = (data: BookLeading) => {
+    createNew(data, {
+      onSuccess: () => {
+        setShowChange(false);
+        toast.success("Registro creado exitosamente");
+      },
+    });
+  };
+
   return (
     <>
       <Modal dismissible show={showCancel} popup onClose={() => setShowCancel(false)} size={"md"}>
@@ -44,6 +99,7 @@ const MDLoanInfo = ({
             />
             <div className="flex justify-center gap-4 mt-10">
               <Button
+                disabled={isLoading}
                 color="red"
                 onClick={() => {
                   setShowCancel(false);
@@ -52,8 +108,12 @@ const MDLoanInfo = ({
               >
                 Volver
               </Button>
-              <Button title="Confirmar" color="blue" onClick={() => handleCancel()}>
-                Confirmar
+              <Button disabled={isLoading} title="Confirmar" color="blue" onClick={() => handleCancel()}>
+              {isLoading ? (
+          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+        ) : (
+          "Confirmar"
+        )}
               </Button>
             </div>
           </div>
@@ -63,28 +123,58 @@ const MDLoanInfo = ({
       <Modal dismissible show={showChange} popup onClose={() => setShowChange(false)} size="md">
         <Modal.Header>Solicitar Extensión</Modal.Header>
         <Modal.Body>
+        <form onSubmit={handleSubmit(onConfirm)}>
           <div className="text-center">
             <h3>Formulario de Solicitud de Extensión</h3>
             <Textarea
               rows={3}
               placeholder="Ingresa el motivo de la extensión" />
+              <fieldset className=" grid grid-cols-2 gap-x-3 gap-y-1">
+                          <legend className="mb-1">Información del préstamo</legend>
+                          <FloatingLabel
+                            required
+                            className="dark:text-white"
+                            id="BookPickUpDate"
+                            variant="outlined"
+                            label="Fecha de recolección"
+                            type="date"
+                            min={minDate}
+                            {...register("BookPickUpDate")}
+                          />
+                          <FloatingLabel
+                            required
+                            className="dark:text-white"
+                            variant="outlined"
+                            label="Fecha de vencimiento"
+                            type="date"
+                            min={watch("BookPickUpDate")}
+                            max={maxDate}
+                            id="LoanExpirationDate"
+                            {...register("LoanExpirationDate")}
+                          />
+                          </fieldset>
             <div className="flex justify-center gap-4 mt-10">
               <Button
+                disabled={isLoading}
                 color="red"
                 onClick={() => setShowChange(false)}
               >
                 Cancelar
               </Button>
               <Button
+                type="submit"
+                disabled={isLoading}
                 color="blue"
-                onClick={() => {
-                  setShowChange(false); 
-                } }
               >
-                Confirmar
+                {isLoading ? (
+                          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+                        ) : (
+                          "Confirmar"
+                        )}
               </Button>
             </div>
           </div>
+          </form>
         </Modal.Body>
       </Modal>
     </>
