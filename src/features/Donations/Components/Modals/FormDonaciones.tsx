@@ -1,11 +1,11 @@
-import { Label, Modal, TextInput, Select, Button, Spinner } from "flowbite-react";
+import { Label, Modal, TextInput, Select, Button, Spinner, Popover } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { NewDonation } from "../../Types/DonationType";
 import UseCreateDonation from "../../Hooks/UseCreateDonation";
 import { formatToYMD } from "../../../../components/FormatTempo";
 import { ModalOpen } from "../../../../Types/GlobalTypes";
-import { MdQuestionMark } from "react-icons/md";
+import { MdOutlineError, MdQuestionMark } from "react-icons/md";
 import { TbHelpSquareRounded } from "react-icons/tb";
 import InfoDonation from "./InfoDonation";
 import { useQuery } from "react-query";
@@ -13,12 +13,14 @@ import UseDebounce from "../../../../hooks/UseDebounce";
 import { GetUserInfo } from "../../../Users/Services/SvUsuer";
 import { User } from "../../../Users/Type/UserType";
 import OptDonMainCategories from "../OptDonMainCategories";
+import { PiKeyReturn } from "react-icons/pi";
 
 const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
-  const { reset, register, handleSubmit, setValue, watch } =
-    useForm<NewDonation>();
+  const { reset, register, handleSubmit, setValue, watch, formState: { errors }, trigger } =
+    useForm<NewDonation>({mode: "onChange",});
 
   const cedula = UseDebounce(watch("UserCedula"), 1000);
+  const [idType, setIdType] = useState("");
 
   const { data: User } = useQuery<User>(
     ["userFill", cedula],
@@ -75,7 +77,7 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
   const minMax = formatToYMD(new Date());
 
   return (
-    <Modal  show={open} onClose={onClose} size={"5xl"}>
+    <Modal show={open} onClose={onClose} size={"5xl"}>
       <Modal.Header className="dark:bg-neutral-900">
         <div>Propuesta de donación</div>
       </Modal.Header>
@@ -90,13 +92,66 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
             </div>
 
             <div>
-              <Label value="Número de cédula" />
-              <TextInput
-              type="number"
-                {...register("UserCedula")}
-                required
-                placeholder="Sin guiones"
-              />
+              <Label htmlFor="IDNumber"
+                value={idType === "number" ? "Número de cédula" : "Número de pasaporte"}
+              />{" "}
+              {idType == "" ? (
+                <Select onChange={(event) => setIdType(event.target.value)}>
+                  <option value="">Seleccione el tipo de identificacion</option>
+                  <option value="number">Cedula nacional</option>
+                  <option value="text">Pasaporte u otro</option>
+                </Select>
+              ) : (
+                <div className=" relative">
+                  <TextInput
+                    id="IDNumber"
+                    placeholder={
+                      idType === "number" ? "Sin guiones" : "Ej. A1234567"
+                    }
+                    type="text"
+                    inputMode={idType === "number" ? "numeric" : "text"}
+                    {...register("UserCedula", {
+                      required: "Este campo es obligatorio",
+                      pattern: {
+                        value:
+                          idType === "number"
+                            ? /^\d{9}$/
+                            : /^[A-Za-z0-9]+$/,
+                        message:
+                          idType === "number"
+                            ? "La cédula debe tener exactamente 9 dígitos sin guiones"
+                            : "El pasaporte solo debe contener letras y números",
+                      },
+                    })}
+                    onChange={(e) => {
+                      setValue("UserCedula", e.target.value);
+                      trigger("UserCedula");
+                    }}
+                  />
+                  {errors.UserCedula && (
+                    <Popover
+                      trigger="hover"
+                      placement="top"
+                      content={
+                        <div className="bg-slate-50 text-red-600 p-2 text-sm">
+                          {errors.UserCedula.message}
+                        </div>
+                      }
+                      className="z-10"
+                    >
+                      <span className="absolute right-2 top-10 text-red-600 cursor-pointer max-sm:right-10">
+                        <MdOutlineError />
+                      </span>
+                    </Popover>
+                  )}
+                  <PiKeyReturn
+                    onClick={() => setIdType("")}
+                    className="absolute top-3 right-2 cursor-pointer hover:text-blue-500"
+                    size={20}
+                    title="Volver a seleccionar tipo de identificacion"
+                  />
+                </div>
+              )}
             </div>
 
             <div>
@@ -217,15 +272,15 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
         </Modal.Body>
         <Modal.Footer className="dark:bg-[#2d2d2d] flex bg-white items-center justify-between">
           <div></div>
-          <Button color={"red"} tabIndex={2}  onClick={onClose} disabled={isLoading}>
+          <Button color={"red"} tabIndex={2} onClick={onClose} disabled={isLoading}>
             Cancelar
           </Button>
           <Button color={"blue"} type="submit" disabled={isLoading}>
-          {isLoading ? (
-          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
-        ) : (
-          "Confirmar"
-        )}
+            {isLoading ? (
+              <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+            ) : (
+              "Confirmar"
+            )}
           </Button>
           <InfoDonation>
             <button type="button" title="ayuda">

@@ -22,6 +22,7 @@ import { getUserInformationByCedula } from "../Services/SvUsuer";
 import { useEffect, useState } from "react";
 import cover from "../../../Assets/RegisterCover.jpg";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
+import { PiKeyReturn } from "react-icons/pi";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const Register = () => {
 
   const password = watch("password");
   const { mutate: signUp } = UseRegister();
+  const [idType, SetIdType] = useState("");
 
   const onSubmit = (data: RegisterInfo) => {
     signUp(data);
@@ -112,16 +114,62 @@ const Register = () => {
             >
               <fieldset className=" grid grid-cols-2 gap-3">
                 <div>
-                  <Label htmlFor="IDNumber" value="Número de cédula" />{" "}
-                  <TextInput
-                    placeholder="Sin guiones"
-                    id="IDNumber"
-                    inputMode="numeric"
-                    type="number"
-                    pattern="^\d{9}$"
-                    required
-                    {...register("cedula")}
-                  />
+                  <Label htmlFor="IDNumber"
+                    value={idType === "number" ? "Número de cédula" : "Número de pasaporte"}
+                  />{" "}
+                  {idType == "" ? (
+                    <Select onChange={(event) => SetIdType(event.target.value)}>
+                      <option value="">Seleccione el tipo de identificacion</option>
+                      <option value="number">Cedula nacional</option>
+                      <option value="text">Pasaporte u otro</option>
+                    </Select>
+                  ) : (
+                    <div className=" relative">
+                      <TextInput
+                        id="IDNumber"
+                        placeholder={
+                          idType === "number" ? "Sin guiones" : "Ej. A1234567"
+                        }
+                        type="text"
+                        inputMode={idType === "number" ? "numeric" : "text"}
+                        {...register("cedula", {
+                          required: "Este campo es obligatorio",
+                          pattern: {
+                            value:
+                              idType === "number"
+                                ? /^\d{9}$/
+                                : /^[A-Za-z0-9]+$/,
+                            message:
+                              idType === "number"
+                                ? "La cédula debe tener exactamente 9 dígitos sin guiones"
+                                : "El pasaporte solo debe contener letras y números",
+                          },
+                        })}
+                      />
+                      {errors.cedula && (
+                        <Popover
+                          trigger="hover"
+                          placement="top"
+                          content={
+                            <div className="bg-slate-50 text-red-600 p-2 text-sm">
+                              {errors.cedula.message}
+                            </div>
+                          }
+                          className="z-10"
+                        >
+                          <span className="absolute left-52 top-10 text-red-600 cursor-pointer max-sm:left-32">
+                            <MdOutlineError />
+                          </span>
+                        </Popover>
+                      )}
+                      <PiKeyReturn
+                        onClick={() => SetIdType("")}
+                        className="absolute top-3 right-2 cursor-pointer hover:text-blue-500"
+                        size={20}
+                        title="Volver a seleccionar tipo de identificacion"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className=" relative">
                   <Label htmlFor="Name" value="Nombre" />
@@ -226,7 +274,7 @@ const Register = () => {
                   <TextInput
                     placeholder="8 caracteres, sin caracteres especiales"
                     id="Password"
-                    type= {showPassword ? "text" : "password"}
+                    type={showPassword ? "text" : "password"}
                     required
                     {...register("password", {
                       required: "La contraseña es obligatoria",
@@ -241,9 +289,8 @@ const Register = () => {
                           "La contraseña solo puede contener letras y números",
                       },
                     })}
-                    className={`border ${
-                      errors.password ? "border-red-500" : "border-gray-300"
-                    } rounded-lg`}
+                    className={`border ${errors.password ? "border-red-500" : "border-gray-300"
+                      } rounded-lg`}
                   />
                   {errors.password && (
                     <Popover
@@ -268,14 +315,13 @@ const Register = () => {
                     value="Repita la Contraseña"
                   />
                   <TextInput
-                  placeholder="Repetir contraseña"
+                    placeholder="Repetir contraseña"
                     id="repeatPassword"
                     type={showPassword ? "text" : "password"}
-                    className={`border ${
-                      errors.repeatPassword
-                        ? "border-red-500"
-                        : "border-gray-300"
-                    } rounded-lg `}
+                    className={`border ${errors.repeatPassword
+                      ? "border-red-500"
+                      : "border-gray-300"
+                      } rounded-lg `}
                     required
                     {...register("repeatPassword", {
                       required: "Debe repetir la contraseña",
@@ -288,19 +334,19 @@ const Register = () => {
                     })}
                   />
                   <button
-                  type="button"
-                  className=" absolute right-4 top-9"
-                  onClick={togglePasswordVisibility}
-                >
-                  {showPassword ? (
-                    <IoEyeOffSharp
-                      size={20}
-                      className=" hover:text-stone-500"
-                    />
-                  ) : (
-                    <IoEyeSharp size={20} className=" hover:text-stone-500" />
-                  )}
-                </button>
+                    type="button"
+                    className=" absolute right-4 top-9"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? (
+                      <IoEyeOffSharp
+                        size={20}
+                        className=" hover:text-stone-500"
+                      />
+                    ) : (
+                      <IoEyeSharp size={20} className=" hover:text-stone-500" />
+                    )}
+                  </button>
                   {errors.repeatPassword && (
                     <Popover
                       trigger="hover"
