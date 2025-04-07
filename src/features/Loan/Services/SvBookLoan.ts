@@ -6,7 +6,8 @@ import axios from "axios";
 const GetPendandRequest = async (
   page: number,
   limit: number,
-  Cedula?: string
+  Cedula?: string,
+  type?:string
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -14,6 +15,7 @@ const GetPendandRequest = async (
       limit,
     };
     if (Cedula) params.cedula = Cedula;
+    if (type) params.type = type
     const response = await api.get("book-loan/pending", { params });
     return response.data;
   } catch (error) {
@@ -28,7 +30,8 @@ const GetInProgressLoan = async (
   StartDate?: string,
   ExpirationDate?: string,
   SignaCode?: string,
-  Cedula?: string
+  Cedula?: string,
+  type?:string
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -40,6 +43,7 @@ const GetInProgressLoan = async (
     if (ExpirationDate) params.LoanExpirationDate = ExpirationDate;
     if (SignaCode) params.signatureCode = SignaCode;
     if (Cedula) params.cedula = Cedula;
+    if (type) params.type = type
 
     const response = await api.get("book-loan/in-progress", { params });
     return response.data;
@@ -56,7 +60,8 @@ const GetDoneLoans = async (
   EndDate?: string,
   Cedula?: string,
   name?: string,
-  SignaCode?: string
+  SignaCode?: string,
+  type?:string
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -69,6 +74,7 @@ const GetDoneLoans = async (
     if (SignaCode) params.signatureCode = SignaCode;
     if (Cedula) params.cedula = Cedula;
     if (name) params.name = name;
+    if (type) params.type = type
 
     const response = await api.get("book-loan/completed", { params });
     return response.data;

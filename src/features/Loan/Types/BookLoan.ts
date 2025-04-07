@@ -1,6 +1,58 @@
 export type LoanResponse = {
-  data: Loans[];
+  data: LoansRes[];
   count: number;
+};
+export type LoansRes = {
+  LoanRequestDate: string;
+  Status: string;
+  Observations: string;
+  BookLoanId: number;
+  BookPickUpDate: string;
+  LoanExpirationDate: string;
+  userCedula: string;
+  userPhone: string;
+  userAddress: string;
+  userName: string;
+  aprovedBy: string;
+  receivedBy: string | null;
+  type: "INFANTIL" | "GENERAL";
+  OldObservations:string[]
+  book?: book;
+  childrenBook?: childrenBook;
+};
+
+type book = {
+  Cover: string;
+  Status: boolean;
+  BookCode: number;
+  Title: string;
+  Author: string;
+  Editorial: string;
+  PublishedYear: number;
+  ISBN: string;
+  ShelfCategory: string;
+  BookConditionRating: number;
+  signatureCode: string;
+  InscriptionCode: string;
+  ReserveBook: boolean;
+  Observations: string;
+};
+
+type childrenBook = {
+  Cover: string;
+  Status: boolean;
+  BookCode: number;
+  Title: string;
+  Author: string;
+  Editorial: string;
+  PublishedYear: number;
+  ISBN: string;
+  ShelfCategory: string;
+  BookConditionRating: number;
+  SignatureCode: string;
+  InscriptionCode: string;
+  ReserveBook: boolean;
+  Observations: string;
 };
 
 export type Loans = {
@@ -10,7 +62,7 @@ export type Loans = {
   BookPickUpDate: Date;
   LoanExpirationDate: Date;
   Observations: string;
-  OldObservations:[]
+  OldObservations: [];
   user: User;
   book: Book;
   Name: string;

@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { LoanResponse, Loans } from "../../Types/BookLoan";
+import { LoanResponse} from "../../Types/BookLoan";
 import LoanBody from "./LoanBody";
 import { Table } from "flowbite-react";
 import { GetPendandRequest } from "../../Services/SvBookLoan";
@@ -39,7 +39,7 @@ const RequestLoan = () => {
                </Table.Cell>
              </Table.Row>
             ) : (
-              Loan?.data.map((loans: Loans) => (
+              Loan?.data.map((loans) => (
                 <LoanBody Loan={loans} key={loans.BookLoanId} Aprov />
               ))
             )}

@@ -39,6 +39,7 @@ const FinishedLoans = () => {
   const [EndDate, setEndtDate] = useState<string>("");
   const [Name, setName] = useState<string>("");
   const [SignaCode, setSignaCode] = useState<string>("");
+  const [type, setType] = useState("");
 
   const SName = UseDebounce(Name, 1000);
   const sSignaCode = UseDebounce(SignaCode, 1000);
@@ -52,6 +53,7 @@ const FinishedLoans = () => {
       EndDate,
       SName,
       sSignaCode,
+      type
     ],
     () =>
       GetDoneLoans(
@@ -61,7 +63,8 @@ const FinishedLoans = () => {
         EndDate,
         "",
         SName,
-        sSignaCode
+        sSignaCode,
+        type
       ),
     {
       staleTime: 600,
@@ -71,11 +74,11 @@ const FinishedLoans = () => {
   useEffect(() => {
     setCurrentPage(1);
     sessionStorage.setItem("DLPage", "1");
-  }, [currentLimit, StartDate, EndDate, SName, sSignaCode]);
+  }, [currentLimit, StartDate, EndDate, SName, sSignaCode, type]);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [StartDate, EndDate, SName, sSignaCode]);
+  }, [StartDate, EndDate, SName, sSignaCode, type]);
 
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
@@ -88,6 +91,7 @@ const FinishedLoans = () => {
             setEndtDate={setEndtDate}
             setName={setName}
             setSignaCode={setSignaCode}
+            setType={setType}
           />
           {isLoading ? (
             <Loader />

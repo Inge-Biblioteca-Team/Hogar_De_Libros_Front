@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { LoanResponse, Loans } from "../../Types/BookLoan";
+import { LoanResponse } from "../../Types/BookLoan";
 import { Table} from "flowbite-react";
 import LoanBody from "./LoanBody";
 import { GetInProgressLoan } from "../../Services/SvBookLoan";
@@ -37,7 +37,7 @@ const ProgressLoan = () => {
                </Table.Cell>
              </Table.Row>
             ) : (
-              Loan?.data.map((loans: Loans) => (
+              Loan?.data.map((loans) => (
                 <LoanBody Loan={loans} key={loans.BookLoanId} Aprov />
               ))
             )}

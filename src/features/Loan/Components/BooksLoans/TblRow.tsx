@@ -1,17 +1,17 @@
 import { Table } from "flowbite-react";
 import BTNInprogresLoan from "./BTNInprogresLoan";
 import BTNResolveLoan from "./BTNResolveLoan";
-import { Loans } from "../../Types/BookLoan";
 import { useState } from "react";
 import SeeLoanInfo from "../Modals/SeeLoanInfo";
 import { format } from "@formkit/tempo";
+import { LoansRes } from "../../Types/BookLoan";
 
 const TblRow = ({
   Loan,
   NeedAccions,
   Inprogress,
 }: {
-  Loan: Loans;
+  Loan: LoansRes;
   NeedAccions?: boolean;
   Inprogress?: boolean;
 }) => {
@@ -32,18 +32,26 @@ const TblRow = ({
     <>
       <Table.Row onClick={!NeedAccions ? () => setSee(true) : undefined}>
         <Table.Cell className="max-sm:hidden">{ReqDate}</Table.Cell>
-        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">{ExDate}</Table.Cell>
-        <Table.Cell className="max-sm:w-16">{Loan.user.name}</Table.Cell>
-        <Table.Cell>
-          <div className="w-44 line-clamp-1 mt-3 max-sm:w-20 ">{Loan.book.Title}</div>
+        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
+          {ExDate}
         </Table.Cell>
-        <Table.Cell className=" xl:table-cell w-52 2xl:table-cell md:hidden max-sm:hidden">{Loan.book.signatureCode} </Table.Cell>
-        <Table.Cell className={`${NeedAccions ? `hidden` : ``} max-sm:hidden  w-64 `}>
+        <Table.Cell className="max-sm:w-16">{Loan.userName}</Table.Cell>
+        <Table.Cell>
+          <div className="line-clamp-1 mt-3 max-sm:w-20">
+            {Loan.book?.Title || Loan.childrenBook?.Title}
+          </div>
+        </Table.Cell>
+        <Table.Cell className=" xl:table-cell w-52 2xl:table-cell md:hidden max-sm:hidden">
+          {Loan.book?.signatureCode || Loan.childrenBook?.SignatureCode}{" "}
+        </Table.Cell>
+        <Table.Cell
+          className={`${NeedAccions ? `hidden` : ``} max-sm:hidden  w-64 `}
+        >
           Adrian Aguilar
         </Table.Cell>
-        <Table.Cell  className={`${NeedAccions ? `` : `hidden`} `}>
+        <Table.Cell className={`${NeedAccions ? `` : `hidden`} `}>
           {Inprogress ? (
-            <BTNInprogresLoan  Loan={Loan} />
+            <BTNInprogresLoan Loan={Loan} />
           ) : (
             <BTNResolveLoan Loan={Loan} />
           )}

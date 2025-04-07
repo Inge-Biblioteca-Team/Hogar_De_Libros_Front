@@ -1,6 +1,6 @@
 import { Modal, Button, Textarea, Spinner } from "flowbite-react";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
-import { Loans } from "../../Types/BookLoan";
+import { LoansRes } from "../../Types/BookLoan";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import UseRefuseLoan from "../../Hooks/Books/UseRefuseLoan";
 import UserContext from "../../../../Context/UserContext/UserContext";
@@ -10,7 +10,7 @@ const DenyRequest = ({
   setShowCancel,
   showCancel,
 }: {
-  Loan: Loans;
+  Loan: LoansRes;
   showCancel: boolean;
   setShowCancel: Dispatch<SetStateAction<boolean>>;
 }) => {
