@@ -1,6 +1,7 @@
 import { ChangeExpiredDate, finishLoan, newloan } from "../Types/BookLoan";
 import api from "../../../Services/AxiosConfig";
 import axios from "axios";
+import { BookLeading } from "../../Books/Types/BooksTypes";
 
 //Gets
 const GetPendandRequest = async (
@@ -143,6 +144,30 @@ const FinalizeLoan = async (Loan: finishLoan) => {
   }
 };
 
+const LeadingRequestBookExtended = async (data: BookLeading) => {
+  try {
+    const response = await api.post(`book-loan/extend/${data.BookLoanId}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al crear el aviso:",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al prestar el recurso"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
+
 //POSST
 const PostNewLoan = async (Loan: newloan) => {
   try {
@@ -190,4 +215,5 @@ export {
   RefuseRequest,
   PostNewUserLoan,
   PatchLoan,
+  LeadingRequestBookExtended
 };

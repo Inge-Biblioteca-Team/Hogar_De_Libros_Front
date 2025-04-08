@@ -3,6 +3,10 @@ import { Button } from "flowbite-react";
 import FormColaborador from "../../Collaborators/Components/Modals/FormColaborador";
 import MainFormAmigos from "./Forms/MainFormAmigos";
 import FormDonaciones from "../../Donations/Components/Modals/FormDonaciones";
+import donation from "/src/Assets/donation.webp"
+import joven_libros from "/src/Assets/joven_libros.webp"
+import libros_studio from "/src/Assets/libros_studio.webp"
+
 
 const CardTypeAmiguito = () => {
   const [isOpenD, setIsOpenD] = useState(false);
@@ -14,9 +18,7 @@ const CardTypeAmiguito = () => {
       <div className="dark:bg-[#2d2d2d] bg-white rounded-md text-lg">
         <img
           className="h-[20rem] w-full rounded-t-md"
-          src={
-            "https://i0.wp.com/asociaciones.org/wp-content/uploads/2024/03/donacion-web.jpg"
-          }
+          src={donation}
           alt={"Donaciones"}
         />
         <div className=" m-3 text-center flex items-center justify-between flex-col min-h-[30vh]">
@@ -38,9 +40,7 @@ const CardTypeAmiguito = () => {
       <div className="dark:bg-[#2d2d2d] bg-white rounded-md text-lg">
         <img
           className="h-[20rem] w-full rounded-t-md"
-          src={
-            "https://universoabierto.org/wp-content/uploads/2019/05/7464d163b1c27c4d75f62ea6c6c0982e.jpg?w=625"
-          }
+          src={joven_libros}
           alt={"Amigos de la biblioteca"}
         />
         <div className=" m-3 text-center flex items-center justify-between flex-col min-h-[30vh]">
@@ -62,9 +62,7 @@ const CardTypeAmiguito = () => {
       <div className="dark:bg-[#2d2d2d] bg-white rounded-md text-lg">
         <img
           className="h-[20rem] w-full rounded-t-md"
-          src={
-            "https://www.comunidadbaratz.com/wp-content/uploads/2022/02/Agenda-de-actividades-en-AbsysNet.jpg"
-          }
+          src={libros_studio}
           alt={"Colaboraciones"}
         />
         <div className=" m-3 text-center flex items-center justify-between flex-col min-h-[30vh]">
