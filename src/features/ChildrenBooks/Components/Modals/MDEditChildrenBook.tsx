@@ -2,7 +2,7 @@ import { Modal, FloatingLabel, Label, Select, Checkbox } from "flowbite-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import ModalFooters from "../../../../components/ModalFooters";
-import { Book } from "../../Types/BooksChildrensTypes";
+import { BookC } from "../../Types/BooksChildrensTypes";
 import OpsCoditions from "../OpsCoditions";
 import OptsCateogryChildren from "../OptsCateogryChildren";
 import ModalImageLoader from "./ModalImageLoader";
@@ -15,9 +15,9 @@ const MDEditChildrenBook = ({
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  book: Book;
+  book: BookC;
 }) => {
-  const { register, reset, watch, setValue, handleSubmit } = useForm<Book>({
+  const { register, reset, watch, setValue, handleSubmit } = useForm<BookC>({
     defaultValues: {
       Title: book.Title,
       Author: book.Author,
@@ -50,7 +50,7 @@ const MDEditChildrenBook = ({
 
   const { mutate: editResource, isLoading } = UseEditChildrenBook();
 
-  const onConfirm = (data: Book) => {
+  const onConfirm = (data: BookC) => {
     editResource(data, {
       onSuccess: () => {
         onClose();

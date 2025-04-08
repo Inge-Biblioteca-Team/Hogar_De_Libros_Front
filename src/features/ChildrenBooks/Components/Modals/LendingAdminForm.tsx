@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 import { PersonData } from "../../../Users/Type/UserType";
 import UseDebounce from "../../../../hooks/UseDebounce";
 import { getUserInformationByCedula } from "../../../Users/Services/SvUsuer";
-import { Book } from "../../Types/BooksChildrensTypes";
+import { BookC } from "../../Types/BooksChildrensTypes";
 import { BookLeading } from "../../../Books/Types/BooksTypes";
 import UseGenerateChildLoan from "../../Hooks/UseGenerateChildLoan";
 
@@ -19,7 +19,7 @@ const LendingAdminForm = ({
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  book:Book;
+  book:BookC;
 }) => {
   const onClose = () => {
     setOpen(false);

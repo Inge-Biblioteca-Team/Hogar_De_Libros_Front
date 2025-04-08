@@ -1,6 +1,6 @@
 import { Button, Label, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction, useState } from "react";
-import { Book } from "../../Types/BooksChildrensTypes";
+import { BookC } from "../../Types/BooksChildrensTypes";
 import { getConditionStatusText } from "../../../../components/Maps/Condition";
 import LendingAdminForm from "./LendingAdminForm";
 
@@ -11,7 +11,7 @@ const ViewChildrenBook = ({
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  book: Book;
+  book: BookC;
 }) => {
   const onClose = () => {
     setOpen(false);

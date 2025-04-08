@@ -21,7 +21,7 @@ const ViewChildrenBook = ({
 
   return (
     <>
-      <Modal dismissible onClose={onClose} show={open}>
+      <Modal onClose={onClose} show={open}>
         <Modal.Header className="dark:bg-neutral-900">Información del Libro</Modal.Header>
         <Modal.Body className="dark:bg-[#2d2d2d] grid grid-cols-1 lg:grid-cols-3 gap-4">
           <figure>

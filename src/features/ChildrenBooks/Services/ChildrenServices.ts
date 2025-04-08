@@ -7,7 +7,7 @@ import {
   OpenLibraryResponse,
 } from "../Types/Types";
 import api from "../../../Services/AxiosConfig";
-import { Book } from "../Types/BooksChildrensTypes";
+import { BookC } from "../Types/BooksChildrensTypes";
 import { downType } from "../../../Types/GlobalTypes";
 import { BookLeading } from "../../Books/Types/BooksTypes";
 
@@ -98,7 +98,7 @@ const getColection = async (
   }
 };
 
-const CreateChildrenBook = async (data: Book) => {
+const CreateChildrenBook = async (data: BookC) => {
   try {
     const response = await api.post(`book-children`, data, {
       headers: {
@@ -145,7 +145,7 @@ const DisableChildrenBook = async (data: downType) => {
     }
   }
 };
-const EditChildrenBook = async (data: Book) => {
+const EditChildrenBook = async (data: BookC) => {
   try {
     const response = await api.patch(`book-children/${data.BookCode}`, data, {
       headers: {

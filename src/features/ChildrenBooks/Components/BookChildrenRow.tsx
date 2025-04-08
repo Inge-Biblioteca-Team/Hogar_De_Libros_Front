@@ -1,12 +1,12 @@
 import { Table } from "flowbite-react";
-import { Book } from "../Types/BooksChildrensTypes";
+import { BookC } from "../Types/BooksChildrensTypes";
 import AccionsBTN from "../../../components/BTNS/AccionsBTN";
 import { useState } from "react";
 import MDDownBook from "./Modals/MDDownBook";
 import MDEditChildrenBook from "./Modals/MDEditChildrenBook";
 import ViewChildrenBook from "./Modals/ViewChildrenBook";
 
-const BookChildrenRow = ({ book }: { book: Book }) => {
+const BookChildrenRow = ({ book }: { book: BookC }) => {
   const [openV, setOpenV] = useState<boolean>(false);
   const [openD, setOpenD] = useState<boolean>(false);
   const [openE, setOpenE] = useState<boolean>(false);

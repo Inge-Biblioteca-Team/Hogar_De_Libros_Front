@@ -5,11 +5,11 @@ import { formatToYMD } from "../../../../components/FormatTempo";
 import { addDay } from "@formkit/tempo";
 import { Book, BookLeading } from "../../Types/BooksTypes";
 import { useForm } from "react-hook-form";
-import UseLeadingRequest from "../../Hooks/UseLeadingRequest";
 import { useQuery } from "react-query";
 import { PersonData } from "../../../Users/Type/UserType";
 import UseDebounce from "../../../../hooks/UseDebounce";
 import { getUserInformationByCedula } from "../../../Users/Services/SvUsuer";
+import UseAdminLeading from "../../Hooks/UseAdminLeading";
 
 const LendingAdminForm = ({
   open,
@@ -40,7 +40,7 @@ const LendingAdminForm = ({
 
   const maxDate = formatToYMD(addDay(watch("BookPickUpDate"), 5));
 
-  const { mutate: createNew, isLoading } = UseLeadingRequest();
+  const { mutate: createNew, isLoading } = UseAdminLeading();
 
   const onConfirm = (data: BookLeading) => {
     createNew(data, {
@@ -76,7 +76,7 @@ const LendingAdminForm = ({
   }, [User, setValue]);
 
   return (
-    <Modal  show={open} onClose={onClose}>
+    <Modal show={open} onClose={onClose}>
       <Modal.Header>Solicitud de préstamo</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body className=" flex flex-col gap-3">

@@ -2,10 +2,19 @@ import { Button, Card, Label, Popover } from "flowbite-react";
 import { Book } from "../../Types/BooksTypes";
 import { useState } from "react";
 import LendingForm from "../Modals/LendingForm";
-import SorryModal from "../Modals/SorryModal";
+import LendingChild from "../../../ChildrenBooks/Components/Modals/LendingChild";
+import { BookC } from "../../../ChildrenBooks/Types/BooksChildrensTypes";
+
+type BookUnion = Book | BookC;
 
 const GridCard = ({ book, inf }: { book: Book; inf: boolean }) => {
   const [open, setOpen] = useState<boolean>(false);
+  function getSignatureCode(book: BookUnion): string {
+    if ("signatureCode" in book) return book.signatureCode;
+    if ("SignatureCode" in book) return book.SignatureCode;
+    return "No posee";
+  }
+
   return (
     <>
       <Popover
@@ -27,9 +36,7 @@ const GridCard = ({ book, inf }: { book: Book; inf: boolean }) => {
               />
               <Label value={` ISBN: ${book.ISBN || "No posee"}`} />
               <Label
-                value={` Código de signatura: ${
-                  book.signatureCode || "No posee"
-                }`}
+                value={` Código de signatura: ${getSignatureCode(book)}`}
               />
               <Label
                 value={` Categoría de estante: ${
@@ -59,7 +66,11 @@ const GridCard = ({ book, inf }: { book: Book; inf: boolean }) => {
         </figure>
       </Popover>
       {inf ? (
-        <SorryModal open={open} setOpen={setOpen}/>
+        <LendingChild
+          open={open}
+          setOpen={setOpen}
+          book={{ ...book, SignatureCode: getSignatureCode(book) }}
+        />
       ) : (
         <LendingForm open={open} setOpen={setOpen} book={book} />
       )}
