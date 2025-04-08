@@ -54,10 +54,10 @@ const SeeLoanInfo = ({
         <div className="flex flex-col gap-4 max-sm:text-sm text-lg">
           <span className=" flex flex-col">
             <strong>Información del Usuario</strong>
-            <span>Nombre: {Loan.user.name}</span>
-            <span>Cédula: {Loan.user.cedula}</span>
-            <span>Dirección: {Loan.user.Adress}</span>
-            <span>Teléfono: {Loan.user.PhoneNumber} </span>
+            <span>Nombre: {Loan.user?.name}</span>
+            <span>Cédula: {Loan.user?.cedula}</span>
+            <span>Dirección: {Loan.user?.Adress}</span>
+            <span>Teléfono: {Loan.user?.PhoneNumber} </span>
             {Loan.OldObservations && (
               <details>
                 <summary>Anotaciones del usuario</summary>
@@ -71,9 +71,9 @@ const SeeLoanInfo = ({
           </span>
           <span className=" flex flex-col">
             <strong>Sobre el Libro</strong>
-            <span>Título: {Loan.book.Title}</span>
-            <span>Código de Signatura: {Loan.book.signatureCode || "N/A"}</span>
-            <span>Código De Inscripcion: {Loan.book.InscriptionCode}</span>
+            <span>Título: {Loan.book?.Title}</span>
+            <span>Código de Signatura: {Loan.book?.signatureCode || "N/A"}</span>
+            <span>Código De Inscripcion: {Loan.book?.InscriptionCode}</span>
           </span>
           <span className=" flex flex-col">
             <strong>Sobre el préstamo</strong>

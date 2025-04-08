@@ -21,6 +21,7 @@ export type Catalog = {
 };
 
 export type BookLeading = {
+  BookLoanId: number;
   userCedula: string;
   userName: string;
   userPhone: string;
