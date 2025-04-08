@@ -7,8 +7,6 @@ import UserContext from "../../../../../Context/UserContext/UserContext";
 import { BookLeading } from "../../../../Books/Types/BooksTypes";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { addDay } from "@formkit/tempo";
-import { formatToYMD } from "../../../../../components/FormatTempo";
 import UseLeadingRequestBookExtended from "../../../Hooks/Books/UseLeadingRequestBookExtended";
 
 const MDLoanInfo = ({
@@ -38,7 +36,7 @@ const MDLoanInfo = ({
 
   const { currentUser } = useContext(UserContext);
 
-  const {handleSubmit, register, watch, setValue } = useForm<BookLeading>({
+  const {handleSubmit, register, setValue } = useForm<BookLeading>({
     defaultValues: {
       userCedula: currentUser?.cedula,
       userName: `${currentUser?.name} ${currentUser?.lastName}`,
@@ -52,13 +50,9 @@ const MDLoanInfo = ({
     },
   });
 
-    const minDate = formatToYMD(new Date());
-    const maxDate = formatToYMD(
-        addDay(watch("BookPickUpDate"), currentUser?.loanPolicity)
-      );
-
     useEffect(() => {
       if (currentUser) {
+        setValue("BookLoanId", Loan.BookLoanId);
         setValue("userCedula", currentUser.cedula);
         setValue("userName", `${currentUser.name} ${currentUser.lastName}`);
         setValue("userPhone", currentUser.phoneNumber);
@@ -71,7 +65,7 @@ const MDLoanInfo = ({
         setValue("Author", Loan.book.Author);
         setValue("bookBookCode", String(Loan.book.BookCode));
       }
-    }, [currentUser, Loan.book]); // Solo se ejecuta cuando currentUser cambia. Si Loan.book puede cambiar
+    }, [currentUser, Loan.book, Loan.BookLoanId]); // Solo se ejecuta cuando currentUser cambia. Si Loan.book puede cambiar
 
     const { mutate: createNew, isLoading } = UseLeadingRequestBookExtended();
 
@@ -134,21 +128,9 @@ const MDLoanInfo = ({
                           <FloatingLabel
                             required
                             className="dark:text-white"
-                            id="BookPickUpDate"
-                            variant="outlined"
-                            label="Fecha de recolección"
-                            type="date"
-                            min={minDate}
-                            {...register("BookPickUpDate")}
-                          />
-                          <FloatingLabel
-                            required
-                            className="dark:text-white"
                             variant="outlined"
                             label="Fecha de vencimiento"
                             type="date"
-                            min={watch("BookPickUpDate")}
-                            max={maxDate}
                             id="LoanExpirationDate"
                             {...register("LoanExpirationDate")}
                           />

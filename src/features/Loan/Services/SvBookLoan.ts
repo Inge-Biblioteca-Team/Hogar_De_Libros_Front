@@ -140,7 +140,7 @@ const FinalizeLoan = async (Loan: finishLoan) => {
 
 const LeadingRequestBookExtended = async (data: BookLeading) => {
   try {
-    const response = await api.post(`book-loan-extended`, data, {
+    const response = await api.post(`book-loan/extend/${data.BookLoanId}`, data, {
       headers: {
         "Content-Type": "application/json",
       },

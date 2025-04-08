@@ -37,8 +37,8 @@ const BTNInprogresLoan = ({ Loan }: { Loan: Loans }) => {
         open={showF}
         setOpen={setShowF}
         BookLoanId={Loan.BookLoanId}
-        UserCedula={Loan.user.name}
-        BookTitle={Loan.book.Title}
+        UserCedula={Loan.user?.name}
+        BookTitle={Loan.book?.Title}
       />
     </>
   );
