@@ -1,13 +1,13 @@
 import toast from "react-hot-toast";
 import { useQueryClient, useMutation } from "react-query";
-import { BookLeading } from "../../../Books/Types/BooksTypes";
+import { ExtendBookLeading } from "../../../Books/Types/BooksTypes";
 import { ApiError } from "../../../../Types/ApiTypes";
 import { LeadingRequestBookExtended } from "../../Services/SvBookLoan";
 
 const UseLeadingRequestBookExtended = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: BookLeading) =>
+    mutationFn: (data: ExtendBookLeading) =>
       toast.promise(LeadingRequestBookExtended(data), {
         loading: "Enviando...",
         success: <span>Éxito, solicitud enviada correctamente</span>,
@@ -16,7 +16,9 @@ const UseLeadingRequestBookExtended = () => {
         ),
       }),
     onSuccess() {
-      queryClient.invalidateQueries("colection");
+      queryClient.invalidateQueries("DLoans");
+      queryClient.invalidateQueries("PLoans");
+      queryClient.invalidateQueries("RLoans");
     },
   });
 };

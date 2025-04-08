@@ -8,18 +8,17 @@ import {
 import {
   Dispatch,
   SetStateAction,
-  useContext,
-  useEffect,
   useState,
 } from "react";
 import { LoansRes } from "../../../Types/BookLoan";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import UseCancelLoan from "../../../Hooks/Books/UseCancelLoan";
-import UserContext from "../../../../../Context/UserContext/UserContext";
-import { BookLeading } from "../../../../Books/Types/BooksTypes";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import UseLeadingRequestBookExtended from "../../../Hooks/Books/UseLeadingRequestBookExtended";
+import { formatToYMD } from "../../../../../components/FormatTempo";
+import { addDay } from "@formkit/tempo";
+import { ExtendBookLeading } from "../../../../Books/Types/BooksTypes";
 
 const MDLoanInfo = ({
   Loan,
@@ -46,70 +45,19 @@ const MDLoanInfo = ({
     setShowCancel(false);
   };
 
-  const { currentUser } = useContext(UserContext);
-
-  const { handleSubmit, register, setValue } = useForm<BookLeading>({
+  const { handleSubmit, register } = useForm<ExtendBookLeading>({
     defaultValues: {
-      userCedula: currentUser?.cedula,
-      userName: `${currentUser?.name} ${currentUser?.lastName}`,
-      userPhone: currentUser?.phoneNumber,
-      userAddress: currentUser?.address,
-      InscriptionCode: Loan.book?.InscriptionCode,
-      SignaCode: Loan.book?.signatureCode,
-      Title: Loan.book?.Title,
-      Author: Loan.book?.Author,
-      bookBookCode: String(Loan.book?.BookCode),
+      BookLoanId: Loan.BookLoanId
     },
   });
 
-  useEffect(() => {
-    if (currentUser) {
-      setValue("BookLoanId", Loan.BookLoanId);
-      setValue("userCedula", currentUser.cedula);
-      setValue("userName", `${currentUser.name} ${currentUser.lastName}`);
-      setValue("userPhone", currentUser.phoneNumber);
-      setValue("userAddress", currentUser.address);
-
-      setValue(
-        "InscriptionCode",
-        Loan.book?.InscriptionCode ||
-          Loan.childrenBook?.InscriptionCode ||
-          "Desconocido"
-      );
-      setValue(
-        "SignaCode",
-        Loan.book?.signatureCode ||
-          Loan.childrenBook?.SignatureCode ||
-          "Desconocido"
-      );
-      setValue(
-        "Title",
-        Loan.book?.Title || Loan.childrenBook?.Title || "Desconocido"
-      );
-      setValue(
-        "Author",
-        Loan.book?.Author || Loan.childrenBook?.Author || "Desconocido"
-      );
-      setValue("bookBookCode", String(Loan.book?.BookCode));
-    }
-  }, [
-    currentUser,
-    Loan.book,
-    Loan.BookLoanId,
-    setValue,
-    Loan.childrenBook?.InscriptionCode,
-    Loan.childrenBook?.SignatureCode,
-    Loan.childrenBook?.Title,
-    Loan.childrenBook?.Author,
-  ]);
 
   const { mutate: createNew, isLoading } = UseLeadingRequestBookExtended();
 
-  const onConfirm = (data: BookLeading) => {
+  const onConfirm = (data: ExtendBookLeading) => {
     createNew(data, {
       onSuccess: () => {
         setShowChange(false);
-        toast.success("Registro creado exitosamente");
       },
     });
   };
@@ -174,22 +122,39 @@ const MDLoanInfo = ({
         <Modal.Header>Solicitar Extensión</Modal.Header>
         <Modal.Body>
           <form onSubmit={handleSubmit(onConfirm)}>
-            <div className="text-center">
-              <h3>Formulario de Solicitud de Extensión</h3>
-              <Textarea
-                rows={3}
-                placeholder="Ingresa el motivo de la extensión"
-              />
-              <fieldset className=" grid grid-cols-2 gap-x-3 gap-y-1">
-                <legend className="mb-1">Información del préstamo</legend>
+            <div className="text-center space-y-4">
+              <h3>Formulario de solicitud de extensión</h3>
+              <div>
+                <Textarea
+                  rows={3}
+                  placeholder="Ingresa el motivo de la extensión"
+                  {...register("Reason")}
+                />
+              </div>
+              <fieldset className="">
+                <legend className="mb-1">
+                  Hasta que fecha devolverias el libro
+                </legend>
                 <FloatingLabel
                   required
                   className="dark:text-white"
                   variant="outlined"
                   label="Fecha de vencimiento"
                   type="date"
+                  min={formatToYMD(new Date())}
+                  max={formatToYMD(addDay(new Date(), 30))}
                   id="LoanExpirationDate"
-                  {...register("LoanExpirationDate")}
+                  {...register("LoanExpirationDate", {
+                    required: "La fecha es requerida",
+                    validate: (value) => {
+                      const selectedDate = new Date(value);
+                      const day = selectedDate.getDay();
+                      if (day === 0 || day === 6) {
+                        return toast.error("No se permite seleccionar fines de semana")
+                      }
+                      return true;
+                    },
+                  })}
                 />
               </fieldset>
               <div className="flex justify-center gap-4 mt-10">

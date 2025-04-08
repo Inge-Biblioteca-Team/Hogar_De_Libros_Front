@@ -1,7 +1,7 @@
 import { ChangeExpiredDate, finishLoan, newloan } from "../Types/BookLoan";
 import api from "../../../Services/AxiosConfig";
 import axios from "axios";
-import { BookLeading } from "../../Books/Types/BooksTypes";
+import {ExtendBookLeading } from "../../Books/Types/BooksTypes";
 
 //Gets
 const GetPendandRequest = async (
@@ -144,7 +144,7 @@ const FinalizeLoan = async (Loan: finishLoan) => {
   }
 };
 
-const LeadingRequestBookExtended = async (data: BookLeading) => {
+const LeadingRequestBookExtended = async (data: ExtendBookLeading) => {
   try {
     const response = await api.post(`book-loan/extend/${data.BookLoanId}`, data, {
       headers: {
