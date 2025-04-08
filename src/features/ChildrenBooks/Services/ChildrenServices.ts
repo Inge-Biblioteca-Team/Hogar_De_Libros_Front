@@ -9,6 +9,7 @@ import {
 import api from "../../../Services/AxiosConfig";
 import { Book } from "../Types/BooksChildrensTypes";
 import { downType } from "../../../Types/GlobalTypes";
+import { BookLeading } from "../../Books/Types/BooksTypes";
 
 const searchCovers = async (
   bookName: string
@@ -168,7 +169,56 @@ const EditChildrenBook = async (data: Book) => {
   }
 };
 
+const LeadingAdminRequestBookChildren = async (data: BookLeading) => {
+  try {
+    const response = await api.post(`book-loan/AdminLoan/children`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al prestar el recurso",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al prestar el recurso"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
+
+const LeadingRequestBookChildren = async (data: BookLeading) => {
+  try {
+    const response = await api.post(`book-loan/children`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al prestar el recurso",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al prestar el recurso"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
 export {
+  LeadingAdminRequestBookChildren,
+  LeadingRequestBookChildren,
   searchCovers,
   EditChildrenBook,
   DisableChildrenBook,
