@@ -1,4 +1,4 @@
-export type Book = {
+export type BookC = {
     Title: string;
     Author: string;
     Editorial: string;
@@ -17,6 +17,6 @@ export type Book = {
 
   
 export type Catalog = {
-    data: Book[];
+    data: BookC[];
     count: number;
   };

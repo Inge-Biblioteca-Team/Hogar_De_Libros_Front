@@ -1,13 +1,24 @@
-import { Button, FloatingLabel, Modal, Spinner, Textarea } from "flowbite-react";
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
-import { Loans } from "../../../Types/BookLoan";
+import {
+  Button,
+  FloatingLabel,
+  Modal,
+  Spinner,
+  Textarea,
+} from "flowbite-react";
+import {
+  Dispatch,
+  SetStateAction,
+  useState,
+} from "react";
+import { LoansRes } from "../../../Types/BookLoan";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import UseCancelLoan from "../../../Hooks/Books/UseCancelLoan";
-import UserContext from "../../../../../Context/UserContext/UserContext";
-import { BookLeading } from "../../../../Books/Types/BooksTypes";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import UseLeadingRequestBookExtended from "../../../Hooks/Books/UseLeadingRequestBookExtended";
+import { formatToYMD } from "../../../../../components/FormatTempo";
+import { addDay } from "@formkit/tempo";
+import { ExtendBookLeading } from "../../../../Books/Types/BooksTypes";
 
 const MDLoanInfo = ({
   Loan,
@@ -16,7 +27,7 @@ const MDLoanInfo = ({
   showChange,
   setShowChange,
 }: {
-  Loan: Loans;
+  Loan: LoansRes;
   showCancel: boolean;
   setShowCancel: Dispatch<SetStateAction<boolean>>;
   showChange: boolean;
@@ -28,59 +39,38 @@ const MDLoanInfo = ({
   const handleCancel = () => {
     cancelLoan({
       LoanID: Loan.BookLoanId,
-      person: Loan.Cedula,
+      person: Loan.userCedula,
       Observations: Observations,
     });
     setShowCancel(false);
   };
 
-  const { currentUser } = useContext(UserContext);
-
-  const {handleSubmit, register, setValue } = useForm<BookLeading>({
+  const { handleSubmit, register } = useForm<ExtendBookLeading>({
     defaultValues: {
-      userCedula: currentUser?.cedula,
-      userName: `${currentUser?.name} ${currentUser?.lastName}`,
-      userPhone: currentUser?.phoneNumber,
-      userAddress: currentUser?.address,
-      InscriptionCode: Loan.book.InscriptionCode,
-      SignaCode: Loan.book.signatureCode,
-      Title: Loan.book.Title,
-      Author: Loan.book.Author,
-      bookBookCode: String(Loan.book.BookCode)
+      BookLoanId: Loan.BookLoanId
     },
   });
 
-    useEffect(() => {
-      if (currentUser) {
-        setValue("BookLoanId", Loan.BookLoanId);
-        setValue("userCedula", currentUser.cedula);
-        setValue("userName", `${currentUser.name} ${currentUser.lastName}`);
-        setValue("userPhone", currentUser.phoneNumber);
-        setValue("userAddress", currentUser.address);
-        
-        // Campos relacionados con el libro
-        setValue("InscriptionCode", Loan.book.InscriptionCode);
-        setValue("SignaCode", Loan.book.signatureCode);
-        setValue("Title", Loan.book.Title);
-        setValue("Author", Loan.book.Author);
-        setValue("bookBookCode", String(Loan.book.BookCode));
-      }
-    }, [currentUser, Loan.book, Loan.BookLoanId]); // Solo se ejecuta cuando currentUser cambia. Si Loan.book puede cambiar
 
-    const { mutate: createNew, isLoading } = UseLeadingRequestBookExtended();
+  const { mutate: createNew, isLoading } = UseLeadingRequestBookExtended();
 
-  const onConfirm = (data: BookLeading) => {
+  const onConfirm = (data: ExtendBookLeading) => {
     createNew(data, {
       onSuccess: () => {
         setShowChange(false);
-        toast.success("Registro creado exitosamente");
       },
     });
   };
 
   return (
     <>
-      <Modal dismissible show={showCancel} popup onClose={() => setShowCancel(false)} size={"md"}>
+      <Modal
+        dismissible
+        show={showCancel}
+        popup
+        onClose={() => setShowCancel(false)}
+        size={"md"}
+      >
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
@@ -102,60 +92,91 @@ const MDLoanInfo = ({
               >
                 Volver
               </Button>
-              <Button disabled={isLoading} title="Confirmar" color="blue" onClick={() => handleCancel()}>
-              {isLoading ? (
-          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
-        ) : (
-          "Confirmar"
-        )}
+              <Button
+                disabled={isLoading}
+                title="Confirmar"
+                color="blue"
+                onClick={() => handleCancel()}
+              >
+                {isLoading ? (
+                  <>
+                    <Spinner aria-label="Spinner button example" size="sm" />{" "}
+                    <p className="pl-3">Cargando...</p>
+                  </>
+                ) : (
+                  "Confirmar"
+                )}
               </Button>
             </div>
           </div>
         </Modal.Body>
       </Modal>
 
-      <Modal dismissible show={showChange} popup onClose={() => setShowChange(false)} size="md">
+      <Modal
+        dismissible
+        show={showChange}
+        popup
+        onClose={() => setShowChange(false)}
+        size="md"
+      >
         <Modal.Header>Solicitar Extensión</Modal.Header>
         <Modal.Body>
-        <form onSubmit={handleSubmit(onConfirm)}>
-          <div className="text-center">
-            <h3>Formulario de Solicitud de Extensión</h3>
-            <Textarea
-              rows={3}
-              placeholder="Ingresa el motivo de la extensión" />
-              <fieldset className=" grid grid-cols-2 gap-x-3 gap-y-1">
-                          <legend className="mb-1">Información del préstamo</legend>
-                          <FloatingLabel
-                            required
-                            className="dark:text-white"
-                            variant="outlined"
-                            label="Fecha de vencimiento"
-                            type="date"
-                            id="LoanExpirationDate"
-                            {...register("LoanExpirationDate")}
-                          />
-                          </fieldset>
-            <div className="flex justify-center gap-4 mt-10">
-              <Button
-                disabled={isLoading}
-                color="red"
-                onClick={() => setShowChange(false)}
-              >
-                Cancelar
-              </Button>
-              <Button
-                type="submit"
-                disabled={isLoading}
-                color="blue"
-              >
-                {isLoading ? (
-                          <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
-                        ) : (
-                          "Confirmar"
-                        )}
-              </Button>
+          <form onSubmit={handleSubmit(onConfirm)}>
+            <div className="text-center space-y-4">
+              <h3>Formulario de solicitud de extensión</h3>
+              <div>
+                <Textarea
+                  rows={3}
+                  placeholder="Ingresa el motivo de la extensión"
+                  {...register("Reason")}
+                />
+              </div>
+              <fieldset className="">
+                <legend className="mb-1">
+                  Hasta que fecha devolverias el libro
+                </legend>
+                <FloatingLabel
+                  required
+                  className="dark:text-white"
+                  variant="outlined"
+                  label="Fecha de vencimiento"
+                  type="date"
+                  min={formatToYMD(new Date())}
+                  max={formatToYMD(addDay(new Date(), 30))}
+                  id="LoanExpirationDate"
+                  {...register("LoanExpirationDate", {
+                    required: "La fecha es requerida",
+                    validate: (value) => {
+                      const selectedDate = new Date(value);
+                      const day = selectedDate.getDay();
+                      if (day === 0 || day === 6) {
+                        return toast.error("No se permite seleccionar fines de semana")
+                      }
+                      return true;
+                    },
+                  })}
+                />
+              </fieldset>
+              <div className="flex justify-center gap-4 mt-10">
+                <Button
+                  disabled={isLoading}
+                  color="red"
+                  onClick={() => setShowChange(false)}
+                >
+                  Cancelar
+                </Button>
+                <Button type="submit" disabled={isLoading} color="blue">
+                  {isLoading ? (
+                    <>
+                      <Spinner aria-label="Spinner button example" size="sm" />{" "}
+                      <p className="pl-3">Cargando...</p>
+                    </>
+                  ) : (
+                    "Confirmar"
+                  )}
+                </Button>
+              </div>
             </div>
-          </div>
           </form>
         </Modal.Body>
       </Modal>

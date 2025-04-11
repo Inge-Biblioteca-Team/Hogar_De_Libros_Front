@@ -260,6 +260,29 @@ const LeadingRequestBook = async (data: BookLeading) => {
     }
   }
 };
+const LeadingAdminRequestBook = async (data: BookLeading) => {
+  try {
+    const response = await api.post(`book-loan/AdminLoan`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        "Error al prestar el recurso",
+        error.response?.data || error.message
+      );
+      throw new Error(
+        error.response?.data.message || "Error al prestar el recurso"
+      );
+    } else {
+      console.error("Error desconocido:", error);
+      throw new Error("Error desconocido");
+    }
+  }
+};
 const getCategoriesNames =async()=>{
   try{
     const response = await api.get("/books/Categories");
@@ -280,5 +303,6 @@ export {
   CreateBook,
   getColection,
   GetBooks,
-  getCategoriesNames
+  getCategoriesNames,
+  LeadingAdminRequestBook
 };

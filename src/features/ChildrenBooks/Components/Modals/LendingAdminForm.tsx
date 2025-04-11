@@ -3,13 +3,14 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 import ModalFooters from "../../../../components/ModalFooters";
 import { formatToYMD } from "../../../../components/FormatTempo";
 import { addDay } from "@formkit/tempo";
-import { Book, BookLeading } from "../../Types/BooksTypes";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { PersonData } from "../../../Users/Type/UserType";
 import UseDebounce from "../../../../hooks/UseDebounce";
 import { getUserInformationByCedula } from "../../../Users/Services/SvUsuer";
-import UseAdminLeading from "../../Hooks/UseAdminLeading";
+import { BookC } from "../../Types/BooksChildrensTypes";
+import { BookLeading } from "../../../Books/Types/BooksTypes";
+import UseGenerateChildLoan from "../../Hooks/UseGenerateChildLoan";
 
 const LendingAdminForm = ({
   open,
@@ -18,7 +19,7 @@ const LendingAdminForm = ({
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  book: Book;
+  book:BookC;
 }) => {
   const onClose = () => {
     setOpen(false);
@@ -31,7 +32,7 @@ const LendingAdminForm = ({
     useForm<BookLeading>({
       defaultValues: {
         InscriptionCode: book.InscriptionCode,
-        SignaCode: book.signatureCode,
+        SignaCode: book.SignatureCode,
         Title: book.Title,
         Author: book.Author,
         bookBookCode: book.BookCode,
@@ -40,7 +41,7 @@ const LendingAdminForm = ({
 
   const maxDate = formatToYMD(addDay(watch("BookPickUpDate"), 5));
 
-  const { mutate: createNew, isLoading } = UseAdminLeading();
+  const { mutate: createNew, isLoading } = UseGenerateChildLoan();
 
   const onConfirm = (data: BookLeading) => {
     createNew(data, {
@@ -76,7 +77,7 @@ const LendingAdminForm = ({
   }, [User, setValue]);
 
   return (
-    <Modal show={open} onClose={onClose}>
+    <Modal  show={open} onClose={onClose}>
       <Modal.Header>Solicitud de préstamo</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body className=" flex flex-col gap-3">
@@ -86,7 +87,7 @@ const LendingAdminForm = ({
               variant="filled"
               disabled={true}
               label="Código de signatura"
-              value={book.signatureCode || "N/A"}
+              value={book.SignatureCode || "N/A"}
               className=" cursor-default"
               readOnly
             />

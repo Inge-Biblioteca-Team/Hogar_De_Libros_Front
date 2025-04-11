@@ -6,6 +6,7 @@ import RecordsOptions from "./RecordsOptions";
 import ExtraOptions from "./ExtraOptions";
 import { useContext } from "react";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
+import SidebarDriver from "../../../utils/SidebarDriver";
 
 const ForAdmin = () => {
   const { handleNavigation } = useContext(SidebarContext);
@@ -14,13 +15,14 @@ const ForAdmin = () => {
     <>
       <>
         <Sidebar.ItemGroup>
-          <Sidebar.Item
+          <Sidebar.Item id={"inicio"}
             className=" cursor-pointer text-2xl"
             onClick={() => handleNavigation("/HogarDeLibros")}
           >
             Inicio
           </Sidebar.Item>
           <Sidebar.Item
+           id={"Advices"}
             className=" cursor-pointer"
             onClick={() => handleNavigation("/HogarDeLibros/Avisos")}
           >
@@ -40,6 +42,9 @@ const ForAdmin = () => {
       </Sidebar.ItemGroup>
       <Sidebar.ItemGroup>
         <ExtraOptions />
+      </Sidebar.ItemGroup>
+      <Sidebar.ItemGroup>
+        <SidebarDriver />
       </Sidebar.ItemGroup>
     </>
   );

@@ -1,4 +1,4 @@
-import { Loans } from "../Types/BookLoan";
+import { LoansRes } from "../Types/BookLoan";
 import {
   Document,
   Image,
@@ -48,11 +48,11 @@ const style = StyleSheet.create({
     gap: 5,
     textAlign: "center",
   },
-  altSectionText: { paddingBottom: 20,   textAlign: "center", },
+  altSectionText: { paddingBottom: 20, textAlign: "center" },
   firma: { marginTop: 20, textAlign: "center" },
 });
 
-const DocumentForLoan = ({ loanInfo }: { loanInfo: Loans }) => (
+const DocumentForLoan = ({ loanInfo }: { loanInfo: LoansRes }) => (
   <Document>
     <Page style={style.page}>
       <View style={style.borders}>
@@ -62,28 +62,47 @@ const DocumentForLoan = ({ loanInfo }: { loanInfo: Loans }) => (
           <Image style={style.logo} src={SinabiLogo} />
         </View>
         <Text style={style.header}>SISTEMA NACIONAL DE BIBLIOTECAS</Text>
-        <Text style={style.header}>BIBLIOTECA SEMIOFICIAL FELIPE DIAZ VIDAURE</Text>
+        <Text style={style.header}>
+          BIBLIOTECA SEMIOFICIAL FELIPE DIAZ VIDAURE
+        </Text>
         <View>
-          <Text style={style.section}>BIBLIOTECA PUBLICA MUNICIPAL FELIPE DIAZ VIDAURE</Text>
+          <Text style={style.section}>
+            BIBLIOTECA PUBLICA MUNICIPAL FELIPE DIAZ VIDAURE
+          </Text>
         </View>
         <View style={style.section}>
-          <Text>SIGNATURA {loanInfo.book.signatureCode || "No Posee"} </Text>
+          <Text>
+            SIGNATURA{" "}
+            {loanInfo?.book?.signatureCode ||
+              loanInfo?.childrenBook?.SignatureCode ||
+              "No Posee"}
+          </Text>
         </View>
         <View style={style.altSecction}>
           <View style={style.altSectionText}>
             <Text>Nº INSCRIPCION</Text>
-            <Text>{loanInfo.book.InscriptionCode} </Text>
+            <Text>
+              {loanInfo.book?.InscriptionCode ||
+                loanInfo.childrenBook?.InscriptionCode}{" "}
+            </Text>
           </View>
           <View style={style.altSeparator} />
           <View style={style.altSectionText}>
             <Text>CÓD. EMPLEADO</Text>
+            <Text>
+              {loanInfo.aprovedBy || "El préstamo no ha sido aprobado aún."}
+            </Text>
           </View>
         </View>
         <View style={style.section}>
-          <Text>AUTOR {loanInfo.book.Author} </Text>
+          <Text>
+            AUTOR {loanInfo.book?.Author || loanInfo.childrenBook?.Author}{" "}
+          </Text>
         </View>
         <View style={style.section}>
-          <Text>TITULO {loanInfo.book.Title} </Text>
+          <Text>
+            TITULO {loanInfo.book?.Title || loanInfo.childrenBook?.Title}{" "}
+          </Text>
         </View>
         <View style={style.altSecction}>
           <View style={style.altSectionText}>
@@ -98,13 +117,13 @@ const DocumentForLoan = ({ loanInfo }: { loanInfo: Loans }) => (
         </View>
 
         <View style={style.section}>
-          <Text>NOMBRE {loanInfo.user.name} </Text>
+          <Text>NOMBRE {loanInfo.userName} </Text>
         </View>
 
         <View style={style.altSecction}>
           <View style={style.altSectionText}>
             <Text>CEDULA O CARNÉ Nº</Text>
-            <Text>{loanInfo.user.cedula} </Text>
+            <Text>{loanInfo.userCedula} </Text>
           </View>
           <View style={style.altSeparator} />
           <View style={style.altSectionText}>
@@ -118,13 +137,12 @@ const DocumentForLoan = ({ loanInfo }: { loanInfo: Loans }) => (
         </View>
         <View style={style.section}>
           <Text>
-            TELÉFONO Y DIRECCION {loanInfo.user.PhoneNumber},{" "}
-            {loanInfo.user.Adress}{" "}
+            TELÉFONO Y DIRECCION {loanInfo.userName}, {loanInfo.userAddress}{" "}
           </Text>
         </View>
         <View style={style.section}>
           <View style={style.firma}>
-            <Text> {loanInfo.user.name} </Text>
+            <Text> {loanInfo.userName.toUpperCase()} </Text>
             <Text>_______________________________________{"\n"}FIRMA</Text>
           </View>
         </View>

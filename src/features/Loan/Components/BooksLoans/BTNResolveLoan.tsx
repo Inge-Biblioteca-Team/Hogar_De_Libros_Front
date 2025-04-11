@@ -3,10 +3,10 @@ import { GiConfirmed } from "react-icons/gi";
 import { MdCancel } from "react-icons/md";
 import { PiEyeFill } from "react-icons/pi";
 import DenyRequest from "./DenyRequest";
-import { Loans } from "../../Types/BookLoan";
+import { LoansRes } from "../../Types/BookLoan";
 import SeeLoanInfo from "../Modals/SeeLoanInfo";
 import MDApproveLoan from "./MDApproveLoan";
-const BTNResolveLoan = ({ Loan }: { Loan: Loans }) => {
+const BTNResolveLoan = ({ Loan }: { Loan: LoansRes }) => {
   const [showD, setShowD] = useState<boolean>(false);
 
   const [see, setSee] = useState<boolean>(false);

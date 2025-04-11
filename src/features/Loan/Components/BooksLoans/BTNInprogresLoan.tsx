@@ -1,11 +1,11 @@
 import { PiCalendarXLight, PiEyeFill } from "react-icons/pi";
-import { Loans } from "../../Types/BookLoan";
+import { LoansRes } from "../../Types/BookLoan";
 import { useState } from "react";
 import LoanRenuve from "./LoanRenuve";
 import FinishLoanBook from "../Modals/FinishLoanBook";
 import SeeLoanInfo from "../Modals/SeeLoanInfo";
 import { MdOutlineUpdate } from "react-icons/md";
-const BTNInprogresLoan = ({ Loan }: { Loan: Loans }) => {
+const BTNInprogresLoan = ({ Loan }: { Loan: LoansRes }) => {
   const [showR, setShowR] = useState<boolean>(false);
   const [showF, setShowF] = useState<boolean>(false);
   const [see, setSee] = useState<boolean>(false);
@@ -34,11 +34,11 @@ const BTNInprogresLoan = ({ Loan }: { Loan: Loans }) => {
       <LoanRenuve Loan={Loan} showChange={showR} setShowChange={setShowR} />
       <SeeLoanInfo Loan={Loan} see={see} setSee={setSee} />
       <FinishLoanBook
-        open={showF}
-        setOpen={setShowF}
-        BookLoanId={Loan.BookLoanId}
-        UserCedula={Loan.user?.name}
-        BookTitle={Loan.book?.Title}
+      open={showF}
+      setOpen={setShowF}
+      BookLoanId={Loan.BookLoanId}
+      UserCedula={Loan.userName}
+      BookTitle={Loan.book?.Title || Loan.childrenBook?.Title || "Desconocido"}
       />
     </>
   );

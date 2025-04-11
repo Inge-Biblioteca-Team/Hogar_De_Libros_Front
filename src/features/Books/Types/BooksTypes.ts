@@ -37,3 +37,10 @@ export type BookLeading = {
   bookBookCode: string;
   institution: string;
 };
+
+export type ExtendBookLeading = {
+  BookLoanId: number;
+  LoanExpirationDate: string;
+  Reason:string
+};
+

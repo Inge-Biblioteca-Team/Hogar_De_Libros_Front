@@ -30,18 +30,30 @@ const InProgressLoans = () => {
   const [StartDate, setStartDate] = useState<string>("");
   const [EndDate, setEndtDate] = useState<string>("");
   const [SignaCode, setSignaCode] = useState<string>("");
+  const [type, setType] = useState("");
 
   const sSignaCode = UseDebounce(SignaCode, 1000);
 
   const { data: Loan, isLoading } = useQuery<LoanResponse, Error>(
-    ["IPLoans", currentPage, currentLimit, StartDate, EndDate, sSignaCode],
+    [
+      "IPLoans",
+      currentPage,
+      currentLimit,
+      StartDate,
+      EndDate,
+      sSignaCode,
+      "",
+      type,
+    ],
     () =>
       GetInProgressLoan(
         currentPage,
         currentLimit,
         StartDate,
         EndDate,
-        sSignaCode
+        sSignaCode,
+        "",
+        type
       ),
     {
       staleTime: 600,
@@ -50,7 +62,7 @@ const InProgressLoans = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [StartDate, EndDate, sSignaCode]);
+  }, [StartDate, EndDate, sSignaCode, type]);
 
   const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
   return (
@@ -73,6 +85,7 @@ const InProgressLoans = () => {
               setEndtDate={setEndtDate}
               setSignaCode={setSignaCode}
               startDate={StartDate}
+              setType={setType}
             />
 
             <>

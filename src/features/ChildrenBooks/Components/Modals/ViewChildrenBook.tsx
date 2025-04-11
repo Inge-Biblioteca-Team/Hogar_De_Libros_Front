@@ -1,7 +1,8 @@
 import { Button, Label, Modal } from "flowbite-react";
-import { Dispatch, SetStateAction } from "react";
-import { Book } from "../../Types/BooksChildrensTypes";
+import { Dispatch, SetStateAction, useState } from "react";
+import { BookC } from "../../Types/BooksChildrensTypes";
 import { getConditionStatusText } from "../../../../components/Maps/Condition";
+import LendingAdminForm from "./LendingAdminForm";
 
 const ViewChildrenBook = ({
   open,
@@ -10,14 +11,19 @@ const ViewChildrenBook = ({
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  book: Book;
+  book: BookC;
 }) => {
   const onClose = () => {
     setOpen(false);
   };
+
+  const [openL, setOpenL] = useState<boolean>(false);
+
   return (
     <Modal dismissible onClose={onClose} show={open}>
-      <Modal.Header className="dark:bg-neutral-900">Información del Libro</Modal.Header>
+      <Modal.Header className="dark:bg-neutral-900">
+        Información del Libro
+      </Modal.Header>
       <Modal.Body className="dark:bg-[#2d2d2d] grid grid-cols-1 lg:grid-cols-3 gap-4">
         <figure>
           <img
@@ -54,11 +60,15 @@ const ViewChildrenBook = ({
           {book.ReserveBook && <Label value={"Libro de reserva"} />}
         </div>
       </Modal.Body>
-      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center" onClick={()=>setOpen(false)}>
-        <Button color={"blue"}>
+      <Modal.Footer className="dark:bg-[#2d2d2d] flex items-center justify-center">
+        <Button color={"red"} onClick={() => setOpen(false)}>
           Regresar
         </Button>
+        <Button color={"blue"} onClick={() => setOpenL(true)}>
+          Generar prestamo
+        </Button>
       </Modal.Footer>
+      <LendingAdminForm open={openL} setOpen={setOpenL} book={book} />
     </Modal>
   );
 };

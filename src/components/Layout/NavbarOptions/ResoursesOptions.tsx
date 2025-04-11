@@ -6,7 +6,7 @@ const ResoursesOptions = () => {
   const { handleNavigation } = useContext(SidebarContext);
   return (
     <>
-      <Sidebar.Collapse label="Recursos">
+      <Sidebar.Collapse label="Recursos" id="Resources">
         <Sidebar.Item
           onClick={() => handleNavigation("/HogarDeLibros/Recursos/Artistas")}
         >

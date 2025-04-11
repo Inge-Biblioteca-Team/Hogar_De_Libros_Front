@@ -6,7 +6,7 @@ const RecordsOptions = () => {
   const { handleNavigation } = useContext(SidebarContext);
   return (
     <>
-      <Sidebar.Collapse label="Historial de préstamos">
+      <Sidebar.Collapse label="Historial de préstamos" id="loanHistory">
         <Sidebar.Item
           onClick={() => handleNavigation("/HogarDeLibros/Historial/Libros")}
         >

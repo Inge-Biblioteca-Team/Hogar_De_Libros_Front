@@ -1,6 +1,6 @@
 import { Button, Modal, Spinner } from "flowbite-react";
 import { Dispatch, SetStateAction, useState } from "react";
-import { Loans } from "../../Types/BookLoan";
+import { LoansRes } from "../../Types/BookLoan";
 import { format } from "@formkit/tempo";
 import DocumentForLoan from "../../Utilities/DocumentForLoan";
 import { pdf } from "@react-pdf/renderer";
@@ -13,7 +13,7 @@ const SeeLoanInfo = ({
 }: {
   see: boolean;
   setSee: Dispatch<SetStateAction<boolean>>;
-  Loan: Loans;
+  Loan: LoansRes;
 }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -29,7 +29,7 @@ const SeeLoanInfo = ({
     tz: "America/Costa_Rica",
   });
 
-  const generatePDF = async (data: Loans) => {
+  const generatePDF = async (data: LoansRes) => {
     try {
       setIsLoading(true);
       const blob = await pdf(<DocumentForLoan loanInfo={data} />).toBlob();
@@ -54,11 +54,11 @@ const SeeLoanInfo = ({
         <div className="flex flex-col gap-4 max-sm:text-sm text-lg">
           <span className=" flex flex-col">
             <strong>Información del Usuario</strong>
-            <span>Nombre: {Loan.user?.name}</span>
-            <span>Cédula: {Loan.user?.cedula}</span>
-            <span>Dirección: {Loan.user?.Adress}</span>
-            <span>Teléfono: {Loan.user?.PhoneNumber} </span>
-            {Loan.OldObservations && (
+            <span>Nombre: {Loan.userName}</span>
+            <span>Cédula: {Loan.userCedula}</span>
+            <span>Dirección: {Loan.userAddress}</span>
+            <span>Teléfono: {Loan.userPhone} </span>
+            {Loan.OldObservations && Loan.OldObservations.length > 0 &&  (
               <details>
                 <summary>Anotaciones del usuario</summary>
                 <ul>
@@ -71,9 +71,9 @@ const SeeLoanInfo = ({
           </span>
           <span className=" flex flex-col">
             <strong>Sobre el Libro</strong>
-            <span>Título: {Loan.book?.Title}</span>
-            <span>Código de Signatura: {Loan.book?.signatureCode || "N/A"}</span>
-            <span>Código De Inscripcion: {Loan.book?.InscriptionCode}</span>
+            <span>Título: {Loan.book?.Title || Loan.childrenBook?.Title}</span>
+            <span>Código de Signatura: {Loan.book?.signatureCode || Loan.childrenBook?.SignatureCode || "N/A"}</span>
+            <span>Código De Inscripcion: {Loan.book?.InscriptionCode || Loan.childrenBook?.InscriptionCode}</span>
           </span>
           <span className=" flex flex-col">
             <strong>Sobre el préstamo</strong>

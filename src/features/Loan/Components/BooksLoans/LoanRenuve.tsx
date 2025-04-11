@@ -1,6 +1,6 @@
 import { Button, Modal, Spinner, TextInput } from "flowbite-react";
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { ChangeExpiredDate, Loans } from "../../Types/BookLoan";
+import { ChangeExpiredDate, LoansRes } from "../../Types/BookLoan";
 import UseExtendLoan from "../../Hooks/Books/UseExtendLoan";
 import { useForm } from "react-hook-form";
 import { formatToYMD } from "../../../../components/FormatTempo";
@@ -10,7 +10,7 @@ const LoanRenuve = ({
   showChange,
   setShowChange,
 }: {
-  Loan: Loans;
+  Loan: LoansRes;
   showChange: boolean;
   setShowChange: Dispatch<SetStateAction<boolean>>;
 }) => {

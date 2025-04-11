@@ -1,13 +1,13 @@
 import toast from "react-hot-toast";
 import { useQueryClient, useMutation } from "react-query";
 import { ApiError } from "../../../Types/ApiTypes";
-import { Book } from "../Types/BooksChildrensTypes";
+import { BookC } from "../Types/BooksChildrensTypes";
 import { CreateChildrenBook } from "../Services/ChildrenServices";
 
 const UseCreateChildrenBook = () => {
     const queryClient = useQueryClient();
     return useMutation({
-      mutationFn: (data: Book) =>
+      mutationFn: (data: BookC) =>
         toast.promise(CreateChildrenBook(data), {
           loading: "Creando...",
           success: <span>Éxito, libro infantil creado correctamente</span>,

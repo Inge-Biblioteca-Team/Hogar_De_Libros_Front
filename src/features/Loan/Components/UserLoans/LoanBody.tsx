@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Loans } from "../../Types/BookLoan";
+import { LoansRes } from "../../Types/BookLoan";
 import MDLoanInfo from "./Modals/MDLoanInfo";
 import { Button, Popover, Table } from "flowbite-react";
 import { format } from "@formkit/tempo";
@@ -7,7 +7,7 @@ import { format } from "@formkit/tempo";
 const LoanBody = ({
   Loan,
 }: {
-  Loan: Loans;
+  Loan: LoansRes;
   Done?: boolean;
   Retry?: boolean;
   Aprov?: boolean;
@@ -49,7 +49,7 @@ const LoanBody = ({
         <Table.Row className="cursor-pointer dark:bg-[#2d2d2d] bg-white" key={Loan.BookLoanId}>
           <Table.Cell className="max-sm:hidden">{Loan.BookLoanId}</Table.Cell>
           <Table.Cell>
-            <div className=" line-clamp-1">{Loan.book.Title}</div>
+            <div className=" line-clamp-1">{Loan.book?.Title || Loan.childrenBook?.Title}</div>
           </Table.Cell>
           <Table.Cell>{reqDate}</Table.Cell>
           {Loan.Status !== "Finalizado" ? (

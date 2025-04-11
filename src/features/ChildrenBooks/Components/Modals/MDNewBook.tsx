@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import ModalFooters from "../../../../components/ModalFooters";
 import ModalImageLoader from "./ModalImageLoader";
-import { Book } from "../../Types/BooksChildrensTypes";
+import { BookC } from "../../Types/BooksChildrensTypes";
 import OpsCoditions from "../OpsCoditions";
 import OptsCateogryChildren from "../OptsCateogryChildren";
 import UseCreateChildrenBook from "../../Hooks/UseCreateChildrenBook";
@@ -15,7 +15,7 @@ const MDNewBook = ({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { register, reset, watch, setValue, handleSubmit } = useForm<Book>();
+  const { register, reset, watch, setValue, handleSubmit } = useForm<BookC>();
 
   const onClose = () => {
     setOpen(false);
@@ -32,7 +32,7 @@ const MDNewBook = ({
 
   const { mutate: createNew, isLoading } = UseCreateChildrenBook();
 
-  const onConfirm = (data: Book) => {
+  const onConfirm = (data: BookC) => {
     createNew(data, {
       onSuccess: () => {
         onClose();

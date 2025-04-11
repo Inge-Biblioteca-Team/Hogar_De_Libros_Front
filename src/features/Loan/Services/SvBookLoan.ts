@@ -1,13 +1,14 @@
 import { ChangeExpiredDate, finishLoan, newloan } from "../Types/BookLoan";
 import api from "../../../Services/AxiosConfig";
 import axios from "axios";
-import { BookLeading } from "../../Books/Types/BooksTypes";
+import {ExtendBookLeading } from "../../Books/Types/BooksTypes";
 
 //Gets
 const GetPendandRequest = async (
   page: number,
   limit: number,
-  Cedula?: string
+  Cedula?: string,
+  type?:string
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -15,6 +16,7 @@ const GetPendandRequest = async (
       limit,
     };
     if (Cedula) params.cedula = Cedula;
+    if (type) params.type = type
     const response = await api.get("book-loan/pending", { params });
     return response.data;
   } catch (error) {
@@ -29,7 +31,8 @@ const GetInProgressLoan = async (
   StartDate?: string,
   ExpirationDate?: string,
   SignaCode?: string,
-  Cedula?: string
+  Cedula?: string,
+  type?:string
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -41,6 +44,7 @@ const GetInProgressLoan = async (
     if (ExpirationDate) params.LoanExpirationDate = ExpirationDate;
     if (SignaCode) params.signatureCode = SignaCode;
     if (Cedula) params.cedula = Cedula;
+    if (type) params.type = type
 
     const response = await api.get("book-loan/in-progress", { params });
     return response.data;
@@ -57,7 +61,8 @@ const GetDoneLoans = async (
   EndDate?: string,
   Cedula?: string,
   name?: string,
-  SignaCode?: string
+  SignaCode?: string,
+  type?:string
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -70,6 +75,7 @@ const GetDoneLoans = async (
     if (SignaCode) params.signatureCode = SignaCode;
     if (Cedula) params.cedula = Cedula;
     if (name) params.name = name;
+    if (type) params.type = type
 
     const response = await api.get("book-loan/completed", { params });
     return response.data;
@@ -138,7 +144,7 @@ const FinalizeLoan = async (Loan: finishLoan) => {
   }
 };
 
-const LeadingRequestBookExtended = async (data: BookLeading) => {
+const LeadingRequestBookExtended = async (data: ExtendBookLeading) => {
   try {
     const response = await api.post(`book-loan/extend/${data.BookLoanId}`, data, {
       headers: {
