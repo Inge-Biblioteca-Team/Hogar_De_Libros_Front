@@ -30,7 +30,7 @@ const ComputerInfo = () => {
       </h2>
       {isLoading && <Skeleton height={300} />}
       {!isLoading && (
-        <div className="w-full bg-white rounded-md flex p-4 text-lg">
+        <div className="w-full bg-white dark:text-black rounded-md flex p-4 text-lg">
           <span>
             <p>
               <strong className="">Acceso a computadoras, </strong>

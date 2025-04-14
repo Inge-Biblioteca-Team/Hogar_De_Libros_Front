@@ -8,7 +8,7 @@ import {
 
 const CardArtistL = ({ artist }: { artist: Artist }) => {
   return (
-    <div className=" w-full justify-start bg-white flex rounded-md h-full text-left">
+    <div className=" w-full justify-start bg-white dark:text-black flex rounded-md h-full text-left">
       <img
         src={artist.Cover}
         alt={artist.Name}
@@ -19,7 +19,9 @@ const CardArtistL = ({ artist }: { artist: Artist }) => {
         <div className=" text-lg max-md:text-sm mr-12 max-md:m-0">
           <strong>{artist.ArtisProfession}</strong>
           {artist.MoreInfo && (
-            <p className="text-gray-600 max-xl:line-clamp-6 max-sm:line-clamp-[12]">{artist.MoreInfo}</p>
+            <p className="text-gray-600 max-xl:line-clamp-6 max-sm:line-clamp-[12]">
+              {artist.MoreInfo}
+            </p>
           )}
         </div>
         <ButtonGroup>
