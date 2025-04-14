@@ -11,7 +11,7 @@ const ColabAprovedRow = ({ colaborator }: { colaborator: Colaborator }) => {
   const [openC, setOpenC] = useState<boolean>(false);
   return (
     <>
-      <Table.Row>
+      <Table.Row className="text-black dark:text-white">
         <Table.Cell className="">
           {formatToDMY(colaborator.activityDate)}{" "}
         </Table.Cell>

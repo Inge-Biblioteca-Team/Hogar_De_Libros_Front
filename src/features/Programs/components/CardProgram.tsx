@@ -5,7 +5,7 @@ const CardProgram = ({ program }: { program: Program }) => {
     <>
       <div
         className="w-full
-            bg-white flex rounded-md h-full justify-end text-right"
+            bg-white flex rounded-md h-full justify-end text-right dark:text-black"
         style={{ WebkitLineClamp: 12, overflow: "hidden" }}
       >
         <span className="m-3 !bg-transparent ml-9">

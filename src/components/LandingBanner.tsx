@@ -35,7 +35,7 @@ const LandingBanner = () => {
         Descubra un mundo de conocimiento y explora nuestro catálogo
       </p>
       <Button
-        className="dark:bg-neutral-900"
+        className="dark:bg-neutral-900 dark:hover:bg-neutral-800"
         color={"blue"}
         size={"xl"}
         type="button"

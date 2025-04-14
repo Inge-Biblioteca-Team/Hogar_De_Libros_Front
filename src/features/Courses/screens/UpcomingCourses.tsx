@@ -69,7 +69,7 @@ const UpcomingCourses = ({ home }: { home?: boolean }) => {
               <CardCourseForCarrousel Courses={course} key={"CO" + course.Id} />
             ))}
           </Carousel>
-          <Button className="dark:bg-[#2d2d2d]" color={"blue"} size={"xl"} onClick={goTo}>
+          <Button className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800" color={"blue"} size={"xl"} onClick={goTo}>
             <span>Ver más</span>
           </Button>
         </div>

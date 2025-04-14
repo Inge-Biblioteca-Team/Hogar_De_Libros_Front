@@ -64,7 +64,7 @@ const LatestAddBooks = () => {
               <BookCardForCarousel key={"BO" + Book.BookCode} Book={Book} />
             ))}
           </Carousel>
-          <Button className="dark:bg-[#2d2d2d]" size={"xl"} color={"blue"} onClick={goTo}>
+          <Button className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800" size={"xl"} color={"blue"} onClick={goTo}>
             Ver más libros
           </Button>
         </div>

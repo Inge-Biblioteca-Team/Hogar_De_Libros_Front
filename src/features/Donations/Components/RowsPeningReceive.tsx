@@ -7,20 +7,29 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { HiViewfinderCircle } from "react-icons/hi2";
 import { formatToDMY } from "../../../components/FormatTempo";
 
-
 const RowsPeningReceive = ({ donation }: { donation: Donation }) => {
   const [openV, setOpenV] = useState<boolean>(false);
   const [openC, setOpenC] = useState<boolean>(false);
   return (
     <>
-      <Table.Row>
+      <Table.Row className="text-black dark:text-white">
         <Table.Cell>{donation.UserFullName}</Table.Cell>
         <Table.Cell>{donation.UserCedula}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">{donation.UserEmail}</Table.Cell>
-        <Table.Cell className="md:hidden  max-sm:hidden lg:table-cell">{donation.UserPhone}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">{donation.SubCategory}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">{formatToDMY(donation.DateRecolatedDonation)}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">{donation.Status}</Table.Cell>
+        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
+          {donation.UserEmail}
+        </Table.Cell>
+        <Table.Cell className="md:hidden  max-sm:hidden lg:table-cell">
+          {donation.UserPhone}
+        </Table.Cell>
+        <Table.Cell className="max-sm:hidden">
+          {donation.SubCategory}
+        </Table.Cell>
+        <Table.Cell className="max-sm:hidden">
+          {formatToDMY(donation.DateRecolatedDonation)}
+        </Table.Cell>
+        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
+          {donation.Status}
+        </Table.Cell>
         <Table.Cell>
           <div className=" flex gap-4 justify-center items-center">
             <button

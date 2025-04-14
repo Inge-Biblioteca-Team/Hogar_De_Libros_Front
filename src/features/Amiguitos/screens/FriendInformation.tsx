@@ -26,8 +26,8 @@ const FriendInformation = () => {
             <div className=" flex justify-around max-sm:flex-col-reverse max-sm:gap-3">
               <div>
                 <p>
-                  Puedes realizar una actividad de colaboración con la biblioteca
-                  en una de las siguientes áreas:
+                  Puedes realizar una actividad de colaboración con la
+                  biblioteca en una de las siguientes áreas:
                 </p>
                 <ul className="list-disc">
                   <li className=" ml-5">
@@ -70,7 +70,7 @@ const FriendInformation = () => {
                     libros con otras personas.
                   </p>
                   <Button
-                    className="dark:bg-neutral-900 hover:scale-105 transition-transform duration-300"
+                    className="dark:bg-neutral-900 dark:hover:bg-neutral-950 hover:scale-105 transition-transform duration-300"
                     color={"blue"}
                     onClick={() => setOpenC(true)}
                   >
@@ -80,7 +80,7 @@ const FriendInformation = () => {
               </figure>
             </div>
             <Button
-              className="dark:bg-neutral-900 w-36 hover:scale-105 transition-transform duration-300
+              className="dark:bg-neutral-900 dark:hover:bg-neutral-950 w-36 hover:scale-105 transition-transform duration-300
                hidden max-sm:block"
               onClick={() => setOpenC(true)}
               color={"blue"}
@@ -93,15 +93,17 @@ const FriendInformation = () => {
             <div className=" flex justify-around max-sm:flex-col-reverse max-sm:gap-3 flex-row-reverse">
               <div className=" flex flex-col gap-3">
                 <p>
-                  Estamos abiertos a recibir donaciones. Aquí te mencionamos algunos
-                  articulos que recibimos:
+                  Estamos abiertos a recibir donaciones. Aquí te mencionamos
+                  algunos articulos que recibimos:
                 </p>
                 <div>
                   <h3>Libros</h3>
                   <ul className="list-disc">
                     <li className=" ml-5">Historia</li>
                     <li className=" ml-5">Literatura</li>
-                    <li className=" ml-5">Educativos:Máximo 5 años de antigüedad.</li>
+                    <li className=" ml-5">
+                      Educativos:Máximo 5 años de antigüedad.
+                    </li>
                   </ul>
                 </div>
                 <div>
@@ -133,7 +135,7 @@ const FriendInformation = () => {
                     libros con otras personas.
                   </p>
                   <Button
-                    className="dark:bg-neutral-900 hover:scale-105 transition-transform duration-300"
+                    className="dark:bg-neutral-900 dark:hover:bg-neutral-950 hover:scale-105 transition-transform duration-300"
                     color={"blue"}
                     onClick={() => setOpenD(true)}
                   >
@@ -143,7 +145,7 @@ const FriendInformation = () => {
               </figure>
             </div>
             <Button
-              className="dark:bg-neutral-900 w-36 hover:scale-105 transition-transform duration-300
+              className="dark:bg-neutral-900 dark:hover:bg-neutral-950 w-36 hover:scale-105 transition-transform duration-300
                hidden max-sm:block"
               onClick={() => setOpenD(true)}
               color={"blue"}
@@ -157,8 +159,7 @@ const FriendInformation = () => {
             <div className=" flex justify-around max-sm:flex-col-reverse max-sm:gap-3">
               <div className=" flex flex-col gap-3">
                 <p>
-                  Contamos con amigos que nos ayudan en las labores{" "}
-                  <br />
+                  Contamos con amigos que nos ayudan en las labores <br />
                   cotidianas de la biblioteca. Si deseas apoyarnos, también
                   puedes unirte. Estas son algunas áreas de nuestros amigos:
                 </p>
@@ -197,7 +198,7 @@ const FriendInformation = () => {
                     libros con otras personas.
                   </p>
                   <Button
-                    className="dark:bg-neutral-900 hover:scale-105 transition-transform duration-300"
+                    className="dark:bg-neutral-900 dark:hover:bg-neutral-950 hover:scale-105 transition-transform duration-300"
                     color={"blue"}
                     onClick={() => setOpenA(true)}
                   >
@@ -207,7 +208,7 @@ const FriendInformation = () => {
               </figure>
             </div>
             <Button
-              className="dark:bg-neutral-900 w-36 hover:scale-105 transition-transform duration-300
+              className="dark:bg-neutral-900 dark:hover:bg-neutral-950 w-36 hover:scale-105 transition-transform duration-300
                hidden max-sm:block"
               onClick={() => setOpenA(true)}
               color={"blue"}

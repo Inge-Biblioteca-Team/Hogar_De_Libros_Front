@@ -14,10 +14,12 @@ const ColabsRows = ({ colaborator }: { colaborator: Colaborator }) => {
 
   return (
     <>
-      <Table.Row className="">
+      <Table.Row className=" text-black dark:text-white">
         <Table.Cell>{formatToDMY(colaborator.activityDate)} </Table.Cell>
         <Table.Cell> {colaborator.UserFullName}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">{colaborator.UserPhone}</Table.Cell>
+        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
+          {colaborator.UserPhone}
+        </Table.Cell>
         <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
           {colaborator.UserEmail}
         </Table.Cell>

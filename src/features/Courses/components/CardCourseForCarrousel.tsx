@@ -25,7 +25,7 @@ const CardCourseForCarrousel = ({ Courses }: { Courses: NextCourses }) => {
   return (
     <>
       <div
-        className="w-full gap-8 
+        className="w-full dark:text-black gap-8 
           bg-white flex rounded-md h-full"
       >
         <img src={Courses.image} alt={Courses.courseType} className="w-6/12" />
@@ -51,7 +51,7 @@ const CardCourseForCarrousel = ({ Courses }: { Courses: NextCourses }) => {
               )}
             </p>
             <Button
-            className="dark:bg-[#2d2d2d]"
+            className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800"
               color={"blue"}
               onClick={() => setopen(true)}
             >
