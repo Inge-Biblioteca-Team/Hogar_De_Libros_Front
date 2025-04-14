@@ -100,7 +100,7 @@ const ManagerComputer = () => {
             </div>
           </div>
           <Button
-            className="dark:bg-[#2d2d2d max-sm:w-full w-56"
+            className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 max-sm:w-full w-56"
             color={"blue"}
             onClick={() => setSNew(true)}
           >

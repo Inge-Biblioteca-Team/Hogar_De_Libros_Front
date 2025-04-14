@@ -3,7 +3,7 @@ import { Button, Modal, Spinner } from "flowbite-react";
 const ModalFooters = ({ onClose, isLoading }: { onClose: () => void, isLoading: boolean }) => {
   return (
     <>
-      <Modal.Footer className="dark:bg-[#2d2d2d] flex bg-white lg:bg-transparent items-center justify-center gap-3">
+      <Modal.Footer className="dark:bg-dark:bg-gray-400 flex bg-white lg:bg-transparent items-center justify-center gap-3">
         <Button title="Cancelar y regresar" tabIndex={2} color="red" onClick={onClose} disabled={isLoading}>
           Cancelar
         </Button>

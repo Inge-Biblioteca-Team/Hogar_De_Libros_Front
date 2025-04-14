@@ -84,7 +84,7 @@ const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
             </Select>
           </div>
           <Button
-            className="dark:bg-[#2d2d2d] max-sm:w-full w-52"
+            className="dark:bg-[#2d2d2d] dark:focus:ring-neutral-800 dark:hover:bg-neutral-800 max-sm:w-full w-52"
             color={"blue"}
             onClick={() => setOpen(true)}
           >

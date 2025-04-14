@@ -78,7 +78,7 @@ const ManageFurniture = () => {
             </Select>
           </div>
           <Button
-            className="dark:bg-[#2d2d2d] w-56 max-sm:w-full"
+            className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 w-56 max-sm:w-full"
             color={"blue"}
             onClick={() => setSNew(true)}
           >

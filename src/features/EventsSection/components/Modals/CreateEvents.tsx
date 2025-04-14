@@ -63,11 +63,18 @@ const CreateEvent = () => {
 
   return (
     <>
-      <Button className="dark:bg-[#2d2d2d] max-sm:w-full " type="button" onClick={() => setIsModalOpen(true)} color={"blue"}>
+      <Button
+        className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 max-sm:w-full "
+        type="button"
+        onClick={() => setIsModalOpen(true)}
+        color={"blue"}
+      >
         Añadir evento
       </Button>
-      <Modal  show={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <Modal.Header className="dark:bg-neutral-900">Añadir nuevo evento</Modal.Header>
+      <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <Modal.Header className="dark:bg-neutral-900">
+          Añadir nuevo evento
+        </Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="dark:bg-[#2d2d2d] bg-white flex flex-col gap-4">
             <div className="w-full flex items-center justify-center">
@@ -185,7 +192,7 @@ const CreateEvent = () => {
               </div>
             </fieldset>
           </Modal.Body>
-          <ModalFooters onClose={onClose} isLoading={isLoading}/>
+          <ModalFooters onClose={onClose} isLoading={isLoading} />
         </form>
       </Modal>
       <ModalAddNewImage

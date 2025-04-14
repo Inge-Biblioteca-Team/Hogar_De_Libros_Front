@@ -69,7 +69,7 @@ const ManagePrograms = () => {
               </div>
             </div>
             <Button
-              className="dark:bg-[#2d2d2d] max-sm:mt-4 max-sm:w-full "
+              className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 max-sm:mt-4 max-sm:w-full "
               color={"blue"}
               onClick={() => SetOAdd(true)}
             >
@@ -108,7 +108,7 @@ const ManagePrograms = () => {
                   {Programs?.data.map((Program) => (
                     <ProgramsRows key={Program.programsId} program={Program} />
                   ))}
-                </Table.Body >
+                </Table.Body>
               </Table>
               <div className="block max-sm:hidden">
                 <CustomPagination

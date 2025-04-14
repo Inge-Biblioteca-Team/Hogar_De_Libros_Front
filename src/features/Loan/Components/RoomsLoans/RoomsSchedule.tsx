@@ -5,7 +5,7 @@ import ReservationForm from "../../Pages/Rooms/ReservationForm";
 import { queque } from "../../Types/RoomsReservations";
 import { useQuery } from "react-query";
 import { getRoomsList } from "../../Services/SVReservations";
-import Loader from '../../../OPAC/Assets/LoaderOPAC.gif';
+import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
 const RoomsSchedule = ({
   date,
   reservations,
@@ -95,7 +95,7 @@ const RoomsSchedule = ({
   const finishReservation = () => {
     setSelectedHours([]);
   };
-  
+
   if (isLoading) {
     return (
       <div className="w-full flex items-center justify-center mt-12">
@@ -120,7 +120,9 @@ const RoomsSchedule = ({
       </div>
       <Table className="text-center h-80 mt-2 hidden lg:table">
         <Table.Head className="dark:bg-neutral-900">
-          <Table.HeadCell className="dark:bg-neutral-900 w-10">Número de sala</Table.HeadCell>
+          <Table.HeadCell className="dark:bg-neutral-900 w-10">
+            Número de sala
+          </Table.HeadCell>
           {hours.map((hour) => (
             <Table.HeadCell key={hour} className="dark:bg-neutral-900">
               <div>{HourMapping[hour]}</div>
@@ -219,7 +221,7 @@ const RoomsSchedule = ({
           onClick={handleConfirmSelection}
           color={"blue"}
           disabled={roomss.length == 0}
-          className="dark:bg-[#2d2d2d]"
+          className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 dark:focus:ring-neutral-700"
         >
           Llenar formulario de solicitud
         </Button>
