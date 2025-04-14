@@ -6,7 +6,7 @@ import { formatToDMY } from "../../../components/FormatTempo";
 const AdviceRow = ({ advice }: { advice: Advice }) => {
   const date = formatToDMY(advice.date);
   return (
-    <Table.Row>
+    <Table.Row className="text-black dark:text-white">
       <Table.Cell className=" md:hidden max-sm:hidden">{advice.id_Advice} </Table.Cell>
       <Table.Cell>{advice.reason} </Table.Cell>
       <Table.Cell className=" max-sm:hidden">{advice.category} </Table.Cell>

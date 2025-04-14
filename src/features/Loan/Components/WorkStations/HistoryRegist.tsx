@@ -21,7 +21,10 @@ const HistoryRegist = ({ WSLoan }: { WSLoan: WSLoan }) => {
 
   return (
     <>
-      <Table.Row onClick={() => setShow(true)}>
+      <Table.Row
+        className="text-black dark:text-white"
+        onClick={() => setShow(true)}
+      >
         <Table.Cell>{WSLoan.workStation}</Table.Cell>
         <Table.Cell className="max-sm:hidden">{WSLoan.UserName} </Table.Cell>
         <Table.Cell>{LoanDate} </Table.Cell>

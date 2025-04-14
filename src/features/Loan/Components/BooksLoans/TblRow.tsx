@@ -30,7 +30,10 @@ const TblRow = ({
   const [see, setSee] = useState<boolean>(false);
   return (
     <>
-      <Table.Row onClick={!NeedAccions ? () => setSee(true) : undefined}>
+      <Table.Row
+        className="text-black dark:text-white"
+        onClick={!NeedAccions ? () => setSee(true) : undefined}
+      >
         <Table.Cell className="max-sm:hidden">{ReqDate}</Table.Cell>
         <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
           {ExDate}

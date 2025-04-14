@@ -18,7 +18,7 @@ const AprovRows = ({ reservation }: { reservation: Reserve }) => {
   return (
     <>
       <React.Fragment key={`${reservation.rommReservationId}`}>
-        <Table.Row className="h-20">
+        <Table.Row className="h-20 text-black dark:text-white">
           <Table.Cell>{reservation.name} </Table.Cell>
           <Table.Cell className="max-sm:hidden">{requestDay} </Table.Cell>
           <Table.Cell>{reserveDay} </Table.Cell>

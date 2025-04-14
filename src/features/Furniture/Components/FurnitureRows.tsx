@@ -13,7 +13,10 @@ const FurnitureRows = ({ furniture }: { furniture: furniture }) => {
   const [openE, setOpenE] = useState<boolean>(false);
   return (
     <>
-      <Table.Row key={furniture.Id} className=" h-24">
+      <Table.Row
+        key={furniture.Id}
+        className=" h-24 text-black dark:text-white"
+      >
         <Table.Cell className="w-52">{furniture.LicenseNumber}</Table.Cell>
         <Table.Cell className="w-52">{furniture.Description}</Table.Cell>
         <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden w-52">
@@ -28,7 +31,7 @@ const FurnitureRows = ({ furniture }: { furniture: furniture }) => {
         <Table.Cell className="max-sm:hidden w-64">
           {furniture.Status}
         </Table.Cell>
-        <Table.Cell >
+        <Table.Cell>
           <AccionsBTN
             Status={furniture.Status !== "Baja" ? true : false}
             setOpenS={setOpenV}
