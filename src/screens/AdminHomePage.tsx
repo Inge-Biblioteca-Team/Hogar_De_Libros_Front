@@ -33,25 +33,44 @@ const AdminHomePage = () => {
 
   return (
     <>
-      <div className="dark:bg-neutral-900 flex md:w-full justify-between">
+      <div className="flex justify-between items-baseline mx-2 mt-2 text-xl">
         <Breadcrumb className="custom-breadcrumb">
           <Breadcrumb.Item icon={IoIosHome}>
-            <span className="dark:text-white text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
+            <span
+              className="text-gray-600
+            dark:text-white"
+            >
               Inicio
             </span>
           </Breadcrumb.Item>
         </Breadcrumb>
-        <span className="dark:text-white text-xl mr-4 mt-2 text-gray-600 max-sm:text-sm">
+        <span
+          className=" text-gray-600
+        max-sm:text-sm
+        dark:text-white"
+        >
           {" "}
           {formatToFullDate(new Date())}{" "}
         </span>
       </div>
-      <main className="dark:bg-neutral-900 w-full flex flex-col items-center gap-3">
-        <section className=" grid lg:grid-cols-6 md:grid-cols-1 md:w-full md:pr-4 md:pl-4 grid-cols-6 w-11/12 gap-3 max-sm:grid-cols-2">
-          <div className="col-span-4 md:w-full max-sm:hidden" id="Stats">
+      <main className="w-full flex flex-col items-center gap-3">
+        <section
+          className="grid grid-cols-6 w-11/12 gap-3 
+        max-md:grid-cols-2 max-lg:grid-cols-4"
+        >
+          <div
+            className="col-span-4 max-md:col-span-2 max-lg:col-span-2 max-2xl:col-span-6"
+            id="Stats"
+          >
             <LoanStadisticts />
           </div>
-          <div className="grid grid-cols-2 gap-6 col-span-2" id="Counter">
+          <div
+            className="grid grid-cols-2 gap-6 col-span-2 
+            max-lg:grid-cols-2 
+            max-lg:col-span-2  max-lg:text-sm 
+            max-2xl:grid-cols-6 max-2xl:col-span-6"
+            id="Counter"
+          >
             <CounterCard
               counter={GeneralCounts?.Libros || 0}
               text="Libros en colección"
@@ -219,15 +238,16 @@ const AdminHomePage = () => {
             />
           </div>
         </section>
-        <section className="dark:bg-neutral-900 flex xl:w-full 2xl:w-full xl:pr-4 xl:pl-4 2xl:pl-4 2xl:pr-4 w-11/12 justify-start gap-6">
+        <section className="flex w-11/12 justify-start gap-6 relative">
           <Card
-            className="dark:bg-[#2d2d2d] w-full h-[32vh] p0 rounded-sm"
+            className="w-full h-[32vh] p0 rounded-sm
+            dark:bg-neutral-900 "
             id="EventCalendar"
           >
             <Calendar />
           </Card>
+          <Driver />
         </section>
-        <Driver />
       </main>
       <ReportModal open={open} setOpen={setOpen} reportType={reportType} />
     </>

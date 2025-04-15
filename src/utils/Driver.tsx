@@ -103,7 +103,7 @@ const Driver = () => {
         outline
         pill
         title="Guía rapida"
-        className=" absolute bottom-2 right-3"
+        className=" absolute bottom-2 right-4"
       >
         <MdOutlineQuestionMark />
       </Button>
