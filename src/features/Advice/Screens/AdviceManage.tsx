@@ -93,7 +93,7 @@ const AdviceManage = () => {
             </div>
           )}
           {Advices && Advices.count > 0 && <AdviceTable advices={Advices} />}
-          {(!Advices || Advices.count === 0) && <NoResults />}
+          {(!isLoading && (!Advices || Advices.count === 0)) && <NoResults />}
           <DesktopPagination
             page={page}
             onPageChange={onPageChange}
