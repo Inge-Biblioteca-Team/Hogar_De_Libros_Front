@@ -7,14 +7,14 @@ import { useQuery } from "react-query";
 import { ApiAdvices } from "../Types/Advice";
 import { GetAdvice } from "../Service/SvAdvice";
 import UseDebounce from "../../../hooks/UseDebounce";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 import {
   BreadCrumbsItems,
   BreadLastItems,
 } from "../../../components/Breadcrumbs/BreadCrumbsItems";
-import CustomPagination from "../../../components/CustomPagination";
-import { Pagination } from "flowbite-react";
 import NoResults from "../../../components/NoResults";
+import Loader from "../Components/Loader";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
 
 const AdviceManage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -49,9 +49,12 @@ const AdviceManage = () => {
       <BreadCrumbsItems>
         <BreadLastItems text="Avisos importantes" />
       </BreadCrumbsItems>
-      <main className="dark:bg-neutral-900 flex items-center justify-center w-full flex-col gap-5 ">
-        <section className=" w-full flex max-sm:flex-col max-xl:px-4 max-sm:gap-4 max-sm:items-center justify-between items-end max-sm:px-2">
-          <div className=" flex xl:pl-4 max-md:flex-col max-sm:w-full  gap-6">
+      <main className="flex items-center justify-center w-full flex-col gap-5 ">
+        <section
+          className="w-full px-3 flex items-end justify-between gap-2
+          max-md:flex-col"
+        >
+          <div className=" flex gap-x-1 max-md:flex-col max-md:w-full">
             <div>
               <Label value="Fecha de actividad" />
               <TextInput
@@ -59,7 +62,7 @@ const AdviceManage = () => {
                 onChange={(e) => (setDate(e.target.value), setPage(1))}
               />
             </div>
-            <div className=" ">
+            <div>
               <Label value="Categoría" />
               <Select
                 onChange={(e) => (setCategory(e.target.value), setPage(1))}
@@ -67,7 +70,7 @@ const AdviceManage = () => {
                 <OptAdviceCategory />
               </Select>
             </div>
-            <div className=" ">
+            <div>
               <Label value="Motivo" />
               <TextInput
                 placeholder="Motivo del aviso"
@@ -76,45 +79,33 @@ const AdviceManage = () => {
             </div>
           </div>
           <Button
-            className="dark:bg-[#2d2d2d] max-md:w-full xl:mr-4 2xl:mr- max-sm:w-full"
+            className="dark:bg-[#2d2d2d] max-md:w-full"
             color={"blue"}
             onClick={() => setOpen(true)}
           >
             Agregar nuevo aviso
           </Button>
         </section>
-        <section className=" w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:px-2">
-          {isLoading ? (
+        <section className=" w-full px-3 pb-4">
+          {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="... Cargando" />
-                <figcaption className=" text-center">... cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : Advices && Advices.data.length > 0 ? (
-            <>
-              <AdviceTable advices={Advices} />
-            </>
-          ) : (
-            <NoResults />
           )}
-          <div className="block max-sm:hidden">
-            <CustomPagination
-              page={page}
-              onPageChange={onPageChange}
-              totalPages={MaxPage}
-              setCurrentLimit={setLimit}
-            />
-          </div>
-
-          <div className="sm:hidden  flex justify-center ">
-            <Pagination
-              layout="navigation"
-              currentPage={page}
-              totalPages={MaxPage}
-              onPageChange={onPageChange}
-            />
-          </div>
+          {Advices && Advices.count > 0 && <AdviceTable advices={Advices} />}
+          {(!Advices || Advices.count === 0) && <NoResults />}
+          <DesktopPagination
+            page={page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setLimit}
+          />
+          <MobilePagination
+            page={page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setLimit}
+          />
         </section>
       </main>
       <NewAdvice open={open} setOpen={setOpen} />

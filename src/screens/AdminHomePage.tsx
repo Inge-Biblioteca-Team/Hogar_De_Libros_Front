@@ -55,7 +55,7 @@ const AdminHomePage = () => {
       </div>
       <main className="w-full flex flex-col items-center gap-3">
         <section
-          className="grid grid-cols-6 w-11/12 gap-3 
+          className="grid grid-cols-6 w-full px-3 gap-3 
         max-md:grid-cols-2 max-lg:grid-cols-4"
         >
           <div
@@ -238,7 +238,7 @@ const AdminHomePage = () => {
             />
           </div>
         </section>
-        <section className="flex w-11/12 justify-start gap-6 relative">
+        <section className="flex w-full px-3 justify-start gap-6 relative">
           <Card
             className="w-full h-[32vh] p0 rounded-sm
             dark:bg-neutral-900 "
