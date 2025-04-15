@@ -13,8 +13,8 @@ const MobilePagination = ({
   setCurrentLimit: Dispatch<SetStateAction<number>>;
 }) => {
   return (
-    <div className="hidden max-md:flex justify-between  items-baseline ">
-      <div className=" max-sm:text-xs">
+    <div className="hidden max-md:flex justify-between max-sm:items-end  items-baseline ">
+      <div className=" max-sm:text-xs max-sm:mt-3">
         <span>Elementos por página.</span>
         <select
           name="Limit"
