@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Modal, Label, TextInput, Select } from "flowbite-react";
+import { Modal, Label, TextInput, Select, Button } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { Artist} from "../../types/LocalArtist";
 import { FaFacebookSquare, FaUserEdit } from "react-icons/fa";
@@ -48,13 +48,13 @@ const CreateArtist = () => {
 
   return (
     <>
-      <button
+      <Button
         type="button"
         onClick={() => setIsModalOpen(true)}
-        className="dark:bg-[#2d2d2d] w-full md:w-full lg:w-auto sm:w-40 bg-Body text-white mt-2 p-2 rounded-md hover:bg-blue-800"
+        className="dark:bg-[#2d2d2d]  bg-Body text-white rounded-md hover:bg-blue-800 max-md:w-full"
       >
         Añadir artista
-      </button>
+      </Button>
       <Modal  show={isModalOpen} onClose={onClose}>
         <Modal.Header className="dark:bg-neutral-900 bg-white">Añadir nuevo artista</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
