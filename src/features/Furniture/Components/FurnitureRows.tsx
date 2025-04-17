@@ -19,7 +19,8 @@ const FurnitureRows = ({ furniture }: { furniture: furniture }) => {
 
   return (
     <>
-      <Table.Row key={furniture.Id} onClick={handleRowClick}>
+      <Table.Row key={furniture.Id} onClick={handleRowClick}
+           className="dark:border-zinc-700 dark:bg-[#2d2d2d]">
         <Table.Cell>{furniture.LicenseNumber}</Table.Cell>
         <Table.Cell>
           <MobilePopOverOptions

@@ -42,7 +42,7 @@ const MobilePopOverOptions = ({
           </ButtonGroup>
         }
       >
-        <span>{text} </span>
+        <span className=" line-clamp-2">{text} </span>
       </Popover>
     </div>
   );

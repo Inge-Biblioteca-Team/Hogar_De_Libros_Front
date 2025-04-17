@@ -8,13 +8,14 @@ import MDNewBook from "../Components/Modals/MDNewBook";
 import { useQuery } from "react-query";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { Catalog } from "../Types/BooksTypes";
-import CustomPagination from "../../../components/CustomPagination";
 import { MdTitle, MdPersonSearch } from "react-icons/md";
 import BookTable from "../Components/BookTable";
 import { LuClipboardSignature } from "react-icons/lu";
 import { getColection } from "../Services/BooksServices";
-import { Pagination } from "flowbite-react";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import Loader from "../../../components/Loader";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
+import NoResults from "../../../components/NoResults";
 
 const ManageBooks = ({ loans }: { loans?: boolean }) => {
   const [open, setOpen] = useState(false);
@@ -55,8 +56,14 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
         <BreadCrumbManage text="Libros" />
       )}
       <main className=" flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-full flex max-sm:flex-col max-sm:px-2 justify-between px-4 gap-4">
-          <div className="flex max-xl:lg:flex-row max-xl:flex-col  gap-3">
+        <section
+          className="w-full flex justify-between px-3 gap-4 max-md:flex-col 
+        "
+        >
+          <div
+            className="flex gap-3
+           max-md:flex-col items-end max-md:items-stretch"
+          >
             <TextInput
               onChange={(event) => (
                 setSearchTitle(event.target.value), setPage(1)
@@ -88,7 +95,7 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
             </Select>
           </div>
           <Button
-            className="dark:bg-[#2d2d2d] dark:focus:ring-neutral-800 dark:hover:bg-neutral-800 md:w-full lg:w-44"
+            className="dark:bg-[#2d2d2d] dark:focus:ring-neutral-800 dark:hover:bg-neutral-800"
             color={"blue"}
             onClick={() => setOpen(true)}
           >
@@ -96,41 +103,29 @@ const ManageBooks = ({ loans }: { loans?: boolean }) => {
           </Button>
         </section>
 
-        <section className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:px-2">
-          {isLoading ? (
-            
+        <section className=" w-full px-3">
+          {isLoading && (
             <div className="w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className="text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : Catalog ? (
-            <>
-              <div className=" ">
-                <BookTable catalog={Catalog} />
-              </div>
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={page}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setLimit}
-                />
-              </div>
-
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={page}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
-            </>
-          ) : (
-            <p className="text-center">No hay datos disponibles.</p>
           )}
+          {!isLoading && Catalog && Catalog.count > 0 && (
+            <BookTable catalog={Catalog} />
+          )}
+          {!isLoading && (!Catalog || Catalog.count == 0) && <NoResults />}
+          <DesktopPagination
+            page={page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setLimit}
+          />
+
+          <MobilePagination
+            page={page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setLimit}
+          />
         </section>
       </main>
       <MDNewBook open={open} setOpen={setOpen} />

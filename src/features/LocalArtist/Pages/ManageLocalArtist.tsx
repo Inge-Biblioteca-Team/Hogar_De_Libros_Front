@@ -78,7 +78,7 @@ const ManageLocalArtist = () => {
               <Table.HeadCell>Estado</Table.HeadCell>
               <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
             </Table.Head>
-            <Table.Body>
+            <Table.Body className="divide-y">
               {Artists?.data.map((artist: Artist) => (
                 <TBLArtists key={artist.ID} artist={artist} />
               ))}

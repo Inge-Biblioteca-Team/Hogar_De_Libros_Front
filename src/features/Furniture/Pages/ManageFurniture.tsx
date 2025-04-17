@@ -120,7 +120,7 @@ const ManageFurniture = () => {
                 <Table.HeadCell>Estado</Table.HeadCell>
                 <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
               </Table.Head>
-              <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
+              <Table.Body className="divide-y" >
                 {furnitures?.data.map((furniture) => (
                   <FurnitureRows key={furniture.Id} furniture={furniture} />
                 ))}

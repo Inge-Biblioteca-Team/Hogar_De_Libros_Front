@@ -138,7 +138,7 @@ const ManagerComputer = () => {
                 </Table.HeadCell>
                 <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
               </Table.Head>
-              <Table.Body>
+              <Table.Body className="divide-y">
                 {computers?.data.map((computers) => (
                   <TblRows
                     key={"COM" + computers.EquipmentUniqueCode}
