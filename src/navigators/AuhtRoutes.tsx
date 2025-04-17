@@ -1,7 +1,6 @@
-import Login from "../features/Users/Auth/Login";
-import Register from "../features/Users/Auth/Register";
-import ChangePassword from "../features/Users/Components/ChangePassword";
-import EditUser from "../features/Users/Pages/EditUser";
+import { Login, Register, ChangePassword } from "./AuthLazy";
+import { EditUser } from "./LazyUser";
+
 
 const AuthRoutes = [
   {
