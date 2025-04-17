@@ -1,23 +1,65 @@
+import { Suspense } from "react";
 import { Login, Register, ChangePassword } from "./AuthLazy";
 import { EditUser } from "./LazyUser";
-
+import Loader from "../components/Loader";
 
 const AuthRoutes = [
   {
     path: "IniciarSesion",
-    element: <Login />,
+
+    element: (
+      <Suspense
+        fallback={
+          <div className="w-full flex items-center justify-center">
+            <Loader />
+          </div>
+        }
+      >
+        <Login />
+      </Suspense>
+    ),
   },
   {
     path: "Registro",
-    element: <Register />,
+    element: (
+      <Suspense
+        fallback={
+          <div className="w-full flex items-center justify-center">
+            <Loader />
+          </div>
+        }
+      >
+        <Register />
+      </Suspense>
+    ),
   },
   {
     path: "EditUser",
-    element: <EditUser />,
+    element: (
+      <Suspense
+        fallback={
+          <div className="w-full flex items-center justify-center">
+            <Loader />
+          </div>
+        }
+      >
+        <EditUser />,
+      </Suspense>
+    ),
   },
   {
     path: "reset-password",
-    element: <ChangePassword />,
+    element: (
+      <Suspense
+        fallback={
+          <div className="w-full flex items-center justify-center">
+            <Loader />
+          </div>
+        }
+      >
+        <ChangePassword />
+      </Suspense>
+    ),
   },
 ];
 
