@@ -2,7 +2,7 @@ import { useContext } from "react";
 import UserContext from "../Context/UserContext/UserContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "flowbite-react";
-
+import fachada from "../Assets/Fachada.webp"
 const LandingBanner = () => {
   const { isLogged } = useContext(UserContext);
 
@@ -20,9 +20,10 @@ const LandingBanner = () => {
       className="
       w-full flex flex-col justify-center items-center bg-cover bg-center gap-6 h-96 text-slate-50 "
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.01),90%, #dfe2e6), url(${"https://sicultura-live.s3.amazonaws.com/public/media/nicoyafachada1.jpg"})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.01),90%, #dfe2e6), url(${fachada})`,
       }}
     >
+    
       <h1
         className="
         text-5xl text-center
