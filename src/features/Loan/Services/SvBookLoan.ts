@@ -30,7 +30,6 @@ const GetInProgressLoan = async (
   limit: number,
   StartDate?: string,
   ExpirationDate?: string,
-  SignaCode?: string,
   Cedula?: string,
   type?:string
 ) => {
@@ -42,7 +41,6 @@ const GetInProgressLoan = async (
 
     if (StartDate) params.StartDate = StartDate;
     if (ExpirationDate) params.LoanExpirationDate = ExpirationDate;
-    if (SignaCode) params.signatureCode = SignaCode;
     if (Cedula) params.cedula = Cedula;
     if (type) params.type = type
 

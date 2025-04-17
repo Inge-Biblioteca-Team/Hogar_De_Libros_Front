@@ -1,10 +1,14 @@
 import { Table } from "flowbite-react";
-import BTNInprogresLoan from "./BTNInprogresLoan";
-import BTNResolveLoan from "./BTNResolveLoan";
 import { useState } from "react";
 import SeeLoanInfo from "../Modals/SeeLoanInfo";
 import { format } from "@formkit/tempo";
 import { LoansRes } from "../../Types/BookLoan";
+import LoanRenuve from "./LoanRenuve";
+import FinishLoanBook from "../Modals/FinishLoanBook";
+import DenyRequest from "./DenyRequest";
+import MDApproveLoan from "./MDApproveLoan";
+import BTNLoans from "../../../../components/DesktopComponents/BTNLoans";
+import BTNMobileLoan from "../../../../components/MobileComponents/BTNMobileLoan";
 
 const TblRow = ({
   Loan,
@@ -27,40 +31,77 @@ const TblRow = ({
     tz: "America/Costa_Rica",
   });
 
-  const [see, setSee] = useState<boolean>(false);
+  const [open1, setOpen1] = useState<boolean>(false);
+  const [open2, setOpen2] = useState<boolean>(false);
+  const [open3, setOpen3] = useState<boolean>(false);
+  const [open4, setOpen4] = useState<boolean>(false);
+  const [open5, setOpen5] = useState<boolean>(false);
+  const [openT, setOpenT] = useState<boolean>(false);
+  const handleRowClick = () => {
+    setOpenT(true);
+  };
   return (
     <>
       <Table.Row
-        className="text-black dark:text-white"
-        onClick={!NeedAccions ? () => setSee(true) : undefined}
+        className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
+        onClick={!NeedAccions ? () => setOpen1(true) : handleRowClick}
       >
-        <Table.Cell className="max-sm:hidden">{ReqDate}</Table.Cell>
-        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
-          {ExDate}
+        <Table.Cell className="">{ReqDate}</Table.Cell>
+        <Table.Cell className=" max-md:hidden">{ExDate}</Table.Cell>
+        <Table.Cell className="">
+          <BTNMobileLoan
+            setopenTrigger={setOpenT}
+            openTrigger={openT}
+            setOpen1={setOpen1}
+            setOpen2={setOpen2}
+            setOpen3={setOpen3}
+            setOpen4={setOpen4}
+            setOpen5={setOpen5}
+            status={Inprogress ? true : false}
+            text={Loan.userName}
+          />
         </Table.Cell>
-        <Table.Cell className="max-sm:w-16">{Loan.userName}</Table.Cell>
         <Table.Cell>
-          <div className="line-clamp-1 mt-3 max-sm:w-20">
+          <div className="line-clamp-1">
             {Loan.book?.Title || Loan.childrenBook?.Title}
           </div>
         </Table.Cell>
-        <Table.Cell className=" xl:table-cell w-52 2xl:table-cell md:hidden max-sm:hidden">
+        <Table.Cell className=" max-lg:hidden">
           {Loan.book?.signatureCode || Loan.childrenBook?.SignatureCode}{" "}
         </Table.Cell>
-        <Table.Cell
-          className={`${NeedAccions ? `hidden` : ``} max-sm:hidden  w-64 `}
-        >
+        <Table.Cell className={`${NeedAccions ? `hidden` : ``} `}>
           Adrian Aguilar
         </Table.Cell>
-        <Table.Cell className={`${NeedAccions ? `` : `hidden`} `}>
-          {Inprogress ? (
-            <BTNInprogresLoan Loan={Loan} />
-          ) : (
-            <BTNResolveLoan Loan={Loan} />
-          )}
+        <Table.Cell className={`${NeedAccions ? `` : `hidden`} max-md:hidden`}>
+          <BTNLoans
+            setOpen1={setOpen1}
+            setOpen2={setOpen2}
+            setOpen3={setOpen3}
+            setOpen4={setOpen4}
+            setOpen5={setOpen5}
+            status={Inprogress ? true : false}
+          />
         </Table.Cell>
       </Table.Row>
-      <SeeLoanInfo Loan={Loan} see={see} setSee={setSee} />
+      <>
+        <SeeLoanInfo see={open1} setSee={setOpen1} Loan={Loan} />
+        <MDApproveLoan
+          open={open2}
+          setOpen={setOpen2}
+          LoanID={Loan.BookLoanId}
+        />
+        <DenyRequest showCancel={open3} setShowCancel={setOpen3} Loan={Loan} />
+        <LoanRenuve showChange={open4} setShowChange={setOpen4} Loan={Loan} />
+        <FinishLoanBook
+          open={open5}
+          setOpen={setOpen5}
+          BookLoanId={Loan.BookLoanId}
+          UserCedula={Loan.userName}
+          BookTitle={
+            Loan.book?.Title || Loan.childrenBook?.Title || "Desconocido"
+          }
+        />
+      </>
     </>
   );
 };
