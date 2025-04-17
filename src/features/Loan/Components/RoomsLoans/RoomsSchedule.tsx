@@ -5,7 +5,7 @@ import ReservationForm from "../../Pages/Rooms/ReservationForm";
 import { queque } from "../../Types/RoomsReservations";
 import { useQuery } from "react-query";
 import { getRoomsList } from "../../Services/SVReservations";
-import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
+import Loader from "../../../../components/Loader";
 const RoomsSchedule = ({
   date,
   reservations,
@@ -99,27 +99,25 @@ const RoomsSchedule = ({
   if (isLoading) {
     return (
       <div className="w-full flex items-center justify-center mt-12">
-        <figure>
-          <img width={200} src={Loader} alt="Cargando..." />
-          <figcaption className="text-center">Cargando...</figcaption>
-        </figure>
+        <Loader />
       </div>
     );
   }
 
-  if (rooms.length == 0)
+  if (!isLoading && (!rooms || rooms.length) == 0)
     return (
       <div className="w-full flex flex-col h-full justify-between text-center text-5xl mt-36">
         De momento no existen salas disponibles para reserva
       </div>
     );
+
   return (
     <div className="w-full flex flex-col h-full justify-between">
       <div className="font-bold text-center text-lg">
         Disponibilidad de salas
       </div>
-      <Table className="text-center h-80 mt-2 hidden lg:table">
-        <Table.Head className="dark:bg-neutral-900">
+      <Table className="text-center h-80 mt-2 max-xl:hidden">
+        <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
           <Table.HeadCell className="dark:bg-neutral-900 w-10">
             Número de sala
           </Table.HeadCell>
@@ -167,8 +165,8 @@ const RoomsSchedule = ({
         </Table.Body>
       </Table>
 
-      <Table className="text-center mt-2 lg:hidden xl:hidden 2xl:hidden ">
-        <Table.Head>
+      <Table className="text-center mt-2 hidden max-xl:table ">
+        <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
           <Table.HeadCell>Hora</Table.HeadCell>
           {rooms.map((room) => (
             <Table.HeadCell
@@ -180,7 +178,7 @@ const RoomsSchedule = ({
             </Table.HeadCell>
           ))}
         </Table.Head>
-        <Table.Body>
+        <Table.Body className="dark:bg-[#2d2d2d]">
           {hours.map((hour) => (
             <Table.Row key={hour}>
               <Table.Cell>{HourMapping[hour]}</Table.Cell>
@@ -200,10 +198,10 @@ const RoomsSchedule = ({
                     }}
                     className={`border ${
                       roomSelectedHours.includes(hour)
-                        ? "bg-blue-500"
+                        ? "dark:bg-gray-800 bg-blue-500"
                         : isOccupied
-                        ? "bg-gray-300"
-                        : "bg-white cursor-pointer"
+                        ? "dark:bg-gray-400 bg-gray-300"
+                        : "dark:bg-[#2d2d2d] bg-white cursor-pointer"
                     }`}
                     style={{ pointerEvents: isOccupied ? "none" : "auto" }}
                   >
@@ -216,12 +214,12 @@ const RoomsSchedule = ({
         </Table.Body>
       </Table>
 
-      <div className="mt-4 md:w-full max-sm:w-full md:flex max-sm:flex md:justify-center max-sm:justify-center">
+      <div className="mt-4 flex w-full justify-start max-lg:justify-center ">
         <Button
           onClick={handleConfirmSelection}
           color={"blue"}
           disabled={roomss.length == 0}
-          className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 dark:focus:ring-neutral-700"
+          className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 dark:focus:ring-neutral-700 max-lg:w-full"
         >
           Llenar formulario de solicitud
         </Button>

@@ -1,4 +1,4 @@
-import { PiEyeFill} from "react-icons/pi";
+import { PiEyeFill } from "react-icons/pi";
 import { FaRegCircleCheck, FaRegCircleXmark } from "react-icons/fa6";
 import { LuCalendarCheck, LuCalendarClock } from "react-icons/lu";
 import { Dispatch, SetStateAction } from "react";
@@ -13,8 +13,8 @@ const BTNLoans = ({
   setOpen1: Dispatch<SetStateAction<boolean>>;
   setOpen2: Dispatch<SetStateAction<boolean>>;
   setOpen3: Dispatch<SetStateAction<boolean>>;
-  setOpen4: Dispatch<SetStateAction<boolean>>;
-  setOpen5: Dispatch<SetStateAction<boolean>>;
+  setOpen4?: Dispatch<SetStateAction<boolean>>;
+  setOpen5?: Dispatch<SetStateAction<boolean>>;
   status: boolean;
 }) => {
   return (
@@ -50,14 +50,14 @@ const BTNLoans = ({
             <button
               type="button"
               title="Extender prestamo"
-              onClick={() => setOpen4(true)}
+              onClick={setOpen4 ? () => setOpen4(true) : undefined}
             >
               <LuCalendarClock size={30} />
             </button>
             <button
               type="button"
               title="Marcar como recibido"
-              onClick={() => setOpen5(true)}
+              onClick={setOpen5 ? () => setOpen5(true) : undefined}
             >
               <LuCalendarCheck size={30} />
             </button>

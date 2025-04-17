@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import TBLAprovReservations from "../../Components/RoomsLoans/TablesHeaders/TBLAprovReservations";
 import { useQuery } from "react-query";
 import { ReserveResponse } from "../../Types/RoomsReservations";
-import NoRequest from "../../Components/NoRequest";
 import { getReservations } from "../../Services/SVReservations";
-import CustomPagination from "../../../../components/CustomPagination";
 import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
-import { Pagination } from "flowbite-react";
-import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
+import Loader from "../../../../components/Loader";
+import NoResults from "../../../../components/NoResults";
+import DesktopPagination from "../../../../components/DesktopComponents/DesktopPagination";
+import MobilePagination from "../../../../components/MobileComponents/MobilePagination";
 
 const AprovedReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -38,48 +38,36 @@ const AprovedReservationList = () => {
   return (
     <>
       <LoansAndCirculationCrumbs text="Reservas de salas aprobadas" />
-      <div className=" w-full flex items-center justify-center mt-28">
-        <div className="w-4/5 xl:w-full xl:ml-4 xl:mr-4 2xl:w-full 2xl:mr-4 2xl:ml-4 max-sm:w-full max-sm:p-2">
-          {isLoading ? (
-            <div className="w-full flex items-center justify-center">
-              <figure>
-                <img width={200} src={Loader} alt="Cargando..." />
-                <figcaption className="text-center">Cargando...</figcaption>
-              </figure>
-            </div>
-          ) : reservations && reservations.data.length > 0 ? (
-            <>
-              <Table
-                hoverable
-                className="w-full text-center"
-                style={{ height: "60vh" }}
-              >
-                {reservations && (
-                  <TBLAprovReservations reserve={reservations} />
-                )}
-              </Table>
-            </>
-          ) : (
-            <NoRequest text={"No existen solicitudes aprobadas"} />
-          )}
-          <div className="block max-sm:hidden">
-            <CustomPagination
-              page={currentPage}
-              onPageChange={onPageChange}
-              totalPages={MaxPage}
-              setCurrentLimit={setCurrentLimit}
-            />
+      <main className="px-3 w-full">
+        {isLoading && (
+          <div className="w-full flex items-center justify-center">
+            <Loader />
           </div>
-          <div className="sm:hidden flex justify-center">
-            <Pagination
-              layout="navigation"
-              currentPage={currentPage}
-              totalPages={MaxPage}
-              onPageChange={onPageChange}
-            />
-          </div>
-        </div>
-      </div>
+        )}
+        {!isLoading && (!reservations || reservations.count == 0) && (
+          <NoResults />
+        )}
+        {!isLoading && reservations && reservations.count > 0 && (
+          <Table
+            hoverable
+            className="text-center min-h-[30rem] text-black dark:text-white"
+          >
+            {reservations && <TBLAprovReservations reserve={reservations} />}
+          </Table>
+        )}
+        <DesktopPagination
+          page={currentPage}
+          onPageChange={onPageChange}
+          totalPages={MaxPage}
+          setCurrentLimit={setCurrentLimit}
+        />
+        <MobilePagination
+          page={currentPage}
+          onPageChange={onPageChange}
+          totalPages={MaxPage}
+          setCurrentLimit={setCurrentLimit}
+        />
+      </main>
     </>
   );
 };

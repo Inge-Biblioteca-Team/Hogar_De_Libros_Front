@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { HourMapping, Reserve } from "../../../Types/RoomsReservations";
-import { Table } from "flowbite-react";
+import { Button, ButtonGroup, Popover, Table } from "flowbite-react";
 import { formatToDMY } from "../../../../../components/FormatTempo";
 import FinishLoan from "../Modals/FinishLoan";
 import MDSeeReservation from "../Modals/MDSeeReservation";
@@ -15,18 +15,63 @@ const AprovRows = ({ reservation }: { reservation: Reserve }) => {
 
   const [openS, setOpenS] = useState<boolean>(false);
   const [openF, setOpenF] = useState<boolean>(false);
+  const [openTrigger, setopenTrigger] = useState<boolean>(false);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const handleRowClick = () => {
+    setopenTrigger(true);
+  };
+
   return (
     <>
       <React.Fragment key={`${reservation.rommReservationId}`}>
-        <Table.Row className="h-20 text-black dark:text-white">
+        <Table.Row
+          className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
+          onClick={handleRowClick}
+        >
           <Table.Cell>{reservation.name} </Table.Cell>
-          <Table.Cell className="max-sm:hidden">{requestDay} </Table.Cell>
-          <Table.Cell>{reserveDay} </Table.Cell>
-          <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
+          <Table.Cell className="max-md:hidden">{requestDay} </Table.Cell>
+          <Table.Cell>
+            <div ref={triggerRef}>
+              <Popover
+                open={openTrigger}
+                onOpenChange={(openTrigger) => {
+                  setopenTrigger?.(openTrigger);
+                }}
+                className=" max-md:block hidden bg-white rounded-lg text-black"
+                content={
+                  <ButtonGroup>
+                    <Button
+                      type="button"
+                      title="Ver detalles"
+                      color="alternative"
+                      onClick={() => setOpenS(true)}
+                    >
+                      <PiEyeFill size={30} />
+                      Ver Informacion
+                    </Button>
+                    <Button
+                      type="button"
+                      title="Finalizar"
+                      color="alternative"
+                      onClick={() => setOpenF(true)}
+                    >
+                      <LuCalendarCheck2 className="size-6" size={25} />{" "}
+                      Finalizar
+                    </Button>
+                  </ButtonGroup>
+                }
+              >
+                <span className=" line-clamp-2">{reserveDay} </span>
+              </Popover>
+            </div>
+          </Table.Cell>
+          <Table.Cell>
             {HourMapping[start]} / {HourMapping[end]}
           </Table.Cell>
-          <Table.Cell className="max-sm:hidden" >{reservation.reason} </Table.Cell>
-          <Table.Cell>
+          <Table.Cell className="max-md:hidden">
+            {reservation.reason}{" "}
+          </Table.Cell>
+          <Table.Cell className=" max-md:hidden">
             <div className=" flex justify-center md:gap-x-4 max-sm:gap-4 gap-x-12">
               <button
                 type="button"
@@ -41,12 +86,12 @@ const AprovRows = ({ reservation }: { reservation: Reserve }) => {
                 className="hover:text-red-600"
                 onClick={() => setOpenF(true)}
               >
-                <LuCalendarCheck2   className="size-6" size={25} />
+                <LuCalendarCheck2 className="size-6" size={25} />
               </button>
             </div>
           </Table.Cell>
         </Table.Row>
-        <MDSeeReservation 
+        <MDSeeReservation
           open={openS}
           setOpen={setOpenS}
           reserve={reservation}
