@@ -3,15 +3,22 @@ import Routes from "./navigators/Routes";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "./Context/dark";
 import { Suspense } from "react";
+import Loader from "./components/Loader";
 function App() {
   return (
     <>
-    <ThemeProvider>
-      <Toaster />
-      <Suspense fallback={<div className="p-4 text-center">Cargando vista...</div>}>
-        <RouterProvider router={Routes} />
-      </Suspense>
-    </ThemeProvider>
+      <ThemeProvider>
+        <Toaster />
+        <Suspense
+          fallback={
+            <div className="w-full flex items-center justify-center">
+              <Loader />
+            </div>
+          }
+        >
+          <RouterProvider router={Routes} />
+        </Suspense>
+      </ThemeProvider>
     </>
   );
 }
