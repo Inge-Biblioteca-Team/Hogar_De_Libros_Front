@@ -1,39 +1,57 @@
 import { Table } from "flowbite-react";
 import { BookC } from "../Types/BooksChildrensTypes";
-import AccionsBTN from "../../../components/BTNS/AccionsBTN";
 import { useState } from "react";
 import MDDownBook from "./Modals/MDDownBook";
 import MDEditChildrenBook from "./Modals/MDEditChildrenBook";
 import ViewChildrenBook from "./Modals/ViewChildrenBook";
+import BTNAccions from "../../../components/DesktopComponents/BTNAccions";
+import MobilePopOverOptions from "../../../components/MobileComponents/MobilePopOverOptions";
 
 const BookChildrenRow = ({ book }: { book: BookC }) => {
   const [openV, setOpenV] = useState<boolean>(false);
   const [openD, setOpenD] = useState<boolean>(false);
   const [openE, setOpenE] = useState<boolean>(false);
+  const [popoverVisible, setPopoverVisible] = useState(false);
 
+  const handleRowClick = () => {
+    setPopoverVisible(true);
+  };
   return (
     <>
-      <Table.Row className="text-black dark:text-white">
-      <Table.Cell>
+      <Table.Row
+        className="dark:border-zinc-700 dark:bg-[#2d2d2d]"
+        onClick={handleRowClick}
+      >
+        <Table.Cell>
           <div className=" line-clamp-2">{book.Title}</div>
         </Table.Cell>
-        <Table.Cell className=" max-sm:hidden">
-          <div className=" line-clamp-2">{book.Author}</div>
+        <Table.Cell>
+          <MobilePopOverOptions
+            openTrigger={popoverVisible}
+            setopenTrigger={setPopoverVisible}
+            setOpen1={setOpenV}
+            setOpen2={setOpenE}
+            setOpen3={setOpenD}
+            status={book.Status}
+            text={book.Author}
+          />
         </Table.Cell>
-        <Table.Cell className=" max-sm:hidden">{book.ISBN}</Table.Cell>
-        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
+        <Table.Cell className="max-lg:hidden">{book.ISBN}</Table.Cell>
+        <Table.Cell className="max-lg:hidden">
           {book.SignatureCode ? book.SignatureCode : "N/A"}
         </Table.Cell>
-        <Table.Cell className="xl:table-cell md:hidden 2xl:table-cell max-sm:hidden">
+        <Table.Cell className="max-md:hidden">
           {book.InscriptionCode ? book.InscriptionCode : "N/A"}{" "}
         </Table.Cell>
-        <Table.Cell>{book.Status ? "Disponible" : "Baja"}</Table.Cell>
-        <Table.Cell>
-          <AccionsBTN
-            Status={book.Status}
-            setOpenS={setOpenV}
-            setOpenE={setOpenE}
-            setOpenD={setOpenD}
+        <Table.Cell className="">
+          {book.Status ? "Disponible" : "Baja"}
+        </Table.Cell>
+        <Table.Cell className="max-md:hidden">
+          <BTNAccions
+            setOpen1={setOpenV}
+            setOpen2={setOpenE}
+            setOpen3={setOpenD}
+            status={book.Status}
           />
         </Table.Cell>
       </Table.Row>
