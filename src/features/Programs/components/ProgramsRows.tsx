@@ -9,8 +9,10 @@ const ProgramsRows = ({ program }: { program: Program }) => {
   const [id, setId] = useState<string>("");
   return (
     <>
-      <Table.Row className="h-20">
-        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">{program.programsId} </Table.Cell>
+      <Table.Row className="h-20 text-black dark:text-white">
+        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
+          {program.programsId}{" "}
+        </Table.Cell>
         <Table.Cell>{program.programName} </Table.Cell>
         <Table.Cell className="max-sm:hidden ">
           <div>
@@ -20,7 +22,7 @@ const ProgramsRows = ({ program }: { program: Program }) => {
         <Table.Cell className="max-sm:hidden">
           <span
             className=" hover:text-Body cursor-pointer pon"
-            onClick={() => (setOpen(true),(setId(program.programsId)))}
+            onClick={() => (setOpen(true), setId(program.programsId))}
           >
             Ver Relacionados
           </span>
@@ -32,8 +34,12 @@ const ProgramsRows = ({ program }: { program: Program }) => {
         </Table.Cell>
       </Table.Row>
       {program && (
-        <RelatedActivitiesList open={open} setOpen={setOpen} id={id}
-        programName={program.programName} />
+        <RelatedActivitiesList
+          open={open}
+          setOpen={setOpen}
+          id={id}
+          programName={program.programName}
+        />
       )}
     </>
   );

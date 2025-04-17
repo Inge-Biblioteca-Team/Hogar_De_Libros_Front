@@ -3,6 +3,7 @@ import { LoansRes } from "../../Types/BookLoan";
 import MDLoanInfo from "./Modals/MDLoanInfo";
 import { Button, Popover, Table } from "flowbite-react";
 import { format } from "@formkit/tempo";
+import MDExtension from "./Modals/MDExtension";
 
 const LoanBody = ({
   Loan,
@@ -58,7 +59,7 @@ const LoanBody = ({
         </Table.Row>
       </Popover>
 
-      <MDLoanInfo
+      <MDExtension
         setShowCancel={setShowCancel}
         setShowChange={setShowChange}
         showChange={showChange}

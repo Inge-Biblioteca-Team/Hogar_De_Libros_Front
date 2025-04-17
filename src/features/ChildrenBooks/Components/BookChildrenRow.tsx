@@ -13,7 +13,7 @@ const BookChildrenRow = ({ book }: { book: BookC }) => {
 
   return (
     <>
-      <Table.Row>
+      <Table.Row className="text-black dark:text-white">
       <Table.Cell>
           <div className=" line-clamp-2">{book.Title}</div>
         </Table.Cell>

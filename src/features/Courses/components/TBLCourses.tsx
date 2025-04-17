@@ -34,11 +34,13 @@ const TBLCourses = ({ course }: { course: Courses }) => {
 
   return (
     <>
-      <Table.Row className=" h-20">
+      <Table.Row className=" h-20 text-black dark:text-white">
         <Table.Cell>{course.courseName}</Table.Cell>
         <Table.Cell className="max-sm:hidden">{course.instructor} </Table.Cell>
         <Table.Cell className="max-sm:hidden">{date}</Table.Cell>
-        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">{courseTime}</Table.Cell>
+        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
+          {courseTime}
+        </Table.Cell>
         <Table.Cell className=" xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
           {course.availableQuota} / {course.capacity}
         </Table.Cell>

@@ -13,14 +13,20 @@ const FriendsRowsRequest = ({ friend }: { friend: Friend }) => {
 
   return (
     <>
-      <Table.Row>
+      <Table.Row className="text-black dark:text-white">
         <Table.Cell>{friend.UserFullName}</Table.Cell>
         <Table.Cell>{friend.UserCedula}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">{friend.PrincipalCategory}</Table.Cell>
+        <Table.Cell className="max-sm:hidden">
+          {friend.PrincipalCategory}
+        </Table.Cell>
         <Table.Cell className="max-sm:hidden">{friend.SubCategory}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">{friend.UserGender}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">{friend.UserPhone}</Table.Cell>
-        <Table.Cell >
+        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
+          {friend.UserGender}
+        </Table.Cell>
+        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
+          {friend.UserPhone}
+        </Table.Cell>
+        <Table.Cell>
           <RequestBTN
             setOpenV={setOpenV}
             setOpenA={setOpenA}

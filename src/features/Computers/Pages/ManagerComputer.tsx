@@ -105,7 +105,7 @@ const ManagerComputer = () => {
           </div>
           <div className=" flex items-end justify-end ">
             <Button
-              className="dark:bg-[#2d2d2d max-md:w-full"
+              className="dark:bg-[#2d2d2d max-md:w-full dark:hover:bg-neutral-800"
               color={"blue"}
               onClick={() => setSNew(true)}
             >

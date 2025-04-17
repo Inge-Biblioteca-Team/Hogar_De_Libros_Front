@@ -42,7 +42,7 @@ const ListCard = ({ book, inf }: { book: Book; inf: boolean }) => {
               }`}
             />
             <Button
-              className="dark:bg-[#2d2d2d] w-32 lg:w-40"
+              className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 w-32 lg:w-40"
               color={"blue"}
               size={"sm"}
               onClick={() => setOpen(true)}

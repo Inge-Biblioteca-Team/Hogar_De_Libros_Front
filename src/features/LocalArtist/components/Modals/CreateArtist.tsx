@@ -51,7 +51,7 @@ const CreateArtist = () => {
       <Button
         type="button"
         onClick={() => setIsModalOpen(true)}
-        className="dark:bg-[#2d2d2d]  bg-Body text-white rounded-md hover:bg-blue-800 max-md:w-full"
+        className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 bg-Body text-white rounded-md hover:bg-blue-800 max-md:w-full"
       >
         Añadir artista
       </Button>

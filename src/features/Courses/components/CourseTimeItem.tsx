@@ -65,7 +65,7 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
                 </span>
               </div>
               <div className=" flex justify-center items-center mb-2">
-                <Button className="dark:bg-neutral-900" color={"blue"} onClick={() => setopen(true)}>
+                <Button className="dark:bg-neutral-900 dark:hover:bg-neutral-950" color={"blue"} onClick={() => setopen(true)}>
                   Matricular
                 </Button>
               </div>

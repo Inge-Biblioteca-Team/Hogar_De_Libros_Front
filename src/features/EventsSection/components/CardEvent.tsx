@@ -6,13 +6,9 @@ const CardEvent = ({ event }: { event: Event }) => {
     <>
       <div
         className="w-full gap-8 
-      bg-white flex rounded-md h-full "
+      bg-white flex rounded-md h-full dark:text-black "
       >
-        <img
-          src={event.image}
-          alt={event.title}
-          className="w-6/12"
-        />
+        <img src={event.image} alt={event.title} className="w-6/12" />
         <span className="m-3 !bg-transparent">
           <h3 className="text-2xl font-bold max-md:text-base">{event.title}</h3>
           <div className=" text-lg max-md:text-sm">

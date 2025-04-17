@@ -47,7 +47,7 @@ const CreateRooms = () => {
 
   return (
     <>
-      <Button title="Añadir nueva sala" className="dark:bg-[#2d2d2d] max-md:w-full" onClick={() => setIsModalOpen(true)} color="blue">
+      <Button title="Añadir nueva sala" className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 max-md:w-full" onClick={() => setIsModalOpen(true)} color="blue">
         Añadir sala
       </Button>
 

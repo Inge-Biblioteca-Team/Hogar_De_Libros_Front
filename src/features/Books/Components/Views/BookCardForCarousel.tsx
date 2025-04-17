@@ -2,7 +2,7 @@ import { Book } from "../../Types/BooksTypes";
 
 const BookCardForCarousel = ({ Book }: { Book: Book }) => {
   return (
-    <div className=" w-full gap-8 justify-between bg-white flex rounded-md h-full space-x-2 ">
+    <div className=" w-full gap-8 justify-between bg-white dark:text-black flex rounded-md h-full space-x-2 ">
       <img src={Book.Cover} alt="" className="w-2/4" />
       <span className="!bg-white w-3/4 m-3">
         <h3 className="text-2xl font-bold max-md:text-base mr-16 max-md:line-clamp-4">

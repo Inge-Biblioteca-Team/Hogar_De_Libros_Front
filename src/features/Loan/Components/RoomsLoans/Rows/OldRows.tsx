@@ -13,7 +13,10 @@ const OldRows = ({ reservation }: { reservation: Reserve }) => {
   const [openS, setOpenS] = useState<boolean>(false);
   return (
     <>
-      <Table.Row className="h-20" onClick={() => setOpenS(true)}>
+      <Table.Row
+        className="h-20 text-black dark:text-white"
+        onClick={() => setOpenS(true)}
+      >
         <Table.Cell>{reservation.name} </Table.Cell>
         <Table.Cell className="max-sm:hidden">{requestDay} </Table.Cell>
         <Table.Cell>{reserveDay} </Table.Cell>
