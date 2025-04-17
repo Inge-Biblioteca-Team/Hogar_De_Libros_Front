@@ -8,7 +8,7 @@ import CreateRooms from "../Components/Modal/CreateRoms";
 import SearchRooms from "../Components/BTN/SearchRooms";
 import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import NoResults from "../../../components/NoResults";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import Loader from "../../../components/Loader";
 
 const ManageRoom = () => {
   const [Sname, setName] = useState<string>("");
@@ -31,35 +31,24 @@ const ManageRoom = () => {
   return (
     <>
       <BreadCrumbManage text="Salas" />
-      <section className="flex w-full md:px-4 flex-col justify-center items-center max-sm:px-2">
-        <div className="w-full flex lg:flex-col items-center justify-center pt-1">
-          <div className="w-full lg:flex-row md:flex-col md:gap-4 max-sm:gap-4 max-sm:flex-col flex max-sm:items-center lg:justify-between items-end">
-            <SearchRooms
-              RName={setName}
-              RStatus={setSStatus}
-              RNumber={setNum}
-            />
-            <CreateRooms />
+      <section className="flex w-full flex-col justify-center items-center px-3 gap-y-4 ">
+        <div className="w-full flex items-end max-md:flex-col gap-y-3 justify-between">
+          <SearchRooms RName={setName} RStatus={setSStatus} RNumber={setNum} />
+          <CreateRooms />
+        </div>
+        {isLoading && (
+          <div className=" w-full flex items-center justify-center">
+            <Loader />
           </div>
-        </div>
-        <div className="w-full pt-2">
-          {isLoading ? (
-            <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
-            </div>
-          ) : rooms ? (
-            <div className="grid max-sm:grid-cols-1 grid-cols-3 gap-5 my-4">
-              {rooms?.data.map((room) => (
-                <RoomCards Rooms={room} key={room.roomId} />
-              ))}
-            </div>
-          ) : (
-            <NoResults />
-          )}
-        </div>
+        )}
+        {!isLoading && rooms && rooms.count > 0 && (
+          <div className="w-full grid gap-3 grid-cols-3 max-md:grid-cols-1">
+            {rooms?.data.map((room) => (
+              <RoomCards Rooms={room} key={room.roomId} />
+            ))}
+          </div>
+        )}
+        {!isLoading && (!rooms || rooms.count == 0) && <NoResults />}
       </section>
     </>
   );

@@ -20,12 +20,12 @@ const MobilePagination = ({
           name="Limit"
           id="Limit"
           title="Resultados por página"
-          className=" bg-transparent border-none rounded-lg max-sm:text-xs"
+          className=" bg-transparent border-none rounded-lg max-sm:text-xs "
           onChange={(e) => setCurrentLimit(Number(e.target.value))}
         >
-          <option value={5}>5</option>
-          <option value={10}>10</option>
-          <option value={15}>15</option>
+          <option value={5} className="dark:bg-black">5</option>
+          <option value={10}  className="dark:bg-black">10</option>
+          <option value={15}  className="dark:bg-black">15</option>
         </select>
       </div>
       <Pagination

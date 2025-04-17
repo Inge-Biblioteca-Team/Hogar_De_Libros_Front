@@ -66,7 +66,7 @@ const ManageLocalArtist = () => {
             hoverable
             className="text-center h-[30rem] text-black dark:text-white"
           >
-            <Table.Head className="dark:[&>tr>th]:!bg-neutral-800">
+            <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
               <Table.HeadCell>Nombre</Table.HeadCell>
               <Table.HeadCell>Tipo de Artista</Table.HeadCell>
               <Table.HeadCell className="max-md:hidden">

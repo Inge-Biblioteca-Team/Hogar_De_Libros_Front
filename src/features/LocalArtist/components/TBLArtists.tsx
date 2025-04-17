@@ -18,7 +18,8 @@ const TBLArtists = ({ artist }: { artist: Artist }) => {
   };
   return (
     <>
-      <Table.Row key={artist.ID} onClick={handleRowClick}>
+      <Table.Row key={artist.ID} onClick={handleRowClick}
+      className="dark:border-zinc-700  dark:bg-[#2d2d2d]">
         <Table.Cell>{artist.Name}</Table.Cell>
         <Table.Cell>
           <MobilePopOverOptions
@@ -28,6 +29,7 @@ const TBLArtists = ({ artist }: { artist: Artist }) => {
             setOpen3={setDow}
             openTrigger={popoverVisible}
             text={artist.ArtisProfession}
+            status={artist.Actived}
           />
         </Table.Cell>
         <Table.Cell className="max-md:hidden">

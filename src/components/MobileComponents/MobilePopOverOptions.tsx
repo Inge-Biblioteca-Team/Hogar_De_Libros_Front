@@ -10,6 +10,7 @@ const MobilePopOverOptions = ({
   openTrigger,
   setopenTrigger,
   text,
+  status,
 }: OpenModals) => {
   const triggerRef = useRef<HTMLDivElement>(null);
   return (
@@ -21,19 +22,23 @@ const MobilePopOverOptions = ({
           setopenTrigger?.(open);
         }}
         content={
-          <ButtonGroup className=" text-black dark:text-white">
+          <ButtonGroup className=" text-black">
             <Button color="alternative" onClick={() => setOpen1(true)}>
               <HiUserCircle className="me-2 h-4 w-4" />
               Ver
             </Button>
-            <Button color="alternative" onClick={() => setOpen2(true)}>
-              <HiAdjustments className="me-2 h-4 w-4" />
-              Editar
-            </Button>
-            <Button color="alternative" onClick={() => setOpen3(true)}>
-              <HiCloudDownload className="me-2 h-4 w-4" />
-              Eliminar
-            </Button>
+            {status && (
+              <>
+                <Button color="alternative" onClick={() => setOpen2(true)}>
+                  <HiAdjustments className="me-2 h-4 w-4" />
+                  Editar
+                </Button>
+                <Button color="alternative" onClick={() => setOpen3(true)}>
+                  <HiCloudDownload className="me-2 h-4 w-4" />
+                  Eliminar
+                </Button>
+              </>
+            )}
           </ButtonGroup>
         }
       >

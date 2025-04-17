@@ -1,12 +1,5 @@
-import {
-  Button,
-  Label,
-  Pagination,
-  Select,
-  Table,
-  TextInput,
-} from "flowbite-react";
-import { useState } from "react";
+import { Button, Label, Select, Table, TextInput } from "flowbite-react";
+import { useEffect, useState } from "react";
 import { apiResponseCE } from "../types/Computer";
 import { GetComputerPaginated } from "../Services/SvComputer";
 import { useQuery } from "react-query";
@@ -14,10 +7,11 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import TblRows from "../components/TblRows";
 import NewComponent from "../components/Modals/NewComponent";
 import { BreadCrumbManage } from "../../../components/Breadcrumbs/BreadCrumbsItems";
-import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
 import OPTCategoryEquipment from "../components/OPTCategoryEquipment";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
+import Loader from "../../../components/Loader";
 
 const ManagerComputer = () => {
   const [currentPage, setCurrentPage] = useState<number>(() => {
@@ -33,6 +27,16 @@ const ManagerComputer = () => {
   const searchMNumDealy = UseDebounce(searchMNum, 1000);
   const searchEBrandDelay = UseDebounce(searchEBrand, 1000);
   const searchECategoryDelay = UseDebounce(searchECategory, 1000);
+  
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [
+    currentLimit,
+    searchMNumDealy,
+    searchEBrandDelay,
+    searchECategoryDelay,
+    searchEStatus,
+  ]);
   const onPageChange = (page: number) => {
     setCurrentPage(page);
     sessionStorage.setItem("MCPage", page.toString());
@@ -68,8 +72,8 @@ const ManagerComputer = () => {
     <>
       <BreadCrumbManage text="Equipo de cómputo" />
       <main className=" flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-full px-4 flex flex-row max-sm:flex-col lg:items-end max-sm:px-2 gap-4">
-          <div className="flex w-full lg:flex-row flex-col gap-3">
+        <section className="w-full px-4 flex flex-row gap-4 max-md:flex-col justify-between">
+          <div className="flex gap-3 max-md:flex-col items-end max-md:items-stretch">
             <div>
               <Label value="Búsqueda por número de equipo" />
               <TextInput
@@ -99,77 +103,66 @@ const ManagerComputer = () => {
               </Select>
             </div>
           </div>
-          <Button
-            className="dark:bg-[#2d2d2d max-sm:w-full w-56"
-            color={"blue"}
-            onClick={() => setSNew(true)}
-          >
-            Añadir equipo
-          </Button>
+          <div className=" flex items-end justify-end ">
+            <Button
+              className="dark:bg-[#2d2d2d max-md:w-full"
+              color={"blue"}
+              onClick={() => setSNew(true)}
+            >
+              Añadir equipo
+            </Button>
+          </div>
         </section>
-        <section className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:px-2">
-          {isLoading ? (
-            <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
-            </div>
-          ) : computers ? (
-            <>
-              <Table
-                hoverable
-                className="text-center"
-                style={{ height: "30rem" }}
-              >
-                <Table.Head className="dark:bg-neutral-900 dark:text-white h-16">
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5">
-                    Número de Máquina
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden">
-                    Categoría
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden">
-                    Marca
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden">
-                    Serial
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5">
-                    Estado
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
-                  {computers?.data.map((computers) => (
-                    <TblRows
-                      key={"COM" + computers.EquipmentUniqueCode}
-                      computers={computers}
-                    />
-                  ))}
-                </Table.Body>
-              </Table>
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={currentPage}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                />
-              </div>
 
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={currentPage}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
-            </>
-          ) : (
-            <NoResults />
+        <section className=" w-full px-3">
+          {isLoading && (
+            <div className=" w-full flex items-center justify-center">
+              <Loader />
+            </div>
           )}
+
+          {!isLoading && computers && computers.count > 0 && (
+            <Table
+              hoverable
+              className="text-center h-[30rem] text-black dark:text-white"
+            >
+              <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
+                <Table.HeadCell>Número de Máquina</Table.HeadCell>
+                <Table.HeadCell>Categoría</Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden">
+                  Marca
+                </Table.HeadCell>
+                <Table.HeadCell>Serial</Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden">
+                  Estado
+                </Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
+              </Table.Head>
+              <Table.Body>
+                {computers?.data.map((computers) => (
+                  <TblRows
+                    key={"COM" + computers.EquipmentUniqueCode}
+                    computers={computers}
+                  />
+                ))}
+              </Table.Body>
+            </Table>
+          )}
+
+          {!isLoading && (!computers || computers.count == 0) && <NoResults />}
+
+          <MobilePagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+          <DesktopPagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
         </section>
       </main>
 

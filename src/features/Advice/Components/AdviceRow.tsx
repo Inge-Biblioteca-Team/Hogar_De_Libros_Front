@@ -21,36 +21,38 @@ const AdviceRow = ({ advice }: { advice: Advice }) => {
   };
   return (
     <>
-        <Table.Row className="dark:border-zinc-700  dark:bg-[#2d2d2d]" onClick={handleRowClick}>
-          <Table.Cell className=" max-lg:hidden">
-            {advice.id_Advice}{" "}
-          </Table.Cell>
-          <Table.Cell>
+      <Table.Row
+        className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
+        onClick={handleRowClick}
+      >
+        <Table.Cell className=" max-lg:hidden">{advice.id_Advice} </Table.Cell>
+        <Table.Cell>
           <MobilePopOverOptions
+            status
             openTrigger={popoverVisible}
             setopenTrigger={setPopoverVisible}
             setOpen1={setOpenV}
             setOpen2={setOpenE}
             setOpen3={setOpenD}
-            text={advice.reason} 
+            text={advice.reason}
           />
-            </Table.Cell>
-          <Table.Cell className="max-sm:hidden">{advice.category} </Table.Cell>
-          <Table.Cell>{date} </Table.Cell>
-          <Table.Cell className="max-lg:hidden">
-            <div className="line-clamp-2">{advice.extraInfo}</div>
-          </Table.Cell>
-          <Table.Cell className="max-sm:hidden">
-            {advice.status ? "Activo" : "Finalizado"}{" "}
-          </Table.Cell>
-          <Table.Cell className=" max-md:hidden">
-            <AdviceAccionsBTN
-              setOpen1={setOpenV}
-              setOpen2={setOpenE}
-              setOpen3={setOpenD}
-            />
-          </Table.Cell>
-        </Table.Row>
+        </Table.Cell>
+        <Table.Cell className="max-sm:hidden">{advice.category} </Table.Cell>
+        <Table.Cell>{date} </Table.Cell>
+        <Table.Cell className="max-lg:hidden">
+          <div className="line-clamp-2">{advice.extraInfo}</div>
+        </Table.Cell>
+        <Table.Cell className="max-sm:hidden">
+          {advice.status ? "Activo" : "Finalizado"}{" "}
+        </Table.Cell>
+        <Table.Cell className=" max-md:hidden">
+          <AdviceAccionsBTN
+            setOpen1={setOpenV}
+            setOpen2={setOpenE}
+            setOpen3={setOpenD}
+          />
+        </Table.Cell>
+      </Table.Row>
       <ViewAdvice open={openV} setOpen={setOpenV} advice={advice} />
       <EditAdvice open={openE} setOpen={setOpenE} advice={advice} />
       <DeleteAdvice open={openD} setOpen={setOpenD} id={advice.id_Advice} />

@@ -9,7 +9,7 @@ const AdviceTable = ({ advices }: { advices: ApiAdvices }) => {
           dark:text-white"
       hoverable
     >
-      <Table.Head className="dark:[&>tr>th]:!bg-neutral-800">
+      <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
         <Table.HeadCell className=" max-lg:hidden">Número de aviso</Table.HeadCell>
         <Table.HeadCell>Motivo</Table.HeadCell>
         <Table.HeadCell className=" max-sm:hidden">Categoría</Table.HeadCell>

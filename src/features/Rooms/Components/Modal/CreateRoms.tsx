@@ -47,7 +47,7 @@ const CreateRooms = () => {
 
   return (
     <>
-      <Button title="Añadir nueva sala" className="dark:bg-[#2d2d2d] max-sm:w-full lg:w-36 md:w-full" onClick={() => setIsModalOpen(true)} color="blue">
+      <Button title="Añadir nueva sala" className="dark:bg-[#2d2d2d] max-md:w-full" onClick={() => setIsModalOpen(true)} color="blue">
         Añadir sala
       </Button>
 
@@ -55,7 +55,7 @@ const CreateRooms = () => {
         <Modal.Header className="dark:bg-neutral-900">Crear nueva sala</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="dark:bg-[#2d2d2d] bg-white">
-            <div className=" grid max-sm:grid-cols-1 grid-cols-3 grid-rows-1 gap-5">
+            <div className=" grid max-md:grid-cols-1 grid-cols-3 grid-rows-1 gap-5">
               <fieldset className="flex flex-col w-full">
                 <legend className="font-bold pb-2">Imágenes de la sala</legend>
                 <Carousel
@@ -90,7 +90,7 @@ const CreateRooms = () => {
                   </div>
                 </Carousel>
               </fieldset>
-              <div className=" grid max-sm:gap-8 grid-cols-2 gap-4 lg:col-span-2">
+              <div className="grid max-sm:gap-8 grid-cols-2 gap-4 col-span-2">
                 <fieldset className=" flex flex-col justify-between">
                   <legend className="whitespace-nowrap font-bold pb-2">
                     Información general

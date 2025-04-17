@@ -16,7 +16,7 @@ const RoomCard = ({ Rooms }: { Rooms: Room }) => {
       <figure>
         <img
           className="h-56 w-full mb-8 border-t border-transparent rounded-t-md object-cover
-        max-sm:h-32"
+        max-md:h-32"
           src={Rooms.image[0]}
           alt={Rooms.name}
         />

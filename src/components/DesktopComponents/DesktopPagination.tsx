@@ -1,7 +1,7 @@
 import { Pagination } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 
-const DesktopPagination= ({
+const DesktopPagination = ({
   page,
   onPageChange,
   totalPages,
@@ -24,9 +24,15 @@ const DesktopPagination= ({
             className=" bg-transparent border-none rounded-lg"
             onChange={(e) => setCurrentLimit(Number(e.target.value))}
           >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={15}>15</option>
+            <option value={5} className="dark:bg-black">
+              5
+            </option>
+            <option value={10} className="dark:bg-black">
+              10
+            </option>
+            <option value={15} className="dark:bg-black">
+              15
+            </option>
           </select>
           <span>elementos por página. </span>
         </div>
