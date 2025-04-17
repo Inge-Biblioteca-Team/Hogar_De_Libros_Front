@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const BreadCrumbsItems = ({ children }: { children: React.ReactNode }) => {
   const navi = useNavigate();
   return (
-    <Breadcrumb className="custom-breadcrumb">
+    <Breadcrumb className="custom-breadcrumb  max-sm:!m-3">
       <Breadcrumb.Item onClick={() => navi("/HogarDeLibros")} icon={IoIosHome}>
         Inicio
       </Breadcrumb.Item>

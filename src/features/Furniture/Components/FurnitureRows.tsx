@@ -1,42 +1,51 @@
 import { Table } from "flowbite-react";
 import { furniture } from "../type/furniture";
-import AccionsBTN from "../../../components/BTNS/AccionsBTN";
 import { useState } from "react";
 import ModalDownFurniture from "./Modals/ModalDownFurniture";
 import ModalEditFurniture from "./Modals/ModalEditFurniture";
 import ModalViewFurniture from "./Modals/ModalViewFurniture";
 import { getConditionStatusText } from "../../../components/Maps/Condition";
+import MobilePopOverOptions from "../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../components/DesktopComponents/BTNAccions";
 
 const FurnitureRows = ({ furniture }: { furniture: furniture }) => {
   const [openV, setOpenV] = useState<boolean>(false);
   const [openD, setOpenD] = useState<boolean>(false);
   const [openE, setOpenE] = useState<boolean>(false);
+  const [popoverVisible, setPopoverVisible] = useState(false);
+  const handleRowClick = () => {
+    setPopoverVisible(true);
+  };
+
   return (
     <>
-      <Table.Row
-        key={furniture.Id}
-        className=" h-24 text-black dark:text-white"
-      >
-        <Table.Cell className="w-52">{furniture.LicenseNumber}</Table.Cell>
-        <Table.Cell className="w-52">{furniture.Description}</Table.Cell>
-        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden w-52">
-          {furniture.Location}
+      <Table.Row key={furniture.Id} onClick={handleRowClick}>
+        <Table.Cell>{furniture.LicenseNumber}</Table.Cell>
+        <Table.Cell>
+          <MobilePopOverOptions
+            openTrigger={popoverVisible}
+            setopenTrigger={setPopoverVisible}
+            status={furniture.Status !== "Baja" ? true : false}
+            setOpen1={setOpenV}
+            setOpen2={setOpenE}
+            setOpen3={setOpenD}
+            text={furniture.Description}
+          />
         </Table.Cell>
-        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden w-44">
+        <Table.Cell className=" max-lg:hidden">{furniture.Location}</Table.Cell>
+        <Table.Cell className=" max-md:hidden">
           {furniture.InChargePerson}
         </Table.Cell>
-        <Table.Cell className="max-sm:hidden w-64">
+        <Table.Cell className=" max-lg:hidden">
           {getConditionStatusText(furniture.ConditionRating)}
         </Table.Cell>
-        <Table.Cell className="max-sm:hidden w-64">
-          {furniture.Status}
-        </Table.Cell>
-        <Table.Cell>
-          <AccionsBTN
-            Status={furniture.Status !== "Baja" ? true : false}
-            setOpenS={setOpenV}
-            setOpenE={setOpenE}
-            setOpenD={setOpenD}
+        <Table.Cell className="">{furniture.Status}</Table.Cell>
+        <Table.Cell className=" max-md:hidden">
+          <BTNAccions
+            status={furniture.Status !== "Baja" ? true : false}
+            setOpen1={setOpenV}
+            setOpen2={setOpenE}
+            setOpen3={setOpenD}
           />
         </Table.Cell>
       </Table.Row>

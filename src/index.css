@@ -131,3 +131,18 @@ input[type="number"] {
   background-color: black !important;
 }
 
+
+
+.dark input[data-testid="floating-label"]  {
+  background-color: #374151;
+}
+.dark input[data-testid="floating-label"] label  {
+  background-color: #27303e;
+}
+
+.dark  [data-testid="floating-label"] ~ label {
+  background-color: transparent !important;
+}
+ [data-testid="floating-label"] ~ label {
+  color: black;
+}

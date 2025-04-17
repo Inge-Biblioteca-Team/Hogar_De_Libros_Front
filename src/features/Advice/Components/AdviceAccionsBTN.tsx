@@ -1,15 +1,8 @@
 import { PiEyeLight, PiPencilDuotone, PiTrash } from "react-icons/pi";
-import ViewAdvice from "./Modals/ViewAdvice";
-import EditAdvice from "./Modals/EditAdvice";
-import DeleteAdvice from "./Modals/DeleteAdvice";
-import { useState } from "react";
-import { Advice } from "../Types/Advice";
+import { OpenModals } from "../../../Types/GlobalTypes";
 
-const AdviceAccionsBTN = ({ advice }: { advice: Advice }) => {
-  const [openV, setOpenV] = useState<boolean>(false);
-  const [openE, setOpenE] = useState<boolean>(false);
-  const [openD, setOpenD] = useState<boolean>(false);
 
+const AdviceAccionsBTN = ({ setOpen1, setOpen2, setOpen3 }: OpenModals) => {
   return (
     <>
       <div className="flex max-sm:gap-0 gap-7">
@@ -17,7 +10,7 @@ const AdviceAccionsBTN = ({ advice }: { advice: Advice }) => {
           title="Ver Información Completa"
           type="button"
           className="hover:text-Body"
-          onClick={() => setOpenV(true)}
+          onClick={() => setOpen1(true)}
         >
           <PiEyeLight size={24} />
         </button>
@@ -25,7 +18,7 @@ const AdviceAccionsBTN = ({ advice }: { advice: Advice }) => {
           title="Editar"
           type="button"
           className="hover:text-yellow-300"
-          onClick={() => setOpenE(true)}
+          onClick={() => setOpen2(true)}
         >
           <PiPencilDuotone size={24} />
         </button>
@@ -33,14 +26,11 @@ const AdviceAccionsBTN = ({ advice }: { advice: Advice }) => {
           title="Eliminar"
           type="button"
           className="hover:text-red-900"
-          onClick={() => setOpenD(true)}
+          onClick={() => setOpen3(true)}
         >
           <PiTrash size={24} />
         </button>
       </div>
-      <ViewAdvice open={openV} setOpen={setOpenV} advice={advice} />
-      <EditAdvice open={openE} setOpen={setOpenE} advice={advice} />
-      <DeleteAdvice open={openD} setOpen={setOpenD} id={advice.id_Advice} />
     </>
   );
 };
