@@ -8,10 +8,10 @@ import EventsRows from "../components/EventsRows";
 import SearchEvents from "../components/BTN/SerchEvents";
 import CreateEvents from "../components/Modals/CreateEvents";
 import { ServicesCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
-import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
-import { Pagination } from "flowbite-react";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import Loader from "../../../components/Loader";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
 
 const ManageEvents = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -42,79 +42,66 @@ const ManageEvents = () => {
       staleTime: 600,
     }
   );
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [currentLimit, Title, Status]);
 
   const MaxPage = Math.ceil((Events?.count ?? 0) / currentLimit);
   return (
     <>
       <ServicesCrumbs text="Eventos" />
-      <div className="w-full  flex items-center justify-center">
-        <div className="w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:p-2 ">
-          <div className="flex max-sm:gap-4 max-sm:items-center max-sm:flex-col items-end justify-between w-full mb-4 ">
-            <SearchEvents EName={setStitle} EStatus={setSStatus} />
-
-            <CreateEvents />
-          </div>
-          {isLoading ? (
+      <main className=" px-3">
+        <section className=" flex justify-between items-end w-full mb-4
+        max-md:flex-col gap-3">
+          <SearchEvents EName={setStitle} EStatus={setSStatus} />
+          <CreateEvents />
+        </section>
+        <section>
+          {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : Events && Events.data.length > 0 ? (
-            <>
-              <Table hoverable className="text-center">
-                <Table.Head className="dark:text-white">
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6">
-                    Título
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 2xl:table-cell xl:table-cell md:hidden max-sm:hidden">
-                    Ubicación
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden">
-                    Persona a Cargo
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden">
-                    Fecha
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 2xl:table-cell xl:table-cell md:hidden max-sm:hidden">
-                    Hora
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6">
-                    Estado
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="dark:bg-[#2d2d2d] dark:text-white h-[30rem]">
-                  {Events?.data.map((event) => (
-                    <EventsRows key={event.EventId} event={event} />
-                  ))}
-                </Table.Body>
-              </Table>
-             
-            </>
-          ) : (
-            <NoResults />
           )}
-           <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={currentPage}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                />
-              </div>
-
-              <div className="sm:hidden max-sm:pt-2  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={currentPage}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
-        </div>
-      </div>
+          {!isLoading && Events && Events.count > 0 && (
+            <Table
+              hoverable
+              className="text-center min-h-[30rem] text-black dark:text-white"
+            >
+              <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
+                <Table.HeadCell>Título</Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden">
+                  Ubicación
+                </Table.HeadCell>
+                <Table.HeadCell className=" max-lg:hidden">
+                  Persona a Cargo
+                </Table.HeadCell>
+                <Table.HeadCell>Fecha</Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden">Hora</Table.HeadCell>
+                <Table.HeadCell>Estado</Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
+              </Table.Head>
+              <Table.Body className="divide-y">
+                {Events?.data.map((event) => (
+                  <EventsRows key={event.EventId} event={event} />
+                ))}
+              </Table.Body>
+            </Table>
+          )}
+          {!isLoading && (!Events || Events.count == 0) && <NoResults />}
+          <DesktopPagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+          <MobilePagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+        </section>
+      </main>
     </>
   );
 };

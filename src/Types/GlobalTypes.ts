@@ -50,6 +50,8 @@ export interface OpenModals {
   setOpen1: Dispatch<SetStateAction<boolean>>;
   setOpen2: Dispatch<SetStateAction<boolean>>;
   setOpen3: Dispatch<SetStateAction<boolean>>;
+  setOpen4?: Dispatch<SetStateAction<boolean>>;
+  text2?:string
   status?:boolean
   openTrigger?:boolean;
   setopenTrigger?:Dispatch<SetStateAction<boolean>>;

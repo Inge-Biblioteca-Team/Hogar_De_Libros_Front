@@ -1,25 +1,47 @@
 import { Table } from "flowbite-react";
 import { Program } from "../types/Programs";
-import BTNProgramsAct from "./BTNProgramsAct";
 import { useState } from "react";
 import RelatedActivitiesList from "./Modals/RelatedCourses";
+import MobilePopOverOptions from "../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../components/DesktopComponents/BTNAccions";
+import MDChangeProgramStatus from "./Modals/MDChangeProgramStatus";
+import MDEditProgram from "./Modals/MDEditProgram";
+import MDSeeProgram from "./Modals/MDSeeProgram";
 
 const ProgramsRows = ({ program }: { program: Program }) => {
   const [open, setOpen] = useState<boolean>(false);
+  const [openV, setOpenV] = useState<boolean>(false);
+  const [openD, setOpenD] = useState<boolean>(false);
+  const [openE, setOpenE] = useState<boolean>(false);
+  const [popoverVisible, setPopoverVisible] = useState(false);
+  const handleRowClick = () => {
+    setPopoverVisible(true);
+  };
+
   const [id, setId] = useState<string>("");
   return (
     <>
-      <Table.Row className="h-20 text-black dark:text-white">
-        <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
+      <Table.Row className="dark:border-zinc-700  dark:bg-[#2d2d2d]" onClick={handleRowClick}>
+        <Table.Cell className=" max-md:hidden">
           {program.programsId}{" "}
         </Table.Cell>
         <Table.Cell>{program.programName} </Table.Cell>
-        <Table.Cell className="max-sm:hidden ">
+        <Table.Cell className=" ">
           <div>
-            <span className="line-clamp-1">{program.description}</span>
+            <MobilePopOverOptions
+              openTrigger={popoverVisible}
+              setopenTrigger={setPopoverVisible}
+              setOpen1={setOpenV}
+              setOpen2={setOpenE}
+              setOpen3={setOpenD}
+              setOpen4={setOpen}
+              text2="Relacionados"
+              text={program.description}
+              status={program.status}
+            />
           </div>
         </Table.Cell>
-        <Table.Cell className="max-sm:hidden">
+        <Table.Cell className=" max-lg:hidden">
           <span
             className=" hover:text-Body cursor-pointer pon"
             onClick={() => (setOpen(true), setId(program.programsId))}
@@ -28,9 +50,13 @@ const ProgramsRows = ({ program }: { program: Program }) => {
           </span>
         </Table.Cell>
         <Table.Cell>{program.status ? "Activo" : "Inactivo"} </Table.Cell>
-        <Table.Cell>
-          {" "}
-          <BTNProgramsAct status={program.status} program={program} />{" "}
+        <Table.Cell className=" max-md:hidden">
+          <BTNAccions
+            setOpen1={setOpenV}
+            setOpen2={setOpenE}
+            setOpen3={setOpenD}
+            status={program.status}
+          />
         </Table.Cell>
       </Table.Row>
       {program && (
@@ -41,6 +67,13 @@ const ProgramsRows = ({ program }: { program: Program }) => {
           programName={program.programName}
         />
       )}
+      <MDChangeProgramStatus
+        open={openD}
+        setOpen={setOpenD}
+        program={program}
+      />
+      <MDEditProgram open={openE} setOpen={setOpenE} program={program} />
+      <MDSeeProgram open={openV} setOpen={setOpenV} program={program} />
     </>
   );
 };

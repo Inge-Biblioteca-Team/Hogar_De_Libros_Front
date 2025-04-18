@@ -7,10 +7,10 @@ import { ApiProgramsResponse } from "../types/Programs";
 import ProgramsRows from "../components/ProgramsRows";
 import { GetProgramsList } from "../services/SvPrograms";
 import { ServicesCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
-import CustomPagination from "../../../components/CustomPagination";
 import NoResults from "../../../components/NoResults";
-import { Pagination } from "flowbite-react";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
+import Loader from "../../../components/Loader";
 
 const ManagePrograms = () => {
   const [Oadd, SetOAdd] = useState<boolean>(false);
@@ -48,8 +48,8 @@ const ManagePrograms = () => {
   return (
     <>
       <ServicesCrumbs text="Programas" />
-      <div className="w-full flex items-center justify-center">
-        <div className="w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:p-2">
+      <main className=" px-3">
+        <section>
           <div className="flex  max-sm:flex-col max-sm:items-center items-end justify-between w-full mb-5 mt-3">
             <div className="flex max-sm:w-full max-sm:flex-col  gap-2">
               <div>
@@ -76,63 +76,49 @@ const ManagePrograms = () => {
               Añadir programa
             </Button>
           </div>
-          {isLoading ? (
+        </section>
+        <section>
+          {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : Programs ? (
-            <>
-              <Table hoverable className="text-center">
-                <Table.Head className="dark:text-white h-20 text-sm">
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 xl:table-cell 2xl:table-cell  md:hidden max-sm:hidden w-20">
-                    Número de Registro
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:p-2 w-20">
-                    Nombre del Programa
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">
-                    Descripción
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 max-sm:hidden w-20">
-                    Información Relacionada
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/5 2xl:w-1/5 w-20">
-                    Estado
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="dark:bg-[#2d2d2d] dark:text-white h-96">
-                  {Programs?.data.map((Program) => (
-                    <ProgramsRows key={Program.programsId} program={Program} />
-                  ))}
-                </Table.Body>
-              </Table>
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={currentPage}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                />
-              </div>
-
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={currentPage}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
-            </>
-          ) : (
-            <NoResults />
           )}
-        </div>
-      </div>
+          {!isLoading && (!Programs || Programs.count == 0) && <NoResults />}
+          {!isLoading && Programs && Programs.count > 0 && (
+            <Table
+              hoverable
+              className="text-center min-h-[30rem] text-black dark:text-white"
+            >
+              <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
+                <Table.HeadCell className=" max-md:hidden">Número de Registro</Table.HeadCell>
+                <Table.HeadCell>Nombre del Programa</Table.HeadCell>
+                <Table.HeadCell>Descripción</Table.HeadCell>
+                <Table.HeadCell className=" max-lg:hidden">Información Relacionada</Table.HeadCell>
+                <Table.HeadCell>Estado</Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
+              </Table.Head>
+              <Table.Body className="divide-y">
+                {Programs?.data.map((Program) => (
+                  <ProgramsRows key={Program.programsId} program={Program} />
+                ))}
+              </Table.Body>
+            </Table>
+          )}
+          <DesktopPagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+          <MobilePagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+        </section>
+      </main>
+
       <MDCreateNewProgram open={Oadd} setOpen={SetOAdd} />
     </>
   );
