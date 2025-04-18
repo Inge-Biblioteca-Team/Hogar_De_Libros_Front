@@ -34,7 +34,7 @@ const BTNMobileLoan = ({
         }}
         className=" max-md:block hidden bg-white rounded-lg text-black"
         content={
-          <ButtonGroup>
+          <ButtonGroup className=" flex flex-col">
             <Button
               type="button"
               title="Ver detalles"

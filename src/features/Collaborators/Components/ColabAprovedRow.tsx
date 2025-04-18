@@ -3,48 +3,59 @@ import { useState } from "react";
 import { Colaborator } from "../Types/ColaboratorTypes";
 import MDViewInfo from "./Modals/MDViewInfo";
 import { formatToDMY } from "../../../components/FormatTempo";
-import { PiEyeLight, PiTrash } from "react-icons/pi";
 import MDCancelActivitie from "./Modals/MDCancelActivitie";
+import BTNAccions from "../../../components/DesktopComponents/BTNAccions";
+import MobilePopOverOptions from "../../../components/MobileComponents/MobilePopOverOptions";
 
 const ColabAprovedRow = ({ colaborator }: { colaborator: Colaborator }) => {
   const [openV, setOpenV] = useState<boolean>(false);
   const [openC, setOpenC] = useState<boolean>(false);
+  const [popoverVisible, setPopoverVisible] = useState(false);
+  const handleRowClick = () => {
+    setPopoverVisible(true);
+  };
   return (
     <>
-      <Table.Row className="text-black dark:text-white">
+      <Table.Row
+        className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
+        onClick={handleRowClick}
+      >
         <Table.Cell className="">
           {formatToDMY(colaborator.activityDate)}{" "}
         </Table.Cell>
-        <Table.Cell className="">{colaborator.UserFullName}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">{colaborator.UserPhone}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
+        <Table.Cell className="">
+          <MobilePopOverOptions
+            openTrigger={popoverVisible}
+            setopenTrigger={setPopoverVisible}
+            text2="Cancelar"
+            setOpen1={setOpenV}
+            setOpen2={setOpenV}
+            setOpen3={setOpenV}
+            setOpen4={setOpenC}
+            status={false}
+          />
+          {colaborator.UserFullName}
+        </Table.Cell>
+        <Table.Cell className="max-sm:hidden">
+          {colaborator.UserPhone}
+        </Table.Cell>
+        <Table.Cell className="max-lg:hidden">
           {colaborator.UserEmail}
         </Table.Cell>
-        <Table.Cell className=" max-sm:hidden">
+        <Table.Cell className="max-lg:hidden">
           {colaborator.PrincipalCategory}
         </Table.Cell>
-        <Table.Cell className=" max-sm:hidden">
-          {colaborator.Experience || "No posee"}
+        <Table.Cell className="max-xl:hidden">
+          {colaborator.SubCategory}
         </Table.Cell>
-        <Table.Cell className=" ">
-          <div className=" flex gap-4">
-            <button
-              type="button"
-              title="Ver"
-              onClick={() => setOpenV(true)}
-              className=" hover:text-blue-600"
-            >
-              <PiEyeLight size={30} />
-            </button>
-            <button
-              onClick={() => setOpenC(true)}
-              type="button"
-              title="Cancelar"
-              className=" hover:text-red-800"
-            >
-              <PiTrash size={30} />
-            </button>
-          </div>
+        <Table.Cell className="max-md:hidden">
+          <BTNAccions
+            setOpen1={setOpenV}
+            setOpen2={setOpenV}
+            setOpen3={setOpenV}
+            setOpen4={setOpenC}
+            status={false}
+          />
         </Table.Cell>
       </Table.Row>
       <MDViewInfo open={openV} setOpen={setOpenV} colaboration={colaborator} />
