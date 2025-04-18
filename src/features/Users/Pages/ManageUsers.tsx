@@ -11,8 +11,9 @@ import {
   BreadLastItems,
 } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import NoResults from "../../../components/NoResults";
-import { Pagination } from "flowbite-react";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import Loader from "../../../components/Loader";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
 
 const ManageUsers = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(() => {
@@ -27,11 +28,6 @@ const ManageUsers = () => {
   const onPageChange = (page: number) => {
     setCurrentPage(page);
     sessionStorage.setItem("UersCPages", page.toString());
-  };
-
-  const onLimitChange = (limit: number) => {
-    setCurrentLimit(limit);
-    sessionStorage.setItem("UsersCLimit", limit.toString());
   };
 
   useEffect(() => {
@@ -69,112 +65,59 @@ const ManageUsers = () => {
       <BreadCrumbsItems>
         <BreadLastItems text="Gestión de usuarios" />
       </BreadCrumbsItems>
-      <div className=" flex place-content-center">
-        <div className="w-full md:w-full md:pr-4 md:pl-4 flex flex-col items-center justify-center pt-1 max-sm:w-full max-sm:p-2 gap-2">
-          <div className="max-sm:w-full sm:w-full md:w-full flex justify-center max-sm:pb-8">
-            <SearchUsers
-              setYear={setYear}
-              setRol={setRol}
-              setCedula={setCedula}
-              setName={setName}
-            />
-          </div>
-          {isLoading ? (
-            <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+      <main className=" px-3">
+        <section className=" mb-2">
+          <SearchUsers
+            setYear={setYear}
+            setRol={setRol}
+            setCedula={setCedula}
+            setName={setName}
+          />
+        </section>
+        <section>
+          {isLoading && (
+            <div className="w-full flex items-center justify-center">
+              <Loader />
             </div>
-          ) : Users && Users.data && Users.count && Users.count > 0 ? (
-            <section className="w-full">
-              <Table
-                hoverable
-                className=" text-center min-h-[30rem] max-sm:text-sm max-sm:justify-center"
-              >
-                <Table.Head className="dark:text-white bg-white">
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6">
-                    Cédula
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6">
-                    Nombre
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden">
-                    Rol
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
-                    Provincia
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
-                    Teléfono
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">
-                    Fecha de registro
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden">
-                    Estado
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="dark:text-white dark:bg-[#2d2d2d]">
-                  {Users?.data.map((user: User) => (
-                    <TBLUsers user={user} key={user.cedula} />
-                  ))}
-                </Table.Body>
-              </Table>
-            </section>
-          ) : (
-            <NoResults />
           )}
-          <>
-            <div className="block w-full max-sm:hidden">
-              <div className=" flex items-center justify-between py-2">
-                <div className=" flex items-center flex-col">
-                  <div>
-                    <span>Mostrar</span>
-                    <select
-                      name="Limit"
-                      id="Limit"
-                      title="Resultados por página"
-                      className=" bg-transparent border-none rounded-lg"
-                      onChange={(e) => onLimitChange(Number(e.target.value))}
-                    >
-                      <option value={5}>5</option>
-                      <option value={10}>10</option>
-                      <option value={15}>15</option>
-                    </select>
-                    <span>elementos por página. </span>
-                  </div>
-                </div>
-                {Users && Users.count && Users.count > 0 && (
-                  <Pagination
-                    currentPage={currentPage}
-                    onPageChange={onPageChange}
-                    totalPages={MaxPage}
-                    nextLabel="Siguiente"
-                    previousLabel="Anterior"
-                    showIcons
-                    layout="pagination"
-                  />
-                )}
-              </div>
-            </div>
-            <div className="sm:hidden  flex justify-center ">
-              <Pagination
-                layout="navigation"
-                nextLabel="Siguiente"
-                previousLabel="Anterior"
-                currentPage={currentPage}
-                totalPages={MaxPage}
-                onPageChange={onPageChange}
-              />
-            </div>
-          </>
-        </div>
-      </div>
+          {!isLoading && (!Users || Users.count == 0) && <NoResults />}
+          {!isLoading && Users && Users.count > 0 && (
+            <Table
+              hoverable
+              className="text-center min-h-[30rem] text-black dark:text-white"
+            >
+              <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
+                <Table.HeadCell className=" ">Cédula</Table.HeadCell>
+                <Table.HeadCell className="">Nombre</Table.HeadCell>
+                <Table.HeadCell className="">Rol</Table.HeadCell>
+                <Table.HeadCell className=" max-lg:hidden">Provincia</Table.HeadCell>
+                <Table.HeadCell className=" max-lg:hidden">Teléfono</Table.HeadCell>
+                <Table.HeadCell className=" max-lg:hidden">Fecha de registro</Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden">Estado</Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
+              </Table.Head>
+              <Table.Body className="divide-y">
+                {Users?.data.map((user: User) => (
+                  <TBLUsers user={user} key={user.cedula} />
+                ))}
+              </Table.Body>
+            </Table>
+          )}
+          <DesktopPagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+          <MobilePagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+        </section>
+      </main>
     </>
   );
 };
 export default ManageUsers;
-
-//! Separar el limite y la paginacion en 2 componentes para evitar que al cambiar el limite se oculte.

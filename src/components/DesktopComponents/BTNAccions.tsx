@@ -5,8 +5,9 @@ const BTNAccions = ({
   setOpen1,
   setOpen2,
   setOpen3,
+  setOpen4,
   status,
-}: OpenModals)=> {
+}: OpenModals) => {
   return (
     <>
       <div className=" w-full flex gap-3 items-center justify-center text-3xl">
@@ -48,9 +49,16 @@ const BTNAccions = ({
             </button>
           </>
         )}
-        <button type="button" title="Rehabilitar Artista" className="hidden">
-          <TbTruckReturn />
-        </button>
+        {!status && setOpen4 && (
+          <button
+            type="button"
+            title="Rehabilitar"
+            className=" hover:text-green-500"
+            onClick={() => setOpen4(true)}
+          >
+            <TbTruckReturn />
+          </button>
+        )}
       </div>
     </>
   );
