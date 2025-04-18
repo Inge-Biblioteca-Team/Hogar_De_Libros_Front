@@ -6,14 +6,14 @@ import OldRows from "../Rows/OldRows";
 const TblOldReservation = ({ reserve }: { reserve: ReserveResponse }) => {
   return (
     <>
-      <Table.Head className="dark:text-white h-11">
-        <Table.HeadCell className="dark:bg-neutral-900">Solicitante</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 max-sm:hidden">Fecha de Solicitud</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900">Fecha reservada</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 max-sm:hidden">Hora de inicio / Fin</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900">Actividad</Table.HeadCell>
+      <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
+        <Table.HeadCell className="">Solicitante</Table.HeadCell>
+        <Table.HeadCell className="max-md:hidden">Fecha de Solicitud</Table.HeadCell>
+        <Table.HeadCell className="">Fecha reservada</Table.HeadCell>
+        <Table.HeadCell className="">Hora de inicio / Fin</Table.HeadCell>
+        <Table.HeadCell className="max-md:hidden">Actividad</Table.HeadCell>
       </Table.Head>
-      <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
+      <Table.Body className="divide-y">
         {reserve.data.map((reservation) => (
           <OldRows
             key={reservation.rommReservationId}

@@ -14,16 +14,16 @@ const OldRows = ({ reservation }: { reservation: Reserve }) => {
   return (
     <>
       <Table.Row
-        className="h-20 text-black dark:text-white"
+             className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
         onClick={() => setOpenS(true)}
       >
         <Table.Cell>{reservation.name} </Table.Cell>
         <Table.Cell className="max-sm:hidden">{requestDay} </Table.Cell>
         <Table.Cell>{reserveDay} </Table.Cell>
-        <Table.Cell className="max-sm:hidden">
+        <Table.Cell>
           {start === end ? `${end}` : `${start} a ${end}`}
         </Table.Cell>
-        <Table.Cell>{reservation.reason} </Table.Cell>
+        <Table.Cell className="max-sm:hidden">{reservation.reason} </Table.Cell>
       </Table.Row>
       <MDSeeReservation open={openS} setOpen={setOpenS} reserve={reservation} />
     </>
