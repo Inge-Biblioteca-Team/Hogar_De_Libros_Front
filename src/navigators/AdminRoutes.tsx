@@ -1,8 +1,6 @@
 import { Outlet } from "react-router-dom";
 import {
   CirculationAndLoanMiddlePage,
-  ManageBooks,
-  ManageChildrenBooks,
   ManageLoansWS,
   InProgressLoans,
   PendingRequest,
@@ -38,6 +36,8 @@ import {
   Inbox,
 } from "./LazyAdminViews";
 import RoleBasedRoute from "./RolBaseRouter";
+import ManageBooks from "../features/Books/Screens/ManageBooks";
+import ManageChildrenBooks from "../features/ChildrenBooks/Screens/ManageChildrenBooks";
 const AdminRoutes = [
   {
     path: "Prestamos_Circulacion",
