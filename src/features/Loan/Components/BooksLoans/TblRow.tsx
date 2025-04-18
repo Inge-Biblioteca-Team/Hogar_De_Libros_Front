@@ -69,8 +69,8 @@ const TblRow = ({
         <Table.Cell className=" max-lg:hidden">
           {Loan.book?.signatureCode || Loan.childrenBook?.SignatureCode}{" "}
         </Table.Cell>
-        <Table.Cell className={`${NeedAccions ? `hidden` : ``} `}>
-          Adrian Aguilar
+        <Table.Cell className={`${NeedAccions ? `hidden` : ``} max-md:hidden `}>
+          {Loan.aprovedBy}
         </Table.Cell>
         <Table.Cell className={`${NeedAccions ? `` : `hidden`} max-md:hidden`}>
           <BTNLoans

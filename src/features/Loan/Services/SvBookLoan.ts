@@ -59,7 +59,6 @@ const GetDoneLoans = async (
   EndDate?: string,
   Cedula?: string,
   name?: string,
-  SignaCode?: string,
   type?:string
 ) => {
   try {
@@ -70,7 +69,6 @@ const GetDoneLoans = async (
 
     if (StartDate && StartDate) params.StartDate = StartDate;
     if (EndDate && StartDate) params.EndDate = EndDate;
-    if (SignaCode) params.signatureCode = SignaCode;
     if (Cedula) params.cedula = Cedula;
     if (name) params.name = name;
     if (type) params.type = type

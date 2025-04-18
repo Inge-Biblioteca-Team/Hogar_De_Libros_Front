@@ -27,7 +27,7 @@ const TBLLoan = ({
             Código de signatura
           </Table.HeadCell>
           <Table.HeadCell
-            className={`${NeedAccions ? `hidden` : ``} max-md:hidden `}
+            className={`${NeedAccions ? `hidden` : `max-md:hidden`}  `}
           >
             Aprobado Por
           </Table.HeadCell>
