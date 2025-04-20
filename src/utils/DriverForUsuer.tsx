@@ -93,7 +93,7 @@ const DriverForUsuer = () => {
     <>
       <Sidebar.Item onClick={startGuideShow}>
         <span className=" flex items-center">
-          Guía rapida <MdOutlineQuestionMark />
+          Guía rápida <MdOutlineQuestionMark />
         </span>
       </Sidebar.Item>
     </>

@@ -165,7 +165,7 @@ const RoomsSchedule = ({
         </Table.Body>
       </Table>
 
-      <Table className="text-center mt-2 hidden max-xl:table ">
+      <Table className="text-center mt-2 hidden max-xl:table bg-zinc-100 ">
         <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
           <Table.HeadCell>Hora</Table.HeadCell>
           {rooms.map((room) => (
@@ -181,7 +181,7 @@ const RoomsSchedule = ({
         <Table.Body className="dark:bg-[#2d2d2d]">
           {hours.map((hour) => (
             <Table.Row key={hour}>
-              <Table.Cell>{HourMapping[hour]}</Table.Cell>
+              <Table.Cell className=" !bg-zinc-100" >{HourMapping[hour]}</Table.Cell>
               {rooms.map((room) => {
                 const isOccupied =
                   occupiedHours[room.roomNumber]?.includes(hour);
