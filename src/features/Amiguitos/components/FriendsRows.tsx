@@ -1,40 +1,51 @@
 import { Table } from "flowbite-react";
 import { Friend } from "../types/FriendType";
-import AccionsBTN from "../../../components/BTNS/AccionsBTN";
 import { useState } from "react";
 import MDViewFriend from "./Modals/MDViewFriend";
 import MDDownFriend from "./Modals/MDDownFriend";
 import EditFriendInfo from "./Modals/EditFriendInfo";
+import MobilePopOverOptions from "../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../components/DesktopComponents/BTNAccions";
 
 const FriendsRows = ({ friend }: { friend: Friend }) => {
   const [openS, setOpenS] = useState<boolean>(false);
   const [openE, setOpenE] = useState<boolean>(false);
   const [openD, setOpenD] = useState<boolean>(false);
+  const [popoverVisible, setPopoverVisible] = useState(false);
+
+  const handleRowClick = () => {
+    setPopoverVisible(true);
+  };
 
   return (
     <>
-      <Table.Row className="text-black dark:text-white">
+      <Table.Row
+        className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
+        onClick={handleRowClick}
+      >
         <Table.Cell>{friend.UserFullName}</Table.Cell>
-        <Table.Cell>{friend.UserCedula}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">
-          {friend.PrincipalCategory}
-        </Table.Cell>
-        <Table.Cell className="max-sm:hidden">{friend.SubCategory}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
-          {friend.UserGender}
-        </Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
-          {friend.UserPhone}
-        </Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
-          {friend.Status}
-        </Table.Cell>
+        <Table.Cell className=" max-lg:hidden">{friend.UserCedula}</Table.Cell>
+        <Table.Cell className=" max-sm:hidden">{friend.PrincipalCategory}</Table.Cell>
+        <Table.Cell className=" max-xl:hidden">{friend.SubCategory}</Table.Cell>
+        <Table.Cell className=" max-xl:hidden">{friend.UserGender}</Table.Cell>
         <Table.Cell>
-          <AccionsBTN
-            setOpenS={setOpenS}
-            setOpenE={setOpenE}
-            setOpenD={setOpenD}
-            Status={friend.Status == "Aprobado" ? true : false}
+          <MobilePopOverOptions
+            setopenTrigger={setPopoverVisible}
+            openTrigger={popoverVisible}
+            setOpen1={setOpenS}
+            setOpen2={setOpenE}
+            setOpen3={setOpenD}
+            text={friend.UserPhone}
+            status={friend.Status != "Baja"}
+          />
+        </Table.Cell>
+        <Table.Cell className=" max-md:hidden">{friend.Status}</Table.Cell>
+        <Table.Cell className=" max-md:hidden">
+          <BTNAccions
+            setOpen1={setOpenS}
+            setOpen2={setOpenE}
+            setOpen3={setOpenD}
+            status={friend.Status != "Baja"}
           />
         </Table.Cell>
       </Table.Row>

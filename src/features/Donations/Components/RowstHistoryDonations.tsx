@@ -9,17 +9,15 @@ const RowsHistoryDonations = ({ donation }: { donation: Donation }) => {
   return (
     <>
       <Table.Row
-        className="text-black dark:text-white"
+        className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
         onClick={() => setOpenV(true)}
       >
         <Table.Cell>{donation.UserFullName}</Table.Cell>
-        <Table.Cell className=" max-xl:hidden">{donation.UserCedula}</Table.Cell>
-        <Table.Cell className="max-lg:hidden ">
-          {donation.UserEmail}
+        <Table.Cell className=" max-xl:hidden">
+          {donation.UserCedula}
         </Table.Cell>
-        <Table.Cell className=" ">
-          {donation.UserPhone}
-        </Table.Cell>
+        <Table.Cell className="max-lg:hidden ">{donation.UserEmail}</Table.Cell>
+        <Table.Cell className=" ">{donation.UserPhone}</Table.Cell>
         <Table.Cell className="max-lg:hidden">
           {donation.SubCategory}
         </Table.Cell>
