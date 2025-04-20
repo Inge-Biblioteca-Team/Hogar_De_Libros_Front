@@ -12,13 +12,18 @@ const api = axios.create({
   withCredentials: true,
 });
 
+const getAccessToken = (): string | null => {
+  if (isIOS()) {
+    return localStorage.getItem("accessToken");
+  }
+  return null;
+};
 
 api.interceptors.request.use((config) => {
-  if (isIOS()) {
-    const token = localStorage.getItem("accessToken"); 
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
+  const token = getAccessToken();
+  if (token) {
+    config.headers = config.headers || {};
+    config.headers["Authorization"] = `Bearer ${token}`;
   }
   return config;
 });
