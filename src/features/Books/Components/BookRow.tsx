@@ -43,7 +43,7 @@ const BookRow = ({ book }: { book: Book }) => {
         <Table.Cell className="max-md:hidden">
           {book.InscriptionCode ? book.InscriptionCode : "N/A"}{" "}
         </Table.Cell>
-        <Table.Cell className="">
+        <Table.Cell className=" max-sm:hidden">
           {book.Status ? "Disponible" : "Baja"}
         </Table.Cell>
         <Table.Cell className="max-md:hidden">

@@ -14,7 +14,7 @@ const BookChildrenTable = ({ catalog }: { catalog: Catalog }) => {
         <Table.HeadCell className=" max-lg:hidden">ISBN</Table.HeadCell>
         <Table.HeadCell className=" max-lg:hidden">Código De Signatura</Table.HeadCell>
         <Table.HeadCell className=" max-md:hidden">Código de inscripción</Table.HeadCell>
-        <Table.HeadCell>Estado</Table.HeadCell>
+        <Table.HeadCell className=" max-sm:hidden">Estado</Table.HeadCell>
         <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
       </Table.Head>
       <Table.Body className="divide-y">

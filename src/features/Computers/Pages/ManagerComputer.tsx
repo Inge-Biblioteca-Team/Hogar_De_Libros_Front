@@ -127,7 +127,7 @@ const ManagerComputer = () => {
               className="text-center min-h-[30rem] text-black dark:text-white"
             >
               <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
-                <Table.HeadCell>Número de Máquina</Table.HeadCell>
+                <Table.HeadCell className=" max-sm:hidden">Número de Máquina</Table.HeadCell>
                 <Table.HeadCell>Categoría</Table.HeadCell>
                 <Table.HeadCell className=" max-md:hidden">
                   Marca

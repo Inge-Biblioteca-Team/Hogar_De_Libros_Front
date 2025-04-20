@@ -19,7 +19,7 @@ const BookTable = ({ catalog }: { catalog: Catalog }) => {
           <Table.HeadCell className=" max-md:hidden">
             Código De inscripción
           </Table.HeadCell>
-          <Table.HeadCell className="">Estado</Table.HeadCell>
+          <Table.HeadCell className=" max-sm:hidden">Estado</Table.HeadCell>
           <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
