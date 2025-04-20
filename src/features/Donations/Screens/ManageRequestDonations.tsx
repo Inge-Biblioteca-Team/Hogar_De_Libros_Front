@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
-import CustomPagination from "../../../components/CustomPagination";
 import { DonationsList } from "../Types/DonationType";
 import { GetDonationList } from "../Service/SVDonations";
 import { Label, Select, TextInput } from "flowbite-react";
@@ -9,8 +8,9 @@ import { DonationsCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItem
 import TableDonations from "../Components/TableDonations";
 import RowsRequestDonation from "../Components/RowsRequestDonation";
 import NoResults from "../../../components/NoResults";
-import { Pagination } from "flowbite-react";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
+import Loader from "../../../components/Loader";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
 
 const ManageRequestDonations = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -34,13 +34,13 @@ const ManageRequestDonations = () => {
     sessionStorage.setItem("MRDPage", page.toString());
   };
 
-  const MaxPage = Math.ceil((Donations?.count ?? 0) / 5);
+  const MaxPage = Math.ceil((Donations?.count ?? 0) / Limit);
 
   return (
     <>
       <DonationsCrumbs text="Propuestas de donación" />
-      <main className=" flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:p-2 max-sm:flex-col w-4/5 gap-2">
+      <main className=" px-3">
+        <section className=" max-md:flex-col flex w-full gap-x-3 mb-3">
           <div>
             <Label value="Categoría de la donación" />
             <Select onChange={(event) => setCategory(event.target.value)}>
@@ -55,45 +55,35 @@ const ManageRequestDonations = () => {
             />
           </div>
         </section>
-        <section className=" max-sm:w-full md:w-full md:pr-4 md:pl-4 max-sm:p-2 w-4/5">
-          {isLoading ? (
+        <section>
+          {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : Donations && Donations.data.length > 0 ? (
-            <>
-              <TableDonations>
-                {Donations?.data.map((donation) => (
-                  <RowsRequestDonation
-                    donation={donation}
-                    key={donation.DonationID}
-                  />
-                ))}
-              </TableDonations>
-            </>
-          ) : (
-            <NoResults />
           )}
-          <div className="block max-sm:hidden">
-            <CustomPagination
-              page={Page}
-              onPageChange={onPageChange}
-              totalPages={MaxPage}
-              setCurrentLimit={setCurrentLimit}
-            />
-          </div>
-
-          <div className="sm:hidden  flex justify-center ">
-            <Pagination
-              layout="navigation"
-              currentPage={Page}
-              totalPages={MaxPage}
-              onPageChange={onPageChange}
-            />
-          </div>
+          {!isLoading && (!Donations || Donations.count == 0) && <NoResults />}
+          {!isLoading && Donations && Donations.count > 0 && (
+            <TableDonations>
+              {Donations?.data.map((donation) => (
+                <RowsRequestDonation
+                  donation={donation}
+                  key={donation.DonationID}
+                />
+              ))}
+            </TableDonations>
+          )}
+          <DesktopPagination
+            page={Page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+          <MobilePagination
+            page={Page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
         </section>
       </main>
     </>

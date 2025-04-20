@@ -13,20 +13,20 @@ const RowsHistoryDonations = ({ donation }: { donation: Donation }) => {
         onClick={() => setOpenV(true)}
       >
         <Table.Cell>{donation.UserFullName}</Table.Cell>
-        <Table.Cell>{donation.UserCedula}</Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
+        <Table.Cell className=" max-xl:hidden">{donation.UserCedula}</Table.Cell>
+        <Table.Cell className="max-lg:hidden ">
           {donation.UserEmail}
         </Table.Cell>
-        <Table.Cell className="md:hidden max-sm:hidden lg:table-cell">
+        <Table.Cell className=" ">
           {donation.UserPhone}
         </Table.Cell>
-        <Table.Cell className="max-sm:hidden">
+        <Table.Cell className="max-lg:hidden">
           {donation.SubCategory}
         </Table.Cell>
         <Table.Cell className="max-sm:hidden">
           {formatToDMY(donation.DateRecolatedDonation)}
         </Table.Cell>
-        <Table.Cell className="md:hidden">{donation.Status}</Table.Cell>
+        <Table.Cell className="max-md:hidden">{donation.Status}</Table.Cell>
       </Table.Row>
       <MDSeeDonation open={openV} setOpen={setOpenV} donation={donation} />
     </>
