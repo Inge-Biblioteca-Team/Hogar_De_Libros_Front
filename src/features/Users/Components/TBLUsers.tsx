@@ -35,7 +35,7 @@ const TBLUsers = ({ user }: { user: User }) => {
         key={user.cedula}
         onClick={handleRowClick}
       >
-        <Table.Cell>{user.cedula} </Table.Cell>
+        <Table.Cell className=" max-sm:hidden">{user.cedula} </Table.Cell>
         <Table.Cell>
           <MobilePopOverOptions
             openTrigger={popoverVisible}

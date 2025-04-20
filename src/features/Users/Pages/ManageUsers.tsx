@@ -87,7 +87,7 @@ const ManageUsers = () => {
               className="text-center min-h-[30rem] text-black dark:text-white"
             >
               <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
-                <Table.HeadCell className=" ">Cédula</Table.HeadCell>
+                <Table.HeadCell className=" max-sm:hidden">Cédula</Table.HeadCell>
                 <Table.HeadCell className="">Nombre</Table.HeadCell>
                 <Table.HeadCell className="">Rol</Table.HeadCell>
                 <Table.HeadCell className=" max-lg:hidden">Provincia</Table.HeadCell>
