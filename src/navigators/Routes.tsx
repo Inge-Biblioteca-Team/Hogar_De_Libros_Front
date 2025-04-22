@@ -7,8 +7,9 @@ import AdminRoutes from "./AdminRoutes";
 import UserRoutes from "./UserRoutes";
 import RoleBasedRoute from "./RolBaseRouter";
 import HomePage from "../Pages/HomePage";
-import OPACRoutes from "./OPACRoutes";
 import NotFound from "../Pages/NotFound";
+import { Suspense } from "react";
+import Loader from "../components/Loader";
 
 const Routes = createBrowserRouter([
   {
@@ -21,13 +22,20 @@ const Routes = createBrowserRouter([
   },
 
   ...AuthRoutes,
-  ...OPACRoutes,
   {
     path: "HogarDeLibros",
     element: (
       <RoleBasedRoute>
         <Layout NavbarType="HogarDeLibros">
-          <Outlet />
+          <Suspense
+            fallback={
+              <div className="w-full flex items-center justify-center">
+                <Loader />
+              </div>
+            }
+          >
+            <Outlet />
+          </Suspense>
         </Layout>
       </RoleBasedRoute>
     ),

@@ -1,6 +1,6 @@
 import { addDay } from "@formkit/tempo";
 import { Datepicker } from "flowbite-react";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { formatToYMD } from "../../../../components/FormatTempo";
 
 const SearchCalendar = ({
@@ -15,26 +15,25 @@ const SearchCalendar = ({
     }
   };
 
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth  <=768 );
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
+ 
   return (
     <div>
       <div className=" font-bold text-center text-lg">Fecha a consultar</div>
       <Datepicker
         onSelectedDateChanged={handleChange}
-        className="custom-DatePicker"
+        className="custom-DatePicker max-lg:hidden "
         size={120}
-        inline={!isSmallScreen}
+        inline
+        language="es-CR"
+        labelClearButton="Limpiar"
+        labelTodayButton="Hoy"
+        minDate={addDay(new Date())}
+      />
+      <Datepicker
+        onSelectedDateChanged={handleChange}
+        className="custom-DatePicker max-lg:block hidden"
+        size={120}
+        inline={false}
         language="es-CR"
         labelClearButton="Limpiar"
         labelTodayButton="Hoy"

@@ -103,7 +103,7 @@ const ManageFurniture = () => {
           {!isLoading && furnitures && furnitures.count > 0 && (
             <Table
               hoverable
-              className="text-center h-[30rem] text-black dark:text-white"
+              className="text-center min-h-[30rem] text-black dark:text-white"
             >
               <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
                 <Table.HeadCell className="">Número de placa</Table.HeadCell>
@@ -120,7 +120,7 @@ const ManageFurniture = () => {
                 <Table.HeadCell>Estado</Table.HeadCell>
                 <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
               </Table.Head>
-              <Table.Body className="dark:bg-[#2d2d2d] dark:text-white">
+              <Table.Body className="divide-y" >
                 {furnitures?.data.map((furniture) => (
                   <FurnitureRows key={furniture.Id} furniture={furniture} />
                 ))}

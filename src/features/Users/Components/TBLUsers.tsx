@@ -1,21 +1,24 @@
 import { Table } from "flowbite-react";
-import BTNAccions from "./BTNAccions";
 import { User } from "../Type/UserType";
-import { useContext, useState } from "react";
+import {useState } from "react";
 import UserInfo from "./Modals/UserInfo";
 import EditUser from "./Modals/EditUser";
 import DisableUser from "./Modals/DisableUser";
 import ReactiveUser from "./Modals/ReactiveUser";
 import { formatToDMY } from "../../../components/FormatTempo";
-import UserContext from "../../../Context/UserContext/UserContext";
+import MobilePopOverOptions from "../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../components/DesktopComponents/BTNAccions";
 
 const TBLUsers = ({ user }: { user: User }) => {
   const [see, setSee] = useState<boolean>(false);
   const [down, setDow] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(false);
   const [reactive, setREACTIVE] = useState<boolean>(false);
+  const [popoverVisible, setPopoverVisible] = useState(false);
+  const handleRowClick = () => {
+    setPopoverVisible(true);
+  };
 
-  const { currentUser } = useContext(UserContext);
 
   const roleMapping: { [key: string]: string } = {
     external_user: "Usuario externo",
@@ -27,38 +30,42 @@ const TBLUsers = ({ user }: { user: User }) => {
 
   return (
     <>
-      <Table.Row className="h-20 text-black dark:text-white" key={user.cedula}>
-        <Table.Cell className="w-56">{user.cedula} </Table.Cell>
-        <Table.Cell className="w-56">
-          {user.name} {user.lastName}{" "}
+      <Table.Row
+        className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
+        key={user.cedula}
+        onClick={handleRowClick}
+      >
+        <Table.Cell className=" max-sm:hidden">{user.cedula} </Table.Cell>
+        <Table.Cell>
+          <MobilePopOverOptions
+            openTrigger={popoverVisible}
+            setopenTrigger={setPopoverVisible}
+            setOpen1={setSee}
+            setOpen2={setEdit}
+            setOpen3={setDow}
+            setOpen4={setREACTIVE}
+            text2="Reactivar"
+            text={`${user.name} ${user.lastName}`}
+            status={user.status}
+          />
         </Table.Cell>
-        <Table.Cell className="w-56 max-sm:hidden">
-          {roleMapping[user.role] || "Usuario de Sala"}{" "}
-        </Table.Cell>
-        <Table.Cell className="w-56 md:hidden max-sm:hidden lg:table-cell">
-          {user.province}{" "}
-        </Table.Cell>
-        <Table.Cell className="w-56 md:hidden max-sm:hidden lg:table-cell">
-          {user.phoneNumber}{" "}
-        </Table.Cell>
-        <Table.Cell className="w-56 md:hidden max-sm:hidden lg:table-cell">
+        <Table.Cell>{roleMapping[user.role] || "Usuario de Sala"} </Table.Cell>
+        <Table.Cell className=" max-lg:hidden">{user.province} </Table.Cell>
+        <Table.Cell className=" max-lg:hidden">{user.phoneNumber} </Table.Cell>
+        <Table.Cell className=" max-lg:hidden">
           {formatToDMY(user.registerDate)}
         </Table.Cell>
-        <Table.Cell className="w-56 max-sm:hidden">
+        <Table.Cell className=" max-md:hidden">
           {user.status ? "Activo" : "Inactivo"}{" "}
         </Table.Cell>
-        <Table.Cell className="w-52">
-          {user.cedula == currentUser?.cedula ? (
-            <span></span>
-          ) : (
-            <BTNAccions
-              setREACTIVE={setREACTIVE}
-              setSee={setSee}
-              setDow={setDow}
-              setEdit={setEdit}
-              UserStatus={user.status}
-            />
-          )}
+        <Table.Cell className=" max-md:hidden">
+          <BTNAccions
+            setOpen1={setSee}
+            setOpen2={setEdit}
+            setOpen3={setDow}
+            setOpen4={setREACTIVE}
+            status={user.status}
+          />
         </Table.Cell>
       </Table.Row>
       <UserInfo see={see} setSee={setSee} User={user} />

@@ -124,10 +124,10 @@ const ManagerComputer = () => {
           {!isLoading && computers && computers.count > 0 && (
             <Table
               hoverable
-              className="text-center h-[30rem] text-black dark:text-white"
+              className="text-center min-h-[30rem] text-black dark:text-white"
             >
               <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
-                <Table.HeadCell>Número de Máquina</Table.HeadCell>
+                <Table.HeadCell className=" max-sm:hidden">Número de Máquina</Table.HeadCell>
                 <Table.HeadCell>Categoría</Table.HeadCell>
                 <Table.HeadCell className=" max-md:hidden">
                   Marca
@@ -138,7 +138,7 @@ const ManagerComputer = () => {
                 </Table.HeadCell>
                 <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
               </Table.Head>
-              <Table.Body>
+              <Table.Body className="divide-y">
                 {computers?.data.map((computers) => (
                   <TblRows
                     key={"COM" + computers.EquipmentUniqueCode}

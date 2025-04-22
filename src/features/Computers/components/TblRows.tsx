@@ -19,7 +19,7 @@ const TblRows = ({ computers }: { computers: Equipment }) => {
     <>
       <Table.Row key={computers.EquipmentUniqueCode} onClick={handleRowClick}
       className="dark:border-zinc-700 dark:bg-[#2d2d2d]">
-        <Table.Cell>{computers.MachineNumber}</Table.Cell>
+        <Table.Cell className=" max-sm:hidden">{computers.MachineNumber}</Table.Cell>
         <Table.Cell>
           <MobilePopOverOptions
             setopenTrigger={setPopoverVisible}

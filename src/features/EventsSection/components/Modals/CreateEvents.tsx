@@ -64,7 +64,7 @@ const CreateEvent = () => {
   return (
     <>
       <Button
-        className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 max-sm:w-full "
+        className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 max-md:w-full "
         type="button"
         onClick={() => setIsModalOpen(true)}
         color={"blue"}

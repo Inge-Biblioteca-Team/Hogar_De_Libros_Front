@@ -24,12 +24,7 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
   );
 
   return (
-    <section
-      className="
-      relative w-11/12
-       space-y-4"
-      id="Activities"
-    >
+  
       <>
         {isLoading && (
           <>
@@ -75,7 +70,6 @@ const ImportanNotices = ({ home }: { home?: boolean }) => {
           </>
         )}
       </>
-    </section>
   );
 };
 

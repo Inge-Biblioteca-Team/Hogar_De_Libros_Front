@@ -1,14 +1,15 @@
-import { Label, Pagination, Select, Table, TextInput } from "flowbite-react";
+import { Label, Select, Table, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
 import TblOldReservation from "../../Components/RoomsLoans/TablesHeaders/TblOldReservation";
 import { ReserveResponse } from "../../Types/RoomsReservations";
 import { useQuery } from "react-query";
 import { getReservations } from "../../Services/SVReservations";
 import OPTRooms from "../../Components/RoomsLoans/OPTRooms";
-import CustomPagination from "../../../../components/CustomPagination";
 import { LoansCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
 import NoResults from "../../../../components/NoResults";
-import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
+import Loader from "../../../../components/Loader";
+import DesktopPagination from "../../../../components/DesktopComponents/DesktopPagination";
+import MobilePagination from "../../../../components/MobileComponents/MobilePagination";
 
 const OldReservationList = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -47,9 +48,9 @@ const OldReservationList = () => {
   return (
     <>
       <LoansCrumbs text="Salas" />
-      <div className=" w-full flex items-center justify-center">
-        <div className="w-full md:px-4 max-sm:px-2">
-          <div className=" flex gap-3 pb-4">
+      <main className=" px-3">
+        <section>
+          <div className=" flex gap-3 pb-4 max-md:flex-col">
             <div>
               <Label value="Fecha reservada" />
               <TextInput
@@ -71,46 +72,38 @@ const OldReservationList = () => {
               </Select>
             </div>
           </div>
-          {isLoading ? (
+        </section>
+        <section>
+          {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : reservations ? (
-            <>
-              <Table
-                hoverable
-                className="w-full text-center "
-                style={{ height: "55vh" }}
-              >
-                {reservations && <TblOldReservation reserve={reservations} />}
-              </Table>
-            </>
-          ) : (
+          )}
+          {!isLoading && (!reservations || reservations.count == 0) && (
             <NoResults />
           )}
-
-          <div className="block max-sm:hidden">
-            <CustomPagination
-              page={currentPage}
-              onPageChange={onPageChange}
-              totalPages={MaxPage}
-              setCurrentLimit={setCurrentLimit}
-            />
-          </div>
-
-          <div className="sm:hidden  flex justify-center pb-4 ">
-            <Pagination
-              layout="navigation"
-              currentPage={currentPage}
-              totalPages={MaxPage}
-              onPageChange={onPageChange}
-            />
-          </div>
-        </div>
-      </div>
+          {!isLoading && reservations && reservations.count > 0 && (
+            <Table
+              hoverable
+              className="text-center min-h-[30rem] text-black dark:text-white"
+            >
+              {reservations && <TblOldReservation reserve={reservations} />}
+            </Table>
+          )}
+          <DesktopPagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+          <MobilePagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+        </section>
+      </main>
     </>
   );
 };

@@ -5,8 +5,8 @@ import { GetStatus } from "../../Services/SvComputerLoan";
 import { useQuery } from "react-query";
 import ButtonsAccions from "../../Components/WorkStations/ButtonsAccions";
 import { LoansAndCirculationCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
-import Loader from "../../../OPAC/Assets/LoaderOPAC.gif";
 import NoResults from "../../../../components/NoResults";
+import Loader from "../../../../components/Loader";
 
 type ComputerStatus = {
   Status: string;
@@ -30,14 +30,18 @@ const ManageLoansWS = () => {
   return (
     <>
       <LoansAndCirculationCrumbs text="Equipo de cómputo" />
-      {isLoading ? (
+      {isLoading && (
         <div className="w-full flex items-center justify-center mt-12">
-          <figure>
-            <img width={200} src={Loader} alt="Cargando..." />
-            <figcaption className="text-center">Cargando...</figcaption>
-          </figure>
+          <Loader />
         </div>
-      ) : computers ? (
+      )}
+      {!isLoading && !computers && (
+        <div className=" px-3">
+          <NoResults />
+        </div>
+      )}
+
+      {!isLoading && computers && (
         <>
           <div className="w-full flex items-center justify-center mt-12">
             <div className="grid grid-cols-4 gap-26 w-4/5">
@@ -77,8 +81,6 @@ const ManageLoansWS = () => {
             </div>
           </div>
         </>
-      ) : (
-        <NoResults />
       )}
     </>
   );

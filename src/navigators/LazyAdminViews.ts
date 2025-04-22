@@ -1,0 +1,37 @@
+import { lazyWithRetry } from "../utils/lazyWithRetry";
+
+export const ManagerComputer = lazyWithRetry(() => import("../features/Computers/Pages/ManagerComputer"));
+export const ManageUsers = lazyWithRetry(() => import("../features/Users/Pages/ManageUsers"));
+export const ManageLoansWS = lazyWithRetry(() => import("../features/Loan/Pages/WorkStations/ManageLoansWS"));
+export const FinishedLoans = lazyWithRetry(() => import("../features/Loan/Pages/Books/FinishedLoans"));
+export const InProgressLoans = lazyWithRetry(() => import("../features/Loan/Pages/Books/InProgressLoans"));
+export const PendingRequest = lazyWithRetry(() => import("../features/Loan/Pages/Books/PendingRequest"));
+export const WorkStationsLoanHistory = lazyWithRetry(() => import("../features/Loan/Pages/WorkStations/WorkStationsLoanHistory"));
+export const ManageFurniture = lazyWithRetry(() => import("../features/Furniture/Pages/ManageFurniture"));
+export const ManageEvents = lazyWithRetry(() => import("../features/EventsSection/Pages/ManageEvent"));
+export const ManagePrograms = lazyWithRetry(() => import("../features/Programs/Pages/ManagePrograms"));
+export const ReservationList = lazyWithRetry(() => import("../features/Loan/Pages/Rooms/ReservationList"));
+export const OldReservationList = lazyWithRetry(() => import("../features/Loan/Pages/Rooms/OldReservationList"));
+export const AprovedReservationList = lazyWithRetry(() => import("../features/Loan/Pages/Rooms/AprovedReservationList"));
+export const ManageRoom = lazyWithRetry(() => import("../features/Rooms/Pages/ManageRoom"));
+export const ManageCourses = lazyWithRetry(() => import("../features/Courses/Pages/ManageCourses"));
+export const ManageLocalArtist = lazyWithRetry(() => import("../features/LocalArtist/Pages/ManageLocalArtist"));
+export const AdviceManage = lazyWithRetry(() => import("../features/Advice/Screens/AdviceManage"));
+export const RoomsScheduleManage = lazyWithRetry(() => import("../features/Loan/Pages/Rooms/RoomsScheduleManage"));
+export const ManageColabRequest = lazyWithRetry(() => import("../features/Collaborators/Screens/ManageColabRequest"));
+export const ManageAprovedColab = lazyWithRetry(() => import("../features/Collaborators/Screens/ManageAprovedColab"));
+export const ManageColabHistory = lazyWithRetry(() => import("../features/Collaborators/Screens/ManageColabHistory"));
+export const ManageFriendsRequest = lazyWithRetry(() => import("../features/Amiguitos/screens/ManageFriendsRequest"));
+export const ManageFriends = lazyWithRetry(() => import("../features/Amiguitos/screens/ManageFriends"));
+export const ManageRequestDonations = lazyWithRetry(() => import("../features/Donations/Screens/ManageRequestDonations"));
+export const ManagePendingReceiveDon = lazyWithRetry(() => import("../features/Donations/Screens/ManagePendingReceiveDon"));
+export const ManageDonationsHistory = lazyWithRetry(() => import("../features/Donations/Screens/ManageDonationsHistory"));
+export const Inbox = lazyWithRetry(() => import("../features/Inbox/Page/Inbox"));
+export const FriendMiddleScreen = lazyWithRetry(() => import("../features/Amiguitos/screens/FriendMiddleScreen"));
+export const DonationMiddleScreens = lazyWithRetry(() => import("../features/Donations/Screens/DonationMiddleScreens"));
+export const ColabsMiddleScreen = lazyWithRetry(() => import("../features/Collaborators/Screens/ColabsMiddleScreen"));
+export const ResoursesMiddlePage = lazyWithRetry(() => import("../features/Furniture/Pages/ResoursesMiddlePage"));
+export const EventMiddlePage = lazyWithRetry(() => import("../features/EventsSection/Pages/EventMiddlePage"));
+export const LoansMiddlePage = lazyWithRetry(() => import("../features/Loan/Pages/LoansMiddlePage"));
+export const CirculationAndLoanMiddlePage = lazyWithRetry(() => import("../features/Loan/Pages/CirculationAndLoanMiddlePage"));
+

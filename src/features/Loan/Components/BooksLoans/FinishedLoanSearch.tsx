@@ -1,22 +1,19 @@
 import { Label, Select, TextInput } from "flowbite-react";
-import { FaFileSignature } from "react-icons/fa6";
 import { FaIdBadge } from "react-icons/fa";
 
 const FinishedLoanSearch = ({
   setName,
   setEndtDate,
-  setSignaCode,
   setStartDate,
   setType,
 }: {
   setStartDate: (StartDate: string) => void;
   setEndtDate: (EndDate: string) => void;
   setName: (Name: string) => void;
-  setSignaCode: (SignaCode: string) => void;
   setType: (tyoe: string) => void;
 }) => {
   return (
-    <div className="  flex max-md:flex-col  gap-4 mb-4">
+    <div className=" flex max-md:flex-col w-full gap-4 mb-4 items-end max-md:items-stretch">
       <div>
         <Label className=" text-lg" htmlFor="InitialDate">
           Fecha de solicitud (Inicio)
@@ -45,16 +42,6 @@ const FinishedLoanSearch = ({
           onChange={(event) => setName(event.target.value)}
         />
       </div>
-      <div>
-        <Label className=" text-lg">Código de signatura</Label>
-        <TextInput
-          onChange={(event) => setSignaCode(event.target.value)}
-          type="text"
-          icon={FaFileSignature}
-          placeholder="Código De Signaruta"
-        />
-      </div>
-
       <div>
         <label className=" text-lg" htmlFor="Type">
           Préstamos del catálogo.

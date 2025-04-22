@@ -5,14 +5,14 @@ import FriendsRows from "../components/FriendsRows";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import UseDebounce from "../../../hooks/UseDebounce";
-import CustomPagination from "../../../components/CustomPagination";
 import { GetFriends } from "../services/SvFriends";
 import { FriendResponse } from "../types/FriendType";
 import OPTCategories from "../components/OPTCategories";
 import OPTSubCategories from "../components/OPTSubCategories";
 import NoResults from "../../../components/NoResults";
-import { Pagination } from "flowbite-react";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
+import Loader from "../../../components/Loader";
 
 const ManageFriends = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -44,8 +44,8 @@ const ManageFriends = () => {
   return (
     <>
       <FirendCrumbs text="Lista de amigos" />
-      <main className="flex flex-col items-center justify-center w-full gap-5">
-        <section className="max-sm:w-full md:w-full md:pr-4 md:pl-4  max-sm:p-2 flex max-sm:flex-col w-4/5 gap-2">
+      <main className=" px-3">
+        <section className=" max-sm:flex-col flex gap-x-3 mb-3 items-end max-sm:items-stretch">
           <div>
             <Label value="Categoría principal" />
             <Select onChange={(event) => setCategory(event.target.value)}>
@@ -66,43 +66,34 @@ const ManageFriends = () => {
             />
           </div>
         </section>
-        <section className="max-sm:w-full md:w-full md:pr-4 md:pl-4  max-sm:p-2 w-4/5">
-          {isLoading ? (
+        <section>
+          {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : FriendList && FriendList.data.length > 0 ? (
-            <>
-              <FriendsTableBody>
-                {FriendList?.data.map((friend) => (
-                  <FriendsRows friend={friend} key={"Fri" + friend.FriendId} />
-                ))}
-              </FriendsTableBody>
-            </>
-          ) : (
+          )}
+          {!isLoading && (!FriendList || FriendList.count == 0) && (
             <NoResults />
           )}
-
-          <div className="block max-sm:hidden">
-            <CustomPagination
-              page={Page}
-              onPageChange={onPageChange}
-              totalPages={MaxPage}
-              setCurrentLimit={setCurrentLimit}
-            />
-          </div>
-
-          <div className="sm:hidden  flex justify-center ">
-            <Pagination
-              layout="navigation"
-              currentPage={Page}
-              totalPages={MaxPage}
-              onPageChange={onPageChange}
-            />
-          </div>
+          {!isLoading && FriendList && FriendList.count > 0 && (
+            <FriendsTableBody>
+              {FriendList?.data.map((friend) => (
+                <FriendsRows friend={friend} key={"Fri" + friend.FriendId} />
+              ))}
+            </FriendsTableBody>
+          )}
+          <DesktopPagination
+            page={Page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+          <MobilePagination
+            page={Page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
         </section>
       </main>
     </>

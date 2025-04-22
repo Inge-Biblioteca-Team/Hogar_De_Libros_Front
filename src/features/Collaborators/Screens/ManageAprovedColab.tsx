@@ -2,16 +2,16 @@ import { useQuery } from "react-query";
 import ColabsTableBody from "../Components/ColabsTableBody";
 import { GetColabs } from "../Service/ColabServices";
 import { ColaboratorsList } from "../Types/ColaboratorTypes";
-import CustomPagination from "../../../components/CustomPagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Label, Select, TextInput } from "flowbite-react";
 import ColabAprovedRow from "../Components/ColabAprovedRow";
 import OptSubCategory from "../Components/OptSubCategory";
 import OptMainCategory from "../Components/OptMainCategory";
 import { ColabCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
 import NoResults from "../../../components/NoResults";
-import { Pagination } from "flowbite-react";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
+import Loader from "../../../components/Loader";
 
 const ManageAprovedColab = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -39,13 +39,17 @@ const ManageAprovedColab = () => {
     sessionStorage.setItem("CLAPage", page.toString());
   };
 
-  const MaxPage = Math.ceil((ColaborationsList?.count ?? 0) / 5);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [ Limit, category, subCategory, date]);
+
+  const MaxPage = Math.ceil((ColaborationsList?.count ?? 0) / Limit);
 
   return (
     <>
       <ColabCrumbs text="Colaboraciones futuras" />
-      <main className=" flex flex-col items-center justify-center w-full gap-5">
-        <section className=" flex lg:flex-row md:flex-col md:w-full md:pr-4 md:pl-4 max-sm:flex-col w-4/5 gap-2 max-sm:w-full max-sm:px-3">
+      <main className=" px-3">
+      <section className=" flex gap-x-4 max-md:flex-col mb-3">
           <div className=" ">
             <Label value="Categoría del colaborador" />
             <Select onChange={(event) => setCategory(event.target.value)}>
@@ -66,45 +70,38 @@ const ManageAprovedColab = () => {
             />
           </div>
         </section>
-        <section className=" w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:px-2">
-          {isLoading ? (
+        <section>
+          {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : ColaborationsList ? (
-            <>
-              <ColabsTableBody hiid>
-                {ColaborationsList?.data.map((colab) => (
-                  <ColabAprovedRow
-                    colaborator={colab}
-                    key={colab.CollaboratorId}
-                  />
-                ))}
-              </ColabsTableBody>
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={Page}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                />
-              </div>
-
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={Page}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
-            </>
-          ) : (
-            <NoResults />
           )}
+          {!isLoading &&
+            (!ColaborationsList || ColaborationsList.count == 0) && (
+              <NoResults />
+            )}
+          {!isLoading && ColaborationsList && ColaborationsList.count > 0 && (
+            <ColabsTableBody hiid>
+              {ColaborationsList?.data.map((colab) => (
+                <ColabAprovedRow
+                  colaborator={colab}
+                  key={colab.CollaboratorId}
+                />
+              ))}
+            </ColabsTableBody>
+          )}
+          <DesktopPagination
+            page={Page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+          <MobilePagination
+            page={Page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
         </section>
       </main>
     </>

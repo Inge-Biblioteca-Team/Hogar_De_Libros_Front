@@ -1,7 +1,6 @@
 import { Label, Select, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import CustomPagination from "../../../components/CustomPagination";
 import OptDonMainCategories from "../Components/OptDonMainCategories";
 import { GetDonationList } from "../Service/SVDonations";
 import { DonationsList } from "../Types/DonationType";
@@ -9,8 +8,9 @@ import { DonationsCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItem
 import RowsHistoryDonations from "../Components/RowstHistoryDonations";
 import TableDonations from "../Components/TableDonations";
 import NoResults from "../../../components/NoResults";
-import { Pagination } from "flowbite-react";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
+import Loader from "../../../components/Loader";
 
 const ManageDonationsHistory = () => {
   const [Page, setCurrentPage] = useState<number>(() => {
@@ -36,17 +36,16 @@ const ManageDonationsHistory = () => {
 
   const MaxPage = Math.ceil((Donations?.count ?? 0) / Limit);
 
-    useEffect(() => {
-      onPageChange(1);
-    }, [Limit, category, date]);
-  
+  useEffect(() => {
+    onPageChange(1);
+  }, [Limit, category, date]);
 
   return (
     <>
-      <DonationsCrumbs text="Donaciones finalizadas" />
-      <main className="flex flex-col items-center justify-center w-full gap-5">
-        <section className="max-sm:w-full md:w-full md:pr-4 md:pl-4 max-sm:p-2 max-sm:flex-col flex w-4/5 gap-2">
-          <div>
+      <DonationsCrumbs text="Donaciones finalizadas" />{" "}
+      <main className=" px-3">
+        <section className=" max-sm:flex-col flex gap-3 mb-3">
+        <div>
             <Label value="Categoría de la donación" />
             <Select onChange={(event) => setCategory(event.target.value)}>
               <OptDonMainCategories />
@@ -60,45 +59,35 @@ const ManageDonationsHistory = () => {
             />
           </div>
         </section>
-        <section className=" max-sm:w-full md:w-full md:pr-4 md:pl-4 max-sm:p-2 w-4/5">
-          {isLoading ? (
+        <section>
+          {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : Donations ? (
-            <>
-              <TableDonations hidd>
-                {Donations?.data.map((donation) => (
-                  <RowsHistoryDonations
-                    donation={donation}
-                    key={donation.DonationID}
-                  />
-                ))}
-              </TableDonations>
-              <div className="block max-sm:hidden">
-                <CustomPagination
-                  page={Page}
-                  onPageChange={onPageChange}
-                  totalPages={MaxPage}
-                  setCurrentLimit={setCurrentLimit}
-                />
-              </div>
-
-              <div className="sm:hidden  flex justify-center ">
-                <Pagination
-                  layout="navigation"
-                  currentPage={Page}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
-            </>
-          ) : (
-            <NoResults />
           )}
+          {!isLoading && (!Donations || Donations.count == 0) && <NoResults />}
+          {!isLoading && Donations && Donations.count > 0 && (
+            <TableDonations hidd>
+              {Donations?.data.map((donation) => (
+                <RowsHistoryDonations
+                  donation={donation}
+                  key={donation.DonationID}
+                />
+              ))}
+            </TableDonations>
+          )}
+          <DesktopPagination
+            page={Page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+          <MobilePagination
+            page={Page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
         </section>
       </main>
     </>

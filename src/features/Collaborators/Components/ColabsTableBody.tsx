@@ -9,21 +9,24 @@ const ColabsTableBody = ({
   hiid?: boolean;
 }) => {
   return (
-    <Table hoverable className=" text-center max-sm:h-full h-[30rem] ">
-      <Table.Head className="dark:text-white">
-        <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:p-2">Fecha de colaboración</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:p-2">Nombre del colaborador</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell ">Teléfono</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 md:hidden max-sm:hidden lg:table-cell ">Correo</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden ">
+    <Table
+      hoverable
+      className="text-center min-h-[30rem] text-black dark:text-white"
+    >
+      <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
+        <Table.HeadCell className="">Fecha de colaboración</Table.HeadCell>
+        <Table.HeadCell className="">Nombre del colaborador</Table.HeadCell>
+        <Table.HeadCell className="max-sm:hidden">Teléfono</Table.HeadCell>
+        <Table.HeadCell className="max-lg:hidden">Correo</Table.HeadCell>
+        <Table.HeadCell className="max-lg:hidden">
           Categoría de colaboración
         </Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden ">
-          Subcategoría
+        <Table.HeadCell className="max-xl:hidden">Subcategoría</Table.HeadCell>
+        <Table.HeadCell className="max-md:hidden">
+          {!hiid ? "Estado" : ""}
         </Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-lg:hidden lg:table-cell"> {!hiid ? "Estado" : ""}</Table.HeadCell>
       </Table.Head>
-      <Table.Body className="dark:text-white dark:bg-[#2d2d2d]">{children}</Table.Body>
+      <Table.Body className="divide-y">{children}</Table.Body>
     </Table>
   );
 };

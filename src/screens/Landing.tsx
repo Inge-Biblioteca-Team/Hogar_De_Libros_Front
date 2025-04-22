@@ -57,15 +57,30 @@ const Landing = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+  const { ref: refAdvices, inView: inViewAdvices } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   return (
     <>
-      <main className="dark:bg-neutral-900 
+      <main
+        className="dark:bg-neutral-900 
       flex items-center gap-16 
-      justify-center flex-col mb-10 max-sm:gap-10 ">
+      justify-center flex-col mb-10 max-sm:gap-10 "
+      >
         <LandingHome />
         <MisionVision />
-        <ImportanNotices />
+        <motion.section
+          ref={refAdvices}
+          className="w-11/12 mt-10 space-y-4"
+          id="Activities"
+          initial="hidden"
+          animate={inViewAdvices ? "visible" : "hidden"}
+          variants={fadeInAnimation}
+        >
+          <ImportanNotices />
+        </motion.section>
         <motion.section
           ref={refBooks}
           className="w-11/12 mt-10"
@@ -174,7 +189,7 @@ const Landing = () => {
           {inViewFeedback && <Feedback />}
         </motion.section>
       </main>
-      <LandingFooter/>
+      <LandingFooter />
     </>
   );
 };

@@ -9,7 +9,9 @@ const MobilePopOverOptions = ({
   setOpen3,
   openTrigger,
   setopenTrigger,
+  setOpen4,
   text,
+  text2,
   status,
 }: OpenModals) => {
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -22,11 +24,17 @@ const MobilePopOverOptions = ({
           setopenTrigger?.(open);
         }}
         content={
-          <ButtonGroup className=" text-black">
+          <ButtonGroup className=" text-black flex-col">
             <Button color="alternative" onClick={() => setOpen1(true)}>
               <HiUserCircle className="me-2 h-4 w-4" />
               Ver
             </Button>
+            {setOpen4 && (
+              <Button color="alternative" onClick={() => setOpen4(true)}>
+                <HiUserCircle className="me-2 h-4 w-4" />
+               {text2}
+              </Button>
+            )}
             {status && (
               <>
                 <Button color="alternative" onClick={() => setOpen2(true)}>
@@ -42,7 +50,7 @@ const MobilePopOverOptions = ({
           </ButtonGroup>
         }
       >
-        <span>{text} </span>
+        <span className=" line-clamp-2">{text} </span>
       </Popover>
     </div>
   );
