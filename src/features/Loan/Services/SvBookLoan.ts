@@ -67,8 +67,8 @@ const GetDoneLoans = async (
       limit,
     };
 
-    if (StartDate && StartDate) params.StartDate = StartDate;
-    if (EndDate && StartDate) params.EndDate = EndDate;
+    if (StartDate) params.StartDate = StartDate;
+    if (EndDate) params.EndDate = EndDate;
     if (Cedula) params.cedula = Cedula;
     if (name) params.name = name;
     if (type) params.type = type
