@@ -58,14 +58,13 @@ const TBLCourses = ({ course }: { course: Courses }) => {
             setOpen1={setOpenV}
             setOpen2={setOpenE}
             setOpen3={setOpenD}
-            setOpen4={handleOpen}
-            text2="Matricula"
+            setOpen11={handleOpen}
             text={date}
             status={course.Status}
           />
         </Table.Cell>
         <Table.Cell className=" max-lg:hidden">{courseTime}</Table.Cell>
-        <Table.Cell className="">
+        <Table.Cell className=" max-sm:hidden">
           {course.availableQuota} / {course.capacity}
         </Table.Cell>
         <Table.Cell

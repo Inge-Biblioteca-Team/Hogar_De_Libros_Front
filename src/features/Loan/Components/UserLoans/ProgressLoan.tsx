@@ -15,7 +15,7 @@ const ProgressLoan = () => {
 
   const { data: Loan } = useQuery<LoanResponse, Error>(
     ["PLoans", cedula],
-    () => GetInProgressLoan(1,5,"","","",cedula),
+    () => GetInProgressLoan(1,5,"","",cedula),
   );
   
   return (

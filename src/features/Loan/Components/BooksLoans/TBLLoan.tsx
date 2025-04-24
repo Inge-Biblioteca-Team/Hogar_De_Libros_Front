@@ -22,7 +22,7 @@ const TBLLoan = ({
             Fecha de vencimiento
           </Table.HeadCell>
           <Table.HeadCell className="">Nombre del Solicitante</Table.HeadCell>
-          <Table.HeadCell className="">Título del libro</Table.HeadCell>
+          <Table.HeadCell className=" max-sm:hidden">Título del libro</Table.HeadCell>
           <Table.HeadCell className=" max-lg:hidden">
             Código de signatura
           </Table.HeadCell>

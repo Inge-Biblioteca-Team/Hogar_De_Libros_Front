@@ -1,4 +1,4 @@
-import { Button, Card, Timeline } from "flowbite-react";
+import { Button, Timeline } from "flowbite-react";
 import { NextCourses } from "../types/Courses";
 
 import { CiCalendarDate } from "react-icons/ci";
@@ -31,45 +31,46 @@ const CourseTimeItem = ({ course }: { course: NextCourses }) => {
 
   return (
     <>
-      <Timeline.Item className=" !w-72 min-w-72 max-sm:pb-2">
-        <Timeline.Point icon={CiCalendarDate} className="custom max-sm:pb-1" />
+      <Timeline.Item className="">
+        <Timeline.Point icon={CiCalendarDate} className="custom" />
         <Timeline.Content>
-          <Timeline.Time>{CourseDate}</Timeline.Time>
-          <Timeline.Title className=" line-clamp-1">
+          <Timeline.Time className=" text-xl max-md:text-lg">
+            {CourseDate}
+          </Timeline.Time>
+          <Timeline.Title className=" line-clamp-1 text-2xl max-md:text-xl">
             {course.courseType}
           </Timeline.Title>
           <Timeline.Body>
-            <Card className="p0 dark:bg-[#2d2d2d]">
-              <figure className=" w-full rounded-xl">
-                <img
-                  className=" w-full rounded-t-lg h-28"
-                  src={course.image}
-                  alt=""
-                />
-              </figure>
-              <div className=" flex flex-col ml-3 justify-between mr-3 h-80 ">
-                <span className="dark:text-white font-bold text-black">
-                  {course.courseName}{" "}
+            <div className="dark:bg-[#2d2d2d] bg-white dark:text-white rounded-lg p-2 grid grid-cols-3 text-black text-xl max-md:text-sm">
+              <img
+                src={course.image}
+                alt={course.courseName}
+                className="w-full h-96 max-md:h-full rounded-l"
+              />
+              <div className=" flex flex-col ml-6 gap-5 col-span-2 ">
+                <span className="font-extrabold">{course.courseName}</span>
+                <span className="">Comienzo: {fullDate.toUpperCase()}</span>
+                <span className="">Número de sesiones: {course.duration}</span>
+                <span className="">
+                  {course.location} {time}
                 </span>
-                <span className="dark:text-white">Comienzo: {fullDate.toUpperCase()}</span>
-                <span className="dark:text-white">Número de sesiones: {course.duration} </span>
-                <span className="dark:text-white">
-                  {course.location} {time}{" "}
+                <span className="">
+                  A Cargo de <br />
+                  Instructor: {course.instructor}
                 </span>
-                <span className="dark:text-white">
-                  Instructor: {course.instructor}{" "}
-                </span>
-                <span className="dark:text-white">
-                  Cupos: 
+                <span>
+                  Cupos:
                   {course.avaibleQuota}/{course.capacity}{" "}
                 </span>
-              </div>
-              <div className=" flex justify-center items-center mb-2">
-                <Button className="dark:bg-neutral-900 dark:hover:bg-neutral-950" color={"blue"} onClick={() => setopen(true)}>
+                <Button
+                  className="dark:bg-neutral-900 dark:hover:bg-neutral-950"
+                  color={"blue"}
+                  onClick={() => setopen(true)}
+                >
                   Matricular
                 </Button>
               </div>
-            </Card>
+            </div>
           </Timeline.Body>
         </Timeline.Content>
       </Timeline.Item>

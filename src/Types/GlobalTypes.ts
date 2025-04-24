@@ -47,11 +47,18 @@ export type weekItems = {
 };
 
 export interface OpenModals {
-  setOpen1: Dispatch<SetStateAction<boolean>>;
-  setOpen2: Dispatch<SetStateAction<boolean>>;
-  setOpen3: Dispatch<SetStateAction<boolean>>;
+  setOpen1?: Dispatch<SetStateAction<boolean>>;
+  setOpen2?: Dispatch<SetStateAction<boolean>>;
+  setOpen3?: Dispatch<SetStateAction<boolean>>;
   setOpen4?: Dispatch<SetStateAction<boolean>>;
-  text2?:string
+  setOpen5?: Dispatch<SetStateAction<boolean>>;
+  setOpen6?: Dispatch<SetStateAction<boolean>>;
+  setOpen7?: Dispatch<SetStateAction<boolean>>;
+  setOpen8?: Dispatch<SetStateAction<boolean>>;
+  setOpen9?: Dispatch<SetStateAction<boolean>>;
+  setOpen10?: Dispatch<SetStateAction<boolean>>;
+  setOpen11?: Dispatch<SetStateAction<boolean>>;
+  setOpen12?: Dispatch<SetStateAction<boolean>>;
   status?:boolean
   openTrigger?:boolean;
   setopenTrigger?:Dispatch<SetStateAction<boolean>>;

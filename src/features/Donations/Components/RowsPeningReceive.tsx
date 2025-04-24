@@ -3,10 +3,9 @@ import { useState } from "react";
 import { Donation } from "../Types/DonationType";
 import MDSeeDonation from "./Modals/MDSeeDonation";
 import MDConfirmRecepcion from "./Modals/MDConfirmRecepcion";
-import { GiReceiveMoney } from "react-icons/gi";
-import { HiViewfinderCircle } from "react-icons/hi2";
 import { formatToDMY } from "../../../components/FormatTempo";
 import MobilePopOverOptions from "../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../components/DesktopComponents/BTNAccions";
 
 const RowsPeningReceive = ({ donation }: { donation: Donation }) => {
   const [openV, setOpenV] = useState<boolean>(false);
@@ -32,12 +31,10 @@ const RowsPeningReceive = ({ donation }: { donation: Donation }) => {
             setopenTrigger={setPopoverVisible}
             openTrigger={popoverVisible}
             setOpen1={setOpenV}
-            setOpen2={setOpenV}
-            setOpen3={setOpenV}
-            setOpen4={setOpenC}
-            text2="Confirmar recepción"
+            setOpen9={setOpenC}
+            text={donation.UserPhone}
+            status
           />
-          {donation.UserPhone}
         </Table.Cell>
         <Table.Cell className=" max-lg:hidden">
           {donation.SubCategory}
@@ -47,22 +44,7 @@ const RowsPeningReceive = ({ donation }: { donation: Donation }) => {
         </Table.Cell>
         <Table.Cell className=" max-md:hidden">{donation.Status}</Table.Cell>
         <Table.Cell className=" max-md:hidden">
-          <div className=" flex gap-4 justify-center items-center">
-            <button
-              type="button"
-              title="Ver información"
-              onClick={() => setOpenV(true)}
-            >
-              <HiViewfinderCircle size={30} className=" hover:text-Body" />
-            </button>
-            <button
-              type="button"
-              title="Confirmar recepción"
-              onClick={() => setOpenC(true)}
-            >
-              <GiReceiveMoney size={30} className=" hover:text-green-600" />
-            </button>
-          </div>
+          <BTNAccions setOpen1={setOpenV} setOpen9={setOpenC}   status />
         </Table.Cell>
       </Table.Row>
       <MDSeeDonation open={openV} setOpen={setOpenV} donation={donation} />

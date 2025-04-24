@@ -94,7 +94,7 @@ const ManageCourses = () => {
                 </Table.HeadCell>
                 <Table.HeadCell>Fecha</Table.HeadCell>
                 <Table.HeadCell className=" max-lg:hidden">Hora</Table.HeadCell>
-                <Table.HeadCell>Cupos Disponibles</Table.HeadCell>
+                <Table.HeadCell className=" max-sm:hidden">Cupos Disponibles</Table.HeadCell>
                 <Table.HeadCell className=" max-md:hidden">
                   Matrícula
                 </Table.HeadCell>

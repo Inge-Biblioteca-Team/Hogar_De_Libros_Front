@@ -7,8 +7,8 @@ import LoanRenuve from "./LoanRenuve";
 import FinishLoanBook from "../Modals/FinishLoanBook";
 import DenyRequest from "./DenyRequest";
 import MDApproveLoan from "./MDApproveLoan";
-import BTNLoans from "../../../../components/DesktopComponents/BTNLoans";
-import BTNMobileLoan from "../../../../components/MobileComponents/BTNMobileLoan";
+import MobilePopOverOptions from "../../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../../components/DesktopComponents/BTNAccions";
 
 const TblRow = ({
   Loan,
@@ -49,20 +49,21 @@ const TblRow = ({
         <Table.Cell className="">{ReqDate}</Table.Cell>
         <Table.Cell className=" max-md:hidden">{ExDate}</Table.Cell>
         <Table.Cell className="">
-          <BTNMobileLoan
+          <MobilePopOverOptions
             setopenTrigger={setOpenT}
             openTrigger={openT}
             setOpen1={setOpen1}
-            setOpen2={setOpen2}
-            setOpen3={setOpen3}
-            setOpen4={setOpen4}
-            setOpen5={setOpen5}
-            status={Inprogress ? true : false}
+            setOpen4={setOpen2}
+            setOpen5={setOpen3}
+            setOpen10={setOpen4}
+            setOpen9={setOpen5}
+            status={Inprogress? true : false}
             text={Loan.userName}
           />
+        
         </Table.Cell>
         <Table.Cell>
-          <div className="line-clamp-1">
+          <div className="line-clamp-1 max-sm:hidden">
             {Loan.book?.Title || Loan.childrenBook?.Title}
           </div>
         </Table.Cell>
@@ -73,14 +74,15 @@ const TblRow = ({
           {Loan.aprovedBy}
         </Table.Cell>
         <Table.Cell className={`${NeedAccions ? `` : `hidden`} max-md:hidden`}>
-          <BTNLoans
-            setOpen1={setOpen1}
-            setOpen2={setOpen2}
-            setOpen3={setOpen3}
-            setOpen4={setOpen4}
-            setOpen5={setOpen5}
-            status={Inprogress ? true : false}
+          <BTNAccions
+             setOpen1={setOpen1}
+             setOpen4={setOpen2}
+             setOpen5={setOpen3}
+             setOpen9={setOpen5}
+             setOpen10={setOpen4}
+             status={Inprogress? true : false}
           />
+     
         </Table.Cell>
       </Table.Row>
       <>

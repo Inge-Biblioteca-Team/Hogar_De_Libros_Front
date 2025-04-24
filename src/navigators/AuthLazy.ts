@@ -1,5 +1,5 @@
-import { lazy } from "react";
+import { lazyWithRetry } from "../utils/lazyWithRetry";
 
-export const Login = lazy(() => import("../features/Users/Auth/Login"));
-export const Register = lazy(() => import("../features/Users/Auth/Register"));
-export const ChangePassword = lazy(() => import("../features/Users/Components/ChangePassword"));
+export const Login = lazyWithRetry(() => import("../features/Users/Auth/Login"));
+export const Register = lazyWithRetry(() => import("../features/Users/Auth/Register"));
+export const ChangePassword = lazyWithRetry(() => import("../features/Users/Components/ChangePassword"));

@@ -23,18 +23,15 @@ const ColabAprovedRow = ({ colaborator }: { colaborator: Colaborator }) => {
         <Table.Cell className="">
           {formatToDMY(colaborator.activityDate)}{" "}
         </Table.Cell>
-        <Table.Cell className="">
+        <Table.Cell>
           <MobilePopOverOptions
             openTrigger={popoverVisible}
             setopenTrigger={setPopoverVisible}
-            text2="Cancelar"
+            text={colaborator.UserFullName}
             setOpen1={setOpenV}
-            setOpen2={setOpenV}
-            setOpen3={setOpenV}
-            setOpen4={setOpenC}
-            status={false}
+            setOpen8={setOpenC}
+            status={true}
           />
-          {colaborator.UserFullName}
         </Table.Cell>
         <Table.Cell className="max-sm:hidden">
           {colaborator.UserPhone}
@@ -51,9 +48,7 @@ const ColabAprovedRow = ({ colaborator }: { colaborator: Colaborator }) => {
         <Table.Cell className="max-md:hidden">
           <BTNAccions
             setOpen1={setOpenV}
-            setOpen2={setOpenV}
-            setOpen3={setOpenV}
-            setOpen4={setOpenC}
+            setOpen8={setOpenC}
             status={false}
           />
         </Table.Cell>

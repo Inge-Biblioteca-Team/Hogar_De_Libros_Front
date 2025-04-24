@@ -4,8 +4,8 @@ import { Friend } from "../types/FriendType";
 import AproveFriend from "./Modals/AproveFriend";
 import DenyFriend from "./Modals/DenyFriend";
 import MDViewFriend from "./Modals/MDViewFriend";
-import BTNMobileLoan from "../../../components/MobileComponents/BTNMobileLoan";
-import BTNLoans from "../../../components/DesktopComponents/BTNLoans";
+import MobilePopOverOptions from "../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../components/DesktopComponents/BTNAccions";
 
 const FriendsRowsRequest = ({ friend }: { friend: Friend }) => {
   const [openV, setOpenV] = useState<boolean>(false);
@@ -19,19 +19,19 @@ const FriendsRowsRequest = ({ friend }: { friend: Friend }) => {
   return (
     <>
       <Table.Row
-        className="text-black dark:text-white"
+       className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
         onClick={handleRowClick}
       >
         <Table.Cell>{friend.UserFullName}</Table.Cell>
         <Table.Cell>
-          <BTNMobileLoan
-            openTrigger={popoverVisible}
-            setopenTrigger={setPopoverVisible}
-            setOpen1={setOpenV}
-            setOpen2={setOpenA}
-            setOpen3={setOpenD}
-            status={false}
-            text={friend.UserPhone}
+          <MobilePopOverOptions 
+               openTrigger={popoverVisible}
+               setopenTrigger={setPopoverVisible}
+               setOpen1={setOpenV}
+               setOpen4={setOpenA}
+               setOpen5={setOpenD}
+               status={false}
+               text={friend.UserPhone}
           />
         </Table.Cell>
         <Table.Cell className=" max-lg:hidden">{friend.UserCedula}</Table.Cell>
@@ -41,10 +41,10 @@ const FriendsRowsRequest = ({ friend }: { friend: Friend }) => {
         <Table.Cell className=" max-xl:hidden">{friend.SubCategory}</Table.Cell>
         <Table.Cell className=" max-xl:hidden">{friend.UserGender}</Table.Cell>
         <Table.Cell className=" max-md:hidden">
-          <BTNLoans
+          <BTNAccions 
             setOpen1={setOpenV}
-            setOpen2={setOpenA}
-            setOpen3={setOpenD}
+            setOpen4={setOpenA}
+            setOpen5={setOpenD}
             status={false}
           />
         </Table.Cell>

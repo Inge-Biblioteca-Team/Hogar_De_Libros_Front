@@ -35,7 +35,7 @@ const CourseInfo = ({
   const AgeMapping: { [key: string]: string} = {
     1: "Todo publico",
     3: "Niños 0-3 Años",
-    11: "Niños +3 Años",
+    11: "Niños +4 Años",
     24: "Jóvenes",
     59: "Adultos",
     60: "Adultos Mayores",

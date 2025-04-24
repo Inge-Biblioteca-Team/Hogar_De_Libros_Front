@@ -11,8 +11,7 @@ import { CiCalendarDate } from "react-icons/ci";
 import { FaReadme } from "react-icons/fa6";
 import ActivitieTimeItem from "../components/ActivitieTimeItem";
 import ProgramsOPT from "../../../components/ProgramsOPT";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
-import NoResults from "../../../components/NoResults";
+import Loader from "../../../components/Loader";
 
 const ProgramActivities = () => {
   const [month, setMonth] = useState<string>("");
@@ -55,9 +54,9 @@ const ProgramActivities = () => {
       <BreadCrumbsItems>
         <BreadLastItems text="Próximas actividades" />
       </BreadCrumbsItems>
-      <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
-        <div className=" flex gap-4 w-4/5 items-start ml-5 max-sm:w-11/12 max-sm:ml-0">
-          <Select
+      <main className=" w-full px-4">
+        <section className=" flex gap-4 max-md:flex-col">
+        <Select
             className=" max-sm:w-full"
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
@@ -76,42 +75,32 @@ const ProgramActivities = () => {
             <option value="">Programa</option>
             <ProgramsOPT />
           </Select>
-        </div>
-        <div
-          className=" w-4/5 overflow-x-scroll pt-7 px-8 custom-bar"
-          style={{ height: "35rem" }}
-        >
-          {isLoading ? (
+        </section>
+        <section>
+        {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : Activities ? (
-            <Timeline
-              className="custom-timeline border-blue-900 h-full "
-              horizontal
-            >
-              {Activities && Activities?.count > 0 ? (
-                Activities?.data.map((activitie) => (
-                  <ActivitieTimeItem
-                    activitie={activitie}
-                    key={activitie.activitieID}
-                  />
-                ))
-              ) : (
-                <strong className=" flex w-full items-center justify-center text-2xl">
-                  No hay actividades próximas
-                </strong>
-              )}
-            </Timeline>
-          ) : (
-            <NoResults />
           )}
-          <div className=" w-full flex items-center justify-center"></div>
-        </div>
-      </div>
+          {!isLoading && (!Activities || Activities.count == 0) && (
+            <strong className=" flex w-full items-center justify-center text-2xl">
+              No hay actividades próximas
+            </strong>
+          )}
+          {!isLoading && Activities && Activities.count > 0 && (
+            <div className=" p-5">
+            <Timeline className="custom-timeline border-blue-900 grid grid-cols-3 max-md:grid-cols-1 max-lg:grid-cols-2">
+              {Activities.data.map((activitie) => (
+                  <ActivitieTimeItem
+                  activitie={activitie}
+                  key={activitie.activitieID}
+                />
+              ))}
+            </Timeline>
+              </div>
+          )}
+        </section>
+      </main>
     </>
   );
 };

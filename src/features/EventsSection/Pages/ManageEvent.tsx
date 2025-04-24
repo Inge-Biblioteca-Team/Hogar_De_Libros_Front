@@ -77,7 +77,7 @@ const ManageEvents = () => {
                 </Table.HeadCell>
                 <Table.HeadCell>Fecha</Table.HeadCell>
                 <Table.HeadCell className=" max-md:hidden">Hora</Table.HeadCell>
-                <Table.HeadCell>Estado</Table.HeadCell>
+                <Table.HeadCell className=" max-sm:hidden">Estado</Table.HeadCell>
                 <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">

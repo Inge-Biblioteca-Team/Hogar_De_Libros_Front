@@ -7,10 +7,8 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import { Label, Select, TextInput } from "flowbite-react";
 import OptCategories from "../Components/OptsCategories";
 import ColectionList from "../Components/Views/ColectionList";
-import { Pagination } from "flowbite-react";
-import ListCard from "../Components/Views/ListCard";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 import NoResults from "../../../components/NoResults";
+import Loader from "../../../components/Loader";
 
 const AdvanceSearchColection = () => {
   const [page, setPage] = useState<number>(() => {
@@ -60,101 +58,115 @@ const AdvanceSearchColection = () => {
   return (
     <>
       <ColecctionCrumbs text="Búsqueda Avanzada" />
-
-      <section className=" lg:fixed left-3 lg:flex lg:flex-col gap-7 top-[22%] p-4 lg:p-0 w-full lg:w-96 ">
-        <span className=" text-center font-bold ">
-          Criterios de búsqueda avanzada
-        </span>
-        <div>
-          <Label value="Autor" />
-          <TextInput
-            placeholder="Ej. Ulate Olivar"
-            onChange={(event) => setSearchAuthor(event.target.value)}
-          />
-        </div>
-        <div>
-          <Label value="Título" />
-          <TextInput
-            placeholder="Ej. Aliento de barro y fuego"
-            onChange={(event) => setSearchTitle(event.target.value)}
-          />
-        </div>
-        <div>
-          <Label value="Código de signatura" />
-          <TextInput
-            placeholder="Ej. CR.M.100..."
-            onChange={(event) => setSearchSigna(event.target.value)}
-          />
-        </div>
-        <div>
-          <Label value="Código de ISBN" />
-          <TextInput
-            placeholder="Ej. 3497823409328"
-            onChange={(event) => setSearchISBN(event.target.value)}
-          />
-        </div>
-        <div>
-          <Label value="Editorial" />
-          <TextInput
-            placeholder="Ej. Club de Libros"
-            onChange={(event) => setSearchEditorial(event.target.value)}
-          />
-        </div>
-        <div>
-          <Label value="Categoría de estante" />
-          <Select onChange={(event) => setCategory(event.target.value)}>
-            <OptCategories />
-          </Select>
-        </div>
-        {catalog && catalog.count < 15 && (
-          <span> Existen {catalog.count} registros para su búsqueda </span>
-        )}
-        {catalog && catalog.count > 15 && (
-          <span> Por favor, complete al menos un criterio de búsqueda </span>
-        )}
-      </section>
-      <section
-        className="lg:absolute top-[20%] left-[28%] lg:right-40 h-full lg:h-[75vh] w-full lg:w-[120vh] overflow-y-scroll custom-bar px-4 py-10
-      "
-      >
-        {isLoading ? (
-          <div className=" w-full flex items-center justify-center">
-            <figure>
-              <img width={400} src={Loader} alt="...Cargando" />
-              <figcaption className=" text-center">...Cargando</figcaption>
-            </figure>
+      <main className=" w-full px-5 grid grid-cols-4 gap-5 max-lg:grid-cols-1">
+        <section className="col-span-1 w-full">
+          <span className=" text-center font-bold ">
+            Criterios de búsqueda avanzada
+          </span>
+          <div>
+            <Label value="Autor" />
+            <TextInput
+              placeholder="Ej. Ulate Olivar"
+              onChange={(event) => setSearchAuthor(event.target.value)}
+            />
           </div>
-        ) : catalog  && catalog.count > 0 ? (
-          <>
-            <div className="hidden lg:block">
-              <ColectionList inf={false}
+          <div>
+            <Label value="Título" />
+            <TextInput
+              placeholder="Ej. Aliento de barro y fuego"
+              onChange={(event) => setSearchTitle(event.target.value)}
+            />
+          </div>
+          <details className=" max-lg:block hidden">
+            <summary>Mas filtros</summary>
+            <div>
+              <Label value="Código de signatura" />
+              <TextInput
+                placeholder="Ej. CR.M.100..."
+                onChange={(event) => setSearchSigna(event.target.value)}
+              />
+            </div>
+            <div>
+              <Label value="Código de ISBN" />
+              <TextInput
+                placeholder="Ej. 3497823409328"
+                onChange={(event) => setSearchISBN(event.target.value)}
+              />
+            </div>
+            <div>
+              <Label value="Editorial" />
+              <TextInput
+                placeholder="Ej. Club de Libros"
+                onChange={(event) => setSearchEditorial(event.target.value)}
+              />
+            </div>
+            <div>
+              <Label value="Categoría de estante" />
+              <Select onChange={(event) => setCategory(event.target.value)}>
+                <OptCategories />
+              </Select>
+            </div>
+          </details>
+          <div className=" max-lg:hidden">
+            <div>
+              <Label value="Código de signatura" />
+              <TextInput
+                placeholder="Ej. CR.M.100..."
+                onChange={(event) => setSearchSigna(event.target.value)}
+              />
+            </div>
+            <div>
+              <Label value="Código de ISBN" />
+              <TextInput
+                placeholder="Ej. 3497823409328"
+                onChange={(event) => setSearchISBN(event.target.value)}
+              />
+            </div>
+            <div>
+              <Label value="Editorial" />
+              <TextInput
+                placeholder="Ej. Club de Libros"
+                onChange={(event) => setSearchEditorial(event.target.value)}
+              />
+            </div>
+            <div>
+              <Label value="Categoría de estante" />
+              <Select onChange={(event) => setCategory(event.target.value)}>
+                <OptCategories />
+              </Select>
+            </div>
+          </div>
+          {catalog && catalog.count < 15 && (
+            <span> Existen {catalog.count} registros para su búsqueda </span>
+          )}
+          {catalog && catalog.count > 15 && (
+            <span> Por favor, complete al menos un criterio de búsqueda para mayor presición </span>
+          )}
+        </section>
+        <section
+          className="h-[80vh] w-full overflow-y-scroll custom-bar col-span-3 px-8 max-lg:pr-9 max-lg:pl-0 max-lg:h-full
+        "
+        >
+          {!isLoading && catalog && catalog.count > 0 && (
+            <>
+              <ColectionList
+                inf={false}
                 colection={catalog}
                 onPageChange={onPageChange}
                 totalPages={MaxPage}
                 currentPage={page}
               />
-            </div>
+            </>
+          )}
 
-            <div className="block lg:hidden">
-              <div className="flex flex-col gap-3">
-                {catalog.data.map((book) => (
-                  <ListCard key={'BK' + book.BookCode} book={book} inf={false} />
-                ))}
-              </div>
-              <div className="flex justify-center">
-                <Pagination
-                  layout="navigation"
-                  currentPage={page}
-                  totalPages={MaxPage}
-                  onPageChange={onPageChange}
-                />
-              </div>
-            </div>
-          </>
-        ) : (
-          <NoResults />
-        )}
-      </section>
+          {isLoading && 
+           <div className=" w-full flex items-center justify-center">
+           <Loader />
+         </div>
+          }
+          {!isLoading && (!catalog || catalog.count == 0) && <NoResults />}
+        </section>
+      </main>
     </>
   );
 };
