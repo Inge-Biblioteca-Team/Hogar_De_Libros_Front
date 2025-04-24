@@ -11,8 +11,8 @@ import ColectionGrid from "../Components/Views/ColectionGrid";
 import ColectionList from "../Components/Views/ColectionList";
 import CustomUsersPagination from "../../../components/CustomUsersPagination";
 import UseDebounce from "../../../hooks/UseDebounce";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 import NoResults from "../../../components/NoResults";
+import Loader from "../../../components/Loader";
 
 const Colecction = () => {
   const [page, setPage] = useState<number>(() => {
@@ -44,9 +44,10 @@ const Colecction = () => {
   return (
     <>
       <ColecctionCrumbs text="Búsqueda por título" />
-      <main className=" flex flex-col  w-full justify-center items-center gap-3">
-        <section className="w-5/6 lg:w-4/5 lg:flex lg:justify-between">
-          <div className="flex flex-col gap-2 lg:flex-row">
+      <main className=" flex flex-col w-full justify-center items-center gap-3">
+        <section className="w-11/12 flex justify-between items-end 
+        max-md:flex-col max-md:items-stretch">
+          <div className="flex gap-2 max-md:flex-col">
             <Select onChange={(event) => setCategory(event.target.value)}>
               <OptCategories />
             </Select>
@@ -56,7 +57,7 @@ const Colecction = () => {
               rightIcon={LiaSearchengin}
             />
           </div>
-          <ButtonGroup className="flex justify-end lg:pt-0 pt-2 gap-2">
+          <ButtonGroup className="flex justify-end  pt-2 gap-1 ">
             <Button
               color={`${view === "List" ? "blue" : "gray"}`}
               title="Lista"
@@ -77,25 +78,25 @@ const Colecction = () => {
             </Button>
           </ButtonGroup>
         </section>
-        {isLoading ? (
-          <div className=" w-full flex items-center justify-center">
-            <figure>
-              <img width={400} src={Loader} alt="...Cargando" />
-              <figcaption className=" text-center">...Cargando</figcaption>
-            </figure>
-          </div>
-        ) : catalog?.count && catalog.count > 0 ? (
-          <section className="w-4/5">
-            {view == "List" && (
-              <ColectionList inf={false} colection={catalog} />
-            )}
-            {view == "Grid" && (
-              <ColectionGrid inf={false} colection={catalog} />
-            )}
-          </section>
-        ) : (
-          <NoResults />
-        )}
+        <section className=" w-11/12">
+          {isLoading && (
+            <div className=" w-full flex items-center justify-center">
+              <Loader />
+            </div>
+          )}
+          {!isLoading && catalog && catalog.count > 0 && (
+            <>
+              {view == "List" && (
+                <ColectionList inf={false} colection={catalog} />
+              )}
+              {view == "Grid" && (
+                <ColectionGrid inf={false} colection={catalog} />
+              )}
+            </>
+          )}
+          {!isLoading && (!catalog || catalog.count == 0) && <NoResults />}
+        </section>
+
         <CustomUsersPagination
           limit={limit}
           page={page}
