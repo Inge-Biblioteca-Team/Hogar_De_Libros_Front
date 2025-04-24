@@ -26,7 +26,7 @@ const HistoryRegist = ({ WSLoan }: { WSLoan: WSLoan }) => {
         onClick={() => setShow(true)}
       >
         <Table.Cell>{WSLoan.workStation}</Table.Cell>
-        <Table.Cell>{WSLoan.UserName} </Table.Cell>
+        <Table.Cell className=" max-sm:hidden"  >{WSLoan.UserName} </Table.Cell>
         <Table.Cell>{LoanDate} </Table.Cell>
         <Table.Cell className="max-md:hidden">
           {WSLoan.Status == "En curso" ? "Pendiente" : LoanEDate}{" "}

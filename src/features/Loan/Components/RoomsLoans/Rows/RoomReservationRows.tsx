@@ -2,11 +2,11 @@ import { Table } from "flowbite-react";
 import { formatToDMY } from "../../../../../components/FormatTempo";
 import { HourMapping, Reserve } from "../../../Types/RoomsReservations";
 import { useState } from "react";
-import BTNMobileLoan from "../../../../../components/MobileComponents/BTNMobileLoan";
 import MDRefuseReservation from "../Modals/MDRefuseReservation";
 import AproveReservation from "../Modals/AproveReservation";
 import MDSeeReservation from "../Modals/MDSeeReservation";
-import BTNLoans from "../../../../../components/DesktopComponents/BTNLoans";
+import MobilePopOverOptions from "../../../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../../../components/DesktopComponents/BTNAccions";
 
 const RoomReservationRows = ({ reservation }: { reservation: Reserve }) => {
   const reserveDay = formatToDMY(reservation.date);
@@ -31,12 +31,12 @@ const RoomReservationRows = ({ reservation }: { reservation: Reserve }) => {
         <Table.Cell>{reservation.name} </Table.Cell>
         <Table.Cell className="max-md:hidden">{requestDay} </Table.Cell>
         <Table.Cell>
-          <BTNMobileLoan
+          <MobilePopOverOptions
             openTrigger={popoverVisible}
             setopenTrigger={setPopoverVisible}
             setOpen1={setOpenV}
-            setOpen2={setOpenA}
-            setOpen3={setOpenD}
+            setOpen4={setOpenA}
+            setOpen5={setOpenD}
             text={reserveDay}
             status={false}
           />
@@ -46,10 +46,10 @@ const RoomReservationRows = ({ reservation }: { reservation: Reserve }) => {
         </Table.Cell>
         <Table.Cell className="max-md:hidden">{reservation.reason} </Table.Cell>
         <Table.Cell className="max-md:hidden">
-          <BTNLoans
+          <BTNAccions
             setOpen1={setOpenV}
-            setOpen2={setOpenA}
-            setOpen3={setOpenD}
+            setOpen4={setOpenA}
+            setOpen5={setOpenD}
             status={false}
           />
         </Table.Cell>

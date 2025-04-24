@@ -5,8 +5,8 @@ import MDAproveDonation from "./Modals/MDAproveDonation";
 import MDDenyDonation from "./Modals/MDDenyDonation";
 import MDSeeDonation from "./Modals/MDSeeDonation";
 import { formatToDMY } from "../../../components/FormatTempo";
-import BTNMobileLoan from "../../../components/MobileComponents/BTNMobileLoan";
-import BTNLoans from "../../../components/DesktopComponents/BTNLoans";
+import MobilePopOverOptions from "../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../components/DesktopComponents/BTNAccions";
 
 const RowsRequestDonation = ({ donation }: { donation: Donation }) => {
   const [openV, setOpenV] = useState<boolean>(false);
@@ -28,13 +28,13 @@ const RowsRequestDonation = ({ donation }: { donation: Donation }) => {
         </Table.Cell>
         <Table.Cell className="max-lg:hidden">{donation.UserEmail}</Table.Cell>
         <Table.Cell>
-          <BTNMobileLoan
+          <MobilePopOverOptions 
             status={false}
             setopenTrigger={setPopoverVisible}
             openTrigger={popoverVisible}
             setOpen1={setOpenV}
-            setOpen2={setOpenA}
-            setOpen3={setOpenD}
+            setOpen4={setOpenA}
+            setOpen5={setOpenD}
             text={donation.UserPhone}
           />
         </Table.Cell>
@@ -46,11 +46,11 @@ const RowsRequestDonation = ({ donation }: { donation: Donation }) => {
         </Table.Cell>
         <Table.Cell className=" max-md:hidden">{donation.Status}</Table.Cell>
         <Table.Cell className=" max-md:hidden">
-          <BTNLoans 
+          <BTNAccions
           status={false}
           setOpen1={setOpenV}
-          setOpen2={setOpenA}
-          setOpen3={setOpenD}
+          setOpen4={setOpenA}
+          setOpen5={setOpenD}
           />
         </Table.Cell>
       </Table.Row>

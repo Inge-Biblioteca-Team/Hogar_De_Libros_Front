@@ -41,7 +41,7 @@ const EventsRows = ({ event }: { event: Events }) => {
           />
         </Table.Cell>
         <Table.Cell className="max-md:hidden">{event.Time}</Table.Cell>
-        <Table.Cell>{event.Status}</Table.Cell>
+        <Table.Cell className=" max-sm:hidden">{event.Status}</Table.Cell>
         <Table.Cell className="max-md:hidden">
           <BTNAccions
             setOpen1={setSee}

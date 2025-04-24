@@ -5,8 +5,8 @@ import MDRefuse from "./Modals/MDRefuse";
 import MDViewInfo from "./Modals/MDViewInfo";
 import MDAproved from "./Modals/MDAproved";
 import { formatToDMY } from "../../../components/FormatTempo";
-import BTNMobileLoan from "../../../components/MobileComponents/BTNMobileLoan";
-import BTNLoans from "../../../components/DesktopComponents/BTNLoans";
+import MobilePopOverOptions from "../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../components/DesktopComponents/BTNAccions";
 
 const ColabsRows = ({ colaborator }: { colaborator: Colaborator }) => {
   const [openV, setOpenV] = useState<boolean>(false);
@@ -24,13 +24,13 @@ const ColabsRows = ({ colaborator }: { colaborator: Colaborator }) => {
       >
         <Table.Cell>{formatToDMY(colaborator.activityDate)} </Table.Cell>
         <Table.Cell>
-          <BTNMobileLoan
+          <MobilePopOverOptions
             status={false}
             setopenTrigger={setPopoverVisible}
             openTrigger={popoverVisible}
             setOpen1={setOpenV}
-            setOpen2={setOpenA}
-            setOpen3={setOpenD}
+            setOpen4={setOpenA}
+            setOpen5={setOpenD}
             text={colaborator.UserFullName}
           />
         </Table.Cell>
@@ -47,11 +47,11 @@ const ColabsRows = ({ colaborator }: { colaborator: Colaborator }) => {
           {colaborator.SubCategory}
         </Table.Cell>
         <Table.Cell className=" max-md:hidden">
-          <BTNLoans
+          <BTNAccions
             status={false}
             setOpen1={setOpenV}
-            setOpen2={setOpenA}
-            setOpen3={setOpenD}
+            setOpen4={setOpenA}
+            setOpen5={setOpenD}
           />
         </Table.Cell>
       </Table.Row>

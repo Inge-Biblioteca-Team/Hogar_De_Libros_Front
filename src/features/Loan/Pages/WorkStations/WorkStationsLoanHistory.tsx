@@ -84,7 +84,7 @@ const WorkStationsLoanHistory = () => {
                 <Table.HeadCell className="">
                   <span>Número de Máquina</span>
                 </Table.HeadCell>
-                <Table.HeadCell className="">Nombre del Usuario</Table.HeadCell>
+                <Table.HeadCell className=" max-sm:hidden" >Nombre del Usuario</Table.HeadCell>
                 <Table.HeadCell className="">Fecha de uso</Table.HeadCell>
                 <Table.HeadCell className=" max-md:hidden">Hora de Fin</Table.HeadCell>
               </Table.Head>
