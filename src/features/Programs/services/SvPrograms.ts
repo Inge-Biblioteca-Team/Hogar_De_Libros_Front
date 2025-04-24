@@ -106,7 +106,7 @@ const GetProgramsActivitiesList = async (
   try {
     const params: { [key: string]: string | number | undefined } = {};
 
-    if (programName) params.programsId = programName;
+    if (programName) params. programID = programName;
     if (month) params.month = month;
 
     const response = await api.get("programs/Program/Activities", { params });
