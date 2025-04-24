@@ -30,12 +30,12 @@ const EventTimeItem = ({ event }: { event: Event }) => {
       <Timeline.Item>
         <Timeline.Point icon={CiCalendarDate} className="custom max-sm:pb-1" />
         <Timeline.Content>
-          <Timeline.Time className=" text-zinc-600 text-xl">{CourseDate.toUpperCase()}</Timeline.Time>
-          <Timeline.Title className="line-clamp-1 text-2xl">
+          <Timeline.Time className=" text-zinc-600 text-xl max-md:text-base">{CourseDate.toUpperCase()}</Timeline.Time>
+          <Timeline.Title className="line-clamp-1 text-2xl max-md:text-xl">
             {event.title}
           </Timeline.Title>
           <Timeline.Body>
-            <div className="dark:bg-[#2d2d2d] bg-white rounded-lg p-2 grid grid-cols-3 text-black text-xl">
+            <div className="dark:bg-[#2d2d2d] bg-white rounded-lg p-2 grid grid-cols-3 text-black text-xl max-md:text-sm">
               <img
                 src={event.image}
                 alt={event.title}
