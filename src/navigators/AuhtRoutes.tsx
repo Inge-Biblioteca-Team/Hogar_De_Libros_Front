@@ -43,7 +43,7 @@ const AuthRoutes = [
           </div>
         }
       >
-        <EditUser />,
+        <EditUser />
       </Suspense>
     ),
   },

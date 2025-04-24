@@ -49,7 +49,7 @@ const BasicUsersRoutes = [
     path: "Cronograma_Eventos",
     element: (
       <RoleBasedRoute>
-        <EventsSchedule />,
+        <EventsSchedule />
       </RoleBasedRoute>
     ),
   },
@@ -57,7 +57,7 @@ const BasicUsersRoutes = [
     path: "Cronograma_Cursos",
     element: (
       <RoleBasedRoute>
-        <CoruseSchedule />,
+        <CoruseSchedule />
       </RoleBasedRoute>
     ),
   },
@@ -65,7 +65,7 @@ const BasicUsersRoutes = [
     path: "Cronograma_Actividades",
     element: (
       <RoleBasedRoute>
-        <ProgramActivities />,
+        <ProgramActivities />
       </RoleBasedRoute>
     ),
   },
@@ -73,7 +73,7 @@ const BasicUsersRoutes = [
     path: "Equipo_Disponible",
     element: (
       <RoleBasedRoute>
-        <AvailableComputers />,
+        <AvailableComputers />
       </RoleBasedRoute>
     ),
   },
@@ -81,13 +81,13 @@ const BasicUsersRoutes = [
     path: "Reserva_Salas",
     element: (
       <RoleBasedRoute roles={["institucional", "admin"]}>
-        <RoomsScheduleManage />,
+        <RoomsScheduleManage />
       </RoleBasedRoute>
     ),
   },
   {
     path: "AmigosYColaboradores",
-    element: <FriendInformation />,
+    element: <FriendInformation />
   },
 ];
 
