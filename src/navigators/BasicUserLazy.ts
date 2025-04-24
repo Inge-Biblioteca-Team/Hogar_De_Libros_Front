@@ -1,13 +1,13 @@
-import { lazy } from "react";
+import { lazyWithRetry } from "../utils/lazyWithRetry";
 
-export const BooksMiddleScreen = lazy(() => import("../features/Books/Screens/BooksMiddleScreen"));
-export const Colecction = lazy(() => import("../features/Books/Screens/Colecction"));
-export const AdvanceSearchColection = lazy(() => import("../features/Books/Screens/AdvanceSearchColection"));
-export const ChildrenColection = lazy(() => import("../features/ChildrenBooks/Screens/ChildrenColection"));
-export const CompletCatalog = lazy(() => import("../features/Books/Screens/CompletCatalog"));
-export const EventsSchedule = lazy(() => import("../features/EventsSection/Pages/EventsSchedule"));
-export const CoruseSchedule = lazy(() => import("../features/Courses/Pages/CoruseSchedule"));
-export const AvailableComputers = lazy(() => import("../features/Computers/screens/AvailableComputers"));
-export const RoomsScheduleManage = lazy(() => import("../features/Loan/Pages/Rooms/RoomsScheduleManage"));
-export const ProgramActivities = lazy(() => import("../features/Programs/screens/ProgramActivities"));
-export const FriendInformation = lazy(() => import("../features/Amiguitos/screens/FriendInformation"));
+export const BooksMiddleScreen = lazyWithRetry(() => import("../features/Books/Screens/BooksMiddleScreen"));
+export const Colecction = lazyWithRetry(() => import("../features/Books/Screens/Colecction"));
+export const AdvanceSearchColection = lazyWithRetry(() => import("../features/Books/Screens/AdvanceSearchColection"));
+export const ChildrenColection = lazyWithRetry(() => import("../features/ChildrenBooks/Screens/ChildrenColection"));
+export const CompletCatalog = lazyWithRetry(() => import("../features/Books/Screens/CompletCatalog"));
+export const EventsSchedule = lazyWithRetry(() => import("../features/EventsSection/Pages/EventsSchedule"));
+export const CoruseSchedule = lazyWithRetry(() => import("../features/Courses/Pages/CoruseSchedule"));
+export const AvailableComputers = lazyWithRetry(() => import("../features/Computers/screens/AvailableComputers"));
+export const RoomsScheduleManage = lazyWithRetry(() => import("../features/Loan/Pages/Rooms/RoomsScheduleManage"));
+export const ProgramActivities = lazyWithRetry(() => import("../features/Programs/screens/ProgramActivities"));
+export const FriendInformation = lazyWithRetry(() => import("../features/Amiguitos/screens/FriendInformation"));

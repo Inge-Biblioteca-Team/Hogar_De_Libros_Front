@@ -1,5 +1,5 @@
 import { format } from "@formkit/tempo";
-import { Timeline, Card } from "flowbite-react";
+import { Timeline } from "flowbite-react";
 import { Event } from "../types/Events";
 
 import { CiCalendarDate } from "react-icons/ci";
@@ -27,37 +27,38 @@ const EventTimeItem = ({ event }: { event: Event }) => {
 
   return (
     <>
-      <Timeline.Item className=" !w-72 min-w-72 max-sm:pb-2">
-        <Timeline.Point  icon={CiCalendarDate} className="custom max-sm:pb-1" />
+      <Timeline.Item>
+        <Timeline.Point icon={CiCalendarDate} className="custom max-sm:pb-1" />
         <Timeline.Content>
-          <Timeline.Time>{CourseDate}</Timeline.Time>
-          <Timeline.Title className=" h-14 line-clamp-1">
-            {event.eventType}
+          <Timeline.Time className=" text-zinc-600 text-xl">{CourseDate.toUpperCase()}</Timeline.Time>
+          <Timeline.Title className="line-clamp-1 text-2xl">
+            {event.title}
           </Timeline.Title>
           <Timeline.Body>
-            <Card className="dark:bg-[#2d2d2d] p0 hover:scale-105 transition-transform">
-              <figure className=" w-full rounded-xl">
-                <img
-                  className=" w-full rounded-t-lg h-40"
-                  src={event.image}
-                  alt=""
-                />
-              </figure>
-              <div className=" flex flex-col ml-6 gap-2 h-72 mr-6 ">
-                <span className="dark:text-white font-bold text-black">
-                  {event.title}{" "}
-                </span>
-                <span className="dark:text-white">{event.details} </span>
-                <span className="dark:text-white">Fecha: {fullDate.toUpperCase()}</span>
-                <span className="dark:text-white">
+            <div className="dark:bg-[#2d2d2d] bg-white rounded-lg p-2 grid grid-cols-3 text-black text-xl">
+              <img
+                src={event.image}
+                alt={event.title}
+                className="w-full h-96 max-md:h-full"
+              />
+              <div className=" flex flex-col ml-6 gap-5 col-span-2 ">
+                <span className="font-extrabold">{event.eventType} </span>
+                <span className="font-extrabold">{event.title} </span>
+                <span className="">{event.details} </span>
+                <span className="">Fecha: {fullDate.toUpperCase()}</span>
+                <span className="">
                   {event.location} {time}{" "}
                 </span>
-                <span className="dark:text-white">
+                <span className="">
                   A Cargo de <br />
                   {event.instructor}{" "}
                 </span>
+                <span className="">
+                  Recomendado para <br />
+                  {event.objetiveAge}{" "}
+                </span>
               </div>
-            </Card>
+            </div>
           </Timeline.Body>
         </Timeline.Content>
       </Timeline.Item>
