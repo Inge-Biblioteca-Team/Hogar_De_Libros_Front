@@ -54,7 +54,7 @@ const EventsSchedule = () => {
         <BreadLastItems text="Próximos eventos" />
       </BreadCrumbsItems>
       <main className=" w-full px-4">
-        <section className=" flex gap-4">
+        <section className=" flex gap-4 max-md:flex-col">
           <Select
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}

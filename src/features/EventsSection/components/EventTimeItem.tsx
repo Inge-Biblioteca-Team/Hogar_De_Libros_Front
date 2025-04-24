@@ -35,7 +35,7 @@ const EventTimeItem = ({ event }: { event: Event }) => {
             {event.title}
           </Timeline.Title>
           <Timeline.Body>
-            <div className="dark:bg-[#2d2d2d] bg-white rounded-lg p-2 grid grid-cols-3 text-black text-xl max-md:text-sm">
+            <div className="dark:bg-[#2d2d2d] dark:text-white bg-white rounded-lg p-2 grid grid-cols-3 text-black text-xl max-md:text-sm">
               <img
                 src={event.image}
                 alt={event.title}
