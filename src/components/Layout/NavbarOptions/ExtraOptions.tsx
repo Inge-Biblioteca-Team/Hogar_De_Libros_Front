@@ -86,6 +86,11 @@ const ExtraOptions = () => {
       </Sidebar.Collapse>
       <SidebarDriver/>
       <Sidebar.Item
+        onClick={() => handleNavigation("/HogarDeLibros/Perfil")}
+      >
+        Mi perfil
+      </Sidebar.Item>
+      <Sidebar.Item
         className="cursor-pointer bg-red-500 text-white text-center hidden max-sm:block"
         onClick={onLogOut}
       >
