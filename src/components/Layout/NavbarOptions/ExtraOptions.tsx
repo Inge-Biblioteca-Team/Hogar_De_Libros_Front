@@ -3,10 +3,11 @@ import { useContext } from "react";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
 import UseLogOut from "../../../features/Users/Hooks/UseLogOut";
 import SidebarDriver from "../../../utils/SidebarDriver";
+import ProfileOptions from "./ProfileOptions";
 
 const ExtraOptions = () => {
   const { handleNavigation } = useContext(SidebarContext);
- 
+
   const { mutate: logOut } = UseLogOut();
 
   const onLogOut = () => {
@@ -15,7 +16,8 @@ const ExtraOptions = () => {
 
   return (
     <>
-      <Sidebar.Item id={"MgUsuer"}
+      <Sidebar.Item
+        id={"MgUsuer"}
         onClick={() => handleNavigation("/HogarDeLibros/Gestion_Usuarios")}
       >
         Gestión de usuarios
@@ -84,19 +86,14 @@ const ExtraOptions = () => {
           Lista de amigos
         </Sidebar.Item>
       </Sidebar.Collapse>
-      <SidebarDriver/>
-      <Sidebar.Item
-        onClick={() => handleNavigation("/HogarDeLibros/Perfil")}
-      >
-        Mi perfil
-      </Sidebar.Item>
+      <ProfileOptions />
+      <SidebarDriver />
       <Sidebar.Item
         className="cursor-pointer bg-red-500 text-white text-center hidden max-sm:block"
         onClick={onLogOut}
       >
         Cerrar sesión
       </Sidebar.Item>
-      
     </>
   );
 };

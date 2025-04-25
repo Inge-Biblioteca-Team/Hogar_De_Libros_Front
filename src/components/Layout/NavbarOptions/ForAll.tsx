@@ -4,6 +4,7 @@ import UserContext from "../../../Context/UserContext/UserContext";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
 import UseLogOut from "../../../features/Users/Hooks/UseLogOut";
 import DriverForUsuer from "../../../utils/DriverForUsuer";
+import ProfileOptions from "./ProfileOptions";
 const ForAll = () => {
   const { currentUser } = useContext(UserContext);
   const { handleNavigation } = useContext(SidebarContext);
@@ -107,7 +108,8 @@ const ForAll = () => {
             Reserva de salas
           </Sidebar.Item>
         )}
-
+<ProfileOptions/>
+<DriverForUsuer />
         <Sidebar.Item
           id="logout"
           className="cursor-pointer bg-red-500 text-white text-center hidden max-sm:block"
@@ -115,7 +117,6 @@ const ForAll = () => {
         >
           Cerrar sesión
         </Sidebar.Item>
-        <DriverForUsuer />
       </Sidebar.ItemGroup>
     </>
   );
