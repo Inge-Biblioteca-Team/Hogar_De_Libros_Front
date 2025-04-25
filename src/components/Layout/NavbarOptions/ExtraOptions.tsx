@@ -2,6 +2,7 @@ import { Sidebar } from "flowbite-react";
 import { useContext } from "react";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
 import UseLogOut from "../../../features/Users/Hooks/UseLogOut";
+import SidebarDriver from "../../../utils/SidebarDriver";
 
 const ExtraOptions = () => {
   const { handleNavigation } = useContext(SidebarContext);
@@ -83,12 +84,14 @@ const ExtraOptions = () => {
           Lista de amigos
         </Sidebar.Item>
       </Sidebar.Collapse>
+      <SidebarDriver/>
       <Sidebar.Item
         className="cursor-pointer bg-red-500 text-white text-center hidden max-sm:block"
         onClick={onLogOut}
       >
         Cerrar sesión
       </Sidebar.Item>
+      
     </>
   );
 };
