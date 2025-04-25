@@ -8,7 +8,8 @@ const Feedback = () => {
           max-sm:text-xl">
         Recomendaciones sobre el servicio
       </h2>
-      <div className="flex flex-col lg:flex-row w-full gap-5 items-start lg:justify-between">
+      <div className="flex  justify-between  w-full gap-5 items-start 
+      max-md:flex-col">
         <InfoFeedback />
         <FeedbackRating />
       </div>
