@@ -6,7 +6,6 @@ import RecordsOptions from "./RecordsOptions";
 import ExtraOptions from "./ExtraOptions";
 import { useContext } from "react";
 import SidebarContext from "../../../Context/NavBarContext/NavbarContext";
-import SidebarDriver from "../../../utils/SidebarDriver";
 
 const ForAdmin = () => {
   const { handleNavigation } = useContext(SidebarContext);
@@ -42,9 +41,6 @@ const ForAdmin = () => {
       </Sidebar.ItemGroup>
       <Sidebar.ItemGroup>
         <ExtraOptions />
-      </Sidebar.ItemGroup>
-      <Sidebar.ItemGroup>
-        <SidebarDriver />
       </Sidebar.ItemGroup>
     </>
   );

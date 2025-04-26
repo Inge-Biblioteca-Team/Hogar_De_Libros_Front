@@ -13,6 +13,7 @@ import ModalFooters from "../../../../components/ModalFooters";
 import OPTEventType from "../OPTEventType";
 import { Events } from "../../types/Events";
 import UseEditEvent from "../../Hooks/UseEditEvent";
+import OptAges from "../OptAges";
 
 const EditEvent = ({
   edit,
@@ -161,12 +162,9 @@ const EditEvent = ({
 
               <div className="mb-4">
                 <Label htmlFor="TargetAudience" value="Público objetivo" />
-                <TextInput
-                  id="TargetAudience"
-                  type="text"
-                  {...register("TargetAudience")}
-                  placeholder="Público objetivo del evento"
-                />
+                <Select {...register("TargetAudience")} required>
+                  <OptAges />
+                </Select>
               </div>
             </fieldset>
             <fieldset>

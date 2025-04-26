@@ -168,11 +168,13 @@ const UserData = () => {
       <button
         title="Usuario"
         type="button"
-        className="dark:bg-neutral-900 bg-Bottoms text-white text-2xl rounded-lg px-2 hover:bg-Bottoms-dark hover:scale-105 w-12"
+        className="dark:bg-neutral-900
+          text-white text-2xl
+          rounded-lg px-2 hover:scale-105 w-12"
       >
         <FontAwesomeIcon
           icon={faUserAlt}
-          className="text-white max-sm:h-4 max-sm:w-4 sm:h-6 sm:w-6"
+          className="text-white"
         />
       </button>
     </Popover>

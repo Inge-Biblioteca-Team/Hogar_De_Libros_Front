@@ -11,7 +11,8 @@ import {
   HiClock,
 } from "react-icons/hi";
 import { OpenModals } from "../../Types/GlobalTypes";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import UserContext from "../../Context/UserContext/UserContext";
 
 interface MobilePopOverOptionsProps extends OpenModals {
   text: string;
@@ -37,7 +38,8 @@ const MobilePopOverOptions = ({
   status,
 }: MobilePopOverOptionsProps) => {
   const triggerRef = useRef<HTMLDivElement>(null);
-
+  const { currentUser } = useContext(UserContext);
+  const role = currentUser?.role;
   return (
     <div ref={triggerRef}>
       <Popover
@@ -52,79 +54,95 @@ const MobilePopOverOptions = ({
                 Ver
               </Button>
             )}
-            {status && (
+            {role == "admin" && (
               <>
-                {setOpen2 && (
-                  <Button color="alternative" onClick={() => setOpen2(true)}>
-                    <HiAdjustments className="me-2 h-4 w-4" />
-                    Editar
+                {status && (
+                  <>
+                    {setOpen2 && (
+                      <Button
+                        color="alternative"
+                        onClick={() => setOpen2(true)}
+                      >
+                        <HiAdjustments className="me-2 h-4 w-4" />
+                        Editar
+                      </Button>
+                    )}
+                    {setOpen3 && (
+                      <Button
+                        color="alternative"
+                        onClick={() => setOpen3(true)}
+                      >
+                        <HiCloudDownload className="me-2 h-4 w-4" />
+                        Deshabilitar
+                      </Button>
+                    )}
+                  </>
+                )}
+                {!status && (
+                  <>
+                    {setOpen4 && (
+                      <Button
+                        color="alternative"
+                        onClick={() => setOpen4(true)}
+                      >
+                        <HiCheck className="me-2 h-4 w-4" />
+                        Aceptar
+                      </Button>
+                    )}
+                    {setOpen5 && (
+                      <Button
+                        color="alternative"
+                        onClick={() => setOpen5(true)}
+                      >
+                        <HiX className="me-2 h-4 w-4" />
+                        Denegar
+                      </Button>
+                    )}
+                  </>
+                )}
+                {setOpen6 && (
+                  <Button color="alternative" onClick={() => setOpen6(true)}>
+                    <HiBan className="me-2 h-4 w-4" />
+                    Eliminar
                   </Button>
                 )}
-                {setOpen3 && (
-                  <Button color="alternative" onClick={() => setOpen3(true)}>
-                    <HiCloudDownload className="me-2 h-4 w-4" />
-                    Deshabilitar
+                {setOpen7 && (
+                  <Button color="alternative" onClick={() => setOpen7(true)}>
+                    <HiRefresh className="me-2 h-4 w-4" />
+                    Reactivar
                   </Button>
                 )}
-              </>
-            )}
-            {!status && (
-              <>
-                {setOpen4 && (
-                  <Button color="alternative" onClick={() => setOpen4(true)}>
-                    <HiCheck className="me-2 h-4 w-4" />
-                    Aceptar
-                  </Button>
-                )}
-                {setOpen5 && (
-                  <Button color="alternative" onClick={() => setOpen5(true)}>
+                {setOpen8 && (
+                  <Button color="alternative" onClick={() => setOpen8(true)}>
                     <HiX className="me-2 h-4 w-4" />
-                    Denegar
+                    Cancelar
+                  </Button>
+                )}
+                {setOpen9 && status && (
+                  <Button color="alternative" onClick={() => setOpen9(true)}>
+                    <HiTruck className="me-2 h-4 w-4" />
+                    Recibido
+                  </Button>
+                )}
+                {setOpen10 && status && (
+                  <Button color="alternative" onClick={() => setOpen10(true)}>
+                    <HiClock className="me-2 h-4 w-4" />
+                    Extender
+                  </Button>
+                )}
+                {setOpen12 && (
+                  <Button color="alternative" onClick={() => setOpen12(true)}>
+                    <HiClock className="me-2 h-4 w-4" />
+                    Finalizar
+                  </Button>
+                )}
+                {setOpen11 && (
+                  <Button color="alternative" onClick={() => setOpen11(true)}>
+                    <HiClock className="me-2 h-4 w-4" />
+                    Lista de matricula
                   </Button>
                 )}
               </>
-            )}
-            {setOpen6 && (
-              <Button color="alternative" onClick={() => setOpen6(true)}>
-                <HiBan className="me-2 h-4 w-4" />
-                Eliminar
-              </Button>
-            )}
-            {setOpen7 && (
-              <Button color="alternative" onClick={() => setOpen7(true)}>
-                <HiRefresh className="me-2 h-4 w-4" />
-                Reactivar
-              </Button>
-            )}
-            {setOpen8 && (
-              <Button color="alternative" onClick={() => setOpen8(true)}>
-                <HiX className="me-2 h-4 w-4" />
-                Cancelar
-              </Button>
-            )}
-            {setOpen9 && status &&  (
-              <Button color="alternative" onClick={() => setOpen9(true)}>
-                <HiTruck className="me-2 h-4 w-4" />
-                Recibido
-              </Button>
-            )}
-            {setOpen10 && status && (
-              <Button color="alternative" onClick={() => setOpen10(true)}>
-                <HiClock className="me-2 h-4 w-4" />
-                Extender
-              </Button>
-            )}
-            {setOpen12 && (
-              <Button color="alternative" onClick={() => setOpen12(true)}>
-                <HiClock className="me-2 h-4 w-4" />
-                Finalizar
-              </Button>
-            )}
-            {setOpen11 && (
-              <Button color="alternative" onClick={() => setOpen11(true)}>
-                <HiClock className="me-2 h-4 w-4" />
-                Lista de matricula
-              </Button>
             )}
           </ButtonGroup>
         }
