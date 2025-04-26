@@ -60,6 +60,33 @@ const CreateEvent = () => {
     format: "YYYY-MM-DD",
     tz: "America/Costa_Rica",
   });
+  const [selectedDate, setSelectedDate] = useState<string>("");
+  const [dateWarning, setDateWarning] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputDate = new Date(e.target.value);
+    let correctedDate = new Date(inputDate);
+
+    if (inputDate.getDay() === 5) {
+      correctedDate.setDate(inputDate.getDate() + 2);
+      setDateWarning("No se puede realizar la entrega de donativos sábados, se ajustó al lunes siguiente.");
+    } else if (inputDate.getDay() === 6) {
+      correctedDate.setDate(inputDate.getDate() + 1);
+      setDateWarning("No se puede realizar la entrega de donativos domingo. Se ha ajustado al lunes más cercano.");
+    } else {
+      setDateWarning("");
+    }
+    const correctedDateStirng = correctedDate.toISOString().split("T")[0];
+    setSelectedDate(correctedDateStirng);
+    setValue("Date", correctedDateStirng);
+
+    if(inputDate.getDay()===5 || inputDate.getDay()===6){
+      setTimeout(()=> {
+        setDateWarning("");
+      }, 3000)
+    }
+
+  }
 
   return (
     <>
@@ -147,8 +174,13 @@ const CreateEvent = () => {
                   type="date"
                   min={toDay}
                   required
+                  value={selectedDate}
                   {...register("Date")}
+                  onChange={handleChange}
                 />
+                {dateWarning && (
+                <p className="text-sm text-red-600 mt-1">{dateWarning}</p>
+                 )}
               </div>
               <div>
                 <Label htmlFor="Time" value="Hora" />

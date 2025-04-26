@@ -1,5 +1,5 @@
 import { FloatingLabel, Modal } from "flowbite-react";
-import { Dispatch, SetStateAction, useContext } from "react";
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import ModalFooters from "../../../../components/ModalFooters";
 import { formatToYMD } from "../../../../components/FormatTempo";
 import { addDay } from "@formkit/tempo";
@@ -20,13 +20,14 @@ const LendingForm = ({
   const onClose = () => {
     setOpen(false);
     reset();
+    setWarning("");
   };
 
   const minDate = formatToYMD(new Date());
 
   const { currentUser } = useContext(UserContext);
 
-  const { register, handleSubmit, watch, reset } = useForm<BookLeading>({
+  const { register, handleSubmit, watch, reset, setValue } = useForm<BookLeading>({
     defaultValues: {
       userCedula: currentUser?.cedula,
       userName: `${currentUser?.name} ${currentUser?.lastName}`,
@@ -52,6 +53,43 @@ const LendingForm = ({
       },
     });
   };
+  const [warning, setWarning]= useState("");
+
+  const correctDateIfWeekend = (fieldName: keyof BookLeading) => {
+    const dateValue = watch(fieldName);
+    if (!dateValue) return;
+
+    const inputDate = new Date(dateValue);
+    let correctedDate = new Date(inputDate);
+
+    if (inputDate.getDay() === 5) {
+      correctedDate.setDate(inputDate.getDate() + 2);
+      showWarning("No se permiten fechas sábado o domingo. Fecha ajustada al lunes.");
+    } else if (inputDate.getDay() === 6) {
+      correctedDate.setDate(inputDate.getDate() + 1);
+      showWarning("No se permiten fechas sábado o domingo. Fecha ajustada al lunes.");
+    }
+
+    const correctedDateString = correctedDate.toISOString().split("T")[0];
+    if (correctedDateString !== dateValue) {
+      setValue(fieldName, correctedDateString);
+    }
+  };
+
+  const showWarning = (message: string) => {
+    setWarning(message);
+    setTimeout(() => {
+      setWarning("");
+    }, 3000); 
+  };
+  
+  useEffect(() => {
+    correctDateIfWeekend("BookPickUpDate");
+  }, [watch("BookPickUpDate")]);
+
+  useEffect(() => {
+    correctDateIfWeekend("LoanExpirationDate");
+  }, [watch("LoanExpirationDate")]);
 
   return (
     <Modal  show={open} onClose={onClose}>
@@ -163,6 +201,11 @@ const LendingForm = ({
               />
             </div>
           </fieldset>
+          {warning && (
+            <div className="text-red-500 text-sm font-medium animate-pulse mt-2">
+              {warning}
+            </div>
+          )}
         </Modal.Body>
         <ModalFooters onClose={onClose}  isLoading={isLoading}/>
       </form>
