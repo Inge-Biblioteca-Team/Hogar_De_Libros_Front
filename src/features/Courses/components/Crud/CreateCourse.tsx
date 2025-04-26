@@ -99,11 +99,9 @@ const CreateCourse = () => {
     setSelectedEndDate(correctedDate.toISOString().split("T")[0]);
     setValue("endDate", correctedDate);
 
-    if (inputDate.getDay() === 6 || inputDate.getDay() === 0) {
-      setTimeout(() => {
-        setDateWarningEnd("");
-      }, 3000);
-    }
+    setTimeout(() => {
+      setDateWarningEnd("");
+    }, 2000);
   };
 
   return (
