@@ -5,6 +5,7 @@ import { format } from "@formkit/tempo";
 import DocumentForLoan from "../../Utilities/DocumentForLoan";
 import { pdf } from "@react-pdf/renderer";
 import { saveAs } from "file-saver";
+import toast from "react-hot-toast";
 
 const SeeLoanInfo = ({
   see,
@@ -34,6 +35,7 @@ const SeeLoanInfo = ({
       setIsLoading(true);
       const blob = await pdf(<DocumentForLoan loanInfo={data} />).toBlob();
       saveAs(blob, `boleta#${data.BookLoanId}.pdf`);
+      toast.success('PDF generado exitosamente')
     } catch (error) {
       console.error("Error al generar PDF:", error);
     } finally {
@@ -41,9 +43,6 @@ const SeeLoanInfo = ({
     }
   };
 
-  const close = () => {
-    setSee(false)
-  }
 
   return (
     <Modal dismissible show={see} onClose={close}>

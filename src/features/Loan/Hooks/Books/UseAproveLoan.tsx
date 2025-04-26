@@ -10,7 +10,7 @@ const UseAproveLoan = () => {
     mutationFn: (data: finishLoan) =>
       toast.promise(AproveRequest(data), {
         loading: "Espere por favor...",
-        success: <span>Éxito, se aprobó el préstamo correctamente:</span>,
+        success: <span>Éxito, se aprobó el préstamo correctamente.</span>,
         error: (error: ApiError) => (
           <span>Error al aprobar el préstamo: {error.message}</span>
         ),

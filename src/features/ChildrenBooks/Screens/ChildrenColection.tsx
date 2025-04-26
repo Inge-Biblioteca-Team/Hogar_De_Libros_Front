@@ -11,8 +11,8 @@ import { BsGrid3X3GapFill, BsListUl } from "react-icons/bs";
 import { LiaSearchengin } from "react-icons/lia";
 import { Catalog } from "../../Books/Types/BooksTypes";
 import OptsCateogryChildren from "../Components/OptsCateogryChildren";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 import NoResults from "../../../components/NoResults";
+import Loader from "../../../components/Loader";
 
 const ChildrenColection = () => {
   const [page, setPage] = useState<number>(() => {
@@ -32,7 +32,7 @@ const ChildrenColection = () => {
 
   const { data: catalog, isLoading } = useQuery<Catalog, Error>(
     ["Children-catalog", page, limit, sTitle, category],
-    () => getColection(page, limit, sTitle, "", "", "", "", category),
+    () => getColection(page, limit, sTitle, "", "", "1", "", category, "1"),
     {
       staleTime: 5000,
     }
