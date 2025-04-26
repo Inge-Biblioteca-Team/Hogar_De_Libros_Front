@@ -88,7 +88,7 @@ const AdminRoutes = [
   {
     path: "Avisos",
     element: (
-      <RoleBasedRoute roles={["admin"]}>
+      <RoleBasedRoute roles={["admin","asistente"]}>
         <AdviceManage />
       </RoleBasedRoute>
     ),
@@ -148,7 +148,7 @@ const AdminRoutes = [
   {
     path: "Gestion_Usuarios",
     element: (
-      <RoleBasedRoute roles={["admin"]}>
+      <RoleBasedRoute roles={["admin","asistente"]}>
         <ManageUsers />
       </RoleBasedRoute>
     ),
@@ -268,7 +268,7 @@ const AdminRoutes = [
   {
     path: "Mensajeria",
     element: (
-      <RoleBasedRoute roles={["admin"]}>
+      <RoleBasedRoute roles={["admin","asistente"]}>
         <Inbox />
       </RoleBasedRoute>
     ),
