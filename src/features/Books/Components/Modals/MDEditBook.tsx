@@ -6,7 +6,7 @@ import { Book } from "../../Types/BooksTypes";
 import OpsCoditions from "../../../../components/OptsConditions";
 import ModalImageLoader from "./ModalImageLoader";
 import UseEditBook from "../../Hooks/UseEditBook";
-import OptCategories from "../OptsCategories";
+import CategoriOPT from "../CategoriOPT";
 
 const MDEditChildrenBook = ({
   open,
@@ -173,7 +173,7 @@ const MDEditChildrenBook = ({
                       {...register("ShelfCategory")}
                       required
                     >
-                      <OptCategories/>
+                      <CategoriOPT/>
                     </Select>
                 </div>
                 <div className=" ">
