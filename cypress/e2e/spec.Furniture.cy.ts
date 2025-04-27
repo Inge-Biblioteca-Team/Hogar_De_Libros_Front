@@ -1,22 +1,3 @@
-/// <reference types="cypress" />
-
-function goToLastPage(itemIdentifier: string) {
-  cy.get("body").then(($body) => {
-    const found = Array.from($body.find("table tbody tr")).some((tr) =>
-      (tr as HTMLElement).innerText.includes(itemIdentifier)
-    );
-    if (found) return;
-    cy.contains("Siguiente")
-      .filter(":visible")
-      .then(($btn) => {
-        if (!$btn.prop("disabled")) {
-          cy.wrap($btn).click();
-          goToLastPage(itemIdentifier);
-        }
-      });
-  });
-}
-
 describe("Mobiliarios - Flujo Completo", () => {
   const newInsert = {
     licenseNumber: "12345678910",
@@ -37,6 +18,23 @@ describe("Mobiliarios - Flujo Completo", () => {
 
   const email = "naza18@gmail.com";
   const pass = "Naza1804";
+
+  function goToLastPage(itemIdentifier: string) {
+    cy.get("body").then(($body) => {
+      const found = Array.from($body.find("table tbody tr")).some((tr) =>
+        (tr as HTMLElement).innerText.includes(itemIdentifier)
+      );
+      if (found) return;
+      cy.contains("Siguiente")
+        .filter(":visible")
+        .then(($btn) => {
+          if (!$btn.prop("disabled")) {
+            cy.wrap($btn).click();
+            goToLastPage(itemIdentifier);
+          }
+        });
+    });
+  }
 
   beforeEach(() => {
     cy.session("artist-session", () => {
