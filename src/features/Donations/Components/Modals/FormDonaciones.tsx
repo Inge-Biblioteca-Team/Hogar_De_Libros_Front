@@ -17,10 +17,12 @@ import { PiKeyReturn } from "react-icons/pi";
 
 const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
   const { reset, register, handleSubmit, setValue, watch, formState: { errors }, trigger } =
-    useForm<NewDonation>({mode: "onChange",});
+    useForm<NewDonation>({ mode: "onChange", });
 
   const cedula = UseDebounce(watch("UserCedula"), 1000);
   const [idType, setIdType] = useState("");
+  const [selectedDate, setSelectedDate] = useState<string>("");
+  const [dateWarning, setDateWarning] = useState("");
 
   const { data: User } = useQuery<User>(
     ["userFill", cedula],
@@ -74,6 +76,30 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
     });
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputDate = new Date(e.target.value);
+    let correctedDate = new Date(inputDate);
+
+    if (inputDate.getDay() === 5) {
+      correctedDate.setDate(inputDate.getDate() + 2);
+      setDateWarning("No se puede realizar la entrega de donativos sábados, se ajustó al lunes siguiente.");
+    } else if (inputDate.getDay() === 6) {
+      correctedDate.setDate(inputDate.getDate() + 1);
+      setDateWarning("No se puede realizar la entrega de donativos domingo. Se ha ajustado al lunes más cercano.");
+    } else {
+      setDateWarning("");
+    }
+    const correctedDateStirng = correctedDate.toISOString().split("T")[0];
+    setSelectedDate(correctedDateStirng);
+    setValue("DateRecolatedDonation", correctedDate);
+
+    if(inputDate.getDay()===5 || inputDate.getDay()===6){
+      setTimeout(()=> {
+        setDateWarning("");
+      }, 3000)
+    }
+
+  }
   const minMax = formatToYMD(new Date());
 
   return (
@@ -204,11 +230,16 @@ const FormDonaciones = ({ open, setOpen }: ModalOpen) => {
             <div>
               <Label value="Fecha de entrega del donativo" />
               <TextInput
-                {...register("DateRecolatedDonation")}
                 type="date"
                 required
                 min={minMax}
+                value={selectedDate}
+                {...register("DateRecolatedDonation", { required: true })}
+                onChange={handleChange}
               />
+              {dateWarning && (
+                <p className="text-sm text-red-600 mt-1">{dateWarning}</p>
+              )}
             </div>
             <div className="flex flex-col custom-file-input">
               <label

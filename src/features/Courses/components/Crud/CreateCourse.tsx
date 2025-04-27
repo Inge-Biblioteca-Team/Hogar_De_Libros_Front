@@ -25,7 +25,7 @@ const CreateCourse = () => {
         setIsModalOpen(false);
         reset();
       },
-      onError: () => {},
+      onError: () => { },
     });
   };
 
@@ -51,13 +51,65 @@ const CreateCourse = () => {
   const handleClose = () => {
     setOpenImage(false);
   };
+  const [dateWarningStart, setDateWarningStart] = useState<string>("");
+  const [dateWarningEnd, setDateWarningEnd] = useState<string>("");
+  const [selectedStartDate, setSelectedStartDate] = useState<string>("");
+  const [selectedEndDate, setSelectedEndDate] = useState<string>("");
+
+  // Función para manejar el cambio de fecha de inicio
+  const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputDate = new Date(e.target.value);
+    let correctedDate = new Date(inputDate);
+
+    if (inputDate.getDay() === 5) {
+      correctedDate.setDate(inputDate.getDate() + 2);
+      setDateWarningStart("No se puede seleccionar un sábado, se ajustó al lunes siguiente.");
+    } else if (inputDate.getDay() === 6) {
+      correctedDate.setDate(inputDate.getDate() + 1);
+      setDateWarningStart("No se puede seleccionar un domingo, se ajustó al lunes siguiente.");
+    } else {
+      setDateWarningStart("");
+    }
+
+    setSelectedStartDate(correctedDate.toISOString().split("T")[0]);
+    setValue("date", correctedDate);
+
+    if (inputDate.getDay() === 6 || inputDate.getDay() === 0) {
+      setTimeout(() => {
+        setDateWarningStart("");
+      }, 3000);
+    }
+  };
+
+  // Función para manejar el cambio de fecha de fin
+  const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputDate = new Date(e.target.value);
+    let correctedDate = new Date(inputDate);
+
+    if (inputDate.getDay() === 5) {
+      correctedDate.setDate(inputDate.getDate() + 2);
+      setDateWarningEnd("No se puede seleccionar un sábado, se ajustó al lunes siguiente.");
+    } else if (inputDate.getDay() === 6) {
+      correctedDate.setDate(inputDate.getDate() + 1);
+      setDateWarningEnd("No se puede seleccionar un domingo, se ajustó al lunes siguiente.");
+    } else {
+      setDateWarningEnd("");
+    }
+
+    setSelectedEndDate(correctedDate.toISOString().split("T")[0]);
+    setValue("endDate", correctedDate);
+
+    setTimeout(() => {
+      setDateWarningEnd("");
+    }, 2000);
+  };
 
   return (
     <>
       <Button className="dark:bg-[#2d2d2d] dark:hover:bg-neutral-800 max-sm:w-full" onClick={() => setIsModalOpen(true)} color="blue">
         Añadir curso
       </Button>
-      <Modal  show={isModalOpen} onClose={onClose} size={"5xl"}>
+      <Modal show={isModalOpen} onClose={onClose} size={"5xl"}>
         <Modal.Header className="dark:bg-neutral-900">Crear nuevo curso</Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body className="dark:bg-[#2d2d2d] bg-white grid max-sm:grid-cols-1 grid-cols-3 gap-3">
@@ -149,9 +201,14 @@ const CreateCourse = () => {
                   <TextInput
                     type="date"
                     id="startDate"
+                    value={selectedStartDate}
                     {...register("date")}
                     min={min}
+                    onChange={handleStartDateChange}
                   />
+                  {dateWarningStart && (
+                    <p className="text-sm text-red-600 mt-1">{dateWarningStart}</p>
+                  )}
                 </div>
                 <div>
                   <Label htmlFor="courseTime" value="Hora de inicio" />
@@ -174,9 +231,14 @@ const CreateCourse = () => {
                   <Label htmlFor="startDate" value="Fecha de fin" />
                   <TextInput
                     type="date"
+                    value={selectedEndDate}
                     {...register("endDate")}
                     min={minfinaly}
+                    onChange={handleEndDateChange}
                   />
+                  {dateWarningEnd && (
+                    <p className="text-sm text-red-600 mt-1">{dateWarningEnd}</p>
+                  )}
                 </div>
                 <span>
                   <Label htmlFor="duration" value="Duración del curso" />
@@ -207,7 +269,7 @@ const CreateCourse = () => {
               </fieldset>
             </div>
           </Modal.Body>
-          <ModalFooters onClose={onClose} isLoading={isLoading}/>
+          <ModalFooters onClose={onClose} isLoading={isLoading} />
         </form>
       </Modal>
       <ModalAddNewImage
