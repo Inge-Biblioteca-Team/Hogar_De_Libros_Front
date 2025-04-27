@@ -8,7 +8,6 @@ const SearchCalendar = ({
 }: {
   setSearchDate: Dispatch<SetStateAction<string>>;
 }) => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
   const calendarRef = useRef<HTMLDivElement>(null);
   const [datepickerKey, setDatepickerKey] = useState(0);
@@ -28,7 +27,6 @@ const SearchCalendar = ({
       if (day === 0 || day === 6) {
         const nextMonday = getNextMonday(date);
 
-        setSelectedDate(nextMonday);
         setSearchDate(formatToYMD(nextMonday));
         setIsPopoverVisible(true);
         setDatepickerKey(prev => prev + 1);
@@ -37,7 +35,6 @@ const SearchCalendar = ({
         return;
       }
 
-      setSelectedDate(date); 
       const searchDate = formatToYMD(date);
       setSearchDate(searchDate);
       setIsPopoverVisible(false);
