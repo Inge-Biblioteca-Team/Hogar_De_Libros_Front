@@ -2,7 +2,7 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   e2e: {
-    baseUrl: "http://localhost:5173",
+    baseUrl: "https://hogar-de-libros-front-zer0.vercel.app",
     setupNodeEvents() {},
   },
 
