@@ -115,10 +115,10 @@ const Register = () => {
               <fieldset className=" grid grid-cols-2 gap-3">
                 <div>
                   <Label htmlFor="IDNumber"
-                    value={idType === "number" ? "Número de cédula" : "Número de pasaporte"}
+                   value={'Identificación'}
                   />{" "}
                   {idType == "" ? (
-                    <Select onChange={(event) => SetIdType(event.target.value)}>
+                    <Select id="IDType" onChange={(event) => SetIdType(event.target.value)}>
                       <option value="">Seleccione el tipo de identificacion</option>
                       <option value="number">Cedula nacional</option>
                       <option value="text">Pasaporte u otro</option>

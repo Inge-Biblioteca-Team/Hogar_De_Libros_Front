@@ -4,7 +4,7 @@ import { Button } from "flowbite-react";
 import { MdOutlineQuestionMark } from "react-icons/md";
 
 const Driver = () => {
-  function startGuideShow() {
+  function startGuide() {
     driverObj.drive();
   }
 
@@ -97,7 +97,7 @@ const Driver = () => {
   return (
     <>
       <Button
-        onClick={startGuideShow}
+        onClick={startGuide}
         id="StartTour"
         color="light"
         outline

@@ -65,7 +65,7 @@ const EditUser = () => {
         </div>
       ) : (
         <div className=" w-full flex items-center justify-center">
-          <div className=" w-4/5 flex flex-col gap-6 justify-center ">
+          <div className=" w-11/12 flex flex-col gap-6 justify-center ">
             <fieldset>
               <legend className=" font-bold text-2xl">
                 Información general

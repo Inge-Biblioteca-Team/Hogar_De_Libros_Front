@@ -12,7 +12,7 @@ import { ApiError } from "../../../../Types/ApiTypes";
     mutationFn: (data: finishLoan) =>
       toast.promise(FinalizeLoan(data), {
         loading: "Espere por favor...",
-        success: <span>Éxito, préstamo finalizado con éxito.:</span>,
+        success: <span>Éxito, préstamo finalizado con éxito.</span>,
         error: (error: ApiError) => (
           <span>Error al finalizar el préstamo: {error.message}</span>
         ),

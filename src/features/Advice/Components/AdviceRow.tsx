@@ -22,7 +22,7 @@ const AdviceRow = ({ advice }: { advice: Advice }) => {
   return (
     <>
       <Table.Row
-        className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
+        className="dark:border-zinc-700 text-black dark:text-white dark:bg-[#2d2d2d]"
         onClick={handleRowClick}
       >
         <Table.Cell className=" max-lg:hidden">{advice.id_Advice} </Table.Cell>

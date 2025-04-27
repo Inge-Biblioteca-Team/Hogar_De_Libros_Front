@@ -27,11 +27,11 @@ const AdvanceSearchColection = () => {
   const [searchISBN, setSearchISBN] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [SearchEditorial, setSearchEditorial] = useState<string>("");
-  const title = UseDebounce(searchTitle, 3000);
-  const author = UseDebounce(searchAuthor, 3000);
-  const signa = UseDebounce(searchSigna, 3000);
-  const ISBN = UseDebounce(searchISBN, 3000);
-  const Editorial = UseDebounce(SearchEditorial, 3000);
+  const title = UseDebounce(searchTitle, 300);
+  const author = UseDebounce(searchAuthor, 300);
+  const signa = UseDebounce(searchSigna, 300);
+  const ISBN = UseDebounce(searchISBN, 300);
+  const Editorial = UseDebounce(SearchEditorial, 300);
 
   const { data: catalog, isLoading } = useQuery<Catalog, Error>(
     ["SearchColection", page, title, author, signa, category, ISBN],
@@ -49,7 +49,7 @@ const AdvanceSearchColection = () => {
         Editorial
       ),
     {
-      staleTime: 5000,
+      staleTime: 500,
     }
   );
 
