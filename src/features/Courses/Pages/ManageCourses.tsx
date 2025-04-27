@@ -8,10 +8,10 @@ import UseDebounce from "../../../hooks/UseDebounce";
 import { BsPersonSquare } from "react-icons/bs";
 import CreateCourse from "../components/Crud/CreateCourse";
 import { ServicesCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems";
-import CustomPagination from "../../../components/CustomPagination";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
+import Loader from "../../../components/Loader";
 import NoResults from "../../../components/NoResults";
-import { Pagination } from "flowbite-react";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 
 const ManageCourses = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -50,9 +50,9 @@ const ManageCourses = () => {
   return (
     <>
       <ServicesCrumbs text="Cursos" />
-      <main className="w-full flex items-center justify-center flex-col gap-4">
-        <section className=" w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:p-2 max-sm:gap-4 max-sm:place-items-center max-sm:flex-col flex justify-between items-end">
-          <div className=" flex max-sm:w-full max-sm:flex-col gap-2">
+      <main className=" px-3 w-full">
+        <section className=" flex justify-between items-end  max-md:flex-col max-md:items-stretch gap-y-3 mb-3">
+          <div className=" flex gap-x-3 max-md:flex-col">
             <div>
               <Label className=" text-lg">Nombre</Label>
               <TextInput
@@ -73,68 +73,55 @@ const ManageCourses = () => {
           </div>
           <CreateCourse />
         </section>
-        <section className="w-4/5 md:w-full md:pr-4 md:pl-4 max-sm:w-full max-sm:p-2">
-          {isLoading ? (
+        <section>
+          {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : Courses && Courses.data.length > 0 ? (
-            <>
-              <Table hoverable className=" text-center">
-                <Table.Head className="dark:text-white h-20 text-sm">
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6">
-                    Nombre
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden">
-                    Encargado
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 max-sm:hidden">
-                    Fecha
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
-                    Hora
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
-                    Cupos Disponibles
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6 xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
-                    Matrícula
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900 2xl:w-1/6 xl:w-1/6">
-                    Estado
-                  </Table.HeadCell>
-                  <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="dark:bg-[#2d2d2d] dark:text-white h-96">
-                  {Courses?.data.map((course: Courses) => (
-                    <TBLCourses key={course.courseId} course={course} />
-                  ))}
-                </Table.Body>
-              </Table>
-            </>
-          ) : (
-            <NoResults />
           )}
-          <div className="block max-sm:hidden">
-            <CustomPagination
-              page={currentPage}
-              onPageChange={onPageChange}
-              totalPages={MaxPage}
-              setCurrentLimit={setCurrentLimit}
-            />
-          </div>
 
-          <div className="sm:hidden  flex justify-center ">
-            <Pagination
-              layout="navigation"
-              currentPage={currentPage}
-              totalPages={MaxPage}
-              onPageChange={onPageChange}
-            />
-          </div>
+          {!isLoading && (!Courses || Courses.count == 0) && <NoResults />}
+
+          {!isLoading && Courses && Courses.count > 0 && (
+            <Table
+              hoverable
+              className="text-center min-h-[30rem] text-black dark:text-white"
+            >
+              <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
+                <Table.HeadCell>Nombre</Table.HeadCell>
+                <Table.HeadCell className=" max-lg:hidden">
+                  Encargado
+                </Table.HeadCell>
+                <Table.HeadCell>Fecha</Table.HeadCell>
+                <Table.HeadCell className=" max-lg:hidden">Hora</Table.HeadCell>
+                <Table.HeadCell className=" max-sm:hidden">Cupos Disponibles</Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden">
+                  Matrícula
+                </Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden">
+                  Estado
+                </Table.HeadCell>
+                <Table.HeadCell className=" max-md:hidden"></Table.HeadCell>
+              </Table.Head>
+              <Table.Body className="divide-y">
+                {Courses?.data.map((course: Courses) => (
+                  <TBLCourses key={course.courseId} course={course} />
+                ))}
+              </Table.Body>
+            </Table>
+          )}
+          <DesktopPagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
+          <MobilePagination
+            page={currentPage}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setCurrentLimit}
+          />
         </section>
       </main>
     </>

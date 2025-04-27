@@ -8,7 +8,7 @@ const SearchEvents = ({
   EStatus: (ES: string) => void;
 }) => {
   return (
-    <div className={`flex max-sm:w-full max-sm:flex-col items-center gap-2`}>
+    <div className={`flex  items-center gap-2 max-md:items-stretch max-md:flex-col max-md:w-full`}>
       <div className="max-sm:w-full">
         <Label className="text-lg">Título del evento</Label>
         <TextInput

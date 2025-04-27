@@ -9,18 +9,18 @@ const FriendsTableBody = ({
   hidd?: boolean;
 }) => {
   return (
-    <Table hoverable className=" text-center" style={{ height: "30rem" }}>
-      <Table.Head className="dark:text-white">
-        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/6 2xl:w-1/6" >Nombre completo</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/6 2xl:w-1/6" >Cédula</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/6 2xl:w-1/6 max-sm:hidden">Categoría principal</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/6 2xl:w-1/6 max-sm:hidden">Sub categoría</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/6 2xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Genero</Table.HeadCell>
-        <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/6 2xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Teléfono</Table.HeadCell>
-        {!hidd && <Table.HeadCell className="dark:bg-neutral-900 xl:w-1/6 2xl:w-1/6 md:hidden max-sm:hidden lg:table-cell">Estado</Table.HeadCell>}
-        <Table.HeadCell className="dark:bg-neutral-900"></Table.HeadCell>
+    <Table hoverable className="text-center min-h-[30rem] text-black dark:text-white">
+      <Table.Head className="dark:[&>tr>th]:!bg-neutral-800 dark:text-white">
+        <Table.HeadCell className="">Nombre completo</Table.HeadCell>
+        <Table.HeadCell className=" max-lg:hidden">Cédula</Table.HeadCell>
+        <Table.HeadCell className="">Teléfono</Table.HeadCell>
+        <Table.HeadCell className=" max-sm:hidden">Categoría principal</Table.HeadCell>
+        <Table.HeadCell className=" max-xl:hidden">Sub categoría</Table.HeadCell>
+        <Table.HeadCell className=" max-xl:hidden">Genero</Table.HeadCell>
+        {!hidd && <Table.HeadCell className=" max-md:hidden">Estado</Table.HeadCell>}
+        <Table.HeadCell className="max-md:hidden"></Table.HeadCell>
       </Table.Head>
-      <Table.Body className="dark:text-white dark:bg-[#2d2d2d]">{children}</Table.Body>
+      <Table.Body className="divide-y">{children}</Table.Body>
     </Table>
   );
 };

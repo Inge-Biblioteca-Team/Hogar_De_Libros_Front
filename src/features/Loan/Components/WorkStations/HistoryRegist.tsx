@@ -22,13 +22,13 @@ const HistoryRegist = ({ WSLoan }: { WSLoan: WSLoan }) => {
   return (
     <>
       <Table.Row
-        className="text-black dark:text-white"
+        className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
         onClick={() => setShow(true)}
       >
         <Table.Cell>{WSLoan.workStation}</Table.Cell>
-        <Table.Cell className="max-sm:hidden">{WSLoan.UserName} </Table.Cell>
+        <Table.Cell className=" max-sm:hidden"  >{WSLoan.UserName} </Table.Cell>
         <Table.Cell>{LoanDate} </Table.Cell>
-        <Table.Cell>
+        <Table.Cell className="max-md:hidden">
           {WSLoan.Status == "En curso" ? "Pendiente" : LoanEDate}{" "}
         </Table.Cell>
       </Table.Row>

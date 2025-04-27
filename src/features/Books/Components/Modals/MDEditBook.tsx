@@ -1,13 +1,12 @@
 import { Modal, FloatingLabel, Label, Select, Checkbox } from "flowbite-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useQuery } from "react-query";
 import ModalFooters from "../../../../components/ModalFooters";
 import { Book } from "../../Types/BooksTypes";
 import OpsCoditions from "../../../../components/OptsConditions";
 import ModalImageLoader from "./ModalImageLoader";
 import UseEditBook from "../../Hooks/UseEditBook";
-import { getCategoriesNames } from "../../Services/BooksServices";
+import CategoriOPT from "../CategoriOPT";
 
 const MDEditChildrenBook = ({
   open,
@@ -59,14 +58,6 @@ const MDEditChildrenBook = ({
     });
   };
 
-  
-  const { data: categories, isLoading: loadingCategories } = useQuery<string[]>(
-    ["CategoriesName"],
-    getCategoriesNames, 
-    {
-      staleTime: Infinity,
-    }
-  );
 
   return (
     <Modal  show={open} onClose={onClose} size={"5xl"}>
@@ -177,23 +168,13 @@ const MDEditChildrenBook = ({
                 </div>
                 <div>
                   <Label value="Categoría de estante" />
-                  {loadingCategories ? (
-                    <span>Cargando categorías...</span>
-                  ) : (
                     <Select
                       className="custom-Select"
                       {...register("ShelfCategory")}
                       required
                     >
-                      {categories
-                        ?.filter((category) => category !== "")
-                        .map((category) => (
-                          <option key={category} value={category}>
-                            {category}
-                          </option>
-                        ))}
+                      <CategoriOPT/>
                     </Select>
-                  )}
                 </div>
                 <div className=" ">
                   <Checkbox {...register("ReserveBook")} />

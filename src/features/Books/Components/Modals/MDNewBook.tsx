@@ -5,8 +5,8 @@ import ModalFooters from "../../../../components/ModalFooters";
 import ModalImageLoader from "./ModalImageLoader";
 import { Book } from "../../Types/BooksTypes";
 import OpsCoditions from "../../../../components/OptsConditions";
-import OptsCateogry from "../OptsCategories";
 import UseCreateBook from "../../Hooks/UseCreateBook";
+import CategoriOPT from "../CategoriOPT";
 
 const MDNewBook = ({
   open,
@@ -155,7 +155,7 @@ const MDNewBook = ({
                     {...register("ShelfCategory")}
                     required
                   >
-                    <OptsCateogry />
+                    <CategoriOPT />
                   </Select>
                 </div>
                 <div className=" ">

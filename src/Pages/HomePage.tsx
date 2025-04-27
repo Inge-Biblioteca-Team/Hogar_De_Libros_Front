@@ -7,7 +7,7 @@ const HomePage = () => {
   const { currentUser } = useContext(UserContext);
 
   return (
-    <>{currentUser?.role == "admin" ? <AdminHomePage /> : <UsersHomePage />}</>
+    <>{(currentUser?.role == "admin" || currentUser?.role == "asistente") ? <AdminHomePage /> : <UsersHomePage />}</>
   );
 };
 

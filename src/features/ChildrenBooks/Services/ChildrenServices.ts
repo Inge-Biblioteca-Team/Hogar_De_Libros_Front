@@ -77,7 +77,8 @@ const getColection = async (
   year?: string,
   status?: string,
   Signa?: string,
-  category?: string
+  category?: string,
+  lib?:string
 ) => {
   try {
     const params: { [key: string]: string | number | undefined } = {
@@ -90,6 +91,8 @@ const getColection = async (
     if (status) params.Status = status;
     if (Signa) params.SignatureCode = Signa;
     if (category) params.ShelfCategory = category;
+    if(lib) params.lib = lib
+
     const response = await api.get("book-children", { params });
     return response.data;
   } catch (error) {

@@ -11,8 +11,8 @@ import { BsGrid3X3GapFill, BsListUl } from "react-icons/bs";
 import { LiaSearchengin } from "react-icons/lia";
 import { Catalog } from "../../Books/Types/BooksTypes";
 import OptsCateogryChildren from "../Components/OptsCateogryChildren";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
 import NoResults from "../../../components/NoResults";
+import Loader from "../../../components/Loader";
 
 const ChildrenColection = () => {
   const [page, setPage] = useState<number>(() => {
@@ -32,7 +32,7 @@ const ChildrenColection = () => {
 
   const { data: catalog, isLoading } = useQuery<Catalog, Error>(
     ["Children-catalog", page, limit, sTitle, category],
-    () => getColection(page, limit, sTitle, "", "", "", "", category),
+    () => getColection(page, limit, sTitle, "", "", "1", "", category, "1"),
     {
       staleTime: 5000,
     }
@@ -49,8 +49,11 @@ const ChildrenColection = () => {
     <>
       <ChlildrenColecctionCrumbs text="Búsqueda por título" />
       <main className=" flex flex-col w-full justify-center items-center gap-3">
-        <section className="w-5/6 lg:w-4/5 lg:flex lg:justify-between">
-          <div className="flex flex-col gap-2 lg:flex-row">
+        <section
+          className="w-11/12 flex justify-between items-end 
+        max-md:flex-col max-md:items-stretch"
+        >
+          <div className="flex gap-2 max-md:flex-col">
             <Select onChange={(event) => setCategory(event.target.value)}>
               <OptsCateogryChildren />
             </Select>
@@ -81,28 +84,27 @@ const ChildrenColection = () => {
             </Button>
           </ButtonGroup>
         </section>
-        {isLoading ? (
-          <div className=" w-full flex items-center justify-center">
-            <figure>
-              <img width={400} src={Loader} alt="...Cargando" />
-              <figcaption className=" text-center">...Cargando</figcaption>
-            </figure>
-          </div>
-        ) : catalog?.count && catalog.count > 0 ? (
-          <section className="w-4/5">
-            {view == "List" && <ColectionList colection={catalog} inf />}
-            {view == "Grid" && <ColectionGrid colection={catalog} inf />}
-            <CustomUsersPagination
-              limit={limit}
-              page={page}
-              onPageChange={onPageChange}
-              totalPages={MaxPage}
-              total={catalog.count}
-            />
-          </section>
-        ) : (
-          <NoResults />
-        )}
+        <section className=" w-11/12">
+          {catalog && catalog.count > 0 && (
+            <>
+              {view == "List" && <ColectionList colection={catalog} inf />}
+              {view == "Grid" && <ColectionGrid colection={catalog} inf />}
+              <CustomUsersPagination
+                limit={limit}
+                page={page}
+                onPageChange={onPageChange}
+                totalPages={MaxPage}
+                total={catalog.count}
+              />
+            </>
+          )}
+          {isLoading && (
+            <div className=" w-full flex items-center justify-center">
+              <Loader />
+            </div>
+          )}
+          {!isLoading && (!catalog || catalog.count == 0) && <NoResults />}
+        </section>
       </main>
     </>
   );

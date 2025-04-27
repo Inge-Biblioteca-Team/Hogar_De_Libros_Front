@@ -9,13 +9,13 @@ import { getColection } from "../Services/ChildrenServices";
 import { useQuery } from "react-query";
 import UseDebounce from "../../../hooks/UseDebounce";
 import { Catalog } from "../Types/BooksChildrensTypes";
-import CustomPagination from "../../../components/CustomPagination";
 import { MdTitle, MdPersonSearch } from "react-icons/md";
 import BookChildrenTable from "../Components/BookChildrenTable";
 import { LuClipboardSignature } from "react-icons/lu";
 import NoResults from "../../../components/NoResults";
-import { Pagination } from "flowbite-react";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
+import Loader from "../../../components/Loader";
+import DesktopPagination from "../../../components/DesktopComponents/DesktopPagination";
+import MobilePagination from "../../../components/MobileComponents/MobilePagination";
 
 const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
   const [open, setOpen] = useState(false);
@@ -60,8 +60,8 @@ const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
         <BreadCrumbManage text="Libros infantiles" />
       )}
       <main className="flex items-center justify-center w-full flex-col gap-4">
-        <section className="w-full  md:pl-4 md:pr-4 sm:items-center flex lg:flex-row flex-col justify-between lg:items-end  max-sm:px-2 gap-4 ">
-          <div className="flex md:w-full lg:flex-row flex-col gap-3">
+        <section className="w-full flex justify-between gap-4 px-3 max-md:flex-col">
+          <div className="flex max-md:flex-col gap-3 items-end max-md:items-stretch">
             <TextInput
               onChange={(event) => setSearchTitle(event.target.value)}
               rightIcon={MdTitle}
@@ -84,46 +84,36 @@ const ManageChildrenBooks = ({ loans }: { loans?: boolean }) => {
             </Select>
           </div>
           <Button
-            className="dark:bg-[#2d2d2d] dark:focus:ring-neutral-800 dark:hover:bg-neutral-800 max-sm:w-full w-52"
+            className="dark:bg-[#2d2d2d] dark:focus:ring-neutral-800 dark:hover:bg-neutral-800"
             color={"blue"}
             onClick={() => setOpen(true)}
           >
             Añadir nuevo libro
           </Button>
         </section>
-        <section className="w-4/5 md:w-full md:pl-4 md:pr-4 max-sm:w-full max-sm:px-2">
-          {isLoading ? (
+        <section className="w-full px-3">
+          {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="... Cargando" />
-                <figcaption className=" text-center">... cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : Catalog && Catalog.data.length > 0 ? (
-            <>
-              <BookChildrenTable catalog={Catalog} />
-            </>
-          ) : (
-            <NoResults />
           )}
+          {!isLoading && Catalog && Catalog.count > 0 && (
+            <BookChildrenTable catalog={Catalog} />
+          )}
+          {!isLoading && (!Catalog || Catalog.count == 0) && <NoResults />}
 
-          <div className="block max-sm:hidden">
-            <CustomPagination
-              page={page}
-              onPageChange={onPageChange}
-              totalPages={MaxPage}
-              setCurrentLimit={setLimit}
-            />
-          </div>
-
-          <div className="sm:hidden  flex justify-center ">
-            <Pagination
-              layout="navigation"
-              currentPage={page}
-              totalPages={MaxPage}
-              onPageChange={onPageChange}
-            />
-          </div>
+          <DesktopPagination
+            page={page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setLimit}
+          />
+          <MobilePagination
+            page={page}
+            onPageChange={onPageChange}
+            totalPages={MaxPage}
+            setCurrentLimit={setLimit}
+          />
         </section>
       </main>
       <MDNewBook open={open} setOpen={setOpen} />

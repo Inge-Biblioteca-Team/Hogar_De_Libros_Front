@@ -1,19 +1,14 @@
 import { Label, Select, TextInput } from "flowbite-react";
-import { FaFileSignature } from "react-icons/fa6";
 const SearchInputs = ({
   setEndtDate,
-  setSignaCode,
   setStartDate,
-  SignaCode,
   EndDate,
   startDate,
   setType
 }: {
   setStartDate: (StartDate: string) => void;
   setEndtDate: (EndDate: string) => void;
-  setSignaCode: (SignaCode: string) => void;
   setType: (type: string) => void;
-  SignaCode: string;
   EndDate: string;
   startDate: string;
 }) => {
@@ -35,16 +30,6 @@ const SearchInputs = ({
             type="date"
             value={EndDate}
             onChange={(event) => setEndtDate(event.target.value)}
-          />
-        </div>
-        <div>
-          <Label>Código de signatura</Label>
-          <TextInput
-            type="text"
-            icon={FaFileSignature}
-            placeholder="Código de signatura"
-            value={SignaCode}
-            onChange={(event) => setSignaCode(event.target.value)}
           />
         </div>
         <div>

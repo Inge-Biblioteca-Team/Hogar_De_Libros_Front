@@ -5,10 +5,10 @@ import { ThemeProvider } from "./Context/dark";
 function App() {
   return (
     <>
-    <ThemeProvider>
-      <Toaster />
-      <RouterProvider router={Routes} />
-    </ThemeProvider>
+      <ThemeProvider>
+        <Toaster />
+          <RouterProvider router={Routes} />
+      </ThemeProvider>
     </>
   );
 }

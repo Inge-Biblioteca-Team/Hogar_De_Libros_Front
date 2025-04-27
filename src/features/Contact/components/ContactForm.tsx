@@ -1,4 +1,3 @@
-
 import { useRef, useState } from "react";
 import { Spinner, Textarea, TextInput } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
@@ -25,7 +24,9 @@ const ContactForm = () => {
         .catch((error) => {
           console.error("Error al enviar el mensaje:", error);
           setIsLoading(false);
-          toast.error("Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
+          toast.error(
+            "Hubo un error al enviar el mensaje. Inténtalo de nuevo."
+          );
         });
     }
   };
@@ -34,9 +35,9 @@ const ContactForm = () => {
     <>
       <Toaster />
       <form
-        ref={refForm} 
-        onSubmit={handleSubmit} 
-        className="dark:bg-[#2d2d2d] bg-white shadow-md rounded-md lg:w-1/2 lg:h-full p-3 flex flex-col gap-3 md:w-full w-1/3 max-sm:w-full max-sm:text-sm"
+        ref={refForm}
+        onSubmit={handleSubmit}
+        className="dark:bg-[#2d2d2d] bg-white shadow-md rounded-md p-3 flex flex-col gap-3  w-1/2 max-lg:w-full"
       >
         <fieldset>
           <legend>Nombre y Apellidos</legend>
@@ -45,8 +46,8 @@ const ContactForm = () => {
             placeholder="Nombre Completo"
             icon={IoPerson}
             required
-            name="name" 
-            color={'gray'}
+            name="name"
+            color={"gray"}
             pattern="^[A-Za-zÀ-ÿ\s]+$"
             onInvalid={(e) =>
               (e.target as HTMLInputElement).setCustomValidity(
@@ -63,8 +64,8 @@ const ContactForm = () => {
             icon={HiMail}
             placeholder="TuCorreo@example.com"
             required
-            name="user_email"  
-            />
+            name="user_email"
+          />
         </fieldset>
         <fieldset>
           <legend>Motivo:</legend>
@@ -73,21 +74,24 @@ const ContactForm = () => {
             placeholder="Deja tu comentario"
             required
             rows={5}
-            name="message" 
+            name="message"
           />
         </fieldset>
         <button
           type="submit"
-          className="dark:bg-[#161616] bg-Bottoms text-Text text-lg rounded-lg p-1 hover:bg-Bottoms-dark max-sm:text-sm"
+          className="dark:bg-[#161616] bg-Bottoms text-Text text-lg rounded-lg p-1 hover:bg-Bottoms-dark"
         >
           {isLoading ? (
-            <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Cargando...</p></>
+            <>
+              <Spinner aria-label="Spinner button example" size="sm" />{" "}
+              <p className="pl-3">Cargando...</p>
+            </>
           ) : (
             "Enviar"
           )}
         </button>
       </form>
-      </>
+    </>
   );
 };
 

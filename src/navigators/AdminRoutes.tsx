@@ -1,41 +1,43 @@
-import ManageChildrenBooks from "../features/ChildrenBooks/Screens/ManageChildrenBooks";
-import ManagerComputer from "../features/Computers/Pages/ManagerComputer";
-import ManageUsers from "../features/Users/Pages/ManageUsers";
-import ManageLoansWS from "../features/Loan/Pages/WorkStations/ManageLoansWS";
-import FinishedLoans from "../features/Loan/Pages/Books/FinishedLoans";
-import InProgressLoans from "../features/Loan/Pages/Books/InProgressLoans";
-import PendingRequest from "../features/Loan/Pages/Books/PendingRequest";
-import WorkStationsLoanHistory from "../features/Loan/Pages/WorkStations/WorkStationsLoanHistory";
-import ManageFurniture from "../features/Furniture/Pages/ManageFurniture";
-import ManageEvents from "../features/EventsSection/Pages/ManageEvent";
-import ManagePrograms from "../features/Programs/Pages/ManagePrograms";
-import ReservationList from "../features/Loan/Pages/Rooms/ReservationList";
-import OldReservationList from "../features/Loan/Pages/Rooms/OldReservationList";
-import AprovedReservationList from "../features/Loan/Pages/Rooms/AprovedReservationList";
-import ManageRoom from "../features/Rooms/Pages/ManageRoom";
-import ManageBooks from "../features/Books/Screens/ManageBooks";
-import ManageCourses from "../features/Courses/Pages/ManageCourses";
-import ManageLocalArtist from "../features/LocalArtist/Pages/ManageLocalArtist";
-import AdviceManage from "../features/Advice/Screens/AdviceManage";
-import RoomsScheduleManage from "../features/Loan/Pages/Rooms/RoomsScheduleManage";
-import ManageColabRequest from "../features/Collaborators/Screens/ManageColabRequest";
-import ManageAprovedColab from "../features/Collaborators/Screens/ManageAprovedColab";
-import ManageColabHistory from "../features/Collaborators/Screens/ManageColabHistory";
-import ManageFriendsRequest from "../features/Amiguitos/screens/ManageFriendsRequest";
-import ManageFriends from "../features/Amiguitos/screens/ManageFriends";
-import ManageRequestDonations from "../features/Donations/Screens/ManageRequestDonations";
-import ManagePendingReceiveDon from "../features/Donations/Screens/ManagePendingReceiveDon";
-import ManageDonationsHistory from "../features/Donations/Screens/ManageDonationsHistory";
-import Inbox from "../features/Inbox/Page/Inbox";
-import FriendMiddleScreen from "../features/Amiguitos/screens/FriendMiddleScreen";
-import DonationMiddleScreens from "../features/Donations/Screens/DonationMiddleScreens";
-import ColabsMiddleScreen from "../features/Collaborators/Screens/ColabsMiddleScreen";
-import ResoursesMiddlePage from "../features/Furniture/Pages/ResoursesMiddlePage";
-import EventMiddlePage from "../features/EventsSection/Pages/EventMiddlePage";
-import LoansMiddlePage from "../features/Loan/Pages/LoansMiddlePage";
-import CirculationAndLoanMiddlePage from "../features/Loan/Pages/CirculationAndLoanMiddlePage";
-import RoleBasedRoute from "./RolBaseRouter";
 import { Outlet } from "react-router-dom";
+import {
+  CirculationAndLoanMiddlePage,
+  ManageLoansWS,
+  InProgressLoans,
+  PendingRequest,
+  ReservationList,
+  AprovedReservationList,
+  RoomsScheduleManage,
+  AdviceManage,
+  LoansMiddlePage,
+  FinishedLoans,
+  WorkStationsLoanHistory,
+  OldReservationList,
+  EventMiddlePage,
+  ManageCourses,
+  ManageEvents,
+  ManagePrograms,
+  ManageUsers,
+  ResoursesMiddlePage,
+  ManageLocalArtist,
+  ManagerComputer,
+  ManageFurniture,
+  ManageRoom,
+  ColabsMiddleScreen,
+  ManageColabRequest,
+  ManageAprovedColab,
+  ManageColabHistory,
+  DonationMiddleScreens,
+  ManageRequestDonations,
+  ManagePendingReceiveDon,
+  ManageDonationsHistory,
+  FriendMiddleScreen,
+  ManageFriendsRequest,
+  ManageFriends,
+  Inbox,
+} from "./LazyAdminViews";
+import RoleBasedRoute from "./RolBaseRouter";
+import ManageBooks from "../features/Books/Screens/ManageBooks";
+import ManageChildrenBooks from "../features/ChildrenBooks/Screens/ManageChildrenBooks";
 const AdminRoutes = [
   {
     path: "Prestamos_Circulacion",
@@ -86,7 +88,7 @@ const AdminRoutes = [
   {
     path: "Avisos",
     element: (
-      <RoleBasedRoute roles={["admin"]}>
+      <RoleBasedRoute roles={["admin","asistente"]}>
         <AdviceManage />
       </RoleBasedRoute>
     ),
@@ -146,7 +148,7 @@ const AdminRoutes = [
   {
     path: "Gestion_Usuarios",
     element: (
-      <RoleBasedRoute roles={["admin"]}>
+      <RoleBasedRoute roles={["admin","asistente"]}>
         <ManageUsers />
       </RoleBasedRoute>
     ),
@@ -266,7 +268,7 @@ const AdminRoutes = [
   {
     path: "Mensajeria",
     element: (
-      <RoleBasedRoute roles={["admin"]}>
+      <RoleBasedRoute roles={["admin","asistente"]}>
         <Inbox />
       </RoleBasedRoute>
     ),

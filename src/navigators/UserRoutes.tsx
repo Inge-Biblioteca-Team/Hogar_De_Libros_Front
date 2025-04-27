@@ -1,10 +1,7 @@
-import EditUser from "../features/Users/Pages/EditUser";
-import MyLoanHIstory from "../features/Loan/Components/UserLoans/MyLoanHIstory";
-import UserEnrollmentCourses from "../features/Courses/screens/UserEnrollmentCourses";
-import RoomsReservations from "../features/Loan/Components/UserLoans/RoomsReservationsTL";
-import UserMiddlePage from "../features/Users/Pages/UserMiddlePage";
-import RoleBasedRoute from "./RolBaseRouter";
+
 import { Outlet } from "react-router-dom";
+import { UserMiddlePage, MyLoanHIstory, EditUser, UserEnrollmentCourses, RoomsReservations } from "./LazyUser";
+import RoleBasedRoute from "./RolBaseRouter";
 
 const UserRoutes = [
   {

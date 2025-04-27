@@ -10,8 +10,7 @@ import {
   BreadCrumbsItems,
   BreadLastItems,
 } from "../../../components/Breadcrumbs/BreadCrumbsItems";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
-import NoResults from "../../../components/NoResults";
+import Loader from "../../../components/Loader";
 
 const EventsSchedule = () => {
   const [month, setMonth] = useState<string>("");
@@ -54,8 +53,8 @@ const EventsSchedule = () => {
       <BreadCrumbsItems>
         <BreadLastItems text="Próximos eventos" />
       </BreadCrumbsItems>
-      <div className=" w-full flex flex-col justify-center items-center mt-3 pb-3">
-        <div className=" flex gap-4 w-4/5 items-start ml-5 max-sm:w-11/12 max-sm:ml-0">
+      <main className=" w-full px-4">
+        <section className=" flex gap-4 max-md:flex-col">
           <Select
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
@@ -78,39 +77,29 @@ const EventsSchedule = () => {
             <option value="Tertulias">Tertulias</option>
             <option value="Inducción">Inducción</option>
           </Select>
-        </div>
-        <div
-          className=" w-4/5 overflow-x-scroll pt-7 px-8 custom-bar"
-          style={{ height: "40rem" }}
-        >
-          {isLoading ? (
+        </section>
+        <section>
+          {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : events ? (
-            <Timeline
-              className="custom-timeline border-blue-900 h-full"
-              horizontal
-            >
-              {events?.count == 0 ? (
-                <strong className=" flex w-full items-center justify-center text-2xl">
-                  No hay eventos Próximos
-                </strong>
-              ) : (
-                events?.data.map((event) => (
-                  <EventTimeItem event={event} key={event.id} />
-                ))
-              )}
-            </Timeline>
-          ) : (
-            <NoResults />
           )}
-          <div className=" w-full flex items-center justify-center"></div>
-        </div>
-      </div>
+          {!isLoading && (!events || events.count == 0) && (
+            <strong className=" flex w-full items-center justify-center text-2xl">
+              No hay eventos Próximos
+            </strong>
+          )}
+          {!isLoading && events && events.count > 0 && (
+            <div className=" p-5">
+            <Timeline className="custom-timeline border-blue-900">
+              {events.data.map((event) => (
+                <EventTimeItem event={event} key={event.id} />
+              ))}
+            </Timeline>
+              </div>
+          )}
+        </section>
+      </main>
     </>
   );
 };

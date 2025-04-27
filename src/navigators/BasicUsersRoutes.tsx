@@ -1,16 +1,18 @@
-import Colecction from "../features/Books/Screens/Colecction";
-import AdvanceSearchColection from "../features/Books/Screens/AdvanceSearchColection";
-import ChildrenColection from "../features/ChildrenBooks/Screens/ChildrenColection";
-import EventsSchedule from "../features/EventsSection/Pages/EventsSchedule";
-import CoruseSchedule from "../features/Courses/Pages/CoruseSchedule";
-import AvailableComputers from "../features/Computers/screens/AvailableComputers";
-import RoomsScheduleManage from "../features/Loan/Pages/Rooms/RoomsScheduleManage";
-import CompletCatalog from "../features/Books/Screens/CompletCatalog";
-import BooksMiddleScreen from "../features/Books/Screens/BooksMiddleScreen";
-import ProgramActivities from "../features/Programs/screens/ProgramActivities";
-import RoleBasedRoute from "./RolBaseRouter";
 import { Outlet } from "react-router-dom";
-import FriendInformation from "../features/Amiguitos/screens/FriendInformation";
+import {
+  BooksMiddleScreen,
+  Colecction,
+  AdvanceSearchColection,
+  ChildrenColection,
+  CompletCatalog,
+  EventsSchedule,
+  CoruseSchedule,
+  ProgramActivities,
+  AvailableComputers,
+  FriendInformation,
+} from "./BasicUserLazy";
+import { RoomsScheduleManage } from "./LazyAdminViews";
+import RoleBasedRoute from "./RolBaseRouter";
 
 const BasicUsersRoutes = [
   {
@@ -47,7 +49,7 @@ const BasicUsersRoutes = [
     path: "Cronograma_Eventos",
     element: (
       <RoleBasedRoute>
-        <EventsSchedule />,
+        <EventsSchedule />
       </RoleBasedRoute>
     ),
   },
@@ -55,7 +57,7 @@ const BasicUsersRoutes = [
     path: "Cronograma_Cursos",
     element: (
       <RoleBasedRoute>
-        <CoruseSchedule />,
+        <CoruseSchedule />
       </RoleBasedRoute>
     ),
   },
@@ -63,7 +65,7 @@ const BasicUsersRoutes = [
     path: "Cronograma_Actividades",
     element: (
       <RoleBasedRoute>
-        <ProgramActivities />,
+        <ProgramActivities />
       </RoleBasedRoute>
     ),
   },
@@ -71,7 +73,7 @@ const BasicUsersRoutes = [
     path: "Equipo_Disponible",
     element: (
       <RoleBasedRoute>
-        <AvailableComputers />,
+        <AvailableComputers />
       </RoleBasedRoute>
     ),
   },
@@ -79,13 +81,13 @@ const BasicUsersRoutes = [
     path: "Reserva_Salas",
     element: (
       <RoleBasedRoute roles={["institucional", "admin"]}>
-        <RoomsScheduleManage />,
+        <RoomsScheduleManage />
       </RoleBasedRoute>
     ),
   },
   {
     path: "AmigosYColaboradores",
-    element: <FriendInformation />,
+    element: <FriendInformation />
   },
 ];
 

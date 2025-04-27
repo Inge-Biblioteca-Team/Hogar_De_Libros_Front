@@ -10,8 +10,7 @@ import {
   BreadCrumbsItems,
   BreadLastItems,
 } from "../../../components/Breadcrumbs/BreadCrumbsItems";
-import Loader from "../../OPAC/Assets/LoaderOPAC.gif";
-import NoResults from "../../../components/NoResults";
+import Loader from "../../../components/Loader";
 const CoruseSchedule = () => {
   const [month, setMonth] = useState<string>("");
   const [type, setType] = useState<string>("");
@@ -52,9 +51,9 @@ const CoruseSchedule = () => {
       <BreadCrumbsItems>
         <BreadLastItems text="Próximos cursos" />
       </BreadCrumbsItems>
-      <div className=" w-full flex flex-col justify-center items-center pb-3">
-        <div className=" flex gap-4 w-4/5 items-start ml-5 max-sm:w-11/12 max-sm:gap-2 max-sm:ml-2">
-          <Select
+      <main className=" w-full px-5">
+        <section className=" flex gap-5 max-md:flex-col">
+        <Select
             icon={CiCalendarDate}
             onChange={(event) => setMonth(event.target.value)}
           >
@@ -77,37 +76,30 @@ const CoruseSchedule = () => {
             <option value="Curso Articulado">Curso Articulado</option>
             <option value="Manualidades">Manualidades</option>
           </Select>
-        </div>
-        <div
-          className=" w-4/5 overflow-x-scroll pt-7  px-8 custom-bar"
-          style={{ height: "40rem" }}
-        >
-          {isLoading ? (
+        </section>
+        <section>
+        {isLoading && (
             <div className=" w-full flex items-center justify-center">
-              <figure>
-                <img width={400} src={Loader} alt="...Cargando" />
-                <figcaption className=" text-center">...Cargando</figcaption>
-              </figure>
+              <Loader />
             </div>
-          ) : Courses ? (
-            <Timeline
-              className="custom-timeline border-blue-900 h-full "
-              horizontal
-            >
-              {Courses?.count == 0 ? (
-                <span>No hay cursos próximos a la fecha de hoy </span>
-              ) : (
-                Courses?.data.map((course) => (
-                  <CourseTimeItem course={course} key={course.Id} />
-                ))
-              )}
-            </Timeline>
-          ) : (
-            <NoResults />
           )}
-          <div className=" w-full  flex items-center justify-center"></div>
-        </div>
-      </div>
+          {!isLoading && (!Courses || Courses.count == 0) && (
+            <strong className=" flex w-full items-center justify-center text-2xl">
+              No hay cursos Próximos
+            </strong>
+          )}
+          {!isLoading && Courses && Courses.count > 0 && (
+            <div className=" p-5">
+            <Timeline className="custom-timeline border-blue-900">
+              {Courses.data.map((course) => (
+                <CourseTimeItem course={course} key={course.Id} />
+              ))}
+            </Timeline>
+              </div>
+          )}
+
+        </section>
+      </main>
     </>
   );
 };

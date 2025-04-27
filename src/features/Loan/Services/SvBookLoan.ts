@@ -30,7 +30,6 @@ const GetInProgressLoan = async (
   limit: number,
   StartDate?: string,
   ExpirationDate?: string,
-  SignaCode?: string,
   Cedula?: string,
   type?:string
 ) => {
@@ -42,7 +41,6 @@ const GetInProgressLoan = async (
 
     if (StartDate) params.StartDate = StartDate;
     if (ExpirationDate) params.LoanExpirationDate = ExpirationDate;
-    if (SignaCode) params.signatureCode = SignaCode;
     if (Cedula) params.cedula = Cedula;
     if (type) params.type = type
 
@@ -61,7 +59,6 @@ const GetDoneLoans = async (
   EndDate?: string,
   Cedula?: string,
   name?: string,
-  SignaCode?: string,
   type?:string
 ) => {
   try {
@@ -70,9 +67,8 @@ const GetDoneLoans = async (
       limit,
     };
 
-    if (StartDate && StartDate) params.StartDate = StartDate;
-    if (EndDate && StartDate) params.EndDate = EndDate;
-    if (SignaCode) params.signatureCode = SignaCode;
+    if (StartDate) params.StartDate = StartDate;
+    if (EndDate) params.EndDate = EndDate;
     if (Cedula) params.cedula = Cedula;
     if (name) params.name = name;
     if (type) params.type = type

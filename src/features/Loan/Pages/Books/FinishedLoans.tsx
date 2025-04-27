@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 import FinishedLoanSearch from "../../Components/BooksLoans/FinishedLoanSearch";
 import UseDebounce from "../../../../hooks/UseDebounce";
 import { LoansCrumbs } from "../../../../components/Breadcrumbs/BreadCrumbsItems";
-import CustomPagination from "../../../../components/CustomPagination";
 import NoResults from "../../../../components/NoResults";
 import Loader from "../../../../components/Loader";
 import { Dispatch, SetStateAction } from "react";
-import { Pagination } from "flowbite-react";
+import DesktopPagination from "../../../../components/DesktopComponents/DesktopPagination";
+import MobilePagination from "../../../../components/MobileComponents/MobilePagination";
 
 const FinishedLoans = () => {
   const [currentLimit, setCurrentLimit] = useState<number>(5);
@@ -38,23 +38,12 @@ const FinishedLoans = () => {
   const [StartDate, setStartDate] = useState<string>("");
   const [EndDate, setEndtDate] = useState<string>("");
   const [Name, setName] = useState<string>("");
-  const [SignaCode, setSignaCode] = useState<string>("");
   const [type, setType] = useState("");
 
   const SName = UseDebounce(Name, 1000);
-  const sSignaCode = UseDebounce(SignaCode, 1000);
 
   const { data: Loan, isLoading } = useQuery<LoanResponse, Error>(
-    [
-      "DLoans",
-      currentPage,
-      currentLimit,
-      StartDate,
-      EndDate,
-      SName,
-      sSignaCode,
-      type
-    ],
+    ["DLoans", currentPage, currentLimit, StartDate, EndDate, SName, type],
     () =>
       GetDoneLoans(
         currentPage,
@@ -63,7 +52,6 @@ const FinishedLoans = () => {
         EndDate,
         "",
         SName,
-        sSignaCode,
         type
       ),
     {
@@ -74,51 +62,41 @@ const FinishedLoans = () => {
   useEffect(() => {
     setCurrentPage(1);
     sessionStorage.setItem("DLPage", "1");
-  }, [currentLimit, StartDate, EndDate, SName, sSignaCode, type]);
+  }, [currentLimit, StartDate, EndDate, SName, type]);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [StartDate, EndDate, SName, sSignaCode, type]);
+  }, [StartDate, EndDate, SName, type, currentLimit]);
 
-  const MaxPage = Math.ceil((Loan?.count ?? 0) / 5);
+  const MaxPage = Math.ceil((Loan?.count ?? 0) / currentLimit);
   return (
     <>
       <LoansCrumbs text="Libros" />
-      <div className="flex place-content-center mt-14">
-        <div className="w-full md:px-4 max-sm:px-2">
-          <FinishedLoanSearch
-            setStartDate={setStartDate}
-            setEndtDate={setEndtDate}
-            setName={setName}
-            setSignaCode={setSignaCode}
-            setType={setType}
-          />
-          {isLoading ? (
-            <Loader />
-          ) : Loan ? (
-            <>{Loan && <TBLLoan Loan={Loan} />}</>
-          ) : (
-            <NoResults />
-          )}
-          <div className="max-sm:hidden block">
-            <CustomPagination
-              page={currentPage}
-              onPageChange={onPageChange}
-              totalPages={MaxPage}
-              setCurrentLimit={handleLimitChange}
-            />
-          </div>
-
-          <div className="sm:hidden  flex justify-center pb-4 ">
-            <Pagination
-              layout="navigation"
-              currentPage={currentPage}
-              totalPages={MaxPage}
-              onPageChange={onPageChange}
-            />
-          </div>
-        </div>
-      </div>
+      <section className="px-3">
+        <FinishedLoanSearch
+          setStartDate={setStartDate}
+          setEndtDate={setEndtDate}
+          setName={setName}
+          setType={setType}
+        />
+      </section>
+      <section className=" px-3">
+        {isLoading && <Loader />}
+        {!isLoading && Loan && Loan.count > 0 && <TBLLoan Loan={Loan} />}
+        {!isLoading && (!Loan || Loan.count == 0) && <NoResults />}
+        <DesktopPagination
+          page={currentPage}
+          onPageChange={onPageChange}
+          totalPages={MaxPage}
+          setCurrentLimit={handleLimitChange}
+        />
+        <MobilePagination
+          page={currentPage}
+          onPageChange={onPageChange}
+          totalPages={MaxPage}
+          setCurrentLimit={handleLimitChange}
+        />
+      </section>
     </>
   );
 };

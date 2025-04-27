@@ -1,8 +1,8 @@
 const ContacInfo = () => {
   return (
-    <aside className=" lg:w-1/2">
-      <p className="text-base lg:text-lg text-center lg:text-left">
-        <span className=" lg:max-sm:hidden">
+    <aside className=" max-lg:w-full w-1/2">
+      <p className="text-xl max-md:text-base">
+        <span className="">
           Bienvenido a nuestra sección de contacto. Nos encanta escucharte.
           ¿Tienes alguna pregunta o sugerencia? Estamos aquí para
           ayudarte. Completa el formulario a continuación y nos pondremos en
@@ -10,7 +10,7 @@ const ContacInfo = () => {
           nosotros.
         </span>{" "}
         <br />
-        <span  className=" max-sm:hidden">También puedes contactarnos vía</span>
+        <span  className="">También puedes contactarnos vía</span>
         <br />
         <strong>Teléfono: </strong>
         <span>+506 2685-4213</span>

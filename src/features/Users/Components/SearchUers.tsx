@@ -16,9 +16,9 @@ const SearchUsers = ({
   setName: (Name: string) => void;
 }) => {
   return (
-    <div className="w-full md:grid-cols-1 max-sm:w-full max-sm:grid-cols-1 lg:grid-cols-5 grid grid-cols-5 gap-2 pb-4">
+    <div className=" max-md:flex-col flex w-full gap-2">
       <div>
-        <Label className=" text-lg" htmlFor="InitialDate">
+        <Label className="text-lg" htmlFor="InitialDate">
           Cédula
         </Label>
         <TextInput
@@ -30,7 +30,7 @@ const SearchUsers = ({
         />
       </div>
       <div>
-        <Label className=" text-lg">Nombre</Label>
+        <Label className="text-lg">Nombre</Label>
         <TextInput
           type="text"
           placeholder="Nombre"
@@ -39,7 +39,7 @@ const SearchUsers = ({
         />
       </div>
       <div>
-        <Label className=" text-lg">Tipo de usuario</Label>
+        <Label className="text-lg">Tipo de usuario</Label>
         <Select
           icon={CgScrollV}
           onChange={(event) => setRol(event.target.value)}
@@ -48,7 +48,7 @@ const SearchUsers = ({
         </Select>
       </div>
       <div>
-        <Label className=" text-lg">Año de registro</Label>
+        <Label className="text-lg">Año de registro</Label>
         <TextInput
           onChange={(event) => setYear(event.target.value)}
           type="text"

@@ -1,5 +1,4 @@
 import { Table } from "flowbite-react";
-import AdviceAccionsBTN from "./AdviceAccionsBTN";
 import { Advice } from "../Types/Advice";
 import { formatToDMY } from "../../../components/FormatTempo";
 import { useState } from "react";
@@ -7,6 +6,7 @@ import EditAdvice from "./Modals/EditAdvice";
 import ViewAdvice from "./Modals/ViewAdvice";
 import DeleteAdvice from "./Modals/DeleteAdvice";
 import MobilePopOverOptions from "../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../components/DesktopComponents/BTNAccions";
 
 const AdviceRow = ({ advice }: { advice: Advice }) => {
   const date = formatToDMY(advice.date);
@@ -28,12 +28,12 @@ const AdviceRow = ({ advice }: { advice: Advice }) => {
         <Table.Cell className=" max-lg:hidden">{advice.id_Advice} </Table.Cell>
         <Table.Cell>
           <MobilePopOverOptions
-            status
+            status={advice.status}
             openTrigger={popoverVisible}
             setopenTrigger={setPopoverVisible}
             setOpen1={setOpenV}
             setOpen2={setOpenE}
-            setOpen3={setOpenD}
+            setOpen6={setOpenD}
             text={advice.reason}
           />
         </Table.Cell>
@@ -46,10 +46,11 @@ const AdviceRow = ({ advice }: { advice: Advice }) => {
           {advice.status ? "Activo" : "Finalizado"}{" "}
         </Table.Cell>
         <Table.Cell className=" max-md:hidden">
-          <AdviceAccionsBTN
+          <BTNAccions
             setOpen1={setOpenV}
             setOpen2={setOpenE}
-            setOpen3={setOpenD}
+            setOpen6={setOpenD}
+            status={advice.status}
           />
         </Table.Cell>
       </Table.Row>

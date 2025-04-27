@@ -4,8 +4,8 @@ import { Table } from "flowbite-react";
 import { formatToDMY } from "../../../../../components/FormatTempo";
 import FinishLoan from "../Modals/FinishLoan";
 import MDSeeReservation from "../Modals/MDSeeReservation";
-import { PiEyeFill } from "react-icons/pi";
-import { LuCalendarCheck2 } from "react-icons/lu";
+import MobilePopOverOptions from "../../../../../components/MobileComponents/MobilePopOverOptions";
+import BTNAccions from "../../../../../components/DesktopComponents/BTNAccions";
 
 const AprovRows = ({ reservation }: { reservation: Reserve }) => {
   const reserveDay = formatToDMY(reservation.date);
@@ -15,38 +15,41 @@ const AprovRows = ({ reservation }: { reservation: Reserve }) => {
 
   const [openS, setOpenS] = useState<boolean>(false);
   const [openF, setOpenF] = useState<boolean>(false);
+  const [openTrigger, setopenTrigger] = useState<boolean>(false);
+  const handleRowClick = () => {
+    setopenTrigger(true);
+  };
+
   return (
     <>
       <React.Fragment key={`${reservation.rommReservationId}`}>
-        <Table.Row className="h-20 text-black dark:text-white">
+        <Table.Row
+          className="dark:border-zinc-700  dark:bg-[#2d2d2d]"
+          onClick={handleRowClick}
+        >
           <Table.Cell>{reservation.name} </Table.Cell>
-          <Table.Cell className="max-sm:hidden">{requestDay} </Table.Cell>
-          <Table.Cell>{reserveDay} </Table.Cell>
-          <Table.Cell className="xl:table-cell 2xl:table-cell md:hidden max-sm:hidden">
+          <Table.Cell className="max-md:hidden">{requestDay} </Table.Cell>
+          <Table.Cell>
+            <MobilePopOverOptions
+              setopenTrigger={setopenTrigger}
+              openTrigger={openTrigger}
+              setOpen1={setOpenS}
+              setOpen12={setOpenF}
+              text={reserveDay}
+              status
+            />
+          </Table.Cell>
+          <Table.Cell>
             {HourMapping[start]} / {HourMapping[end]}
           </Table.Cell>
-          <Table.Cell className="max-sm:hidden" >{reservation.reason} </Table.Cell>
-          <Table.Cell>
-            <div className=" flex justify-center md:gap-x-4 max-sm:gap-4 gap-x-12">
-              <button
-                type="button"
-                className=" hover:text-Body"
-                onClick={() => setOpenS(true)}
-              >
-                {""} <PiEyeFill className="size-6" size={28} />
-              </button>
-              <button
-                type="button"
-                title="Finalizar"
-                className="hover:text-red-600"
-                onClick={() => setOpenF(true)}
-              >
-                <LuCalendarCheck2   className="size-6" size={25} />
-              </button>
-            </div>
+          <Table.Cell className="max-md:hidden">
+            {reservation.reason}{" "}
+          </Table.Cell>
+          <Table.Cell className=" max-md:hidden">
+            <BTNAccions setOpen1={setOpenS} setOpen11={setOpenF} status />
           </Table.Cell>
         </Table.Row>
-        <MDSeeReservation 
+        <MDSeeReservation
           open={openS}
           setOpen={setOpenS}
           reserve={reservation}

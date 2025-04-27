@@ -69,7 +69,9 @@ const LocalArtistList = () => {
           slideInterval={5000}
           leftControl={<ChevronsLeft/>}
           rightControl={<ChevronsRight/>}
-          indicators
+          slide
+          indicators={false}
+          
           >
             {LArtists.data.map((artist) => (
               <CardArtistL key={"Art" + artist.ID} artist={artist} />
