@@ -56,7 +56,7 @@ const HomeNavbar = () => {
         )}
         <Drawer.Items>
           <Sidebar className="[&>div]:bg-transparent [&>div]:p-0 w-full">
-            {(rol !== "admin" ? 'asistente' : rol) && (
+            {(rol == "admin" || rol == 'asistente') && (
               <Sidebar.Items className=" w-72">
                 {navMode ? <ForAll /> : <ForAdmin />}
               </Sidebar.Items>
