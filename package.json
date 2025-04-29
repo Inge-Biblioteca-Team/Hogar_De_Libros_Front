@@ -78,7 +78,7 @@
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.2.2",
-    "vite": "^6.2.1"
+    "vite": "^6.3.3"
   },
   "description": "Frontend para hogar de libros ",
   "main": "src/main.jsx",
