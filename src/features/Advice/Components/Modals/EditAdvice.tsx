@@ -73,7 +73,7 @@ const EditAdvice = ({
   return (
     <Modal  show={open} onClose={onClose}>
       <Modal.Header className="dark:bg-[#161616]">Editar información del aviso</Modal.Header>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className=" bg-white">
         <Modal.Body className="dark:bg-[#2d2d2d]">
           <fieldset>
             <legend className="mb-2 font-bol max-sm:hiddend">
