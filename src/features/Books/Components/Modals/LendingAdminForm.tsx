@@ -79,8 +79,8 @@ const LendingAdminForm = ({
     <Modal show={open} onClose={onClose}>
       <Modal.Header>Solicitud de préstamo</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
-        <Modal.Body className=" flex flex-col gap-3">
-          <fieldset className="grid grid-cols-2 gap-x-3 gap-y-1">
+        <Modal.Body className=" flex flex-col gap-3 bg-white dark:bg-[#2d2d2d]">
+          <fieldset className="grid grid-cols-2 max-md:grid-cols-1 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del libro</legend>
             <FloatingLabel
               variant="filled"
@@ -115,7 +115,7 @@ const LendingAdminForm = ({
               readOnly
             />
           </fieldset>
-          <fieldset className="grid grid-cols-2 gap-x-3 gap-y-1">
+          <fieldset className="grid grid-cols-2 max-md:grid-cols-1 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del solicitante</legend>
             <FloatingLabel
               variant="outlined"
@@ -143,7 +143,7 @@ const LendingAdminForm = ({
               className=" cursor-default"
             />
           </fieldset>
-          <fieldset className=" grid grid-cols-2 gap-x-3 gap-y-1">
+          <fieldset className=" grid grid-cols-2 max-md:grid-cols-1 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del préstamo</legend>
             <FloatingLabel
               required
@@ -164,7 +164,7 @@ const LendingAdminForm = ({
               id="LoanExpirationDate"
               {...register("LoanExpirationDate")}
             />
-            <div className=" col-span-2 space-y-1">
+            <div className=" col-span-2 space-y-1 max-md:col-span-1">
               <FloatingLabel
                 variant="outlined"
                 label="Centro educativo o institución"

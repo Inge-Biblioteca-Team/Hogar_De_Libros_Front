@@ -60,7 +60,7 @@ const LendingForm = ({
     if (!dateValue) return;
 
     const inputDate = new Date(dateValue);
-    let correctedDate = new Date(inputDate);
+    const correctedDate = new Date(inputDate);
 
     if (inputDate.getDay() === 5) {
       correctedDate.setDate(inputDate.getDate() + 2);
@@ -85,10 +85,12 @@ const LendingForm = ({
   
   useEffect(() => {
     correctDateIfWeekend("BookPickUpDate");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch("BookPickUpDate")]);
 
   useEffect(() => {
     correctDateIfWeekend("LoanExpirationDate");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch("LoanExpirationDate")]);
 
   return (
@@ -96,7 +98,7 @@ const LendingForm = ({
       <Modal.Header className="dark:bg-neutral-900">Solicitud de préstamo</Modal.Header>
       <form onSubmit={handleSubmit(onConfirm)}>
         <Modal.Body className=" flex bg-white dark:bg-[#2d2d2d] flex-col gap-3">
-          <fieldset className="grid lg:grid-cols-2 gap-x-3 gap-y-1">
+          <fieldset className="grid gap-x-3 gap-y-1 grid-cols-2 max-md:grid-cols-1">
             <legend className="mb-1">Información del solicitante</legend>
             <FloatingLabel
               variant="filled"
@@ -132,7 +134,7 @@ const LendingForm = ({
             />
           </fieldset>
 
-          <fieldset className="grid grid-cols-2 gap-x-3 gap-y-1">
+          <fieldset className="grid grid-cols-2 max-md:grid-cols-1 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del libro</legend>
             <FloatingLabel
               variant="filled"
@@ -168,7 +170,7 @@ const LendingForm = ({
             />
           </fieldset>
 
-          <fieldset className=" grid grid-cols-2 gap-x-3 gap-y-1">
+          <fieldset className=" grid grid-cols-2 max-md:grid-cols-1 gap-x-3 gap-y-1">
             <legend className="mb-1">Información del préstamo</legend>
             <FloatingLabel
               required
@@ -191,7 +193,7 @@ const LendingForm = ({
               id="LoanExpirationDate"
               {...register("LoanExpirationDate")}
             />
-            <div className=" col-span-2 space-y-1">
+            <div className=" col-span-2 space-y-1 max-md:col-span-1">
               <FloatingLabel
               className="dark:text-white"
                 variant="outlined"
