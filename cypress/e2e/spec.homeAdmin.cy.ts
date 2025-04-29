@@ -34,7 +34,7 @@ describe("Pruebas Home pare(Reportes y estadisticas)", () => {
     cy.get('input[type="date"]').first().type(januaryOne)
     cy.get('input[type="date"]').eq(1).type(today)
     cy.contains('button', 'Generar Reporte').should('be.visible').click();
-    cy.contains('Reporte generado con éxito.').should('be.visible')
+    cy.contains('Reporte generado con éxito.',{timeout:2000}).should('be.visible')
     .then((found) => {
       if (!found) {
         cy.contains(`No existen prestamos dentro del rango de fechas ${expecDate} a ${expecDate2}`).should('be.visible');
@@ -49,7 +49,7 @@ describe("Pruebas Home pare(Reportes y estadisticas)", () => {
     cy.get('input[type="date"]').first().type(januaryOne)
     cy.get('input[type="date"]').eq(1).type(today)
     cy.contains('button', 'Generar Reporte').should('be.visible').click();
-    cy.contains('Reporte generado con éxito.').should('be.visible')
+    cy.contains('Reporte generado con éxito.',{timeout:2000}).should('be.visible')
     .then((found) => {
       if (!found) {
         cy.contains(`Ningún usuario se registró entre el ${expecDate} y el ${expecDate2}`).should('be.visible');
@@ -64,6 +64,12 @@ describe("Pruebas Home pare(Reportes y estadisticas)", () => {
     cy.get('input[type="date"]').first().type(januaryOne)
     cy.get('input[type="date"]').eq(1).type(today)
     cy.contains('button', 'Generar Reporte').should('be.visible').click();
+    cy.contains('Reporte generado con éxito.',{timeout:2000}).should('be.visible')
+    .then((found) => {
+      if (!found) {
+        cy.contains(`No existen asistencias dentro del rango de fechas ${expecDate} a ${expecDate2}`).should('be.visible');
+      }
+    });
   });
   it("Reporte de uso de equipo de computo", () => {
     cy.visit("/HogarDeLibros");
@@ -73,7 +79,7 @@ describe("Pruebas Home pare(Reportes y estadisticas)", () => {
     cy.get('input[type="date"]').first().type(januaryOne)
     cy.get('input[type="date"]').eq(1).type(today)
     cy.contains('button', 'Generar Reporte').should('be.visible').click();
-    cy.contains('Reporte generado con éxito.').should('be.visible')
+    cy.contains('Reporte generado con éxito.',{timeout:2000}).should('be.visible')
     .then((found) => {
       if (!found) {
         cy.contains(`No existen prestamos dentro del rango de fechas ${expecDate} a ${expecDate2}`).should('be.visible');
@@ -88,7 +94,7 @@ describe("Pruebas Home pare(Reportes y estadisticas)", () => {
     cy.get('input[type="date"]').first().type(januaryOne)
     cy.get('input[type="date"]').eq(1).type(today)
     cy.contains('button', 'Generar Reporte').should('be.visible').click();
-    cy.contains('Reporte generado con éxito.').should('be.visible')
+    cy.contains('Reporte generado con éxito.',{timeout:2000}).should('be.visible')
     .then((found) => {
       if (!found) {
         cy.contains(`No existen eventos dentro del rango de fechas ${expecDate} a ${expecDate2}`).should('be.visible');
@@ -103,7 +109,7 @@ describe("Pruebas Home pare(Reportes y estadisticas)", () => {
     cy.get('input[type="date"]').first().type(januaryOne)
     cy.get('input[type="date"]').eq(1).type(today)
     cy.contains('button', 'Generar Reporte').should('be.visible').click();   
-    cy.contains('Reporte generado con éxito.').should('be.visible')
+    cy.contains('Reporte generado con éxito.',{timeout:2000}).should('be.visible')
     .then((found) => {
       if (!found) {
         cy.contains(`No existen cursos dentro del rango de fechas ${expecDate} a ${expecDate2}`).should('be.visible');
