@@ -40,7 +40,7 @@ const MDExtension = ({
                   Llamanos al: <strong>+506 2685-4213</strong>{" "}
                 </p>
                 <p>
-                  Escribenos al Whatsapp: <strong>+506 7271-6041</strong>
+                  Escribenos al Whatsapp: <strong> <a href="https://wa.me/50672716041">+506 7271-6041</a></strong>
                 </p>
               </ul>
             </div>
