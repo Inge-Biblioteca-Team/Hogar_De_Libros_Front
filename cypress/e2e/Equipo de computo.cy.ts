@@ -1,8 +1,8 @@
-const email = 'keirinobando@gmail.com';
-const password = 'Keirin2602';
 
 describe('Gestión de Equipos de Cómputo', () => {
-
+  
+  const email = 'keirinobando@gmail.com';
+  const password = 'Keirin2602';
   beforeEach(() => {
     cy.session('session-salas', () => {
       cy.visit('/');
