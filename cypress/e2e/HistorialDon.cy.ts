@@ -1,5 +1,5 @@
-const email = 'keirinobando@gmail.com';
-const password = 'Keirin2602';
+import {email, password} from "../e2e/Credenciales"
+
 
 describe('Gestión de historial de donaciones', () => {
   beforeEach(() => {
