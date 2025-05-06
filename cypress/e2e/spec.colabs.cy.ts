@@ -170,7 +170,9 @@ describe("Pruebas colaboraciones", () => {
         `${Cypress.config().baseUrl}/HogarDeLibros/Colaboraciones/Historial`
       );
       cy.get("select").first().select(testData.PrincipalCategory);
+      cy.wait(1000)
       cy.get("select").eq(1).select(testData.SubCategory);
+      cy.wait(1000)
       cy.get("input[type='date']").type(testData.activityDate);
     });
   });
