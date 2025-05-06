@@ -1,5 +1,5 @@
-const email = 'keirinobando@gmail.com';
-const password = 'Keirin2602';
+import {email, password} from "../e2e/Credenciales"
+
 
 describe('Flujo completo de gestión de mensajes: Recibidos, Leídos, Papelera', () => {
   beforeEach(() => {

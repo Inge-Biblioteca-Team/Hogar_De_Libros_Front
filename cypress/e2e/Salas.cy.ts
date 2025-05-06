@@ -1,5 +1,4 @@
-/// <reference types="cypress" /> 
-
+import {email, password} from "../e2e/Credenciales"
 
 describe('Módulo de Salas - Hogar de Libros', () => {
   const nuevaSala = {
@@ -22,9 +21,6 @@ describe('Módulo de Salas - Hogar de Libros', () => {
     locationNuevo: 'Primer piso',
     imageNuevo: [],
   };
-
-  const email = 'keirinobando@gmail.com';
-  const password = 'Keirin2602';
 
   beforeEach(() => {
     cy.session('session-salas', () => {

@@ -1,6 +1,8 @@
+
+import {email, password} from "../e2e/Credenciales"
+
 describe('Prestamo de equipo de computo', ()=>{
-    const email = 'keirinobando@gmail.com';
-    const password = 'Keirin2602';
+ 
 const maquinaNumero = '2';
 
 beforeEach(() => {
