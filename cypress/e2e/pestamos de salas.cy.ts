@@ -1,6 +1,7 @@
+import {email, password} from "../e2e/Credenciales"
+
 describe('Pruebas de salas', ()=>{
-  const email = 'keirinobando@gmail.com';
-const password = 'Keirin2602';
+
 
 beforeEach(() => {
   cy.session('session-salas', () => {

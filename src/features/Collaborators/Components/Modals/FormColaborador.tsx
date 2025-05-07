@@ -135,8 +135,8 @@ const FormColaborador = ({ open, setOpen }: ModalOpen) => {
               </div>
               <div>
                 <Label htmlFor="IDNumber"
-                  value={idType === "number" ? "Número de cédula" : "Número de pasaporte"}
-                />{" "}
+                    value={'Identificación'}
+                />
                 {idType == "" ? (
                   <Select onChange={(event) => setIdType(event.target.value)}>
                     <option value="">Seleccione el tipo de identificacion</option>
