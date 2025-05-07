@@ -35,7 +35,7 @@ const SeeLoanInfo = ({
       setIsLoading(true);
       const blob = await pdf(<DocumentForLoan loanInfo={data} />).toBlob();
       saveAs(blob, `boleta#${data.BookLoanId}.pdf`);
-      toast.success('PDF generado exitosamente')
+      toast.success("PDF generado exitosamente");
     } catch (error) {
       console.error("Error al generar PDF:", error);
     } finally {
@@ -43,9 +43,8 @@ const SeeLoanInfo = ({
     }
   };
 
-
   return (
-    <Modal dismissible show={see} onClose={close}>
+    <Modal dismissible show={see} onClose={() => setSee(false)}>
       <Modal.Header className="dark:bg-neutral-900">
         <span>Información del préstamo</span>
       </Modal.Header>
@@ -57,7 +56,7 @@ const SeeLoanInfo = ({
             <span>Cédula: {Loan.userCedula}</span>
             <span>Dirección: {Loan.userAddress}</span>
             <span>Teléfono: {Loan.userPhone} </span>
-            {Loan.OldObservations && Loan.OldObservations.length > 0 &&  (
+            {Loan.OldObservations && Loan.OldObservations.length > 0 && (
               <details>
                 <summary>Anotaciones del usuario</summary>
                 <ul>
@@ -71,8 +70,16 @@ const SeeLoanInfo = ({
           <span className=" flex flex-col">
             <strong>Sobre el Libro</strong>
             <span>Título: {Loan.book?.Title || Loan.childrenBook?.Title}</span>
-            <span>Código de Signatura: {Loan.book?.signatureCode || Loan.childrenBook?.SignatureCode || "N/A"}</span>
-            <span>Código De Inscripcion: {Loan.book?.InscriptionCode || Loan.childrenBook?.InscriptionCode}</span>
+            <span>
+              Código de Signatura:{" "}
+              {Loan.book?.signatureCode ||
+                Loan.childrenBook?.SignatureCode ||
+                "N/A"}
+            </span>
+            <span>
+              Código De Inscripcion:{" "}
+              {Loan.book?.InscriptionCode || Loan.childrenBook?.InscriptionCode}
+            </span>
           </span>
           <span className=" flex flex-col">
             <strong>Sobre el préstamo</strong>
@@ -89,9 +96,16 @@ const SeeLoanInfo = ({
           {" "}
           Cerrar{" "}
         </Button>
-        <Button color={"blue"} onClick={() => generatePDF(Loan)} disabled={isLoading}>
+        <Button
+          color={"blue"}
+          onClick={() => generatePDF(Loan)}
+          disabled={isLoading}
+        >
           {isLoading ? (
-            <><Spinner aria-label="Spinner button example" size="sm" /> <p className="pl-3">Descargando...</p></>
+            <>
+              <Spinner aria-label="Spinner button example" size="sm" />{" "}
+              <p className="pl-3">Descargando...</p>
+            </>
           ) : (
             "Guardar copia"
           )}
