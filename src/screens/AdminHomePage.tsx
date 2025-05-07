@@ -101,19 +101,23 @@ const AdminHomePage = () => {
                 >
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Catalogo/Completo"}
+                    to={
+                      "/HogarDeLibros/Prestamos_Circulacion/Solicitudes_Libros"
+                    }
                   >
                     Ver solicitudes pendientes de respuesta
                   </Link>
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Recursos/Catalogo_General"}
+                    to={
+                      "/HogarDeLibros/Prestamos_Circulacion/Prestamos_Activos"
+                    }
                   >
                     Ver solicitudes aprobadas
                   </Link>
                   <Link
                     className=" hover:text-Body"
-                    to={"/HogarDeLibros/Recursos/Catalogo_General"}
+                    to={"/HogarDeLibros/Historial/Libros"}
                   >
                     Ver historial de préstamos
                   </Link>

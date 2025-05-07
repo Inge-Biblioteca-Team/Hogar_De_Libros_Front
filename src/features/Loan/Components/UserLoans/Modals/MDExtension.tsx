@@ -51,7 +51,7 @@ const MDExtension = ({
 
               <ul className="text-start mt-2">
                 <p>
-                  De lunes a viernes de <strong>8 AM a 5 PM</strong>
+                  De lunes a viernes de <strong>8 AM a 4 PM</strong>
                 </p>
               </ul>
             </div>

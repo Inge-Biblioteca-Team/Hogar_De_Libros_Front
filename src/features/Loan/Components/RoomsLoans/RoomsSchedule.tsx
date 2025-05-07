@@ -26,7 +26,7 @@ const RoomsSchedule = ({
     roomId: room.roomId,
   }));
 
-  const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+  const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16];
 
   const HourMapping: { [key: number]: string } = {
     8: "8 AM",
@@ -38,7 +38,6 @@ const RoomsSchedule = ({
     14: "2 PM",
     15: "3 PM",
     16: "4 PM",
-    17: "5 PM",
   };
 
   const [open, setOpen] = useState<boolean>(false);
