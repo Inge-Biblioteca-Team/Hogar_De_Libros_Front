@@ -25,9 +25,11 @@ const FriendsRows = ({ friend }: { friend: Friend }) => {
       >
         <Table.Cell>{friend.UserFullName}</Table.Cell>
         <Table.Cell className=" max-lg:hidden">{friend.UserCedula}</Table.Cell>
-        <Table.Cell className=" max-sm:hidden">{friend.PrincipalCategory}</Table.Cell>
+        <Table.Cell className=" max-sm:hidden">{friend.UserPhone}</Table.Cell>
+        <Table.Cell className=" max-xl:hidden">
+          {friend.PrincipalCategory}
+        </Table.Cell>
         <Table.Cell className=" max-xl:hidden">{friend.SubCategory}</Table.Cell>
-        <Table.Cell className=" max-xl:hidden">{friend.UserGender}</Table.Cell>
         <Table.Cell>
           <MobilePopOverOptions
             setopenTrigger={setPopoverVisible}
@@ -35,7 +37,7 @@ const FriendsRows = ({ friend }: { friend: Friend }) => {
             setOpen1={setOpenS}
             setOpen2={setOpenE}
             setOpen3={setOpenD}
-            text={friend.UserPhone}
+            text={friend.UserGender}
             status={friend.Status != "Baja"}
           />
         </Table.Cell>
