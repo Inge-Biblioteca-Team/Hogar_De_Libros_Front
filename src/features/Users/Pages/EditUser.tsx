@@ -11,7 +11,6 @@ import { ProfileCrumbs } from "../../../components/Breadcrumbs/BreadCrumbsItems"
 import UserContext from "../../../Context/UserContext/UserContext";
 import { getLoanPolicity } from "../../../components/Maps/LoanPolicity";
 import Skeleton from "react-loading-skeleton";
-import image from "../../../Assets/MyProfile.jpg";
 
 const EditUser = () => {
   const { currentUser } = useContext(UserContext);
@@ -74,19 +73,11 @@ const EditUser = () => {
                 <div className=" w-full flex items-end justify-between max-sm:flex-col max-sm:items-start max-sm:gap-4">
                   <div className=" flex items-center gap-5">
                     <figure>
-                      {User?.name == "ADRIAN" ? (
-                        <img
-                          className=" rounded-full w-40 h-40"
-                          src={image}
-                          alt={User?.imageUrl}
-                        />
-                      ) : (
-                        <img
-                          className=" rounded-full w-40 h-40"
-                          src={User?.imageUrl}
-                          alt={User?.name}
-                        />
-                      )}
+                      <img
+                        className=" rounded-full w-40 h-40"
+                        src={User?.imageUrl}
+                        alt={User?.name}
+                      />
                     </figure>
                     <div className=" flex flex-col">
                       <span>
@@ -126,7 +117,11 @@ const EditUser = () => {
                     </div>
                   </div>
                   <div>
-                    <Button className="dark:bg-[#2d2d2d]" color={"blue"} onClick={() => setOpneI(true)}>
+                    <Button
+                      className="dark:bg-[#2d2d2d]"
+                      color={"blue"}
+                      onClick={() => setOpneI(true)}
+                    >
                       Editar información
                     </Button>
                   </div>
@@ -150,7 +145,11 @@ const EditUser = () => {
                     </div>
                   </div>
                   <div>
-                    <Button className="dark:bg-[#2d2d2d]" color={"blue"} onClick={() => setOpneC(true)}>
+                    <Button
+                      className="dark:bg-[#2d2d2d]"
+                      color={"blue"}
+                      onClick={() => setOpneC(true)}
+                    >
                       Editar información de contacto
                     </Button>
                   </div>
@@ -179,7 +178,11 @@ const EditUser = () => {
                     </div>
                   </div>
                   <div>
-                    <Button className="dark:bg-[#2d2d2d]" color={"blue"} onClick={() => setOpneR(true)}>
+                    <Button
+                      className="dark:bg-[#2d2d2d]"
+                      color={"blue"}
+                      onClick={() => setOpneR(true)}
+                    >
                       Editar información de residencia
                     </Button>
                   </div>
